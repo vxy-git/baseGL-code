@@ -5,16 +5,42 @@ $text-color: #333;
 $text-light: #666;
 $bg-color: #ffffff;
 
+// CALEAF 品牌颜色
+$caleaf-green: #1ce785;
+$caleaf-black: #111111;
+$caleaf-dark-bg: #000000;
+$caleaf-gray: #d9d9d9;
+$caleaf-gray-light: #f5f5f5;
+$caleaf-gray-medium: #666666;
+$caleaf-gray-dark: #23242a;
+$caleaf-text-dark: #222222;
+$caleaf-text-gray: #555555;
+$caleaf-text-light: #999999;
+
 // 间距
 $spacing-xs: 0.5rem;
 $spacing-sm: 1rem;
 $spacing-md: 2rem;
 $spacing-lg: 4rem;
 
+// 设计稿基准尺寸
+$design-width: 1920px;
+$design-height: 12000px;
+
+// 精确间距值（基于 Figma 设计）
+$spacing-precise-xs: 10px;
+$spacing-precise-sm: 20px;
+$spacing-precise-md: 30px;
+$spacing-precise-lg: 40px;
+$spacing-precise-xl: 60px;
+$spacing-precise-xxl: 80px;
+$spacing-precise-xxxl: 120px;
+
 // 断点
 $breakpoint-mobile: 768px;
 $breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1440px;
+$breakpoint-design: 1920px; // 设计稿基准宽度
 
 // 动画时长
 $transition-fast: 0.2s;
