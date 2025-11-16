@@ -36,11 +36,11 @@ const routes = [
     name: 'About',
     component: () => import('@/views/About.vue')
   },
-  {
-    path: '/technology',
-    name: 'Technology',
-    component: () => import('@/views/technology.vue')
-  }
+  // {
+  //   path: '/technology',
+  //   name: 'Technology',
+  //   component: () => import('@/views/technology.vue')
+  // }
 ]
 
 const router = createRouter({
