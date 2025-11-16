@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 
 const logoImage = "@/assets/img/icon11.png";
 
@@ -19,12 +19,20 @@ const props = defineProps({
     default:"opacity"
   }
 })
+
+// 使用本地可变状态而不是直接修改只读的 props
+const currentHeaderClass = ref(props.headerClass)
+
+// 若父组件变更传入的值，则同步到本地状态
+watch(() => props.headerClass, (val) => {
+  currentHeaderClass.value = val
+})
 onMounted(() =>{
   addEventListener("scroll", e => {
     if(document.documentElement.scrollTop > 20){
-      props.headerClass = "white"
+      currentHeaderClass.value = "white"
     }else{
-      props.headerClass = "opacity"
+      currentHeaderClass.value = "opacity"
     }
   })
 })
@@ -32,13 +40,13 @@ onMounted(() =>{
 </script>
 
 <template>
-    <div :class="headerClass" class="w-full flex items-center fixed top-0 left-0 z-50 justify-center">
+    <div :class="currentHeaderClass" class="w-full flex items-center fixed top-0 left-0 z-50 justify-center">
       <div class="w-full box transition-all">
         <header class="top-nav w-[1300px] mx-auto">
           <div class="nav-left">
             <div class="logo">
-              <img v-show="headerClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo" class="logo-image" />
-              <img v-show="headerClass==='white'" src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo" class="logo-image" />
+              <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo" class="logo-image" />
+              <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo" class="logo-image" />
               <span class="logo-text">CALEAF TECH</span>
             </div>
             <nav class="nav-links">
@@ -52,8 +60,8 @@ onMounted(() =>{
           <div class="nav-right">
             <button class="contact-button">Contact</button>
             <button class="icon-button" aria-label="Search">
-              <img v-show="headerClass==='opacity'" src="@/assets/img/icon12.png" alt="" />
-              <img v-show="headerClass==='white'" src="@/assets/img/icon12_active.png" alt="" />
+              <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon12.png" alt="" />
+              <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon12_active.png" alt="" />
             </button>
           </div>
         </header>
