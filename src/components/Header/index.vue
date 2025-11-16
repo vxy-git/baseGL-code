@@ -51,7 +51,8 @@ onMounted(() =>{
             </div>
             <nav class="nav-links">
               <a href="#" class="nav-link">Products</a>
-              <a href="#" class="nav-link">Technology</a>
+              <!-- <a href="#" class="nav-link">Technology</a> -->
+              <router-link to="/technology" class="nav-link">Technology</router-link>
               <a href="#" class="nav-link">Customize</a>
               <a href="#" class="nav-link">US Local Service</a>
               <a href="#" class="nav-link">Why Caleaf</a>
