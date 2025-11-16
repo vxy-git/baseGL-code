@@ -26,11 +26,11 @@ const routes = [
     name: 'ProductDetail',
     component: () => import('@/views/ProductDetail.vue')
   },
-  // {
-  //   path: '/technology',
-  //   name: 'Technology',
-  //   component: () => import('@/views/Technology/Technology.vue')
-  // }
+  {
+    path: '/technology',
+    name: 'Technology',
+    component: () => import('@/views/Technology/Technology.vue')
+  }
 ]
 
 const router = createRouter({
