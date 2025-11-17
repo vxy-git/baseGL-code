@@ -17,6 +17,9 @@ const props = defineProps({
   headerClass:{
     type:String,
     default:"opacity"
+  },
+  border:{
+    type:Boolean
   }
 })
 
@@ -29,6 +32,7 @@ watch(() => props.headerClass, (val) => {
 })
 onMounted(() =>{
   addEventListener("scroll", e => {
+    if(props.headerClass === "white")return
     if(document.documentElement.scrollTop > 20){
       currentHeaderClass.value = "white"
     }else{
@@ -40,8 +44,11 @@ onMounted(() =>{
 </script>
 
 <template>
-    <div :class="currentHeaderClass" class="w-full flex items-center fixed top-0 left-0 z-50 justify-center">
-      <div class="w-full box transition-all">
+    <div :class="{
+      'white':currentHeaderClass === 'white',
+      'opacity':currentHeaderClass === 'opacity',
+    }" class="w-full flex items-center fixed top-0 left-0 z-50 justify-center">
+      <div class="w-full box transition-all" :class="` ${border && 'border-b-solid border-black/5 border-b-[1px]'}`">
         <header class="top-nav w-[1300px] mx-auto">
           <div class="nav-left">
             <div class="logo">
@@ -76,7 +83,7 @@ onMounted(() =>{
 }
 .white{
   .box{
-    background-color: white;
+    background-color: white !important;
     .nav-link{
       color: #555555;
     }
