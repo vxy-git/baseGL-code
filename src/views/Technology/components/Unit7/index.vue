@@ -3,18 +3,21 @@ import icon6_1 from '@/assets/img/icon6_1.png'
 </script>
 
 <template>
-<div class="h-[880px] bg-[#111111] flex items-center justify-center">
-    <img :src="icon6_1" alt="" class="w-[1300px] h-[560px] translate-y-[1710px] translate-x-[399px]" />
+<div class=" ">
+
     
-    <div class="content-wrapper ">
-        <div class="title2 translate-y-[1715px] translate-x-[-650px]">
+    <div class="w-[1300px] h-[560px] relative mx-auto mt-[260px]">
+      <img :src="icon6_1" alt="" class="w-[1300px] h-[560px]" />
+        <div class="absolute size-full top-0 left-0 flex flex-col items-center pt-[142px]">
+          <div class="title2">
             From lab to awards: journey to the top
-      </div>
-      <div class="title3  translate-y-[1750px] translate-x-[-650px]">
-        Our R&D Director, Frank, with 20 years of industry experience, has worked with US labs for 18 months, conducting round-the-clock tests to redefine the gold standard for Rosin and Resin oils. This dedication means we don't just offer testing capabilities—we offer proven results.
-We once partnered with a client for a year-long testing phase to ensure their product not only made a big hit in the market but also stood the test of time.
-Choose us, and you're not just choosing a supplier—you're choosing a reliable partner you can always count on.
-      </div>
+          </div>
+          <div class="title3 mt-[54px]">
+            Our R&D Director, Frank, with 20 years of industry experience, has worked with US labs for 18 months, conducting round-the-clock tests to redefine the gold standard for Rosin and Resin oils. This dedication means we don't just offer testing capabilities—we offer proven results.<br/>
+            We once partnered with a client for a year-long testing phase to ensure their product not only made a big hit in the market but also stood the test of time.<br/>
+            Choose us, and you're not just choosing a supplier—you're choosing a reliable partner you can always count on.
+          </div>
+        </div>
       
       
     </div>
@@ -43,10 +46,11 @@ Choose us, and you're not just choosing a supplier—you're choosing a reliable 
 
 .title3 {
   width: 983px;
-  height: 217px;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
+  color: #FFF;
+  font-family: Roboto;
   font-size: 20px;
-//   text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 150% */
 }
 </style>

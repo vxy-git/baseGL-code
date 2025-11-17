@@ -3,8 +3,7 @@ import icon3_1 from '@/assets/img/icon3_1.png'
 </script>
 
 <template>
-<div class="h-[880px] bg-[#111111] flex items-center justify-center">
-    <div class="content-wrapper -mt-[-280px] translate-x-[270px]">
+    <div class="content-wrapper mt-[158px]">
       <div class="title1">
         We fixed it first
       </div>
@@ -14,12 +13,11 @@ import icon3_1 from '@/assets/img/icon3_1.png'
 anti-clogging solution ever built.
       </div>
 
-      <div class="title3 translate-y-[21px]" >
+      <div class="title3 mt-[21px]" >
         Most customers have reported bubble issues to us with various devices from different suppliers during oil filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
       </div>
-    </div> 
-</div>
-<img :src="icon3_1"  class="w-[595px] h-[412px] mt-[-154px] translate-x-[930px]">
+    </div>
+<img :src="icon3_1"  class="w-[595px] h-[412px] mt-[66px]">
 </template>
 
 <style scoped lang="scss">
@@ -51,7 +49,6 @@ anti-clogging solution ever built.
 
 .title3 {
   width: 750px;
-  height: 232px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;

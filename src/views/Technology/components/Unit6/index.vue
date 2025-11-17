@@ -3,56 +3,56 @@ import icon5_1 from '@/assets/img/icon5_1.png'
 </script>
 
 <template>
-<div class="h-[880px] bg-[#111111] flex items-center justify-center">
-    <div class="content-wrapper ">
-        <div class="title2 translate-y-[1380px] translate-x-[-68px]">
-            Our clients have taken home trophies
+  <div class=" bg-[#111111] flex items-center justify-center pt-[263px]">
+    <div class="content-wrapper w-[800px]">
+      <div class="title2">
+        Our clients have taken home trophies
       </div>
-      <div class="title3  translate-y-[1415px] translate-x-[-4px]">
-        We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our products’ excellence.
+      <div class="w-[100vw] -translate-x-[calc((100vw-800px)/2)] bg-[#1CE785] h-[2px] mt-[40px]">
+
       </div>
-      <div class="title2 translate-y-[1670px] translate-x-[-68px]">
-            Our clients have taken home trophies
+      <div class="title3 mt-[44px]">
+        We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our
+        products’ excellence.
       </div>
-      <img :src="icon5_1" alt="" class="w-[800px] h-[400px] translate-y-[1650px] translate-x-[0px]" />
+      <div class="title2 mt-[310px]">
+        Our clients have taken home trophies
+      </div>
+      <img :src="icon5_1" alt="" class="w-[800px] h-[400px] mt-[41px]"/>
 
 
-
-      <div class="title3  translate-y-[1670px] translate-x-[-4px]">
-        We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our products’ excellence.
+      <div class="title3 mt-[34px]">
+        We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our
+        products’ excellence.
       </div>
-      
-      
+
+
     </div>
-    
-</div>
+
+  </div>
 </template>
 
 <style scoped lang="scss">
 .content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
 
 
 .title2 {
-  width: 669px;
-  height: 79px;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
+  color: #FFF;
+  font-family: Roboto;
   font-size: 40px;
-  text-align: center;
-  line-height: 1.1; // 缩短行间距
+  font-style: normal;
+  font-weight: 700;
+  line-height: 47px;
+
 }
 
 .title3 {
-  width: 800px;
-  height: 100px;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
+  color: #FFF;
+  font-family: Roboto;
   font-size: 20px;
-//   text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 150% */
 }
 </style>

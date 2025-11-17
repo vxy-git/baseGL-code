@@ -1,5 +1,7 @@
 <template>
-    <div :class="$style.technologyPage">
+  <img src="/technology.jpg" alt="Overlay Image" class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/>
+
+  <div :class="$style.technologyPage">
         <!-- Header -->
         <header :class="$style.header">
             <div :class="$style.headerContent">
@@ -905,3 +907,5 @@
     color: #555;
 }
 </style>
+<script setup lang="ts">
+</script>

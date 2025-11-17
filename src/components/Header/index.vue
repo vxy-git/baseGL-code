@@ -87,7 +87,7 @@ onMounted(() =>{
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  height: 100px;
+  height: 110px;
 }
 
 .nav-left {
