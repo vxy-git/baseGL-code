@@ -1,4 +1,8 @@
 <template>
+  <!-- 覆盖图层 -->
+  <img src="/home.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/>
+
+
   <div>
     <Header/>
     <Unit1/>
@@ -7,6 +11,9 @@
     <Unit4/>
     <Unit5/>
     <Unit6/>
+    <div class="pt-[24px]">
+      <Footer/>
+    </div>
   </div>
 </template>
 
@@ -18,4 +25,5 @@ import Unit3 from "./components/Unit3/index.vue"
 import Unit4 from "./components/Unit4/index.vue"
 import Unit5 from "./components/Unit5/index.vue"
 import Unit6 from "./components/Unit6/index.vue"
+import Footer from "@/components/Footer.vue";
 </script>

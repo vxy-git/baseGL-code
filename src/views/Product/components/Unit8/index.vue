@@ -3,11 +3,11 @@
 </script>
 
 <template>
-  <div class="pt-[110px] bg-white pb-[152px]">
+  <div class="pt-[110px] bg-white pb-[148px]">
     <div class="label text-center">
       Design your own look
     </div>
-    <div class="title text-center">
+    <div class="title text-center mt-[20px]">
       Realize your unique design with CALEAF TECH
     </div>
     <div class="flex justify-center gap-x-[20px] mt-[58px] relative">

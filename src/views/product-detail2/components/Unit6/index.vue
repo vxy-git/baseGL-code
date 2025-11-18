@@ -4,14 +4,14 @@ import Tabs from "@/components/Tabs/index.vue";
 import {ref} from "vue";
 const tabsCurrent = ref(0)
 const tabsList = [
-  "Smooth yet Rugged Design",
-  "Dual-Color Mouthpiece",
-  "Large Side Display"
+  "Crystal-clear Design",
+  "Unibody Enclosure",
+  "Medical-grade Chamber"
 ]
 </script>
 
 <template>
-  <div class="mt-[170px]">
+  <div class="pt-[200px] bg-black">
     <div class="title">
       Every Detail Matters
     </div>
@@ -20,10 +20,7 @@ const tabsList = [
       <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
       <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
     </div>
-    <Tabs type="dark" class="!w-[880px] mx-auto !py-0 !h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
-    <div class="label w-[1000px] mx-auto mt-[28px]">
-      The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
-    </div>
+    <Tabs type="dark" class="!w-[800px] mx-auto mt-[35px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
   </div>
 </template>
 

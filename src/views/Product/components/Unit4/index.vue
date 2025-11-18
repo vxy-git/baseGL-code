@@ -5,7 +5,7 @@
 <template>
   <div class="mt-[204px]">
     <div class="title">
-      onsistent Temp<br/>
+      Onsistent Temp<br/>
       Ideal for Rosin
     </div>
     <div class="w-[1230px] mx-auto mt-[185px]">
@@ -18,23 +18,23 @@
           Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <div class="flex justify-between mt-[90px]">
+      <div class="flex justify-between mt-[78px]">
         <img class="h-[500px] w-[480px] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
         <img class="h-[500px] w-[730px] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
       </div>
     </div>
 
-    <div class="w-[1230px] mx-auto mt-[227px]">
+    <div class="w-[1230px] mx-auto mt-[224px]">
       <div class="greenText">Built-in wires</div>
       <div class="flex justify-between mt-[19px]">
         <div class="title2">
           No dry burning
         </div>
-        <div class="label">
-          heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
+        <div class="label mt-[2px]">
+          The heating coil is embedded within the ceramic core, this way, the oil<br/> is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
-      <div class="flex justify-between mt-[90px]">
+      <div class="flex justify-between mt-[75px]">
 
         <img class="h-[500px] w-[730px] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
         <img class="h-[500px] w-[480px] rounded-[20px]" src="@/assets/img/icon20.png" alt="">

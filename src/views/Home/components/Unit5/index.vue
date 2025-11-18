@@ -25,12 +25,12 @@ const bannerCurrent = ref(0)
 </script>
 
 <template>
-  <div class="mt-[69px]">
+  <div class="mt-[67px]">
     <div class="w-[1300px] mx-auto">
       <div class="title text-center">
         The latest news and inspiring stories
       </div>
-      <div class="mt-[50px] relative">
+      <div class="mt-[46px] relative">
         <img class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4.png" alt="">
 
           <div class="w-screen -ml-[calc((100vw-1300px)/2)]">
