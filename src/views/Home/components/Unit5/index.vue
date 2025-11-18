@@ -25,7 +25,7 @@ const bannerCurrent = ref(0)
 </script>
 
 <template>
-  <div class="mt-[67px]">
+  <div class="mt-[55px]">
     <div class="w-[1300px] mx-auto">
       <div class="title text-center">
         The latest news and inspiring stories
@@ -60,7 +60,7 @@ const bannerCurrent = ref(0)
       <div class="flex justify-center gap-x-[10px] pt-[26px]">
         <div v-for="(item,index) in list" :class="{
           '!bg-black !w-[30px]':bannerCurrent === index
-        }" class="dotItem"></div>
+        }" :key="index" class="dotItem"></div>
       </div>
     </div>
   </div>

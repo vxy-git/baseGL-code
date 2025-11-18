@@ -11,7 +11,7 @@
     <Unit4/>
     <Unit5/>
     <Unit6/>
-    <div class="pt-[24px]">
+    <div class="pt-[20px]">
       <Footer/>
     </div>
   </div>
