@@ -65,8 +65,8 @@ export default defineConfig({
     },
     // 开发服务器配置
     server: {
-        port: 3000,
-        open: true
+        port: 3002,
+        open: false
     },
     // CSS预处理器
     css: {

@@ -66,7 +66,7 @@ const stop = ref(false)
         <div class="h-[880px] relative">
           <div class="absolute size-full left-0 top-0">
             <div class="w-[1300px] mx-auto flex flex-col justify-center h-full">
-              <div class="title ">
+              <div class="title mt-[10px]">
                 {{item.title}}
               </div>
               <div class="subTitle mt-[15px]">
@@ -83,7 +83,7 @@ const stop = ref(false)
       </SwiperSlide>
     </Swiper>
 
-    <div class="dot absolute bottom-0 left-0 flex justify-center z-10">
+    <div class="dot absolute bottom-[2px] left-0 flex justify-center z-10">
       <div @mouseover="stop = true" @mouseout="stop = false" class="w-[1300px] flex justify-between gap-x-[13px]">
         <div
           @mouseover="swiperRef?.slideTo(index)"

@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <div class="w-[1300px] mt-[83px] mx-auto">
+    <div class="w-[1300px] mt-[80px] mx-auto">
       <div>
         <div class="relative">
           <div class="size-full absolute z-10 top-0 left-0 pt-[122px]">

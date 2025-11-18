@@ -15,7 +15,7 @@
 
 
   <div>
-    <div class="mt-[130.75px] relative">
+    <div class="mt-[126.75px] relative">
       <div class="absolute top-0 left-0 w-full">
         <div class="smallTitle">
           Award-Winning
@@ -33,7 +33,7 @@
 
 
   <div>
-    <div class="mt-[204px] relative">
+    <div class="mt-[200px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
           A Significant Breakthrough
@@ -42,17 +42,17 @@
           U-shape design<br/>
           Pioneering industry
         </div>
-        <div class="text !mt-[34px]">
-          Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
+        <div class="text !mt-[24px]">
+          Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure<br/> for the vast majority of Resin and Rosin oils on the market.
         </div>
       </div>
-      <img src="@/assets/img/icon17.png" class="w-[1460px] mx-auto -mt-[50px]" alt="">
+      <img src="@/assets/img/icon17.png" class="w-[1250px] mx-auto mt-[-30px]" alt="">
     </div>
   </div>
 
 
   <div>
-    <div class="mt-[204px] relative">
+    <div class="mt-[60px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
           100% Rosin-Ready
@@ -61,10 +61,10 @@
           Savor the most natural<br/>
           and rich flavors
         </div>
-        <div class="text !mt-[34px]">
+        <div class="text !mt-[28px]">
           Our patented U-shape ceramic design is 30% thinner than ordinary ceramics, which means fewer terpene molecules are filtered out and the rich, natural flavors are preserved.
         </div>
-        <div class="flex justify-center gap-x-[150px] mt-[78px]">
+        <div class="flex justify-center gap-x-[150px] mt-[68px]">
           <div class="flex flex-col items-center justify-center ">
             <div class="text1 h-[40px]">
               30%
@@ -148,6 +148,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: 30px; /* 150% */
-  margin-top: 5px;
+  margin-top: 0px;
 }
 </style>

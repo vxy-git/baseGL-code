@@ -1,8 +1,7 @@
 <script setup>
-const logoImage = 'https://www.figma.com/api/mcp/asset/f6e48c67-ef8d-4829-a175-e61663537ce1'
+import Header from "@/components/Header/index.vue";
+
 const productImage = 'https://www.figma.com/api/mcp/asset/7cfd8a26-51a1-4fef-a8d0-b5764e769beb'
-const searchIcon = 'https://www.figma.com/api/mcp/asset/10b84b2e-e159-4dfd-9609-a179d50ad248'
-const arrowIcon = 'https://www.figma.com/api/mcp/asset/809da35d-3f0d-44c3-8156-5bbfa9e94a8c'
 
 const categories = [
   { label: 'For Resin/Rosin', active: true },
@@ -25,34 +24,13 @@ const products = Array.from({ length: 8 }, (_, index) => ({
 </script>
 
 <template>
-  <div class="product-page">
-    <header class="top-nav">
-      <div class="nav-left">
-        <div class="logo">
-          <img :src="logoImage" alt="Caleaf Tech logo" class="logo-image" />
-          <span class="logo-text">CALEAF TECH</span>
-        </div>
-        <nav class="nav-links">
-          <a href="#" class="nav-link">Products</a>
-          <a href="#" class="nav-link">Technology</a>
-          <a href="#" class="nav-link">Customize</a>
-          <a href="#" class="nav-link">US Local Service</a>
-          <a href="#" class="nav-link">Why Caleaf</a>
-        </nav>
-      </div>
-      <div class="nav-right">
-        <button class="contact-button">Contact</button>
-        <button class="icon-button" aria-label="Search">
-          <img :src="searchIcon" alt="" />
-        </button>
-      </div>
-    </header>
+  <img src="/nav.jpg" alt="Overlay Image" class="pointer-events-none z-50 absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/>
 
-    <div class="divider" aria-hidden="true"></div>
-
-    <main class="content">
-      <aside class="sidebar">
-        <h2 class="sidebar-title">Innovative products</h2>
+  <div class="product-page overflow-hidden">
+    <Header headerClass="white"/>
+    <main class="content h-full">
+      <aside class="sidebar   h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12">
+        <h2 class="sidebar-title pl-[2px]">Innovative products</h2>
         <ul class="category-list">
           <li
             v-for="category in categories"
@@ -67,12 +45,12 @@ const products = Array.from({ length: 8 }, (_, index) => ({
 
       <section class="grid-section">
         <div class="product-grid">
-          <article v-for="product in products" :key="product.id" class="product-card">
-            <div class="badge">{{ product.badge }}</div>
-            <img :src="product.image" :alt="`${product.name} product`" class="product-image" />
-            <div class="product-info">
+          <article v-for="product in products" :key="product.id" class=" px-[21px] product-card pt-[23px]">
+            <div class="badge self-start">{{ product.badge }}</div>
+            <img :src="product.image" :alt="`${product.name} product`" class="product-image mt-[28px]" />
+            <div class="product-info mt-[11px]">
               <h3 class="product-name">{{ product.name }}</h3>
-              <div class="product-variant">{{ product.variant }}</div>
+              <div class="product-variant mt-[3px]">{{ product.variant }}</div>
             </div>
           </article>
         </div>
@@ -80,7 +58,7 @@ const products = Array.from({ length: 8 }, (_, index) => ({
         <div class="cta-row">
           <button class="cta-button">
             <span>Explore our In-Ones</span>
-            <img :src="arrowIcon" alt="" />
+            <img src="@/assets/img/icon42.png" alt="" />
           </button>
         </div>
       </section>
@@ -93,8 +71,7 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   font-family: 'Roboto', 'Arial', sans-serif;
   color: #111111;
   background-color: #ffffff;
-  min-height: 100vh;
-  padding: 30px 80px 60px;
+  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -200,12 +177,11 @@ const products = Array.from({ length: 8 }, (_, index) => ({
 .content {
   display: flex;
   align-items: flex-start;
-  gap: 32px;
-  margin-top: 40px;
+  width: 1300px;margin: 100px auto 0;
 }
 
 .sidebar {
-  width: 240px;
+  width: 272px;
 }
 
 .sidebar-title {
@@ -220,16 +196,17 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
   font-size: 16px;
   color: #555555;
 }
 
 .category-item {
-  padding: 14px 20px;
+  width: 220px;
+  height: 60px;
   border-radius: 10px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 28px;
 }
 
 .category-item:hover {
@@ -247,37 +224,37 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  padding-top: 41px;
 }
 
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  padding-left: 62px;
+  row-gap: 19px;
 }
 
 .product-card {
   position: relative;
   background-color: #f8f9fd;
   border-radius: 20px;
-  padding: 28px 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  //gap: 18px;
   box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+  width: 230px;
+  height: 300px;
 }
 
 .badge {
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  padding: 4px 14px;
   border-radius: 50px;
   background-color: transparent;
   color: #1ce785;
   font-size: 16px;
   font-weight: 500;
+  line-height: 19px;
 }
 
 .product-image {
@@ -290,7 +267,7 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 
 .product-name {
@@ -298,40 +275,50 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   font-size: 18px;
   font-weight: 500;
   color: #000000;
+  line-height: 32px;
 }
 
 .product-variant {
   font-size: 14px;
   color: #111111;
   background-color: #1ce785;
-  padding: 6px 22px;
+  width: 80px;
+  height: 26px;
   border-radius: 50px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cta-row {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 33px;
+  padding-left: 62px;
 }
 
 .cta-button {
-  display: inline-flex;
+  padding-right: 25px;
+  padding-left: 22px;
+  display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 34px;
+  justify-content: space-between;
+  width: 240px;
+  height: 50px;
   border-radius: 50px;
   border: 1px solid #ededed;
-  background-color: #ffffff;
+  color: #333;
+  font-family: Roboto;
   font-size: 16px;
-  color: #333333;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 200% */
 }
 
 .cta-button img {
-  width: 20px;
-  height: 20px;
+  width: 7px;
+  height: 14px;
 }
 
 .cta-button:hover {

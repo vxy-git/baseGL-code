@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 
 <template>
-<div class="item pt-[30px] relative">
+<div class="item pt-[28px] relative">
   <div class="tag">
     New
   </div>

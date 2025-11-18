@@ -95,7 +95,7 @@ onMounted(() => {
         </div>
         <img class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
       </div>
-      <div class="flex justify-center gap-x-[10px] pt-[26px]">
+      <div class="flex justify-center gap-x-[10px] pt-[20px]">
         <div v-for="(item,index) in list" :class="{
           '!bg-black':bannerCurrent === index
         }" class="dotItem"></div>

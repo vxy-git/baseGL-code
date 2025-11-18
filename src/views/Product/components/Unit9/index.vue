@@ -46,16 +46,16 @@ const deviceSpecs = [
     SPECS
   </div>
   <div class="flex w-[1300px] mx-auto pl-[35px]" >
-    <div class="w-[683px] flex-shrink-0 pt-[50px]">
+    <div class="w-[683px] flex-shrink-0 pt-[66px]">
       <div v-for="(item, index) in deviceSpecs" :key="index" class="flex border-b border-white/20">
         <div class="tableText w-[370px]">{{ item.label }}</div>
         <div class="tableText">{{ item.value }}</div>
       </div>
 
     </div>
-    <img src="@/assets/img/icon24.png" class="h-[666px]" alt="">
+    <img src="@/assets/img/icon24.png" class="h-[666px] mt-[30px] -ml-[15px]" alt="">
   </div>
-  <div class=" w-[1300px] mx-auto mt-[140px]">
+  <div class=" w-[1300px] mx-auto mt-[122px]">
     <div class="title2">
       More Products
     </div>
@@ -68,10 +68,10 @@ const deviceSpecs = [
         <div class="cardTitle pl-[20px] mt-[46px]">
           UNIT
         </div>
-        <div class="cardLabel pl-[20px]">
+        <div class="cardLabel pl-[20px] mt-[2px]">
           UNICORE™ tech & large display
         </div>
-        <div class="btn ml-[20px] mt-[17px]">
+        <div class="btn ml-[20px] mt-[18px]">
           View More
         </div>
       </div>

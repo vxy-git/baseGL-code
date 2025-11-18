@@ -3,11 +3,11 @@
 </script>
 
 <template>
-<div class="mt-[202px] pb-[200px]">
+<div class="mt-[202px] pb-[199px]">
   <div class="title">
     Smart Display
   </div>
-  <div class="stitle text-center mt-[118px]">
+  <div class="stitle text-center mt-[114px]">
     Upgrade your adventure
   </div>
   <div class="w-[calc(520px+15px+695px)] mx-auto mt-[60px]">
@@ -40,7 +40,7 @@
       </div>
 
     </div>
-    <div class="flex justify-between mt-[270px]">
+    <div class="flex justify-between mt-[264px]">
       <div class="mt-[25px]">
         <div class="gtext">
           The Enhanced

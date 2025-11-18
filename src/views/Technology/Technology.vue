@@ -1,7 +1,7 @@
 <template>
   <div class="relative bg-black">
     <!-- 覆盖图层 -->
-    <img src="/technology.jpg" alt="Overlay Image" class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/>
+    <img src="/technology.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/>
     
     <Header headerClass="white"/>
     <Unit1/>

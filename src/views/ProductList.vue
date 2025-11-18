@@ -1,40 +1,15 @@
 <template>
   <div class="product-list-page">
-    <header class="site-header">
-      <div class="logo-area">
-        <img :src="logoImage" alt="CALEAF TECH" class="logo" />
-      </div>
-      <nav class="nav-links">
-        <a v-for="item in navItems" :key="item" href="#" class="nav-link">
-          {{ item }}
-        </a>
-      </nav>
-      <div class="header-actions">
-        <button class="contact-btn">Contact</button>
-        <button class="search-btn" aria-label="Search">
-          <svg viewBox="0 0 22 22" width="22" height="22" fill="none">
-            <circle cx="9.5" cy="9.5" r="8.5" stroke="currentColor" stroke-width="2" />
-            <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </button>
-      </div>
-    </header>
+    <!-- 覆盖图层 -->
+    <img src="/product.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 z-50 w-full opacity-50"/>
 
+    <Header headerClass="white" border/>
     <div class="header-divider" />
 
     <main class="main-content">
       <section class="catalog-intro">
         <h1 class="catalog-title">Innovative products</h1>
-        <div class="filter-strip">
-          <button
-            v-for="(filter, index) in filters"
-            :key="filter"
-            class="filter-chip"
-            :class="{ active: index === activeFilterIndex }"
-          >
-            {{ filter }}
-          </button>
-        </div>
+        <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       </section>
 
       <section class="catalog-grid" aria-label="Product Gallery">
@@ -49,15 +24,15 @@
           >
             <span v-if="product.isNew" class="badge">New</span>
 
-            <div class="media">
-              <img :src="product.image" :alt="product.alt" loading="lazy" class="product-image" />
-            </div>
 
-            <div class="text-group">
+
+            <div class="text-group mt-[7px]">
               <h3 class="product-name">{{ product.name }}</h3>
               <p class="product-desc">{{ product.description }}</p>
             </div>
-
+            <div class="media">
+              <img src="@/assets/img/icon47.png" :alt="product.alt" loading="lazy" class="product-image" />
+            </div>
             <div class="card-footer">
               <span class="capacity-chip">{{ product.capacity }}</span>
             </div>
@@ -84,12 +59,16 @@
 <script setup>
 import { h, ref } from 'vue'
 import Footer from '@/components/Footer.vue'
+import Header from "@/components/Header/index.vue";
+import Tabs from "@/components/Tabs/index.vue";
 
 const logoImage = ref('/images/logo/logo.png')
 
 const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Why Caleaf']
 
-const filters = [
+
+const tabsCurrent = ref(0)
+const tabsList = [
   'For Resin/Rosin',
   'Pod System',
   'Full Ceramic',
@@ -354,7 +333,6 @@ const socialIcons = [
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;600&display=swap');
 
 .product-list-page {
   background: #ffffff;
@@ -441,9 +419,11 @@ const socialIcons = [
 }
 
 .main-content {
-  max-width: 1920px;
+  width: 1300px;
   margin: 0 auto;
-  padding: 80px clamp(1.5rem, 8vw, 310px) 120px;
+  padding-top: 205px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  padding-bottom: 125px;
 }
 
 .catalog-intro {
@@ -452,9 +432,12 @@ const socialIcons = [
 }
 
 .catalog-title {
-  font-size: clamp(32px, 3vw, 40px);
+  color: #000;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
   font-weight: 700;
-  margin-bottom: 40px;
+  line-height: normal;
 }
 
 .filter-strip {
@@ -496,20 +479,23 @@ const socialIcons = [
 }
 
 .catalog-grid {
-  margin: 60px auto 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  margin: 72px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 26px;
+  row-gap: 30px;
   width: 1300px;
+
 }
 
 
 .card-surface {
+  padding:28px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 32px 28px 28px;
+  width: 305px;
+  height: 440px;
   border-radius: 20px;
   min-height: 420px;
   overflow: hidden;
@@ -544,7 +530,7 @@ const socialIcons = [
   }
 
   &:hover {
-    transform: translateY(-4px);
+    //transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     color: #ffffff;
 
@@ -568,13 +554,12 @@ const socialIcons = [
 }
 
 .badge {
-  position: absolute;
-  top: 22px;
-  left: 22px;
+  color: #1CE785;
+  font-family: Roboto;
   font-size: 16px;
-  color: #1ce785;
-  font-weight: 600;
-  z-index: 2;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
   transition: color 0.3s ease;
 }
 
@@ -582,13 +567,13 @@ const socialIcons = [
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   position: relative;
   z-index: 1;
+  margin-top: 25px;
 
   img {
-    width: 100%;
-    max-width: 220px;
+    width: 231px;
+    max-width: 231px;
     height: auto;
     object-fit: contain;
   }
@@ -604,9 +589,12 @@ const socialIcons = [
 }
 
 .product-name {
+  color: #000000;
+  font-family: Roboto;
   font-size: 22px;
+  font-style: normal;
   font-weight: 700;
-  color: #111111;
+  line-height: 32px; /* 145.455% */
   transition: color 0.3s ease;
 }
 
@@ -619,16 +607,17 @@ const socialIcons = [
 }
 
 .card-footer {
-  margin-top: auto;
   position: relative;
   z-index: 1;
+  margin-top: 27px;
 }
 
 .capacity-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 24px;
+  width: 100px;
+  height: 30px;
   border-radius: 50px;
   font-size: 16px;
   background: #1ce785;
@@ -637,7 +626,7 @@ const socialIcons = [
 }
 
 .pagination {
-  margin: 72px auto 0;
+  margin: 45px auto 0;
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -653,6 +642,9 @@ const socialIcons = [
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.active {
     background: #1ce785;
