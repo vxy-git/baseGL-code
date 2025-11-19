@@ -5,7 +5,7 @@ import icon4_2 from '@/assets/img/icon4_2.png'
 
 <template>
   <div
-      class="-mt-[6px] w-full h-[1080px] bg-[url(@/assets/img/icon4_1.png)] bg-[length:100%_100%] bg-[#111111]">
+      class="mt-[6px] w-full h-[1080px] bg-[url(@/assets/img/icon4_1.png)] bg-[length:100%_100%] bg-[#111111]">
 
 
     <div class="content-wrapper mx-auto justify-between pt-[447px]">
@@ -29,7 +29,7 @@ import icon4_2 from '@/assets/img/icon4_2.png'
           (1000 ℃), surpassing our peers by 20%.
         </div>
       </div>
-      <img :src="icon4_2" class="w-[640px] h-[341px] mt-[10px]">
+      <img :src="icon4_2" class="w-[640px] h-[341px] mt-[15px]">
     </div>
 
     <!--     <img :src="icon4_2"/>-->

@@ -11,17 +11,17 @@ import Unit3 from "../Unit3/index.vue"
     <div class="h-[2044px] w-[1px] ml-[170px] mr-[98px] bg-white/20">
 
     </div>
-    <div class="content-wrapper mt-[150px]">
+    <div class="content-wrapper mt-[155px]">
       <div class="title1">
         100% Rosin-Ready
       </div>
 
-      <div class="title2 mt-[22px] -ml-[10px]">
+      <div class="title2 mt-[25px] -ml-[5px] tracking-[0.2px]">
         Savor the most natural
         and rich flavors
       </div>
 
-      <div class="title3 mt-[28.45px]">
+      <div class="title3 mt-[25px]">
         We always strive to be pioneers in the industry.<br>
         Our patented U-shape ceramic design is the result of extensive testing and validation<br> of various structures.
         It is the optimal structure for the vast majority of Resin and Rosin oils on the market.<br>

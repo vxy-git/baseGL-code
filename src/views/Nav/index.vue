@@ -24,7 +24,7 @@ const products = Array.from({ length: 8 }, (_, index) => ({
 </script>
 
 <template>
-  <img src="/nav.jpg" alt="Overlay Image" class="pointer-events-none z-50 absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/>
+  <!-- <img src="/nav.jpg" alt="Overlay Image" class="pointer-events-none z-50 absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/> -->
 
   <div class="product-page overflow-hidden">
     <Header headerClass="white"/>
@@ -242,7 +242,6 @@ const products = Array.from({ length: 8 }, (_, index) => ({
   display: flex;
   flex-direction: column;
   align-items: center;
-  //gap: 18px;
   box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
   width: 230px;
   height: 300px;

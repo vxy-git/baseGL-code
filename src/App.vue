@@ -18,7 +18,9 @@ import 'swiper/css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 #app {
+  overflow-x: hidden;
   width: 100%;
   min-height: 100vh;
     font-family: "Roboto", sans-serif;

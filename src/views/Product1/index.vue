@@ -1,8 +1,9 @@
 <template>
-  <!-- 覆盖图层 -->
-  <img src="/product-detail1.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/>
+  <div>
+    <!-- 覆盖图层 -->
+    <img src="/product-detail1.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/>
 
-  <div class="bg-black">
+    <div class="bg-black">
     <Header headerClass="white"/>
     <Unit1/>
     <Unit2/>
@@ -13,11 +14,11 @@
     <Unit7/>
     <Unit8/>
     <Unit9/>
-    <div class="">
-      <Footer class="bg-white"/>
+      <div class="">
+        <Footer class="bg-white"/>
+      </div>
     </div>
   </div>
-  
 
 </template>
 <style>

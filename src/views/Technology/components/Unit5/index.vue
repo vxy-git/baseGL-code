@@ -11,7 +11,7 @@ import icon5_2 from '@/assets/img/icon5_2.png'
           Built-in wires
         </div>
 
-        <div class="title2 mt-[17px]">
+        <div class="title2 mt-[23px] tracking-[0.3px]">
           No more dry burning
         </div>
 

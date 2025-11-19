@@ -27,13 +27,17 @@
       "Bash(git restore:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pnpm add:*)",
+      "Bash(test:*)",
+      "Bash(kill:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": [],
     "ask": []
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "figma"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

@@ -3,7 +3,7 @@ import icon5_1 from '@/assets/img/icon5_1.png'
 </script>
 
 <template>
-  <div class=" bg-[#111111] flex items-center justify-center pt-[263px]">
+  <div class=" bg-[#111111] flex items-center justify-center pt-[275px]">
     <div class="content-wrapper w-[800px]">
       <div class="title2">
         Our clients have taken home trophies
@@ -15,7 +15,7 @@ import icon5_1 from '@/assets/img/icon5_1.png'
         We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our
         products’ excellence.
       </div>
-      <div class="title2 mt-[310px]">
+      <div class="title2 mt-[315px]">
         Our clients have taken home trophies
       </div>
       <img :src="icon5_1" alt="" class="w-[800px] h-[400px] mt-[41px]"/>

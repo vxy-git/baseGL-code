@@ -6,7 +6,7 @@ import icon6_1 from '@/assets/img/icon6_1.png'
 <div class=" ">
 
     
-    <div class="w-[1300px] h-[560px] relative mx-auto mt-[260px]">
+    <div class="w-[1300px] h-[560px] relative mx-auto mt-[265px]">
       <img :src="icon6_1" alt="" class="w-[1300px] h-[560px]" />
         <div class="absolute size-full top-0 left-0 flex flex-col items-center pt-[142px]">
           <div class="title2">
@@ -42,6 +42,7 @@ import icon6_1 from '@/assets/img/icon6_1.png'
   font-size: 40px;
   text-align: center;
   line-height: 1.1; // 缩短行间距
+  letter-spacing: 0.2px;
 }
 
 .title3 {

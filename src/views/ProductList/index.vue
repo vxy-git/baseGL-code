@@ -1,7 +1,7 @@
 <template>
   <div class="product-list-page">
     <!-- 覆盖图层 -->
-    <img src="/product.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 z-50 w-full opacity-50"/>
+    <!-- <img src="/product.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 z-50 w-full opacity-50"/> -->
 
     <Header headerClass="white" border/>
     <div class="header-divider" />
@@ -423,7 +423,7 @@ const socialIcons = [
   margin: 0 auto;
   padding-top: 205px;
   border-bottom: 1px solid rgba(0,0,0,.1);
-  padding-bottom: 125px;
+  padding-bottom: 124px;
 }
 
 .catalog-intro {
@@ -609,7 +609,7 @@ const socialIcons = [
 .card-footer {
   position: relative;
   z-index: 1;
-  margin-top: 27px;
+  margin-top: 30px;
 }
 
 .capacity-chip {
@@ -626,7 +626,7 @@ const socialIcons = [
 }
 
 .pagination {
-  margin: 45px auto 0;
+  margin: 57px auto 0;
   display: flex;
   justify-content: center;
   gap: 12px;
