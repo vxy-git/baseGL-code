@@ -1,5 +1,6 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
+import NavDropdown from "@/components/Nav/index.vue";
 
 const logoImage = "@/assets/img/icon11.png";
 
@@ -41,13 +42,98 @@ onMounted(() =>{
   })
 })
 
+// 下拉菜单相关
+const showDropdown = ref(false)
+let hoverTimer = null
+let closeTimer = null
+
+// 鼠标进入 Products 链接
+const handleProductsMouseEnter = () => {
+  // 清除所有定时器
+  if (hoverTimer) {
+    clearTimeout(hoverTimer)
+    hoverTimer = null
+  }
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
+
+  // 立即切换为白色背景
+  currentHeaderClass.value = "white"
+
+  // 稍微延迟打开，避免误触
+  hoverTimer = setTimeout(() => {
+    showDropdown.value = true
+  }, 100)
+}
+
+// 鼠标离开 Products 链接
+const handleProductsMouseLeave = () => {
+  // 清除打开定时器
+  if (hoverTimer) {
+    clearTimeout(hoverTimer)
+    hoverTimer = null
+  }
+
+  // 延迟关闭，给用户时间移动到下拉菜单
+  closeTimer = setTimeout(() => {
+    showDropdown.value = false
+  }, 300)
+}
+
+// 鼠标进入下拉菜单
+const handleDropdownMouseEnter = () => {
+  if (hoverTimer) {
+    clearTimeout(hoverTimer)
+    hoverTimer = null
+  }
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
+}
+
+// 鼠标离开下拉菜单
+const handleDropdownMouseLeave = () => {
+  closeTimer = setTimeout(() => {
+    showDropdown.value = false
+  }, 100)
+}
+
+// 关闭下拉菜单
+const closeDropdown = () => {
+  if (hoverTimer) {
+    clearTimeout(hoverTimer)
+    hoverTimer = null
+  }
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
+  showDropdown.value = false
+
+  // 智能恢复背景颜色
+  // 如果 props.headerClass 强制为 white，保持白色
+  if (props.headerClass === "white") {
+    currentHeaderClass.value = "white"
+  } else {
+    // 否则根据滚动位置决定
+    if (document.documentElement.scrollTop > 20) {
+      currentHeaderClass.value = "white"
+    } else {
+      currentHeaderClass.value = "opacity"
+    }
+  }
+}
+
 </script>
 
 <template>
     <div :class="{
       'white':currentHeaderClass === 'white',
       'opacity':currentHeaderClass === 'opacity',
-    }" class="w-full flex items-center fixed top-0 left-0 z-50 justify-center">
+    }" class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center">
       <div class="w-full box transition-all" :class="` ${border && 'border-b-solid border-black/5 border-b-[1px]'}`">
         <header class="top-nav w-[1300px] mx-auto">
           <div class="nav-left">
@@ -57,7 +143,13 @@ onMounted(() =>{
               <span class="logo-text">CALEAF TECH</span>
             </div>
             <nav class="nav-links">
-              <a href="#" class="nav-link">Products</a>
+              <a
+                href="#"
+                class="nav-link nav-link-dropdown"
+                :class="{ active: showDropdown }"
+                @mouseenter="handleProductsMouseEnter"
+                @mouseleave="handleProductsMouseLeave"
+              >Products</a>
               <!-- <a href="#" class="nav-link">Technology</a> -->
               <router-link to="/technology" class="nav-link">Technology</router-link>
               <a href="#" class="nav-link">Customize</a>
@@ -75,6 +167,15 @@ onMounted(() =>{
         </header>
       </div>
     </div>
+
+    <!-- 下拉菜单 -->
+    <NavDropdown
+      v-if="showDropdown"
+      :visible="showDropdown"
+      :onContentMouseEnter="handleDropdownMouseEnter"
+      :onContentMouseLeave="handleDropdownMouseLeave"
+      @close="closeDropdown"
+    />
 </template>
 
 <style scoped lang="scss">
@@ -127,6 +228,7 @@ onMounted(() =>{
 }
 
 .nav-link {
+  position: relative;
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -135,6 +237,25 @@ onMounted(() =>{
 .nav-link:hover,
 .nav-link:focus {
   color: #1ce785 !important;
+}
+
+.nav-link-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -47px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translateY(-4px);
+}
+
+.nav-link-dropdown:hover::after,
+.nav-link-dropdown:focus::after,
+.nav-link-dropdown.active::after {
+  opacity: 1;
 }
 
 .nav-right {

@@ -9,6 +9,7 @@
 
 html {
   font-size: calc(100vw/192); /* 设置根元素字体大小为10px，方便rem计算 */
+  overflow-x: hidden;
 }
 
 body {
@@ -18,21 +19,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-}
 
-// 滚动条样式
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  // Firefox - 隐藏滚动条或使用 thin 样式
+  scrollbar-width: none; // 完全隐藏
+  // 如果想显示细滚动条，取消下面注释
+  // scrollbar-width: thin;
+  // scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 // 全局工具类
