@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="mt-[204px]">
+  <div class="mt-[207px]">
     <div class="title">
-      Onsistent Temp<br/>
+      Consistent Temp<br/>
       Ideal for Rosin
     </div>
     <div class="w-[1230px] mx-auto mt-[185px]">
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="w-[1230px] mx-auto mt-[224px]">
+    <div class="w-[1230px] mx-auto mt-[228px]">
       <div class="greenText">Built-in wires</div>
       <div class="flex justify-between mt-[19px]">
         <div class="title2">

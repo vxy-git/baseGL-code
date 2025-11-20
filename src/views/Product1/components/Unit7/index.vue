@@ -3,11 +3,11 @@
 </script>
 
 <template>
-<div class="mt-[202px] pb-[199px]">
+<div class="mt-[202px] pb-[202px]">
   <div class="title">
     Smart Display
   </div>
-  <div class="stitle text-center mt-[114px]">
+  <div class="stitle text-center mt-[120px]">
     Upgrade your adventure
   </div>
   <div class="w-[calc(520px+15px+695px)] mx-auto mt-[60px]">
@@ -40,7 +40,7 @@
       </div>
 
     </div>
-    <div class="flex justify-between mt-[264px]">
+    <div class="flex justify-between mt-[267px]">
       <div class="mt-[25px]">
         <div class="gtext">
           The Enhanced
@@ -51,7 +51,7 @@
         <div class="label mt-[44px]">
           With just one button, you can easily turn on/off, pre-heat, and adjust temperature settings. Take full control of your experience and embark on your own unique adventure.Take full control of your experience with the one-button controls for pre-heating, temperature settings, and child safety lock.
         </div>
-        <div class="flex gap-x-[50px] mt-[66px]">
+        <div class="flex gap-x-[62px] mt-[66px]">
           <div class="flex flex-col items-center w-[107px]">
             <img class="size-[80px] bg-[#D9D9D9]" src="" alt="">
             <div class="itemTitle mt-[19px]">1 Tap</div>

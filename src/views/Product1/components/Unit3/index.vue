@@ -15,7 +15,7 @@
 
 
   <div>
-    <div class="mt-[126.75px] relative">
+    <div class="mt-[135px] relative">
       <div class="absolute top-0 left-0 w-full">
         <div class="smallTitle">
           Award-Winning
@@ -33,7 +33,7 @@
 
 
   <div>
-    <div class="mt-[200px] relative">
+    <div class="mt-[205px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
           A Significant Breakthrough
@@ -52,13 +52,13 @@
 
 
   <div>
-    <div class="mt-[60px] relative">
+    <div class="mt-[65px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
           100% Rosin-Ready
         </div>
         <div class="wTitle">
-          Savor the most natural<br/>
+          Savor the most natural&nbsp;<br/>
           and rich flavors
         </div>
         <div class="text !mt-[28px]">
@@ -104,6 +104,7 @@
   -webkit-text-fill-color: transparent;
 }
 .smallTitle{
+  padding-right: 10px;
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;

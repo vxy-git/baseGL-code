@@ -41,7 +41,7 @@ const deviceSpecs = [
 </script>
 
 <template>
-<div class="py-[140px]">
+<div class="py-[142px]">
   <div class="title text-center">
     SPECS
   </div>

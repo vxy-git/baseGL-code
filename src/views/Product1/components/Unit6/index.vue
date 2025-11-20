@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="mt-[178px]">
+<div class="mt-[180px]">
   <div class="label">
     High-end feature
   </div>
