@@ -3,7 +3,7 @@
     <!-- 覆盖图层 -->
     <!-- <img src="/product.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 z-50 w-full opacity-50"/> -->
 
-    <Header headerClass="white" border/>
+    <Header headerClass="white" border />
     <div class="header-divider" />
 
     <main class="main-content">
@@ -13,19 +13,11 @@
       </section>
 
       <section class="catalog-grid" aria-label="Product Gallery">
-        <article
-          v-for="product in products"
-          :key="product.id"
-          class="product-card"
-        >
-          <div
-            class="card-surface"
-            :style="{ '--hover-bg': `url(${product.background})` }"
-          >
+        <article v-for="product in products" :key="product.id" class="product-card">
+          <div class="card-surface">
+            <img :src="product.background" :alt="product.alt + ' featured'" loading="lazy"
+              class="product-featured-image" />
             <span v-if="product.isNew" class="badge">New</span>
-
-
-
             <div class="text-group mt-[7px]">
               <h3 class="product-name">{{ product.name }}</h3>
               <p class="product-desc">{{ product.description }}</p>
@@ -41,12 +33,7 @@
       </section>
 
       <nav class="pagination" aria-label="Catalog pagination">
-        <button
-          v-for="page in pages"
-          :key="page"
-          class="page-button"
-          :class="{ active: page === currentPage }"
-        >
+        <button v-for="page in pages" :key="page" class="page-button" :class="{ active: page === currentPage }">
           {{ page }}
         </button>
       </nav>
@@ -333,7 +320,6 @@ const socialIcons = [
 </script>
 
 <style lang="scss" scoped>
-
 .product-list-page {
   background: #ffffff;
   color: #111111;
@@ -422,7 +408,7 @@ const socialIcons = [
   width: 1300px;
   margin: 0 auto;
   padding-top: 205px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
   padding-bottom: 124px;
 }
 
@@ -448,10 +434,11 @@ const socialIcons = [
   background: #f8f9fd;
   width: 1300px;
   overflow-x: auto;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -490,7 +477,7 @@ const socialIcons = [
 
 
 .card-surface {
-  padding:28px;
+  padding: 28px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -504,20 +491,6 @@ const socialIcons = [
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    background: var(--hover-bg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
-  }
 
   &::after {
     content: '';
@@ -534,8 +507,9 @@ const socialIcons = [
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     color: #ffffff;
 
-    &::before {
+    .product-featured-image {
       opacity: 1;
+      transform: scale(1.1);
     }
 
     .product-image {
@@ -579,8 +553,23 @@ const socialIcons = [
   }
 }
 
+.product-featured-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 0;
+}
+
 .product-image {
-  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.5s ease;
 }
 
 .text-group {
@@ -594,7 +583,8 @@ const socialIcons = [
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
-  line-height: 32px; /* 145.455% */
+  line-height: 32px;
+  /* 145.455% */
   transition: color 0.3s ease;
 }
 
@@ -660,6 +650,7 @@ const socialIcons = [
 
 
 @media (max-width: 1400px) {
+
   .catalog-intro,
   .catalog-grid {
     width: 100%;
@@ -672,6 +663,7 @@ const socialIcons = [
 }
 
 @media (max-width: 1200px) {
+
   .site-header,
   .main-content,
   .footer-inner {
@@ -738,4 +730,3 @@ const socialIcons = [
   }
 }
 </style>
-
