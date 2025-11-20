@@ -26,6 +26,7 @@ const bannerCurrent = ref(0)
 const swiperRef = ref(null)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
+const isHovered = ref(false)
 
 // 统一的箭头状态更新函数
 const updateArrowStatus = (swiper) => {
@@ -72,10 +73,10 @@ const goToSlide = (index) => {
       <div class="title text-center">
         The latest news and inspiring stories
       </div>
-      <div class="mt-[46px] relative">
+      <div class="mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev }" src="@/assets/img/icon4_active.png" alt=""
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || !isHovered }" src="@/assets/img/icon4_active.png" alt=""
           @click="slidePrev">
 
         <div class="w-screen -ml-[calc((100vw-1300px)/2)]">
@@ -92,7 +93,7 @@ const goToSlide = (index) => {
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext }" src="@/assets/img/icon4_active.png" alt=""
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || !isHovered }" src="@/assets/img/icon4_active.png" alt=""
           @click="slideNext">
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">

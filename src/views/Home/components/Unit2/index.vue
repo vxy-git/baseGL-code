@@ -38,6 +38,7 @@ const bannerCurrent = ref(0)
 const currentIndex = ref(0)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
+const isHovered = ref(false)
 const slidesPerGroup = 2
 
 // 计算分组数量
@@ -86,7 +87,7 @@ const goToGroup = (groupIndex) => {
 </script>
 
 <template>
-  <div class="">
+  <div class="unit2">
     <div class="w-[1300px] mx-auto pt-[80px]">
       <div class="title">
         Innovative products:<br/>
@@ -94,10 +95,10 @@ const goToGroup = (groupIndex) => {
       </div>
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
-      <div class="mt-[50px] relative">
+      <div class="mt-[50px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev }"
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || !isHovered }"
           src="@/assets/img/icon4_active.png"
           alt=""
           @click="slidePrev"
@@ -131,7 +132,7 @@ const goToGroup = (groupIndex) => {
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext }"
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || !isHovered }"
           src="@/assets/img/icon4_active.png"
           alt=""
           @click="slideNext"

@@ -268,8 +268,6 @@ const closeDropdown = () => {
   width: 140px;
   height: 40px;
   flex-shrink: 0;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(28, 231, 133, 0.25);
   border-radius: 50px;
   background: #1CE785;
   color: #222;
@@ -284,6 +282,8 @@ const closeDropdown = () => {
 }
 
 .contact-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(28, 231, 133, 0.25);
 
 }
 
