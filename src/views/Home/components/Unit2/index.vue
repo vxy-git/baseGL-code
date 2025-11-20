@@ -104,7 +104,7 @@ const goToGroup = (groupIndex) => {
         >
         <div class="w-[100vw] -ml-[calc((100vw-1300px)/2)]">
           <Swiper
-          class="px-[310px]"
+              class="px-[310px]"
               @swiper="onSwiperInit"
               :slidesPerView="'auto'"
               :slidesPerGroup="slidesPerGroup"
