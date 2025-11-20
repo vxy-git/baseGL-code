@@ -100,6 +100,7 @@ onMounted(() => {
         >
         <div class="w-[100vw] -ml-[calc((100vw-1300px)/2)]">
           <Swiper
+          class="px-[310px]"
               @swiper="onSwiperInit"
               :slidesPerView="'auto'"
               :slidesPerGroup="slidesPerGroup"
@@ -115,10 +116,8 @@ onMounted(() => {
               @slide-change="onSlideChange"
               @slide-change-transition-end="changeEnd"
           >
-          <SwiperSlide :class="{
-            'w-[calc(410px+35px+(100vw-1300px)/2)] pl-[calc((100vw-1300px)/2)] pr-[35px]':index ===0,
-            'w-[calc(410px+35px)] pr-[35px]':index !==0,
-            'w-[calc(410px+(100vw-1300px)/2)] pr-[calc((100vw-1300px)/2)]':index === list.length - 1
+          <SwiperSlide class="w-[calc(410px+35px)]" :class="{
+            'pr-[35px]':index !== list.length - 1,
           }" v-for="(item, index) in list" :key="index">
             <Item :data="item" :isLast="canSlideNext === false && index >= list.length - 2" />
           </SwiperSlide>
