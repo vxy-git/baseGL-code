@@ -10,7 +10,7 @@
   <div class="title1">
     Realize your unique design with CALEAF TECH.
   </div>
-  <div class="w-[calc(100vw-160px-160px)] mx-auto mt-[51px]">
+  <div class="w-[calc(100vw-160px-160px)] mx-auto mt-[54px]">
     <div class=" pl-[100px] h-[300px] flex relative gap-x-[30px]">
       <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
 

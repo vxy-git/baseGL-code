@@ -33,7 +33,7 @@ const deviceSpecs2 = [
     <div class="title">
       Specifications
     </div>
-    <div class="relative mt-[55px] flex">
+    <div class="relative mt-[58px] flex">
       <div class="flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
         <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
           <div class="label">
@@ -49,10 +49,10 @@ const deviceSpecs2 = [
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
       </div>
     </div>
-    <div class="relative mt-[124px] flex justify-between">
+    <div class="relative mt-[127px] flex justify-between">
       <div class="w-[334px] ml-[160px] -translate-y-[20px]">
         <img src="@/assets/img/icon70.png" alt="">
-        <div class="text7 mt-[30px] -translate-x-[14px] text-center">NIVERSE Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
       </div>
       <div class="flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">

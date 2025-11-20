@@ -11,7 +11,7 @@ const tabsList = [
 </script>
 
 <template>
-  <div class="pt-[200px] bg-black">
+  <div class="pt-[200px] pb-[5px] bg-black">
     <div class="title">
       Every Detail Matters
     </div>
@@ -20,7 +20,7 @@ const tabsList = [
       <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
       <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
     </div>
-    <Tabs type="dark" class="!w-[800px] mx-auto mt-[35px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+    <Tabs type="dark" class="!w-[800px] !h-[50px] !py-0 mx-auto mt-[40px] " :list="tabsList" v-model="tabsCurrent"></Tabs>
   </div>
 </template>
 

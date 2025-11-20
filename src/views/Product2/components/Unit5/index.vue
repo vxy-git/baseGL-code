@@ -4,12 +4,12 @@
 
 <template>
 <div class="pt-[262px] bg-black">
-  <div class="w-[1222px] h-[378px] flex items-center justify-center bg-[url(@/assets/img/icon71.png)] bg-[length:100%_100%] mx-auto">
+  <div class="w-[1236px] aspect-[2464/776] flex items-center justify-center bg-[url(@/assets/img/icon71.png)] bg-[length:100%_100%] mx-auto">
     <div class="title">
       Pick Your Option
     </div>
   </div>
-  <div class="w-[1222px] flex justify-between mx-auto mt-[266px]">
+  <div class="w-[1230px] flex justify-between mx-auto mt-[262px]">
     <div>
       <div class="btn mt-[3px]">
         UNIVERSE
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="title3 mt-[73px]">
-    DEEP TRACK 3.0&nbsp;&nbsp;|&nbsp;&nbsp;<span>01</span>
+    DEEP TRACK 3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span class="inline-block translate-x-[-10px]">01</span>
   </div>
 </div>
 </template>
@@ -38,7 +38,7 @@
   font-size: 120px;
   font-style: normal;
   font-weight: 700;
-  line-height: 80px; /* 66.667% */
+  line-height: 200px; /* 66.667% */
   background: linear-gradient(180deg, #1CE785 0%, #C9FFE5 50%, #1CE785 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -94,6 +94,8 @@
   line-height: normal;
   display: flex;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
+  //letter-spacing: -.1px;
+  padding-left: 24px;
 }
 </style>

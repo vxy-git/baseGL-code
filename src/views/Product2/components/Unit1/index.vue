@@ -8,24 +8,24 @@
     <div class="flex justify-center gap-x-[177px] ml-[20px]">
       <div class="">
         <img class="h-[459px] translate-x-[20px]" src="@/assets/img/icon59.png" alt="">
-        <div class="title mt-[15px] -ml-[26px]">
+        <div class="title mt-[15px] translate-y-[4px] -ml-[26px]">
           UNIVERSE
         </div>
-        <div class="btn mt-[18px] translate-y-[3px] ml-[104px]">
+        <div class="btn mt-[18px] translate-y-[4px] ml-[104px]">
           1mL/2mL
         </div>
       </div>
       <div class="flex flex-col items-center">
         <img class="h-[473px] translate-x-[15px]" src="@/assets/img/icon60.png" alt="">
-        <div class="title text-nowrap -translate-x-[3px] translate-y-[1px]">
+        <div class="title text-nowrap -translate-x-[3px] translate-y-[4px]">
           UNIVERSE PRO
         </div>
-        <div class="btn mt-[19px] translate-y-[3px] -ml-[5px]">
+        <div class="btn mt-[19px] translate-y-[4px] -ml-[5px]">
           0.5mL / 1mL
         </div>
       </div>
     </div>
-    <div class="label mt-[29px]">
+    <div class="label mt-[29px] translate-y-[4px]">
       Unicore powered, the way to infinite.
     </div>
   </div>
