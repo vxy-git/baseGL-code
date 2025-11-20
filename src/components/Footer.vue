@@ -149,7 +149,7 @@ const handleSubscribe = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .site-footer {
   padding: 88px 0 40px;
 }

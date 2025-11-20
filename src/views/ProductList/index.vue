@@ -319,7 +319,7 @@ const socialIcons = [
 ]
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .product-list-page {
   background: #ffffff;
   color: #111111;

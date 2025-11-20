@@ -6,7 +6,7 @@ import Playone from '@/assets/img/Play-one.png'
 
 <template>
   <div class="pb-[173px]">
-    <div class="relative flex w-[1300px] mx-auto justify-center items-start pt-[373px]">
+    <div class="relative flex container-1300 mx-auto justify-center items-start pt-[373px]">
       <div class="flex flex-col items-center">
         <!-- 标题 -->
         <div class="title">

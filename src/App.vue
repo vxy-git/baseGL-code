@@ -10,6 +10,7 @@
 
 <script setup>
 import 'swiper/css';
+import './composables/rem'
 // App级别的逻辑可以在这里添加
 </script>
 

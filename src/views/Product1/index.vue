@@ -21,9 +21,6 @@
   </div>
 
 </template>
-<style>
-
-</style>
 <script setup>
 import Header from "@/components/Header/index.vue";
 import Unit1 from "./components/Unit1/index.vue"

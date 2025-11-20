@@ -69,7 +69,7 @@ const goToSlide = (index) => {
 
 <template>
   <div class="mt-[55px]">
-    <div class="w-[1300px] mx-auto">
+    <div class="container-1300 mx-auto">
       <div class="title text-center">
         The latest news and inspiring stories
       </div>

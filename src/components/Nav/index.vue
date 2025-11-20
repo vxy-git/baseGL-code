@@ -373,7 +373,7 @@ defineExpose({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 /* 下拉菜单包装器 */
 .nav-dropdown-wrapper {
   position: fixed;

@@ -88,7 +88,7 @@ const handleError = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .cdn-image {
   display: block;
   width: 100%;
