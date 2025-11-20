@@ -4,6 +4,7 @@ import Item from "./components/Item/index.vue";
 import {ref} from "vue";
 import t1Icon from "@/assets/img/t1.png"
 import {Swiper, SwiperSlide} from "swiper/vue";
+import "swiper/css";
 const list = [
   {
     img:t1Icon
@@ -22,6 +23,17 @@ const list = [
   }
 ]
 const bannerCurrent = ref(0)
+const swiperRef = ref(null)
+
+// 处理幻灯片切换事件
+const onSlideChange = (swiper) => {
+  bannerCurrent.value = swiper.realIndex
+}
+
+// Swiper初始化事件
+const onSwiperInit = (swiper) => {
+  swiperRef.value = swiper
+}
 </script>
 
 <template>
@@ -35,7 +47,7 @@ const bannerCurrent = ref(0)
 
           <div class="w-screen -ml-[calc((100vw-1300px)/2)]">
             <Swiper
-                ref="swiperRef"
+                @swiper="onSwiperInit"
                 :slidesPerView="'auto'"
                 :space-between="0"
                 :loop="false"
@@ -45,11 +57,13 @@ const bannerCurrent = ref(0)
                 :auto-height="false"
                 :free-mode="false"
                 :auto-width="true"
+                :speed="800"
+                @slide-change="onSlideChange"
             >
               <SwiperSlide :class="{
             'w-[calc(860px+35px+(100vw-1300px)/2)] pl-[calc((100vw-1300px)/2)] pr-[35px]':index ===0,
             'w-[calc(860px+35px)] pr-[35px]':index !==0,
-            '!pr-0':index = list.length - 1
+            '!pr-0':index === list.length - 1
           }" v-for="(item, index) in list" :key="index">
                 <Item :data="item" />
               </SwiperSlide>

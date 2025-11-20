@@ -2,6 +2,10 @@
 const props = defineProps({
   data:{
     type: Object
+  },
+  isLast: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -25,7 +29,7 @@ const props = defineProps({
       </div>
       <div class="h-[1px] bg-[#666] mt-[8.5px]"></div>
     </div>
-    <div class="btn">
+    <div class="btn" :class="{ 'fade-out': isLast }">
       1mL/2mL
     </div>
 
@@ -92,6 +96,10 @@ const props = defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.3s ease;
+    &.fade-out {
+      opacity: 0;
+    }
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
-import {ref, onMounted} from "vue";
+import {ref, onMounted, computed} from "vue";
 import Item from "./components/Item/index.vue"
 const tabsCurrent = ref(0)
 const tabsList = [
@@ -36,10 +36,32 @@ const list = [
 const swiperRef = ref(null)
 const bannerCurrent = ref(0)
 const currentIndex = ref(0)
+const canSlidePrev = ref(false)
+const canSlideNext = ref(true)
+const slidesPerGroup = 2
+
+// 计算分组数量
+const groupCount = computed(() => {
+  return Math.ceil(list.length / slidesPerGroup)
+})
 
 // 处理幻灯片切换结束事件
 const changeEnd = (swiper) => {
   bannerCurrent.value = swiper.realIndex
+};
+
+// 处理幻灯片切换事件，更新按钮状态
+const onSlideChange = (swiper) => {
+  canSlidePrev.value = !swiper.isBeginning
+  canSlideNext.value = !swiper.isEnd
+  bannerCurrent.value = swiper.realIndex
+};
+
+// Swiper 初始化事件，设置初始按钮状态
+const onSwiperInit = (swiper) => {
+  swiperRef.value = swiper
+  canSlidePrev.value = !swiper.isBeginning
+  canSlideNext.value = !swiper.isEnd
 };
 
 // 切换到上一张
@@ -69,11 +91,18 @@ onMounted(() => {
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
       <div class="mt-[50px] relative">
-        <img class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4.png" alt="" @click="slidePrev">
+        <img
+          class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-300 rotate-180"
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev }"
+          src="@/assets/img/icon4_active.png"
+          alt=""
+          @click="slidePrev"
+        >
         <div class="w-[100vw] -ml-[calc((100vw-1300px)/2)]">
           <Swiper
-              ref="swiperRef"
+              @swiper="onSwiperInit"
               :slidesPerView="'auto'"
+              :slidesPerGroup="slidesPerGroup"
               :space-between="0"
               :loop="false"
               :grab-cursor="true"
@@ -82,22 +111,30 @@ onMounted(() => {
               :auto-height="false"
               :free-mode="false"
               :auto-width="true"
+              :speed="800"
+              @slide-change="onSlideChange"
               @slide-change-transition-end="changeEnd"
           >
           <SwiperSlide :class="{
             'w-[calc(410px+35px+(100vw-1300px)/2)] pl-[calc((100vw-1300px)/2)] pr-[35px]':index ===0,
             'w-[calc(410px+35px)] pr-[35px]':index !==0,
-            '!pr-0':index = list.length - 1
+            'w-[calc(410px+(100vw-1300px)/2)] pr-[calc((100vw-1300px)/2)]':index === list.length - 1
           }" v-for="(item, index) in list" :key="index">
-            <Item :data="item" />
+            <Item :data="item" :isLast="canSlideNext === false && index >= list.length - 2" />
           </SwiperSlide>
         </Swiper>
         </div>
-        <img class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+        <img
+          class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-300"
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext }"
+          src="@/assets/img/icon4_active.png"
+          alt=""
+          @click="slideNext"
+        >
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[20px]">
-        <div v-for="(item,index) in list" :class="{
-          '!bg-black':bannerCurrent === index
+        <div v-for="(item,index) in groupCount" :key="index" :class="{
+          '!bg-black': Math.floor(bannerCurrent / slidesPerGroup) === index
         }" class="dotItem"></div>
       </div>
     </div>
