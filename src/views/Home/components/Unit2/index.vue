@@ -88,7 +88,7 @@ const goToGroup = (groupIndex) => {
 
 <template>
   <div class="unit2">
-    <div class="w-[1300px] mx-auto pt-[80px]">
+    <div class="container-1300 mx-auto pt-[80px]">
       <div class="title">
         Innovative products:<br/>
         The most advanced, the best fit.

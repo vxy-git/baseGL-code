@@ -65,7 +65,7 @@ const stop = ref(false)
       <SwiperSlide v-for="item in list">
         <div class="h-[880px] relative">
           <div class="absolute size-full left-0 top-0">
-            <div class="w-[1300px] mx-auto flex flex-col justify-center h-full">
+            <div class="container-1300 mx-auto flex flex-col justify-center h-full">
               <div class="title mt-[10px]">
                 {{item.title}}
               </div>
@@ -84,7 +84,7 @@ const stop = ref(false)
     </Swiper>
 
     <div class="dot absolute bottom-[2px] left-0 flex justify-center z-10">
-      <div @mouseover="stop = true" @mouseout="stop = false" class="w-[1300px] flex justify-between gap-x-[13px]">
+      <div @mouseover="stop = true" @mouseout="stop = false" class="container-1300 flex justify-between gap-x-[13px]">
         <div
           @mouseover="swiperRef?.slideTo(index)"
           v-for="(item, index) in list" 

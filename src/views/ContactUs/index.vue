@@ -212,7 +212,7 @@ const closeDropdowns = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 /* Main Container */
 .contactPage {
   width: 100%;

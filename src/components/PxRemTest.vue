@@ -21,7 +21,7 @@
 // 这是一个简单的测试组件
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .px-rem-test {
   padding: 20px; // 应该转换为 2rem
   background: #f5f5f5;
