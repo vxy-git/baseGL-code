@@ -41,7 +41,7 @@ const deviceSpecs = [
 </script>
 
 <template>
-<div class="py-[142px]">
+<div class="pt-[142px] pb-[140px]">
   <div class="title text-center">
     SPECS
   </div>
@@ -55,7 +55,7 @@ const deviceSpecs = [
     </div>
     <img src="@/assets/img/icon24.png" class="h-[666px] mt-[30px] -ml-[15px]" alt="">
   </div>
-  <div class=" w-[1300px] mx-auto mt-[122px]">
+  <div class=" w-[1300px] mx-auto mt-[132px]">
     <div class="title2">
       More Products
     </div>
@@ -105,6 +105,7 @@ const deviceSpecs = [
   font-style: italic;
   font-weight: 800;
   line-height: 80px; /* 100% */
+  letter-spacing: -4.8px;
 }
 
 
