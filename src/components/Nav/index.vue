@@ -305,40 +305,21 @@ defineExpose({
 
 <template>
   <!-- 下拉菜单容器 -->
-  <div
-    v-if="visible"
-    ref="dropdownRef"
-    class="nav-dropdown-wrapper"
-  >
+  <div v-if="visible" ref="dropdownRef" class="nav-dropdown-wrapper">
     <!-- 遮罩层 -->
-    <div
-      ref="overlayRef"
-      class="nav-overlay"
-      @click="closeMenu"
-      @mouseenter="props.onContentMouseLeave"
-    ></div>
+    <div ref="overlayRef" class="nav-overlay" @click="closeMenu" @mouseenter="props.onContentMouseLeave"></div>
 
     <!-- 内容区域 -->
-    <div
-      ref="contentRef"
-      class="nav-dropdown-content"
-      @mouseenter="props.onContentMouseEnter"
-      @mouseleave="props.onContentMouseLeave"
-    >
+    <div ref="contentRef" class="nav-dropdown-content" @mouseenter="props.onContentMouseEnter"
+      @mouseleave="props.onContentMouseLeave">
       <main class="content container-1300">
-        <aside
-          ref="sidebarRef"
-          class="sidebar h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12"
-        >
+        <aside ref="sidebarRef" class="sidebar h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12">
           <h2 class="sidebar-title pl-[2px]">Innovative products</h2>
           <ul class="category-list">
-            <li
-              v-for="(category, index) in categories"
-              :key="category.id"
+            <li v-for="(category, index) in categories" :key="category.id"
               :ref="el => { if (el) categoryItemsRef[index] = el }"
               :class="['category-item', { active: category.id === activeCategoryId }]"
-              @mouseenter="handleCategoryHover(category.id)"
-            >
+              @mouseenter="handleCategoryHover(category.id)">
               {{ category.label }}
             </li>
           </ul>
@@ -346,12 +327,8 @@ defineExpose({
 
         <section class="grid-section">
           <div class="product-grid">
-            <article
-              v-for="(product, index) in displayedProducts"
-              :key="product.id"
-              :ref="el => { if (el) productCardsRef[index] = el }"
-              class="px-[21px] product-card pt-[23px]"
-            >
+            <article v-for="(product, index) in displayedProducts" :key="product.id"
+              :ref="el => { if (el) productCardsRef[index] = el }" class="px-[21px] product-card pt-[23px]">
               <div class="badge self-start">{{ product.badge }}</div>
               <img :src="product.image" :alt="`${product.name} product`" class="product-image mt-[28px]" />
               <div class="product-info mt-[11px]">
@@ -402,7 +379,8 @@ defineExpose({
 /* 内容区域 */
 .nav-dropdown-content {
   position: absolute;
-  top: 110px; /* Header 高度 */
+  top: 110px;
+  /* Header 高度 */
   left: 0;
   width: 100%;
   background-color: #ffffff;
@@ -693,7 +671,8 @@ defineExpose({
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 32px; /* 200% */
+  line-height: 32px;
+  /* 200% */
 }
 
 .cta-button img {
@@ -707,4 +686,3 @@ defineExpose({
   box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
 }
 </style>
-

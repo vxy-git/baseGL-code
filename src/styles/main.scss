@@ -29,19 +29,38 @@ body {
 }
 
 
-
-@media screen and (max-width: 767px) {
-  :root {
-    --rem-base: calc(100vw / 768px * 10px);
-    font-size: var(--rem-base);
-  }
-
-  .container-1300 {
-    width: 100%;
-  }
-
+@media screen and (max-width: 1350px) {
   html {
-    padding: 0 1rem;
+    padding: 0 30px;
+  }
+
+
+  // Header 适配移动端尺寸
+  .top-nav {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .logo-image {
+    width: 140px;
+    height: 24px;
+  }
+
+  // 隐藏桌面端导航链接
+  .nav-links {
+    display: none;
+  }
+
+  // 隐藏桌面端按钮
+  .contact-button,
+  .icon-button {
+    display: none;
+  }
+
+  // 移动端 box 添加底部边框
+  .white .box,
+  .opacity .box {
+    border-bottom: 1px solid #e5e5e5;
   }
 }
 
@@ -49,13 +68,5 @@ body {
   :root {
     --rem-base: calc(100vw / 768px * 10px);
     font-size: var(--rem-base);
-  }
-
-  .container-1300 {
-    width: 100%;
-  }
-
-  html {
-    padding: 0 1rem;
   }
 }

@@ -2,6 +2,7 @@
 import {onMounted, ref, watch, computed, onUnmounted} from "vue";
 import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
+import { MOBILE_BREAKPOINT } from '@/composables/fit'
 
 const logoImage = "@/assets/img/icon11.png";
 const productImage = 'https://www.figma.com/api/mcp/asset/7cfd8a26-51a1-4fef-a8d0-b5764e769beb'
@@ -126,7 +127,7 @@ watch(() => props.headerClass, (val) => {
 
 // ========== 移动端状态管理 ==========
 const screenWidth = ref(window.innerWidth)
-const isMobile = computed(() => screenWidth.value < 768)
+const isMobile = computed(() => screenWidth.value < MOBILE_BREAKPOINT)
 
 // 移动端菜单状态
 const isMobileMenuOpen = ref(false)
@@ -492,7 +493,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-
 .white {
   .box {
     background-color: white !important;
@@ -1161,36 +1161,5 @@ onUnmounted(() => {
 .expand-leave-from {
   max-height: 600px;
   opacity: 1;
-}
-
-@media (max-width: 767px) {
-
-  // Header 适配移动端尺寸
-  .top-nav {
-    height: 70px;
-    padding: 0 20px;
-  }
-
-  .logo-image {
-    width: 140px;
-    height: 24px;
-  }
-
-  // 隐藏桌面端导航链接
-  .nav-links {
-    display: none;
-  }
-
-  // 隐藏桌面端按钮
-  .contact-button,
-  .icon-button {
-    display: none;
-  }
-
-  // 移动端 box 添加底部边框
-  .white .box,
-  .opacity .box {
-    border-bottom: 1px solid #e5e5e5;
-  }
 }
 </style>

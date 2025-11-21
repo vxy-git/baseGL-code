@@ -1,8 +1,10 @@
+import { MOBILE_BREAKPOINT } from './fit'
+
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     function setRemUnit() {
         const viewWidth = document.documentElement.clientWidth || document.body.clientWidth;
-        const designWidth = viewWidth > 768 ? 1920 : 768;
-        const baseFontSize = (viewWidth / designWidth) * (viewWidth > 768 ? 10 : 16);
+        const designWidth = viewWidth > MOBILE_BREAKPOINT ? 1920 : MOBILE_BREAKPOINT;
+        const baseFontSize = (viewWidth / designWidth) * (viewWidth > MOBILE_BREAKPOINT ? 10 : 16);
 
         // ✅ 更新 CSS 变量，而不是直接改 style
         document.documentElement.style.setProperty("--rem-base", baseFontSize + "px");
