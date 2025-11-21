@@ -5,8 +5,8 @@
 <template>
   <div class="bg-black pt-[215px] pb-[132px]">
     <img src="@/assets/img/icon62.png" class="mx-auto img" alt="">
-    <div class="mt-[182px]">
-      <div class="title1 text-center">
+    <div class="mt-[186px]">
+      <div class="title1 translate-y-[1px] text-center">
         TINY BUT MIGHTY
       </div>
       <div class="title2 mt-[19px]">
@@ -21,14 +21,14 @@
     </div>
 
 
-    <div class="mt-[156px]">
+    <div class="mt-[158px]">
       <div class="title1 text-center">
         Take your pick
       </div>
       <div class="title2 mt-[19px]">
         Either one’s a winner
       </div>
-      <div class="flex gap-x-[20px] justify-center mt-[51px]">
+      <div class="flex gap-x-[20px] justify-center mt-[54px]">
         <div class="w-[605px] h-[440px] bg-[#D9D9D9] rounded-[20px]">
 
         </div>
@@ -39,7 +39,7 @@
     </div>
 
 
-    <div class="mt-[119px]">
+    <div class="mt-[122px]">
       <div class="title1 text-center">
         UNICORE Powered
       </div>
@@ -64,7 +64,7 @@
         <div class="flex flex-col items-center">
           <div class="label h-[39.805px] flex">
             45%
-            <img class="h-[39.805px]" src="@/assets/img/icon64.png" alt="">
+            <img class="h-[39.805px] -ml-[10px] translate-x-[8px]" src="@/assets/img/icon64.png" alt="">
           </div>
           <div class="value">
             Flavor Retention
@@ -73,7 +73,7 @@
         <div class="flex flex-col items-center">
           <div class="label h-[39.805px] flex">
             35%
-            <img class="h-[39.805px]" src="@/assets/img/icon64.png" alt="">
+            <img class="h-[39.805px] -ml-[13px] translate-x-[12px]" src="@/assets/img/icon64.png" alt="">
           </div>
           <div class="value">
             in Pore Uniformity
@@ -101,17 +101,17 @@
           Consistent Temp<br/>
           Ideal for Rosin
         </div>
-        <div class="title3 mt-[54px] !text-left">
+        <div class="title3 mt-[56px] !text-left">
           Powered by Unicore tech, UNIT PRO combines smoothness with <br/> purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
       <img class="h-[553px]" src="@/assets/img/icon66.png" alt="">
     </div>
-    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between -mt-[2px]">
+    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between">
       <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon67.png" alt="">
       <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon68.png" alt="">
     </div>
-    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between mt-[143px]">
+    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between mt-[146px]">
       <div class="w-max">
         <div class="title1 text-left">
           Built-in wires
@@ -120,7 +120,7 @@
           No more dry burning
         </div>
       </div>
-      <div class="title3 w-[622px] mt-[43px] !text-left">
+      <div class="title3 w-[622px] mt-[46px] !text-left">
         The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, avoiding burnt flavors and preserving the terpenes and cannabinoids.
       </div>
     </div>

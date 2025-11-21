@@ -25,7 +25,7 @@ import Footer from "@/components/Footer.vue";
   <Unit6/>
   <Unit7/>
   <Unit8/>
-  <div class="pt-[6px]">
+  <div class="pt-[0px]">
     <Footer/>
   </div>
 </template>

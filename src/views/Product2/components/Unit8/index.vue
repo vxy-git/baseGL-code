@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="bg-black  pb-[110px]">
+  <div class="bg-black  pb-[114px]">
 
     <div class=" container-1300 mx-auto pt-[167px]">
       <div class="title2">
@@ -21,7 +21,7 @@
           <div class="cardLabel mt-[2px] pl-[20px]">
             UNICORE™ tech & large display
           </div>
-          <div class="btn ml-[20px] mt-[17px]">
+          <div class="btn ml-[20px] mt-[19px]">
             View More
           </div>
         </div>

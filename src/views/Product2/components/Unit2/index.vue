@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="bg-black pt-[123px]">
+<div class="bg-black pt-[128px]">
   <div class="title">
     Relish the golden hours with the UNIVERSE Series.
   </div>
