@@ -1,36 +1,68 @@
 <script setup>
+const deviceSpecs1 = [
+  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
+  { label: "Tank Volume", value: "0.5mL / 1mL" },
+  { label: "Battery Capability", value: "280mAh" },
+  { label: "Resistance", value: "1.8ohm" },
+  { label: "Voltage Setting", value: "2.0V" },
+  { label: "Housing Material", value: "Plastic" },
+  { label: "Ceramic Core", value: "UNICORE" },
+  { label: "Central Post", value: "Post-free" },
+  { label: "Charging", value: "Type-C" },
+  { label: "Options of Activation", value: "Inhale Activated" }
+]
+
+const deviceSpecs2 = [
+  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
+  { label: "Tank Volume", value: "0.5mL / 1mL" },
+  { label: "Battery Capability", value: "280mAh" },
+  { label: "Resistance", value: "1.8ohm" },
+  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
+  { label: "Housing Material", value: "Plastic" },
+  { label: "Ceramic Core", value: "UNICORE" },
+  { label: "Central Post", value: "Post-free" },
+  { label: "Charging", value: "Type-C" },
+  { label: "Options of Activation", value: "Button & Inhale Activated" }
+]
+
 
 </script>
 
 <template>
-  <div class="pt-[262px] bg-black pb-[100px]">
-    <div class="c_1230 c_padding">
-      <div class="relative w-full mx-[4px] flex flex-col items-center justify-center gap-[35px]">
-        <img class="ml-auto rotate-180" src="@/assets/img/icon71.svg" alt="">
-        <div class="title">
-          Pick Your Option
-        </div>
-        <img class="mr-auto" src="@/assets/img/icon71.svg" alt="">
-      </div>
-      <div class="w-full flex justify-between mx-auto mt-[262px] gap-[43px] m_flex_col">
-        <div>
-          <div class="btn mt-[3px]">
-            UNIVERSE
+  <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
+    <div class="title">
+      Specifications
+    </div>
+    <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
+        <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
+          <div class="label">
+            {{item.label}}
           </div>
-          <div class="title1">
-            It looks — and stays — beautiful.
+          <div class="value mt-[9px]">
+            {{item.value}}
           </div>
-          <div class="title2">
-            With big branding potential, it matches your vibe and makes the style uniquely yours.
-          </div>
-        </div>
-        <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-[#D9D9D9]">
-
         </div>
       </div>
-      <div class="title3 mt-[73px]">
-        DEEP TRACK 3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-          class="inline-block translate-x-[-10px]">01</span>
+      <div class="w-full flex flex-col items-center justify-center">
+        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+      </div>
+    </div>
+    <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
+      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
+      </div>
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
+        <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
+          <div class="label">
+            {{item.label}}
+          </div>
+          <div class="value mt-[9px]">
+            {{item.value}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,76 +70,46 @@
 
 <style scoped lang="scss">
 .title {
-  text-align: center;
-  font-family: Roboto;
-  font-size: 120px;
-  font-style: normal;
-  font-weight: 700;
-  // line-height: 200px;
-  /* 66.667% */
-  background: linear-gradient(180deg, #1CE785 0%, #C9FFE5 50%, #1CE785 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.title1 {
-  color: #FFF;
+  color: #000;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-top: 24px;
 }
 
-.title2 {
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
-  /* 150% */
-  width: 100%;
-  margin-top: 43px;
-}
+.item {
+  width: 220px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.2);
 
-.title3 {
-  color: rgba(255, 255, 255, 0.80);
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
-
-  span {
-    color: #1CE785;
+  .label {
+    color: #666;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
+
+  .value {
+    color: #111;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
 
-.btn {
-  width: 140px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 50px;
-  background: #1CE785;
+.text7 {
   color: #000;
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: normal;
-  display: flex;
-  align-items: center;
-  //justify-content: center;
-  //letter-spacing: -.1px;
-  padding-left: 24px;
 }
 </style>

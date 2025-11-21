@@ -1,68 +1,47 @@
 <script setup>
-const deviceSpecs1 = [
-  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "2.0V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Inhale Activated" }
-]
-
-const deviceSpecs2 = [
-  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Button & Inhale Activated" }
-]
-
 
 </script>
 
 <template>
-  <div class="c_1230 c_padding mx-auto mt-[136px] pb-[162px]">
-    <div class="title">
-      Specifications
-    </div>
-    <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
-      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
-          <div class="label">
-            {{item.label}}
-          </div>
-          <div class="value mt-[9px]">
-            {{item.value}}
-          </div>
+  <div>
+    <div class="c_1230 c_padding m_flex_col mt-[42px] mx-auto flex gap-[32px]">
+      <div class="w-[622.074px] pt-[145px]">
+        <div class="title1 text-left">
+          RTD Control
+        </div>
+        <div class="title2 mt-[19px]  !text-left">
+          Consistent Temp<br />
+          Ideal for Rosin
+        </div>
+        <div class="title3 mt-[56px] !text-left">
+          Powered by Unicore tech, UNIT PRO combines smoothness with <br /> purity, ensuring efficient THC and terpene
+          extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <div class="w-full flex flex-col items-center justify-center">
-        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+      <img class="h-[553px]" src="@/assets/img/icon66.png" alt="">
+    </div>
+
+    <div class="c_1230 c_padding">
+      <div class="flex justify-between m_flex_col_r">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
       </div>
     </div>
-    <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
-      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
-        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
-      </div>
-      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
-          <div class="label">
-            {{item.label}}
-          </div>
-          <div class="value mt-[9px]">
-            {{item.value}}
-          </div>
+
+    <div class="c_1230 c_padding mt-[145px]">
+      <div class="greenText">Built-in wires</div>
+      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
+        <div class="title2">
+          No dry burning
         </div>
+        <div class="label mt-[2px]">
+          The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
+          and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
+        </div>
+      </div>
+      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
       </div>
     </div>
   </div>
@@ -70,7 +49,30 @@ const deviceSpecs2 = [
 
 <style scoped lang="scss">
 .title {
-  color: #000;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 80px;
+  /* 100% */
+  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.greenText {
+  color: #1CE785;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.title2 {
+  color: #FFF;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -78,38 +80,46 @@ const deviceSpecs2 = [
   line-height: normal;
 }
 
-.item {
-  width: 220px;
-  height: 80px;
+.label {
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  /* 150% */
+  width: 622.074px;
   flex-shrink: 0;
-  border-radius: 10px;
-  background: rgba(217, 217, 217, 0.2);
-
-  .label {
-    color: #666;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  .value {
-    color: #111;
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
 }
 
-.text7 {
-  color: #000;
-  font-family: Roboto;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 48px;
+    line-height: 52px;
+    text-align: center;
+  }
+
+  .greenText {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .title2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .label {
+    width: 100% !important;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .img-small,
+  .img-large {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 15px;
+  }
 }
 </style>

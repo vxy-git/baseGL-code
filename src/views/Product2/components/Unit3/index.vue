@@ -3,59 +3,32 @@
 </script>
 
 <template>
-  <div class="pt-[207px] pb-[135px] bg-black">
-    <div class="title">
-      Consistent Temp<br/>
-      Ideal for Rosin
-    </div>
-    <div class="c_1230 c_padding mt-[185px]">
-      <div class="greenText">RTD Control</div>
-      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
-        <div class="title2">
-          Best flavor preservation
-        </div>
-        <div class="label">
-          Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
-        </div>
+    <div class="mt-[158px] c_1230 c_padding">
+      <div class="title1 text-center">
+        Take your pick
       </div>
-      <div class="flex justify-between mt-[78px] m_flex_col_r">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+      <div class="title2 mt-[19px]">
+        Either one’s a winner
       </div>
-    </div>
+      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
+        <div class="w-full h-[440px] bg-[#D9D9D9] rounded-[20px]">
+        </div>
+        <div class="w-full h-[440px] bg-[#D9D9D9] rounded-[20px]">
 
-    <div class="c_1230 c_padding mt-[228px]">
-      <div class="greenText">Built-in wires</div>
-      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
-        <div class="title2">
-          No dry burning
         </div>
-        <div class="label mt-[2px]">
-          The heating coil is embedded within the ceramic core, this way, the oil<br/> is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
-        </div>
-      </div>
-      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
-.title{
-  text-align: center;
-  font-family: Roboto;
-  font-size: 80px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 80px; /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.img {
+  width: 1400px;
+  height: 656px;
+  flex-shrink: 0;
+  aspect-ratio: 175/82;
 }
-.greenText{
+
+.title1 {
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;
@@ -63,49 +36,14 @@
   font-weight: 400;
   line-height: normal;
 }
-.title2{
+
+.title2 {
   color: #FFF;
+  text-align: center;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-.label{
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px; /* 150% */
-  width: 622.074px;
-  flex-shrink: 0;
-}
-
-@media screen and (max-width: 1024px) {
-  .title{
-    font-size: 48px;
-    line-height: 52px;
-    text-align: center;
-  }
-  .greenText{
-    font-size: 18px;
-    text-align: center;
-  }
-  .title2{
-    font-size: 28px;
-    text-align: center;
-  }
-  .label{
-    width: 100% !important;
-    text-align: center;
-    margin-top: 10px;
-  }
-  .img-small,
-  .img-large{
-    width: 100% !important;
-    height: auto !important;
-    margin-top: 15px;
-  }
 }
 </style>

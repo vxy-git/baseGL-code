@@ -11,7 +11,7 @@
     Super thin. Strikingly light.<br/>
     Shockingly strong.
   </div>
-  <img class="h-[157px] mt-[170.45px]" src="@/assets/img/icon51.png" alt="">
+  <img class="h-[157px] mt-[175px]" src="@/assets/img/icon51.png" alt="">
   <div class="title1 mt-[234px]">
     UNICORN PRO
   </div>
@@ -19,15 +19,15 @@
     Tiny powerhouse<br/>
     Exceptional pro capability
   </div>
-  <img class="h-[607px] mt-[77.45px]" src="@/assets/img/icon52.png" alt="">
+  <img class="h-[607px] mt-[82px]" src="@/assets/img/icon52.png" alt="">
 
-  <div class="title1 mt-[215px]">
+  <div class="title1 mt-[217px]">
     Take your pick
   </div>
   <div class="title2 mt-[19.55px]">
     Either one’s a winner
   </div>
-  <div class="flex gap-x-[20px] mt-[51px]">
+  <div class="flex gap-x-[20px] mt-[55px]">
     <div class="w-[605px] h-[440px] rounded-[20px] bg-[#D9D9D9]">
 
     </div>
@@ -48,6 +48,7 @@
   line-height: normal;
 }
 .title2{
+  
   color: #111;
   text-align: center;
   font-family: Roboto;
