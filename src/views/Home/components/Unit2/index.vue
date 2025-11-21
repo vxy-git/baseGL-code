@@ -70,14 +70,13 @@ const splideOptions = {
   drag: true,
   keyboard: true,
   width: '100vw',
-  fixedWidth: '410px',
   focus: 0,
   omitEnd: true,
 }
 
 // 计算分组数量
 const groupCount = computed(() => {
-  return Math.ceil(list.length / slidesPerGroup)
+  return Math.ceil(list.length / 2)
 })
 
 // 统一的箭头状态更新函数
@@ -122,49 +121,35 @@ const goToGroup = (groupIndex) => {
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
       <div class="container-1300 container-box title">
-        Innovative products:<br/>
+        Innovative products:<br />
         The most advanced, the best fit.
       </div>
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
-      <div class="container-1300 container-box mt-[50px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+      <div class="container-1300 container-box mt-[50px] relative" @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png"
-          alt=""
-          @click="slidePrev"
-        >
+          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
         <div class="w-full">
-          <Splide
-              class="w-full ml-[50%] translate-x-[-50%]"
-              :options="splideOptions"
-              @splide:mounted="onSplideInit"
-              @splide:moved="updateArrowStatus"
-          >
-          <SplideSlide v-for="(item, index) in list" :key="index">
-            <Item :data="item" :isLast="canSlideNext === false && index >= list.length" />
-          </SplideSlide>
-        </Splide>
+          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit"
+            @splide:moved="updateArrowStatus">
+            <SplideSlide class=" flex-shrink-[1]" v-for="(item, index) in list" :key="index">
+              <Item :data="item" :isLast="canSlideNext === false && index >= list.length" />
+            </SplideSlide>
+          </Splide>
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png"
-          alt=""
-          @click="slideNext"
-        >
+          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
       </div>
       <div class="container-1300 container-box flex justify-center gap-x-[10px] pt-[20px]">
-        <div
-          v-for="(item,index) in groupCount"
-          :key="index"
-          :class="{
+        <div v-for="(item,index) in groupCount" :key="index" :class="{
             '!bg-black': bannerCurrent === index
-          }"
-          class="dotItem cursor-pointer hover:bg-gray-400 transition-colors duration-200"
-          @click="goToGroup(index)"
-        ></div>
+          }" class="dotItem cursor-pointer hover:bg-gray-400 transition-colors duration-200" @click="goToGroup(index)">
+        </div>
       </div>
     </div>
   </div>
@@ -172,6 +157,7 @@ const goToGroup = (groupIndex) => {
 
 <style scoped lang="scss">
 .title {
+  white-space: nowrap;
   color: #000;
   font-family: Roboto;
   font-size: 40px;
@@ -179,7 +165,8 @@ const goToGroup = (groupIndex) => {
   font-weight: 700;
   line-height: calc(94px / 2);
 }
-.dotItem{
+
+.dotItem {
   width: 20px;
   height: 3px;
   flex-shrink: 0;

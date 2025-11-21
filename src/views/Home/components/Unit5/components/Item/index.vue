@@ -36,15 +36,16 @@ const props = defineProps({
   }
   .title{
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     z-index: 1;
     color: #FFF;
     font-family: Roboto;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 49px;
+    line-height: 120%;
     padding-left: 35px;
+    padding-right: 35px;
   }
 }
 </style>

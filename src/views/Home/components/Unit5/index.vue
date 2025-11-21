@@ -1,7 +1,7 @@
 <script setup>
 
 import Item from "./components/Item/index.vue";
-import {ref} from "vue";
+import {ref, onMounted, onUnmounted} from "vue";
 import t1Icon from "@/assets/img/t1.png"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 const list = [
@@ -26,6 +26,23 @@ const splideRef = ref(null)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
+const isMobile = ref(false)
+
+// 检测是否为移动端
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 767
+}
+
+// 初始化移动端检测
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+// 清理事件监听器
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
 
 // Splide 配置
 const splideOptions = {
@@ -33,7 +50,6 @@ const splideOptions = {
   perPage: 1,
   perMove: 1,
   gap: '35px',
-  padding: { left: '310px', right: '310px' },
   speed: 800,
   arrows: false,
   pagination: false,
@@ -93,7 +109,7 @@ const goToSlide = (index) => {
       <div class="mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || !isHovered }" src="@/assets/img/icon4_active.png" alt=""
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }" src="@/assets/img/icon4_active.png" alt=""
           @click="slidePrev">
 
         <div class="w-full">
@@ -110,7 +126,7 @@ const goToSlide = (index) => {
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || !isHovered }" src="@/assets/img/icon4_active.png" alt=""
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }" src="@/assets/img/icon4_active.png" alt=""
           @click="slideNext">
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">

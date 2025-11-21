@@ -47,11 +47,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
-    }
+    // 始终滚动到页面顶部，即使是浏览器前进/后退
+    return { top: 0 }
   }
 })
 
