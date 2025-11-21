@@ -191,7 +191,7 @@ const handleSubscribe = () => {
 
   li {
     margin: 0;
-    line-height: 30px;
+    line-height: 32px;
   }
 
   a {

@@ -14,11 +14,11 @@ const deviceSpecs = [
   },
   {
     label: 'Resistance',
-    value: '1.8Ω'
+    value: '1.8ohm'
   },
   {
     label: 'Voltage',
-    value: '1.8V - 2.0V - 2.2V'
+    value: '1.8V-2.0V-2.2V'
   },
   {
     label: 'Housing Material',
@@ -33,7 +33,7 @@ const deviceSpecs = [
     value: 'Type-C'
   },
   {
-    label: 'Activation',
+    label: 'Options of Activation',
     value: 'Button & Inhale Activated'
   }
 ]
@@ -47,7 +47,7 @@ const deviceSpecs = [
   </div>
   <div class="flex w-[1300px] mx-auto pl-[35px]" >
     <div class="w-[683px] flex-shrink-0 pt-[66px]">
-      <div v-for="(item, index) in deviceSpecs" :key="index" class="flex border-b border-white/20">
+      <div v-for="(item, index) in deviceSpecs" :key="index" class="flex outline outline-white/20">
         <div class="tableText w-[370px]">{{ item.label }}</div>
         <div class="tableText">{{ item.value }}</div>
       </div>
@@ -55,7 +55,7 @@ const deviceSpecs = [
     </div>
     <img src="@/assets/img/icon24.png" class="h-[666px] mt-[30px] -ml-[15px]" alt="">
   </div>
-  <div class=" w-[1300px] mx-auto mt-[132px]">
+  <div class=" w-[1300px] mx-auto mt-[140px]">
     <div class="title2">
       More Products
     </div>
