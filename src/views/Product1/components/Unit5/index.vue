@@ -1,5 +1,7 @@
 <script setup>
-
+import Smooth_yet_Rugged_Design from '@/assets/product1/Smooth_yet_Rugged_Design.jpg'
+import Dual_Color_Mouthpiece from '@/assets/product1/Dual_Color_Mouthpiece.jpg'
+import Large_Side_Display from '@/assets/product1/Large_Side_Display.jpg'
 import Tabs from "./Tabs/index.vue";
 import {ref, watch} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
@@ -12,9 +14,9 @@ const tabsList = [
 ]
 
 const list = [
-  { img: '@/assets/img/icon22.png' },
-  { img: '@/assets/img/icon22.png' },
-  { img: '@/assets/img/icon22.png' }
+  { img: Smooth_yet_Rugged_Design },  
+  { img: Dual_Color_Mouthpiece },
+  { img: Large_Side_Display }
 ]
 
 const splideRef = ref(null)
@@ -60,7 +62,7 @@ watch(tabsCurrent, (index) => {
             @splide:move="onSlideChange">
             <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
               <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
-                class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-[#F5F5F5]" alt="" />
+                class="w-full h-full object-cover rounded-[20px] overflow-hidden bg-[#F5F5F5]" alt="" />
             </SplideSlide>
           </Splide>
         </div>

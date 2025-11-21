@@ -1,4 +1,5 @@
 <script setup>
+import specs from '@/assets/product1/specs.mp4'
 const deviceSpecs = [
   {
     label: 'Dimension(mm)',
@@ -44,14 +45,16 @@ const deviceSpecs = [
     <div class="title text-center">
       SPECS
     </div>
-    <div class="flex c_1300 c_padding mx-auto px-[35px] justify-between m_flex_col_r">
-      <div class="w-[683px] max-w-full flex-shrink-0 pt-[66px]">
+    <div class="flex c_1300 c_padding mx-auto px-[35px] justify-between m_flex_col_r overflow-hidden">
+      <div class="w-[683px] max-w-full flex-shrink-0 pt-[66px] relative z-[1]">
         <div v-for="(item, index) in deviceSpecs" :key="index" class="flex border-b border-white/20">
           <div class="tableText w-[370px]">{{ item.label }}</div>
           <div class="tableText">{{ item.value }}</div>
         </div>
       </div>
-      <img src="@/assets/img/icon24.png" class="w-[418px] mt-[30px] -ml-[15px]" alt="">
+      <div class="w-[500px] h-[730px] relative">
+      <video class="absolute h-[1000px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover" :src="specs" autoplay muted playsinline loop></video>
+      </div>
     </div>
   </div>
 </template>

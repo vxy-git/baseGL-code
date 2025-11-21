@@ -1,4 +1,11 @@
 <script setup>
+import one_R from '@/assets/product1/one-R.mp4'
+import upgrade1 from '@/assets/product1/upgrade_3-Temperature-Control.mp4'
+import upgrade2 from '@/assets/product1/upgrade_Activation-Indication.mp4'
+import upgrade3 from '@/assets/product1/upgrade_Battery-Life-Monitor.mp4'
+import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
+
+
 
 </script>
 
@@ -17,13 +24,17 @@
             <div class="tag">
               3-Temperature Control
             </div>
-            <img class="unit7__card-img" src="" alt="">
+            <div class="unit7__card-img">
+              <video class="w-full h-full object-cover" :src="upgrade1" autoplay muted playsinline loop></video>
+            </div>
           </div>
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
               Battery Life Monitor
             </div>
-            <img class="unit7__card-img" src="" alt="">
+            <div class="unit7__card-img">
+              <video class="w-full h-full object-cover" :src="upgrade2" autoplay muted playsinline loop></video>
+            </div>
           </div>
         </div>
         <div class="unit7__row unit7__row--swap">
@@ -31,13 +42,17 @@
             <div class="tag">
               Preheat Status Indication
             </div>
-            <img class="unit7__card-img" src="" alt="">
+            <div class="unit7__card-img">
+              <video class="w-full h-full object-cover" :src="upgrade3" autoplay muted playsinline loop></video>
+            </div>
           </div>
           <div class="unit7__card">
             <div class="tag">
               Activation Indication
             </div>
-            <img class="unit7__card-img" src="" alt="">
+            <div class="unit7__card-img">
+              <video class="w-full h-full object-cover" :src="upgrade4" autoplay muted playsinline loop></video>
+            </div>
           </div>
         </div>
       </div>
@@ -57,28 +72,31 @@
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="" alt="">
+            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps1.png" alt="">
             <div class="itemTitle mt-[19px]">1 Tap</div>
             <div class="itemLabel mt-[4px]">Check temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="" alt="">
+            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps2.png" alt="">
             <div class="itemTitle mt-[19px]">2 Taps</div>
             <div class="itemLabel mt-[4px]">Warm up</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="" alt="">
+            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps3.png" alt="">
             <div class="itemTitle mt-[19px]">3 Taps</div>
             <div class="itemLabel mt-[4px]">Change temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="" alt="">
+            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps4.png" alt="">
             <div class="itemTitle mt-[19px]">5 Taps</div>
             <div class="itemLabel mt-[4px]">Turn on/off</div>
           </div>
         </div>
       </div>
-      <img class="unit7__img w-[450px] h-[540px] rounded-[20px] bg-[#D9D9D9]" src="" alt="">
+      <div class="unit7__img w-[450px] h-[540px]">
+        <video class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden" :src="one_R" autoplay muted
+          playsinline></video>
+      </div>
     </div>
   </div>
 </template>
@@ -108,6 +126,8 @@
 }
 
 .tag {
+  position: relative;
+  z-index: 1;
   width: 260px;
   height: 40px;
   flex-shrink: 0;
@@ -196,12 +216,16 @@
 }
 
 .unit7__card-img {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
+  height: 100%;
   border-radius: 14px;
   background: #D9D9D9;
   object-fit: cover;
-  margin-top: 24px;
 }
 
 .unit7__content {
@@ -214,10 +238,6 @@
 
 .unit7__step img {
   border-radius: 12px;
-}
-
-.unit7__img {
-  object-fit: cover;
 }
 
 @media screen and (max-width: 1200px) {

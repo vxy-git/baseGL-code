@@ -1,4 +1,6 @@
 <script setup>
+import product1_inhale_L from '@/assets/product1/inhale-L.mp4'
+import product1_inhale_R from '@/assets/product1/inhale-R.mp4'
 
 </script>
 
@@ -12,10 +14,10 @@
     </div>
     <div class=" w-full flex justify-center gap-[20px] mt-[52px] m_flex_col">
       <div class="flex-1 w-full rounded-[20px]">
-        <img class="w-full block" src="@/assets/img/icon23.png" alt="">
+        <video class="w-full h-full object-cover" :src="product1_inhale_L" autoplay muted playsinline loop></video>
       </div>
       <div class="flex-1 w-full rounded-[20px]">
-        <img class="w-full block" src="@/assets/img/icon23.png" alt="">
+        <video class="w-full h-full object-cover" :src="product1_inhale_R" autoplay muted playsinline loop></video>
       </div>
     </div>
   </div>

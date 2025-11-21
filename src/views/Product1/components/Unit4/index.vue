@@ -1,11 +1,17 @@
 <script setup>
+import product1_best_L from '@/assets/product1/best-L.mp4';
+import product1_best_R from '@/assets/product1/best-R.mp4';
+import product1_no_L from '@/assets/product1/no-L.mp4';
+import product1_no_R from '@/assets/product1/no-R.mp4';
+
+
 
 </script>
 
 <template>
   <div class="mt-[207px]">
     <div class="title">
-      Consistent Temp<br/>
+      Consistent Temp<br />
       Ideal for Rosin
     </div>
     <div class="c_1230 c_padding mt-[185px]">
@@ -15,12 +21,17 @@
           Best flavor preservation
         </div>
         <div class="label">
-          Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
+          Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene
+          extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
       <div class="flex justify-between mt-[78px] m_flex_col_r">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+          <video class="w-full h-full object-cover" :src="product1_best_L" autoplay muted playsinline></video>
+        </div>
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+          <video class="w-full h-full object-cover" :src="product1_best_R" autoplay muted playsinline></video>
+        </div>
       </div>
     </div>
 
@@ -31,31 +42,38 @@
           No dry burning
         </div>
         <div class="label mt-[2px]">
-          The heating coil is embedded within the ceramic core, this way, the oil<br/> is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
+          The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
+          and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+          <video class="w-full h-full object-cover" :src="product1_no_L" autoplay muted playsinline></video>
+        </div>
+        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+          <video class="w-full h-full object-cover" :src="product1_no_R" autoplay muted playsinline></video>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   text-align: center;
   font-family: Roboto;
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
-  line-height: 80px; /* 100% */
+  line-height: 80px;
+  /* 100% */
   background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.greenText{
+
+.greenText {
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;
@@ -63,7 +81,8 @@
   font-weight: 400;
   line-height: normal;
 }
-.title2{
+
+.title2 {
   color: #FFF;
   font-family: Roboto;
   font-size: 40px;
@@ -71,38 +90,44 @@
   font-weight: 700;
   line-height: normal;
 }
-.label{
+
+.label {
   color: #FFF;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
+  /* 150% */
   width: 622.074px;
   flex-shrink: 0;
 }
 
 @media screen and (max-width: 1024px) {
-  .title{
+  .title {
     font-size: 48px;
     line-height: 52px;
     text-align: center;
   }
-  .greenText{
+
+  .greenText {
     font-size: 18px;
     text-align: center;
   }
-  .title2{
+
+  .title2 {
     font-size: 28px;
     text-align: center;
   }
-  .label{
+
+  .label {
     width: 100% !important;
     text-align: center;
     margin-top: 10px;
   }
+
   .img-small,
-  .img-large{
+  .img-large {
     width: 100% !important;
     height: auto !important;
     margin-top: 15px;

@@ -1,10 +1,18 @@
 <script setup>
+import videoSrc from '@/assets/product1/banner.mp4'
 
 </script>
 
 <template>
-  <div class="unit1 h-[880px] mt-[100px] relative">
-    <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt="">
+  <div class="unit1 h-[980px] relative">
+    <video
+      class="w-full h-full object-cover"
+      :src="videoSrc"
+      autoplay
+      muted
+      playsinline
+    ></video>
+    <!-- <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt=""> -->
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
       <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
@@ -96,8 +104,7 @@
 
 @media screen and (max-width: 767px) {
   .unit1{
-    height: 520px !important;
-    margin-top: 40px !important;
+    height: 1000px !important;
   }
   .title{
     font-size: 34px;

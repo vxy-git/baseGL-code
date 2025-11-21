@@ -1,14 +1,16 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import bannerImg from "@/assets/img/icon22.png";
+import bannerImg1 from "@/assets/product1/realize1.jpg";
+import bannerImg2 from "@/assets/product1/realize2.jpg";
+import bannerImg3 from "@/assets/product1/realize3.jpg";
+import bannerImg4 from "@/assets/product1/realize4.jpg";
 
 const list = [
-  { img: bannerImg },
-  { img: bannerImg },
-  { img: bannerImg },
-  { img: bannerImg },
-  { img: bannerImg },
+  { img: bannerImg1 },
+  { img: bannerImg2 },
+  { img: bannerImg3 },
+  { img: bannerImg4 },
 ];
 
 const bannerCurrent = ref(0);
