@@ -250,7 +250,6 @@ const handleSubscribe = () => {
     width: 90px;
     height: 44px;
     border: none;
-    border-radius: 4px;
     background: #1ce785;
     color: #111111;
     font-family: 'Roboto', sans-serif;
@@ -348,22 +347,5 @@ const handleSubscribe = () => {
 
 .designer {
   text-align: right;
-}
-
-@media (max-width: 1000px) {
-  .footer-box {
-    flex-direction: column;
-  }
-  // .footer-columns {
-  //   grid-template-columns: 1fr;
-  // }
-
-  // .subscribe-form {
-  //   flex-direction: column;
-
-  //   .signup-btn {
-  //     width: 100%;
-  //   }
-  // }
 }
 </style>

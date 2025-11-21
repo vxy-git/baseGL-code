@@ -504,7 +504,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  height: 110px;
+  height: 97px;
 }
 
 .nav-left {

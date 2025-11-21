@@ -135,7 +135,7 @@ const goToGroup = (groupIndex) => {
         <div class="w-full">
           <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
-            <SplideSlide class=" flex-shrink-[1]" v-for="(item, index) in list" :key="index">
+            <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
               <Item :data="item" :isLast="canSlideNext === false && index >= list.length" />
             </SplideSlide>
           </Splide>
