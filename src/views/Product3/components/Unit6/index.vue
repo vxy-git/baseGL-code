@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="h-[895px] bg-[#F5F5F5]">
+<div class="h-[900px] bg-[#F5F5F5]">
   <div class="relative">
     <div class="flex gap-x-[84px] -ml-[19px] pt-[126px]">
       <div :class="{

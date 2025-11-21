@@ -12,14 +12,14 @@
     Shockingly strong.
   </div>
   <img class="h-[157px] mt-[175px]" src="@/assets/img/icon51.png" alt="">
-  <div class="title1 mt-[234px]">
+  <div class="title1 mt-[229px]">
     UNICORN PRO
   </div>
-  <div class="title2 mt-[19.55px]">
-    Tiny powerhouse<br/>
-    Exceptional pro capability
+  <div class="title2 mt-[19px]">
+    Tiny powerhouse&nbsp;<br/>
+    Exceptional pro capability&nbsp;
   </div>
-  <img class="h-[607px] mt-[82px]" src="@/assets/img/icon52.png" alt="">
+  <img class="h-[607px] mt-[78px]" src="@/assets/img/icon52.png" alt="">
 
   <div class="title1 mt-[217px]">
     Take your pick

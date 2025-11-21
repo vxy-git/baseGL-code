@@ -11,7 +11,7 @@
     <img class="h-[596px] mt-[calc(93px-117px)]" src="@/assets/img/icon54.png" alt="">
   </div>
 
-  <div class="flex flex-col items-center mt-[200px]">
+  <div class="flex flex-col items-center mt-[205px]">
     <div class="title1">UNICORE powered</div>
     <div class="title2 mt-[19.55px]">33% in pore uniformity</div>
     <div class="title3 w-[1200px] mt-[19.45px]">
@@ -51,8 +51,8 @@
     </div>
     <img src="@/assets/img/icon57.png" class="h-[821px] mt-[calc(288px-440px)]" alt="">
   </div>
-  <div class="flex flex-col items-center mt-[40px]">
-    <div class="title1">100% Rosin-Ready</div>
+  <div class="flex flex-col items-center mt-[48px]">
+    <div class="title1">100% Rosin-Ready&nbsp;&nbsp;</div>
     <div class="title2 mt-[19.55px]">
       Savor the most natural<br/>
       and rich flavors
@@ -84,7 +84,7 @@
     <img src="@/assets/img/icon58.png" class="h-[600px] mt-[78px]" alt="">
   </div>
 
-  <div class="flex w-[calc(100vw-260px-260px-5px)] mt-[214px] justify-between pb-[168px]">
+  <div class="flex w-[calc(100vw-260px-260px-5px)] mt-[214px] justify-between pb-[175px]">
     <div class="h-[740px] w-[360px] bg-[#D9D9D9] rounded-[20px]">
 
     </div>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="pt-[250px] pb-[168px] bg-black">
+  <div class="pt-[250px] pb-[170px] bg-black">
     <div class="t1">
       UNICORN PRO
     </div>
@@ -13,7 +13,7 @@
     <div class="stitle text-center mt-[118px]">
       Upgrade your adventure
     </div>
-    <div class="w-[calc(520px+15px+695px)] mx-auto mt-[57px]">
+    <div class="w-[calc(520px+15px+695px)] mx-auto mt-[60px]">
       <div class="justify-between flex">
         <div class="bg-[#D9D9D9] h-[440px] w-[520px] rounded-[20px] relative">
           <div class="tag absolute left-[21px] top-[25px]">
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="t1 mt-[165px]">
+    <div class="t1 mt-[170px]">
       UNICORN PRO
     </div>
     <div class="stitle text-center mt-[19px]">
