@@ -49,25 +49,25 @@ watch(tabsCurrent, (index) => {
 </script>
 
 <template>
-<div class="bg-[#000] pt-[100px]">
-  <div class="c_1230 c_padding">
-    <div class="title">
-      Every Detail Matters
-    </div>
-    <div class="mt-[58px] relative">
-      <div class="w-full flex justify-center">
-        <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
-          @splide:move="onSlideChange">
-          <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
-            <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
-              class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-[#F5F5F5]" alt="" />
-          </SplideSlide>
-        </Splide>
+  <div>
+    <div class="c_1230 c_padding mt-[200px]">
+      <div class="title">
+        Every Detail Matters
+      </div>
+      <div class="mt-[58px] relative">
+        <div class="w-full flex justify-center">
+          <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+            @splide:move="onSlideChange">
+            <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
+              <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
+                class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-[#F5F5F5]" alt="" />
+            </SplideSlide>
+          </Splide>
+        </div>
       </div>
     </div>
+    <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
   </div>
-  <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
-</div>
 </template>
 
 <style scoped lang="scss">

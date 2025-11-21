@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="bg-black pt-[150px] pb-[40px]">
+<div class="pt-[153px] pb-[45px]">
   <div class="title c_padding">
     Design your own look
   </div>

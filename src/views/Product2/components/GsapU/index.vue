@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <img src="@/assets/img/icon62.png" class="mx-auto img object-cover w-full" alt="">
+  <img src="@/assets/img/icon62.png" class=" mt-[220px] mx-auto img object-cover w-full" alt="">
   <div class="mt-[186px] c_1230 c_padding">
     <div class="title1 translate-y-[1px] text-center">
       TINY BUT MIGHTY
@@ -16,7 +16,7 @@
       UNIVERSE Series is the ultimate portable solution for rosin enthusiasts. The little cutie disappears in your
       hand and fits flat in your pocket, making it the perfect companion for those on the go.
     </div>
-    <img src="@/assets/img/icon63.png" class="mt-[17px] block mx-auto h-[633px]" alt="">
+    <img src="@/assets/img/icon63.png" class="mt-[5px] block mx-auto h-[633px]" alt="">
   </div>
 </template>
 

@@ -3,14 +3,12 @@
 </script>
 
 <template>
-  <div class="bg-black pt-[120px]">
-    <div class="c_1230 c_padding ">
-      <div class="title">
-        Relish the golden hours with the UNIVERSE Series.
-        Savor the sweetness, dive into <span class="text-[#1CE785]">smoothness</span>
-      </div>
-      <img src="@/assets/img/icon61.png" class="mx-auto block mt-[63px]" alt="">
+  <div class="c_1230 c_padding mt-[120px]">
+    <div class="title">
+      Relish the golden hours with the UNIVERSE Series.
+      Savor the sweetness, dive into <span class="text-[#1CE785]">smoothness</span>
     </div>
+    <img src="@/assets/img/icon61.png" class="mx-auto block mt-[63px]" alt="">
   </div>
 </template>
 

@@ -4,7 +4,7 @@ import videoSrc from '@/assets/video/product2-video.mp4'
 </script>
 
 <template>
-  <div class="w-full relative min-h-[950px] flex flex-col justify-end">
+  <div class="w-full relative h-[1210px] flex flex-col justify-end">
     <video class="w-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
 
     <div class="w-full c_padding absolute top-0">
