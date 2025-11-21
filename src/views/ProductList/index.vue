@@ -6,13 +6,13 @@
     <Header headerClass="white" border />
     <div class="header-divider" />
 
-    <main class="main-content">
+    <main class="main-content container-1300">
       <section class="catalog-intro">
         <h1 class="catalog-title">Innovative products</h1>
         <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       </section>
 
-      <section class="catalog-grid" aria-label="Product Gallery">
+      <section class="catalog-grid" aria-label="Product Gallery" ref="catalogGridRef">
         <article v-for="product in products" :key="product.id" class="product-card">
           <div class="card-surface">
             <img :src="product.background" :alt="product.alt + ' featured'" loading="lazy"
@@ -30,6 +30,10 @@
             </div>
           </div>
         </article>
+
+        <article v-for="n in fillerCount" :key="'filler-' + n" class="product-card" aria-hidden="true">
+          <div class="card-surface placeholder" />
+        </article>
       </section>
 
       <nav class="pagination" aria-label="Catalog pagination">
@@ -44,7 +48,7 @@
 </template>
 
 <script setup>
-import { h, ref } from 'vue'
+import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
@@ -317,6 +321,34 @@ const socialIcons = [
   { name: 'Instagram', href: '#', icon: InstagramIcon },
   { name: 'TikTok', href: '#', icon: TikTokIcon }
 ]
+
+const catalogGridRef = ref(null)
+const columns = ref(1)
+const CARD_WIDTH = 305
+const GAP = 26
+
+const updateColumns = () => {
+  const el = catalogGridRef.value
+  const width = el ? el.clientWidth : 0
+  const calc = Math.floor((width + GAP) / (CARD_WIDTH + GAP))
+  columns.value = Math.max(1, calc)
+}
+
+onMounted(() => {
+  updateColumns()
+  window.addEventListener('resize', updateColumns, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateColumns)
+})
+
+const fillerCount = computed(() => {
+  const len = products.value.length
+  const cols = columns.value || 1
+  const remainder = len % cols
+  return remainder === 0 ? 0 : cols - remainder
+})
 </script>
 
 <style scoped lang="scss">
@@ -405,7 +437,6 @@ const socialIcons = [
 }
 
 .main-content {
-  width: 1300px;
   margin: 0 auto;
   padding-top: 205px;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
@@ -413,7 +444,7 @@ const socialIcons = [
 }
 
 .catalog-intro {
-  width: 1300px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -426,57 +457,23 @@ const socialIcons = [
   line-height: normal;
 }
 
-.filter-strip {
-  display: flex;
-  flex-wrap: nowrap;
-  padding: 5px;
-  border-radius: 50px;
-  background: #f8f9fd;
-  width: 1300px;
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.filter-chip {
-  border: none;
-  border-radius: 50px;
-  padding: 14px 32px;
-  background: transparent;
-  font-size: 18px;
-  color: #444444;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &.active {
-    background: #ffffff;
-    color: #111111;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  &:hover:not(.active) {
-    background: rgba(28, 231, 133, 0.12);
-    color: #111111;
-  }
-}
-
 .catalog-grid {
   margin: 72px auto 0;
   display: flex;
   flex-wrap: wrap;
   column-gap: 26px;
   row-gap: 30px;
-  width: 1300px;
+  width: 100%;
 
 }
 
+.product-card {
+  flex: 1;
+}
 
 .card-surface {
+  // margin: auto;
+  min-width: 100%;
   padding: 28px;
   position: relative;
   display: flex;
@@ -514,10 +511,6 @@ const socialIcons = [
 
     .product-image {
       opacity: 0;
-    }
-
-    .badge {
-      color: #1ce785;
     }
 
     .product-name,
@@ -648,85 +641,8 @@ const socialIcons = [
   }
 }
 
-
-@media (max-width: 1400px) {
-
-  .catalog-intro,
-  .catalog-grid {
-    width: 100%;
-    max-width: 1300px;
-  }
-
-  .filter-strip {
-    width: 100%;
-  }
-}
-
-@media (max-width: 1200px) {
-
-  .site-header,
-  .main-content,
-  .footer-inner {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .footer-bottom {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .legal,
-  .credit {
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .site-header {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .header-actions {
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .filter-strip {
-    width: 100%;
-  }
-
-  .catalog-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .footer-columns {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .catalog-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .subscribe-form {
-    flex-direction: column;
-
-    button {
-      width: 100%;
-    }
-  }
+.placeholder {
+  visibility: hidden;
+  pointer-events: none;
 }
 </style>

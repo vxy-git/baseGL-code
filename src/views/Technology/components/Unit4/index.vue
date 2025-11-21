@@ -8,7 +8,7 @@ import icon4_2 from '@/assets/img/icon4_2.png'
       class="mt-[6px] w-full h-[1080px] bg-[url(@/assets/img/icon4_1.png)] bg-[length:100%_100%] bg-[#111111]">
 
 
-    <div class="content-wrapper mx-auto justify-between pt-[447px]">
+    <div class="content-wrapper container-1300 mx-auto justify-between pt-[447px]">
       <div>
         <div class="flex flex-col">
           <div class="text1 flex">
@@ -40,9 +40,7 @@ import icon4_2 from '@/assets/img/icon4_2.png'
 <style scoped lang="scss">
 .content-wrapper {
   display: flex;
-
   gap: 20px;
-  width: 1300px;
 }
 
 .title1 {

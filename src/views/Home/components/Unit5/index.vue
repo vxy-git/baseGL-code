@@ -30,8 +30,9 @@ const isHovered = ref(false)
 
 // 统一的箭头状态更新函数
 const updateArrowStatus = (swiper) => {
-  canSlidePrev.value = !swiper.isBeginning
-  canSlideNext.value = !swiper.isEnd
+  // loop 模式下箭头始终可用
+  canSlidePrev.value = true
+  canSlideNext.value = true
   bannerCurrent.value = swiper.realIndex
 };
 
@@ -63,7 +64,7 @@ const slideNext = () => {
 
 // 点击指示器跳转
 const goToSlide = (index) => {
-  swiperRef.value?.slideTo(index);
+  swiperRef.value?.slideToLoop(index);
 };
 </script>
 
@@ -80,7 +81,7 @@ const goToSlide = (index) => {
           @click="slidePrev">
 
         <div class="w-screen -ml-[calc((100vw-1300px)/2)]">
-          <Swiper class="px-[310px]" @swiper="onSwiperInit" :slidesPerView="'auto'" :space-between="0" :loop="false" :grab-cursor="true"
+          <Swiper class="px-[310px]" @swiper="onSwiperInit" :slidesPerView="'auto'" :space-between="0" :loop="true" :centered-slides="true" :grab-cursor="true"
             :watch-slides-progress="true" :watch-slides-visibility="true" :auto-height="false" :free-mode="false"
             :auto-width="true" :speed="800" @slide-change="onSlideChange" @slide-change-transition-end="changeEnd"
             @touch-end="(swiper) => updateArrowStatus(swiper)" @transition-end="(swiper) => updateArrowStatus(swiper)">

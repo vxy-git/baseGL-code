@@ -325,7 +325,7 @@ defineExpose({
       @mouseenter="props.onContentMouseEnter"
       @mouseleave="props.onContentMouseLeave"
     >
-      <main class="content">
+      <main class="content container-1300">
         <aside
           ref="sidebarRef"
           class="sidebar h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12"
@@ -545,7 +545,6 @@ defineExpose({
 .content {
   display: flex;
   align-items: flex-start;
-  width: 1300px;
   margin: 60px auto 60px;
   padding-bottom: 60px;
 }

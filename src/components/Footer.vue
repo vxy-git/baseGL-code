@@ -300,7 +300,7 @@ const handleSubscribe = () => {
 }
 
 .footer-separator {
-  width: 1300px;
+  width: 100%;
   height: 1px;
   background: rgba(0, 0, 0, 0.1);
   margin: 0 0 30px 0;
@@ -350,28 +350,6 @@ const handleSubscribe = () => {
 
 .designer {
   text-align: right;
-}
-
-@media (max-width: 1400px) {
-  .footer-container {
-    width: 100%;
-    max-width: 1301px;
-  }
-
-  .footer-separator {
-    width: 100%;
-  }
-}
-
-@media (max-width: 1200px) {
-  .footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .copyright,
-  .designer {
-    text-align: center;
-  }
 }
 
 @media (max-width: 768px) {

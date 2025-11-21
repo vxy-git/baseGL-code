@@ -5,11 +5,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --rem-base: calc(100vw / 1920px * 10px);
-  font-size: var(--rem-base);
-}
-
 html {
   overflow-x: hidden;
 }
@@ -21,29 +16,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-
-  // Firefox - 隐藏滚动条或使用 thin 样式
   scrollbar-width: none; // 完全隐藏
-  // 如果想显示细滚动条，取消下面注释
-  // scrollbar-width: thin;
-  // scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
-// 全局工具类
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-// GPU加速优化
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
+:root {
+  --rem-base: calc(100vw / 1920px * 10px);
+  font-size: var(--rem-base);
 }
 
 .container-1300 {
-  width: 1300px;
+  max-width: 1300px;
+}
+
+
+
+@media screen and (max-width: 767px) {
+  :root {
+    --rem-base: calc(100vw / 768px * 10px);
+    font-size: var(--rem-base);
+  }
+
+  .container-1300 {
+    width: 100%;
+  }
+
+  html {
+    padding: 0 1rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -52,8 +51,11 @@ body {
     font-size: var(--rem-base);
   }
 
-
   .container-1300 {
     width: 100%;
+  }
+
+  html {
+    padding: 0 1rem;
   }
 }

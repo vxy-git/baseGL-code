@@ -103,11 +103,11 @@ const closeDropdowns = () => {
     <section class="hero">
       <div class="heroBackground">
         <img src="@/assets/img/icon43.png" class="heroImage" alt=""/>
+        <div class="divider"></div>
       </div>
-      <div class="heroContent">
+      <div class="heroContent container-1300">
         <h1 class="heroTitle">Get in Touch</h1>
         <p class="heroEmail">Email: info@caleaftech.com</p>
-        <div class="divider"></div>
         <div class="socialSection mt-[34px] pr-[4px]">
           <p class="followText">Follow Us</p>
           <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram"/>
@@ -300,7 +300,6 @@ const closeDropdowns = () => {
 
 .heroContent {
   margin: 0 auto;
-  width: 1300px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -329,14 +328,13 @@ const closeDropdowns = () => {
 }
 
 .divider {
-
+  position: absolute;
+  top: 50%;
   height: 1px;
   background-color: #fff;
   opacity: 0.2;
-  margin-top: 30px;
+  margin-top: 2.5px;
   width: 100vw;
-  transform: translateX(calc((100vw - 1300px) / 2));
-
 }
 
 .socialSection {
