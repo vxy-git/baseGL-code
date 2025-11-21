@@ -114,7 +114,7 @@ const slideNext = () => {
 </script>
 
 <template>
-  <div class="pt-[142px] pb-[140px]">
+  <div class="pt-[138px] pb-[140px]">
     <div class="title text-center">
       SPECS
     </div>
@@ -147,10 +147,10 @@ const slideNext = () => {
               <div class="cardTitle pl-[20px] mt-[46px]">
                 UNIT
               </div>
-              <div class="cardLabel px-[20px] mt-[2px]">
+              <div class="cardLabel px-[20px] mt-[8px]">
                 UNICORE™ tech & large display
               </div>
-              <div class="btn ml-[20px] mt-[18px]">
+              <div class="btn ml-[20px] mt-[25px]">
                 View More
               </div>
             </div>
@@ -183,7 +183,7 @@ const slideNext = () => {
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 70px;
+  line-height: 69px;
 }
 
 .title2 {
@@ -224,7 +224,6 @@ const slideNext = () => {
       font-style: normal;
       font-weight: 400;
       line-height: 20px;
-      margin: 6px 0;
     }
 
     .btn {

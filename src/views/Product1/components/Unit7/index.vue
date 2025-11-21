@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="unit7__content c_padding c_1230 flex justify-between mt-[267px] gap-[20px] m_flex_col_r">
-      <div class="unit7__text mt-[25px]">
+      <div class="unit7__text">
         <div class="gtext">
           The Enhanced
         </div>

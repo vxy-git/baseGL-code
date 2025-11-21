@@ -35,7 +35,7 @@ const splideOptions = {
   type: "loop",
   perPage: 1,
   perMove: 1,
-  gap: "35px",
+  gap: "1%",
   speed: 800,
   arrows: false,
   pagination: false,
