@@ -3,19 +3,21 @@
 </script>
 
 <template>
-  <div class="h-[875px] mt-[100px] relative">
+  <div class="unit1 h-[875px] mt-[100px] relative">
     <img class="size-full object-cover" src="@/assets/img/icon13.png" alt="">
-    <div class="absolute h-full w-[calc(100vw-345px-345px)] left-[calc((100vw-(100vw-345px-345px))/2)] top-0 flex flex-col justify-center">
+    <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
+      <div class="c_1230 c_padding w-full m_flex_col">
       <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
-    <div class="title">
-      UNIT PRO
-    </div>
-    <div class="subTitle translate-y-[-2px]">
-      From lab to award,<br/>
-      100% for Rosin we’ve perfected
-    </div>
-      <div class="btn cursor-pointer">
-        1mL/2mL
+      <div class="title">
+        UNIT PRO
+      </div>
+      <div class="subTitle translate-y-[-2px]">
+        From lab to award,<br/>
+        100% for Rosin we’ve perfected
+      </div>
+        <div class="btn cursor-pointer">
+          1mL/2mL
+        </div>
       </div>
     </div>
   </div>
@@ -65,5 +67,53 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+}
+
+@media screen and (max-width: 1024px) {
+  .unit1{
+    height: 600px !important;
+    margin-top: 60px !important;
+  }
+  .title{
+    font-size: 40px;
+    text-align: center;
+  }
+  .subTitle{
+    font-size: 22px;
+    text-align: center;
+  }
+  .btn{
+    margin-top: 40px;
+    width: 110px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .scroll{
+    font-size: 12px;
+    bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .unit1{
+    height: 520px !important;
+    margin-top: 40px !important;
+  }
+  .title{
+    font-size: 34px;
+  }
+  .subTitle{
+    font-size: 18px;
+  }
+  .btn{
+    margin-top: 30px;
+    width: 100px;
+    height: 34px;
+    font-size: 16px;
+  }
+  .scroll{
+    font-size: 12px;
+    bottom: 30px;
+  }
 }
 </style>

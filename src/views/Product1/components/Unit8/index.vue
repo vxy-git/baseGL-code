@@ -98,7 +98,7 @@ const goToSlide = (index) => {
           @splide:move="changeEnd"
         >
           <SplideSlide class="w-[800px] h-[500px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
-            <img :src="item.img" class="w-full h-full object-cover" alt="" />
+            <img :src="item.img" class="w-full h-full object-cover rounded-[20px]" alt="" />
           </SplideSlide>
         </Splide>
       </div>
@@ -110,7 +110,7 @@ const goToSlide = (index) => {
         @click="slideNext"
       >
     </div>
-    <div class="flex justify-center gap-x-[10px] pt-[26px]">
+    <!-- <div class="flex justify-center gap-x-[10px] pt-[26px]">
       <div
         v-for="(item,index) in list"
         :class="{ '!bg-black !w-[30px]': bannerCurrent === index }"
@@ -118,7 +118,7 @@ const goToSlide = (index) => {
         class="dotItem cursor-pointer"
         @click="goToSlide(index)"
       ></div>
-    </div>
+    </div> -->
   </div>
 </template>
 

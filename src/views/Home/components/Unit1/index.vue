@@ -76,7 +76,7 @@ const stop = ref(false)
         <div class="relative h-full">
           <img class="h-full object-cover absolute inset-0" :src="item.img" />
           <div class=" h-full relative">
-            <div class="container-1300 container-box mx-auto flex flex-col justify-center h-full">
+            <div class="c_1300 c_padding mx-auto flex flex-col justify-center h-full">
               <div class="title">
                 {{item.title}}
               </div>
@@ -94,7 +94,7 @@ const stop = ref(false)
     </Splide>
 
     <div class="dot absolute bottom-[2px] left-0 flex justify-center z-10">
-      <div @mouseover="stop = true" @mouseout="stop = false" class="container-1300 container-box flex justify-between">
+      <div @mouseover="stop = true" @mouseout="stop = false" class="c_1300 c_padding flex justify-between">
         <div @mouseover="splideRef?.splide?.go(index)" v-for="(item, index) in list"
           :key="index"
           class="dot-item flex-1 cursor-pointer transition-all duration-300 hover:opacity-80"
@@ -178,7 +178,7 @@ const stop = ref(false)
   flex-shrink: 0;
 
   // 指示器项容器
-  .container-1300 {
+  .c_1300 {
     gap: 13px;
   }
 

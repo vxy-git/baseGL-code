@@ -67,7 +67,7 @@ const splideOptions = {
   type: 'slide',
   perPage: 4,
   perMove: 4,
-  gap: '27px',
+  gap: '2%',
   padding: 0,
   speed: 800,
   arrows: false,
@@ -118,7 +118,7 @@ const slideNext = () => {
     <div class="title text-center">
       SPECS
     </div>
-    <div class="flex container-1300 container-box mx-auto px-[35px] justify-between mobile_1300_col">
+    <div class="flex c_1300 c_padding mx-auto px-[35px] justify-between m_flex_col_r">
       <div class="w-[683px] max-w-full flex-shrink-0 pt-[66px]">
         <div v-for="(item, index) in deviceSpecs" :key="index" class="flex border-b border-white/20">
           <div class="tableText w-[370px]">{{ item.label }}</div>
@@ -127,7 +127,7 @@ const slideNext = () => {
       </div>
       <img src="@/assets/img/icon24.png" class="w-[418px] mt-[30px] -ml-[15px]" alt="">
     </div>
-    <div class="container-1300 container-box mx-auto mt-[140px]">
+    <div class="c_1300 c_padding mx-auto mt-[140px]">
       <div class="title2">
         More Products
       </div>

@@ -5,7 +5,7 @@
 <template>
   <div class="bg-black  pb-[114px]">
 
-    <div class=" container-1300 mx-auto pt-[167px]">
+    <div class=" c_1300 mx-auto pt-[167px]">
       <div class="title2">
         More Products
       </div>

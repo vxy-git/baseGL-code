@@ -5,7 +5,7 @@
 <template>
   <div class="bg-black pb-[130px]">
 
-    <div class=" container-1300 mx-auto pt-[176px]">
+    <div class=" c_1300 mx-auto pt-[176px]">
       <div class="title2">
         UNICORE Products
       </div>

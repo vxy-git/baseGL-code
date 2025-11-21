@@ -8,9 +8,9 @@
       Consistent Temp<br/>
       Ideal for Rosin
     </div>
-    <div class="w-[1230px] mx-auto mt-[185px]">
+    <div class="c_1230 c_padding mt-[185px]">
       <div class="greenText">RTD Control</div>
-      <div class="flex justify-between mt-[19px]">
+      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
           Best flavor preservation
         </div>
@@ -18,15 +18,15 @@
           Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <div class="flex justify-between mt-[78px]">
-        <img class="h-[500px] w-[480px] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
-        <img class="h-[500px] w-[730px] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+      <div class="flex justify-between mt-[78px] m_flex_col_r">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
       </div>
     </div>
 
-    <div class="w-[1230px] mx-auto mt-[228px]">
+    <div class="c_1230 c_padding mt-[228px]">
       <div class="greenText">Built-in wires</div>
-      <div class="flex justify-between mt-[19px]">
+      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
           No dry burning
         </div>
@@ -34,10 +34,9 @@
           The heating coil is embedded within the ceramic core, this way, the oil<br/> is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
-      <div class="flex justify-between mt-[75px]">
-
-        <img class="h-[500px] w-[730px] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
-        <img class="h-[500px] w-[480px] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
       </div>
     </div>
   </div>
@@ -81,5 +80,32 @@
   line-height: 30px; /* 150% */
   width: 622.074px;
   flex-shrink: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .title{
+    font-size: 48px;
+    line-height: 52px;
+    text-align: center;
+  }
+  .greenText{
+    font-size: 18px;
+    text-align: center;
+  }
+  .title2{
+    font-size: 28px;
+    text-align: center;
+  }
+  .label{
+    width: 100% !important;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .img-small,
+  .img-large{
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 15px;
+  }
 }
 </style>

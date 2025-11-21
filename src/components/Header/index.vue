@@ -307,7 +307,7 @@ onUnmounted(() => {
       'opacity':currentHeaderClass === 'opacity',
     }" class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center">
     <div class="w-full box transition-all" :class="` ${border && 'border-b-solid border-black/5 border-b-[1px]'}`">
-      <header class="top-nav container-1300 mx-auto container-box">
+      <header class="top-nav c_1300 mx-auto c_padding">
         <div class="nav-left">
           <div class="logo">
             <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo"

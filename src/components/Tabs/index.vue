@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="w-full overflow-x-scroll scrollbar-hide container-box max-w-[1300px] m-auto">
+  <div class="w-full overflow-x-scroll scrollbar-hide c_padding max-w-[1300px] m-auto">
     <div class="w-max rounded-[50px] bg-[#F8F9FD] justify-between p-[7px] flex gap-[15px]">
       <div v-for="(item,index) in list" :key="index" @click="current=index" :class="{
       'bg-white':index===current,

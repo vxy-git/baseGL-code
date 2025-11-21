@@ -11,8 +11,8 @@ const playVideo = () => {
 </script>
 
 <template>
-  <div class="container-box">
-    <div class="container-1300 mt-[85px] mx-auto rounded-[20px] overflow-hidden">
+  <div class="c_padding">
+    <div class="c_1300 mt-[85px] mx-auto rounded-[20px] overflow-hidden">
       <div>
         <div class="relative">
           <div v-if="!isPlaying" class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center">

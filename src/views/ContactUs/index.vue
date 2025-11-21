@@ -104,7 +104,7 @@ const closeDropdowns = () => {
           <img src="@/assets/img/icon43.png" class="heroImage" alt="" />
           <div class="divider"></div>
         </div>
-        <div class="heroContent container-1300 container-box">
+        <div class="heroContent c_1300 c_padding">
           <h1 class="heroTitle">Get in Touch</h1>
           <p class="heroEmail">Email: info@caleaftech.com</p>
           <div class="socialSection mt-[34px] pr-[4px]">
@@ -115,7 +115,7 @@ const closeDropdowns = () => {
       </section>
 
       <!-- Form Section -->
-      <section class="formSection overflow-hidden container-box">
+      <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
           <div class="formCard px-[40px] pt-[60px]">
             <h2 class="formTitle">Get Samples and Pricing</h2>

@@ -4,7 +4,7 @@
 
 <template>
 <div class="pt-[133px]">
-  <div>
+  <div class="c_1230 c_padding">
     <div class="title">
       UNICORE<br/>
       POWERED
@@ -14,9 +14,9 @@
 
 
 
-  <div>
+  <div class="c_1230 c_padding">
     <div class="mt-[135px] relative">
-      <div class="absolute top-0 left-0 w-full">
+      <div class="w-full relative">
         <div class="smallTitle">
           Award-Winning
         </div>
@@ -27,12 +27,12 @@
           In June 2025, UNIT secured 1st place in the Live Resin vape category at the 2025 California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this market validation, we are not just confident, but eager to bring this golden standard to more brands using Resin and Rosin.
         </div>
       </div>
-      <img src="@/assets/img/icon16.png" class="w-[1460px] mx-auto" alt="">
+      <img src="@/assets/img/icon16.png" class="w-[1460px] mt-[-213px] max-w-full mx-auto m_mt_0" alt="">
     </div>
   </div>
 
 
-  <div>
+  <div class="c_1230 c_padding">
     <div class="mt-[205px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
@@ -43,7 +43,7 @@
           Pioneering industry
         </div>
         <div class="text !mt-[24px]">
-          Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure<br/> for the vast majority of Resin and Rosin oils on the market.
+          Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
         </div>
       </div>
       <img src="@/assets/img/icon17.png" class="w-[1250px] mx-auto mt-[-30px]" alt="">
@@ -51,7 +51,7 @@
   </div>
 
 
-  <div>
+  <div class="c_1230 c_padding">
     <div class="mt-[65px] relative">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle">
@@ -124,7 +124,7 @@
   margin-top: 20px;
 }
 .text{
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   color: #FFF;
   text-align: center;

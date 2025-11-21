@@ -120,13 +120,13 @@ const goToGroup = (groupIndex) => {
 <template>
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
-      <div class="container-1300 container-box title">
+      <div class="c_1300 c_padding title">
         Innovative products:<br />
         The most advanced, the best fit.
       </div>
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
-      <div class="container-1300 container-box mt-[50px] relative" @mouseenter="isHovered = true"
+      <div class="c_1300 c_padding mt-[50px] relative" @mouseenter="isHovered = true"
         @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
@@ -145,7 +145,7 @@ const goToGroup = (groupIndex) => {
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
       </div>
-      <div class="container-1300 container-box flex justify-center gap-x-[10px] pt-[20px]">
+      <div class="c_1300 c_padding flex justify-center gap-x-[10px] pt-[20px]">
         <div v-for="(item,index) in groupCount" :key="index" :class="{
             '!bg-black': bannerCurrent === index
           }" class="dotItem cursor-pointer hover:bg-gray-400 transition-colors duration-200" @click="goToGroup(index)">

@@ -1,6 +1,6 @@
 <template>
-  <footer class="site-footer container-box">
-    <div class="footer-container container-1300">
+  <footer class="site-footer c_padding">
+    <div class="footer-container c_1300">
       <div class="footer-box">
         <div class="footer-columns">
           <!-- Products Column -->

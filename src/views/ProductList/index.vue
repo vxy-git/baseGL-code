@@ -6,7 +6,7 @@
     <Header headerClass="white" border />
     <div class="header-divider" />
 
-    <main class="main-content container-1300">
+    <main class="main-content c_1300">
       <section class="catalog-intro">
         <h1 class="catalog-title">Innovative products</h1>
         <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>

@@ -4,7 +4,7 @@
 
 <template>
 <div>
-  <div class="container-1300 w-full mx-auto mt-[75px] h-[480px] container-box">
+  <div class="c_1300 w-full mx-auto mt-[75px] h-[480px] c_padding">
     <div class="relative size-full">
       <div class="absolute size-full left-0 top-0 z-10">
         <div class="w-[374px] pt-[128.5px] ml-[118px]">

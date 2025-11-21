@@ -312,7 +312,7 @@ defineExpose({
     <!-- 内容区域 -->
     <div ref="contentRef" class="nav-dropdown-content" @mouseenter="props.onContentMouseEnter"
       @mouseleave="props.onContentMouseLeave">
-      <main class="content container-1300">
+      <main class="content c_1300">
         <aside ref="sidebarRef" class="sidebar h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12">
           <h2 class="sidebar-title pl-[2px]">Innovative products</h2>
           <ul class="category-list">
