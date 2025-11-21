@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import 'swiper/css';
+import '@splidejs/vue-splide/css';
 import './composables/rem'
 // App级别的逻辑可以在这里添加
 </script>
@@ -38,5 +38,17 @@ import './composables/rem'
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+// Splide 自定义样式优化
+// Banner 轮播需要 100% 高度
+.banner-container .splide__track {
+  height: 100%;
+}
+
+// 产品和新闻轮播需要溢出可见(支持阴影、放大效果)
+.unit2 .splide__track,
+.unit5 .splide__track {
+  overflow: visible;
 }
 </style>

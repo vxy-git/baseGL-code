@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@splidejs/vue-splide':
+        specifier: ^0.6.12
+        version: 0.6.12
       '@vueuse/core':
         specifier: ^11.3.0
         version: 11.3.0(vue@3.5.24(typescript@5.9.3))
@@ -17,9 +20,6 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.13.0
-      swiper:
-        specifier: ^12.0.3
-        version: 12.0.3
       vue:
         specifier: ^3.5.13
         version: 3.5.24(typescript@5.9.3)
@@ -617,6 +617,12 @@ packages:
     resolution: {integrity: sha512-k+/Rkcyx//P6fetPoLMb8pBeqJBNGx81uuf7iljX9++yNBVRDQgD04L+SVXmXmh5ZP4/WOp4mWF0kmi06PW2tA==}
     cpu: [x64]
     os: [win32]
+
+  '@splidejs/splide@4.1.4':
+    resolution: {integrity: sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA==}
+
+  '@splidejs/vue-splide@0.6.12':
+    resolution: {integrity: sha512-eQb8pnGMN8Tr0FVaQo1PUMZlMHl8fSqHNXPTx79eeE2dkZqbsvq6jRzXoT9ZF7hFkxdOEmB6qYNp93SUwV684g==}
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -1452,10 +1458,6 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swiper@12.0.3:
-    resolution: {integrity: sha512-BHd6U1VPEIksrXlyXjMmRWO0onmdNPaTAFduzqR3pgjvi7KfmUCAm/0cj49u2D7B0zNjMw02TSeXfinC1hDCXg==}
-    engines: {node: '>= 4.7.0'}
-
   tailwindcss@3.4.18:
     resolution: {integrity: sha512-6A2rnmW5xZMdw11LYjhcI5846rt9pbLSabY5XPxo+XWdxwZaFEn47Go4NzFiHu9sNNmr/kXivP1vStfvMaK1GQ==}
     engines: {node: '>=14.0.0'}
@@ -2120,6 +2122,12 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.53.2':
     optional: true
+
+  '@splidejs/splide@4.1.4': {}
+
+  '@splidejs/vue-splide@0.6.12':
+    dependencies:
+      '@splidejs/splide': 4.1.4
 
   '@types/estree@1.0.8': {}
 
@@ -3007,8 +3015,6 @@ snapshots:
       copy-anything: 4.0.5
 
   supports-preserve-symlinks-flag@1.0.0: {}
-
-  swiper@12.0.3: {}
 
   tailwindcss@3.4.18:
     dependencies:

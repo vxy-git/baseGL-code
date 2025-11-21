@@ -1,6 +1,6 @@
 <template>
-  <footer class="site-footer">
-    <div class="footer-container">
+  <footer class="site-footer container-box">
+    <div class="footer-container container-1300">
       <div class="footer-box">
         <div class="footer-columns">
           <!-- Products Column -->
@@ -155,23 +155,20 @@ const handleSubscribe = () => {
 }
 
 .footer-container {
-  max-width: 1920px;
   margin: 0 auto;
-  width: 1301px;
 }
 
 .footer-box {
   display: flex;
   justify-content: space-between;
-  gap: 60px;
 }
 
 .footer-columns {
+  max-width: 943px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-bottom: 22px;
 }
 
 .footer-column {
@@ -304,6 +301,7 @@ const handleSubscribe = () => {
   height: 1px;
   background: rgba(0, 0, 0, 0.1);
   margin: 0 0 30px 0;
+  margin-top: 22px;
 }
 
 .footer-bottom {
@@ -352,17 +350,20 @@ const handleSubscribe = () => {
   text-align: right;
 }
 
-@media (max-width: 768px) {
-  .footer-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .subscribe-form {
+@media (max-width: 1000px) {
+  .footer-box {
     flex-direction: column;
-
-    .signup-btn {
-      width: 100%;
-    }
   }
+  // .footer-columns {
+  //   grid-template-columns: 1fr;
+  // }
+
+  // .subscribe-form {
+  //   flex-direction: column;
+
+  //   .signup-btn {
+  //     width: 100%;
+  //   }
+  // }
 }
 </style>

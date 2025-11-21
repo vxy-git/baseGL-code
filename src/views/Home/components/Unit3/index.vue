@@ -4,8 +4,8 @@
 
 <template>
 <div>
-  <div class="container-1300 mx-auto mt-[75px]">
-    <div class="relative">
+  <div class="container-1300 w-full mx-auto mt-[75px] h-[480px] container-box">
+    <div class="relative size-full">
       <div class="absolute size-full left-0 top-0 z-10">
         <div class="w-[374px] pt-[128.5px] ml-[118px]">
           <div class="tag text-center">New</div>
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <img src="@/assets/img/icon8.png" alt="">
+      <img class="size-full object-cover object-right-top rounded-[20px] overflow-hidden" src="@/assets/img/icon8.png" alt="">
     </div>
   </div>
 </div>

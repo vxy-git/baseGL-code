@@ -7,8 +7,8 @@ const props = defineProps({
 </script>
 
 <template>
-<div class="w-[860px] h-[480px] rounded-[20px] flex-shrink-0 overflow-hidden relative">
-  <img :src="data.img" alt="">
+<div class="size-full rounded-[20px] flex-shrink-0 overflow-hidden relative">
+  <img class="w-full h-full object-cover" :src="data.img" alt="">
   <div class="titleBox">
     <div class="title">
       CALEAF TECH x UAE Team: GO Ride with Pogaěar

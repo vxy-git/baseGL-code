@@ -33,7 +33,9 @@
       "Bash(kill:*)",
       "mcp__ide__getDiagnostics",
       "WebFetch(domain:store.insta360.com)",
-      "WebFetch(domain:www.swiper.com.cn)"
+      "WebFetch(domain:www.swiper.com.cn)",
+      "Bash(pnpm remove:*)",
+      "WebFetch(domain:splidejs.com)"
     ],
     "deny": [],
     "ask": []

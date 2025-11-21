@@ -1,6 +1,6 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
-import {ref, computed} from "vue";
+import {ref, computed, onMounted, onUnmounted} from "vue";
 import Item from "./components/Item/index.vue"
 const tabsCurrent = ref(0)
 const tabsList = [
@@ -17,8 +17,7 @@ import icon3 from "@/assets/img/icon3.png"
 import icon5 from "@/assets/img/icon5.png"
 import icon6 from "@/assets/img/icon6.png"
 import icon7 from "@/assets/img/icon7.png"
-import {Swiper,SwiperSlide} from "swiper/vue";
-import "swiper/css";
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 const list = [
   {
     img:icon3
@@ -33,13 +32,48 @@ const list = [
     img:icon7
   }
 ]
-const swiperRef = ref(null)
+const splideRef = ref(null)
 const bannerCurrent = ref(0)
 const currentIndex = ref(0)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
-const slidesPerGroup = 2
+const isMobile = ref(false)
+const slidesPerGroup = 1
+
+// 检测是否为移动端
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 767
+}
+
+// 初始化移动端检测
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+// 清理事件监听器
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
+
+// Splide 配置
+const splideOptions = {
+  type: 'slide',
+  perPage: slidesPerGroup,
+  perMove: slidesPerGroup,
+  gap: '35px',
+  padding: 0,
+  speed: 800,
+  arrows: false,
+  pagination: false,
+  drag: true,
+  keyboard: true,
+  width: '100vw',
+  fixedWidth: '410px',
+  focus: 0,
+  omitEnd: true,
+}
 
 // 计算分组数量
 const groupCount = computed(() => {
@@ -47,98 +81,81 @@ const groupCount = computed(() => {
 })
 
 // 统一的箭头状态更新函数
-const updateArrowStatus = (swiper) => {
-  canSlidePrev.value = !swiper.isBeginning
-  canSlideNext.value = !swiper.isEnd
-  bannerCurrent.value = swiper.activeIndex
+const updateArrowStatus = (splide) => {
+  const currentIndex = splide.index
+  const endIndex = splide.Components.Controller.getEnd()
+
+  // 判断是否可以向前滑动：当前索引大于 0
+  canSlidePrev.value = currentIndex > 0
+
+  // 判断是否可以向后滑动：当前索引小于最后一个索引
+  canSlideNext.value = currentIndex < endIndex
+
+  // 更新当前分组索引
+  bannerCurrent.value = Math.floor(currentIndex / slidesPerGroup)
 };
 
-// 处理幻灯片切换结束事件
-const changeEnd = (swiper) => {
-  updateArrowStatus(swiper)
-};
-
-// 处理幻灯片切换事件，更新按钮状态
-const onSlideChange = (swiper) => {
-  updateArrowStatus(swiper)
-};
-
-// Swiper 初始化事件，设置初始按钮状态
-const onSwiperInit = (swiper) => {
-  swiperRef.value = swiper
-  updateArrowStatus(swiper)
+// Splide 初始化事件，设置初始按钮状态
+const onSplideInit = (splide) => {
+  splideRef.value = splide
+  updateArrowStatus(splide)
 };
 
 // 切换到上一张
 const slidePrev = () => {
-  swiperRef.value?.slidePrev();
+  splideRef.value?.go('-' + slidesPerGroup);
 };
 
 // 切换到下一张
 const slideNext = () => {
-  swiperRef.value?.slideNext();
+  splideRef.value?.go('+' + slidesPerGroup);
 };
 
 // 点击指示器跳转到对应分组
 const goToGroup = (groupIndex) => {
   const targetIndex = groupIndex * slidesPerGroup;
-  swiperRef.value?.slideTo(targetIndex);
+  splideRef.value?.go(targetIndex);
 };
 </script>
 
 <template>
   <div class="unit2">
-    <div class="container-1300 mx-auto pt-[80px]">
-      <div class="title">
+    <div class="mx-auto pt-[80px]">
+      <div class="container-1300 container-box title">
         Innovative products:<br/>
         The most advanced, the best fit.
       </div>
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
-      <div class="mt-[50px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+      <div class="container-1300 container-box mt-[50px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || !isHovered }"
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           src="@/assets/img/icon4_active.png"
           alt=""
           @click="slidePrev"
         >
-        <div class="w-[100vw] -ml-[calc((100vw-1300px)/2)]">
-          <Swiper
-              class="px-[310px]"
-              @swiper="onSwiperInit"
-              :slidesPerView="'auto'"
-              :slidesPerGroup="slidesPerGroup"
-              :space-between="0"
-              :loop="false"
-              :grab-cursor="true"
-              :watch-slides-progress="true"
-              :watch-slides-visibility="true"
-              :auto-height="false"
-              :free-mode="false"
-              :auto-width="true"
-              :speed="800"
-              @slide-change="onSlideChange"
-              @slide-change-transition-end="changeEnd"
-              @touch-end="(swiper) => updateArrowStatus(swiper)"
-              @transition-end="(swiper) => updateArrowStatus(swiper)"
+        <div class="w-full">
+          <Splide
+              class="w-full ml-[50%] translate-x-[-50%]"
+              :options="splideOptions"
+              @splide:mounted="onSplideInit"
+              @splide:moved="updateArrowStatus"
           >
-          <SwiperSlide class="w-[calc(410px+35px)]" :class="{
-            'pr-[35px]':index !== list.length - 1,
-          }" v-for="(item, index) in list" :key="index">
+          <SplideSlide v-for="(item, index) in list" :key="index">
             <Item :data="item" :isLast="canSlideNext === false && index >= list.length" />
-          </SwiperSlide>
-        </Swiper>
+          </SplideSlide>
+        </Splide>
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || !isHovered }"
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           src="@/assets/img/icon4_active.png"
           alt=""
           @click="slideNext"
         >
       </div>
-      <div class="flex justify-center gap-x-[10px] pt-[20px]">
+      <div class="container-1300 container-box flex justify-center gap-x-[10px] pt-[20px]">
         <div
           v-for="(item,index) in groupCount"
           :key="index"

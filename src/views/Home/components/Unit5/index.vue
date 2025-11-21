@@ -3,8 +3,7 @@
 import Item from "./components/Item/index.vue";
 import {ref} from "vue";
 import t1Icon from "@/assets/img/t1.png"
-import {Swiper, SwiperSlide} from "swiper/vue";
-import "swiper/css";
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 const list = [
   {
     img:t1Icon
@@ -23,54 +22,71 @@ const list = [
   }
 ]
 const bannerCurrent = ref(0)
-const swiperRef = ref(null)
+const splideRef = ref(null)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
 
+// Splide 配置
+const splideOptions = {
+  type: 'loop',
+  perPage: 1,
+  perMove: 1,
+  gap: '35px',
+  padding: { left: '310px', right: '310px' },
+  speed: 800,
+  arrows: false,
+  pagination: false,
+  drag: true,
+  keyboard: true,
+  width: '100vw',
+  fixedWidth: '860px',
+  focus: 'center',
+}
+
 // 统一的箭头状态更新函数
-const updateArrowStatus = (swiper) => {
+const updateArrowStatus = (splide) => {
   // loop 模式下箭头始终可用
   canSlidePrev.value = true
   canSlideNext.value = true
-  bannerCurrent.value = swiper.realIndex
+  bannerCurrent.value = splide.index
 };
 
 // 处理幻灯片切换结束事件
-const changeEnd = (swiper) => {
-  updateArrowStatus(swiper)
+const changeEnd = (splide) => {
+  updateArrowStatus(splide)
 };
 
 // 处理幻灯片切换事件，更新按钮状态
-const onSlideChange = (swiper) => {
-  updateArrowStatus(swiper)
+const onSlideChange = (splide) => {
+  updateArrowStatus(splide)
 };
 
-// Swiper 初始化事件，设置初始按钮状态
-const onSwiperInit = (swiper) => {
-  swiperRef.value = swiper
-  updateArrowStatus(swiper)
+// Splide 初始化事件，设置初始按钮状态
+const onSplideInit = (splide) => {
+  splideRef.value = splide
+  updateArrowStatus(splide)
 };
 
 // 切换到上一张
 const slidePrev = () => {
-  swiperRef.value?.slidePrev();
+  splideRef.value?.go('<');
 };
 
 // 切换到下一张
 const slideNext = () => {
-  swiperRef.value?.slideNext();
+  splideRef.value?.go('>');
 };
 
 // 点击指示器跳转
 const goToSlide = (index) => {
-  swiperRef.value?.slideToLoop(index);
+  splideRef.value?.go(index);
 };
 </script>
 
 <template>
   <div class="mt-[55px]">
-    <div class="container-1300 mx-auto">
+    <div class="mx-auto">
       <div class="title text-center">
         The latest news and inspiring stories
       </div>
@@ -80,17 +96,17 @@ const goToSlide = (index) => {
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || !isHovered }" src="@/assets/img/icon4_active.png" alt=""
           @click="slidePrev">
 
-        <div class="w-screen -ml-[calc((100vw-1300px)/2)]">
-          <Swiper class="px-[310px]" @swiper="onSwiperInit" :slidesPerView="'auto'" :space-between="0" :loop="true" :centered-slides="true" :grab-cursor="true"
-            :watch-slides-progress="true" :watch-slides-visibility="true" :auto-height="false" :free-mode="false"
-            :auto-width="true" :speed="800" @slide-change="onSlideChange" @slide-change-transition-end="changeEnd"
-            @touch-end="(swiper) => updateArrowStatus(swiper)" @transition-end="(swiper) => updateArrowStatus(swiper)">
-            <SwiperSlide class="w-[calc(860px+35px)]" :class="{
-            'pr-[35px]':index !== list.length - 1,
-          }" v-for="(item, index) in list" :key="index">
+        <div class="w-full">
+          <Splide
+            :options="splideOptions"
+            @splide:mounted="onSplideInit"
+            @splide:moved="onSlideChange"
+            @splide:move="changeEnd"
+          >
+            <SplideSlide class="w-[860px] h-[480px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
               <Item :data="item" />
-            </SwiperSlide>
-          </Swiper>
+            </SplideSlide>
+          </Splide>
         </div>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"

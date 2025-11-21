@@ -307,7 +307,7 @@ onUnmounted(() => {
       'opacity':currentHeaderClass === 'opacity',
     }" class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center">
     <div class="w-full box transition-all" :class="` ${border && 'border-b-solid border-black/5 border-b-[1px]'}`">
-      <header class="top-nav container-1300 mx-auto">
+      <header class="top-nav container-1300 mx-auto container-box">
         <div class="nav-left">
           <div class="logo">
             <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo"
@@ -808,6 +808,10 @@ onUnmounted(() => {
   }
 }
 
+.opacity .hamburger-btn span {
+  background-color: #fff;
+}
+
 // 移动端全屏抽屉
 .mobile-drawer {
   position: fixed;
@@ -827,7 +831,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 0 3vw;
   height: 70px;
   border-bottom: 1px solid #e5e5e5;
   flex-shrink: 0;
@@ -835,12 +839,6 @@ onUnmounted(() => {
   .logo {
     display: flex;
     align-items: center;
-
-    .logo-image {
-      width: 140px;
-      height: 24px;
-      object-fit: contain;
-    }
   }
 
   .back-btn,

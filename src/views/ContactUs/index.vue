@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
@@ -97,117 +96,84 @@ const closeDropdowns = () => {
          class="pointer-events-none z-50 absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/> -->
 
     <div class="contactPage">
-    <Header headerClass="white"/>
+      <Header headerClass="white" />
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="heroBackground">
-        <img src="@/assets/img/icon43.png" class="heroImage" alt=""/>
-        <div class="divider"></div>
-      </div>
-      <div class="heroContent container-1300">
-        <h1 class="heroTitle">Get in Touch</h1>
-        <p class="heroEmail">Email: info@caleaftech.com</p>
-        <div class="socialSection mt-[34px] pr-[4px]">
-          <p class="followText">Follow Us</p>
-          <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram"/>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="heroBackground">
+          <img src="@/assets/img/icon43.png" class="heroImage" alt="" />
+          <div class="divider"></div>
         </div>
-      </div>
-    </section>
+        <div class="heroContent container-1300 container-box">
+          <h1 class="heroTitle">Get in Touch</h1>
+          <p class="heroEmail">Email: info@caleaftech.com</p>
+          <div class="socialSection mt-[34px] pr-[4px]">
+            <p class="followText">Follow Us</p>
+            <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+          </div>
+        </div>
+      </section>
 
-    <!-- Form Section -->
-    <section class="formSection overflow-hidden">
-      <div class="formContainer pl-[156px] pr-[160px] !pt-[75px]">
-        <div class="formCard px-[40px] pt-[60px]">
-          <h2 class="formTitle">Get Samples and Pricing</h2>
-          <form class="form" @click.stop>
-            <div class="formField">
-              <input type="text" v-model="formData.name" placeholder="Your name*"/>
+      <!-- Form Section -->
+      <section class="formSection overflow-hidden container-box">
+        <div class="formContainer">
+          <div class="formCard px-[40px] pt-[60px]">
+            <h2 class="formTitle">Get Samples and Pricing</h2>
+            <form class="form" @click.stop>
+              <div class="formField">
+                <input type="text" v-model="formData.name" placeholder="Your name*" />
 
-            </div>
-            <div class="formField">
-              <input type="email" v-model="formData.email" placeholder="Email Address*"/>
-            </div>
-
-            <div class="formField selectField">
-              <div
-                class="selectInput"
-                @click="toggleCountryDropdown"
-              >
-                <span :class="formData.country ? 'selectedValue' : 'placeholder'">
-                  {{ formData.country || 'Country*' }}
-                </span>
-                <img
-                  src="@/assets/img/icon46.png"
-                  :class="['dropdownIcon', showCountryDropdown && 'rotated']"
-                  alt=""
-                />
               </div>
-              <div
-                v-if="showCountryDropdown"
-                class="dropdownList"
-                @click.stop
-              >
-                <div
-                  v-for="country in countries"
-                  :key="country"
-                  class="dropdownItem"
-                  @click="selectCountry(country)"
-                >
-                  {{ country }}
+              <div class="formField">
+                <input type="email" v-model="formData.email" placeholder="Email Address*" />
+              </div>
+
+              <div class="formField selectField">
+                <div class="selectInput" @click="toggleCountryDropdown">
+                  <span :class="formData.country ? 'selectedValue' : 'placeholder'">
+                    {{ formData.country || 'Country*' }}
+                  </span>
+                  <img src="@/assets/img/icon46.png" :class="['dropdownIcon', showCountryDropdown && 'rotated']"
+                    alt="" />
+                </div>
+                <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
+                  <div v-for="country in countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
+                    {{ country }}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="formField selectField">
-              <div
-                :class="['selectInput', !formData.country && 'disabled']"
-                @click="toggleStateDropdown"
-              >
-                <span :class="formData.state ? 'selectedValue' : 'placeholder'">
-                  {{ formData.state || 'State' }}
-                </span>
-                <img
-                  src="@/assets/img/icon46.png"
-                  :class="['dropdownIcon', showStateDropdown && 'rotated']"
-                  alt=""
-                />
-              </div>
-              <div
-                v-if="showStateDropdown && availableStates.length > 0"
-                class="dropdownList"
-                @click.stop
-              >
-                <div
-                  v-for="state in availableStates"
-                  :key="state"
-                  class="dropdownItem"
-                  @click="selectState(state)"
-                >
-                  {{ state }}
+              <div class="formField selectField">
+                <div :class="['selectInput', !formData.country && 'disabled']" @click="toggleStateDropdown">
+                  <span :class="formData.state ? 'selectedValue' : 'placeholder'">
+                    {{ formData.state || 'State' }}
+                  </span>
+                  <img src="@/assets/img/icon46.png" :class="['dropdownIcon', showStateDropdown && 'rotated']" alt="" />
+                </div>
+                <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
+                  <div v-for="state in availableStates" :key="state" class="dropdownItem" @click="selectState(state)">
+                    {{ state }}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="formField">
-              <input type="tel" v-model="formData.phone" placeholder="Phone Number"/>
-            </div>
-            <div class="formField">
-              <textarea v-model="formData.message" placeholder="Message"></textarea>
-            </div>
-            <button type="submit" class="submitBtn">SUBMIT</button>
-          </form>
+              <div class="formField">
+                <input type="tel" v-model="formData.phone" placeholder="Phone Number" />
+              </div>
+              <div class="formField">
+                <textarea v-model="formData.message" placeholder="Message"></textarea>
+              </div>
+              <button type="submit" class="submitBtn">SUBMIT</button>
+            </form>
+          </div>
+          <div class="formImage">
+            <img src="@/assets/img/icon45.png" alt="Product Image" />
+          </div>
         </div>
-        <div class="formImage">
-          <img src="@/assets/img/icon45.png" alt="Product Image"/>
-        </div>
-      </div>
-    </section>
-
-
+      </section>
     </div>
     <div class="bg-white mt-[16px]">
-      <Footer/>
+      <Footer />
     </div>
   </div>
 </template>
@@ -308,6 +274,7 @@ const closeDropdowns = () => {
 }
 
 .heroTitle {
+  white-space: nowrap;
   color: #FFF;
   font-family: Roboto;
   font-size: 100px;
@@ -367,16 +334,19 @@ const closeDropdowns = () => {
 }
 
 .formContainer {
-  width: 1500px;
+  max-width: 1500px;
   height: 780px;
   border-radius: 20px;
   background: #F8F9FC;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3.125vw;
+  padding: 75px 30px;
 }
 
 .formCard {
+  flex-shrink: 0;
   width: 440px;
   height: 630px;
   background-color: #fff;
@@ -555,9 +525,9 @@ const closeDropdowns = () => {
 .formImage {
   width: 687px;
   height: 693.134px;
-  flex-shrink: 0;
-  aspect-ratio: 687.00/693.13;
   margin-top: -45px;
+  display: flex;
+  align-items: center;
 }
 
 .formImage img {
