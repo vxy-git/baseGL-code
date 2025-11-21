@@ -4,14 +4,14 @@
 
 <template>
 <div class="bg-black pt-[150px] pb-[40px]">
-  <div class="title">
+  <div class="title c_padding">
     Design your own look
   </div>
-  <div class="title1">
+  <div class="title1 c_padding">
     Realize your unique design with CALEAF TECH.
   </div>
-  <div class="w-[calc(100vw-160px-160px)] mx-auto mt-[54px]">
-    <div class=" pl-[100px] h-[300px] flex relative gap-x-[30px]">
+  <div class="max-w-[1600px] mx-auto mt-[54px] flex flex-col justify-center items-center">
+    <div class="w-[1600px] pl-[100px] h-[300px] flex relative gap-x-[30px]">
       <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
 
       </div>
@@ -21,9 +21,9 @@
       <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
 
       </div>
-      <div class="mask1 absolute right-0 top-0"></div>
+      <div class="mask1 absolute right-[-1px] top-[-1px]"></div>
     </div>
-    <div class=" pr-[100px] h-[300px] flex relative gap-x-[30px] mt-[20px]">
+    <div class="w-[1600px] pr-[100px] h-[300px] flex relative gap-x-[30px] mt-[20px]">
       <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
 
       </div>
@@ -33,7 +33,7 @@
       <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
 
       </div>
-      <div class="mask1 absolute left-0 top-0 rotate-180"></div>
+      <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
     </div>
 
   </div>
@@ -63,7 +63,7 @@
 .mask1{
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #000 46.49%);
   width: 185px;
-  height: 100%;
+  height: calc(100% + 2px);
   flex-shrink: 0;
 }
 </style>

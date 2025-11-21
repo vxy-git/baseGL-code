@@ -3,144 +3,59 @@
 </script>
 
 <template>
-  <div class="bg-black pt-[215px] pb-[132px]">
-    <img src="@/assets/img/icon62.png" class="mx-auto img" alt="">
-    <div class="mt-[186px]">
-      <div class="title1 translate-y-[1px] text-center">
-        TINY BUT MIGHTY
-      </div>
-      <div class="title2 mt-[19px]">
-        A plam-sized<br/>
-        Rosin powerhouse
-      </div>
-      <div class="title3 mt-[19px]">
-        UNIVERSE Series is the ultimate portable solution for rosin enthusiasts. The little cutie disappears in your
-        hand and fits flat in your <br/> pocket, making it the perfect companion for those on the go.
-      </div>
-      <img src="@/assets/img/icon63.png" class="mt-[17px] block mx-auto h-[633px]" alt="">
+  <div class="pt-[207px] pb-[135px] bg-black">
+    <div class="title">
+      Consistent Temp<br/>
+      Ideal for Rosin
     </div>
-
-
-    <div class="mt-[158px]">
-      <div class="title1 text-center">
-        Take your pick
-      </div>
-      <div class="title2 mt-[19px]">
-        Either one’s a winner
-      </div>
-      <div class="flex gap-x-[20px] justify-center mt-[54px]">
-        <div class="w-[605px] h-[440px] bg-[#D9D9D9] rounded-[20px]">
-
+    <div class="c_1230 c_padding mt-[185px]">
+      <div class="greenText">RTD Control</div>
+      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
+        <div class="title2">
+          Best flavor preservation
         </div>
-        <div class="w-[605px] h-[440px] bg-[#D9D9D9] rounded-[20px]">
-
+        <div class="label">
+          Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
         </div>
+      </div>
+      <div class="flex justify-between mt-[78px] m_flex_col_r">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
       </div>
     </div>
 
-
-    <div class="mt-[122px]">
-      <div class="title1 text-center">
-        UNICORE Powered
-      </div>
-      <div class="title2 mt-[19px]">
-        The gold standard for Rosin and Resin oils
-      </div>
-      <div class="title3 mt-[19px]">
-        Our patented U-shape ceramic features an extremely uniform pore structure, ideally suited for the molecular structure of Resin and <br/>
-        Rosin. It is 30% thinner than ordinary ceramics, yet maintains the same strength. This means fewer terpene molecules are filtered out, <br/>
-        preserving the rich, natural flavors.
-      </div>
-      <div class="flex gap-x-[150px] valBox justify-center mt-[82px]">
-          <div class="flex flex-col items-center">
-            <div class="label h-[39.805px]">
-              30%
-
-            </div>
-            <div class="value">
-              Thinner in Structure
-            </div>
-          </div>
-        <div class="flex flex-col items-center">
-          <div class="label h-[39.805px] flex">
-            45%
-            <img class="h-[39.805px] -ml-[10px] translate-x-[8px]" src="@/assets/img/icon64.png" alt="">
-          </div>
-          <div class="value">
-            Flavor Retention
-          </div>
+    <div class="c_1230 c_padding mt-[228px]">
+      <div class="greenText">Built-in wires</div>
+      <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
+        <div class="title2">
+          No dry burning
         </div>
-        <div class="flex flex-col items-center">
-          <div class="label h-[39.805px] flex">
-            35%
-            <img class="h-[39.805px] -ml-[13px] translate-x-[12px]" src="@/assets/img/icon64.png" alt="">
-          </div>
-          <div class="value">
-            in Pore Uniformity
-          </div>
+        <div class="label mt-[2px]">
+          The heating coil is embedded within the ceramic core, this way, the oil<br/> is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
-    </div>
-
-
-    <div class="mt-[93px] flex justify-center gap-x-[100px]">
-      <div class="w-[330px] h-[460px] rounded-[20px] bg-[#D9D9D9] mt-[177px]">
-
+      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
+        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
       </div>
-      <img src="@/assets/img/icon65.png" class="h-[483px] block mt-[51px]" alt="">
-      <div class="w-[330px] h-[460px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-    </div>
-    <div class="w-[calc(100vw-345px-345px)] mt-[42px] mx-auto flex gap-x-[32px]">
-      <div class="w-[622.074px] pt-[145px]">
-        <div class="title1 text-left">
-          RTD Control
-        </div>
-        <div class="title2 mt-[19px]  !text-left">
-          Consistent Temp<br/>
-          Ideal for Rosin
-        </div>
-        <div class="title3 mt-[56px] !text-left">
-          Powered by Unicore tech, UNIT PRO combines smoothness with <br/> purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.
-        </div>
-      </div>
-      <img class="h-[553px]" src="@/assets/img/icon66.png" alt="">
-    </div>
-    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between">
-      <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon67.png" alt="">
-      <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon68.png" alt="">
-    </div>
-    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between mt-[146px]">
-      <div class="w-max">
-        <div class="title1 text-left">
-          Built-in wires
-        </div>
-        <div class="title2 mt-[19px]  !text-left">
-          No more dry burning
-        </div>
-      </div>
-      <div class="title3 w-[622px] mt-[46px] !text-left">
-        The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, avoiding burnt flavors and preserving the terpenes and cannabinoids.
-      </div>
-    </div>
-    <div class="w-[calc(100vw-345px-345px)] mx-auto flex justify-between mt-[76px]">
-
-      <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon68.png" alt="">
-      <img class="h-[500px] rounded-[20px]" src="@/assets/img/icon67.png" alt="">
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.img {
-  width: 1400px;
-  height: 656px;
-  flex-shrink: 0;
-  aspect-ratio: 175/82;
+.title{
+  text-align: center;
+  font-family: Roboto;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 80px; /* 100% */
+  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.title1 {
+.greenText{
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;
@@ -148,43 +63,49 @@
   font-weight: 400;
   line-height: normal;
 }
-
-.title2 {
+.title2{
   color: #FFF;
-  text-align: center;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-
-.title3 {
+.label{
   color: #FFF;
-  text-align: center;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 30px; /* 150% */
+  width: 622.074px;
+  flex-shrink: 0;
 }
 
-.valBox{
-  .label{
-    color: #1CE785;
-    font-family: Roboto;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 30px; /* 75% */
+@media screen and (max-width: 1024px) {
+  .title{
+    font-size: 48px;
+    line-height: 52px;
+    text-align: center;
   }
-  .value{
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px; /* 150% */
+  .greenText{
+    font-size: 18px;
+    text-align: center;
+  }
+  .title2{
+    font-size: 28px;
+    text-align: center;
+  }
+  .label{
+    width: 100% !important;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .img-small,
+  .img-large{
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 15px;
   }
 }
 </style>

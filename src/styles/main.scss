@@ -50,7 +50,11 @@ body {
 
 @media screen and (max-width: 1024px) {
   .m_mt_0 {
-    margin-top: 0;
+    margin-top: 0 !important;
+  }
+
+  .m_pr_0 {
+    padding-right: 0 !important;
   }
 
   .m_padding {

@@ -14,7 +14,7 @@ import Footer from "@/components/Footer.vue";
 
 <template>
   <!-- 覆盖图层 -->
-  <img src="/product-detail2.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/>
+  <!-- <img src="/product-detail2.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/> -->
 
   <Header headerClass="white"/>
   <Unit1/>

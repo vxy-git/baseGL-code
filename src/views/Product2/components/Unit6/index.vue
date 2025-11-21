@@ -23,7 +23,7 @@ const splideOptions = {
   type: 'loop',
   perPage: 1,
   perMove: 1,
-  gap: '1%',
+  gap: '20px',
   speed: 800,
   arrows: false,
   pagination: false,
@@ -49,7 +49,7 @@ watch(tabsCurrent, (index) => {
 </script>
 
 <template>
-<div class="bg-[#000] pt-[200px]">
+<div class="bg-[#000] pt-[100px]">
   <div class="c_1230 c_padding">
     <div class="title">
       Every Detail Matters

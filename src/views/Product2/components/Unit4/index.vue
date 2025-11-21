@@ -29,12 +29,12 @@ const deviceSpecs2 = [
 </script>
 
 <template>
-  <div class="w-[1230px] mx-auto mt-[136px] pb-[162px]">
+  <div class="c_1230 c_padding mx-auto mt-[136px] pb-[162px]">
     <div class="title">
       Specifications
     </div>
-    <div class="relative mt-[58px] flex">
-      <div class="flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
+    <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
         <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -44,17 +44,17 @@ const deviceSpecs2 = [
           </div>
         </div>
       </div>
-      <div class="w-[334px] ml-[240px]">
-        <img src="@/assets/img/icon70.png" alt="">
+      <div class="w-full flex flex-col items-center justify-center">
+        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
       </div>
     </div>
-    <div class="relative mt-[127px] flex justify-between">
-      <div class="w-[334px] ml-[160px] -translate-y-[20px]">
-        <img src="@/assets/img/icon70.png" alt="">
+    <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
+      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
       </div>
-      <div class="flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -69,7 +69,7 @@ const deviceSpecs2 = [
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   color: #000;
   font-family: Roboto;
   font-size: 40px;
@@ -77,14 +77,15 @@ const deviceSpecs2 = [
   font-weight: 700;
   line-height: normal;
 }
-.item{
+
+.item {
   width: 220px;
   height: 80px;
   flex-shrink: 0;
   border-radius: 10px;
-  opacity: 0.2;
-  background: #D9D9D9;
-  .label{
+  background: rgba(217, 217, 217, 0.2);
+
+  .label {
     color: #666;
     font-family: Roboto;
     font-size: 16px;
@@ -92,7 +93,8 @@ const deviceSpecs2 = [
     font-weight: 400;
     line-height: normal;
   }
-  .value{
+
+  .value {
     color: #111;
     font-family: Roboto;
     font-size: 18px;
@@ -101,7 +103,8 @@ const deviceSpecs2 = [
     line-height: normal;
   }
 }
-.text7{
+
+.text7 {
   color: #000;
   font-family: Roboto;
   font-size: 22px;
