@@ -118,8 +118,8 @@ const slideNext = () => {
     <div class="title text-center">
       SPECS
     </div>
-    <div class="flex container-1300 mx-auto px-[35px] justify-between mobile_1300_col">
-      <div class="w-[683px] flex-shrink-0 pt-[66px]">
+    <div class="flex container-1300 container-box mx-auto px-[35px] justify-between mobile_1300_col">
+      <div class="w-[683px] max-w-full flex-shrink-0 pt-[66px]">
         <div v-for="(item, index) in deviceSpecs" :key="index" class="flex border-b border-white/20">
           <div class="tableText w-[370px]">{{ item.label }}</div>
           <div class="tableText">{{ item.value }}</div>
