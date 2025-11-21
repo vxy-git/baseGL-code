@@ -9,25 +9,34 @@ import Unit5 from "./components/Unit5/index.vue"
 import Unit6 from "./components/Unit6/index.vue"
 import Unit7 from "./components/Unit7/index.vue"
 import Unit8 from "./components/Unit8/index.vue"
+import Unit9 from "./components/Unit9/index.vue"
+import Unit9Block from "./components/Unit9/block.vue"
+
+
+import Splide4 from "@/components/Splide4/index.vue"; 
 import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
   <!-- 覆盖图层 -->
-  <img src="/product-detail3.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50"/>
+  <!-- <img src="/product-detail3.jpg" alt="Overlay Image"
+    class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50" /> -->
 
-  <Header headerClass="white"/>
-  <Unit1/>
-  <Unit2/>
-  <Unit3/>
-  <Unit4/>
-  <Unit5/>
-  <Unit6/>
-  <Unit7/>
-  <Unit8/>
-  <Footer/>
+  <Header headerClass="white" />
+  <Unit1 />
+  <Unit2 />
+  <Unit9Block />
+  <div class="bg-[#000]">
+    <Unit3 />
+    <Unit4 />
+    <Unit5 />
+    <Unit9 />
+  </div>
+  <Unit6 />
+  <Unit7 />
+  <!-- <Unit8/> -->
+  <Splide4 />
+  <Footer />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

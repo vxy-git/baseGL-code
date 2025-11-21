@@ -3,24 +3,24 @@
 </script>
 
 <template>
-<div class="bg-[#000000] pt-[238px] flex flex-col items-center">
+<div class="pt-[238px] flex flex-col items-center c_1230 c_padding">
   <div class="flex flex-col items-center">
     <div class="title">
       <span class="text-white">Gold</span> standard for Resin/Rosin
     </div>
-    <img class="h-[596px] mt-[calc(93px-117px)]" src="@/assets/img/icon54.png" alt="">
+    <img class="h-[596px] mt-[-24px] object-contain" src="@/assets/img/icon54.png" alt="">
   </div>
 
-  <div class="flex flex-col items-center mt-[205px]">
+  <div class="flex flex-col items-center mt-[205px] m_mt_0">
     <div class="title1">UNICORE powered</div>
     <div class="title2 mt-[19.55px]">33% in pore uniformity</div>
-    <div class="title3 w-[1200px] mt-[19.45px]">
+    <div class="title3 max-w-[1200px] mt-[19.45px]">
       We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F to create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating any risk of dry burn for consistently optimal performance.
     </div>
-    <img class="h-[612px] mt-[-90px]" src="@/assets/img/icon55.png" alt="">
+    <img class="w-[1230px] mt-[-90px] object-cover shrink-0 m_mt_0" src="@/assets/img/icon55.png" alt="">
   </div>
-  <div class="flex flex-col items-center mt-[60px]">
-    <div class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px]">
+  <div class="flex flex-col items-center mt-[60px] m_mt_0">
+    <div class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
       <div>
         <div class="flex text">
           20%
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <img src="@/assets/img/icon57.png" class="h-[821px] mt-[calc(288px-440px)]" alt="">
+    <img src="@/assets/img/icon57.png" class="shrink-0 w-[1230px] mt-[-152px] object-cover" alt="">
   </div>
   <div class="flex flex-col items-center mt-[48px]">
     <div class="title1">100% Rosin-Ready&nbsp;&nbsp;</div>
@@ -57,7 +57,7 @@
       Savor the most natural<br/>
       and rich flavors
     </div>
-    <div class="title3 w-[1200px] mt-[-2.5px]">
+    <div class="title3 max-w-[1200px] mt-[-2.5px]">
       <br/>
       Our patented U-shape ceramic design is 30% thinner than ordinary ceramics, which means fewer terpene molecules are filtered out and the rich, natural flavors are preserved.
     </div>
@@ -81,23 +81,19 @@
         </div>
       </div>
     </div>
-    <img src="@/assets/img/icon58.png" class="h-[600px] mt-[78px]" alt="">
+    <img src="@/assets/img/icon58.png" class="h-[600px] mt-[78px] object-contain m_mt_0" alt="">
   </div>
 
-  <div class="flex w-[calc(100vw-260px-260px-5px)] mt-[214px] justify-between pb-[175px]">
-    <div class="h-[740px] w-[360px] bg-[#D9D9D9] rounded-[20px]">
-
-    </div>
-    <div class="w-[500px] flex flex-col items-center pt-[147px]">
+  <div class="flex max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
+    <div class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] bg-[#D9D9D9] rounded-[20px] mb-[20px]"></div>
+    <div class="w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] m_order mb-[20px]">
       <div class="title1">Built-in wires</div>
       <div class="title2 mt-[19.55px]">No more dry burning</div>
       <div class="title3  mt-[44.45px]">
         The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, so every draw releases rich THC and terpenes without a hint of burn, guaranteeing a flawless session every time.
       </div>
     </div>
-    <div class="h-[740px] w-[360px] bg-[#D9D9D9] rounded-[20px]">
-
-    </div>
+    <div class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] bg-[#D9D9D9] rounded-[20px] mb-[20px]"></div>
   </div>
 
 </div>

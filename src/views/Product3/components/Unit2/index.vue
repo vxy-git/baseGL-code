@@ -3,43 +3,29 @@
 </script>
 
 <template>
-<div class="flex flex-col items-center pt-[98px] pb-[145.95px]">
-  <div class="title1">
-    UNICORN
-  </div>
-  <div class="title2 mt-[19.55px]">
-    Super thin. Strikingly light.<br/>
-    Shockingly strong.
-  </div>
-  <img class="h-[157px] mt-[175px]" src="@/assets/img/icon51.png" alt="">
-  <div class="title1 mt-[229px]">
-    UNICORN PRO
-  </div>
-  <div class="title2 mt-[19px]">
-    Tiny powerhouse&nbsp;<br/>
-    Exceptional pro capability&nbsp;
-  </div>
-  <img class="h-[607px] mt-[78px]" src="@/assets/img/icon52.png" alt="">
-
-  <div class="title1 mt-[217px]">
-    Take your pick
-  </div>
-  <div class="title2 mt-[19.55px]">
-    Either one’s a winner
-  </div>
-  <div class="flex gap-x-[20px] mt-[55px]">
-    <div class="w-[605px] h-[440px] rounded-[20px] bg-[#D9D9D9]">
-
+  <div class="flex flex-col items-center pt-[98px] pb-[145.95px]">
+    <div class="title1">
+      UNICORN
     </div>
-    <div class="w-[605px] h-[440px] rounded-[20px] bg-[#D9D9D9]">
-
+    <div class="title2 mt-[19.55px]">
+      Super thin. Strikingly light.<br />
+      Shockingly strong.
     </div>
+    <img class="h-[157px] mt-[175px]" src="@/assets/img/icon51.png" alt="">
+    <div class="title1 mt-[229px]">
+      UNICORN PRO
+    </div>
+    <div class="title2 mt-[19px]">
+      Tiny powerhouse&nbsp;<br />
+      Exceptional pro capability&nbsp;
+    </div>
+    <img class="h-[607px] mt-[78px]" src="@/assets/img/icon52.png" alt="">
+
   </div>
-</div>
 </template>
 
 <style scoped lang="scss">
-.title1{
+.title1 {
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;
@@ -47,8 +33,9 @@
   font-weight: 400;
   line-height: normal;
 }
-.title2{
-  
+
+.title2 {
+
   color: #111;
   text-align: center;
   font-family: Roboto;
