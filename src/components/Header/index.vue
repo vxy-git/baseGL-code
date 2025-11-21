@@ -465,10 +465,6 @@ onUnmounted(() => {
                         </div>
                         <div class="product-variant">{{ product.variant }}</div>
                       </div>
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
-                        stroke-width="1.5" class="chevron-right">
-                        <polyline points="4 9 7 6 4 3"></polyline>
-                      </svg>
                     </a>
                   </div>
                 </Transition>
@@ -652,14 +648,14 @@ onUnmounted(() => {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  // gap: 18px;
   font-size: 16px;
   color: #555555;
 }
 
 .category-item {
-  padding: 14px 20px;
-  border-radius: 10px;
+  // padding: 14px 20px;
+  // border-radius: 10px;
   transition: background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
 }
@@ -702,8 +698,8 @@ onUnmounted(() => {
 
 .badge {
   position: absolute;
-  top: 18px;
-  left: 24px;
+  top: 5px;
+  left: 5px;
   padding: 4px 14px;
   border-radius: 50px;
   background-color: transparent;
@@ -943,8 +939,8 @@ onUnmounted(() => {
     }
 
     svg {
-      width: 2rem;
-      height: 2rem;
+      width: 20px;
+      height: 20px;
       opacity: 0.4;
       flex-shrink: 0;
       transition: transform 0.2s;
@@ -973,8 +969,8 @@ onUnmounted(() => {
       }
 
       .arrow {
-        width: 2rem;
-        height: 2rem;
+        width: 20px;
+        height: 20px;
         flex-shrink: 0;
         transition: transform 0.3s;
 
@@ -988,24 +984,32 @@ onUnmounted(() => {
 
 // 三级产品列表
 .product-list {
-  background: #f9f9f9;
+  // background: #f9f9f9;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px 12px;
 
   .product-item {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 15px 20px 15px 40px;
-    gap: 12px;
+    padding: 12px;
+    gap: 10px;
     text-decoration: none;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(17, 17, 17, 0.06);
 
     &:active {
       background-color: #efefef;
     }
 
     img {
-      width: 50px;
-      height: 50px;
+      flex: 1;
+      width: 100px;
+      height: 100px;
       object-fit: contain;
       flex-shrink: 0;
       border-radius: 8px;
@@ -1017,13 +1021,13 @@ onUnmounted(() => {
       min-width: 0;
 
       .product-name {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         color: #111;
         display: flex;
         align-items: center;
         gap: 6px;
-        line-height: 1.4;
+        line-height: 1.3;
 
         .badge {
           font-size: 10px;
@@ -1039,8 +1043,8 @@ onUnmounted(() => {
       .product-variant {
         font-size: 12px;
         color: #666;
-        margin-top: 4px;
-        line-height: 1.3;
+        margin-top: 2px;
+        line-height: 1.2;
       }
     }
 
