@@ -1,31 +1,77 @@
 <script setup>
 
-import Tabs from "@/components/Tabs/index.vue";
-import {ref} from "vue";
+import Tabs from "./Tabs/index.vue";
+import {ref, watch} from "vue";
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+
 const tabsCurrent = ref(0)
 const tabsList = [
-  "Crystal-clear Design",
-  "Unibody Enclosure",
-  "Medical-grade Chamber"
+  "Smooth yet Rugged Design",
+  "Dual-Color Mouthpiece",
+  "Large Side Display"
 ]
+
+const list = [
+  { img: '@/assets/img/icon22.png' },
+  { img: '@/assets/img/icon22.png' },
+  { img: '@/assets/img/icon22.png' }
+]
+
+const splideRef = ref(null)
+
+const splideOptions = {
+  type: 'loop',
+  perPage: 1,
+  perMove: 1,
+  gap: '1%',
+  speed: 800,
+  arrows: false,
+  pagination: false,
+  drag: true,
+  keyboard: true,
+  width: '100vw',
+  fixedWidth: '800px',
+  focus: 'center',
+}
+
+const onSplideInit = (splide) => {
+  splideRef.value = splide
+  tabsCurrent.value = splide.index
+}
+
+const onSlideChange = (splide) => {
+  tabsCurrent.value = splide.index
+}
+
+watch(tabsCurrent, (index) => {
+  splideRef.value?.go(index)
+})
 </script>
 
 <template>
-  <div class="pt-[200px] pb-[5px] bg-black">
+<div class="bg-[#000] pt-[200px]">
+  <div class="c_1230 c_padding">
     <div class="title">
       Every Detail Matters
     </div>
-    <div class="flex justify-center gap-x-[20px] mt-[58px]">
-      <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
-      <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
-      <img src="@/assets/img/icon22.png" class="w-[800px] h-[500px] flex-shrink-0 object-cover" alt="">
+    <div class="mt-[58px] relative">
+      <div class="w-full flex justify-center">
+        <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+          @splide:move="onSlideChange">
+          <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
+            <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
+              class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-[#F5F5F5]" alt="" />
+          </SplideSlide>
+        </Splide>
+      </div>
     </div>
-    <Tabs type="dark" class="!w-[800px] !h-[50px] !py-0 mx-auto mt-[40px] " :list="tabsList" v-model="tabsCurrent"></Tabs>
   </div>
+  <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+</div>
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -38,13 +84,15 @@ const tabsList = [
   -webkit-text-fill-color: transparent;
   text-align: center;
 }
-.label{
+
+.label {
   color: #FFF;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
+  /* 150% */
 }
 </style>

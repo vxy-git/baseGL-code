@@ -14,6 +14,7 @@
     <Unit7/>
     <Unit8/>
     <Unit9/>
+    <Splide4/>
       <div class="">
         <Footer class="bg-white"/>
       </div>
@@ -32,5 +33,6 @@ import Unit6 from "./components/Unit6/index.vue"
 import Unit7 from "./components/Unit7/index.vue"
 import Unit8 from "./components/Unit8/index.vue"
 import Unit9 from "./components/Unit9/index.vue"
+import Splide4 from "@/components/Splide4/index.vue"
 import Footer from "@/components/Footer.vue";
 </script>

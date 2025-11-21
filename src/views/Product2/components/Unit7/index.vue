@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="bg-black pt-[150px]">
+<div class="bg-black pt-[150px] pb-[40px]">
   <div class="title">
     Design your own look
   </div>
