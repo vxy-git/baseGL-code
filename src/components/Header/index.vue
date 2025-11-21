@@ -132,7 +132,7 @@ const isMobile = computed(() => screenWidth.value < 768)
 const isMobileMenuOpen = ref(false)
 const currentLevel = ref(0) // 0=关闭, 1=一级菜单, 2=二级页面
 const currentMenuItem = ref(null) // 当前二级页面的菜单项
-const expandedCategories = ref([]) // 二级页面中展开的分类ID数组
+const expandedCategoryId = ref(null) // 二级页面中当前展开的分类ID(单一展开模式)
 
 // 下拉菜单相关
 const showDropdown = ref(false)
@@ -229,7 +229,7 @@ const toggleMobileMenu = () => {
   } else {
     currentLevel.value = 0
     currentMenuItem.value = null
-    expandedCategories.value = []
+    expandedCategoryId.value = null
     document.body.style.overflow = ''
   }
 }
@@ -244,16 +244,17 @@ const openProductsPage = () => {
 const goBackToLevel1 = () => {
   currentLevel.value = 1
   currentMenuItem.value = null
-  expandedCategories.value = []
+  expandedCategoryId.value = null
 }
 
-// 切换分类展开/折叠
+// 切换分类展开/折叠(单一展开模式)
 const toggleCategory = (categoryId) => {
-  const index = expandedCategories.value.indexOf(categoryId)
-  if (index > -1) {
-    expandedCategories.value.splice(index, 1)
+  // 如果点击的是当前展开的分类,则关闭它
+  if (expandedCategoryId.value === categoryId) {
+    expandedCategoryId.value = null
   } else {
-    expandedCategories.value.push(categoryId)
+    // 否则关闭其他分类,展开新点击的分类
+    expandedCategoryId.value = categoryId
   }
 }
 
@@ -262,7 +263,7 @@ const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
   currentLevel.value = 0
   currentMenuItem.value = null
-  expandedCategories.value = []
+  expandedCategoryId.value = null
   document.body.style.overflow = ''
 }
 
@@ -445,14 +446,14 @@ onUnmounted(() => {
                 <div class="category-header" @click="toggleCategory(category.id)">
                   <span>{{ category.label }}</span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                    class="arrow" :class="{ 'expanded': expandedCategories.includes(category.id) }">
+                    class="arrow" :class="{ 'expanded': expandedCategoryId === category.id }">
                     <polyline points="4 6 8 10 12 6"></polyline>
                   </svg>
                 </div>
 
                 <!-- 三级：产品列表 -->
                 <Transition name="expand">
-                  <div v-show="expandedCategories.includes(category.id)" class="product-list">
+                  <div v-show="expandedCategoryId === category.id" class="product-list">
                     <a v-for="product in category.products" :key="product.id" :href="`/product${product.id}`"
                       class="product-item" @click="handleProductClick">
                       <img :src="product.image" :alt="product.name" />
@@ -491,7 +492,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.opacity {}
 
 .white {
   .box {
@@ -943,6 +943,8 @@ onUnmounted(() => {
     }
 
     svg {
+      width: 2rem;
+      height: 2rem;
       opacity: 0.4;
       flex-shrink: 0;
       transition: transform 0.2s;
@@ -971,6 +973,8 @@ onUnmounted(() => {
       }
 
       .arrow {
+        width: 2rem;
+        height: 2rem;
         flex-shrink: 0;
         transition: transform 0.3s;
 
@@ -987,6 +991,7 @@ onUnmounted(() => {
   background: #f9f9f9;
 
   .product-item {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 15px 20px 15px 40px;
@@ -1023,8 +1028,8 @@ onUnmounted(() => {
         .badge {
           font-size: 10px;
           padding: 2px 6px;
-          background: #ff6b6b;
-          color: white;
+          // background: #ff6b6b;
+          // color: white;
           border-radius: 3px;
           font-weight: 500;
           flex-shrink: 0;
@@ -1158,31 +1163,6 @@ onUnmounted(() => {
   opacity: 1;
 }
 
-@media (max-width: 1280px) {
-  .product-page {
-    padding: 24px 40px;
-  }
-
-  .content {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-
-  .category-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .category-item {
-    flex: 1 1 200px;
-  }
-}
-
-// ========== 移动端响应式优化 ==========
 @media (max-width: 767px) {
 
   // Header 适配移动端尺寸

@@ -707,29 +707,5 @@ defineExpose({
   transform: translateY(-1px);
   box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
 }
-
-@media (max-width: 1280px) {
-  .product-page {
-    padding: 24px 40px;
-  }
-
-  .content {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-
-  .category-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .category-item {
-    flex: 1 1 200px;
-  }
-}
 </style>
 
