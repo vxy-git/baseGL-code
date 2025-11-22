@@ -1,5 +1,5 @@
 <script setup>
-
+import videoSrc from '@/assets/product2/banner.mp4'
 </script>
 
 <template>
@@ -23,8 +23,8 @@
           With big branding potential, it matches your vibe and makes the style uniquely yours.
         </div>
       </div>
-      <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-[#D9D9D9]">
-
+      <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
+        <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline loop></video>
       </div>
     </div>
     <div class="title3 mt-[70px]">

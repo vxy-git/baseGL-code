@@ -3,45 +3,51 @@
 </script>
 
 <template>
-<div class="pt-[153px] pb-[45px]">
-  <div class="title c_padding">
-    Design your own look
-  </div>
-  <div class="title1 c_padding">
-    Realize your unique design with CALEAF TECH.
-  </div>
-  <div class="max-w-[1600px] mx-auto mt-[54px] flex flex-col justify-center items-center">
-    <div class="w-[1600px] pl-[100px] h-[300px] flex relative gap-x-[30px]">
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="mask1 absolute right-[-1px] top-[-1px]"></div>
+  <div class="pt-[153px] pb-[45px]">
+    <div class="title c_padding">
+      Design your own look
     </div>
-    <div class="w-[1600px] pr-[100px] h-[300px] flex relative gap-x-[30px] mt-[20px]">
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
-
-      </div>
-      <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
+    <div class="title1 c_padding">
+      Realize your unique design with CALEAF TECH.
     </div>
+    <div class="max-w-[1600px] mx-auto mt-[54px] flex flex-col justify-center items-center">
+      <div class="w-[1600px] pl-[100px] h-[300px] flex relative gap-x-[30px]">
+        <div class="h-full w-[480px]">
+          <img src="@/assets/product2/realize1.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+          <img src="@/assets/product2/realize2.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+          <img src="@/assets/product2/realize3.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="mask1 absolute right-[-1px] top-[-1px]"></div>
+      </div>
+      <div class="w-[1600px] pr-[100px] h-[300px] flex relative gap-x-[30px] mt-[20px]">
+        <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+          <img src="@/assets/product2/realize4.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+          <img src="@/assets/product2/realize5.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+          <img src="@/assets/product2/realize6.jpg" class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            alt="" />
+        </div>
+        <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
+      </div>
 
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   color: #1CE785;
   font-family: Roboto;
   font-size: 20px;
@@ -50,7 +56,8 @@
   line-height: normal;
   text-align: center;
 }
-.title1{
+
+.title1 {
   color: #FFF;
   text-align: center;
   font-family: Roboto;
@@ -60,7 +67,8 @@
   line-height: normal;
   margin-top: 19.55px;
 }
-.mask1{
+
+.mask1 {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #000 46.49%);
   width: 185px;
   height: calc(100% + 2px);

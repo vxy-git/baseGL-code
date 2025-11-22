@@ -1,11 +1,11 @@
 <script setup>
-import videoSrc from '@/assets/video/product2-video.mp4'
+import videoSrc from '@/assets/product2/the.mp4'
 
 </script>
 
 <template>
   <div class="w-full relative h-[1210px] flex flex-col justify-end">
-    <video class="w-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
+    <video class="w-full object-cover" :src="videoSrc" autoplay muted playsinline loop></video>
 
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">

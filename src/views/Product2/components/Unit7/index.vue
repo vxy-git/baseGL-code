@@ -3,19 +3,24 @@
 import Tabs from "./Tabs/index.vue";
 import {ref, watch} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import every1 from '@/assets/product2/every_Crystal-clear-Design.jpg'
+import every2 from '@/assets/product2/every_Unibody-Enclosure.mp4'
+import every3 from '@/assets/product2/every_Medical-grade-Chamber.jpg'
 
 const tabsCurrent = ref(0)
 const tabsList = [
-  "Smooth yet Rugged Design",
-  "Dual-Color Mouthpiece",
-  "Large Side Display"
+  "Crystal-clear Design",
+  "Unibody Enclosure",
+  "Medical-grade Chamber"
 ]
 
 const list = [
-  { img: '@/assets/img/icon22.png' },
-  { img: '@/assets/img/icon22.png' },
-  { img: '@/assets/img/icon22.png' }
+  { img: every1 },
+  { img: every2 },
+  { img: every3 }
 ]
+
+const isVideo = (src) => /\.mp4(\?.*)?$/i.test(src)
 
 const splideRef = ref(null)
 
@@ -59,8 +64,16 @@ watch(tabsCurrent, (index) => {
           <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
             @splide:move="onSlideChange">
             <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
-              <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
-                class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-[#F5F5F5]" alt="" />
+              <template v-if="isVideo(list[index].img)">
+                <video :src="list[index].img" autoplay muted loop playsinline
+                  :class="{'!bg-black':index === tabsCurrent}"
+                  class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black" />
+              </template>
+              <template v-else>
+                <img :class="{'!bg-black':index === tabsCurrent}" :src="list[index].img"
+                  class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black" alt="" />
+              </template>
+              <div v-if="index === tabsCurrent" class="size-full absolute inset-0 bg-black opacity-5"></div>
             </SplideSlide>
           </Splide>
         </div>

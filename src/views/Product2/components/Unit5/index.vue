@@ -1,4 +1,10 @@
 <script setup>
+import UNIVERSE from '@/assets/product2/UNIVERSE.mp4';
+import NIVERSE_PRO from '@/assets/product2/NIVERSE_PRO.mp4';
+
+import { ref } from 'vue'
+
+
 const deviceSpecs1 = [
   { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
   { label: "Tank Volume", value: "0.5mL / 1mL" },
@@ -45,13 +51,21 @@ const deviceSpecs2 = [
         </div>
       </div>
       <div class="w-full flex flex-col items-center justify-center">
-        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
+        <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
+
+        <div class="max-h-[414px]">
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
+        </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
       <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
-        <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt="">
+        <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
+
+        <div class="max-h-[414px]">
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
+        </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
       </div>
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">

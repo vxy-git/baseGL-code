@@ -30,6 +30,7 @@ const playVideo = () => {
             :src="videoSrc"
             controls
             autoplay
+            loop
           ></video>
         </div>
       </div>

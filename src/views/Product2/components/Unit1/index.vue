@@ -1,5 +1,5 @@
 <script setup>
-import videoSrc from '@/assets/video/product2-banner.mp4'
+import videoSrc from '@/assets/product2/banner.mp4'
 
 </script>
 
@@ -11,6 +11,7 @@ import videoSrc from '@/assets/video/product2-banner.mp4'
       autoplay
       muted
       playsinline
+      loop
     ></video>
   </div>
 </template>

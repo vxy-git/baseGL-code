@@ -27,10 +27,10 @@ import product1_no_R from '@/assets/product1/no-R.mp4';
       </div>
       <div class="flex justify-between mt-[78px] m_flex_col_r">
         <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
-          <video class="w-full h-full object-cover" :src="product1_best_L" autoplay muted playsinline></video>
+          <video class="w-full h-full object-cover" :src="product1_best_L" autoplay muted playsinline loop></video>
         </div>
         <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
-          <video class="w-full h-full object-cover" :src="product1_best_R" autoplay muted playsinline></video>
+          <video class="w-full h-full object-cover" :src="product1_best_R" autoplay muted playsinline loop></video>
         </div>
       </div>
     </div>
@@ -48,10 +48,10 @@ import product1_no_R from '@/assets/product1/no-R.mp4';
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
         <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
-          <video class="w-full h-full object-cover" :src="product1_no_L" autoplay muted playsinline></video>
+          <video class="w-full h-full object-cover" :src="product1_no_L" autoplay muted playsinline loop></video>
         </div>
         <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
-          <video class="w-full h-full object-cover" :src="product1_no_R" autoplay muted playsinline></video>
+          <video class="w-full h-full object-cover" :src="product1_no_R" autoplay muted playsinline loop></video>
         </div>
       </div>
     </div>

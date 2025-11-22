@@ -1,4 +1,12 @@
 <script setup>
+import ConsistentTR from '@/assets/product2/consistent-TR.mp4'
+
+import ConsistentBR from '@/assets/product2/consistent-BR.mp4'
+import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
+
+
+
+
 
 </script>
 
@@ -14,17 +22,22 @@
           Ideal for Rosin
         </div>
         <div class="title3 mt-[56px] !text-left">
+
           Powered by Unicore tech, UNIT PRO combines smoothness with <br /> purity, ensuring efficient THC and terpene
           extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <img class="h-[553px]" src="@/assets/img/icon66.png" alt="">
+      <video class="h-[553px] object-cover" :src="ConsistentTR" autoplay muted playsinline loop></video>
     </div>
 
     <div class="c_1230 c_padding">
       <div class="flex justify-between m_flex_col_r">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
+        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+          <video class="h-[553px] object-cover" :src="ConsistentBL" autoplay muted playsinline loop></video>
+        </div>
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+        </div>
       </div>
     </div>
 
@@ -40,8 +53,12 @@
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <img class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" src="@/assets/img/icon21.png" alt="">
-        <img class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" src="@/assets/img/icon20.png" alt="">
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+        </div>
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +88,14 @@
   line-height: normal;
 }
 
+.title1 {
+  color: #1CE785;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .title2 {
   color: #FFF;
   font-family: Roboto;
@@ -78,6 +103,20 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.title3 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  /* 150% */
 }
 
 .label {

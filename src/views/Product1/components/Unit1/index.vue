@@ -11,6 +11,7 @@ import videoSrc from '@/assets/product1/banner.mp4'
       autoplay
       muted
       playsinline
+      loop
     ></video>
     <!-- <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt=""> -->
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">

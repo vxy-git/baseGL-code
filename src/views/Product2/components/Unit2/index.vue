@@ -8,7 +8,7 @@
       Relish the golden hours with the UNIVERSE Series.
       Savor the sweetness, dive into <span class="text-[#1CE785]">smoothness</span>
     </div>
-    <img src="@/assets/img/icon61.png" class="mx-auto block mt-[63px]" alt="">
+    <img src="@/assets/product2/unit2.png" class="mx-auto block mt-[63px]" alt="">
   </div>
 </template>
 

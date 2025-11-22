@@ -95,7 +95,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
       </div>
       <div class="unit7__img w-[450px] h-[540px]">
         <video class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden" :src="one_R" autoplay muted
-          playsinline></video>
+          playsinline loop></video>
       </div>
     </div>
   </div>
