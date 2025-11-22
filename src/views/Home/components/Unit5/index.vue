@@ -49,14 +49,14 @@ const splideOptions = {
   type: 'loop',
   perPage: 1,
   perMove: 1,
-  gap: '35px',
+  gap: '2.18rem',
   speed: 800,
   arrows: false,
   pagination: false,
   drag: true,
   keyboard: true,
   width: '100vw',
-  fixedWidth: '860px',
+  fixedWidth: '53.75rem',
   focus: 'center',
 }
 
@@ -109,25 +109,18 @@ const goToSlide = (index) => {
       <div class="mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <img
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }" src="@/assets/img/icon4_active.png" alt=""
-          @click="slidePrev">
-
-        <div class="w-full">
-          <Splide
-            :options="splideOptions"
-            @splide:mounted="onSplideInit"
-            @splide:moved="onSlideChange"
-            @splide:move="changeEnd"
-          >
-            <SplideSlide class="w-[860px] h-[480px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
-              <Item :data="item" />
-            </SplideSlide>
-          </Splide>
-        </div>
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
+          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
+        <Splide class="w-full" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+          @splide:move="changeEnd">
+          <SplideSlide class="h-[480px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
+            <Item :data="item" />
+          </SplideSlide>
+        </Splide>
         <img
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }" src="@/assets/img/icon4_active.png" alt=""
-          @click="slideNext">
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
+          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">
         <div v-for="(item,index) in list" :class="{

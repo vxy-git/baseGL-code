@@ -37,14 +37,14 @@ const splideOptions = {
   type: "loop",
   perPage: 1,
   perMove: 1,
-  gap: "20px",
+  gap: "1.25rem",
   speed: 800,
   arrows: false,
   pagination: false,
   drag: true,
   keyboard: true,
   width: "100vw",
-  fixedWidth: "800px",
+  fixedWidth: "50rem",
   focus: "center",
 };
 
@@ -99,7 +99,7 @@ const goToSlide = (index) => {
           @splide:moved="onSlideChange"
           @splide:move="changeEnd"
         >
-          <SplideSlide class="w-[800px] h-[500px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
+          <SplideSlide class="h-[500px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
             <img :src="item.img" class="w-full h-full object-cover rounded-[20px]" alt="" />
           </SplideSlide>
         </Splide>

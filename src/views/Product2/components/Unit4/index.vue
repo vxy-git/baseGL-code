@@ -13,7 +13,7 @@ import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
 <template>
   <div>
     <div class="c_1230 c_padding m_flex_col mt-[42px] mx-auto flex gap-[32px]">
-      <div class="w-[622.074px] pt-[145px]">
+      <div class="w-[622.074px] pt-[145px] c_padding">
         <div class="title1 text-left">
           RTD Control
         </div>

@@ -25,14 +25,14 @@ const splideOptions = {
   type: 'loop',
   perPage: 1,
   perMove: 1,
-  gap: '20px',
+  gap: '1.25rem',
   speed: 800,
   arrows: false,
   pagination: false,
   drag: true,
   keyboard: true,
   width: '100vw',
-  fixedWidth: '800px',
+  fixedWidth: '50rem',
   focus: 'center',
 }
 
@@ -61,8 +61,8 @@ watch(tabsCurrent, (index) => {
           <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
             @splide:move="onSlideChange">
             <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
-              <img :class="{'!bg-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
-                class="w-full h-full object-cover rounded-[20px] overflow-hidden bg-[#F5F5F5]" alt="" />
+              <img :class="{'!border-[#D9D9D9]':index === tabsCurrent}" :src="list[index].img"
+                class="w-full h-full object-cover rounded-[20px] overflow-hidden border-[#F5F5F5] border-[2px]" alt="" />
             </SplideSlide>
           </Splide>
         </div>
