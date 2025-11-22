@@ -8,11 +8,11 @@
 
     <main class="main-content c_1300">
       <section class="catalog-intro">
-        <h1 class="catalog-title">Innovative products</h1>
+        <h1 class="catalog-title c_padding">Innovative products</h1>
         <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       </section>
 
-      <section class="catalog-grid" aria-label="Product Gallery" ref="catalogGridRef">
+      <section class="catalog-grid c_padding" aria-label="Product Gallery" ref="catalogGridRef">
         <article v-for="product in products" :key="product.id" class="product-card">
           <div class="card-surface">
             <img :src="product.background" :alt="product.alt + ' featured'" loading="lazy"
