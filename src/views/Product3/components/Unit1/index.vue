@@ -1,5 +1,5 @@
 <script setup>
-import videoSrc from '@/assets/video/product2-banner.mp4'
+import videoSrc from '@/assets/product2/banner.mp4'
 
 </script>
 
