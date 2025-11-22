@@ -6,7 +6,7 @@ import Unit3 from "../Unit3/index.vue"
 </script>
 
 <template>
-  <div class="relative flex w-[calc(100vw-180px-180px)] pr-[calc(314px-180px)] items-start mx-auto">
+  <div class="relative flex max-w-[1740px] pr-[134px] items-start mx-auto">
     <img :src="icon2_1" alt="" class="w-[400px] h-[680px] object-contain mt-[150px]"/>
     <div class="h-[2044px] w-[1px] ml-[170px] mr-[98px] bg-white/20">
 

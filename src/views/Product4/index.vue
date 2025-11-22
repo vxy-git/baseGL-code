@@ -18,8 +18,8 @@ import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <img class=" pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"
-       src="../../assets/img/icon26.png" alt=""/>
+  <!-- <img class=" pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"
+       src="../../assets/img/icon26.png" alt=""/> -->
   <div class="overflow-hidden">
     <Header headerClass="white"/>
     <Unit1/>

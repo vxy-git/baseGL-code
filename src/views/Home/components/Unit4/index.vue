@@ -7,7 +7,7 @@
   <div class="title text-center">
     Realize your unique design with CALEAF TECH
   </div>
-  <img class="mt-[51px] w-auto h-[778px] object-cover" src="@/assets/img/icon9.png" alt="">
+  <img class="mt-[51px] w-auto h-[778px] object-cover mx-auto" src="@/assets/img/icon9.png" alt="">
 </div>
 </template>
 

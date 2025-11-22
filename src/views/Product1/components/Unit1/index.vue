@@ -5,25 +5,18 @@ import videoSrc from '@/assets/product1/banner.mp4'
 
 <template>
   <div class="unit1 h-[980px] relative">
-    <video
-      class="w-full h-full object-cover"
-      :src="videoSrc"
-      autoplay
-      muted
-      playsinline
-      loop
-    ></video>
+    <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline loop></video>
     <!-- <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt=""> -->
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
-      <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
-      <div class="title">
-        UNIT PRO
-      </div>
-      <div class="subTitle translate-y-[-2px]">
-        From lab to award,<br/>
-        100% for Rosin we’ve perfected
-      </div>
+        <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
+        <div class="title">
+          UNIT PRO
+        </div>
+        <div class="subTitle translate-y-[-2px]">
+          From lab to award,<br />
+          100% for Rosin we’ve perfected
+        </div>
         <div class="btn cursor-pointer">
           1mL/2mL
         </div>
@@ -33,7 +26,11 @@ import videoSrc from '@/assets/product1/banner.mp4'
 </template>
 
 <style scoped lang="scss">
-.title{
+.unit1 {
+  min-height: calc(980px / 1920px * 100vw);
+}
+
+.title {
   color: #FFF;
   font-family: Roboto;
   font-size: 60px;
@@ -41,7 +38,8 @@ import videoSrc from '@/assets/product1/banner.mp4'
   font-weight: 700;
   line-height: normal;
 }
-.subTitle{
+
+.subTitle {
   color: #D9D9D9;
   font-family: Roboto;
   font-size: 30px;
@@ -50,7 +48,8 @@ import videoSrc from '@/assets/product1/banner.mp4'
   line-height: normal;
   margin-top: 15px;
 }
-.btn{
+
+.btn {
   margin-top: 78px;
   //transform: translateY(-4px);
   width: 120px;
@@ -68,7 +67,8 @@ import videoSrc from '@/assets/product1/banner.mp4'
   font-weight: 400;
   line-height: normal;
 }
-.scroll{
+
+.scroll {
   color: #FFF;
   font-family: Arial;
   font-size: 14px;
@@ -79,47 +79,50 @@ import videoSrc from '@/assets/product1/banner.mp4'
 }
 
 @media screen and (max-width: 1024px) {
-  .unit1{
-    height: 600px !important;
+  .unit1 {
     margin-top: 60px !important;
   }
-  .title{
+
+  .title {
     font-size: 40px;
     text-align: center;
   }
-  .subTitle{
+
+  .subTitle {
     font-size: 22px;
     text-align: center;
   }
-  .btn{
+
+  .btn {
     margin-top: 40px;
     width: 110px;
     height: 36px;
     font-size: 16px;
   }
-  .scroll{
+
+  .scroll {
     font-size: 12px;
     bottom: 40px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .unit1{
-    height: 1000px !important;
-  }
-  .title{
+  .title {
     font-size: 34px;
   }
-  .subTitle{
+
+  .subTitle {
     font-size: 18px;
   }
-  .btn{
+
+  .btn {
     margin-top: 30px;
     width: 100px;
     height: 34px;
     font-size: 16px;
   }
-  .scroll{
+
+  .scroll {
     font-size: 12px;
     bottom: 30px;
   }

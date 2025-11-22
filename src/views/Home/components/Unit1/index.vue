@@ -74,7 +74,7 @@ const stop = ref(false)
     >
       <SplideSlide class="h-full" v-for="item in list" :key="item.title">
         <div class="relative h-full">
-          <img class="h-full object-cover absolute inset-0" :src="item.img" />
+          <img class="h-full min-w-[100vw] object-cover absolute inset-0" :src="item.img" />
           <div class=" h-full relative">
             <div class="c_1300 c_padding mx-auto flex flex-col justify-center h-full">
               <div class="title">
@@ -120,6 +120,7 @@ const stop = ref(false)
 // Banner 容器
 .banner-container {
   height: 880px;
+  min-height: calc(880px / 1920px * 100vw);
   position: relative;
 }
 

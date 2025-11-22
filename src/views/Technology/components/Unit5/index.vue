@@ -4,7 +4,7 @@ import icon5_2 from '@/assets/img/icon5_2.png'
 </script>
 
 <template>
-  <div class="w-[calc(100vw-620px)] mx-auto pt-[156px]">
+  <div class=" c_1230 c_padding mx-auto pt-[156px]">
     <div class="relative flex justify-between">
       <div class="content-wrapper mt-[145px]">
         <div class="title1">

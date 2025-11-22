@@ -41,6 +41,14 @@ body {
 }
 
 
+
+@media screen and (min-width: 1920px) {
+  :root {
+    --rem-base: calc(100vw / 1200px * 10px);
+    font-size: var(--rem-base);
+  }
+}
+
 @media screen and (max-width: 1300px) {
   .c_padding {
     padding-left: 3vw !important;
@@ -60,6 +68,10 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
+
+  .m_ty_0 {
+    transform: translateY(0);
+  }
 
   .m_mt_0 {
     margin-top: 0 !important;

@@ -5,7 +5,7 @@ import Playone from '@/assets/img/Play-one.png'
 </script>
 
 <template>
-  <div class="pb-[173px]">
+  <div class="unit1 pb-[173px]">
     <div class="relative flex c_1300 mx-auto justify-center items-start pt-[373px]">
       <div class="flex flex-col items-center">
         <!-- 标题 -->
@@ -33,6 +33,10 @@ import Playone from '@/assets/img/Play-one.png'
 </template>
 
 <style scoped lang="scss">
+.unit1 {
+  min-height: calc(980px / 1920px * 100vw);
+}
+
 .title {
   width: 842px;
   height: 234px;

@@ -15,8 +15,8 @@
 
 
   <div class="c_1230 c_padding">
-    <div class="mt-[260px] relative z-[1]">
-      <div class="w-full relative">
+    <div class="mt-[260px] relative">
+      <div class="w-full relative z-[1]">
         <div class="smallTitle pl-[8px]">
           Award-Winning
         </div>
@@ -27,7 +27,7 @@
           In June 2025, UNIT secured 1st place in the Live Resin vape category at the 2025 California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this market validation, we are not just confident, but eager to bring this golden standard to more brands using Resin and Rosin.
         </div>
       </div>
-      <img src="@/assets/img/icon16.png" class="w-[1460px] translate-y-[-213px] max-w-full mx-auto m_mt_0 pointer-events-none" alt="">
+      <img src="@/assets/img/icon16.png" class="w-[1460px] translate-y-[-213px] max-w-full mx-auto m_ty_0 pointer-events-none" alt="">
     </div>
   </div>
 

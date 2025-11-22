@@ -179,6 +179,17 @@ const closeDropdowns = () => {
 </template>
 
 <style scoped lang="scss">
+.hero {
+  min-height: calc(975px / 1920px * 100vw);
+  position: relative;
+  width: 100%;
+  height: 975px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  
+}
 /* Main Container */
 .contactPage {
   width: 100%;
@@ -239,17 +250,6 @@ const closeDropdowns = () => {
   height: 22px;
 }
 
-/* Hero Section */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 975px;
-  display: flex;
-  justify-content: flex-end;
-  overflow: hidden;
-  padding-top: 290px;
-}
-
 .heroBackground {
   position: absolute;
   top: 0;
@@ -260,17 +260,19 @@ const closeDropdowns = () => {
 
 .heroImage {
   width: 100%;
-  height: 975px;
+  height: 100%;
   object-fit: cover;
 }
 
 .heroContent {
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   position: relative;
   z-index: 10;
+  padding-bottom: 70px;
 }
 
 .heroTitle {

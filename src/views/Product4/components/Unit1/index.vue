@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="h-[880px] mt-[110px] pt-[137.12px] bg-[url(@/assets/img/icon27.png)] bg-[length: 100% 100%]">
+<div class="unit1 h-[880px] mt-[110px] bg-[url(@/assets/img/icon27.png)]">
   <div class="title">
     DUKES
   </div>
@@ -35,6 +35,15 @@
 </template>
 
 <style scoped lang="scss">
+.unit1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: calc(880px / 1920px * 100vw);
+  background-size: cover;
+  padding-bottom: 8%;
+}
+
 .title{
   color: #FFF;
   text-align: center;
