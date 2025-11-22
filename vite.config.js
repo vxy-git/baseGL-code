@@ -18,38 +18,38 @@ export default defineConfig({
     build: {
 
         rollupOptions: {
-            output: {
-                assetFileNames: (chunkInfo) => {
-                    // 用后缀名称进行区别处理
-                    // 处理其他资源文件名 e.g. css png 等
-                    if (
-                        chunkInfo.name?.endsWith('.webm') ||
-                        chunkInfo.name?.endsWith('.png') ||
-                        chunkInfo.name?.endsWith('.jpg') ||
-                        chunkInfo.name?.endsWith('.gif')
-                    ) {
-                        return `assets/images/[name].[ext]`;
-                    }
+            // output: {
+            //     assetFileNames: (chunkInfo) => {
+            //         // 用后缀名称进行区别处理
+            //         // 处理其他资源文件名 e.g. css png 等
+            //         if (
+            //             chunkInfo.name?.endsWith('.webm') ||
+            //             chunkInfo.name?.endsWith('.png') ||
+            //             chunkInfo.name?.endsWith('.jpg') ||
+            //             chunkInfo.name?.endsWith('.gif')
+            //         ) {
+            //             return `assets/images/[name].[ext]`;
+            //         }
 
-                    return `assets/[name].[hash].[ext]`;
-                },
-            },
+            //         return `assets/[name].[hash].[ext]`;
+            //     },
+            // },
         },
     },
     experimental: {
-        renderBuiltUrl(filename) {
-            if (
-                filename.endsWith('.webm') ||
-                filename.endsWith('.png') ||
-                filename.endsWith('.jpg') ||
-                filename.endsWith('.gif')
-            ) {
-                const name = filename.replace('assets/images/', '');
-                return `https://cdnURL/images/${name}`;
-            }
+        // renderBuiltUrl(filename) {
+        //     if (
+        //         filename.endsWith('.webm') ||
+        //         filename.endsWith('.png') ||
+        //         filename.endsWith('.jpg') ||
+        //         filename.endsWith('.gif')
+        //     ) {
+        //         const name = filename.replace('assets/images/', '');
+        //         return `https://cdnURL/images/${name}`;
+        //     }
 
-            return filename;
-        },
+        //     return filename;
+        // },
         rollupOptions: {
             output: {
                 manualChunks: {
