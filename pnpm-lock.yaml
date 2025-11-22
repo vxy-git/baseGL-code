@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mediamonks/fast-image-sequence':
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: 1.0.3
+        version: 1.0.3
       '@splidejs/vue-splide':
         specifier: ^0.6.12
         version: 0.6.12
@@ -389,14 +389,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mediamonks/fast-image-sequence@2.0.1':
-    resolution: {integrity: sha512-NNZXJVrEkmdj4TM8l3QVc4BTwz5k69o49uESoSGZ0J6D5alZZns4iYcWiD+KE8w2KIenHeBcaIJnVZ0rtcuY4g==}
+  '@mediamonks/fast-image-sequence@1.0.3':
+    resolution: {integrity: sha512-6YbKHWfsbuv82odxH2Rmbh16cFGVWt+lZnq1aFUOBLdw4yzmHhWbZ8sHrM1lWoEal/TeEOcbMRpXgkaf3EKPqw==}
     engines: {node: '>=16.0.0'}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1964,7 +1959,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mediamonks/fast-image-sequence@2.0.1': {}
+  '@mediamonks/fast-image-sequence@1.0.3': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
