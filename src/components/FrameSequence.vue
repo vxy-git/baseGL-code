@@ -1,7 +1,7 @@
 <template>
   <section v-if="props.useScroll" class="sequence-section">
     <div class="sequence-sticky">
-      <div ref="wrapper" class="fis-wrapper"></div>
+      <div ref="wrapper" class="fis-wrapper" :style="{ '--fis-object-fit': props.objectFit }"></div>
     </div>
     <div ref="scrollBox" class="sequence-box">
       <div class="sequence-content" :style="{ height: props.scrollHeight }">
@@ -9,7 +9,7 @@
       </div>
     </div>
   </section>
-  <div v-else ref="wrapper" class="fis-wrapper"></div>
+  <div v-else ref="wrapper" class="fis-wrapper" :style="{ '--fis-object-fit': props.objectFit }"></div>
 </template>
 
 <script setup>
@@ -53,6 +53,7 @@ onMounted(async () => {
     ],
     loop: props.loop,
     objectFit: props.objectFit,
+    clearCanvas: true,
   });
 
   try {
@@ -99,6 +100,17 @@ function updateProgress() {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+}
+.fis-wrapper > canvas,
+.fis-wrapper > img,
+.fis-wrapper > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--fis-object-fit, cover);
 }
 .sequence-section {
   position: relative;
