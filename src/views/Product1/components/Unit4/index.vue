@@ -1,10 +1,59 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import product1_best_L from '@/assets/product1/best-L.mp4';
 import product1_best_R from '@/assets/product1/best-R.mp4';
 import product1_no_L from '@/assets/product1/no-L.mp4';
 import product1_no_R from '@/assets/product1/no-R.mp4';
 
+gsap.registerPlugin(ScrollTrigger)
 
+const section1Ref = ref(null)
+const left1Ref = ref(null)
+const right1Ref = ref(null)
+
+const section2Ref = ref(null)
+const left2Ref = ref(null)
+const right2Ref = ref(null)
+
+let tl1
+let tl2
+
+onMounted(() => {
+  tl1 = gsap.timeline({
+    scrollTrigger: {
+      trigger: section1Ref.value,
+      start: 'top 70%',
+      end: 'top 30%',
+      scrub: true,
+      // markers: true,
+      invalidateOnRefresh: true
+    }
+  })
+  tl1.fromTo(left1Ref.value, { x: -120, opacity: 0 }, { x: 0, opacity: 1 }, 0)
+     .fromTo(right1Ref.value, { x: 120, opacity: 0 }, { x: 0, opacity: 1 }, 0)
+
+  tl2 = gsap.timeline({
+    scrollTrigger: {
+      trigger: section2Ref.value,
+      start: 'top 70%',
+      end: 'top 30%',
+      scrub: true,
+      // markers: true,
+      invalidateOnRefresh: true
+    }
+  })
+  ScrollTrigger.refresh()
+  tl2.fromTo(left2Ref.value, { x: -120, opacity: 0 }, { x: 0, opacity: 1 }, 0)
+     .fromTo(right2Ref.value, { x: 120, opacity: 0 }, { x: 0, opacity: 1 }, 0)
+})
+
+onUnmounted(() => {
+  tl1 && tl1.kill()
+  tl2 && tl2.kill()
+  ScrollTrigger.getAll().forEach(i => i.kill())
+})
 
 </script>
 
@@ -25,11 +74,11 @@ import product1_no_R from '@/assets/product1/no-R.mp4';
           extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <div class="flex justify-between mt-[78px] m_flex_col_r">
-        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+      <div class="flex justify-between mt-[78px] m_flex_col_r gap-[20px]" ref="section1Ref">
+        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" ref="left1Ref">
           <video class="w-full h-full object-cover" :src="product1_best_L" autoplay muted playsinline loop></video>
         </div>
-        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" ref="right1Ref">
           <video class="w-full h-full object-cover" :src="product1_best_R" autoplay muted playsinline loop></video>
         </div>
       </div>
@@ -46,11 +95,11 @@ import product1_no_R from '@/assets/product1/no-R.mp4';
           and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
-      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="section2Ref">
+        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]" ref="left2Ref">
           <video class="w-full h-full object-cover" :src="product1_no_L" autoplay muted playsinline loop></video>
         </div>
-        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]" ref="right2Ref">
           <video class="w-full h-full object-cover" :src="product1_no_R" autoplay muted playsinline loop></video>
         </div>
       </div>

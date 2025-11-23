@@ -4,18 +4,18 @@
 
 <template>
 <div class="pt-[133px]">
-  <div class="c_1230 c_padding">
+  <div class="c_1300 c_padding">
     <div class="title">
       UNICORE<br/>
       POWERED
     </div>
-    <img src="@/assets/img/icon15.png" class="w-[1460px] mx-auto -mt-[53px]" alt="">
+    <img src="@/assets/img/icon15.png" class="w-full h-[821.25px] object-contain mx-auto -mt-[53px] m_mt_0" alt="">
   </div>
 
 
 
-  <div class="c_1230 c_padding">
-    <div class="mt-[260px] relative">
+  <div class="c_1300 c_padding">
+    <div class="mt-[260px] relative m_mt_0">
       <div class="w-full relative z-[1]">
         <div class="smallTitle pl-[8px]">
           Award-Winning
@@ -27,13 +27,13 @@
           In June 2025, UNIT secured 1st place in the Live Resin vape category at the 2025 California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this market validation, we are not just confident, but eager to bring this golden standard to more brands using Resin and Rosin.
         </div>
       </div>
-      <img src="@/assets/img/icon16.png" class="w-[1460px] translate-y-[-213px] max-w-full mx-auto m_ty_0 pointer-events-none" alt="">
+      <img src="@/assets/img/icon16.png" class="w-full h-[821.25px] object-contain mt-[-213px] max-w-full mx-auto m_mt_0 pointer-events-none" alt="">
     </div>
   </div>
 
 
-  <div class="c_1230 c_padding">
-    <div class="mt-[120px] relative">
+  <div class="c_1300 c_padding">
+    <div class="mt-[120px] relative m_mt_0">
       <div class=" top-0 left-0 w-full">
         <div class="smallTitle pl-[8px]">
           A Significant Breakthrough
@@ -46,14 +46,14 @@
           Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
         </div>
       </div>
-      <img src="@/assets/img/icon17.png" class="w-[1250px] mx-auto mt-[-30px]" alt="">
+      <img src="@/assets/img/icon17.png" class="w-full h-[720px] object-contain mx-auto mt-[-30px]" alt="">
     </div>
   </div>
 
 
-  <div class="">
-    <div class="mt-[75px] relative">
-      <div class="c_1230 c_padding top-0 left-0 w-full">
+  <div class="c_1300 c_padding">
+    <div class="mt-[75px] relative m_mt_0">
+      <div class="top-0 left-0 w-full">
         <div class="smallTitle">
           100% Rosin-Ready
         </div>
@@ -84,7 +84,7 @@
           </div>
         </div>
       </div>
-      <img src="@/assets/img/icon18.png" class="mx-auto mt-[82px] max-h-[600px]" alt="">
+      <img src="@/assets/img/icon18.png" class="w-full h-[590px] object-contain mx-auto mt-[82px] max-h-[600px]" alt="">
     </div>
   </div>
 </div>
