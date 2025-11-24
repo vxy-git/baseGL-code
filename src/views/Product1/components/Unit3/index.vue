@@ -18,6 +18,26 @@ const tb2 = ref(null)
 const tb3 = ref(null)
 const tb4 = ref(null)
 
+// tb1 子元素
+const tb1Title = ref(null)
+
+// tb2 子元素
+const tb2SmallTitle = ref(null)
+const tb2WTitle = ref(null)
+const tb2Text = ref(null)
+
+// tb3 子元素
+const tb3SmallTitle = ref(null)
+const tb3WTitle = ref(null)
+const tb3Text = ref(null)
+
+// tb4 子元素
+const tb4SmallTitle = ref(null)
+const tb4WTitle = ref(null)
+const tb4Text = ref(null)
+const tb4Stats = ref(null)
+const tb4Image = ref(null)
+
 const isMobile = ref(false)
 
 const updateIsMobile = () => {
@@ -37,25 +57,46 @@ onMounted(() => {
     scrollTrigger: {
       trigger: pinSection.value,
       start: 'top top',
-      end: '+=3500',
+      end: '+=4500',
       pin: true,
-      scrub: true,
-      anticipatePin: 1
+      scrub: 1.2,
+      anticipatePin: 1,
+      fastScrollEnd: true
     }
   })
   tl.add(() => { seqProgress.value = 0 })
-    .to(seqProgress, { value: 0.33, duration: 1 })
-    .fromTo(tb1.value, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6 }, '<')
-    .to(tb1.value, { yPercent: -40, opacity: 0, duration: 0.6 }, '+=0.6')
-    .to(seqProgress, { value: 0.66, duration: 1 })
-    .fromTo(tb2.value, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6 }, '<')
-    .to(tb2.value, { yPercent: -40, opacity: 0, duration: 0.6 }, '+=0.6')
-    .to(seqProgress, { value: 1, duration: 1 })
-    .fromTo(tb3.value, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6 }, '<')
-    .to(tb3.value, { yPercent: -40, opacity: 0, duration: 0.6 }, '+=0.6')
+    .to(seqProgress, { value: 0.33, duration: 2.8, ease: 'power1.inOut' })
+    // tb1: 整体滑动,标题淡入
+    .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<')
+    .fromTo(tb1Title.value, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.inOut' }, '<')
+    // tb1: 整体滑出,标题淡出
+    .to(tb1.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
+    .to(tb1Title.value, { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
+    .to(seqProgress, { value: 0.66, duration: 2.8, ease: 'power1.inOut' })
+    // tb2: 整体滑动,子元素按顺序淡入
+    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<+=0.3')
+    .fromTo([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value],
+      { opacity: 0, yPercent: 15 },
+      { opacity: 1, yPercent: 0, duration: 0.5, stagger: 0.25, ease: 'power2.out' }, '<')
+    // tb2: 整体滑出,子元素一起淡出
+    .to(tb2.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
+    .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value], { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
+    .to(seqProgress, { value: 1, duration: 2.8, ease: 'power1.inOut' })
+    // tb3: 整体滑动,子元素按顺序淡入
+    .fromTo(tb3.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<+=0.3')
+    .fromTo([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value],
+      { opacity: 0, yPercent: 15 },
+      { opacity: 1, yPercent: 0, duration: 0.5, stagger: 0.25, ease: 'power2.out' }, '<')
+    // tb3: 整体滑出,子元素一起淡出
+    .to(tb3.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
+    .to([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value], { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
     // tb4 上移的同时，帧动画淡出
-    .to(frameContainer.value, { opacity: 0, duration: 2 })
-    .fromTo(tb4.value, { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 2 }, '<')
+    .to(frameContainer.value, { opacity: 0, duration: 2.8, ease: 'power2.inOut' })
+    // tb4: 整体滑动,子元素按顺序淡入
+    .fromTo(tb4.value, { yPercent: 120 }, { yPercent: 0, duration: 3.0, ease: 'power2.out' }, '<+=0.4')
+    .fromTo([tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value],
+      { opacity: 0, yPercent: 15 },
+      { opacity: 1, yPercent: 0, duration: 0.6, stagger: 0.25, ease: 'power2.out' }, '<+=0.4')
 })
 
 onUnmounted(() => {
@@ -75,37 +116,39 @@ onUnmounted(() => {
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block">
-            <div class="title">UNICORE<br />POWERED</div>
+            <div ref="tb1Title" class="title">UNICORE<br />POWERED</div>
           </div>
           <div ref="tb2" class="text-block">
-            <div class="smallTitle">Award-Winning</div>
-            <div class="wTitle">Simply the best</div>
-            <div class="text">In June 2025, UNIT secured 1st place in the Live Resin vape category at the 2025
+            <div ref="tb2SmallTitle" class="smallTitle">Award-Winning</div>
+            <div ref="tb2WTitle" class="wTitle">Simply the best</div>
+            <div ref="tb2Text" class="text">In June 2025, UNIT secured 1st place in the Live Resin vape category at the
+              2025
               California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this
               market validation, we are not just confident, but eager to bring this golden standard to more brands using
               Resin and Rosin.</div>
           </div>
           <div ref="tb3" class="text-block">
-            <div class="smallTitle">A Significant Breakthrough</div>
-            <div class="wTitle">U-shape design<br />Pioneering industry</div>
-            <div class="text">Our patented U-shape ceramic design is the result of extensive testing and validation of
+            <div ref="tb3SmallTitle" class="smallTitle">A Significant Breakthrough</div>
+            <div ref="tb3WTitle" class="wTitle">U-shape design<br />Pioneering industry</div>
+            <div ref="tb3Text" class="text">Our patented U-shape ceramic design is the result of extensive testing and
+              validation of
               various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the
               market.</div>
           </div>
           <div ref="tb4" class="text-block">
-            <div class="smallTitle">
+            <div ref="tb4SmallTitle" class="smallTitle">
               100% Rosin-Ready
             </div>
-            <div class="wTitle">
+            <div ref="tb4WTitle" class="wTitle">
               Savor the most natural&nbsp;<br />
               and rich flavors
             </div>
-            <div class="text !mt-[28px]">
+            <div ref="tb4Text" class="text !mt-[28px]">
               Our patented U-shape ceramic design is 30% thinner than ordinary ceramics, which means fewer terpene
               molecules
               are filtered out and the rich, natural flavors are preserved.
             </div>
-            <div class="flex justify-center gap-x-[150px] mt-[68px]">
+            <div ref="tb4Stats" class="flex justify-center gap-x-[150px] mt-[68px]">
               <div class="flex flex-col items-center justify-center ">
                 <div class="text1 h-[40px]">
                   30%
@@ -124,7 +167,7 @@ onUnmounted(() => {
                 </div>
               </div>
             </div>
-            <img src="@/assets/img/icon18.png" class="mx-auto mt-[82px] max-h-[600px]" alt="">
+            <img ref="tb4Image" src="@/assets/img/icon18.png" class="mx-auto mt-[82px] max-h-[600px]" alt="">
           </div>
         </div>
       </div>
@@ -228,5 +271,19 @@ onUnmounted(() => {
   line-height: 30px;
   /* 150% */
   margin-top: 0px;
+}
+
+// 设置子元素初始透明度为0,由GSAP控制动画
+.text-block {
+
+  .title,
+  .smallTitle,
+  .wTitle,
+  .text,
+  .text1,
+  .text2,
+  img {
+    opacity: 0;
+  }
 }
 </style>
