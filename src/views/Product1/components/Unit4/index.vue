@@ -58,7 +58,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="mt-[207px]">
+  <div class="mt-[507px]">
     <div class="title">
       Consistent Temp<br />
       Ideal for Rosin
