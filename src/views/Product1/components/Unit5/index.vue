@@ -405,7 +405,7 @@ onUnmounted(() => {
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
-  border: 2px solid #F5F5F5;
+  // border: 2px solid #F5F5F5;
   display: block;
 
   :deep(img),
@@ -424,7 +424,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   height: 3px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   z-index: 20;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -434,7 +434,7 @@ onUnmounted(() => {
 // 蓝色进度条
 .progress-bar {
   height: 100%;
-  background: #1E90FF; // 蓝色
+  background: #1CE785; // 蓝色
   transition: width 0.1s linear;
   border-bottom-left-radius: 20px;
 }
