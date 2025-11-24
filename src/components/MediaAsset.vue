@@ -5,6 +5,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import CdnImage from './CdnImage.vue'
 
 const props = defineProps({
   type: { type: String, required: true },
