@@ -1,4 +1,5 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import one_R from '@/assets/product1/one-R.mp4'
 import upgrade1 from '@/assets/product1/upgrade_3-Temperature-Control.mp4'
 import upgrade2 from '@/assets/product1/upgrade_Activation-Indication.mp4'
@@ -25,7 +26,15 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               3-Temperature Control
             </div>
             <div class="unit7__card-img">
-              <video class="w-full h-full object-cover" :src="upgrade1" autoplay muted playsinline loop></video>
+              <MediaAsset
+                type="video"
+                :src="upgrade1"
+                :autoplay="true"
+                :muted="true"
+                :loop="true"
+                :controls="false"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
           <div class="unit7__card unit7__card--wide">
@@ -33,7 +42,15 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               Battery Life Monitor
             </div>
             <div class="unit7__card-img">
-              <video class="w-full h-full object-cover" :src="upgrade2" autoplay muted playsinline loop></video>
+              <MediaAsset
+                type="video"
+                :src="upgrade2"
+                :autoplay="true"
+                :muted="true"
+                :loop="true"
+                :controls="false"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -43,7 +60,15 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               Preheat Status Indication
             </div>
             <div class="unit7__card-img">
-              <video class="w-full h-full object-cover" :src="upgrade3" autoplay muted playsinline loop></video>
+              <MediaAsset
+                type="video"
+                :src="upgrade3"
+                :autoplay="true"
+                :muted="true"
+                :loop="true"
+                :controls="false"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
           <div class="unit7__card">
@@ -51,7 +76,15 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               Activation Indication
             </div>
             <div class="unit7__card-img">
-              <video class="w-full h-full object-cover" :src="upgrade4" autoplay muted playsinline loop></video>
+              <MediaAsset
+                type="video"
+                :src="upgrade4"
+                :autoplay="true"
+                :muted="true"
+                :loop="true"
+                :controls="false"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -94,8 +127,15 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
         </div>
       </div>
       <div class="unit7__img w-[450px] h-[540px]">
-        <video class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden" :src="one_R" autoplay muted
-          playsinline loop></video>
+        <MediaAsset
+          type="video"
+          :src="one_R"
+          :autoplay="true"
+          :muted="true"
+          :loop="true"
+          :controls="false"
+          class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden"
+        />
       </div>
     </div>
   </div>
@@ -216,6 +256,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
 }
 
 .unit7__card-img {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;
@@ -226,6 +267,16 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
   border-radius: 14px;
   background: #D9D9D9;
   object-fit: cover;
+  overflow: hidden;
+
+  :deep(video),
+  :deep(.media-video) {
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .unit7__content {
@@ -238,6 +289,20 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
 
 .unit7__step img {
   border-radius: 12px;
+}
+
+.unit7__img {
+  overflow: hidden;
+  border-radius: 20px;
+
+  :deep(video),
+  :deep(.media-video) {
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
