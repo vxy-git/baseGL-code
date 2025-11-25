@@ -394,7 +394,7 @@ const closeDropdowns = () => {
 
 .formField textarea {
   height: 100px;
-  resize: vertical;
+  resize: none;
 }
 
 .formField input::placeholder,
@@ -405,7 +405,6 @@ const closeDropdowns = () => {
 /* 自定义下拉选择框 */
 .selectField {
   position: relative;
-  z-index: 10;
 }
 
 .selectInput {
