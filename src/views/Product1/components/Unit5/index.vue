@@ -65,6 +65,25 @@ const splideOptions = {
   },
   focus: 0,        // 聚焦第一个元素
   omitEnd: true,   // 防止末尾空白
+  breakpoints: {
+    1024: {
+      fixedWidth: '40rem',
+      padding: {
+        left: 'calc((100vw - 40rem) / 2)',
+        right: 'calc((100vw - 40rem) / 2)'
+      }
+    },
+    768: {
+      fixedWidth: null,
+      padding: { left: 0, right: 0 },
+      width: '100%'
+    },
+    640: {
+      fixedWidth: null,
+      padding: { left: 0, right: 0 },
+      width: '100%'
+    }
+  }
 }
 
 // 初始化进度值
@@ -295,7 +314,7 @@ onUnmounted(() => {
         <div class="w-full flex justify-center">
           <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange">
             <SplideSlide
-              class="w-[800px] max-w-[94vw] h-[500px]"
+              class="md:w-[800px] w-full max-w-[100vw] md:h-[500px] h-[300px]"
               v-for="(media, index) in mediaList"
               :key="index"
             >
