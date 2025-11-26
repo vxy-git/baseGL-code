@@ -1,8 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import gsap from 'gsap'
-
-const productImage = 'https://www.figma.com/api/mcp/asset/7cfd8a26-51a1-4fef-a8d0-b5764e769beb'
+import productImage from '@/assets/list/icon.png'
 
 // 当前激活的分类 ID
 const activeCategoryId = ref(1)

@@ -52,8 +52,9 @@ import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
+import productImage from '@/assets/list/icon.png'
+import logoImage from '@/assets/list/product-featured.png'
 
-const logoImage = ref('/images/logo/logo.png')
 
 const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Why Caleaf']
 
@@ -78,8 +79,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -88,8 +89,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -98,8 +99,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -108,8 +109,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -118,8 +119,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -128,8 +129,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -138,8 +139,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -148,8 +149,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -158,8 +159,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -168,8 +169,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -178,8 +179,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -188,8 +189,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -198,8 +199,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -208,8 +209,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -218,8 +219,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   },
@@ -228,8 +229,8 @@ const products = ref([
     name: 'UNIT',
     description: 'UNICORE™ tech & large display',
     capacity: '1mL/2mL',
-    image: '/images/products/product-2.png',
-    background: '/images/products/product-featured.png',
+    image: productImage,
+    background: logoImage,
     alt: 'UNIT device',
     isNew: true
   }

@@ -388,10 +388,6 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
     scroll-snap-align: start;
   }
 
-  .unit7__card-img {
-    margin-top: 18px;
-  }
-
   .unit7__content {
     margin-top: 160px;
   }

@@ -3,9 +3,7 @@ import {onMounted, ref, watch, computed, onUnmounted} from "vue";
 import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
-
-const logoImage = "@/assets/img/icon11.png";
-const productImage = 'https://www.figma.com/api/mcp/asset/7cfd8a26-51a1-4fef-a8d0-b5764e769beb'
+import productImage from '@/assets/list/icon.png'
 
 // 从Nav组件迁移分类和产品数据
 const categories = ref([
