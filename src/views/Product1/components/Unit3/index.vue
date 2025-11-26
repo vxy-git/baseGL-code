@@ -57,46 +57,46 @@ onMounted(() => {
     scrollTrigger: {
       trigger: pinSection.value,
       start: 'top top',
-      end: '+=4500',
+      end: '+=7000',
       pin: true,
-      scrub: 1.2,
+      scrub: 2,
       anticipatePin: 1,
-      fastScrollEnd: true
+      fastScrollEnd: false
     }
   })
   tl.add(() => { seqProgress.value = 0 })
-    .to(seqProgress, { value: 0.33, duration: 2.8, ease: 'power1.inOut' })
+    .to(seqProgress, { value: 0.33, duration: 3.6, ease: 'power1.inOut' })
     // tb1: 整体滑动,标题淡入
-    .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<')
-    .fromTo(tb1Title.value, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.inOut' }, '<')
+    .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
+    .fromTo(tb1Title.value, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: 'power1.inOut' }, '<')
     // tb1: 整体滑出,标题淡出
-    .to(tb1.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
-    .to(tb1Title.value, { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
-    .to(seqProgress, { value: 0.66, duration: 2.8, ease: 'power1.inOut' })
+    .to(tb1.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to(tb1Title.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(seqProgress, { value: 0.66, duration: 3.6, ease: 'power1.inOut' })
     // tb2: 整体滑动,子元素按顺序淡入
-    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<+=0.3')
+    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value],
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 0.5, stagger: 0.25, ease: 'power2.out' }, '<')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb2: 整体滑出,子元素一起淡出
-    .to(tb2.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
-    .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value], { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
-    .to(seqProgress, { value: 1, duration: 2.8, ease: 'power1.inOut' })
+    .to(tb2.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
     // tb3: 整体滑动,子元素按顺序淡入
-    .fromTo(tb3.value, { yPercent: 60 }, { yPercent: 0, duration: 1.2, ease: 'power2.out' }, '<+=0.3')
+    .fromTo(tb3.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value],
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 0.5, stagger: 0.25, ease: 'power2.out' }, '<')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb3: 整体滑出,子元素一起淡出
-    .to(tb3.value, { yPercent: -60, duration: 0.8, ease: 'power2.in' }, '+=1.2')
-    .to([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value], { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, '<')
+    .to(tb3.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     // tb4 上移的同时，帧动画淡出
-    .to(frameContainer.value, { opacity: 0, duration: 2.8, ease: 'power2.inOut' })
+    .to(frameContainer.value, { opacity: 0, duration: 3.5, ease: 'power1.inOut' })
     // tb4: 整体滑动,子元素按顺序淡入
-    .fromTo(tb4.value, { yPercent: 120 }, { yPercent: 0, duration: 3.0, ease: 'power2.out' }, '<+=0.4')
+    .fromTo(tb4.value, { yPercent: 120 }, { yPercent: 0, duration: 3.3, ease: 'power1.out' }, '<+=0.4')
     .fromTo([tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value],
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 0.6, stagger: 0.25, ease: 'power2.out' }, '<+=0.4')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')
 })
 
 onUnmounted(() => {

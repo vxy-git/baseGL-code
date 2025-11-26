@@ -301,9 +301,9 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
   :deep(.media-video) {
     transition: transform 0.3s ease-in-out;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    // &:hover {
+    //   transform: scale(1.1);
+    // }
   }
 }
 

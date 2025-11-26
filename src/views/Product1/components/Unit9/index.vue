@@ -53,7 +53,7 @@ const deviceSpecs = [
         </div>
       </div>
       <div class="w-[500px] h-[730px] relative">
-      <video class="absolute h-[1000px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover" :src="specs" autoplay muted playsinline loop></video>
+      <video class="absolute h-[750px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover" :src="specs" autoplay muted playsinline loop></video>
       </div>
     </div>
   </div>
