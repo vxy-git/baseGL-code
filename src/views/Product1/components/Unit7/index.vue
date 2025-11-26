@@ -172,7 +172,9 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #FFF;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #000;
   font-family: Roboto;
   font-size: 18px;
@@ -273,9 +275,9 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
   :deep(.media-video) {
     transition: transform 0.3s ease-in-out;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    // &:hover {
+    //   transform: scale(1.1);
+    // }
   }
 }
 

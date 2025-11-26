@@ -337,7 +337,8 @@ onUnmounted(() => {
 // 绿色进度条
 .progress-bar {
   height: 100%;
-  background: #1CE785;
+  // background: #1CE785;
+  background-color: transparent;
   transition: width 0.05s linear;
   border-bottom-left-radius: 20px;
 }
