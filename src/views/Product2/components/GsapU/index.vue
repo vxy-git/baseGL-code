@@ -44,9 +44,7 @@ onMounted(() => {
     .fromTo(textBlock.value, { yPercent: 0 }, { yPercent: 0, duration: 3.0, ease: 'power1.out' }, '<')
     .fromTo([title1.value, title2.value, title3.value, image.value], { opacity: 0, yPercent: 15 }, { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')
     .to([title1.value, title2.value, title3.value, image.value], {opacity: 1, yPercent: -10, duration: 1.2, stagger: 0.2, ease: 'power1.inOut' }, '+=1.0')
-    .to(frameContainer.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
-    .to(textBlock.value, { yPercent: -90, duration: 1.2, ease: 'power1.inOut' }, '<')
-    .to({}, { duration: 0.4 })
+    .to(pinSection.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
 })
 
 onUnmounted(() => {
@@ -66,14 +64,12 @@ onUnmounted(() => {
       <div ref="textBlock" class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div class="text-block">
-            <img src="@/assets/img/icon62.png" class="mt-[220px] mx-auto img object-cover w-full" alt="">
-            <div class="mt-[186px] c_1230 c_padding">
+            <div class="c_1230 c_padding">
               <div ref="title1" class="title1 translate-y-[1px] text-center">TINY BUT MIGHTY</div>
               <div ref="title2" class="title2 mt-[19px]">A plam-sized<br />Rosin powerhouse</div>
               <div ref="title3" class="title3 mt-[19px]">UNIVERSE Series is the ultimate portable solution for rosin
                 enthusiasts. The little cutie disappears in your hand and fits flat in your pocket, making it the
                 perfect companion for those on the go.</div>
-              <img ref="image" src="@/assets/img/icon63.png" class="mt-[5px] block mx-auto h-[633px]" alt="">
             </div>
           </div>
         </div>
