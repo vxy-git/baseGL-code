@@ -33,7 +33,7 @@ useIntersectionObserver(
       :muted="true"
       :controls="false"
       :loop="false"
-      class="w-full object-cover"
+      class="w-full object-contain"
     />
 
     <div class="w-full c_padding absolute top-0">
@@ -51,7 +51,7 @@ useIntersectionObserver(
           molecules are filtered out,
           preserving the rich, natural flavors.
         </div>
-        <div class="flex gap-x-[150px] valBox justify-center mt-[82px]">
+        <div class="flex gap-x-[150px] valBox justify-center mt-[82px] max-w-[95%]">
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px]">
               30%
