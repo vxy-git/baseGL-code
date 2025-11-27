@@ -7,26 +7,82 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const unitRef = ref(null)
+const innerRef = ref(null)
 const trackRef = ref(null)
 const panels = 4
+const moveDuration = 1
+const pauseDuration = 1
 let ctx
 
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
   ctx = gsap.context(() => {
-    const distance = () => (panels - 1) * window.innerWidth
-    gsap.to(trackRef.value, {
-      x: () => -distance(),
-      ease: 'none',
+    const maskEls = innerRef.value.querySelectorAll('.mask')
+
+    gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: unitRef.value,
+        start: 'center bottom',
+        end: 'center center',
+        scrub: true,
+        invalidateOnRefresh: true
+      }
+    })
+      .fromTo(
+        innerRef.value,
+        { yPercent: 50 },
+        { yPercent: 0 }
+      )
+      .to(
+        maskEls,
+        { width: '0%', height: '0%' },
+        0
+      )
+
+    const endDistance = () =>
+      (panels - 1) *
+      window.innerHeight *
+      ((moveDuration + pauseDuration) / moveDuration)
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: unitRef.value,
         pin: true,
         start: 'center center',
-        end: () => '+=' + (panels - 1) * window.innerHeight,
-        scrub: 0.4,
+        end: () => '+=' + endDistance(),
+        scrub: true,
         invalidateOnRefresh: true
       }
     })
+
+    const firstPanel = trackRef.value.querySelector('.unit6-panel')
+    tl.to(trackRef.value, {
+      x: () => -1 * window.innerWidth,
+      duration: moveDuration
+    })
+    tl.to(firstPanel, {
+      opacity: 0,
+      x: () => window.innerWidth,
+      duration: moveDuration
+    }, 0)
+    tl.to(trackRef.value, {
+      x: () => -1 * window.innerWidth,
+      duration: pauseDuration
+    })
+
+    for (let i = 2; i < panels; i++) {
+      tl.to(trackRef.value, {
+        x: () => -i * window.innerWidth,
+        duration: moveDuration
+      })
+      tl.to(trackRef.value, {
+        x: () => -i * window.innerWidth,
+        duration: pauseDuration
+      })
+    }
+
     ScrollTrigger.refresh()
   }, unitRef)
 })
@@ -38,76 +94,81 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="unitRef" class="unit6-scroll">
-    <div ref="trackRef" class="unit6-track">
-      <div class="unit6-panel">
-        <div class="c_1230 c_padding">
-          <div class="relative w-full mx-[4px] flex flex-col items-center justify-center">
-            <img class="ml-auto rotate-180" src="@/assets/img/icon71.svg" alt="">
-            <div class="title">Pick Your Option</div>
-            <img class="mr-auto" src="@/assets/img/icon71.svg" alt="">
+    <div ref="innerRef" class="unit6-inner">
+      <div ref="trackRef" class="unit6-track">
+        <div class="unit6-panel">
+          <div class="c_1230 c_padding w-full">
+            <div class="relative w-full mx-[4px] flex flex-col items-center justify-center">
+              <div class="style-line">
+                <span class="line"></span>
+                <span class="mask mask_l"></span>
+                <span class="mask mask_r"></span>
+              </div>
+              <div class="title">Pick Your Option</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="unit6-panel">
-        <div class="c_1230 c_padding">
-          <div>
-            <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
-              <div>
-                <div class="btn mt-[3px]">UNIVERSE</div>
-                <div class="title1">It looks — and stays — beautiful.</div>
-                <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                  yours.</div>
+        <div class="unit6-panel">
+          <div class="c_1230 c_padding">
+            <div>
+              <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
+                <div>
+                  <div class="btn mt-[3px]">UNIVERSE</div>
+                  <div class="title1">It looks — and stays — beautiful.</div>
+                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
+                    yours.</div>
+                </div>
+                <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
+                  <MediaAsset type="image" :src="pack1Src" autoplay muted playsinline loop></MediaAsset>
+                </div>
               </div>
-              <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                <MediaAsset type="image" :src="pack1Src" autoplay muted playsinline loop></MediaAsset>
-              </div>
+              <div class="title3 mt-[70px]">DEEP TRACK
+                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
+                  class="inline-block translate-x-[-10px]">01</span></div>
             </div>
-            <div class="title3 mt-[70px]">DEEP TRACK
-              3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                class="inline-block translate-x-[-10px]">01</span></div>
           </div>
         </div>
-      </div>
 
-      <div class="unit6-panel">
-        <div class="c_1230 c_padding">
-          <div>
-            <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
-              <div>
-                <div class="btn mt-[3px]">UNIVERSE</div>
-                <div class="title1">It looks — and stays — beautiful.</div>
-                <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                  yours.</div>
+        <div class="unit6-panel">
+          <div class="c_1230 c_padding">
+            <div>
+              <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
+                <div>
+                  <div class="btn mt-[3px]">UNIVERSE</div>
+                  <div class="title1">It looks — and stays — beautiful.</div>
+                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
+                    yours.</div>
+                </div>
+                <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
+                  <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop></MediaAsset>
+                </div>
               </div>
-              <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop></MediaAsset>
-              </div>
+              <div class="title3 mt-[70px]">DEEP TRACK
+                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
+                  class="inline-block translate-x-[-10px]">02</span></div>
             </div>
-            <div class="title3 mt-[70px]">DEEP TRACK
-              3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                class="inline-block translate-x-[-10px]">02</span></div>
           </div>
         </div>
-      </div>
 
-      <div class="unit6-panel">
-        <div class="c_1230 c_padding">
-          <div>
-            <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
-              <div>
-                <div class="btn mt-[3px]">UNIVERSE</div>
-                <div class="title1">It looks — and stays — beautiful.</div>
-                <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                  yours.</div>
+        <div class="unit6-panel">
+          <div class="c_1230 c_padding">
+            <div>
+              <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
+                <div>
+                  <div class="btn mt-[3px]">UNIVERSE</div>
+                  <div class="title1">It looks — and stays — beautiful.</div>
+                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
+                    yours.</div>
+                </div>
+                <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
+                  <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop></MediaAsset>
+                </div>
               </div>
-              <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop></MediaAsset>
-              </div>
+              <div class="title3 mt-[70px]">DEEP TRACK
+                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
+                  class="inline-block translate-x-[-10px]">03</span></div>
             </div>
-            <div class="title3 mt-[70px]">DEEP TRACK
-              3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                class="inline-block translate-x-[-10px]">03</span></div>
           </div>
         </div>
       </div>
@@ -118,10 +179,18 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 .unit6-scroll {
   width: 100%;
+  min-height: 100vh;
+}
+
+.unit6-inner {
+  display: flex;
+  will-change: transform;
+  min-height: 100vh;
 }
 
 .unit6-track {
   display: flex;
+  align-items: center;
   will-change: transform;
 }
 
@@ -130,7 +199,44 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
 }
 
+.style-line {
+  max-width: 1222px;
+  width: 100%;
+  height: 378px;
+
+  .line {
+    height: 100%;
+    width: 100%;
+    border: 10px solid #1CE785;
+    display: block;
+  }
+
+  .mask_l,
+  .mask_r {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: #000;
+    display: block;
+  }
+
+  .mask_l {
+    top: 0;
+    left: 0;
+  }
+
+  .mask_r {
+    right: 0;
+    bottom: 0;
+  }
+}
+
 .title {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   font-family: Roboto;
   font-size: 120px;

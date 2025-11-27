@@ -1,12 +1,45 @@
 <script setup>
+import { ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import MediaAsset from '@/components/MediaAsset.vue'
 import ConsistentTR from '@/assets/product2/consistent-TR.mp4'
-
 import ConsistentBR from '@/assets/product2/consistent-BR.mp4'
 import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
 
+const wiresRef = ref(null)
+const pairRef = ref(null)
 
+useIntersectionObserver(
+  wiresRef,
+  ([{ isIntersecting }]) => {
+    const nodes = wiresRef.value?.querySelectorAll('.media-video') || []
+    nodes.forEach((video) => {
+      if (isIntersecting) {
+        video.currentTime = 0
+        video.play()
+      } else {
+        video.pause()
+      }
+    })
+  },
+  { threshold: 0.5 }
+)
 
-
+useIntersectionObserver(
+  pairRef,
+  ([{ isIntersecting }]) => {
+    const nodes = pairRef.value?.querySelectorAll('.media-video') || []
+    nodes.forEach((video) => {
+      if (isIntersecting) {
+        video.currentTime = 0
+        video.play()
+      } else {
+        video.pause()
+      }
+    })
+  },
+  { threshold: 0.5 }
+)
 
 </script>
 
@@ -30,18 +63,34 @@ import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
       <video class="h-[553px] object-cover" :src="ConsistentTR" autoplay muted playsinline loop></video>
     </div>
 
-    <div class="c_1230 c_padding">
+    <div class="c_1230 c_padding" ref="pairRef">
       <div class="flex justify-between m_flex_col_r">
         <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
-          <video class="h-[553px] object-cover" :src="ConsistentBL" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="ConsistentBL"
+            :autoplay="false"
+            :muted="true"
+            :controls="false"
+            :loop="false"
+            class="h-[553px] object-cover"
+          />
         </div>
         <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
-          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="ConsistentBR"
+            :autoplay="false"
+            :muted="true"
+            :controls="false"
+            :loop="false"
+            class="h-[553px] object-cover"
+          />
         </div>
       </div>
     </div>
 
-    <div class="c_1230 c_padding mt-[145px]">
+    <div class="c_1230 c_padding mt-[145px]" ref="wiresRef">
       <div class="greenText">Built-in wires</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
@@ -54,10 +103,26 @@ import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
         <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
-          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="ConsistentBR"
+            :autoplay="false"
+            :muted="true"
+            :controls="false"
+            :loop="false"
+            class="h-[553px] object-cover"
+          />
         </div>
         <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
-          <video class="h-[553px] object-cover" :src="ConsistentBR" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="ConsistentBR"
+            :autoplay="false"
+            :muted="true"
+            :controls="false"
+            :loop="false"
+            class="h-[553px] object-cover"
+          />
         </div>
       </div>
     </div>

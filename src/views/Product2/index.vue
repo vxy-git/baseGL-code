@@ -30,7 +30,7 @@ import Footer from "@/components/Footer.vue";
     <Unit4 />
   </div>
   <Unit5 />
-  <div class="bg-black pt-[262px]">
+  <div class="bg-black">
     <Unit6 />
     <Unit7 />
     <Unit8 />

@@ -1,11 +1,40 @@
 <script setup>
+import { ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import MediaAsset from '@/components/MediaAsset.vue'
 import videoSrc from '@/assets/product2/the.mp4'
+
+const rootRef = ref(null)
+
+useIntersectionObserver(
+  rootRef,
+  ([{ isIntersecting }]) => {
+    const el = rootRef.value?.querySelector('.media-video')
+    if (!el) return
+    const video = el
+    if (isIntersecting) {
+      video.currentTime = 0
+      video.play()
+    } else {
+      video.pause()
+    }
+  },
+  { threshold: 0.5 }
+)
 
 </script>
 
 <template>
-  <div class="w-full relative h-[1210px] flex flex-col justify-end">
-    <video class="w-full object-cover" :src="videoSrc" autoplay muted playsinline loop></video>
+  <div ref="rootRef" class="w-full relative h-[1210px] flex flex-col justify-end">
+    <MediaAsset
+      type="video"
+      :src="videoSrc"
+      :autoplay="false"
+      :muted="true"
+      :controls="false"
+      :loop="false"
+      class="w-full object-cover"
+    />
 
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">
