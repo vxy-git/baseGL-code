@@ -17,6 +17,7 @@
           <div class="card-surface">
             <img :src="product.background" :alt="product.alt + ' featured'" loading="lazy"
               class="product-featured-image" />
+            <span class="mask"></span>
             <span v-if="product.isNew" class="badge">New</span>
             <div class="text-group mt-[7px]">
               <h3 class="product-name">{{ product.name }}</h3>
@@ -472,6 +473,17 @@ const fillerCount = computed(() => {
   flex: 1;
 }
 
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 145px;
+  border-radius: 20px 20px 0 0;
+  opacity: 0;
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%);
+}
+
 .card-surface {
   // margin: auto;
   min-width: 100%;
@@ -514,12 +526,17 @@ const fillerCount = computed(() => {
       opacity: 0;
     }
 
+    .mask {
+      opacity: 0.3;
+    }
+
     .product-name,
     .product-desc {
       color: #ffffff;
     }
   }
 }
+
 
 .badge {
   color: #1CE785;
