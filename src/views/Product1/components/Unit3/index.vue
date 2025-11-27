@@ -121,7 +121,7 @@ onUnmounted(() => {
           <div ref="tb2" class="text-block">
             <div ref="tb2SmallTitle" class="smallTitle">Award-Winning</div>
             <div ref="tb2WTitle" class="wTitle">Simply the best</div>
-            <div ref="tb2Text" class="text">In June 2025, UNIT secured 1st place in the Live Resin vape category at the
+            <div ref="tb2Text" class="text">In June 2025, UNIT PRO secured 1st place in the Live Resin vape category at the
               2025
               California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this
               market validation, we are not just confident, but eager to bring this golden standard to more brands using
@@ -241,7 +241,7 @@ onUnmounted(() => {
 
 .text {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px auto 0;
   color: #FFF;
   text-align: center;
   font-family: Roboto;

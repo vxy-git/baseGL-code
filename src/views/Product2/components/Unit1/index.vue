@@ -11,7 +11,6 @@ import videoSrc from '@/assets/product2/banner.mp4'
       autoplay
       muted
       playsinline
-      loop
     ></video>
   </div>
 </template>

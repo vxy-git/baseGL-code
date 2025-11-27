@@ -39,7 +39,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
           </div>
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              Battery Life Monitor
+              Activation Indication
             </div>
             <div class="unit7__card-img">
               <MediaAsset
@@ -57,7 +57,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
         <div class="unit7__row unit7__row--swap">
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              Preheat Status Indication
+              Battery Life Monitor
             </div>
             <div class="unit7__card-img">
               <MediaAsset
@@ -73,7 +73,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
           </div>
           <div class="unit7__card">
             <div class="tag">
-              Activation Indication
+              Preheat Status Indication
             </div>
             <div class="unit7__card-img">
               <MediaAsset

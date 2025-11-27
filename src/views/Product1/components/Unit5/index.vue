@@ -4,7 +4,7 @@ import Dual_Color_Mouthpiece from '@/assets/product1/Dual_Color_Mouthpiece.jpg'
 import Large_Side_Display from '@/assets/product1/Large_Side_Display.jpg'
 import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
-import {ref, watch, onMounted, onUnmounted, nextTick} from "vue";
+import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';
 
@@ -14,6 +14,15 @@ const tabsList = [
   "Dual-Color Mouthpiece",
   "Large Side Display"
 ]
+
+// 根据 Tab 显示的文案
+const labelContents = [
+  "The edge is clean and bold, making the shape stand out from everything else.",
+  "Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.",
+  "Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check."
+]
+
+const currentLabel = computed(() => labelContents[tabsCurrent.value] || "")
 
 // 媒体资源列表，支持图片和视频混合
 const mediaList = [
@@ -305,59 +314,45 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="containerRef" class="mt-[173px]">
-    <div class="c_1230 c_padding">
-      <div class="title">
-        Every Detail Matters
-      </div>
-      <div class="mt-[58px] relative">
-        <div class="w-full flex justify-center">
-          <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange">
-            <SplideSlide
-              class="md:w-[800px] w-full max-w-[100vw] md:h-[500px] h-[300px]"
-              v-for="(media, index) in mediaList"
-              :key="index"
-            >
-              <div
-                :ref="el => setMediaRef(el, index)"
-                class="media-wrapper"
-                :class="{ 'is-active': index === tabsCurrent }"
-              >
-                <!-- 黑色透明遮罩层 -->
-                <div class="overlay"></div>
+  <div ref="containerRef" class="relative mt-[173px]">
+    <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[960px]"></span>
+    <div class="relative">
+      <div class="c_1230 c_padding">
+        <div class="title">
+          Every Detail Matters
+        </div>
+        <div class="mt-[58px] relative">
+          <div class="w-full flex justify-center">
+            <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange">
+              <SplideSlide class="md:w-[800px] w-full max-w-[100vw] md:h-[500px] h-[300px]"
+                v-for="(media, index) in mediaList" :key="index">
+                <div :ref="el => setMediaRef(el, index)" class="media-wrapper"
+                  :class="{ 'is-active': index === tabsCurrent }">
+                  <!-- 黑色透明遮罩层 -->
+                  <div class="overlay"></div>
 
-                <!-- MediaAsset 组件 -->
-                <MediaAsset
-                  :type="media.type"
-                  :src="media.src"
-                  :alt="media.alt"
-                  :poster="media.poster"
-                  :autoplay="false"
-                  :muted="true"
-                  :loop="false"
-                  :controls="false"
-                  class="media-content"
-                  :class="{'!border-[#D9D9D9]': index === tabsCurrent}"
-                />
+                  <!-- MediaAsset 组件 -->
+                  <MediaAsset :type="media.type" :src="media.src" :alt="media.alt" :poster="media.poster"
+                    :autoplay="false" :muted="true" :loop="false" :controls="false" class="media-content"
+                    :class="{'!border-[#D9D9D9]': index === tabsCurrent}" />
 
-                <!-- 蓝色进度条 -->
-                <div class="progress-bar-container">
-                  <div
-                    class="progress-bar"
-                    :style="{ width: `${progressValues[index] || 0}%` }"
-                  ></div>
+                  <!-- 蓝色进度条 -->
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" :style="{ width: `${progressValues[index] || 0}%` }"></div>
+                  </div>
                 </div>
-              </div>
-            </SplideSlide>
-          </Splide>
+              </SplideSlide>
+            </Splide>
+          </div>
         </div>
       </div>
-    </div>
-    <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
-    <div class="c_1230 c_padding">
-      <div class="label max-w-[1000px] w-full mx-auto mt-[28px]">
-        The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by
-        exposed hot wires, maximizing prevention of burnt flavors and preservation.
+      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+      <div class="c_1230 c_padding">
+        <transition name="fade-up" mode="out-in">
+          <div :key="tabsCurrent" class="label max-w-[1000px] w-full mx-auto mt-[28px]">
+            {{ currentLabel }}
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -389,6 +384,22 @@ onUnmounted(() => {
   /* 150% */
 }
 
+// 文案淡入上移动效
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-up-enter-to,
+.fade-up-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 // 媒体容器
 .media-wrapper {
   position: relative;
@@ -410,7 +421,7 @@ onUnmounted(() => {
   pointer-events: none;
   border-radius: 20px;
   opacity: 1;
-  transition: opacity 2000ms ease-out;  // 500ms 淡出过渡
+  transition: opacity 2000ms ease-out; // 500ms 淡出过渡
 }
 
 // 当前激活的 Slide，遮罩透明

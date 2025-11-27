@@ -44,19 +44,24 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <div class="mt-[180px] c_1230 c_padding">
-    <div class="label">
-      High-end feature
-    </div>
-    <div class="title mt-[20px]">
-      Inhale & Button Activated
-    </div>
-    <div class=" w-full flex justify-center gap-[20px] mt-[52px] m_flex_col">
-      <div class="flex-1 w-full rounded-[20px]">
-        <video ref="videoLeftRef" class="w-full h-full object-cover" :src="product1_inhale_L" muted playsinline loop></video>
+  <div class="relative mt-[180px] c_1230 c_padding">
+    <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[780px]"></span>
+    <div class="relative">
+      <div class="label">
+        High-end feature
       </div>
-      <div class="flex-1 w-full rounded-[20px]">
-        <video ref="videoRightRef" class="w-full h-full object-cover" :src="product1_inhale_R" muted playsinline loop></video>
+      <div class="title mt-[20px]">
+        Inhale & Button Activated
+      </div>
+      <div class=" w-full flex justify-center gap-[20px] mt-[52px] m_flex_col">
+        <div class="flex-1 w-full rounded-[20px]">
+          <video ref="videoLeftRef" class="w-full h-full object-cover" :src="product1_inhale_L" muted playsinline
+            loop></video>
+        </div>
+        <div class="flex-1 w-full rounded-[20px]">
+          <video ref="videoRightRef" class="w-full h-full object-cover" :src="product1_inhale_R" muted playsinline
+            loop></video>
+        </div>
       </div>
     </div>
   </div>
