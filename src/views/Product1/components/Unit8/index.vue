@@ -237,15 +237,12 @@ const setMediaRef = (el, index) => {
     <div class="label text-center">Design your own look</div>
     <div class="title text-center mt-[20px]">Realize your unique design with CALEAF TECH</div>
     <div class="mt-[58px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-      <img
-        class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-        :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-        src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
       <div class="w-full">
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
           @splide:move="changeEnd">
           <SplideSlide class="h-[500px] max-w-[94vw]" v-for="(media, index) in list" :key="index">
-            <div class="media-wrapper relative w-full h-full rounded-[20px] overflow-hidden" :class="{ 'is-active': index === bannerCurrent }">
+            <div class="media-wrapper relative w-full h-full rounded-[20px] overflow-hidden"
+              :class="{ 'is-active': index === bannerCurrent }">
               <!-- 黑色遮罩层 -->
               <div class="overlay"></div>
 
@@ -264,10 +261,16 @@ const setMediaRef = (el, index) => {
           </SplideSlide>
         </Splide>
       </div>
-      <img
-        class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-        :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-        src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+      <div class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1000px] mx-auto">
+        <img
+          class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
+          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
+          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
+        <img
+          class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
+          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
+          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+      </div>
     </div>
     <!-- <div class="flex justify-center gap-x-[10px] pt-[26px]">
       <div

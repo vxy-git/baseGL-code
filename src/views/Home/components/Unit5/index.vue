@@ -107,20 +107,22 @@ const goToSlide = (index) => {
         The latest news and inspiring stories
       </div>
       <div class="mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-        <img
-          class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
-          :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
         <Splide class="w-full" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
           @splide:move="changeEnd">
           <SplideSlide class="h-[480px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
             <Item :data="item" />
           </SplideSlide>
         </Splide>
-        <img
-          class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
-          :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+        <div class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto">
+          <img
+            class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
+            :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
+            src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
+          <img
+            class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
+            :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
+            src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+        </div>
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">
         <div v-for="(item,index) in list" :class="{
