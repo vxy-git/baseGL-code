@@ -1,10 +1,10 @@
 <template>
   <CdnImage v-if="isImage" v-bind="$attrs" :src="src" :alt="alt" :cdnUrl="cdnUrl" :lazy="lazy" />
-  <video v-else v-bind="$attrs" :src="src" :poster="poster" :autoplay="autoplay" :muted="muted" :loop="loop" :controls="controls" playsinline class="media-video" />
+  <video v-else ref="videoEl" v-bind="$attrs" :src="src" :poster="poster" :autoplay="autoplay" :muted="muted" :loop="loop" :controls="controls" playsinline class="media-video" />
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, defineExpose } from 'vue'
 import CdnImage from './CdnImage.vue'
 
 const props = defineProps({
@@ -21,6 +21,30 @@ const props = defineProps({
 })
 
 const isImage = computed(() => props.type === 'image')
+
+const videoEl = ref(null)
+
+function playFromStart() {
+  if (videoEl.value) {
+    try {
+      videoEl.value.currentTime = 0
+      const p = videoEl.value.play()
+      if (p && typeof p.then === 'function') {
+        p.catch(() => {})
+      }
+    } catch {}
+  }
+}
+
+function pause() {
+  if (videoEl.value) {
+    try {
+      videoEl.value.pause()
+    } catch {}
+  }
+}
+
+defineExpose({ playFromStart, pause, videoEl })
 </script>
 
 <style scoped lang="scss">

@@ -21,24 +21,24 @@ import Footer from "@/components/Footer.vue";
   <!-- <img class=" pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"
        src="../../assets/img/icon26.png" alt=""/> -->
   <div class="overflow-hidden">
-    <Header headerClass="white"/>
-    <Unit1/>
-    <Unit2/>
-    <Unit3/>
-    <Unit4/>
-    <Unit5/>
-    <Unit6/>
-    <Unit7/>
-    <Unit8/>
-    <Unit9/>
-    <Unit10/>
-    <Unit11/>
-    <Unit12/>
-    <Unit13/>
-    <Footer/>
+    <Header headerClass="white" />
+    <Unit1 />
+    <Unit2 />
+    <Unit3 />
+    <Unit4 />
+    <Unit5 />
+    <Unit6 />
+    <!-- <Unit7/> -->
+    <div class="bg-black">
+      <Unit8 />
+    </div>
+    <Unit9 />
+    <Unit10 />
+    <Unit11 />
+    <Unit12 />
+    <Unit13 />
+    <Footer />
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

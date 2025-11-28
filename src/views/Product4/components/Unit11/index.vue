@@ -1,4 +1,10 @@
 <script setup>
+import UNIVERSE from '@/assets/product4/UNICORN.mp4';
+import NIVERSE_PRO from '@/assets/product4/UNICORN-PRO.mp4';
+
+import { ref } from 'vue'
+
+
 const deviceSpecs1 = [
   { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
   { label: "Tank Volume", value: "0.5mL / 1mL" },
@@ -29,12 +35,12 @@ const deviceSpecs2 = [
 </script>
 
 <template>
-  <div class="w-[1230px] mx-auto mt-[158px] pb-[170px]">
+  <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
       Specifications
     </div>
-    <div class="relative mt-[55px]">
-      <div class="flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
+    <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
         <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -44,12 +50,25 @@ const deviceSpecs2 = [
           </div>
         </div>
       </div>
-      <img src="@/assets/img/icon39.png" class="w-[832px] absolute right-[-239px] -top-[120px]" alt="">
-    </div>
-    <div class="relative mt-[124px] overflow-hidden">
+      <div class="w-full flex flex-col items-center justify-center">
+        <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
 
-      <img src="@/assets/img/icon40.png" class="w-[892px] absolute left-[-299px] -top-[134px]" alt="">
-      <div class="flex float-right gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
+        <div class="max-h-[414px]">
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
+        </div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+      </div>
+    </div>
+    <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
+      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+        <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
+
+        <div class="max-h-[414px]">
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
+        </div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
+      </div>
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -64,7 +83,7 @@ const deviceSpecs2 = [
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   color: #000;
   font-family: Roboto;
   font-size: 40px;
@@ -72,14 +91,15 @@ const deviceSpecs2 = [
   font-weight: 700;
   line-height: normal;
 }
-.item{
+
+.item {
   width: 220px;
   height: 80px;
   flex-shrink: 0;
   border-radius: 10px;
-  opacity: 0.2;
-  background: #D9D9D9;
-  .label{
+  background: rgba(217, 217, 217, 0.2);
+
+  .label {
     color: #666;
     font-family: Roboto;
     font-size: 16px;
@@ -87,7 +107,8 @@ const deviceSpecs2 = [
     font-weight: 400;
     line-height: normal;
   }
-  .value{
+
+  .value {
     color: #111;
     font-family: Roboto;
     font-size: 18px;
@@ -95,5 +116,14 @@ const deviceSpecs2 = [
     font-weight: 700;
     line-height: normal;
   }
+}
+
+.text7 {
+  color: #000;
+  font-family: Roboto;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 </style>

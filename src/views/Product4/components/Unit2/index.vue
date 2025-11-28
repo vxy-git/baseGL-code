@@ -1,35 +1,39 @@
 <script setup>
-
+import logo1 from '@/assets/product4/Advanced-Interactivity.jpg';
+import logo2 from '@/assets/product4/Dual-Chamber.jpg';
+import logo3 from '@/assets/product4/Multiple-Options.jpg';
+import logo4 from '@/assets/product4/Post-Free.jpg';
+import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 
 <template>
-<div class="flex flex-col gap-y-[20px] pt-[110px]">
-  <div class="flex justify-center gap-x-[20px]">
-    <div class="w-[605px] h-[340px] relative">
-      <div class="text absolute top-[21px] left-[28px]">Dual Chamber</div>
-      <img class="size-full rounded-[20px] object-cover" src="@/assets/img/icon31.png" alt="">
+  <div class="flex flex-col gap-y-[20px] pt-[110px]">
+    <div class="flex justify-center gap-x-[20px]">
+      <div class="w-[605px] h-[340px] relative">
+        <div class="text absolute top-[21px] left-[28px]">Dual Chamber</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo2" alt="" />
+      </div>
+      <div class="w-[605px] h-[340px] relative">
+        <div class="text absolute top-[21px] left-[28px]">Post-Free</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo4" alt="" />
+      </div>
     </div>
-    <div class="w-[605px] h-[340px] relative">
-      <div class="text absolute top-[21px] left-[28px]">Post-Free</div>
-      <img class="size-full rounded-[20px] object-cover" src="@/assets/img/icon31.png" alt="">
+    <div class="flex justify-center gap-x-[20px]">
+      <div class="w-[605px] h-[340px] relative">
+        <div class="text absolute top-[21px] left-[28px]">Multiple Options</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo3" alt="" />
+      </div>
+      <div class="w-[605px] h-[340px] relative">
+        <div class="text absolute top-[21px] left-[28px]">Advanced Interactivity</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo1" alt="" />
+      </div>
     </div>
   </div>
-  <div class="flex justify-center gap-x-[20px]">
-    <div class="w-[605px] h-[340px] relative">
-      <div class="text absolute top-[21px] left-[28px]">Multiple Options</div>
-      <img class="size-full rounded-[20px] object-cover" src="@/assets/img/icon31.png" alt="">
-    </div>
-    <div class="w-[605px] h-[340px] relative">
-      <div class="text absolute top-[21px] left-[28px]">Advanced Interactivity</div>
-      <img class="size-full rounded-[20px] object-cover" src="@/assets/img/icon31.png" alt="">
-    </div>
-  </div>
-</div>
 </template>
 
 <style scoped lang="scss">
-.text{
-  color: #FFF;
+.text {
+  color: #000;
   text-align: center;
   font-family: Roboto;
   font-size: 24px;

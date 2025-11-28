@@ -5,7 +5,7 @@ import videoSrc from '@/assets/product2/banner.mp4'
 
 <template>
   <div class="unit1 h-[980px] bg-black relative">
-    <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline loop></video>
+    <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
   </div>
 </template>
 

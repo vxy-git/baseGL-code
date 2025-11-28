@@ -1,5 +1,46 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import leftVideo from '@/assets/product4/unit5-l.mp4'
+import rightVideo from '@/assets/product4/unit5-r.mp4'
 
+const leftContainer = ref(null)
+const rightContainer = ref(null)
+const leftAsset = ref(null)
+const rightAsset = ref(null)
+
+let leftObserver = null
+let rightObserver = null
+
+function handleIntersection(entry, assetRef) {
+  if (entry.isIntersecting) {
+    assetRef.value && assetRef.value.playFromStart()
+  } else {
+    assetRef.value && assetRef.value.pause()
+  }
+}
+
+onMounted(() => {
+  leftObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => handleIntersection(e, leftAsset))
+  }, { threshold: 0.4 })
+  rightObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => handleIntersection(e, rightAsset))
+  }, { threshold: 0.4 })
+  if (leftContainer.value) leftObserver.observe(leftContainer.value)
+  if (rightContainer.value) rightObserver.observe(rightContainer.value)
+})
+
+onBeforeUnmount(() => {
+  if (leftObserver) {
+    leftObserver.disconnect()
+    leftObserver = null
+  }
+  if (rightObserver) {
+    rightObserver.disconnect()
+    rightObserver = null
+  }
+})
 </script>
 
 <template>
@@ -18,9 +59,31 @@
         <div class="label">
           The Gemco core in dual chamber can release the purest, richest, and most authentic terpene flavors when used individually. When both chambers are engaged, it creates the most perfect flavor collision, allowing the dual aromas to swirl on your taste buds.
         </div>
-        <img src="@/assets/img/icon35.png" class="w-[600px] h-[360px] mt-[55px] rounded-[20px]" alt="">
+        <div ref="leftContainer" class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden">
+          <MediaAsset
+            ref="leftAsset"
+            type="video"
+            :src="leftVideo"
+            :controls="false"
+            :autoplay="false"
+            :muted="true"
+            :loop="false"
+            class="w-full h-full object-cover rounded-[20px]"
+          />
+        </div>
       </div>
-      <img class="w-[500px] h-[650px] rounded-[20px]" src="@/assets/img/icon36.png" alt="">
+      <div ref="rightContainer" class="w-[500px] h-[650px] rounded-[20px] overflow-hidden">
+        <MediaAsset
+          ref="rightAsset"
+          type="video"
+          :src="rightVideo"
+          :controls="false"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          class="w-full h-full object-cover rounded-[20px]"
+        />
+      </div>
     </div>
 <!--    <img class="w-[900px] h-[409px] mx-auto mt-[64px]" src="@/assets/img/icon34.png" alt="">-->
   </div>
