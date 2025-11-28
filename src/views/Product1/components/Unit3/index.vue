@@ -7,9 +7,9 @@ import FrameSequence from '@/components/FrameSequence.vue'
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress = ref(0)
-const frames = 18
+const frames = 71
 const tarURL = '/product1.tar'
-const imageURL = (i) => `product1/frame${i + 1}.png`
+const imageURL = (i) => `product1/frame${i + 1}.jpg`
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
