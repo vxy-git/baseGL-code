@@ -41,9 +41,11 @@ onMounted(() => {
       )
 
     const endDistance = () =>
-      (panels - 1) *
       window.innerHeight *
-      ((moveDuration + pauseDuration) / moveDuration)
+      (
+        1 + // first fade-only segment
+        (panels - 1) * ((moveDuration + pauseDuration) / moveDuration)
+      )
 
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
@@ -58,15 +60,18 @@ onMounted(() => {
     })
 
     const firstPanel = trackRef.value.querySelector('.unit6-panel')
+    tl.to(firstPanel, {
+      opacity: 0.2,
+      duration: moveDuration
+    })
     tl.to(trackRef.value, {
       x: () => -1 * window.innerWidth,
       duration: moveDuration
     })
     tl.to(firstPanel, {
       opacity: 0,
-      x: () => window.innerWidth,
       duration: moveDuration
-    }, 0)
+    }, '-=' + moveDuration)
     tl.to(trackRef.value, {
       x: () => -1 * window.innerWidth,
       duration: pauseDuration
@@ -120,12 +125,13 @@ onBeforeUnmount(() => {
                     yours.</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="image" :src="pack1Src" autoplay muted playsinline loop></MediaAsset>
+                  <MediaAsset type="image" :src="pack1Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
                 </div>
               </div>
-              <div class="title3 mt-[70px]">DEEP TRACK
-                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                  class="inline-block translate-x-[-10px]">01</span></div>
+              <div class="title3 mt-[70px]">
+                DEEP TRACK 3.0
+                <span class="mx-[10px]">|</span>
+                <span class="num inline-block">01</span></div>
             </div>
           </div>
         </div>
@@ -141,12 +147,13 @@ onBeforeUnmount(() => {
                     yours.</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop></MediaAsset>
+                  <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
                 </div>
               </div>
-              <div class="title3 mt-[70px]">DEEP TRACK
-                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                  class="inline-block translate-x-[-10px]">02</span></div>
+              <div class="title3 mt-[70px]">
+                DEEP TRACK 3.0
+                <span class="mx-[10px]">|</span>
+                <span class="num inline-block">02</span></div>
             </div>
           </div>
         </div>
@@ -162,12 +169,13 @@ onBeforeUnmount(() => {
                     yours.</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop></MediaAsset>
+                  <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
                 </div>
               </div>
-              <div class="title3 mt-[70px]">DEEP TRACK
-                3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                  class="inline-block translate-x-[-10px]">03</span></div>
+              <div class="title3 mt-[70px]">
+                DEEP TRACK 3.0
+                <span class="mx-[10px]">|</span>
+                <span class="num inline-block">03</span></div>
             </div>
           </div>
         </div>
@@ -279,7 +287,7 @@ onBeforeUnmount(() => {
   font-weight: 400;
   text-align: center;
 
-  span {
+  .num {
     color: #1CE785;
     font-family: Roboto;
     font-size: 14px;

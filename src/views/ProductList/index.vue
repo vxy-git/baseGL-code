@@ -17,16 +17,17 @@
           <div class="card-surface">
             <img :src="product.background" :alt="product.alt + ' featured'" loading="lazy"
               class="product-featured-image" />
+            <div class="media">
+              <img :src="product.image" :alt="product.alt" loading="lazy" class="product-image" />
+            </div>
             <span class="mask"></span>
-            <span v-if="product.isNew" class="badge">New</span>
-            <div class="text-group mt-[7px]">
+            <div class="text-group">
+              <span v-if="product.isNew" class="badge">New</span>
               <h3 class="product-name">{{ product.name }}</h3>
               <p class="product-desc">{{ product.description }}</p>
             </div>
-            <div class="media">
-              <img src="@/assets/img/icon47.png" :alt="product.alt" loading="lazy" class="product-image" />
-            </div>
             <div class="card-footer">
+              <span class="more">Learn more</span>
               <span class="capacity-chip">{{ product.capacity }}</span>
             </div>
           </div>
@@ -54,7 +55,23 @@ import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
 import productImage from '@/assets/list/icon.png'
+
 import logoImage from '@/assets/list/product-featured.png'
+
+import BLENDER from '@/assets/list/D9_Distillate/BLENDER.jpg';
+import BLENDER_HOVER from '@/assets/list/D9_Distillate/BLENDER-hover.jpg';
+
+import DUKES from '@/assets/list/D9_Distillate/DUKES.jpg';
+import DUKES_HOVER from '@/assets/list/D9_Distillate/DUKES-hover.jpg';
+
+import UNICORN_Series from '@/assets/list/For_ResinRosin/UNICORN-Series.jpg';
+import UNICORN_Series_HOVER from '@/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg';
+
+import UNIT_PRO from '@/assets/list/For_ResinRosin/UNIT-PRO.jpg';
+import UNIT_PRO_HOVER from '@/assets/list/For_ResinRosin/UNIT-PRO-hover.png';
+
+import UNIVERSE_Series from '@/assets/list/For_ResinRosin/UNIVERSE-Series.jpg';
+import UNIVERSE_Series_HOVER from '@/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg';
 
 
 const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Why Caleaf']
@@ -63,213 +80,27 @@ const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Wh
 const tabsCurrent = ref(0)
 const tabsList = [
   'For Resin/Rosin',
-  'Pod System',
-  'Full Ceramic',
   'D9 Distillate',
-  'US Stock',
-  'Dab Pen',
-  '510 Cartridge',
-  'D8 Distillate'
 ]
 
 const activeFilterIndex = 0
 
-const products = ref([
-  {
-    id: 1,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 2,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 3,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 4,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 5,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 6,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 7,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 8,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 9,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 10,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 11,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 12,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 13,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 14,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 15,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  },
-  {
-    id: 16,
-    name: 'UNIT',
-    description: 'UNICORE™ tech & large display',
-    capacity: '1mL/2mL',
-    image: productImage,
-    background: logoImage,
-    alt: 'UNIT device',
-    isNew: true
-  }
-])
+const productsData = {
+  0: [
+    { id: 1, name: 'UNIT PRO', description: 'UNICORE™ tech & large display', capacity: '1mL/2mL', image: BLENDER, background: BLENDER_HOVER, alt: 'UNIT PRO', isNew: true },
+    { id: 2, name: 'UNIT', description: 'Smooth for Resin/Rosin', capacity: '1mL/2mL', image: DUKES, background: DUKES_HOVER, alt: 'UNIT', isNew: true },
+  ],
+  1: [
+    { id: 101, name: 'DUKES', description: 'Dual flavor system', capacity: '2mL', image: UNICORN_Series, background: UNICORN_Series_HOVER, alt: 'DUKES', isNew: true },
+    { id: 102, name: 'D9 CART', description: 'For Distillate oils', capacity: '1mL', image: UNIT_PRO, background: UNIT_PRO_HOVER, alt: 'D9 CART', isNew: false },
+    { id: 105, name: 'D9 MAX', description: 'High capacity distillate', capacity: '2mL', image: UNIVERSE_Series, background: UNIVERSE_Series_HOVER, alt: 'D9 MAX', isNew: false },
+  ]
+}
+
+const products = computed(() => productsData[tabsCurrent.value] || [])
 
 const pages = [1, 2, 3, 4, 5, 6, 7]
 const currentPage = 4
-
-const footerLinks = {
-  products: [
-    'For Resin/Rosin',
-    'Pod System',
-    'Full Ceramic',
-    'D9 Distillate',
-    'US Stock',
-    'Dab Pen',
-    '510 Cartridge',
-    'D8 Distillate'
-  ],
-  technology: [
-    'Product Support',
-    'Repair Service',
-    'After-Sales Policy',
-    'Care Service',
-    'Downloads'
-  ],
-  customize: [
-    'For Resin/Rosin',
-    'Pod System',
-    'Full Ceramic',
-    'D9 Distillate',
-    'US Stock',
-    'Dab Pen',
-    '510 Cartridge',
-    'D8 Distillate'
-  ],
-  why: ['About Caleaf', 'Press', 'Blog', 'CSR', 'Awards', 'Join Us']
-}
 
 const YouTubeIcon = () =>
   h('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none' }, [
@@ -480,7 +311,7 @@ const fillerCount = computed(() => {
   width: 100%;
   height: 145px;
   border-radius: 20px 20px 0 0;
-  opacity: 0;
+  opacity: 0.3;
   background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%);
 }
 
@@ -549,18 +380,17 @@ const fillerCount = computed(() => {
 }
 
 .media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  margin-top: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 
   img {
-    width: 231px;
-    max-width: 231px;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -586,10 +416,14 @@ const fillerCount = computed(() => {
 .text-group {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-name {
-  color: #000000;
+  color: #ffffff;
   font-family: Roboto;
   font-size: 22px;
   font-style: normal;
@@ -601,16 +435,31 @@ const fillerCount = computed(() => {
 
 .product-desc {
   font-size: 16px;
-  color: #555555;
+  color: #ffffff;
   opacity: 0.7;
   line-height: 1.6;
   transition: color 0.3s ease;
 }
 
+.more {
+  color: #fafafa;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19px;
+  text-decoration: underline;
+}
+
 .card-footer {
-  position: relative;
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  right: 28px;
   z-index: 1;
   margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .capacity-chip {
@@ -621,8 +470,9 @@ const fillerCount = computed(() => {
   height: 30px;
   border-radius: 50px;
   font-size: 16px;
-  background: #1ce785;
+  background: #ffffff;
   color: #111111;
+  text-decoration: underline;
   font-weight: 600;
 }
 
