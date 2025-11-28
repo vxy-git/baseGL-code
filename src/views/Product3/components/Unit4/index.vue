@@ -1,9 +1,9 @@
 <script setup>
-
+import unit4Bg from '@/assets/product3/unit4.jpg'
 </script>
 
 <template>
-  <div class="h-[799px] bg-[#D9D9D9]">
+  <div class="unit4 h-[799px]" :style="{ backgroundImage: `url(${unit4Bg})` }">
     <div class="c_1230 c_padding mx-auto pt-[248px]">
       <div class="title1  ml-[2px]">
         UNICORN
@@ -16,6 +16,11 @@
 </template>
 
 <style scoped lang="scss">
+.unit4 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .title1 {
   color: #FFF;
   font-family: Roboto;

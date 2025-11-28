@@ -1,5 +1,9 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import tempControl from '@/assets/product3/3-Temperature-Control.mp4'
+import batteryLifeMonitor from '@/assets/product3/Battery-Life-Monitor.mp4'
+import preheatStatus from '@/assets/product3/Preheat-Status-Indication.mp4'
+import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 </script>
 
 <template>
@@ -18,13 +22,29 @@
             <div class="tag">
               3-Temperature Control
             </div>
-            <img class="unit5__card-img" src="" alt="">
+            <MediaAsset
+              class="unit5__card-img"
+              type="video"
+              :src="tempControl"
+              :autoplay="true"
+              :muted="true"
+              :loop="true"
+              :controls="false"
+            />
           </div>
           <div class="unit5__card unit5__card--wide">
             <div class="tag">
               Battery Life Monitor
             </div>
-            <img class="unit5__card-img" src="" alt="">
+            <MediaAsset
+              class="unit5__card-img"
+              type="video"
+              :src="batteryLifeMonitor"
+              :autoplay="true"
+              :muted="true"
+              :loop="true"
+              :controls="false"
+            />
           </div>
         </div>
         <div class="unit5__row unit5__row--swap">
@@ -32,13 +52,29 @@
             <div class="tag">
               Preheat Status Indication
             </div>
-            <img class="unit5__card-img" src="" alt="">
+            <MediaAsset
+              class="unit5__card-img"
+              type="video"
+              :src="preheatStatus"
+              :autoplay="true"
+              :muted="true"
+              :loop="true"
+              :controls="false"
+            />
           </div>
           <div class="unit5__card">
             <div class="tag">
              Dosing Timer
             </div>
-            <img class="unit5__card-img" src="" alt="">
+            <MediaAsset
+              class="unit5__card-img"
+              type="video"
+              :src="puffCounter"
+              :autoplay="true"
+              :muted="true"
+              :loop="true"
+              :controls="false"
+            />
           </div>
         </div>
       </div>
@@ -81,13 +117,15 @@
 }
 
 .tag {
-  width: max-content;
-  padding: 0 27px;
-  // width: 260px;
+  position: relative;
+  z-index: 1;
+  width: 260px;
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #FFF;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #000;
   font-family: Roboto;
   font-size: 18px;
@@ -163,7 +201,7 @@
   position: relative;
   min-height: 440px;
   border-radius: 20px;
-  background: #D9D9D9;
+  // background: #D9D9D9;
   padding: 25px 21px 21px;
   overflow: hidden;
   display: flex;
@@ -171,12 +209,19 @@
 }
 
 .unit5__card-img {
-  flex: 1;
+  
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
+  height: 100%;
   border-radius: 14px;
   background: #D9D9D9;
   object-fit: cover;
-  margin-top: 24px;
+  overflow: hidden;
 }
 
 .unit5__content {
