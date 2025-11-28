@@ -1,5 +1,4 @@
-<script setup>
-import { ref } from 'vue'
+<script setup>import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import MediaAsset from '@/components/MediaAsset.vue'
 import ConsistentTR from '@/assets/product2/consistent-TR.mp4'
@@ -40,7 +39,6 @@ useIntersectionObserver(
   },
   { threshold: 0.5 }
 )
-
 </script>
 
 <template>
@@ -63,9 +61,9 @@ useIntersectionObserver(
       <video class="h-[553px] object-cover" :src="ConsistentTR" autoplay muted playsinline loop></video>
     </div>
 
-    <div class="c_1230 c_padding" ref="pairRef">
-      <div class="flex justify-between m_flex_col_r">
-        <div class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px]">
+    <div class="h-[553px] c_1230 c_padding" ref="pairRef">
+      <div class="h-full flex justify-between m_flex_col_r">
+        <div class="img-small h-full object-cover w-[39%] rounded-[20px]">
           <MediaAsset
             type="video"
             :src="ConsistentBL"
@@ -73,10 +71,10 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
-            class="h-[553px] object-cover"
+            class="h-full object-cover"
           />
         </div>
-        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
           <MediaAsset
             type="video"
             :src="ConsistentBR"
@@ -84,13 +82,13 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
-            class="h-[553px] object-cover"
+            class="h-full object-cover"
           />
         </div>
       </div>
     </div>
 
-    <div class="c_1230 c_padding mt-[145px]" ref="wiresRef">
+    <div class="c_1230 c_padding mt-[145px]">
       <div class="greenText">Built-in wires</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
@@ -101,8 +99,8 @@ useIntersectionObserver(
           and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
         </div>
       </div>
-      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+      <div class="h-[553px] flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
           <MediaAsset
             type="video"
             :src="ConsistentBR"
@@ -110,10 +108,10 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
-            class="h-[553px] object-cover"
+            class="h-full object-cover"
           />
         </div>
-        <div class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
           <MediaAsset
             type="video"
             :src="ConsistentBR"
@@ -121,7 +119,7 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
-            class="h-[553px] object-cover"
+            class="h-full object-cover"
           />
         </div>
       </div>

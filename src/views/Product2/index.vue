@@ -16,28 +16,26 @@ import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <!-- 覆盖图层 -->
-  <!-- <img src="/product-detail2.jpg" alt="Overlay Image"
-    class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 w-full z-[50] opacity-50" /> -->
-
-  <Header headerClass="white" />
-  <div class="bg-black pb-[140px]">
-    <Unit1 />
-    <Unit2 />
-    <GsapU />
-    <Unit3 />
-    <VideoU />
-    <Unit4 />
-  </div>
-  <Unit5 />
-  <div class="bg-black">
-    <Unit6 />
-    <Unit7 />
-    <Unit8 />
-    <Splide4 />
-  </div>
-  <div class="pt-[0px]">
-    <Footer />
+  <div>
+    <Header headerClass="white" />
+    <div class="bg-black pb-[140px]">
+      <Unit1 />
+      <Unit2 />
+      <GsapU />
+      <Unit3 />
+      <VideoU />
+      <Unit4 />
+    </div>
+      <Unit5 />
+    <div class="bg-black">
+      <Unit6 />
+      <Unit7 />
+      <Unit8 />
+      <Splide4 />
+    </div>
+    <div class="pt-[0px]">
+      <Footer />
+    </div>
   </div>
 </template>
 

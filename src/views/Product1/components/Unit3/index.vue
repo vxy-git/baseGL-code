@@ -59,7 +59,7 @@ onMounted(() => {
       start: 'top top',
       end: '+=7000',
       pin: true,
-      scrub: 2,
+      scrub: 1,
       anticipatePin: 1,
       fastScrollEnd: false
     }

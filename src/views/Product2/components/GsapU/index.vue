@@ -34,7 +34,7 @@ onMounted(() => {
       start: 'top top',
       end: '+=5000',
       pin: true,
-      scrub: 2,
+      scrub: 1,
       anticipatePin: 1,
       fastScrollEnd: false
     }
