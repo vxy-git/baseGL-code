@@ -14,12 +14,12 @@ const list = [screen1,screen2,screen3,screen4,screen5,screen6]
 
 <template>
   <div class="h-[900px] bg-[#F5F5F5]">
-    <div class="h-full">
+    <div class="h-full unit6">
       <div class="mb-[55px] flex justify-center items-start gap-[200px]">
-        <div class="w-[250px] relative ml-[-250px]">
+        <div class="w-[250px] relative ml-[-250px] shrink-0">
           <img class="w-full absolute top-0 left-0" :src="screenBg1" alt="">
         </div>
-        <div class="mt-[126px]">
+        <div class="mt-[126px] textBox">
           <div class="title">
             ULTRA-LARGE SMART DISPLAY
           </div>
@@ -54,7 +54,6 @@ const list = [screen1,screen2,screen3,screen4,screen5,screen6]
 }
 
 .title2 {
-  text-wrap: nowrap;
   color: #111;
   font-family: Roboto;
   font-size: 40px;
@@ -71,7 +70,24 @@ const list = [screen1,screen2,screen3,screen4,screen5,screen6]
   font-style: normal;
   font-weight: 400;
   line-height: 30px;
-  /* 150% */
-  @apply mt-[37.45px]
+}
+
+
+@media screen and (max-width: 1350px) {
+  .unit6 {
+    transform: translateX(12vw);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .unit6 {
+    transform: scale(0.5);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .unit6 {
+    transform: scale(0.5) translateX(20vw);
+  }
 }
 </style>

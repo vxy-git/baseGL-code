@@ -53,7 +53,7 @@ const deviceSpecs2 = [
       <div class="w-full flex flex-col items-center justify-center">
         <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
 
-        <div class="max-h-[414px]">
+        <div class="h-[414px]">
           <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
         </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
@@ -63,7 +63,7 @@ const deviceSpecs2 = [
       <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
         <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
 
-        <div class="max-h-[414px]">
+        <div class="h-[414px]">
           <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
