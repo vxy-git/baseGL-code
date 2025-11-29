@@ -37,7 +37,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="pt-[238px] flex flex-col items-center c_1230 c_padding">
+  <div class="pt-[238px] flex flex-col items-center c_padding">
     <div class="flex flex-col items-center">
       <div class="title">
         <span class="text-white">Gold</span> standard for Resin/Rosin
