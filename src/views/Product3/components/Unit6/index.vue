@@ -1,5 +1,5 @@
 <script setup>
-import screenBg0 from '@/assets/product4/screen-bg-0.png'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import screenBg1 from '@/assets/product4/screen-bg-1.png'
 import screen1 from '@/assets/product4/screen1.png'
 import screen2 from '@/assets/product4/screen2.png'
@@ -8,7 +8,85 @@ import screen4 from '@/assets/product4/screen4.png'
 import screen5 from '@/assets/product4/screen5.png'
 import screen6 from '@/assets/product4/screen6.png'
 
-const list = [screen1,screen2,screen3,screen4,screen5,screen6]
+const list = [screen1, screen2, screen3, screen4, screen5, screen6]
+
+const listBox = ref(null)
+const currentIndex = ref(0)
+const stepWidth = ref(350) // 单卡宽度 + 间距的初始值，挂载后会重新计算
+const noTransition = ref(false)
+const autoTimer = ref(null)
+const resetTimer = ref(null)
+
+const intervalMs = 2600
+const transitionMs = 700
+
+const displayList = computed(() => [...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list])
+
+const trackStyle = computed(() => ({
+  transform: `translateX(-${currentIndex.value * stepWidth.value}px)`
+}))
+
+const measureStep = () => {
+  const trackEl = listBox.value
+  if (!trackEl) return
+  const firstCard = trackEl.querySelector('.unit6-card')
+  if (!firstCard) return
+  const styles = window.getComputedStyle(trackEl)
+  const gap = parseFloat(styles.columnGap || '0')
+  stepWidth.value = firstCard.offsetWidth + gap
+}
+
+const resetToStart = () => {
+  noTransition.value = true
+  currentIndex.value = 0
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      noTransition.value = false
+    })
+  })
+}
+
+const goNext = () => {
+  if (!displayList.value.length) return
+  currentIndex.value += 1
+
+  if (currentIndex.value === list.length) {
+    if (resetTimer.value) {
+      window.clearTimeout(resetTimer.value)
+    }
+    resetTimer.value = window.setTimeout(() => {
+      resetToStart()
+    }, transitionMs)
+  }
+}
+
+const stopAutoPlay = () => {
+  if (autoTimer.value) {
+    window.clearInterval(autoTimer.value)
+    autoTimer.value = null
+  }
+}
+
+const startAutoPlay = () => {
+  stopAutoPlay()
+  autoTimer.value = window.setInterval(goNext, intervalMs)
+}
+
+onMounted(() => {
+  nextTick(() => {
+    measureStep()
+    startAutoPlay()
+    window.addEventListener('resize', measureStep)
+  })
+})
+
+onBeforeUnmount(() => {
+  stopAutoPlay()
+  if (resetTimer.value) {
+    window.clearTimeout(resetTimer.value)
+  }
+  window.removeEventListener('resize', measureStep)
+})
 
 </script>
 
@@ -33,10 +111,13 @@ const list = [screen1,screen2,screen3,screen4,screen5,screen6]
         </div>
       </div>
 
-      <div class="flex gap-x-[150px] ml-[100px] justify-center">
-        <div class="w-[200px] h-[400px] rounded-[30px] flex-shrink-0 relative"
-          v-for="(item,index) in list">
-          <img class="size-full" :src="item" alt="">
+      <div class="relative">
+        <div ref="listBox" class="list-track flex gap-x-[150px] pl-[100px] justify-center"
+          :class="{ 'no-transition': noTransition }" :style="trackStyle">
+          <div class="unit6-card w-[200px] h-[400px] rounded-[30px] flex-shrink-0 relative"
+            v-for="(item,index) in displayList" :key="index">
+            <img class="size-full rounded-[20px]" :src="item" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -89,5 +170,13 @@ const list = [screen1,screen2,screen3,screen4,screen5,screen6]
   .unit6 {
     transform: scale(0.5) translateX(20vw);
   }
+}
+
+.list-track {
+  transition: transform 0.7s ease;
+}
+
+.no-transition {
+  transition: none !important;
 }
 </style>

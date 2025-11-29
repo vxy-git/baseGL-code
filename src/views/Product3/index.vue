@@ -19,6 +19,7 @@ import Footer from "@/components/Footer.vue";
 
 <template>
   <div>
+    <Unit6 />
     <Header headerClass="white" />
     <Unit1 />
     <Unit2 />
