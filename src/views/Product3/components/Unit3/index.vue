@@ -94,7 +94,7 @@ onMounted(() => {
     // tb3 退出与整体淡出
     .to(tb3.value, { yPercent: -200, opacity: 0, duration: 1.6, ease: 'power1.inOut' }, '+=2.0')
     // .to(frameContainer.value, { opacity: 0, duration: 3.0, ease: 'power1.inOut' }, '<')
-    .to(pinSection.value, { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, '>+=0.2')
+    // .to(pinSection.value, { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, '>+=0.2')
 })
 
 onUnmounted(() => {
