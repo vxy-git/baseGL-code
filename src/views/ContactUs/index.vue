@@ -101,15 +101,18 @@ const closeDropdowns = () => {
       <!-- Hero Section -->
       <section class="hero">
         <div class="heroBackground">
-          <img src="@/assets/img/icon43.png" class="heroImage" alt="" />
+          <img src="@/assets/contact/banner.jpg" class="heroImage m_hide" alt="" />
+          <img src="@/assets/contact/m_banner.jpg" class="heroImage pc_hide" alt="" />
           <div class="divider"></div>
         </div>
-        <div class="heroContent c_1300 c_padding">
-          <h1 class="heroTitle">Get in Touch</h1>
-          <p class="heroEmail">Email: info@caleaftech.com</p>
-          <div class="socialSection mt-[34px] pr-[4px]">
-            <p class="followText">Follow Us</p>
-            <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+        <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
+          <div class="heroContent c_1300 c_padding">
+            <h1 class="heroTitle">Get in Touch</h1>
+            <p class="heroEmail">Email: info@caleaftech.com</p>
+            <div class="socialSection mt-[34px] pr-[4px]">
+              <p class="followText">Follow Us</p>
+              <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+            </div>
           </div>
         </div>
       </section>
@@ -180,16 +183,18 @@ const closeDropdowns = () => {
 
 <style scoped lang="scss">
 .hero {
-  min-height: calc(975px / 1920px * 100vw);
+  margin-top: 97px;
+  // min-height: calc(975px / 1920px * 100vw);
   position: relative;
   width: 100%;
-  height: 975px;
+  // height: 975px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
-  
+
 }
+
 /* Main Container */
 .contactPage {
   width: 100%;
@@ -251,16 +256,16 @@ const closeDropdowns = () => {
 }
 
 .heroBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
 
 .heroImage {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
 }
 

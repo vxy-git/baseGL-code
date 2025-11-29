@@ -46,7 +46,9 @@ body {
   margin-right: auto;
 }
 
-
+.pc_hide {
+  display: none;
+}
 
 @media screen and (min-width: 1920px) {
   :root {
@@ -148,6 +150,14 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+  .m_hide {
+    display: none;
+  }
+
+  .pc_hide {
+    display: block;
+  }
+
   :root {
     --rem-base: calc(100vw / 380px * 10px);
     font-size: var(--rem-base);
