@@ -3,12 +3,15 @@
 </script>
 
 <template>
-  <div class="h-[880px] flex justify-center items-center bg-[#F8F9FD]">
-    <div class="title">
+  <div class="h-screen flex justify-center items-center bg-[#F8F9FD]">
+    <div class="title flex justify-center items-center">
       GO
       <div class="size-[261px] relative">
-        <div class="size-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img class="size-full" src="@/assets/img/icon41.png" alt="">
+        <div
+          class="size-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div class="min-w-full min-h-full">
+            <img class="size-full object-cover" src="@/assets/img/icon41.png" alt="">
+          </div>
         </div>
       </div>
       Creative

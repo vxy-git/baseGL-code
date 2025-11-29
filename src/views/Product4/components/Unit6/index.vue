@@ -44,12 +44,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="bg-black pt-[236px]">
+  <div class="pt-[236px] c_1230 c_padding">
     <div class="title">
       Post-Free Design
     </div>
-    <div class="w-[1227px] mx-auto mt-[142px] flex justify-between">
-      <div class="pt-[7px]">
+    <div class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full">
+      <div class="pt-[7px] max-w-full">
         <div class="gtext">
           Terpene-Boosted
         </div>
@@ -59,7 +59,7 @@ onBeforeUnmount(() => {
         <div class="label">
           The Gemco core in dual chamber can release the purest, richest, and most authentic terpene flavors when used individually. When both chambers are engaged, it creates the most perfect flavor collision, allowing the dual aromas to swirl on your taste buds.
         </div>
-        <div ref="leftContainer" class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden">
+        <div ref="leftContainer" class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden max-w-full">
           <MediaAsset
             ref="leftAsset"
             type="video"

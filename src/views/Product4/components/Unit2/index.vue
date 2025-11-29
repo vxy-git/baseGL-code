@@ -7,8 +7,8 @@ import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-[20px] pt-[110px]">
-    <div class="flex justify-center gap-x-[20px]">
+  <div class="flex flex-col gap-y-[20px] pt-[110px] c_1230 c_padding">
+    <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
         <div class="text absolute top-[21px] left-[28px]">Dual Chamber</div>
         <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo2" alt="" />
@@ -18,7 +18,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
         <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo4" alt="" />
       </div>
     </div>
-    <div class="flex justify-center gap-x-[20px]">
+    <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
         <div class="text absolute top-[21px] left-[28px]">Multiple Options</div>
         <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo3" alt="" />

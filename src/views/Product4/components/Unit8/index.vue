@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
                     Tap once—screen and flavor sync in a flash. Sit back and soak up the visual-and-taste ride.
                   </div>
                 </div>
-                <div class="shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
+                <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
                   <MediaAsset type="image" :src="logoSrc1" autoplay muted playsinline loop :controls="false">
                   </MediaAsset>
                 </div>
@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
                     Turn the brand icon into a shape-shifting star, craft a vibe that’s signature-only.
                   </div>
                 </div>
-                <div class="shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
+                <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
                   <MediaAsset type="image" :src="logoSrc2" autoplay muted playsinline loop :controls="false">
                   </MediaAsset>
                 </div>

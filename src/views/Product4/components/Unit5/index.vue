@@ -4,13 +4,13 @@ import videoSrc from '@/assets/product4/Dual-Gemco-Core.mp4'
 </script>
 
 <template>
-  <div class="bg-black pt-[294px]">
+  <div class="pt-[294px] c_1230 c_padding">
     <div class="title">
       Dual Gemco Core
     </div>
-    <div class="w-[900px] h-[409px] mx-auto mt-[64px]">
+    <div class="w-[900px] h-[409px] mx-auto mt-[64px] max-w-full">
       <MediaAsset type="video" :src="videoSrc" :autoplay="false" :muted="true" :loop="true"
-        :controls="false" class="w-full h-full object-cover" />
+        :controls="false" class="w-full h-full object-cover rounded-[20px]" />
     </div>
   </div>
 </template>

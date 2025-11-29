@@ -3,9 +3,9 @@
 </script>
 
 <template>
-<div class="pt-[366px] bg-black">
+<div class="pt-[366px]">
 <div class="w-[800px] box mx-auto flex items-center justify-center h-[400px]  rounded-[20px] overflow-hidden relative">
-  <div class="bg-black flex items-center justify-center size-[calc(100%-6px)] inset-[3px] absolute z-10 rounded-[20px]">
+  <div class="flex items-center justify-center size-[calc(100%-6px)] inset-[3px] absolute z-10 rounded-[20px]">
       <div class="text">
         Advanced Interactivity
       </div>

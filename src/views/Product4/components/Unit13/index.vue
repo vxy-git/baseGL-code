@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="bg-black -mt-[5px] pb-[121px]">
+  <div class="-mt-[5px] pb-[121px]">
 
-    <div class=" c_1300 mx-auto pt-[114px]">
+    <div class=" c_1300 mx-auto pt-[114px] c_padding">
       <div class="title2">
         More Products
       </div>

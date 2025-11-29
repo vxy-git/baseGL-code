@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="pb-[208px]">
+<div class="pb-[208px] c_1230 c_padding">
   <div class="title -mt-[8px]">
     Twice the performance,<br/>
     Triple the flavors.
@@ -11,7 +11,7 @@
   <div class="label mt-[34px]">
     Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing users to switch between<br/> tastes or enjoy a mix of both.
   </div>
-  <img class="w-[1020px] mx-auto mt-[47px] h-[580px] block" src="@/assets/img/icon33.png" alt="">
+  <img class="w-[1020px] mx-auto mt-[47px] h-[580px] block object-cover rounded-[20px]" src="@/assets/img/icon33.png" alt="">
 </div>
 </template>
 
