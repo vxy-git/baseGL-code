@@ -6,19 +6,13 @@ import FrameSequence from '@/components/FrameSequence.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const seqProgress1 = ref(0)
-const seqProgress2 = ref(0)
-const frames1 = 20
-const frames2 = 9
-const tarURL1 = '/product3_1.tar'
-const tarURL2 = '/product3_2.tar'
-const imageURL1 = (i) => `product3_1/frame${i + 1}.jpg`
-const imageURL2 = (i) => `product3_2/frame${i + 1}.jpg`
+const seqProgress = ref(0)
+const frames = 29
+const tarURL = '/product3.tar'
+const imageURL = (i) => `product3/frame${i + 1}.jpg`
 
-const pinSection1 = ref(null)
-const pinSection2 = ref(null)
-const frameContainer1 = ref(null)
-const frameContainer2 = ref(null)
+const pinSection = ref(null)
+const frameContainer = ref(null)
 
 const tb1 = ref(null)
 const tb2 = ref(null)
@@ -54,70 +48,57 @@ if (typeof window !== 'undefined') {
   updateIsMobile()
 }
 
-let tl1
-let tl2
+let tl
 
 onMounted(() => {
   updateIsMobile()
   window.addEventListener('resize', updateIsMobile)
 
-  tl1 = gsap.timeline({
+  tl = gsap.timeline({
     scrollTrigger: {
-      trigger: pinSection1.value,
+      trigger: pinSection.value,
       start: 'top top',
-      end: '+=3200',
+      end: '+=6500',
       pin: true,
       scrub: 1,
       anticipatePin: 1,
-      fastScrollEnd: false,
-      pinSpacing: true
+      fastScrollEnd: false
     }
   })
 
-  tl1.add(() => { seqProgress1.value = 0 })
-    .to(seqProgress1, { value: 1, duration: 3.6, ease: 'power1.inOut' })
+  tl.add(() => { seqProgress.value = 0 })
+    .to(seqProgress, { value: 0.33, duration: 3.6, ease: 'power1.inOut' })
+    // tb1 进入/淡入
     .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
     .fromTo([tb1Title.value, tb1Image.value],
       { opacity: 0, yPercent: 10 },
       { opacity: 1, yPercent: 0, duration: 1.4, stagger: 0.2, ease: 'power1.out' }, '<')
-    .to(tb1.value, { yPercent: -80, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    // tb1 退出
+    .to(tb1.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to([tb1Title.value, tb1Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
-    // .to(frameContainer1.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<0.3')
-
-  tl2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: pinSection2.value,
-      start: 'top top',
-      end: '+=4200',
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
-      fastScrollEnd: false,
-      pinSpacing: true
-    }
-  })
-
-  tl2
-    .add(() => { seqProgress2.value = 0 })
-    .to(seqProgress2, { value: 0.5, duration: 3.0, ease: 'power1.inOut' })
-    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<')
+    .to(seqProgress, { value: 0.66, duration: 3.6, ease: 'power1.inOut' })
+    // tb2 进入/淡入
+    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value],
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.25, ease: 'power1.out' }, '<')
+    // tb2 退出
     .to(tb2.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
-    .to(seqProgress2, { value: 1, duration: 3.0, ease: 'power1.inOut' })
+    .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
+    // tb3 进入，帧动画淡出
     .fromTo(tb3.value, { yPercent: 80 }, { yPercent: 0, duration: 2.6, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo([tb3Card.value, tb3Image.value, tb3Figure.value, tb3Label.value, tb3Bar1.value, tb3Bar1Text.value, tb3Bar2.value, tb3Bar2Text.value],
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.2, ease: 'power1.out' }, '<+=0.2')
+    // tb3 退出与整体淡出
     .to(tb3.value, { yPercent: -200, opacity: 0, duration: 1.6, ease: 'power1.inOut' }, '+=2.0')
-    .to(pinSection2.value, { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, '>+=0.2')
+    // .to(frameContainer.value, { opacity: 0, duration: 3.0, ease: 'power1.inOut' }, '<')
+    // .to(pinSection.value, { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, '>+=0.2')
 })
 
 onUnmounted(() => {
-  tl1 && tl1.kill()
-  tl2 && tl2.kill()
+  tl && tl.kill()
   ScrollTrigger.getAll().forEach(i => i.kill())
   window.removeEventListener('resize', updateIsMobile)
 })
@@ -125,10 +106,9 @@ onUnmounted(() => {
 
 <template>
   <div class="pt-[133px]">
-    <!-- 模块 1：帧动画 + tb1 -->
-    <section ref="pinSection1" class="sequence-wrap relative">
-      <div ref="frameContainer1" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames1" :tarURL="tarURL1" :imageURL="imageURL1" :progress="seqProgress1"
+    <section ref="pinSection" class="sequence-wrap relative">
+      <div ref="frameContainer" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
+        <FrameSequence :frames="frames" :tarURL="tarURL" :imageURL="imageURL" :progress="seqProgress"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
       <div class="size-full flex items-start justify-center">
@@ -138,18 +118,7 @@ onUnmounted(() => {
               <span class="text-white">Gold</span> standard for Resin/Rosin
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 模块 2：tb2 + tb3 -->
-    <section ref="pinSection2" class="sequence-wrap relative">
-      <div ref="frameContainer2" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames2" :tarURL="tarURL2" :imageURL="imageURL2" :progress="seqProgress2"
-          :objectFit="isMobile ? 'contain' : 'cover'" />
-      </div>
-      <div class="size-full flex items-start justify-center">
-        <div class="text-layer">
           <div ref="tb2" class="text-block">
             <div ref="tb2SmallTitle" class="title1">UNICORE powered</div>
             <div ref="tb2WTitle" class="title2 mt-[19.55px]">33% in pore uniformity</div>
