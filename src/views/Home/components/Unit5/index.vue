@@ -2,24 +2,31 @@
 
 import Item from "./components/Item/index.vue";
 import {ref, onMounted, onUnmounted} from "vue";
-import t1Icon from "@/assets/img/t1.png"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import news1 from '@/assets/home/new/1.jpg'
+import news2 from '@/assets/home/new/2.jpg'
+import news3 from '@/assets/home/new/3.jpg'
+import news4 from '@/assets/home/new/4.jpg'
+import news5 from '@/assets/home/new/5.jpg'
+import news6 from '@/assets/home/new/6.jpg'
+import news7 from '@/assets/home/new/7.jpg'
+import news8 from '@/assets/home/new/8.jpg'
+import news9 from '@/assets/home/new/9.jpg'
+import news10 from '@/assets/home/new/10.jpg'
+import news11 from '@/assets/home/new/11.jpg'
+
 const list = [
-  {
-    img:t1Icon
-  },
-  {
-    img:t1Icon
-  },
-  {
-    img:t1Icon
-  },
-  {
-    img:t1Icon
-  },
-  {
-    img:t1Icon
-  }
+  { type: 'image', img: news1 },
+  { type: 'image', img: news2 },
+  { type: 'image', img: news3 },
+  { type: 'image', img: news4 },
+  { type: 'image', img: news5 },
+  { type: 'image', img: news6 },
+  { type: 'image', img: news7 },
+  { type: 'image', img: news8 },
+  { type: 'image', img: news9 },
+  { type: 'image', img: news10 },
+  { type: 'image', img: news11 },
 ]
 const bannerCurrent = ref(0)
 const splideRef = ref(null)

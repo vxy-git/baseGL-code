@@ -18,38 +18,40 @@ const splideOptions = {
   keyboard: true,
 }
 
-import img1 from "@/assets/img/banner1.png"
+import MediaAsset from '@/components/MediaAsset.vue'
+import banner1 from '@/assets/home/Banner-1-UNIVERSE.mp4'
+import banner2 from '@/assets/home/Banner-2-UNICORN.mp4'
+import banner3 from '@/assets/home/Banner-3-UNIT.mp4'
+import banner4 from '@/assets/home/Banner-4-DUKES.mp4'
 
 const list = ref([
   {
-    title:"EXTRO",
-    subTitle:"One puff to be a freak, it is the freaking best",
-    img:img1,
-    dotText:"DUKES User Manual"
+    title: "UNIVERSE",
+    subTitle: "One puff to be a freak, it is the freaking best",
+    src: banner1,
+    type: 'video',
+    dotText: "UNIVERSE"
   },
   {
-    title:"EXTRO1",
-    subTitle:"One puff to be a freak, it is the freaking best",
-    img:img1,
-    dotText:"DUKES User Manual"
+    title: "UNICORN",
+    subTitle: "One puff to be a freak, it is the freaking best",
+    src: banner2,
+    type: 'video',
+    dotText: "UNICORN"
   },
   {
-    title:"EXTRO2",
-    subTitle:"One puff to be a freak, it is the freaking best",
-    img:img1,
-    dotText:"DUKES User Manual"
+    title: "UNIT",
+    subTitle: "One puff to be a freak, it is the freaking best",
+    src: banner3,
+    type: 'video',
+    dotText: "UNIT"
   },
   {
-    title:"EXTRO3",
-    subTitle:"One puff to be a freak, it is the freaking best",
-    img:img1,
-    dotText:"DUKES User Manual"
-  },
-  {
-    title:"EXTRO4",
-    subTitle:"One puff to be a freak, it is the freaking best",
-    img:img1,
-    dotText:"DUKES User Manual"
+    title: "DUKES",
+    subTitle: "One puff to be a freak, it is the freaking best",
+    src: banner4,
+    type: 'video',
+    dotText: "DUKES"
   }
 ])
 
@@ -74,7 +76,16 @@ const stop = ref(false)
     >
       <SplideSlide class="h-full" v-for="item in list" :key="item.title">
         <div class="relative h-full">
-          <img class="h-full min-w-[100vw] object-cover absolute inset-0" :src="item.img" />
+          <MediaAsset
+            class="h-full min-w-[100vw] object-cover absolute inset-0"
+            :type="item.type"
+            :src="item.src"
+            :controls="false"
+            autoplay
+            muted
+            loop
+            playsinline
+          />
           <div class=" h-full relative">
             <div class="c_1300 c_padding mx-auto flex flex-col justify-center h-full">
               <div class="title">
@@ -94,10 +105,10 @@ const stop = ref(false)
     </Splide>
 
     <div class="dot absolute bottom-[2px] left-0 flex justify-center z-10">
-      <div @mouseover="stop = true" @mouseout="stop = false" class="c_1300 c_padding flex justify-between">
+      <div @mouseover="stop = true" @mouseout="stop = false" class="c_1300 c_padding grid grid-flow-col auto-cols-fr">
         <div @mouseover="splideRef?.splide?.go(index)" v-for="(item, index) in list"
           :key="index"
-          class="dot-item flex-1 cursor-pointer transition-all duration-300 hover:opacity-80"
+          class="dot-item cursor-pointer transition-all duration-300 hover:opacity-80"
           @click="splideRef?.splide?.go(index)">
           <div class="dotText text-center transition-colors duration-300"
             :class="{ 'text-[#1CE785]': currentIndex === index }">

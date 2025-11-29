@@ -95,12 +95,12 @@ const handleError = () => {
   height: auto;
   transition: opacity 0.3s ease;
 
-  &.is-loading {
-    opacity: 0.5;
-  }
+  // &.is-loading {
+  //   opacity: 0.5;
+  // }
 
-  &.is-loaded {
-    opacity: 1;
-  }
+  // &.is-loaded {
+  //   opacity: 1;
+  // }
 }
 </style>

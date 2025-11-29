@@ -1,20 +1,29 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
+
 const props = defineProps({
-  data:{
-    type: Object
+  data: {
+    type: Object,
+    required: true
   }
 })
 </script>
 
 <template>
-<div class="size-full rounded-[20px] flex-shrink-0 overflow-hidden relative">
-  <img class="w-full h-full object-cover" :src="data.img" alt="">
-  <div class="titleBox">
-    <div class="title">
-      CALEAF TECH x UAE Team: GO Ride with Pogaěar
+  <div class="size-full rounded-[20px] flex-shrink-0 overflow-hidden relative">
+    <MediaAsset
+      class="w-full h-full object-cover"
+      :type="data.type || 'image'"
+      :src="data.img"
+      :alt="data.alt || ''"
+      :lazy="false"
+    />
+    <div class="titleBox">
+      <div class="title">
+        CALEAF TECH x UAE Team: GO Ride with Pogaěar
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped lang="scss">

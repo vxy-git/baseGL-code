@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <img class="size-full object-cover object-right-top rounded-[20px] overflow-hidden" src="@/assets/img/icon8.png" alt="">
+      <img class="size-full object-cover object-right-top rounded-[20px] overflow-hidden" src="@/assets/home/UNICORE.jpg" alt="">
     </div>
   </div>
 </div>

@@ -1,49 +1,30 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
-import {ref, computed, onMounted, onUnmounted} from "vue";
+import {ref, computed, onMounted, onUnmounted, watch} from "vue";
 import Item from "./components/Item/index.vue"
-const tabsCurrent = ref(0)
-const tabsList = [
-  "For Resin/Rosin",
-  "Pod System",
-  "Full Ceramic",
-  "D9 Distillate",
-  "US Stock",
-  "Dab Pen",
-  "510 Cartridge",
-  "D8 Distillate"
-]
-import icon3 from "@/assets/img/icon3.png"
-import icon5 from "@/assets/img/icon5.png"
-import icon6 from "@/assets/img/icon6.png"
-import icon7 from "@/assets/img/icon7.png"
+import { tabsList, productsData } from "@/data/products"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-const list = [
-  {
-    img:icon3
-  },
-  {
-    img:icon5
-  },
-  {
-    img:icon6
-  },
-  {
-    img:icon7
-  }
-]
+
+const tabsCurrent = ref(0)
+const products = computed(() => productsData[tabsCurrent.value] || [])
 const splideRef = ref(null)
 const bannerCurrent = ref(0)
-const currentIndex = ref(0)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
-const slidesPerGroup = 1
+const viewportWidth = ref(1920)
+const perPageValue = computed(() => {
+  if (viewportWidth.value <= 1000) return 2
+  if (viewportWidth.value <= 1400) return 3
+  return 4
+})
 
 // 检测是否为移动端
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  const width = window.innerWidth || 1920
+  viewportWidth.value = width
+  isMobile.value = width <= 767
 }
 
 // 初始化移动端检测
@@ -58,11 +39,11 @@ onUnmounted(() => {
 })
 
 // Splide 配置
-const splideOptions = {
+const splideOptions = computed(() => ({
   type: 'slide',
-  perPage: slidesPerGroup,
-  perMove: slidesPerGroup,
-  gap: '35px',
+  perPage: perPageValue.value,
+  perMove: perPageValue.value,
+  gap: '3%',
   padding: 0,
   speed: 800,
   arrows: false,
@@ -72,11 +53,11 @@ const splideOptions = {
   width: '100vw',
   focus: 0,
   omitEnd: true,
-}
+}))
 
 // 计算分组数量
 const groupCount = computed(() => {
-  return Math.ceil(list.length / 2)
+  return Math.ceil((products.value.length || 0) / perPageValue.value)
 })
 
 // 统一的箭头状态更新函数
@@ -91,7 +72,7 @@ const updateArrowStatus = (splide) => {
   canSlideNext.value = currentIndex < endIndex
 
   // 更新当前分组索引
-  bannerCurrent.value = Math.floor(currentIndex / slidesPerGroup)
+  bannerCurrent.value = Math.floor(currentIndex / perPageValue.value)
 };
 
 // Splide 初始化事件，设置初始按钮状态
@@ -100,19 +81,37 @@ const onSplideInit = (splide) => {
   updateArrowStatus(splide)
 };
 
+watch(tabsCurrent, () => {
+  bannerCurrent.value = 0
+  if (splideRef.value) {
+    splideRef.value.go(0)
+    updateArrowStatus(splideRef.value)
+  }
+})
+
+watch(perPageValue, () => {
+  // 切换设备宽度时重置到第一页，保持指示器正确
+  if (splideRef.value) {
+    splideRef.value.options = { ...splideRef.value.options, perPage: perPageValue.value, perMove: perPageValue.value }
+    splideRef.value.refresh()
+    splideRef.value.go(0)
+    updateArrowStatus(splideRef.value)
+  }
+})
+
 // 切换到上一张
 const slidePrev = () => {
-  splideRef.value?.go('-' + slidesPerGroup);
+  splideRef.value?.go('-' + perPageValue.value);
 };
 
 // 切换到下一张
 const slideNext = () => {
-  splideRef.value?.go('+' + slidesPerGroup);
+  splideRef.value?.go('+' + perPageValue.value);
 };
 
 // 点击指示器跳转到对应分组
 const goToGroup = (groupIndex) => {
-  const targetIndex = groupIndex * slidesPerGroup;
+  const targetIndex = groupIndex * perPageValue.value;
   splideRef.value?.go(targetIndex);
 };
 </script>
@@ -133,10 +132,10 @@ const goToGroup = (groupIndex) => {
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
         <div class="w-full">
-          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit"
+          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
-            <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
-              <Item :data="item" :isLast="canSlideNext === false && index >= list.length" />
+            <SplideSlide class="flex-shrink-[1]" v-for="(product, index) in products" :key="product.id">
+              <Item :data="product" />
             </SplideSlide>
           </Splide>
         </div>
