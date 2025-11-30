@@ -138,14 +138,14 @@ onUnmounted(() => {
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
           <div class="flex flex-col items-center justify-center ">
-            <div class="text1 h-[40px]">
+            <div class="text1">
               30%
             </div>
             <div class="text2">
               Thinner in Structure
             </div>
           </div>
-          <div class="flex flex-col items-center h-[40px]">
+          <div class="flex flex-col items-center">
             <div class="text1 flex">
               45%
             </div>
@@ -154,7 +154,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] h-[368px] object-contain" type="image" :src="r1" alt="" />
+        <MediaAsset class="w-[763px] object-contain" type="image" :src="r1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
@@ -171,7 +171,7 @@ onUnmounted(() => {
           filling.
           Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="r2" type="video" class="w-[595px] h-[412px] mt-[66px]" muted
+        <MediaAsset ref="rightVideoAssetRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted
           :controls="false" playsinline alt="" />
       </div>
     </div>

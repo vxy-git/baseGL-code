@@ -163,7 +163,7 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 80px 16px;
+  padding: 140px 16px 80px;
   gap: 24px;
 }
 
