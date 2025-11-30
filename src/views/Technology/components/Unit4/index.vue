@@ -104,7 +104,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <div class="w-[600px] shrink-0 translate-x-[30vw]" ref="contentRef2">
+        <div ref="textRef2" class="w-[600px] shrink-0 translate-x-[30vw]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
