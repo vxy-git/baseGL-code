@@ -6,14 +6,15 @@ import icon4_2 from '@/assets/img/icon4_2.png'
 </script>
 
 <template>
-  <div class="relative mt-[6px] w-full h-[1080px] bg-[#111111] overflow-hidden">
+  <div class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
     <MediaAsset type="image" :src="icon4_1" alt="" class="absolute inset-0 w-full h-full object-cover" />
 
-    <div class="content-wrapper c_1300 mx-auto justify-between pt-[447px] relative z-10">
-      <div>
+    <div class="w-max flex justify-between pt-[447px] relative z-[2]">
+      <div ref="contentRef1">
         <div class="flex flex-col">
           <div class="text1 flex">
-            <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image" :src="icon19" alt="" />
+            <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
+              :src="icon19" alt="" />
             20% at firing temp
           </div>
         </div>
@@ -25,21 +26,40 @@ import icon4_2 from '@/assets/img/icon4_2.png'
 
         <div class="title3 mt-[32px]">
           We never let existing rules and regulations hold us back.<br>
-          We pioneered the incorporation of aerospace-grade high thermal<br> conductivity materials into ceramics. Through
+          We pioneered the incorporation of aerospace-grade high thermal<br> conductivity materials into ceramics.
+          Through
           round-the-clock firing<br> and suction tests, we have finally succeeded in firing the ceramic at<br> 1832 °F
           (1000 ℃), surpassing our peers by 20%.
         </div>
       </div>
-      <MediaAsset type="image" :src="icon4_2" alt="" class="w-[640px] h-[341px] mt-[15px]" />
+      <div ref="contentRef2">
+        <div class="flex flex-col">
+          <div class="text1 flex">
+            <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
+              :src="icon19" alt="" />
+            20% at firing temp
+          </div>
+        </div>
+
+        <div class="title2 mt-[8px] ">
+          Aerospace-grade<br>
+          high thermal conductivity.
+        </div>
+
+        <div class="title3 mt-[32px]">
+          We never let existing rules and regulations hold us back.<br>
+          We pioneered the incorporation of aerospace-grade high thermal<br> conductivity materials into ceramics.
+          Through
+          round-the-clock firing<br> and suction tests, we have finally succeeded in firing the ceramic at<br> 1832 °F
+          (1000 ℃), surpassing our peers by 20%.
+        </div>
+      </div>
+      <MediaAsset ref="contentRef3" type="image" :src="icon4_2" alt="" class="w-[640px] h-[341px] mt-[15px]" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.content-wrapper {
-  display: flex;
-  gap: 20px;
-}
 
 .title1 {
   width: 164px;
@@ -85,7 +105,8 @@ import icon4_2 from '@/assets/img/icon4_2.png'
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
+  /* 150% */
   margin-top: 5px;
 }
 </style>

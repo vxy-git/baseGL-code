@@ -13,7 +13,7 @@ const mediaAssetRef = ref(null)
 const titleRef = ref(null)
 const descRef = ref(null)
 
-const INITIAL_WIDTH = 1400
+const INITIAL_WIDTH = '100vw'
 const INITIAL_HEIGHT = 2
 const TARGET_WIDTH = 800
 const TARGET_HEIGHT = 400
