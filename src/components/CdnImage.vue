@@ -91,7 +91,7 @@ const handleError = () => {
 <style scoped lang="scss">
 .cdn-image {
   display: block;
-  width: auto;
-  height: auto;
+  // width: auto;
+  // height: auto;
 }
 </style>

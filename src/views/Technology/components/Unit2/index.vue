@@ -153,7 +153,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="size-[40px]" type="image" :src="r1" alt="" />
+        <MediaAsset class="w-[763px] h-[368px]" type="image" :src="r1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
