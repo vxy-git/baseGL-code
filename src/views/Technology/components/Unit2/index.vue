@@ -110,7 +110,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative flex max-w-[1560px] pr-[134px] items-start mx-auto">
+  <div ref="sectionRef" class="relative flex max-w-[1560px] pr-[134px] items-start mx-auto h-max">
     <div ref="videoBoxRef">
       <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
         :controls="false" playsinline class="w-[400px] h-[680px] object-contain mt-[150px]" />

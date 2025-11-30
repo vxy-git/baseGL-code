@@ -1,4 +1,5 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import icon5_1 from '@/assets/img/icon5_1.png'
 </script>
 
@@ -18,7 +19,7 @@ import icon5_1 from '@/assets/img/icon5_1.png'
       <div class="title2 mt-[315px]">
         Our clients have taken home trophies
       </div>
-      <img :src="icon5_1" alt="" class="w-[800px] h-[400px] mt-[41px]"/>
+      <MediaAsset :src="icon5_1" type="image" alt="" class="w-[800px] h-[400px] mt-[41px]"/>
 
 
       <div class="title3 mt-[34px]">

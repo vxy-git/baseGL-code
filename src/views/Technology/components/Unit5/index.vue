@@ -1,4 +1,5 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import icon5_1 from '@/assets/img/icon5_1.png'
 import icon5_2 from '@/assets/img/icon5_2.png'
 </script>
@@ -22,7 +23,7 @@ import icon5_2 from '@/assets/img/icon5_2.png'
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
 
-        <img :src="icon5_1" alt="" class="w-[750px] h-[400px] mt-[50px]"/>
+        <MediaAsset :src="icon5_1" type="image" alt="" class="w-[750px] h-[400px] mt-[50px]"/>
 
         <div class="title1 mt-[130px]">
           RTD Control
@@ -37,13 +38,13 @@ import icon5_2 from '@/assets/img/icon5_2.png'
           guarantees an exceptional session every time.
         </div>
 
-        <img :src="icon5_1" alt="" class="w-[750px] h-[400px] mt-[58px]"/>
+        <MediaAsset :src="icon5_1" type="image" alt="" class="w-[750px] h-[400px] mt-[58px]"/>
 
 
 
       </div>
-      <img class="h-[1630px] ml-[40px]" src="@/assets/img/ico42.png" alt="">
-      <img :src="icon5_2" alt="" class="w-[577px] h-[560px] mt-[90px] -mr-[calc(310px-109px)]"/>
+      <MediaAsset class="h-[1630px] ml-[40px]" type="image" src="@/assets/img/ico42.png" alt=""/>
+      <MediaAsset :src="icon5_2" type="image" alt="" class="w-[577px] h-[560px] mt-[90px] -mr-[calc(310px-109px)]"/>
     </div>
   </div>
 

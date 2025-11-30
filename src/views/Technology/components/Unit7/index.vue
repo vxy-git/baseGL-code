@@ -1,4 +1,5 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import icon6_1 from '@/assets/img/icon6_1.png'
 </script>
 
@@ -7,7 +8,7 @@ import icon6_1 from '@/assets/img/icon6_1.png'
 
     
     <div class="c_1300 h-[560px] relative mx-auto mt-[265px]">
-      <img :src="icon6_1" alt="" class="c_1300 h-[560px]" />
+      <MediaAsset :src="icon6_1" type="image" alt="" class="c_1300 h-[560px]" />
         <div class="absolute size-full top-0 left-0 flex flex-col items-center pt-[142px]">
           <div class="title2">
             From lab to awards: journey to the top
