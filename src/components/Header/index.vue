@@ -1,109 +1,25 @@
 <script setup>
 import {onMounted, ref, watch, computed, onUnmounted} from "vue";
+import { useRouter } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
-import productImage from '@/assets/list/icon.png'
+import { tabsList, productsData } from '@/data/products'
 
 // 从Nav组件迁移分类和产品数据
-const categories = ref([
-  {
-    id: 1,
-    label: 'For Resin/Rosin',
-    products: [
-      { id: 1, name: 'UNIT PRO', badge: 'New', variant: '1mL/2mL', image: productImage },
-      { id: 2, name: 'UNIT MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 3, name: 'UNIT MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 4, name: 'UNIT PLUS', badge: 'New', variant: '1.5mL', image: productImage },
-      { id: 5, name: 'UNIT SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 6, name: 'UNIT BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 2,
-    label: 'Pod System',
-    products: [
-      { id: 7, name: 'POD X1', badge: 'New', variant: '1mL', image: productImage },
-      { id: 8, name: 'POD X2', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 9, name: 'POD PRO', badge: '', variant: '1.5mL', image: productImage },
-      { id: 10, name: 'POD MINI', badge: '', variant: '0.8mL', image: productImage },
-      { id: 11, name: 'POD MAX', badge: 'New', variant: '3mL', image: productImage },
-      { id: 12, name: 'POD LITE', badge: '', variant: '1mL', image: productImage },
-    ]
-  },
-  {
-    id: 3,
-    label: 'Full Ceramic',
-    products: [
-      { id: 13, name: 'CERAMIC PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 14, name: 'CERAMIC MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 15, name: 'CERAMIC MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 16, name: 'CERAMIC PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 17, name: 'CERAMIC SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 18, name: 'CERAMIC BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 4,
-    label: 'D9 Distillate',
-    products: [
-      { id: 19, name: 'D9 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 20, name: 'D9 MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 21, name: 'D9 MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 22, name: 'D9 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 23, name: 'D9 SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 24, name: 'D9 BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 5,
-    label: 'US Stock',
-    products: [
-      { id: 25, name: 'US PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 26, name: 'US MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 27, name: 'US MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 28, name: 'US PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 29, name: 'US SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 30, name: 'US BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 6,
-    label: 'Dab Pen',
-    products: [
-      { id: 31, name: 'DAB PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 32, name: 'DAB MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 33, name: 'DAB MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 34, name: 'DAB PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 35, name: 'DAB SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 36, name: 'DAB BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 7,
-    label: '510 Cartridge',
-    products: [
-      { id: 37, name: '510 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 38, name: '510 MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 39, name: '510 MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 40, name: '510 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 41, name: '510 SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 42, name: '510 BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 8,
-    label: 'D8 Distillate',
-    products: [
-      { id: 43, name: 'D8 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 44, name: 'D8 MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 45, name: 'D8 MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 46, name: 'D8 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 47, name: 'D8 SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 48, name: 'D8 BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-])
+const categories = computed(() =>
+  tabsList.map((label, idx) => ({
+    id: idx + 1,
+    label,
+    products: (productsData[idx] || []).map(product => ({
+      id: product.id,
+      name: product.name,
+      badge: product.isNew ? 'New' : '',
+      variant: product.capacity,
+      image: product.image,
+    }))
+  }))
+)
 
 const props = defineProps({
   headerClass:{
@@ -117,6 +33,8 @@ const props = defineProps({
 
 // 使用本地可变状态而不是直接修改只读的 props
 const currentHeaderClass = ref(props.headerClass)
+
+const router = useRouter()
 
 // 若父组件变更传入的值，则同步到本地状态
 watch(() => props.headerClass, (val) => {
@@ -266,6 +184,16 @@ const closeMobileMenu = () => {
   document.body.style.overflow = ''
 }
 
+const goContact = () => {
+  closeMobileMenu()
+  router.push('/contact')
+}
+
+const goHome = () => {
+  closeMobileMenu()
+  router.push('/')
+}
+
 // 产品点击
 const handleProductClick = () => {
   closeMobileMenu()
@@ -274,7 +202,7 @@ const handleProductClick = () => {
 // 生命周期
 onMounted(() => {
   // 滚动监听
-  addEventListener("scroll", e => {
+  addEventListener("scroll", () => {
     if(props.headerClass === "white")return
     if(document.documentElement.scrollTop > 20){
       currentHeaderClass.value = "white"
@@ -307,13 +235,13 @@ onUnmounted(() => {
     <div class="w-full box transition-all" :class="` ${border && 'border-b-solid border-black/5 border-b-[1px]'}`">
       <header class="top-nav c_1300 mx-auto c_padding">
         <div class="nav-left">
-          <div class="logo">
+          <router-link to="/" class="logo" @click="goHome">
             <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo"
               class="logo-image" />
             <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo"
               class="logo-image" />
             <span class="logo-text">CALEAF TECH</span>
-          </div>
+          </router-link>
           <!-- 桌面端导航 -->
           <nav v-if="!isMobile" class="nav-links">
             <a href="#" class="nav-link nav-link-dropdown" :class="{ active: showDropdown }"
@@ -327,7 +255,7 @@ onUnmounted(() => {
         </div>
         <div class="nav-right">
           <!-- 桌面端右侧按钮 -->
-          <button v-if="!isMobile" class="contact-button">Contact</button>
+          <button v-if="!isMobile" class="contact-button" @click="goContact">Contact</button>
           <button v-if="!isMobile" class="icon-button" aria-label="Search">
             <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon12.png" alt="" />
             <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon12_active.png" alt="" />
@@ -356,9 +284,9 @@ onUnmounted(() => {
       <div class="mobile-drawer-header">
         <!-- 一级菜单Header -->
         <template v-if="currentLevel === 1">
-          <div class="logo">
+          <router-link to="/" class="logo" @click="goHome">
             <img src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo" class="logo-image" />
-          </div>
+          </router-link>
           <button class="close-btn active" @click="closeMobileMenu" aria-label="Close">
             <span></span>
             <span></span>
@@ -455,11 +383,11 @@ onUnmounted(() => {
                   <div v-show="expandedCategoryId === category.id" class="product-list">
                     <a v-for="product in category.products" :key="product.id" :href="`/product${product.id}`"
                       class="product-item" @click="handleProductClick">
-                      <img :src="product.image" :alt="product.name" />
+                      <img class="product-image" :src="product.image" :alt="product.name" />
                       <div class="product-info">
+                        <span v-if="product.badge" class="badge">{{ product.badge }}</span>
                         <div class="product-name">
                           {{ product.name }}
-                          <span v-if="product.badge" class="badge">{{ product.badge }}</span>
                         </div>
                         <div class="product-variant">{{ product.variant }}</div>
                       </div>
@@ -474,7 +402,7 @@ onUnmounted(() => {
 
       <!-- 底部CTA区域 -->
       <div class="mobile-drawer-footer">
-        <button class="cta-btn" @click="closeMobileMenu">Contact Us</button>
+        <button class="cta-btn" @click="goContact">Contact Us</button>
         <button class="search-btn" aria-label="Search">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="9" cy="9" r="6"></circle>
@@ -515,6 +443,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo-image {
@@ -549,14 +479,14 @@ onUnmounted(() => {
 .nav-link-dropdown::after {
   content: '';
   position: absolute;
-  bottom: -47px;
+  bottom: -40px;
   left: 0;
   width: 100%;
   height: 3px;
   background-color: currentColor;
   opacity: 0;
   transition: opacity 0.3s ease;
-  transform: translateY(-4px);
+  transform: translateY(-100%);
 }
 
 .nav-link-dropdown:hover::after,
@@ -628,6 +558,7 @@ onUnmounted(() => {
   align-items: flex-start;
   gap: 32px;
   margin-top: 40px;
+  height: max-content;
 }
 
 .sidebar {
@@ -707,23 +638,30 @@ onUnmounted(() => {
 }
 
 .product-image {
-  width: 135px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .product-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-end;
+  padding-bottom: 35px;
+  gap: 6px;
 }
 
 .product-name {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
-  color: #000000;
+  color: #fff;
 }
 
 .product-variant {
@@ -983,14 +921,17 @@ onUnmounted(() => {
   // background: #f9f9f9;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  padding: 10px 12px;
+  gap: 20px;
+  padding: 0 20px 20px;
 
   .product-item {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 12px;
+    width: 230px;
+    height: 300px;
+    margin: auto;
+    // padding: 12px;
     gap: 10px;
     text-decoration: none;
     transition: background-color 0.2s, box-shadow 0.2s;
@@ -1004,44 +945,12 @@ onUnmounted(() => {
 
     img {
       flex: 1;
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       flex-shrink: 0;
       border-radius: 8px;
       background: #fff;
-    }
-
-    .product-info {
-      flex: 1;
-      min-width: 0;
-
-      .product-name {
-        font-size: 13px;
-        font-weight: 600;
-        color: #111;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        line-height: 1.3;
-
-        .badge {
-          font-size: 10px;
-          padding: 2px 6px;
-          // background: #ff6b6b;
-          // color: white;
-          border-radius: 3px;
-          font-weight: 500;
-          flex-shrink: 0;
-        }
-      }
-
-      .product-variant {
-        font-size: 12px;
-        color: #666;
-        margin-top: 2px;
-        line-height: 1.2;
-      }
     }
 
     .chevron-right {

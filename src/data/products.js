@@ -13,20 +13,23 @@ import UNIT_PRO_HOVER from '@/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
 import UNIVERSE_Series from '@/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
 import UNIVERSE_Series_HOVER from '@/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
 
-export type Product = {
-  id: number
-  name: string
-  description: string
-  capacity: string
-  image: string
-  background: string
-  alt: string
-  isNew: boolean
-}
+/**
+ * @typedef {Object} Product
+ * @property {number} id
+ * @property {string} name
+ * @property {string} description
+ * @property {string} capacity
+ * @property {string} image
+ * @property {string} background
+ * @property {string} alt
+ * @property {boolean} isNew
+ */
 
+/** @type {string[]} */
 export const tabsList = ['For Resin/Rosin', 'D9 Distillate']
 
-export const productsData: Record<number, Product[]> = {
+/** @type {Record<number, Product[]>} */
+export const productsData = {
   0: [
     {
       id: 1,

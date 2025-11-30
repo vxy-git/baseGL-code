@@ -162,9 +162,5 @@ body {
     --rem-base: calc(100vw / 380px * 10px);
     font-size: var(--rem-base);
   }
-
-  .mobile-drawer .product-list {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-  }
 }
 

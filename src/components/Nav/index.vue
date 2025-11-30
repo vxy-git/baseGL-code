@@ -1,110 +1,28 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
 import gsap from 'gsap'
-import productImage from '@/assets/list/icon.png'
+import { tabsList, productsData } from '@/data/products'
 
 // 当前激活的分类 ID
 const activeCategoryId = ref(1)
+const router = useRouter()
 
-// 分类及其对应的产品数据
-const categories = ref([
-  {
-    id: 1,
-    label: 'For Resin/Rosin',
-    products: [
-      { id: 1, name: 'UNIT PRO', badge: 'New', variant: '1mL/2mL', image: productImage },
-      { id: 2, name: 'UNIT MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 3, name: 'UNIT MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 4, name: 'UNIT PLUS', badge: 'New', variant: '1.5mL', image: productImage },
-      { id: 5, name: 'UNIT SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 6, name: 'UNIT BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 2,
-    label: 'Pod System',
-    products: [
-      { id: 7, name: 'POD X1', badge: 'New', variant: '1mL', image: productImage },
-      { id: 8, name: 'POD X2', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 9, name: 'POD PRO', badge: '', variant: '1.5mL', image: productImage },
-      { id: 10, name: 'POD MINI', badge: '', variant: '0.8mL', image: productImage },
-      { id: 11, name: 'POD MAX', badge: 'New', variant: '3mL', image: productImage },
-      { id: 12, name: 'POD LITE', badge: '', variant: '1mL', image: productImage },
-    ]
-  },
-  {
-    id: 3,
-    label: 'Full Ceramic',
-    products: [
-      { id: 13, name: 'CERAMIC PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 14, name: 'CERAMIC MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 15, name: 'CERAMIC MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 16, name: 'CERAMIC PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 17, name: 'CERAMIC SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 18, name: 'CERAMIC BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 4,
-    label: 'D9 Distillate',
-    products: [
-      { id: 19, name: 'D9 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 20, name: 'D9 MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 21, name: 'D9 MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 22, name: 'D9 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 23, name: 'D9 SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 24, name: 'D9 BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 5,
-    label: 'US Stock',
-    products: [
-      { id: 25, name: 'US PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 26, name: 'US MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 27, name: 'US MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 28, name: 'US PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 29, name: 'US SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 30, name: 'US BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 6,
-    label: 'Dab Pen',
-    products: [
-      { id: 31, name: 'DAB PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 32, name: 'DAB MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 33, name: 'DAB MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 34, name: 'DAB PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 35, name: 'DAB SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 36, name: 'DAB BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 7,
-    label: '510 Cartridge',
-    products: [
-      { id: 37, name: '510 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 38, name: '510 MAX', badge: '', variant: '2mL', image: productImage },
-      { id: 39, name: '510 MINI', badge: 'Hot', variant: '0.5mL', image: productImage },
-      { id: 40, name: '510 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 41, name: '510 SLIM', badge: '', variant: '1mL', image: productImage },
-      { id: 42, name: '510 BASIC', badge: 'New', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-  {
-    id: 8,
-    label: 'D8 Distillate',
-    products: [
-      { id: 43, name: 'D8 PRO', badge: 'New', variant: '1mL', image: productImage },
-      { id: 44, name: 'D8 MAX', badge: 'Hot', variant: '2mL', image: productImage },
-      { id: 45, name: 'D8 MINI', badge: '', variant: '0.5mL', image: productImage },
-      { id: 46, name: 'D8 PLUS', badge: '', variant: '1.5mL', image: productImage },
-      { id: 47, name: 'D8 SLIM', badge: 'New', variant: '1mL', image: productImage },
-      { id: 48, name: 'D8 BASIC', badge: '', variant: '1mL/2mL', image: productImage },
-    ]
-  },
-])
+// 分类及其对应的产品数据（来自 products.js）
+const categories = computed(() =>
+  tabsList.map((label, idx) => ({
+    id: idx + 1,
+    label,
+    products: (productsData[idx] || []).map(product => ({
+      id: product.id,
+      name: product.name,
+      badge: product.isNew ? 'New' : '',
+      variant: product.capacity,
+      image: product.image,
+      background: product.background,
+    }))
+  }))
+)
 
 // 计算属性：当前激活的分类
 const activeCategory = computed(() =>
@@ -265,6 +183,11 @@ const closeMenu = () => {
   })
 }
 
+const goList = () => {
+  closeMenu()
+  router.push('/list')
+}
+
 // 监听 visible 变化
 watch(() => props.visible, async (newVal) => {
   if (newVal) {
@@ -311,8 +234,9 @@ defineExpose({
     <!-- 内容区域 -->
     <div ref="contentRef" class="nav-dropdown-content" @mouseenter="props.onContentMouseEnter"
       @mouseleave="props.onContentMouseLeave">
+      <div class="mt-[2px] w-full border-t-[1px] border-t-solid border-[rgba(0,0,0,0.05)]"></div>
       <main class="content c_1300">
-        <aside ref="sidebarRef" class="sidebar h-full pt-[38px] border-r-[1px] border-r-solid border-[#000000]/12">
+        <aside ref="sidebarRef" class="sidebar h-full pt-[38px]">
           <h2 class="sidebar-title pl-[2px]">Innovative products</h2>
           <ul class="category-list">
             <li v-for="(category, index) in categories" :key="category.id"
@@ -323,14 +247,21 @@ defineExpose({
             </li>
           </ul>
         </aside>
-
+        <div class="w-[1px] h-full bg-[rgba(0,0,0,0.05)]"></div>
         <section class="grid-section">
           <div class="product-grid">
             <article v-for="(product, index) in displayedProducts" :key="product.id"
-              :ref="el => { if (el) productCardsRef[index] = el }" class="px-[21px] product-card pt-[23px]">
-              <div class="badge self-start">{{ product.badge }}</div>
-              <img :src="product.image" :alt="`${product.name} product`" class="product-image mt-[28px]" />
-              <div class="product-info mt-[11px]">
+              :ref="el => { if (el) productCardsRef[index] = el }"
+              :class="['product-card', { 'has-hover-bg': product.background }]">
+              <img :src="product.image" :alt="`${product.name} product`" class="product-bg product-bg--main" />
+              <img
+                v-if="product.background"
+                :src="product.background"
+                :alt="`${product.name} hover`"
+                class="product-bg product-bg--hover"
+              />
+              <div class="product-info">
+                <div class="badge self-start">{{ product.badge }}</div>
                 <h3 class="product-name">{{ product.name }}</h3>
                 <div class="product-variant mt-[3px]">{{ product.variant }}</div>
               </div>
@@ -338,7 +269,7 @@ defineExpose({
           </div>
 
           <div ref="ctaButtonRef" class="cta-row">
-            <button class="cta-button">
+            <button class="cta-button" @click="goList">
               <span>Explore our In-Ones</span>
               <img src="@/assets/img/icon42.png" alt="" />
             </button>
@@ -378,38 +309,16 @@ defineExpose({
 /* 内容区域 */
 .nav-dropdown-content {
   position: absolute;
-  top: 96px;
+  padding-top: 96px;
   /* Header 高度 */
   left: 0;
   width: 100%;
+  height: 100vh;
   background-color: #ffffff;
   z-index: 2;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  max-height: calc(100vh - 110px);
-  overflow-y: auto;
+  // overflow-y: auto;
   will-change: transform, opacity;
-}
-
-/* 滚动条样式 - 悬浮型，与全局保持一致 */
-.nav-dropdown-content::-webkit-scrollbar {
-  width: 10px;
-}
-
-.nav-dropdown-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.nav-dropdown-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.nav-dropdown-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid transparent;
-  background-clip: padding-box;
 }
 
 .product-page {
@@ -521,13 +430,14 @@ defineExpose({
 
 .content {
   display: flex;
-  align-items: flex-start;
-  margin: 60px auto 60px;
-  padding-bottom: 60px;
+  align-items: stretch;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .sidebar {
   width: 272px;
+  padding-bottom: 60px;
 }
 
 .sidebar-title {
@@ -571,6 +481,7 @@ defineExpose({
   display: flex;
   flex-direction: column;
   padding-top: 41px;
+  padding-bottom: 60px;
 }
 
 .product-grid {
@@ -591,20 +502,25 @@ defineExpose({
   box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
   width: 230px;
   height: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
+  &.has-hover-bg:hover {
+    .product-bg--hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
 
-    .product-image {
-      transform: scale(1.1);
+    .product-bg--main {
+      opacity: 0;
     }
   }
 }
 
 .badge {
+  position: absolute;
+  top: 23px;
+  left: 21px;
   border-radius: 50px;
   background-color: transparent;
   color: #1ce785;
@@ -613,25 +529,44 @@ defineExpose({
   line-height: 19px;
 }
 
-.product-image {
-  width: 135px;
-  height: 120px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+.product-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.product-bg--main {
+  opacity: 1;
+}
+
+.product-bg--hover {
+  opacity: 0;
+  transform: scale(1);
 }
 
 .product-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: flex-end;
+  padding-bottom: 35px;
+  gap: 6px;
+  z-index: 1;
 }
 
 .product-name {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
-  color: #000000;
+  color: #fff;
   line-height: 32px;
 }
 
@@ -646,6 +581,7 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .cta-row {
