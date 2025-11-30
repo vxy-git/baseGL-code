@@ -123,9 +123,12 @@ onUnmounted(() => {
   align-items: center;
   padding-top: 142px;
   pointer-events: none;
+  max-width: 90vw;
+  margin: auto;
 }
 
 .title2 {
+  max-width: 100%;
   width: 679px;
   height: 47px;
   color: #fff;
@@ -137,6 +140,7 @@ onUnmounted(() => {
 }
 
 .title3 {
+  max-width: 100%;
   width: 983px;
   color: #FFF;
   font-family: Roboto;

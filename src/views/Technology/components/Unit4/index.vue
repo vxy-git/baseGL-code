@@ -156,9 +156,9 @@ onUnmounted(() => {
     <MediaAsset type="image" :src="icon4_1" alt="" class="absolute inset-0 w-full h-full object-cover" />
 
     <div class="size-full overflow-hidden">
-      <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start">
+      <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start pt-[45px]">
         <div class="w-screen"></div>
-        <div class="shrink-0 w-[50vw] flex flex-col justify-center items-start">
+        <div class="shrink-0 w-[50vw] min-w-[600px] flex flex-col justify-center items-start">
           <div class="w-[600px]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
@@ -183,7 +183,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <div ref="textRef2" class="w-[600px] shrink-0 translate-x-[30vw]">
+        <div ref="textRef2" class="w-[600px] shrink-0 translate-x-[30vw]  min-w-[900px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"

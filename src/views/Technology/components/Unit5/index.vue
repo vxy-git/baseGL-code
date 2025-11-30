@@ -109,9 +109,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative flex max-w-[1702px] pl-[201px] items-start mx-auto h-screen">
+  <div ref="sectionRef" class="relative flex max-w-[1702px] items-start mx-auto h-screen">
     <div ref="rightWrapRef"
-      class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] h-max">
+      class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
           Built-in wires
@@ -132,7 +132,7 @@ onUnmounted(() => {
           :controls="false" playsinline alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
-        <div class="title1 mt-[130px]">
+        <div class="title1">
           RTD Control
         </div>
 
@@ -148,24 +148,26 @@ onUnmounted(() => {
           :controls="false" playsinline alt="" />
       </div>
     </div>
-    <div ref="videoBoxRef">
-      <MediaAsset type="image" :src="l1" class="w-[577px] h-[560px] object-contain mt-[150px]" />
+    <div class="mediaBox shrink-0" ref="videoBoxRef">
+      <MediaAsset type="image" :src="l1" class="w-[577px] mt-[150px]" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .content-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .content1 {
+  width: 100%;
 
   .title1 {
+    max-width: 100%;
     width: 164px;
-    height: 23px;
     color: #1CE785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -173,8 +175,8 @@ onUnmounted(() => {
   }
 
   .title2 {
+    max-width: 100%;
     width: 418px;
-    height: 94px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
@@ -183,8 +185,8 @@ onUnmounted(() => {
   }
 
   .title3 {
+    max-width: 100%;
     width: 750px;
-    height: 232px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -200,16 +202,17 @@ onUnmounted(() => {
 
 
   .text1 {
+    max-width: 100%;
     color: #1CE785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
     line-height: 30px;
-    /* 75% */
   }
 
   .text2 {
+    max-width: 100%;
     color: #FFF;
     font-family: Roboto;
     font-size: 20px;
@@ -222,10 +225,11 @@ onUnmounted(() => {
 }
 
 .content2 {
+  width: 100%;
 
   .title1 {
+    max-width: 100%;
     width: 164px;
-    height: 23px;
     color: #1CE785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -233,8 +237,8 @@ onUnmounted(() => {
   }
 
   .title2 {
+    max-width: 100%;
     width: 584px;
-    height: 94px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
@@ -243,6 +247,7 @@ onUnmounted(() => {
   }
 
   .title3 {
+    max-width: 100%;
     width: 750px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
@@ -259,6 +264,7 @@ onUnmounted(() => {
 
 
   .text1 {
+    max-width: 100%;
     color: #1CE785;
     font-family: Roboto;
     font-size: 40px;
@@ -269,6 +275,7 @@ onUnmounted(() => {
   }
 
   .text2 {
+    max-width: 100%;
     color: #FFF;
     font-family: Roboto;
     font-size: 20px;
@@ -277,6 +284,28 @@ onUnmounted(() => {
     line-height: 30px;
     /* 150% */
     margin-top: 5px;
+  }
+}
+
+
+
+
+@media screen and (max-width: 1700px) {
+  .content-wrapper {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .content1,
+  .content2 {
+    width: 55vw;
+  }
+
+  .mediaBox {
+    padding: 0 3vw;
+    width: 35vw;
   }
 }
 </style>

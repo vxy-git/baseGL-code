@@ -109,12 +109,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative flex max-w-[1560px] pr-[134px] items-start mx-auto h-screen">
-    <div ref="videoBoxRef">
+  <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
+    <div class="shrink-0" ref="videoBoxRef">
       <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
-        :controls="false" playsinline class="w-[400px] h-[680px] object-contain mt-[150px]" />
+        :controls="false" playsinline class="mediaBox w-[400px] mt-[150px]" />
     </div>
-    <div ref="rightWrapRef" class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max">
+    <div ref="rightWrapRef"
+      class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
           100% Rosin-Ready
@@ -126,11 +127,11 @@ onUnmounted(() => {
         </div>
 
         <div class="title3 mt-[28px]">
-          We always strive to be pioneers in the industry.<br>
-          Our patented U-shape ceramic design is the result of extensive testing and validation<br> of various
+          We always strive to be pioneers in the industry.
+          Our patented U-shape ceramic design is the result of extensive testing and validation of various
           structures.
-          It is the optimal structure for the vast majority of Resin and Rosin oils on the market.<br>
-          It is 30% thinner than ordinary ceramics while maintaining the strength, which means<br> fewer terpene
+          It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
+          It is 30% thinner than ordinary ceramics while maintaining the strength, which means fewer terpene
           molecules
           are filtered out, and the rich, natural flavors are preserved.
         </div>
@@ -153,7 +154,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] h-[368px]" type="image" :src="r1" alt="" />
+        <MediaAsset class="w-[763px] h-[368px] object-contain" type="image" :src="r1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
@@ -179,16 +180,19 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .content-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .content1 {
+  width: 100%;
+  flex: 1;
 
   .title1 {
+    max-width: 100%;
     width: 164px;
-    height: 23px;
     color: #1CE785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -196,8 +200,8 @@ onUnmounted(() => {
   }
 
   .title2 {
+    max-width: 100%;
     width: 418px;
-    height: 94px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
@@ -206,8 +210,8 @@ onUnmounted(() => {
   }
 
   .title3 {
+    max-width: 100%;
     width: 750px;
-    height: 232px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -245,10 +249,11 @@ onUnmounted(() => {
 }
 
 .content2 {
+    width: 100%;
 
   .title1 {
+    max-width: 100%;
     width: 164px;
-    height: 23px;
     color: #1CE785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
@@ -256,8 +261,8 @@ onUnmounted(() => {
   }
 
   .title2 {
+    max-width: 100%;
     width: 584px;
-    height: 94px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
@@ -266,6 +271,7 @@ onUnmounted(() => {
   }
 
   .title3 {
+    max-width: 100%;
     width: 750px;
     color: #fff;
     font-family: 'Roboto', sans-serif;
@@ -300,6 +306,31 @@ onUnmounted(() => {
     line-height: 30px;
     /* 150% */
     margin-top: 5px;
+  }
+}
+
+
+@media screen and (max-width: 1500px) {
+  .content-wrapper {
+    margin-left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .content-wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .content1,
+  .content2 {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .mediaBox {
+    width: 30vw;
   }
 }
 </style>
