@@ -3,7 +3,6 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import Unit3 from "../Unit3/index.vue"
 import l1 from '@/assets/technology/t1/l1.mp4'
 import r1 from '@/assets/technology/t1/r1.png'
 import r2 from '@/assets/technology/t1/r2.mp4'
@@ -59,7 +58,7 @@ const initScroll = () => {
       scrub: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      pinSpacing: false,
+      pinSpacing: true,
       onEnter: playLeft,
       onEnterBack: playLeft,
       onLeave: pauseLeft,
@@ -110,13 +109,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative flex max-w-[1560px] pr-[134px] items-start mx-auto h-max">
+  <div ref="sectionRef" class="relative flex max-w-[1560px] pr-[134px] items-start mx-auto h-screen">
     <div ref="videoBoxRef">
       <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
         :controls="false" playsinline class="w-[400px] h-[680px] object-contain mt-[150px]" />
     </div>
-    <!-- <div class="h-full w-[1px] ml-[170px] mr-[98px] bg-white/20"></div> -->
-    <div ref="rightWrapRef" class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px]">
+    <div ref="rightWrapRef" class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
           100% Rosin-Ready

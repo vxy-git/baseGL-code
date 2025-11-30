@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import icon6_1 from '@/assets/img/icon6_1.png'
+import b2 from '@/assets/technology/b2.png'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import icon6_1 from '@/assets/img/icon6_1.png'
 
     
     <div class="c_1300 h-[560px] relative mx-auto mt-[265px]">
-      <MediaAsset :src="icon6_1" type="image" alt="" class="c_1300 h-[560px]" />
+      <MediaAsset :src="b2" type="image" alt="" class="c_1300 h-[560px]" />
         <div class="absolute size-full top-0 left-0 flex flex-col items-center pt-[142px]">
           <div class="title2">
             From lab to awards: journey to the top
@@ -19,10 +19,7 @@ import icon6_1 from '@/assets/img/icon6_1.png'
             Choose us, and you're not just choosing a supplier—you're choosing a reliable partner you can always count on.
           </div>
         </div>
-      
-      
     </div>
-    
 </div>
 </template>
 
