@@ -10,6 +10,7 @@ import icon4_2 from '@/assets/img/icon4_2.png'
 gsap.registerPlugin(ScrollTrigger)
 
 const sectionRef = ref(null)
+const contentRef = ref(null)
 let ctx
 
 const handleResize = () => {
@@ -19,16 +20,45 @@ const handleResize = () => {
 onMounted(() => {
   ctx = gsap.context(() => {
     const sectionEl = sectionRef.value
-    if (!sectionEl) return
+    const movingEl = contentRef.value
+    if (!sectionEl || !movingEl) return
 
-    ScrollTrigger.create({
-      trigger: sectionEl,
-      start: 'center center',
-      end: '+=200%',
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
+    let startX = 0
+    let endX = 0
+
+    const computePositions = () => {
+      // 暂时归零位移方便获取真实位置
+      const prevX = Number(gsap.getProperty(movingEl, 'x')) || 0
+      gsap.set(movingEl, { x: 0 })
+      const rect = movingEl.getBoundingClientRect()
+      startX = 0 // 居中
+      endX = window.innerWidth - rect.width - rect.left // 右侧贴边
+      gsap.set(movingEl, { x: prevX })
+    }
+
+    computePositions()
+    gsap.set(movingEl, { x: startX })
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionEl,
+        start: 'center center',
+        end: '+=200%',
+        pin: true,
+        scrub: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => {
+          computePositions()
+          gsap.set(movingEl, { x: startX })
+        }
+      }
+    })
+
+    tl.to(movingEl, {
+      x: () => endX,
+      ease: 'none'
     })
 
     ScrollTrigger.refresh()
@@ -46,10 +76,11 @@ onUnmounted(() => {
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
     <MediaAsset type="image" :src="icon4_1" alt="" class="absolute inset-0 w-full h-full object-cover" />
 
-    <div class="size-full">
-      <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start gap-[72px]">
-        <div ref="contentRef1" class="w-screen flex flex-col justify-center items-center">
-          <div class="w-[600px] shrink-0 mr-[500px] ml-[50vw]">
+    <div class="size-full overflow-hidden">
+      <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start">
+        <div class="w-screen"></div>
+        <div class="shrink-0 w-[50vw] flex flex-col justify-center items-start">
+          <div class="w-[600px]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
                 <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
@@ -73,7 +104,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <div class="w-[600px] shrink-0 translate-x-[50%]" ref="contentRef2">
+        <div class="w-[600px] shrink-0 translate-x-[30vw]" ref="contentRef2">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
