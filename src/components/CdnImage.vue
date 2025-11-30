@@ -91,16 +91,7 @@ const handleError = () => {
 <style scoped lang="scss">
 .cdn-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
-  transition: opacity 0.3s ease;
-
-  // &.is-loading {
-  //   opacity: 0.5;
-  // }
-
-  // &.is-loaded {
-  //   opacity: 1;
-  // }
 }
 </style>

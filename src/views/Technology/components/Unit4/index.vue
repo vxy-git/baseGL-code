@@ -1,18 +1,19 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
+import icon19 from '@/assets/img/icon19.png'
 import icon4_1 from '@/assets/img/icon4_1.png'
 import icon4_2 from '@/assets/img/icon4_2.png'
 </script>
 
 <template>
-  <div
-      class="mt-[6px] w-full h-[1080px] bg-[url(@/assets/img/icon4_1.png)] bg-[length:100%_100%] bg-[#111111]">
+  <div class="relative mt-[6px] w-full h-[1080px] bg-[#111111] overflow-hidden">
+    <MediaAsset type="image" :src="icon4_1" alt="" class="absolute inset-0 w-full h-full object-cover" />
 
-
-    <div class="content-wrapper c_1300 mx-auto justify-between pt-[447px]">
+    <div class="content-wrapper c_1300 mx-auto justify-between pt-[447px] relative z-10">
       <div>
         <div class="flex flex-col">
           <div class="text1 flex">
-            <img class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" src="@/assets/img/icon19.png" alt="">
+            <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image" :src="icon19" alt="" />
             20% at firing temp
           </div>
         </div>
@@ -29,11 +30,8 @@ import icon4_2 from '@/assets/img/icon4_2.png'
           (1000 ℃), surpassing our peers by 20%.
         </div>
       </div>
-      <img :src="icon4_2" class="w-[640px] h-[341px] mt-[15px]">
+      <MediaAsset type="image" :src="icon4_2" alt="" class="w-[640px] h-[341px] mt-[15px]" />
     </div>
-
-    <!--     <img :src="icon4_2"/>-->
-
   </div>
 </template>
 

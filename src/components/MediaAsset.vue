@@ -1,6 +1,7 @@
 <template>
   <CdnImage v-if="isImage" v-bind="$attrs" :src="src" :alt="alt" :cdnUrl="cdnUrl" :lazy="lazy" />
-  <video v-else ref="videoEl" v-bind="$attrs" :src="src" :poster="poster" :autoplay="autoplay" :muted="muted" :loop="loop" :controls="controls" playsinline class="media-video" />
+  <video v-else ref="videoEl" v-bind="$attrs" :src="src" :poster="poster" :autoplay="autoplay" :muted="muted"
+    :loop="loop" :controls="controls" playsinline class="media-video" />
 </template>
 
 <script setup>

@@ -1,23 +1,25 @@
 <script setup>
-import icon3_1 from '@/assets/img/icon3_1.png'
+import MediaAsset from '@/components/MediaAsset.vue'
+import r2 from '@/assets/technology/t1/r2.mp4'
 </script>
 
 <template>
-    <div class="content-wrapper mt-[158px]">
-      <div class="title1">
-        We fixed it first
-      </div>
-
-      <div class="title2">
-        The most effective<br>
-anti-clogging solution ever built.
-      </div>
-
-      <div class="title3 mt-[21px]" >
-        Most customers have reported bubble issues to us with various devices from different suppliers during oil filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
-      </div>
+  <div class="content-wrapper mt-[158px]">
+    <div class="title1">
+      We fixed it first
     </div>
-<img :src="icon3_1"  class="w-[595px] h-[412px] mt-[66px]">
+
+    <div class="title2">
+      The most effective<br>
+      anti-clogging solution ever built.
+    </div>
+
+    <div class="title3 mt-[21px]">
+      Most customers have reported bubble issues to us with various devices from different suppliers during oil filling.
+      Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
+    </div>
+  </div>
+  <MediaAsset :src="r2" type="video" class="w-[595px] h-[412px] mt-[66px]" muted :controls="false" playsinline alt="" />
 </template>
 
 <style scoped lang="scss">
@@ -63,21 +65,24 @@ anti-clogging solution ever built.
 }
 
 
-.text1{
+.text1 {
   color: #1CE785;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
-  line-height: 30px; /* 75% */
+  line-height: 30px;
+  /* 75% */
 }
-.text2{
+
+.text2 {
   color: #FFF;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
+  /* 150% */
   margin-top: 5px;
 }
 </style>
