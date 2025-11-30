@@ -23,6 +23,7 @@ import UNIVERSE_Series_HOVER from '@/assets/list/For_ResinRosin/UNIVERSE-Series-
  * @property {string} background
  * @property {string} alt
  * @property {boolean} isNew
+ * @property {string} linkType
  */
 
 /** @type {string[]} */
@@ -40,6 +41,7 @@ export const productsData = {
       background: BLENDER_HOVER,
       alt: 'UNIT PRO',
       isNew: true,
+      linkType: 'product1',
     },
     {
       id: 2,
@@ -50,6 +52,7 @@ export const productsData = {
       background: DUKES_HOVER,
       alt: 'UNIT',
       isNew: true,
+      linkType: 'product2',
     },
   ],
   1: [
@@ -62,6 +65,7 @@ export const productsData = {
       background: UNICORN_Series_HOVER,
       alt: 'DUKES',
       isNew: true,
+      linkType: 'product3',
     },
     {
       id: 102,
@@ -72,6 +76,7 @@ export const productsData = {
       background: UNIT_PRO_HOVER,
       alt: 'D9 CART',
       isNew: false,
+      linkType: 'product4',
     },
     {
       id: 105,
@@ -82,6 +87,7 @@ export const productsData = {
       background: UNIVERSE_Series_HOVER,
       alt: 'D9 MAX',
       isNew: false,
+      linkType: 'product1',
     },
   ],
 }

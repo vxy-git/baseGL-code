@@ -1,6 +1,7 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRouter } from 'vue-router'
 import { productsData } from '@/data/products'
 
 // Splide 状态管理
@@ -76,6 +77,12 @@ const slideNext = () => {
   splideRef.value?.go('>')
 }
 
+const router = useRouter()
+const productLink = (linkType) => `/${linkType || 1}`
+const goProduct = (linkType) => {
+  router.push(productLink(linkType))
+}
+
 </script>
 
 <template>
@@ -95,7 +102,7 @@ const slideNext = () => {
         <!-- Splide 轮播容器 -->
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="updateArrowStatus">
           <SplideSlide v-for="product in productList" :key="product.id">
-            <div class="card" :class="{ 'has-hover-bg': product.background }">
+            <div class="card" :class="{ 'has-hover-bg': product.background }" @click="goProduct(product.linkType)">
               <img class="card-bg card-bg--main" :src="product.image" :alt="product.alt">
               <img
                 v-if="product.background"
@@ -151,6 +158,7 @@ const slideNext = () => {
     border-radius: 20px;
     background: #23242A;
     margin: 0 auto;
+    cursor: pointer;
 
     &.has-hover-bg:hover {
       .card-bg--hover {

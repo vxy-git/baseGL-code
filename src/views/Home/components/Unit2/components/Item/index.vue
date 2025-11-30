@@ -1,15 +1,23 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
 const props = defineProps({
-  data:{
+  data: {
     type: Object,
     required: true
   }
 })
+
+const router = useRouter()
+const productLink = (linkType) => `/${linkType || 1}`
+const goProduct = () => {
+  router.push(productLink(props.data?.linkType))
+}
 </script>
 
 <template>
 <div class="item">
-  <div class="card-surface">
+  <div class="card-surface" @click="goProduct">
     <img v-if="data.background" class="product-featured-image" :src="data.background" :alt="data.alt + ' featured'">
     <div class="media">
       <img class="product-image" :src="data.image" :alt="data.alt">
@@ -52,6 +60,7 @@ const props = defineProps({
   background-position: center;
   background-repeat: no-repeat;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 
   &::after {
     content: '';

@@ -17,6 +17,7 @@ const categories = computed(() =>
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
       image: product.image,
+      linkType: product.linkType || 1,
     }))
   }))
 )
@@ -195,8 +196,10 @@ const goHome = () => {
 }
 
 // 产品点击
-const handleProductClick = () => {
+const productLink = (linkType) => `/${linkType || 1}`
+const handleProductClick = (linkType) => {
   closeMobileMenu()
+  router.push(productLink(linkType))
 }
 
 // 生命周期
@@ -381,8 +384,13 @@ onUnmounted(() => {
                 <!-- 三级：产品列表 -->
                 <Transition name="expand">
                   <div v-show="expandedCategoryId === category.id" class="product-list">
-                    <a v-for="product in category.products" :key="product.id" :href="`/product${product.id}`"
-                      class="product-item" @click="handleProductClick">
+                    <a
+                      v-for="product in category.products"
+                      :key="product.id"
+                      :href="productLink(product.linkType)"
+                      class="product-item"
+                      @click.prevent="handleProductClick(product.linkType)"
+                    >
                       <img class="product-image" :src="product.image" :alt="product.name" />
                       <div class="product-info">
                         <span v-if="product.badge" class="badge">{{ product.badge }}</span>

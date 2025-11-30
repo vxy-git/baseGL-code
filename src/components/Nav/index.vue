@@ -20,6 +20,7 @@ const categories = computed(() =>
       variant: product.capacity,
       image: product.image,
       background: product.background,
+      linkType: product.linkType || 1,
     }))
   }))
 )
@@ -188,6 +189,13 @@ const goList = () => {
   router.push('/list')
 }
 
+const productLink = (linkType) => `/${linkType || 1}`
+
+const goProduct = (linkType) => {
+  closeMenu()
+  router.push(productLink(linkType))
+}
+
 // 监听 visible 变化
 watch(() => props.visible, async (newVal) => {
   if (newVal) {
@@ -252,7 +260,8 @@ defineExpose({
           <div class="product-grid">
             <article v-for="(product, index) in displayedProducts" :key="product.id"
               :ref="el => { if (el) productCardsRef[index] = el }"
-              :class="['product-card', { 'has-hover-bg': product.background }]">
+              :class="['product-card', { 'has-hover-bg': product.background }]"
+              @click="goProduct(product.linkType)">
               <img :src="product.image" :alt="`${product.name} product`" class="product-bg product-bg--main" />
               <img
                 v-if="product.background"
