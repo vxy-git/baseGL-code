@@ -23,7 +23,7 @@ const initAnimation = () => {
   scrollTl && scrollTl.kill()
 
   gsap.set(imageEl, { scale: 1, transformOrigin: 'center center' })
-  gsap.set(contentEl, { opacity: 0, y: 30 })
+  gsap.set(contentEl, { opacity: 0 })
 
   scrollTl = gsap.timeline({
     scrollTrigger: {
