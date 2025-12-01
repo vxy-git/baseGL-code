@@ -203,12 +203,7 @@ onUnmounted(() => {
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back.
-              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
-              Through
-              round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
-              °F
-              (1000 ℃), surpassing our peers by 20%.
+              We never let existing rules and regulations hold us back. We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics. Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832 °F (1000 ℃), surpassing our peers by 20%.
             </div>
           </div>
           <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
@@ -218,21 +213,16 @@ onUnmounted(() => {
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
                 :src="icon19" alt="" />
-              20% at firing temp
+              33% in pore uniformity
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            Aerospace-grade<br>
-            high thermal conductivity.
+            Ideal for Rosin's molecular structure.
           </div>
 
           <div class="title3 mt-[32px]">
-            We never let existing rules and regulations hold us back.
-            We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
-            Through
-            round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832 °F
-            (1000 ℃), surpassing our peers by 20%.
+            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best performance from beginning to end.
           </div>
         </div>
         <div class="m_fit"></div>
