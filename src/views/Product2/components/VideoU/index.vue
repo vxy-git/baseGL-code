@@ -26,20 +26,13 @@ useIntersectionObserver(
 
 <template>
   <div ref="rootRef" class="w-full relative h-[1210px] flex flex-col justify-end">
-    <MediaAsset
-      type="video"
-      :src="videoSrc"
-      :autoplay="false"
-      :muted="true"
-      :controls="false"
-      :loop="false"
-      class="w-full object-contain"
-    />
+    <MediaAsset type="video" :src="videoSrc" :autoplay="false" :muted="true" :controls="false" :loop="false"
+      class="w-full object-contain" />
 
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">
         <div class="title1 text-center capitalize">
-          UNICORE Powered
+          <span class="text-[#caa1ed]">UNICORE</span> Powered
         </div>
         <div class="title2 mt-[19px]">
           The gold standard for Rosin and Resin oils
