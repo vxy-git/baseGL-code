@@ -11,11 +11,10 @@ import videoSrc from '@/assets/product1/banner.mp4'
       <div class="c_1230 c_padding w-full m_flex_col">
         <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
         <div class="title">
-          UNIT PRO
+          UNIT Pro
         </div>
         <div class="subTitle translate-y-[-2px]">
-          From lab to award,<br />
-          100% for Rosin we’ve perfected
+          From lab to award, 100% for Rosin we’ve perfected.
         </div>
         <div class="btn cursor-pointer">
           1mL/2mL

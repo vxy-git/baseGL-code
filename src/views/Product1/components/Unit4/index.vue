@@ -232,7 +232,7 @@ onUnmounted(() => {
       <div class="greenText">Built-in Wires</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          No dry burning
+          No more dry burning
         </div>
         <div class="label mt-[2px]">
           The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
