@@ -66,7 +66,7 @@ useIntersectionObserver(
 
     <div class="h-[553px] c_1230 c_padding" ref="pairRef">
       <div class="h-full flex justify-between m_flex_col_r">
-        <div class="img-small h-full object-cover w-[39%] rounded-[20px]">
+        <div class="img-small h-full object-cover w-[39%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
             :src="ConsistentBL"
@@ -77,7 +77,7 @@ useIntersectionObserver(
             class="h-full object-cover"
           />
         </div>
-        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
             :src="ConsistentBR"
@@ -103,7 +103,7 @@ useIntersectionObserver(
         </div>
       </div>
       <div class="h-[553px] flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
-        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
             :src="vl"
@@ -114,7 +114,7 @@ useIntersectionObserver(
             class="h-full object-cover"
           />
         </div>
-        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
+        <div class="img-large h-full object-cover w-[59.4%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
             :src="vr"
