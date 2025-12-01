@@ -5,14 +5,62 @@ import icon19 from '@/assets/img/icon19.png'
 import b3 from '@/assets/technology/b3.mp4'
 import m1 from '@/assets/technology/t2/m1.jpg'
 import bgVideo from '@/assets/technology/t2/bg.mp4'
+
+const bgVideoRef = ref(null)
+const mainVideoRef = ref(null)
+const observers = []
+
+const resolveVideoEl = (component) => {
+  if (!component) return null
+  const el = component.videoEl
+  if (el instanceof Element) return el
+  if (el && 'value' in el) return el.value
+  return null
+}
+
+const setupObserver = (assetRef) => {
+  const component = assetRef.value
+  const videoEl = resolveVideoEl(component)
+  if (!component || !videoEl) return
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = resolveVideoEl(component)
+        if (!el) return
+        if (entry.isIntersecting) {
+          component.playFromStart?.()
+        } else {
+          component.pause?.()
+          try {
+            el.currentTime = 0
+          } catch {}
+        }
+      })
+    },
+    { threshold: 0.4 }
+  )
+
+  observer.observe(videoEl)
+  observers.push(observer)
+}
+
+onMounted(() => {
+  setupObserver(bgVideoRef)
+  setupObserver(mainVideoRef)
+})
+
+onUnmounted(() => {
+  observers.forEach((observer) => observer.disconnect())
+})
 </script>
 
 <template>
-  <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden">
-    <MediaAsset type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+  <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
+    <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="w-full object-cover" />
 
-    <div class="size-full overflow-hidden c_padding">
+    <div class="size-full overflow-hidden">
       <div class="relative z-[2] h-full w-full pt-[45px]">
         <div class="shrink-0 w-full">
           <div class="w-[600px] max-w-[90vw]">
@@ -58,7 +106,7 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset ref="videoAssetRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
+          <MediaAsset ref="mainVideoRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
             :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

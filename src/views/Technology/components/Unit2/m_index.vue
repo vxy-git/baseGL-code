@@ -4,12 +4,61 @@ import MediaAsset from '@/components/MediaAsset.vue'
 import l1 from '@/assets/technology/t1/l1.mp4'
 import r1 from '@/assets/technology/t1/r1.png'
 import r2 from '@/assets/technology/t1/r2.mp4'
+
+const l1VideoRef = ref(null)
+const r2VideoRef = ref(null)
+const observers = []
+
+const resolveVideoEl = (component) => {
+  if (!component) return null
+  const el = component.videoEl
+  // videoEl is exposed; Vue proxies refs so it may already be unwrapped
+  if (el instanceof Element) return el
+  if (el && 'value' in el) return el.value
+  return null
+}
+
+function setupVideoObserver(assetRef) {
+  const component = assetRef.value
+  const videoEl = resolveVideoEl(component)
+  if (!component || !videoEl) return
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = resolveVideoEl(component)
+        if (!el) return
+        if (entry.isIntersecting) {
+          component.playFromStart?.()
+        } else {
+          component.pause?.()
+          try {
+            el.currentTime = 0
+          } catch {}
+        }
+      })
+    },
+    { threshold: 0.4 }
+  )
+
+  observer.observe(videoEl)
+  observers.push(observer)
+}
+
+onMounted(() => {
+  setupVideoObserver(l1VideoRef)
+  setupVideoObserver(r2VideoRef)
+})
+
+onUnmounted(() => {
+  observers.forEach((observer) => observer.disconnect())
+})
 </script>
 
 <template>
   <div class="unit2 relative w-[1560px] max-w-full mx-auto c_padding pb-[65px]">
     <div class="shrink-0 w-full m_video">
-      <MediaAsset type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
+      <MediaAsset ref="l1VideoRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
         :controls="false" playsinline class="mediaBox size-full" />
     </div>
     <div
@@ -69,7 +118,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
           filling.
           Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
         </div>
-        <MediaAsset :src="r2" type="video" class="w-[595px] mt-[66px]" muted
+        <MediaAsset ref="r2VideoRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted
           :controls="false" playsinline alt="" />
       </div>
     </div>
