@@ -65,7 +65,7 @@ export const productsData = {
       background: UNICORN_Series_HOVER,
       alt: 'DUKES',
       isNew: true,
-      linkType: 'product3',
+      linkType: 'product1',
     },
     {
       id: 102,
@@ -76,7 +76,7 @@ export const productsData = {
       background: UNIT_PRO_HOVER,
       alt: 'D9 CART',
       isNew: false,
-      linkType: 'product4',
+      linkType: 'product2',
     },
     {
       id: 105,
