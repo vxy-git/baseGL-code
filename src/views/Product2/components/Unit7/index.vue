@@ -37,6 +37,7 @@ const splideOptions = {
   width: '100vw',
   fixedWidth: '50rem',
   focus: 'center',
+  trimSpace: false,
 }
 
 const onSplideInit = (splide) => {
