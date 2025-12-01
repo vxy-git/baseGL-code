@@ -16,17 +16,17 @@ import news10 from '@/assets/home/new/10.jpg'
 import news11 from '@/assets/home/new/11.jpg'
 
 const list = [
-  { type: 'image', img: news1 },
-  { type: 'image', img: news2 },
-  { type: 'image', img: news3 },
-  { type: 'image', img: news4 },
-  { type: 'image', img: news5 },
-  { type: 'image', img: news6 },
-  { type: 'image', img: news7 },
-  { type: 'image', img: news8 },
-  { type: 'image', img: news9 },
-  { type: 'image', img: news10 },
-  { type: 'image', img: news11 },
+  { type: 'image', img: news1, title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024' },
+  { type: 'image', img: news2, title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025' },
+  // { type: 'image', img: news3 },
+  // { type: 'image', img: news4 },
+  // { type: 'image', img: news5 },
+  // { type: 'image', img: news6 },
+  // { type: 'image', img: news7 },
+  // { type: 'image', img: news8 },
+  // { type: 'image', img: news9 },
+  // { type: 'image', img: news10 },
+  // { type: 'image', img: news11 },
 ]
 const bannerCurrent = ref(0)
 const splideRef = ref(null)
@@ -53,7 +53,7 @@ onUnmounted(() => {
 
 // Splide 配置
 const splideOptions = {
-  type: 'loop',
+  type: 'slide',
   perPage: 1,
   perMove: 1,
   gap: '2.18rem',
@@ -63,8 +63,9 @@ const splideOptions = {
   drag: true,
   keyboard: true,
   width: '100vw',
-  fixedWidth: '53.75rem',
-  focus: 'center',
+  focus: 0,
+  omitEnd: true,
+  // trimSpace: false,
 }
 
 // 统一的箭头状态更新函数
@@ -108,15 +109,15 @@ const goToSlide = (index) => {
 </script>
 
 <template>
-  <div class="mt-[55px]">
+  <div class="unit5 mt-[55px]">
     <div class="mx-auto">
       <div class="title text-center">
         The latest news and inspiring stories
       </div>
-      <div class="mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-        <Splide class="w-full" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+      <div class="c_1300 mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+        <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
           @splide:move="changeEnd">
-          <SplideSlide class="h-[480px] max-w-[94vw]" v-for="(item, index) in list" :key="index">
+          <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
             <Item :data="item" />
           </SplideSlide>
         </Splide>

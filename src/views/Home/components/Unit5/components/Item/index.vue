@@ -10,29 +10,31 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="size-full rounded-[20px] flex-shrink-0 overflow-hidden relative">
-    <MediaAsset
-      class="w-full h-full object-cover"
-      :type="data.type || 'image'"
-      :src="data.img"
-      :alt="data.alt || ''"
-      :lazy="false"
-    />
+  <div class="item rounded-[20px] flex-shrink-0 overflow-hidden relative">
+    <MediaAsset class="w-full h-full object-cover" :type="data.type || 'image'" :src="data.img" :alt="data.alt || ''"
+      :lazy="false" />
     <div class="titleBox">
       <div class="title">
-        CALEAF TECH x UAE Team: GO Ride with Pogaěar
+        {{ data.title }}
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.titleBox{
+.item {
+  height: 480px;
+  width: 860px;
+  max-width: 100%;
+}
+
+.titleBox {
   width: 100%;
   position: absolute;
   bottom: 0;
-  height: 96px;
-  &::after{
+
+  // height: 96px;
+  &::after {
     content: '';
     width: 100%;
     position: absolute;
@@ -43,9 +45,10 @@ const props = defineProps({
     opacity: 0.3;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
   }
-  .title{
+
+  .title {
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     z-index: 1;
     color: #FFF;
     font-family: Roboto;
