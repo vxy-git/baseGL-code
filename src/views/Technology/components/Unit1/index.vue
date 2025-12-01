@@ -9,8 +9,8 @@ const showVideo = ref(false)
 </script>
 
 <template>
-  <div class="unit1 pb-[173px]">
-    <div class="relative flex c_1300 mx-auto justify-center items-start pt-[373px]">
+  <div class="unit1">
+    <div class="relative flex c_1300 mx-auto justify-center items-start pt-[373px] pb-[173px]">
       <div class="flex flex-col items-center">
         <!-- 标题 -->
         <div class="title">
@@ -107,5 +107,13 @@ const showVideo = ref(false)
   display: block;
   transform: translateY(3px);
   object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .video-trigger {
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 </style>

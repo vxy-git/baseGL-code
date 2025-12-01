@@ -38,7 +38,7 @@ const handleContainerLeave = (e) => {
     </div>
     <div class=" relative c_1300 w-full c_padding mt-[51px] flex justify-center items-center">
       <div class="unitBox w-[1300px] h-[732px] shrink-0">
-        <svg class="pointer-events-none z-[2] w-[1946px] mt-[40px] h-[723px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+        <svg class=" hidden pointer-events-none z-[2] w-[1946px] mt-[40px] h-[723px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
           xmlns="http://www.w3.org/2000/svg" width="1920" height="754" viewBox="0 0 1920 754" fill="none">
           <path
             d="M-13 547.557C158.602 547.068 419.83 541.531 493.983 409.813C615.105 194.665 351.252 43.7328 256.139 217.85C151.279 409.812 354.719 682.371 587.869 641.341C853.801 594.542 837.893 308.964 954.024 160.701C1091.87 -15.29 1308.62 -19.6634 1399.98 83.0369C1567.07 270.864 1657.43 835.844 1302.97 723.401C989.675 624.018 1302.97 184.408 1630 119.671C1866.28 72.8987 1925 180.847 1933 221.958"

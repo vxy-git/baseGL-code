@@ -41,7 +41,7 @@ export const productsData = {
       background: DUKES_HOVER,
       alt: 'DUKES',
       isNew: true,
-      linkType: 'product2',
+      linkType: '', //product4
     },
   ],
   1: [
@@ -54,7 +54,7 @@ export const productsData = {
       background: UNIVERSE_Series_HOVER,
       alt: 'UNIVERSE Series',
       isNew: true,
-      linkType: 'product1',
+      linkType: 'product2',
     },
     {
       id: 101,
@@ -65,7 +65,7 @@ export const productsData = {
       background: UNICORN_Series_HOVER,
       alt: 'UNICORN Series',
       isNew: true,
-      linkType: 'product1',
+      linkType: '', // product3
     },
     {
       id: 102,
@@ -76,7 +76,7 @@ export const productsData = {
       background: UNIT_PRO_HOVER,
       alt: 'UNIT PRO',
       isNew: true,
-      linkType: 'product2',
+      linkType: 'product1',
     },
   ],
 }
