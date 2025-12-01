@@ -8,12 +8,12 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative mt-[100px] w-full bg-[#111111] overflow-hidden">
-    <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+  <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden">
+    <MediaAsset type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="w-full object-cover" />
 
     <div class="size-full overflow-hidden c_padding">
-      <div ref="contentRef" class="relative z-[2] h-full w-full pt-[45px]">
+      <div class="relative z-[2] h-full w-full pt-[45px]">
         <div class="shrink-0 w-full">
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
@@ -38,7 +38,7 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
           </div>
           <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
         </div>
-        <div ref="textRef2" class="w-full shrink-0 mt-[60px]">
+        <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
@@ -57,7 +57,7 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
             performance from beginning to end.
           </div>
         </div>
-        <div ref="mediaRef" class="w-full mt-[60px]">
+        <div class="w-full mt-[60px]">
           <MediaAsset ref="videoAssetRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
             :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>

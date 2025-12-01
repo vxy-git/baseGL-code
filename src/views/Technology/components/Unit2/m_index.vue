@@ -9,7 +9,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
 <template>
   <div class="unit2 relative w-[1560px] max-w-full mx-auto c_padding pb-[65px]">
     <div class="shrink-0 w-full m_video">
-      <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
+      <MediaAsset type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
         :controls="false" playsinline class="mediaBox size-full" />
     </div>
     <div
@@ -69,7 +69,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
           filling.
           Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted
+        <MediaAsset :src="r2" type="video" class="w-[595px] mt-[66px]" muted
           :controls="false" playsinline alt="" />
       </div>
     </div>
