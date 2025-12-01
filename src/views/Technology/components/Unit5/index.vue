@@ -152,8 +152,9 @@ onUnmounted(() => {
           by
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
-        <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
-          playsinline alt="" />
+        <div class="w-[750px] mt-[66px]">
+          <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" muted :controls="false" playsinline alt="" />
+        </div>
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
@@ -168,13 +169,13 @@ onUnmounted(() => {
           Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
           guarantees an exceptional session every time.
         </div>
-        <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
-          playsinline alt="" />
+        <div class="w-[750px] mt-[66px]">
+          <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" muted :controls="false" playsinline alt="" />
+        </div>
       </div>
     </div>
-    <div class="mediaBox shrink-0" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" :src="l1" type="video" class="w-[577px] mt-[150px]" muted :controls="false"
-        playsinline alt="" />
+    <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
+      <MediaAsset ref="videoAssetRef" :src="l1" type="video" class="" muted :controls="false" playsinline alt="" />
     </div>
   </div>
 </template>

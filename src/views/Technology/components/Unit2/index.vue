@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import l1 from '@/assets/technology/t1/l1.mp4'
-import r1 from '@/assets/technology/t1/r1.png'
+import r1 from '@/assets/technology/t1/r1.jpg'
 import r2 from '@/assets/technology/t1/r2.mp4'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -110,9 +110,9 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
-    <div class="shrink-0" ref="videoBoxRef">
+    <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
       <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
-        :controls="false" playsinline class="mediaBox w-[400px] mt-[150px]" />
+        :controls="false" playsinline class="mediaBox" />
     </div>
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">

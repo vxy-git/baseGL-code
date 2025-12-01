@@ -206,7 +206,7 @@ onUnmounted(() => {
             class="w-full h-full object-cover"
           />
         </div>
-        <div ref="video1Ref" class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px] overflow-hidden relative">
+        <div ref="video1Ref" class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
             :src="product1_best_R"
@@ -240,7 +240,7 @@ onUnmounted(() => {
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <div ref="video2Ref" class="img-large max-h-[500px] object-cover w-[59.4%] rounded-[20px] overflow-hidden relative">
+        <div ref="video2Ref" class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
             :src="product1_no_L"
@@ -259,7 +259,7 @@ onUnmounted(() => {
             ></div>
           </div>
         </div>
-        <div ref="smallVideo2Ref" class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px] overflow-hidden">
+        <div ref="smallVideo2Ref" class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
             :src="product1_no_R"

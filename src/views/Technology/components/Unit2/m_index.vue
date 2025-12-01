@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import l1 from '@/assets/technology/t1/l1.mp4'
-import r1 from '@/assets/technology/t1/r1.png'
+import r1 from '@/assets/technology/t1/r1.jpg'
 import r2 from '@/assets/technology/t1/r2.mp4'
 
 const l1VideoRef = ref(null)
