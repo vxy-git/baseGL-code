@@ -26,29 +26,29 @@ import banner4 from '@/assets/home/Banner-4-DUKES.mp4'
 
 const list = ref([
   {
-    title: "UNIVERSE",
-    subTitle: "One puff to be a freak, it is the freaking best",
+    title: "UNIVERSE SERIES",
+    subTitle: "Unicore powered, the way to infinite.",
     src: banner1,
     type: 'video',
     dotText: "UNIVERSE"
   },
   {
-    title: "UNICORN",
-    subTitle: "One puff to be a freak, it is the freaking best",
+    title: "UNICORN SERIES",
+    subTitle: "Unicore powered, the way to infinite.",
     src: banner2,
     type: 'video',
     dotText: "UNICORN"
   },
   {
-    title: "UNIT",
-    subTitle: "One puff to be a freak, it is the freaking best",
+    title: "UNIT PRO",
+    subTitle: "From lab to award, 100% for Rosin we’ve perfected.",
     src: banner3,
     type: 'video',
     dotText: "UNIT"
   },
   {
     title: "DUKES",
-    subTitle: "One puff to be a freak, it is the freaking best",
+    subTitle: "The best of both worlds, every puff with more hits.",
     src: banner4,
     type: 'video',
     dotText: "DUKES"
@@ -152,7 +152,7 @@ const stop = ref(false)
   font-family: Roboto;
   font-size: 30px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 35px;
   margin-top: 15px;
 }

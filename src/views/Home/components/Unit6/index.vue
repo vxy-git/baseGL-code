@@ -17,9 +17,9 @@ const playVideo = () => {
       <div>
         <div class="relative">
           <div v-if="!isPlaying" class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center">
-            <div class="titleText">CALEAF TECH</div>
+            <div class="titleText">Beyond Limits</div>
             <div class="label">
-               Top 3 cannabis vaping manufacturer. Solely focused on CBD and THC.
+               At Caleaf Tech, we don't settle for what others consider "good enough." We push the boundaries of what's possible, constantly seeking technological breakthroughs to deliver the absolute best. When others say "That's as far as we can go," we say "This is just the beginning." We're committed to making every puff not just delicious, but unforgettable, and every customer experience not just satisfactory, but exceptional.
             </div>
             <!-- <img class="size-[50px] mx-auto mt-[20.25px] cursor-pointer" src="@/assets/img/icon10.png" alt="" @click="playVideo"> -->
           </div>

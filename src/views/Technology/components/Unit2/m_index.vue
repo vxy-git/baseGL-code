@@ -105,18 +105,16 @@ onUnmounted(() => {
       </div>
       <div class="content2 mt-[60px] flex flex-col items-center">
         <div class="title1">
-          We fixed it first
+          We Fixed It First
         </div>
 
         <div class="title2 mt-[20px]">
-          The most effective<br>
+          The most effective <br>
           anti-clogging solution ever built.
         </div>
 
         <div class="title3 mt-[25px]">
-          Most customers have reported bubble issues to us with various devices from different suppliers during oil
-          filling.
-          Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles.
+          Most customers have reported bubble issues to us with various devices from different suppliers during oil filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles. 
         </div>
         <MediaAsset ref="r2VideoRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted
           :controls="false" playsinline alt="" />

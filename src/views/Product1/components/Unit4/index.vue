@@ -229,7 +229,7 @@ onUnmounted(() => {
     </div>
 
     <div class="c_1230 c_padding mt-[228px]">
-      <div class="greenText">Built-in wires</div>
+      <div class="greenText">Built-in Wires</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
           No dry burning

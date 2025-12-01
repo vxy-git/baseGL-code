@@ -129,14 +129,13 @@ onUnmounted(() => {
 
 .title2 {
   max-width: 100%;
-  width: 679px;
-  height: 47px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
   text-align: center;
   line-height: 1.1; // 缩短行间距
   letter-spacing: 0.2px;
+  font-weight: 900;
 }
 
 .title3 {

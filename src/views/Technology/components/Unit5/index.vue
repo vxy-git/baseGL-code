@@ -138,7 +138,7 @@ onUnmounted(() => {
       class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
       <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
         <div class="title1">
-          Built-in wires
+          Built-in Wires
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">

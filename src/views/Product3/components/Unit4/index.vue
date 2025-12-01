@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
         <MediaAsset type="video" :src="leftVideoSrc" :muted="true" :autoplay="false" :loop="false" :controls="false"
           data-id="unit5-l" class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]" />
         <div class="w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] m_order mb-[20px]">
-          <div class="title1">Built-in wires</div>
+          <div class="title1">Built-in Wires</div>
           <div class="title2 mt-[19.55px]">No more dry burning</div>
           <div class="title3  mt-[44.45px]">
             The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and

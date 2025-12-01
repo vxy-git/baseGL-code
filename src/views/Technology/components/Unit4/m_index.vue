@@ -66,22 +66,22 @@ onUnmounted(() => {
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
+                <MediaAsset class="size-[28px] mr-[11px]" type="image"
                   :src="icon19" alt="" />
-                20% at firing temp
+                <span>20% at Firing Temp</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] ">
-              Aerospace-grade<br>
-              high thermal conductivity.
+              Aerospace-grade,<br>
+              High thermal conductivity.
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back. We pioneered the incorporation of
-              aerospace-grade high thermal conductivity materials into ceramics. Through round-the-clock firing and
-              suction tests, we have finally succeeded in firing the ceramic at 1832 °F (1000 ℃), surpassing our peers
-              by 20%.
+              We never let existing rules and regulations hold us back.
+              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
+              Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
+              °F (1000 ℃), surpassing our peers by 20%.
             </div>
           </div>
           <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
@@ -89,9 +89,9 @@ onUnmounted(() => {
         <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
+              <MediaAsset class="size-[28px] mr-[11px]" type="image"
                 :src="icon19" alt="" />
-              33% in pore uniformity
+              33% in Pore Uniformity
             </div>
           </div>
 
@@ -100,9 +100,7 @@ onUnmounted(() => {
           </div>
 
           <div class="title3 mt-[32px]">
-            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular
-            structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best
-            performance from beginning to end.
+            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best performance from beginning to end.
           </div>
         </div>
         <div class="w-full mt-[60px]">
@@ -142,6 +140,7 @@ onUnmounted(() => {
   font-size: 40px;
   line-height: 1.14; // 缩短行间距
   letter-spacing: .8px;
+  font-weight: 900;
 }
 
 .title3 {

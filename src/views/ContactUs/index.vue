@@ -99,19 +99,21 @@ const closeDropdowns = () => {
       <Header headerClass="white" />
 
       <!-- Hero Section -->
-      <section class="hero">
+      <section class="hero mt_nav">
         <div class="heroBackground">
           <img src="@/assets/contact/banner.jpg" class="heroImage m_hide" alt="" />
           <img src="@/assets/contact/m_banner.jpg" class="heroImage pc_hide" alt="" />
-          <div class="divider"></div>
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
-          <div class="heroContent c_1300 c_padding">
-            <h1 class="heroTitle">Get in Touch</h1>
-            <p class="heroEmail">Email: info@caleaftech.com</p>
-            <div class="socialSection mt-[34px] pr-[4px]">
-              <p class="followText">Follow Us</p>
-              <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+          <div class="heroContent">
+            <h1 class="heroTitle w-full c_1300 c_padding text-right">Get in Touch</h1>
+            <div class="divider"></div>
+            <div class="w-full c_1300 c_padding m-auto flex flex-col items-end">
+              <p class="heroEmail">Email: info@caleaftech.com</p>
+              <div class="socialSection mt-[34px] pr-[4px]">
+                <p class="followText">Follow Us</p>
+                <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+              </div>
             </div>
           </div>
         </div>
@@ -183,16 +185,12 @@ const closeDropdowns = () => {
 
 <style scoped lang="scss">
 .hero {
-  margin-top: 97px;
-  // min-height: calc(975px / 1920px * 100vw);
   position: relative;
   width: 100%;
-  // height: 975px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
-
 }
 
 /* Main Container */
@@ -260,12 +258,12 @@ const closeDropdowns = () => {
   // top: 0;
   // left: 0;
   width: 100%;
-  // height: 100%;
+  height: 100%;
 }
 
 .heroImage {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -302,8 +300,6 @@ const closeDropdowns = () => {
 }
 
 .divider {
-  position: absolute;
-  top: 50%;
   height: 1px;
   background-color: #fff;
   opacity: 0.2;
@@ -668,5 +664,19 @@ const closeDropdowns = () => {
   font-size: 14px;
   line-height: 22px;
   color: #555;
+}
+
+
+
+
+@media screen and (max-width: 767px) {
+  .heroContent {
+    margin-top: 30vh;
+  }
+
+  .socialIcon {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>

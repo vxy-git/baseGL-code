@@ -66,7 +66,7 @@ onUnmounted(() => {
     <div class="content-wrapper will-change-transform h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          Built-in wires
+          Built-in Wires
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">

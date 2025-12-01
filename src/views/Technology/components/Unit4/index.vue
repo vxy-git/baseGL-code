@@ -16,6 +16,7 @@ const textRef2 = ref(null)
 const mediaRef = ref(null)
 const videoAssetRef = ref(null)
 const bgVideoRef = ref(null)
+const maskRef = ref(null)
 let ctx
 let bgVideoObserver
 
@@ -74,6 +75,7 @@ onMounted(() => {
     const movingEl = contentRef.value
     const textEl = textRef2.value
     const mediaEl = mediaRef.value
+    const maskEl = maskRef.value
     if (!sectionEl || !movingEl) return
 
     let startX = 0
@@ -98,6 +100,7 @@ onMounted(() => {
     const setInitialStates = () => {
       if (textEl) gsap.set(textEl, { x: textStartX })
       if (mediaEl) gsap.set(mediaEl, { width: mediaStartSize.width, height: mediaStartSize.height })
+      if (maskEl) gsap.set(maskEl, { opacity: 0 })
       pauseVideo()
     }
 
@@ -162,6 +165,16 @@ onMounted(() => {
       const nearEnd = st ? st.progress >= 1 - pauseHeadRoom : false
       if (nearEnd && videoPlaying) pauseVideo()
       if (!nearEnd && !videoPlaying) playVideo()
+
+      // 根据内容位移进度控制背景遮罩透明度
+      if (maskEl) {
+        const currentX = Number(gsap.getProperty(movingEl, 'x')) || 0
+        const travel = endX - startX
+        const moveProgress = travel ? (currentX - startX) / travel : 0
+        const maskProgress = gsap.utils.clamp(0, 1, moveProgress / 0.5) // 0-50% 位移
+        const targetOpacity = maskProgress * 0.8
+        gsap.set(maskEl, { opacity: targetOpacity })
+      }
     })
 
     ScrollTrigger.refresh()
@@ -183,6 +196,7 @@ onUnmounted(() => {
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
     <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div ref="maskRef" class="absolute inset-0 bg-black opacity-0 pointer-events-none z-[1]"></div>
 
     <div class="size-full overflow-hidden">
       <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start pt-[45px]">
@@ -191,19 +205,21 @@ onUnmounted(() => {
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
-                  :src="icon19" alt="" />
-                20% at firing temp
+                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="icon19" alt="" />
+                <span>20% at Firing Temp</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] ">
-              Aerospace-grade<br>
-              high thermal conductivity.
+              Aerospace-grade,<br>
+              High thermal conductivity.
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back. We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics. Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832 °F (1000 ℃), surpassing our peers by 20%.
+              We never let existing rules and regulations hold us back.
+              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
+              Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
+              °F (1000 ℃), surpassing our peers by 20%.
             </div>
           </div>
           <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
@@ -211,9 +227,8 @@ onUnmounted(() => {
         <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
-                :src="icon19" alt="" />
-              33% in pore uniformity
+              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="icon19" alt="" />
+              33% in Pore Uniformity
             </div>
           </div>
 
@@ -222,7 +237,9 @@ onUnmounted(() => {
           </div>
 
           <div class="title3 mt-[32px]">
-            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best performance from beginning to end.
+            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular
+            structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best
+            performance from beginning to end.
           </div>
         </div>
         <div class="m_fit"></div>
@@ -265,6 +282,7 @@ onUnmounted(() => {
   font-size: 40px;
   line-height: 1.14; // 缩短行间距
   letter-spacing: .8px;
+  font-weight: 900;
 }
 
 .title3 {
