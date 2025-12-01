@@ -191,6 +191,7 @@ onUnmounted(() => {
 }
 
 .title2 {
+  max-width: 100%;
   color: #fff;
   font-family: Roboto, sans-serif;
   font-size: 40px;
@@ -200,6 +201,7 @@ onUnmounted(() => {
 }
 
 .title3 {
+  max-width: 100%;
   width: 983px;
   color: #fff;
   font-family: Roboto, sans-serif;
