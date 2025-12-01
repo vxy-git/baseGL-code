@@ -5,6 +5,9 @@ import ConsistentTR from '@/assets/product2/consistent-TR.mp4'
 import ConsistentBR from '@/assets/product2/consistent-BR.mp4'
 import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
 
+import vl from '@/assets/product2/no-L.mp4'
+import vr from '@/assets/product2/no-R.mp4'
+
 const wiresRef = ref(null)
 const pairRef = ref(null)
 
@@ -103,7 +106,7 @@ useIntersectionObserver(
         <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
           <MediaAsset
             type="video"
-            :src="ConsistentBR"
+            :src="vl"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -114,7 +117,7 @@ useIntersectionObserver(
         <div class="img-large h-full object-cover w-[59.4%] rounded-[20px]">
           <MediaAsset
             type="video"
-            :src="ConsistentBR"
+            :src="vr"
             :autoplay="false"
             :muted="true"
             :controls="false"
