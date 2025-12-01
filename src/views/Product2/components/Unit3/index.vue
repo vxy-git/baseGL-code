@@ -8,7 +8,7 @@ import either_R from '@/assets/product2/either-R.mp4'
 
 <template>
   <div class="mt-[158px] c_1230 c_padding">
-    <div class="title1 text-center">
+    <div class="title1 text-center capitalize">
       Take your pick
     </div>
     <div class="title2 mt-[19px]">
@@ -34,7 +34,7 @@ import either_R from '@/assets/product2/either-R.mp4'
 }
 
 .title1 {
-  color: #1CE785;
+  color: #3ad3ff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

@@ -38,7 +38,7 @@ useIntersectionObserver(
 
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">
-        <div class="title1 text-center">
+        <div class="title1 text-center capitalize">
           UNICORE Powered
         </div>
         <div class="title2 mt-[19px]">
@@ -87,7 +87,7 @@ useIntersectionObserver(
 
 <style scoped lang="scss">
 .title1 {
-  color: #1CE785;
+  color: #3ad3ff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -121,7 +121,7 @@ useIntersectionObserver(
 
 .valBox {
   .label {
-    color: #1CE785;
+    color: #3ad3ff;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;

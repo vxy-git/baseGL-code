@@ -49,7 +49,7 @@ useIntersectionObserver(
           RTD Control
         </div>
         <div class="title2 mt-[19px]  !text-left">
-          Consistent Temp<br />
+          Consistent temp, <br />
           Ideal for Rosin
         </div>
         <div class="title3 mt-[56px] !text-left">
@@ -92,7 +92,7 @@ useIntersectionObserver(
       <div class="greenText">Built-in Wires</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          No dry burning
+          No more dry burning
         </div>
         <div class="label mt-[2px]">
           The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
@@ -143,7 +143,7 @@ useIntersectionObserver(
 }
 
 .greenText {
-  color: #1CE785;
+  color: #3ad3ff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -152,7 +152,7 @@ useIntersectionObserver(
 }
 
 .title1 {
-  color: #1CE785;
+  color: #3ad3ff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

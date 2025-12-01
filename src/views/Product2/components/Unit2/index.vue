@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <div class="c_1230 c_padding mt-[120px]">
+  <div class="c_1230 c_padding pt-[120px]">
     <div class="title">
       Relish the golden hours with the UNIVERSE Series.
-      Savor the sweetness, dive into <span class="text-[#1CE785]">smoothness</span>
+      Savor the sweetness, dive into <span class="text-[#3ad3ff]">smoothness</span>
     </div>
     <img src="@/assets/product2/unit2.png" class="mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain" alt="">
   </div>

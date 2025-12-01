@@ -141,10 +141,9 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">UNIVERSE</div>
-                  <div class="title1">It looks — and stays — beautiful.</div>
-                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                    yours.</div>
+                  <div class="btn mt-[3px]">UNIVERSE Pro</div>
+                  <div class="title1">Upgrade your adventure.</div>
+                  <div class="title2">With advanced interactivity, it will dominate the market like a pro.</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
                   <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
@@ -163,10 +162,9 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">UNIVERSE</div>
-                  <div class="title1">It looks — and stays — beautiful.</div>
-                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                    yours.</div>
+                  <div class="btn mt-[3px]">UNIVERSE Pro</div>
+                  <div class="title1">Upgrade your adventure.</div>
+                  <div class="title2">With advanced interactivity, it will dominate the market like a pro.</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
                   <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
@@ -215,7 +213,7 @@ onBeforeUnmount(() => {
   .line {
     height: 100%;
     width: 100%;
-    border: 10px solid #1CE785;
+    border: 10px solid #3ad3ff;
     display: block;
   }
 
@@ -251,7 +249,7 @@ onBeforeUnmount(() => {
   font-style: normal;
   font-weight: 700;
   line-height: 145px;
-  background: linear-gradient(180deg, #1CE785 0%, #C9FFE5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #3ad3ff 0%, #C9FFE5 50%, #3ad3ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -288,7 +286,7 @@ onBeforeUnmount(() => {
   text-align: center;
 
   .num {
-    color: #1CE785;
+    color: #3ad3ff;
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
@@ -298,11 +296,11 @@ onBeforeUnmount(() => {
 }
 
 .btn {
-  width: 140px;
+  width: max-content;
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #1CE785;
+  background: #3ad3ff;
   color: #000;
   font-family: Roboto;
   font-size: 18px;
@@ -313,6 +311,6 @@ onBeforeUnmount(() => {
   align-items: center;
   //justify-content: center;
   //letter-spacing: -.1px;
-  padding-left: 24px;
+  padding: 0 24px;
 }
 </style>

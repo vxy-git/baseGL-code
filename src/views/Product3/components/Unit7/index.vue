@@ -66,7 +66,7 @@ const deviceSpecs2 = [
         <div class="h-[414px]">
           <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">NIVERSE Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">

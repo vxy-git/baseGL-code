@@ -20,13 +20,17 @@ import Footer from "@/components/Footer.vue";
     <Header headerClass="white" />
     <div class="bg-black pb-[140px]">
       <Unit1 />
+    </div>
+    <div class="bg-[#111111] pb-[140px]">
       <Unit2 />
+    </div>
+    <div class="bg-black pb-[140px]">
       <GsapU />
       <Unit3 />
       <VideoU />
       <Unit4 />
     </div>
-      <Unit5 />
+    <Unit5 />
     <div class="bg-black">
       <Unit6 />
       <Unit7 />

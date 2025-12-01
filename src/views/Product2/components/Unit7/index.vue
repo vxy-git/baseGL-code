@@ -25,7 +25,7 @@ const isVideo = (src) => /\.mp4(\?.*)?$/i.test(src)
 const splideRef = ref(null)
 
 const splideOptions = {
-  type: 'loop',
+  // type: 'loop',
   perPage: 1,
   perMove: 1,
   gap: '1.25rem',
@@ -91,7 +91,7 @@ watch(tabsCurrent, (index) => {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  background: linear-gradient(90deg, #1CE785 0%, #80FFC1 50%, #1CE785 100%);
+  background: linear-gradient(90deg, #3ad3ff 0%, #ACECFF 50%, #3ad3ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

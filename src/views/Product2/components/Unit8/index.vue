@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="moduleRef" class="pt-[153px] pb-[45px]">
-    <div class="title c_padding">
+    <div class="title c_padding capitalize">
       Design your own look
     </div>
     <div class="title1 c_padding">
@@ -133,7 +133,7 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .title {
-  color: #1CE785;
+  color: #3ad3ff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
