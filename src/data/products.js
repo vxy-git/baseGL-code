@@ -33,19 +33,6 @@ export const tabsList = ['For Resin/Rosin', 'D9 Distillate']
 export const productsData = {
   0: [
     {
-      id: 2,
-      name: 'DUKES',
-      description: 'Dual chamber & postless tech',
-      capacity: '0.5+0.5mL/1.0+1.0mL/1.5+1.5mL',
-      image: DUKES,
-      background: DUKES_HOVER,
-      alt: 'DUKES',
-      isNew: true,
-      linkType: '', //product4
-    },
-  ],
-  1: [
-    {
       id: 105,
       name: 'UNIVERSE Series',
       description: 'UNICORE™ tech & super mini',
@@ -77,6 +64,19 @@ export const productsData = {
       alt: 'UNIT PRO',
       isNew: true,
       linkType: 'product1',
+    },
+  ],
+  1: [
+    {
+      id: 2,
+      name: 'DUKES',
+      description: 'Dual chamber & postless tech',
+      capacity: '0.5+0.5mL/1.0+1.0mL/1.5+1.5mL',
+      image: DUKES,
+      background: DUKES_HOVER,
+      alt: 'DUKES',
+      isNew: true,
+      linkType: '', //product4
     },
   ],
 }
