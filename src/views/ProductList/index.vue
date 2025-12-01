@@ -64,8 +64,8 @@ const activeFilterIndex = 0
 
 const products = computed(() => productsData[tabsCurrent.value] || [])
 
-const pages = [1, 2, 3, 4, 5, 6, 7]
-const currentPage = 4
+const pages = [1]
+const currentPage = 1
 
 const YouTubeIcon = () =>
   h('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none' }, [
