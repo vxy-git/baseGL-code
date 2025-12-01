@@ -13,10 +13,13 @@ const sectionRef = ref(null)
 const videoBoxRef = ref(null)
 const videoAssetRef = ref(null)
 const rightWrapRef = ref(null)
+const rightVideoBoxRef1 = ref(null)
 const rightVideoBoxRef = ref(null)
+const rightVideoAssetRef1 = ref(null)
 const rightVideoAssetRef2 = ref(null)
 
 let scrollTl
+let rightVideoTrigger1
 let rightVideoTrigger
 
 const playLeft = () => videoAssetRef.value?.playFromStart?.()
@@ -72,6 +75,23 @@ const initScroll = () => {
   })
 }
 
+const initRightVideo1 = () => {
+  const box = rightVideoBoxRef1.value
+  if (!box) return
+
+  rightVideoTrigger1 && rightVideoTrigger1.kill()
+
+  rightVideoTrigger1 = ScrollTrigger.create({
+    trigger: box,
+    start: 'top 70%',
+    end: 'bottom 30%',
+    onEnter: () => rightVideoAssetRef1.value?.playFromStart?.(),
+    onEnterBack: () => rightVideoAssetRef1.value?.playFromStart?.(),
+    onLeave: () => rightVideoAssetRef1.value?.pause?.(),
+    onLeaveBack: () => rightVideoAssetRef1.value?.pause?.()
+  })
+}
+
 const initRightVideo = () => {
   const box = rightVideoBoxRef.value
   if (!box) return
@@ -91,11 +111,14 @@ const initRightVideo = () => {
 
 const handleResize = () => {
   initScroll()
+  initRightVideo1()
+  initRightVideo()
   ScrollTrigger.refresh()
 }
 
 onMounted(() => {
   initScroll()
+  initRightVideo1()
   initRightVideo()
   ScrollTrigger.refresh()
   window.addEventListener('resize', handleResize)
@@ -103,6 +126,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   scrollTl && scrollTl.kill()
+  rightVideoTrigger1 && rightVideoTrigger1.kill()
   rightVideoTrigger && rightVideoTrigger.kill()
   window.removeEventListener('resize', handleResize)
 })
@@ -112,7 +136,7 @@ onUnmounted(() => {
   <div ref="sectionRef" class="relative flex max-w-[1702px] items-start mx-auto h-screen">
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
-      <div class="content1 flex flex-col items-center">
+      <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
         <div class="title1">
           Built-in wires
         </div>

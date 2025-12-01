@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import icon19 from '@/assets/img/icon19.png'
-import b3 from '@/assets/technology/b3.mp4'
+import m2 from '@/assets/technology/t2/m2.mp4'
 import m1 from '@/assets/technology/t2/m1.jpg'
 import bgVideo from '@/assets/technology/t2/bg.mp4'
 
@@ -106,7 +106,7 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset ref="mainVideoRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
+          <MediaAsset ref="mainVideoRef" type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
             :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

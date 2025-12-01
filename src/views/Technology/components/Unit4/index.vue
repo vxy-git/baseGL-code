@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import icon19 from '@/assets/img/icon19.png'
-import b3 from '@/assets/technology/b3.mp4'
+import m2 from '@/assets/technology/t2/m2.mp4'
 import m1 from '@/assets/technology/t2/m1.jpg'
 import bgVideo from '@/assets/technology/t2/bg.mp4'
 
@@ -228,7 +228,7 @@ onUnmounted(() => {
         <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
-            <MediaAsset ref="videoAssetRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
+            <MediaAsset ref="videoAssetRef" type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
               :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
           </div>
         </div>
