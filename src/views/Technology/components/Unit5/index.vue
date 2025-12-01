@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import l1 from '@/assets/technology/t3/l1.png'
+import l1 from '@/assets/technology/t3/l1.mp4'
 import r1 from '@/assets/technology/t3/r1.mp4'
 import r2 from '@/assets/technology/t3/r2.mp4'
 
@@ -128,8 +128,8 @@ onUnmounted(() => {
           by
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
-        <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" class="w-[750px] mt-[66px]" muted
-          :controls="false" playsinline alt="" />
+        <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
+          playsinline alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
@@ -144,12 +144,13 @@ onUnmounted(() => {
           Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
           guarantees an exceptional session every time.
         </div>
-        <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" class="w-[750px] mt-[66px]" muted
-          :controls="false" playsinline alt="" />
+        <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
+          playsinline alt="" />
       </div>
     </div>
     <div class="mediaBox shrink-0" ref="videoBoxRef">
-      <MediaAsset type="image" :src="l1" class="w-[577px] mt-[150px]" />
+      <MediaAsset ref="videoAssetRef" :src="l1" type="video" class="w-[577px] mt-[150px]" muted :controls="false"
+        playsinline alt="" />
     </div>
   </div>
 </template>

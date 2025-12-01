@@ -1,7 +1,11 @@
 <script setup>
+import { ref } from 'vue'
 import icon1_1 from '@/assets/img/icon1_1.png'
 import icon1_3 from '@/assets/img/icon1_3.png'
 import Playone from '@/assets/img/Play-one.png'
+import videoSrc from '@/assets/technology/banner.mp4'
+
+const showVideo = ref(false)
 </script>
 
 <template>
@@ -17,18 +21,18 @@ import Playone from '@/assets/img/Play-one.png'
         <img :src="icon1_1" alt="" class="w-[445px] h-[633px] object-contain -mt-[440px]" />
       </div>
 
-      <!-- 底部按钮图片 - 右下角 -->
-      <div class="absolute bottom-[90px] right-[35px] w-[300px] h-[60px]">
-        <!-- icon1_3 图片 -->
-        <img :src="icon1_3" alt="" class="w-full h-full object-contain" />
-
-        <!-- Watch Video + 播放按钮 放到 icon1_3 上面 -->
-        <div class="absolute inset-0 flex items-center justify-center gap-[9px]">
+      <!-- 自动播放视频按钮 -->
+      <div class="video-trigger" @click="showVideo = true">
+        <img :src="icon1_3" alt="" class="trigger-bg" />
+        <video class="preview-video" :src="videoSrc" autoplay muted loop playsinline></video>
+        <div class="overlay">
           <div class="title1">Watch Video</div>
-          <img :src="Playone" alt="" class="w-[24px] h-[24px] block translate-y-[3px] object-contain" />
+          <img :src="Playone" alt="" class="play-icon" />
         </div>
       </div>
     </div>
+
+    <VideoModal v-model:visible="showVideo" :src="videoSrc" :muted="false" :loop="false" :controls="true" />
   </div>
 </template>
 
@@ -56,5 +60,52 @@ import Playone from '@/assets/img/Play-one.png'
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+}
+
+.video-trigger {
+  position: absolute;
+  bottom: 90px;
+  right: 35px;
+  width: 300px;
+  height: 60px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.trigger-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  z-index: 1;
+}
+
+.play-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transform: translateY(3px);
+  object-fit: contain;
 }
 </style>

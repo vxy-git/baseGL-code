@@ -4,8 +4,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import icon19 from '@/assets/img/icon19.png'
-import icon4_1 from '@/assets/img/icon4_1.png'
 import b3 from '@/assets/technology/b3.mp4'
+import m1 from '@/assets/technology/t2/m1.jpg'
+import bgVideo from '@/assets/technology/t2/bg.mp4'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,7 +15,9 @@ const contentRef = ref(null)
 const textRef2 = ref(null)
 const mediaRef = ref(null)
 const videoAssetRef = ref(null)
+const bgVideoRef = ref(null)
 let ctx
+let bgVideoObserver
 
 let videoPlaying = false
 
@@ -41,6 +44,26 @@ const pauseVideo = () => {
   videoPlaying = false
 }
 
+const setupBgVideoObserver = () => {
+  if (bgVideoObserver) {
+    bgVideoObserver.disconnect()
+    bgVideoObserver = null
+  }
+  const sectionEl = sectionRef.value
+  const bgInst = bgVideoRef.value
+  if (!sectionEl || !bgInst) return
+  bgVideoObserver = new IntersectionObserver((entries) => {
+    const entry = entries?.[0]
+    if (!entry) return
+    if (entry.isIntersecting) {
+      bgInst.playFromStart?.()
+    } else {
+      bgInst.pause?.()
+    }
+  }, { threshold: 0.2 })
+  bgVideoObserver.observe(sectionEl)
+}
+
 const handleResize = () => {
   ScrollTrigger.refresh()
 }
@@ -55,7 +78,7 @@ onMounted(() => {
 
     let startX = 0
     let endX = 0
-    const textStartX = '30vw'
+    const textStartX = '100%'
     const mediaStartSize = { width: 341, height: 341 }
     const mediaEndSize = { width: 1000, height: 533 }
     let mediaSizeTween
@@ -81,6 +104,7 @@ onMounted(() => {
     computePositions()
     gsap.set(movingEl, { x: startX })
     setInitialStates()
+    setupBgVideoObserver()
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -147,19 +171,24 @@ onMounted(() => {
 
 onUnmounted(() => {
   ctx && ctx.revert()
+  if (bgVideoObserver) {
+    bgVideoObserver.disconnect()
+    bgVideoObserver = null
+  }
   window.removeEventListener('resize', handleResize)
 })
 </script>
 
 <template>
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
-    <MediaAsset type="image" :src="icon4_1" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+      :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
 
     <div class="size-full overflow-hidden">
       <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start pt-[45px]">
         <div class="w-screen"></div>
-        <div class="shrink-0 w-[50vw] min-w-[600px] flex flex-col justify-center items-start">
-          <div class="w-[600px]">
+        <div class="shrink-0 w-[1300px] flex justify-center items-start gap-[60px]">
+          <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
                 <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
@@ -174,16 +203,17 @@ onUnmounted(() => {
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back.<br>
-              We pioneered the incorporation of aerospace-grade high thermal<br> conductivity materials into ceramics.
+              We never let existing rules and regulations hold us back.
+              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
               Through
-              round-the-clock firing<br> and suction tests, we have finally succeeded in firing the ceramic at<br> 1832
+              round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
               °F
               (1000 ℃), surpassing our peers by 20%.
             </div>
           </div>
+          <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
         </div>
-        <div ref="textRef2" class="w-[600px] shrink-0 translate-x-[30vw]  min-w-[900px]">
+        <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[40px] scale-75 -translate-y-[2px] -translate-x-[2px] -ml-[14px]" type="image"
@@ -198,13 +228,14 @@ onUnmounted(() => {
           </div>
 
           <div class="title3 mt-[32px]">
-            We never let existing rules and regulations hold us back.<br>
-            We pioneered the incorporation of aerospace-grade high thermal<br> conductivity materials into ceramics.
+            We never let existing rules and regulations hold us back.
+            We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
             Through
-            round-the-clock firing<br> and suction tests, we have finally succeeded in firing the ceramic at<br> 1832 °F
+            round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832 °F
             (1000 ℃), surpassing our peers by 20%.
           </div>
         </div>
+        <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
             <MediaAsset ref="videoAssetRef" type="video" :src="b3" :autoplay="false" :muted="true" :loop="false"
@@ -218,6 +249,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .title1 {
+  max-width: 100%;
   width: 164px;
   height: 23px;
   color: #1CE785;
@@ -227,6 +259,7 @@ onUnmounted(() => {
 
 
 .text1 {
+  max-width: 100%;
   color: #1CE785;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
@@ -236,6 +269,7 @@ onUnmounted(() => {
 }
 
 .title2 {
+  max-width: 100%;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
@@ -244,6 +278,7 @@ onUnmounted(() => {
 }
 
 .title3 {
+  max-width: 100%;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
@@ -256,6 +291,7 @@ onUnmounted(() => {
 }
 
 .text2 {
+  max-width: 100%;
   color: #FFF;
   font-family: Roboto;
   font-size: 20px;
@@ -264,5 +300,42 @@ onUnmounted(() => {
   line-height: 30px;
   /* 150% */
   margin-top: 5px;
+}
+
+@media screen and (max-width: 1600px) {
+  .m_fit {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .m_fit {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .m_fit {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .m_fit {
+    width: 400px;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .m_fit {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .m_fit {
+    width: 600px;
+  }
 }
 </style>
