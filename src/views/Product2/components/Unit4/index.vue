@@ -48,7 +48,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :controls="false"
             :loop="false"
             :view-play="true"
-            class="h-full object-cover"
+            class="w-full h-full object-cover"
           />
         </div>
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
@@ -60,7 +60,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :controls="false"
             :loop="false"
             :view-play="true"
-            class="h-full object-cover"
+            class="w-full h-full object-cover"
           />
         </div>
       </div>
@@ -87,7 +87,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :controls="false"
             :loop="false"
             :view-play="true"
-            class="h-full object-cover"
+            class="w-full h-full object-cover"
           />
         </div>
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
@@ -99,7 +99,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :controls="false"
             :loop="false"
             :view-play="true"
-            class="h-full object-cover"
+            class="w-full h-full object-cover"
           />
         </div>
       </div>
