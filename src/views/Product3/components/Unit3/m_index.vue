@@ -9,149 +9,166 @@ import m3 from '@/assets/product3/unit3/m3.jpg'
 <template>
   <section class="m-unit3 text-white">
     <div class="c_padding c_1230 mx-auto flex flex-col gap-[56px] py-[96px]">
-      <div class="text-center flex flex-col gap-[14px]">
-        <div class="badge mx-auto">Gold standard for Resin/Rosin</div>
+      <div class="text-block text-center flex flex-col gap-[14px]">
         <div class="title">
-          Unicore powered.<br />
-          Built for resin &amp; rosin.
+          <span class="text-white">Gold</span> standard for Resin/Rosin
         </div>
-        <p class="desc">
-          We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, creating a denser, uniformly
-          porous
-          structure that perfectly matches resin and rosin molecules for consistently optimal performance.
-        </p>
         <MediaAsset :src="m1" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
       </div>
 
-      <div class="card">
-        <div class="small">33% in pore uniformity</div>
-        <div class="subtitle">Higher density, smoother draw</div>
-        <p class="desc">
-          Fired at 1832 °F (1000℃), the ceramic achieves a 20% denser structure that eliminates dry burns while
-          unlocking
-          full terpene potential.
-        </p>
-        <MediaAsset :src="m2" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+      <div class="text-block c_padding">
+        <div class="title1">UNICORE powered</div>
+        <div class="title2 mt-[19.55px]">33% in pore uniformity</div>
+        <div class="title3 max-w-[1200px] mt-[19.45px]">
+          We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F
+          to
+          create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating
+          any risk of dry burn for consistently optimal performance.
+        </div>
       </div>
+      <MediaAsset :src="m2" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
 
-      <div class="card stats gap-[22px]">
-        <div class="subtitle text-center">Thermal breakthrough</div>
-        <div class="flex flex-col gap-[18px]">
-          <div class="flex items-center justify-between gap-[12px]">
-            <div class="label">Firing temp</div>
-            <div class="value flex items-center gap-[8px]">
-              20%
-              <MediaAsset class="h-[30px]" :src="icon56" type="image" alt="" :lazy="false" />
+      <div class="relative w-full planM">
+        <div class="text-block c_padding">
+          <div class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
+            <div>
+              <div class="flex text">
+                20%
+                <MediaAsset :src="icon56" type="image" class="h-[39.805px]" alt="" :lazy="false" />
+              </div>
+              <div class="text1">
+                Firing temp
+              </div>
+            </div>
+            <div class="ml-[63.5px]">
+              <div>
+                <div class="bar w-[480px] bg-[#CAA4FB] rounded-full"></div>
+                <div class="text2 mt-[15px]">
+                  CALEAF TECH 1832 ℉ (1000℃)
+                </div>
+              </div>
+              <div class="mt-[46px]">
+                <div class="bar w-[319px] bg-[#D9D9D9] rounded-full"></div>
+                <div class="text2 mt-[15px]">
+                  Others 1472 ℉ (800℃)
+                </div>
+              </div>
             </div>
           </div>
-          <div class="bar-wrap">
-            <div class="bar bar-main"></div>
-            <div class="bar-text">CALEAF TECH 1832 ℉ (1000℃)</div>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar bar-sub"></div>
-            <div class="bar-text">Others 1472 ℉ (800℃)</div>
-          </div>
         </div>
-        <MediaAsset :src="m3" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
       </div>
+      <MediaAsset :src="m3" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-.m-unit3 {
+.text-layer {
   width: 100%;
-  background: #000;
+  max-width: 1200px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.badge {
-  display: inline-flex;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
-  color: #111;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
+.text-block {
+  width: 100%;
+}
+
+.text-block:first-child,
+.text-block:nth-child(2),
+.text-block:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.planM {
+  height: 400px;
+  margin-top: -100px;
+}
+
+.planM:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .title {
-  font-family: Roboto, sans-serif;
-  font-size: 32px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 80px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 80px;
+  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-  font-family: Roboto, sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.35;
-  color: #fff;
-}
-
-.small {
+.title1 {
   color: #CAA4FB;
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
 }
 
-.desc {
-  color: #D9D9D9;
-  font-size: 16px;
-  line-height: 1.6;
+.title2 {
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-.card {
-  padding: 28px 22px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(202, 164, 251, 0.14) 0%, rgba(202, 164, 251, 0.06) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.title3 {
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
 }
 
-.stats {
-  .label {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-  }
+.text {
+  color: #CAA4FB;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+}
 
-  .value {
-    color: #CAA4FB;
-    font-size: 20px;
-    font-weight: 700;
-  }
+.text1 {
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-  .bar-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+.text2 {
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
 
-  .bar {
-    height: 10px;
-    border-radius: 999px;
-  }
-
-  .bar-main {
-    width: 100%;
-    background: #CAA4FB;
-  }
-
-  .bar-sub {
-    width: 66%;
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  .bar-text {
-    color: #fff;
-    font-size: 14px;
-  }
+.bar {
+  height: 10px;
+  flex-shrink: 0;
 }
 </style>
