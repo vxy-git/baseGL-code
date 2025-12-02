@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
 import { tabsList, productsData } from '@/data/products'
+import ProductItem from '@/components/ProductItem/index.vue'
 
 // 当前激活的分类 ID
 const activeCategoryId = ref(1)
@@ -14,12 +15,9 @@ const categories = computed(() =>
     id: idx + 1,
     label,
     products: (productsData[idx] || []).map(product => ({
-      id: product.id,
-      name: product.name,
+      ...product,
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
-      image: product.image,
-      background: product.background,
       linkType: product.linkType || 1,
     }))
   }))
@@ -260,20 +258,12 @@ defineExpose({
           <div class="product-grid">
             <article v-for="(product, index) in displayedProducts" :key="product.id"
               :ref="el => { if (el) productCardsRef[index] = el }"
-              :class="['product-card', { 'has-hover-bg': product.background }]"
-              @click="goProduct(product.linkType)">
-              <img :src="product.image" :alt="`${product.name} product`" class="product-bg product-bg--main" />
-              <img
-                v-if="product.background"
-                :src="product.background"
-                :alt="`${product.name} hover`"
-                class="product-bg product-bg--hover"
+              class="product-card">
+              <ProductItem
+                :data="product"
+                :clickable="false"
+                @click="goProduct(product.linkType)"
               />
-              <div class="product-info">
-                <div class="badge self-start">{{ product.badge }}</div>
-                <h3 class="product-name">{{ product.name }}</h3>
-                <div class="product-variant mt-[3px]">{{ product.variant }}</div>
-              </div>
             </article>
           </div>
 
@@ -502,95 +492,7 @@ defineExpose({
 }
 
 .product-card {
-  position: relative;
-  background-color: #f8f9fd;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
-  width: 230px;
-  height: 300px;
-  overflow: hidden;
-  cursor: pointer;
-
-  &.has-hover-bg:hover {
-    .product-bg--hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    .product-bg--main {
-      opacity: 0;
-    }
-  }
-}
-
-.badge {
-  position: absolute;
-  top: 23px;
-  left: 21px;
-  border-radius: 50px;
-  background-color: transparent;
-  color: #1ce785;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
-}
-
-.product-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.product-bg--main {
-  opacity: 1;
-}
-
-.product-bg--hover {
-  opacity: 0;
-  transform: scale(1);
-}
-
-.product-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 35px;
-  gap: 6px;
-  z-index: 1;
-}
-
-.product-name {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  line-height: 32px;
-}
-
-.product-variant {
-  font-size: 14px;
-  color: #111111;
-  background-color: #1ce785;
-  width: 80px;
-  height: 26px;
-  border-radius: 50px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
+  flex: 0 0 auto;
 }
 
 .cta-row {

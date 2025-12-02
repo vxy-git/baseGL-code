@@ -1,8 +1,8 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted, onUnmounted, computed } from "vue";
-import { useRouter } from 'vue-router'
 import { productsData } from '@/data/products'
+import ProductItem from '@/components/ProductItem/index.vue'
 
 // Splide 状态管理
 const splideRef = ref(null)
@@ -77,12 +77,6 @@ const slideNext = () => {
   splideRef.value?.go('>')
 }
 
-const router = useRouter()
-const productLink = (linkType) => `/${linkType || 1}`
-const goProduct = (linkType) => {
-  router.push(productLink(linkType))
-}
-
 </script>
 
 <template>
@@ -102,26 +96,7 @@ const goProduct = (linkType) => {
         <!-- Splide 轮播容器 -->
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="updateArrowStatus">
           <SplideSlide v-for="product in productList" :key="product.id">
-            <div class="card" :class="{ 'has-hover-bg': product.background }" @click="goProduct(product.linkType)">
-              <img class="card-bg card-bg--main" :src="product.image" :alt="product.alt">
-              <img
-                v-if="product.background"
-                class="card-bg card-bg--hover"
-                :src="product.background"
-                :alt="`${product.alt} hover`"
-              >
-              <div class="size-full absolute inset-0 flex flex-col justify-end items-start card-info">
-                <div class="cardTitle pl-[20px] mt-[46px]">
-                  {{ product.name }}
-                </div>
-                <div class="cardLabel px-[20px] mt-[8px]">
-                  {{ product.description }}
-                </div>
-                <div class="btn ml-[20px] mt-[25px] mb-[42px]">
-                  View More
-                </div>
-              </div>
-            </div>
+            <ProductItem :data="product" />
           </SplideSlide>
         </Splide>
 
@@ -145,89 +120,5 @@ const goProduct = (linkType) => {
   line-height: 80px;
   /* 100% */
   letter-spacing: -4.8px;
-}
-
-
-.cardBox {
-  .card {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 440px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #23242A;
-    margin: 0 auto;
-    cursor: pointer;
-
-    &.has-hover-bg:hover {
-      .card-bg--hover {
-        opacity: 1;
-        transform: scale(1.05);
-      }
-
-      .card-bg--main {
-        opacity: 0;
-      }
-    }
-
-    .card-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .card-bg--main {
-      opacity: 1;
-    }
-
-    .card-bg--hover {
-      opacity: 0;
-      transform: scale(1);
-    }
-
-    .card-info {
-      z-index: 1;
-    }
-
-    .cardTitle {
-      color: #FFF;
-      font-family: Roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 32px;
-      /* 133.333% */
-    }
-
-    .cardLabel {
-      color: #F5F5F5;
-      font-family: Roboto;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 20px;
-    }
-
-    .btn {
-      border-radius: 50px;
-      background: #1CE785;
-      width: 130px;
-      height: 40px;
-      flex-shrink: 0;
-      color: #000;
-      font-family: Roboto;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
 }
 </style>

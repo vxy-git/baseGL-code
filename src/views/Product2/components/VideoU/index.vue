@@ -57,7 +57,7 @@ useIntersectionObserver(
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
               45%
-              <img class="h-[39.805px] -ml-[10px] translate-x-[8px]" src="@/assets/img/icon64.png" alt="">
+              <img class="h-[39.805px] -ml-[10px] translate-x-[8px]" src="@/assets/product2/arrow.svg" alt="">
             </div>
             <div class="value">
               Flavor Retention
@@ -66,7 +66,7 @@ useIntersectionObserver(
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
               35%
-              <img class="h-[39.805px] -ml-[13px] translate-x-[12px]" src="@/assets/img/icon64.png" alt="">
+              <img class="h-[39.805px] -ml-[13px] translate-x-[12px]" src="@/assets/product2/arrow.svg" alt="">
             </div>
             <div class="value">
               in Pore Uniformity

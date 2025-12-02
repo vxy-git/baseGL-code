@@ -1,7 +1,7 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
 import {ref, computed, onMounted, onUnmounted, watch} from "vue";
-import Item from "./components/Item/index.vue"
+import ProductItem from "@/components/ProductItem/index.vue"
 import { tabsList, productsData } from "@/data/products"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
@@ -135,7 +135,7 @@ const goToGroup = (groupIndex) => {
           <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
             <SplideSlide class="flex-shrink-[1]" v-for="(product, index) in products" :key="product.id">
-              <Item :data="product" />
+              <ProductItem :data="product" />
             </SplideSlide>
           </Splide>
         </div>

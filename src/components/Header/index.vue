@@ -249,7 +249,6 @@ onUnmounted(() => {
           <nav v-if="!isMobile" class="nav-links">
             <a href="#" class="nav-link nav-link-dropdown" :class="{ active: showDropdown }"
               @mouseenter="handleProductsMouseEnter" @mouseleave="handleProductsMouseLeave">Products</a>
-            <!-- <a href="#" class="nav-link">Technology</a> -->
             <router-link to="/technology" class="nav-link">Technology</router-link>
             <a href="#" class="nav-link">Customize</a>
             <a href="#" class="nav-link">US Local Service</a>

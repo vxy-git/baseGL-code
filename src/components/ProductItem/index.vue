@@ -1,46 +1,102 @@
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
   data: {
     type: Object,
     required: true
+  },
+  showDesc: {
+    type: Boolean,
+    default: false
+  },
+  clickable: {
+    type: Boolean,
+    default: true
+  },
+  width: {
+    type: [String, Number],
+    default: '100%'
+  },
+  minWidth: {
+    type: [String, Number],
+    default: '295px'
+  },
+  height: {
+    type: [String, Number],
+    default: '440px'
+  },
+  padding: {
+    type: [String, Number],
+    default: '28px'
+  },
+  showCapacity: {
+    type: Boolean,
+    default: true
+  },
+  showBadge: {
+    type: Boolean,
+    default: true
+  },
+  ctaText: {
+    type: String,
+    default: 'Learn more'
   }
 })
 
+const emit = defineEmits(['click'])
+
 const router = useRouter()
-const productLink = (linkType) => `/${linkType || 1}`
-const goProduct = () => {
+const productLink = (linkType) => `/${linkType}`
+
+const normalizeSize = (value) => (typeof value === 'number' ? `${value}px` : value)
+
+const cardStyle = computed(() => ({
+  '--card-width': normalizeSize(props.width),
+  '--card-min-width': normalizeSize(props.minWidth),
+  '--card-height': normalizeSize(props.height),
+  '--card-padding': normalizeSize(props.padding)
+}))
+
+const handleClick = () => {
+  emit('click', props.data)
+  if (!props.clickable) return
   router.push(productLink(props.data?.linkType))
 }
 </script>
 
 <template>
-<div class="item">
-  <div class="card-surface" @click="goProduct">
-    <img v-if="data.background" class="product-featured-image" :src="data.background" :alt="data.alt + ' featured'">
-    <div class="media">
-      <img class="product-image" :src="data.image" :alt="data.alt">
-    </div>
-    <span class="mask"></span>
-    <div class="text-group">
-      <span v-if="data.isNew" class="badge">New</span>
-      <h3 class="product-name">{{ data.name }}</h3>
-      <p class="product-desc">{{ data.description }}</p>
-    </div>
-    <div class="card-footer">
-      <span class="more">Learn more</span>
-      <span class="capacity-chip">{{ data.capacity }}</span>
+  <div class="product-item" :style="cardStyle">
+    <div class="card-surface" @click="handleClick">
+      <img
+        v-if="data.background"
+        class="product-featured-image"
+        :src="data.background"
+        :alt="(data.alt || data.name) + ' featured'"
+      >
+      <div class="media">
+        <img class="product-image" :src="data.image" :alt="data.alt || data.name">
+      </div>
+      <span class="mask"></span>
+      <div class="text-group">
+        <span v-if="showBadge && data.isNew" class="badge">New</span>
+        <h3 class="product-name">{{ data.name }}</h3>
+        <p v-if="showDesc && data.description" class="product-desc">{{ data.description }}</p>
+      </div>
+      <div class="card-footer">
+        <span class="more">{{ ctaText }}</span>
+        <span v-if="showCapacity && data.capacity" class="capacity-chip">{{ data.capacity }}</span>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped lang="scss">
-.item{
-  min-width: 280px;
-  width: 100%;
-  height: 440px;
+.product-item {
+  min-width: var(--card-min-width);
+  width: var(--card-width);
+  height: var(--card-height);
   flex-shrink: 0;
   display: flex;
   align-items: stretch;
@@ -52,7 +108,7 @@ const goProduct = () => {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 28px;
+  padding: var(--card-padding);
   border-radius: 20px;
   overflow: hidden;
   background: #f8f9fd;
@@ -187,9 +243,9 @@ const goProduct = () => {
 
 .card-footer {
   position: absolute;
-  left: 28px;
-  bottom: 28px;
-  right: 28px;
+  left: var(--card-padding);
+  bottom: var(--card-padding);
+  right: var(--card-padding);
   z-index: 1;
   margin-top: 30px;
   display: flex;
