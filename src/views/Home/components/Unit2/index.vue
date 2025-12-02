@@ -10,6 +10,8 @@ const products = computed(() => productsData[tabsCurrent.value] || [])
 
 
 // Splide 状态管理
+const bannerCurrent = ref(0)
+const viewportWidth = ref(1920)
 const splideRef = ref(null)
 const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
@@ -19,9 +21,11 @@ const isMobile = ref(false)
 // 展示列表（合并产品数据）
 const productList = computed(() => Object.values(productsData).flat())
 
-// 移动端检测
+// 检测是否为移动端
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  const width = window.innerWidth || 1920
+  viewportWidth.value = width
+  isMobile.value = width <= 767
 }
 
 onMounted(() => {
@@ -78,17 +82,31 @@ const onSplideInit = (splide) => {
 // 导航方法
 const slidePrev = () => {
   splideRef.value?.go('<')
+  bannerCurrent.value -= 1;
 }
 
 const slideNext = () => {
   splideRef.value?.go('>')
+  bannerCurrent.value += 1;
 }
 
+const perPageValue = computed(() => {
+  if (viewportWidth.value <= 1000) return 2
+  if (viewportWidth.value <= 1400) return 3
+  return 4
+})
+
+
+// 计算分组数量
+const groupCount = computed(() => {
+  return Math.ceil((products.value.length || 0) / perPageValue.value)
+})
 
 // 点击指示器跳转到对应分组
 const goToGroup = (groupIndex) => {
   const targetIndex = groupIndex * perPageValue.value;
   splideRef.value?.go(targetIndex);
+  bannerCurrent.value = groupIndex
 };
 </script>
 

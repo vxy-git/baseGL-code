@@ -105,22 +105,22 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps1.png" alt="">
+            <img class="size-[80px]" src="@/assets/product1/one-taps1.png" alt="">
             <div class="itemTitle mt-[19px]">1 Tap</div>
             <div class="itemLabel mt-[4px]">Check temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps2.png" alt="">
+            <img class="size-[80px]" src="@/assets/product1/one-taps2.png" alt="">
             <div class="itemTitle mt-[19px]">2 Taps</div>
             <div class="itemLabel mt-[4px]">Warm up</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps3.png" alt="">
+            <img class="size-[80px]" src="@/assets/product1/one-taps3.png" alt="">
             <div class="itemTitle mt-[19px]">3 Taps</div>
             <div class="itemLabel mt-[4px]">Change temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px] bg-[#D9D9D9]" src="@/assets/product1/one-taps4.png" alt="">
+            <img class="size-[80px]" src="@/assets/product1/one-taps4.png" alt="">
             <div class="itemTitle mt-[19px]">5 Taps</div>
             <div class="itemLabel mt-[4px]">Turn on/off</div>
           </div>

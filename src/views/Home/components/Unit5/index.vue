@@ -114,7 +114,7 @@ const goToSlide = (index) => {
       <div class="title text-center">
         The latest news and inspiring stories
       </div>
-      <div class="c_1300 mt-[46px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+      <div class="c_1300 mt-[46px] relative c_padding" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
           @splide:move="changeEnd">
           <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
