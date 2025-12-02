@@ -3,6 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import icon56 from '@/assets/img/icon56.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -166,7 +168,13 @@ onUnmounted(() => {
               <div>
                 <div ref="tb3Figure" class="flex text">
                   20%
-                  <img src="@/assets/img/icon56.png" class="h-[39.805px]" alt="">
+                  <MediaAsset
+                    :src="icon56"
+                    type="image"
+                    class="h-[39.805px]"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div ref="tb3Label" class="text1">
                   Firing temp

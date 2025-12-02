@@ -1,8 +1,5 @@
 <template>
   <div class="product-list-page">
-    <!-- 覆盖图层 -->
-    <!-- <img src="/product.jpg" alt="Overlay Image" class="pointer-events-none absolute  top-0 left-1/2 -translate-x-1/2 z-50 w-full opacity-50"/> -->
-
     <Header headerClass="white" border />
     <div class="header-divider" />
 

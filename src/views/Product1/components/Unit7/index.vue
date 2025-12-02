@@ -5,6 +5,10 @@ import upgrade1 from '@/assets/product1/upgrade_3-Temperature-Control.mp4'
 import upgrade2 from '@/assets/product1/upgrade_Activation-Indication.mp4'
 import upgrade3 from '@/assets/product1/upgrade_Battery-Life-Monitor.mp4'
 import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
+import tap1 from '@/assets/product1/one-taps1.png'
+import tap2 from '@/assets/product1/one-taps2.png'
+import tap3 from '@/assets/product1/one-taps3.png'
+import tap4 from '@/assets/product1/one-taps4.png'
 
 
 
@@ -109,22 +113,46 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px]" src="@/assets/product1/one-taps1.png" alt="">
+            <MediaAsset
+              class="size-[80px]"
+              type="image"
+              :src="tap1"
+              alt=""
+              :lazy="false"
+            />
             <div class="itemTitle mt-[19px]">1 Tap</div>
             <div class="itemLabel mt-[4px]">Check temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px]" src="@/assets/product1/one-taps2.png" alt="">
+            <MediaAsset
+              class="size-[80px]"
+              type="image"
+              :src="tap2"
+              alt=""
+              :lazy="false"
+            />
             <div class="itemTitle mt-[19px]">2 Taps</div>
             <div class="itemLabel mt-[4px]">Warm up</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px]" src="@/assets/product1/one-taps3.png" alt="">
+            <MediaAsset
+              class="size-[80px]"
+              type="image"
+              :src="tap3"
+              alt=""
+              :lazy="false"
+            />
             <div class="itemTitle mt-[19px]">3 Taps</div>
             <div class="itemLabel mt-[4px]">Change temp</div>
           </div>
           <div class="unit7__step flex flex-col items-center">
-            <img class="size-[80px]" src="@/assets/product1/one-taps4.png" alt="">
+            <MediaAsset
+              class="size-[80px]"
+              type="image"
+              :src="tap4"
+              alt=""
+              :lazy="false"
+            />
             <div class="itemTitle mt-[19px]">5 Taps</div>
             <div class="itemLabel mt-[4px]">Turn on/off</div>
           </div>

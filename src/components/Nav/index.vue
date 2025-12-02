@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router'
 import gsap from 'gsap'
 import { tabsList, productsData } from '@/data/products'
 import ProductItem from '@/components/ProductItem/index.vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import iconArrow from '@/assets/img/icon42.png'
 
 // 当前激活的分类 ID
 const activeCategoryId = ref(1)
@@ -270,7 +272,12 @@ defineExpose({
           <div ref="ctaButtonRef" class="cta-row">
             <button class="cta-button" @click="goList">
               <span>Explore our In-Ones</span>
-              <img src="@/assets/img/icon42.png" alt="" />
+              <MediaAsset
+                type="image"
+                :src="iconArrow"
+                alt=""
+                :lazy="false"
+              />
             </button>
           </div>
         </section>

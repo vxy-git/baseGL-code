@@ -3,6 +3,8 @@ import unit4Bg from '@/assets/product3/unit4.jpg'
 import MediaAsset from '@/components/MediaAsset.vue'
 import leftVideoSrc from '@/assets/product3/unit5-l.mp4'
 import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
+import icon56 from '@/assets/img/icon56.png'
+import unitImg from '@/assets/product3/unit4-2.jpg'
 </script>
 
 <template>
@@ -32,14 +34,26 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
           <div class="flex flex-col items-center">
             <div class="text4 flex h-[39.805px]">
               45%
-              <img src="@/assets/img/icon56.png" class="h-[39.805px] -ml-[3px]" alt="">
+              <MediaAsset
+                :src="icon56"
+                type="image"
+                class="h-[39.805px] -ml-[3px]"
+                alt=""
+                :lazy="false"
+              />
             </div>
             <div class="text5">
               Flavor Retention
             </div>
           </div>
         </div>
-        <img src="@/assets/product3/unit4-2.jpg" class="h-[600px] mt-[78px] object-contain m_mt_0" alt="">
+        <MediaAsset
+          :src="unitImg"
+          type="image"
+          class="h-[600px] mt-[78px] object-contain m_mt_0"
+          alt=""
+          :lazy="false"
+        />
       </div>
       <div
         class="c_padding flex mx-auto max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
@@ -77,7 +91,7 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
         />
       </div>
     </div>
-    <div class="unit4B h-[799px]" :style="{ backgroundImage: `url(${unit4Bg})` }">
+    <div class="unit4B h-[800px]" :style="{ backgroundImage: `url(${unit4Bg})` }">
       <div class="c_1230 c_padding mx-auto pt-[248px]">
         <div class="title1  ml-[2px]">
           UNICORN

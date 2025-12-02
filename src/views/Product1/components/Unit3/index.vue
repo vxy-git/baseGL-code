@@ -3,6 +3,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import iconFlavor from '@/assets/img/icon19.png'
+import iconDevice from '@/assets/img/icon18.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -160,14 +163,27 @@ onUnmounted(() => {
               <div class="flex flex-col items-center h-[40px]">
                 <div class="text1 flex">
                   45%
-                  <img class="size-[40px]" src="@/assets/img/icon19.png" alt="">
+                  <MediaAsset
+                    class="size-[40px]"
+                    type="image"
+                    :src="iconFlavor"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="text2">
                   Flavor Retention
                 </div>
               </div>
             </div>
-            <img ref="tb4Image" src="@/assets/img/icon18.png" class="mx-auto mt-[82px] max-h-[600px]" alt="">
+            <MediaAsset
+              ref="tb4Image"
+              :src="iconDevice"
+              type="image"
+              class="mx-auto mt-[82px] max-h-[600px]"
+              alt=""
+              :lazy="false"
+            />
           </div>
         </div>
       </div>

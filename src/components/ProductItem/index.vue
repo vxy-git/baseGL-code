@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
   data: {
@@ -69,10 +70,22 @@ const handleClick = () => {
 <template>
   <div class="product-item" :style="cardStyle">
     <div class="card-surface" @click="handleClick">
-      <img v-if="data.background" class="product-featured-image" :src="data.background"
-        :alt="(data.alt || data.name) + ' featured'">
+      <MediaAsset
+        v-if="data.background"
+        class="product-featured-image"
+        type="image"
+        :src="data.background"
+        :alt="(data.alt || data.name) + ' featured'"
+        :lazy="false"
+      />
       <div class="media">
-        <img class="product-image" :src="data.image" :alt="data.alt || data.name">
+        <MediaAsset
+          class="product-image"
+          type="image"
+          :src="data.image"
+          :alt="data.alt || data.name"
+          :lazy="false"
+        />
       </div>
       <span class="mask"></span>
       <div class="contentBox">

@@ -85,7 +85,6 @@ onBeforeUnmount(() => {
         />
       </div>
     </div>
-<!--    <img class="w-[900px] h-[409px] mx-auto mt-[64px]" src="@/assets/img/icon34.png" alt="">-->
   </div>
 </template>
 

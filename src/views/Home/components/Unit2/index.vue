@@ -4,6 +4,8 @@ import {ref, computed, onMounted, onUnmounted, watch} from "vue";
 import ProductItem from "@/components/ProductItem/index.vue"
 import { tabsList, productsData } from "@/data/products"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import MediaAsset from '@/components/MediaAsset.vue'
+import arrowImg from '@/assets/img/icon4_active.png'
 
 const tabsCurrent = ref(0)
 const products = computed(() => productsData[tabsCurrent.value] || [])
@@ -121,10 +123,15 @@ const goToGroup = (groupIndex) => {
 
       <div class="c_1300 c_padding mt-[50px] relative" @mouseenter="isHovered = true"
         @mouseleave="isHovered = false">
-        <img
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slidePrev"
+        />
         <div class="w-full">
           <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
@@ -133,10 +140,15 @@ const goToGroup = (groupIndex) => {
             </SplideSlide>
           </Splide>
         </div>
-        <img
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slideNext"
+        />
       </div>
       <div class="c_1300 c_padding flex justify-center gap-x-[10px] pt-[20px]">
         <div v-for="(item,index) in groupCount" :key="index" :class="{

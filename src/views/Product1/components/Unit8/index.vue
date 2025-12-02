@@ -7,6 +7,7 @@ import bannerImg1 from "@/assets/product1/realize1.jpg";
 import bannerImg2 from "@/assets/product1/realize2.jpg";
 import bannerImg3 from "@/assets/product1/realize3.jpg";
 import bannerImg4 from "@/assets/product1/realize4.jpg";
+import arrowImg from '@/assets/img/icon4_active.png'
 
 const list = [
   { type: 'image', src: bannerImg1, alt: 'Design 1' },
@@ -262,14 +263,24 @@ const setMediaRef = (el, index) => {
         </Splide>
       </div>
       <div class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1000px] mx-auto">
-        <img
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
-        <img
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slidePrev"
+        />
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slideNext"
+        />
       </div>
     </div>
     <!-- <div class="flex justify-center gap-x-[10px] pt-[26px]">

@@ -1,5 +1,6 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import MediaAsset from '@/components/MediaAsset.vue'
 import screenBg1 from '@/assets/product4/screen-bg-1.png'
 import screen1 from '@/assets/product4/screen1.png'
 import screen2 from '@/assets/product4/screen2.png'
@@ -95,7 +96,13 @@ onBeforeUnmount(() => {
     <div class="h-full unit6">
       <div class="mb-[55px] flex justify-center items-start gap-[200px]">
         <div class="w-[250px] relative ml-[-250px] shrink-0">
-          <img class="w-full absolute top-0 left-0" :src="screenBg1" alt="">
+          <MediaAsset
+            class="w-full absolute top-0 left-0"
+            type="image"
+            :src="screenBg1"
+            alt=""
+            :lazy="false"
+          />
         </div>
         <div class="mt-[126px] textBox">
           <div class="title">
@@ -116,7 +123,13 @@ onBeforeUnmount(() => {
           :class="{ 'no-transition': noTransition }" :style="trackStyle">
           <div class="unit6-card w-[200px] h-[400px] rounded-[30px] flex-shrink-0 relative"
             v-for="(item,index) in displayList" :key="index">
-            <img class="size-full rounded-[20px]" :src="item" alt="">
+            <MediaAsset
+              class="size-full rounded-[20px]"
+              type="image"
+              :src="item"
+              alt=""
+              :lazy="false"
+            />
           </div>
         </div>
       </div>

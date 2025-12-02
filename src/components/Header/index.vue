@@ -4,6 +4,11 @@ import { useRouter } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import ProductItem from "@/components/ProductItem/index.vue";
+import MediaAsset from '@/components/MediaAsset.vue'
+import logoDefault from '@/assets/img/icon11.png'
+import logoActive from '@/assets/img/icon11_active.png'
+import searchDefault from '@/assets/img/icon12.png'
+import searchActive from '@/assets/img/icon12_active.png'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { tabsList, productsData } from '@/data/products'
 
@@ -237,10 +242,20 @@ onUnmounted(() => {
       <header class="top-nav c_1300 mx-auto c_padding">
         <div class="nav-left">
           <router-link to="/" class="logo" @click="goHome">
-            <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon11.png" alt="Caleaf Tech logo"
-              class="logo-image" />
-            <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo"
-              class="logo-image" />
+            <MediaAsset
+              v-show="currentHeaderClass==='opacity'"
+              type="image"
+              :src="logoDefault"
+              alt="Caleaf Tech logo"
+              class="logo-image"
+            />
+            <MediaAsset
+              v-show="currentHeaderClass==='white'"
+              type="image"
+              :src="logoActive"
+              alt="Caleaf Tech logo"
+              class="logo-image"
+            />
             <span class="logo-text">CALEAF TECH</span>
           </router-link>
           <!-- 桌面端导航 -->
@@ -257,8 +272,18 @@ onUnmounted(() => {
           <!-- 桌面端右侧按钮 -->
           <button v-if="!isMobile" class="contact-button" @click="goContact">Contact</button>
           <button v-if="!isMobile" class="icon-button" aria-label="Search">
-            <img v-show="currentHeaderClass==='opacity'" src="@/assets/img/icon12.png" alt="" />
-            <img v-show="currentHeaderClass==='white'" src="@/assets/img/icon12_active.png" alt="" />
+            <MediaAsset
+              v-show="currentHeaderClass==='opacity'"
+              type="image"
+              :src="searchDefault"
+              alt=""
+            />
+            <MediaAsset
+              v-show="currentHeaderClass==='white'"
+              type="image"
+              :src="searchActive"
+              alt=""
+            />
           </button>
 
           <!-- 移动端汉堡按钮 -->
@@ -285,7 +310,12 @@ onUnmounted(() => {
         <!-- 一级菜单Header -->
         <template v-if="currentLevel === 1">
           <router-link to="/" class="logo" @click="goHome">
-            <img src="@/assets/img/icon11_active.png" alt="Caleaf Tech logo" class="logo-image" />
+            <MediaAsset
+              type="image"
+              :src="logoActive"
+              alt="Caleaf Tech logo"
+              class="logo-image"
+            />
           </router-link>
           <button class="close-btn active" @click="closeMobileMenu" aria-label="Close">
             <span></span>

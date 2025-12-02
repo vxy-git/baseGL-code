@@ -1,5 +1,8 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import arrowLeft from '@/assets/img/icon4.png'
+import arrowRight from '@/assets/img/icon4_active.png'
+import cardImg from '@/assets/img/icon25.png'
 </script>
 
 <template>
@@ -11,10 +14,30 @@
       </div>
 
       <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
-        <img class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4.png" alt="" @click="slidePrev">
-        <img class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2" src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+        <MediaAsset
+          class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
+          type="image"
+          :src="arrowLeft"
+          alt=""
+          :lazy="false"
+          @click="slidePrev"
+        />
+        <MediaAsset
+          class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
+          type="image"
+          :src="arrowRight"
+          alt=""
+          :lazy="false"
+          @click="slideNext"
+        />
         <div class="card pt-[63px]" v-for="item in 4">
-          <img class="w-[185px] h-[165px] mx-auto" src="@/assets/img/icon25.png" alt="">
+          <MediaAsset
+            class="w-[185px] h-[165px] mx-auto"
+            type="image"
+            :src="cardImg"
+            alt=""
+            :lazy="false"
+          />
           <div class="cardTitle pl-[20px] mt-[46px]">
             UNIT
           </div>

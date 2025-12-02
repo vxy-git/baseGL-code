@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import MediaAsset from '@/components/MediaAsset.vue'
 import videoSrc from '@/assets/product2/the.mp4'
+import arrowIcon from '@/assets/product2/arrow.svg'
 
 const rootRef = ref(null)
 
@@ -57,7 +58,13 @@ useIntersectionObserver(
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
               45%
-              <img class="h-[39.805px] -ml-[10px] translate-x-[8px]" src="@/assets/product2/arrow.svg" alt="">
+              <MediaAsset
+                class="h-[39.805px] -ml-[10px] translate-x-[8px]"
+                type="image"
+                :src="arrowIcon"
+                alt=""
+                :lazy="false"
+              />
             </div>
             <div class="value">
               Flavor Retention
@@ -66,7 +73,13 @@ useIntersectionObserver(
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
               35%
-              <img class="h-[39.805px] -ml-[13px] translate-x-[12px]" src="@/assets/product2/arrow.svg" alt="">
+              <MediaAsset
+                class="h-[39.805px] -ml-[13px] translate-x-[12px]"
+                type="image"
+                :src="arrowIcon"
+                alt=""
+                :lazy="false"
+              />
             </div>
             <div class="value">
               in Pore Uniformity

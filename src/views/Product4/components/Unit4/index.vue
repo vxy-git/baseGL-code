@@ -1,5 +1,6 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import icon33 from '@/assets/img/icon33.png'
 </script>
 
 <template>
@@ -11,7 +12,13 @@
   <div class="label mt-[34px]">
     Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing users to switch between<br/> tastes or enjoy a mix of both.
   </div>
-  <img class="w-[1020px] mx-auto mt-[47px] h-[580px] block object-cover rounded-[20px]" src="@/assets/img/icon33.png" alt="">
+  <MediaAsset
+    class="w-[1020px] mx-auto mt-[47px] h-[580px] block object-cover rounded-[20px]"
+    type="image"
+    :src="icon33"
+    alt=""
+    :lazy="false"
+  />
 </div>
 </template>
 

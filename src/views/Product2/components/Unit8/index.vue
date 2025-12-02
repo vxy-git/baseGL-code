@@ -2,6 +2,13 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import MediaAsset from '@/components/MediaAsset.vue'
+import realize1 from '@/assets/product2/realize1.jpg'
+import realize2 from '@/assets/product2/realize2.jpg'
+import realize3 from '@/assets/product2/realize3.jpg'
+import realize4 from '@/assets/product2/realize4.jpg'
+import realize5 from '@/assets/product2/realize5.jpg'
+import realize6 from '@/assets/product2/realize6.jpg'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,28 +73,58 @@ onBeforeUnmount(() => {
               <div ref="imgBox1Ref" class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
                 <div class="h-full w-[480px]">
-                  <img src="@/assets/product2/realize1.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize1"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize2.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize2"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize3.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize3"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px]">
-                  <img src="@/assets/product2/realize1.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize1"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize2.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize2"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize3.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize3"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="mask1 absolute right-[-1px] top-1/2 translate-y-[-50%]"></div>
               </div>
@@ -98,28 +135,58 @@ onBeforeUnmount(() => {
               <div ref="imgBox2Ref" class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize4.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize4"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize5.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize5"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize6.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize6"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize4.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize4"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize5.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize5"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="h-full w-[480px] rounded-[20px]">
-                  <img src="@/assets/product2/realize6.jpg"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
+                  <MediaAsset
+                    :src="realize6"
+                    type="image"
+                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div class="mask1 absolute right-[-1px] top-[-1px]"></div>
               </div>

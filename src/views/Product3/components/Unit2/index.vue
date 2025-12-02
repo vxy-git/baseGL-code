@@ -1,11 +1,19 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import unitImg1 from '@/assets/product3/unit2-1.jpg'
+import unitImg2 from '@/assets/product3/unit2-2.jpg'
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <div class="relative w-full">
-      <img class="w-full" src="@/assets/product3/unit2-1.jpg" alt="">
+      <MediaAsset
+        class="w-full"
+        type="image"
+        :src="unitImg1"
+        alt=""
+        :lazy="false"
+      />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
           UNICORN
@@ -17,7 +25,13 @@
       </div>
     </div>
     <div class="relative w-full">
-      <img class="w-full" src="@/assets/product3/unit2-2.jpg" alt="">
+      <MediaAsset
+        class="w-full"
+        type="image"
+        :src="unitImg2"
+        alt=""
+        :lazy="false"
+      />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
           UNICORN PRO

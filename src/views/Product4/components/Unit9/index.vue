@@ -1,12 +1,25 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import icon38 from '@/assets/img/icon38.png'
 </script>
 
 <template>
     <div class="pt-[387px] c_padding c_1230">
       <div class="w-[999px] mx-auto  flex relative justify-center min-w-full">
-        <img src="@/assets/img/icon38.png"  class="absolute left-0 size-[34px] -top-[4px] animate-pulse" alt="">
-        <img src="@/assets/img/icon38.png"  class="absolute left-[35px] size-[22px] -top-[22px] animate-pulse" alt="">
+        <MediaAsset
+          :src="icon38"
+          type="image"
+          class="absolute left-0 size-[34px] -top-[4px] animate-pulse"
+          alt=""
+          :lazy="false"
+        />
+        <MediaAsset
+          :src="icon38"
+          type="image"
+          class="absolute left-[35px] size-[22px] -top-[22px] animate-pulse"
+          alt=""
+          :lazy="false"
+        />
         <div class="title text-nowrap">Tap into a whole new level<br/>of interaction</div>
       </div>
     </div>

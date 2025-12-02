@@ -3,6 +3,8 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { productsData } from '@/data/products'
 import ProductItem from '@/components/ProductItem/index.vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import arrowImg from '@/assets/img/icon4_active.png'
 
 // Splide 状态管理
 const splideRef = ref(null)
@@ -88,10 +90,15 @@ const slideNext = () => {
 
       <div class="cardBox mt-[45px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <!-- 左箭头 -->
-        <img
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slidePrev"
+        />
 
         <!-- Splide 轮播容器 -->
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="updateArrowStatus">
@@ -101,10 +108,15 @@ const slideNext = () => {
         </Splide>
 
         <!-- 右箭头 -->
-        <img
+        <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-          src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+          type="image"
+          :src="arrowImg"
+          alt=""
+          :lazy="false"
+          @click="slideNext"
+        />
       </div>
     </div>
   </div>

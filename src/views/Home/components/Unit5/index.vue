@@ -3,6 +3,7 @@
 import Item from "./components/Item/index.vue";
 import {ref, onMounted, onUnmounted} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import MediaAsset from '@/components/MediaAsset.vue'
 import news1 from '@/assets/home/new/1.jpg'
 import news2 from '@/assets/home/new/2.jpg'
 import news3 from '@/assets/home/new/3.jpg'
@@ -14,6 +15,7 @@ import news8 from '@/assets/home/new/8.jpg'
 import news9 from '@/assets/home/new/9.jpg'
 import news10 from '@/assets/home/new/10.jpg'
 import news11 from '@/assets/home/new/11.jpg'
+import arrowImg from '@/assets/img/icon4_active.png'
 
 const list = [
   { type: 'image', img: news1, title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024' },
@@ -122,14 +124,24 @@ const goToSlide = (index) => {
           </SplideSlide>
         </Splide>
         <div class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto">
-          <img
+          <MediaAsset
             class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
             :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
-            src="@/assets/img/icon4_active.png" alt="" @click="slidePrev">
-          <img
+            type="image"
+            :src="arrowImg"
+            alt=""
+            :lazy="false"
+            @click="slidePrev"
+          />
+          <MediaAsset
             class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
             :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
-            src="@/assets/img/icon4_active.png" alt="" @click="slideNext">
+            type="image"
+            :src="arrowImg"
+            alt=""
+            :lazy="false"
+            @click="slideNext"
+          />
         </div>
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">

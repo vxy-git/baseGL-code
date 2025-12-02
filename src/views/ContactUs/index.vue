@@ -2,6 +2,12 @@
 import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
+import MediaAsset from '@/components/MediaAsset.vue'
+import heroBanner from '@/assets/contact/banner.jpg'
+import heroBannerMobile from '@/assets/contact/m_banner.jpg'
+import iconInstagram from '@/assets/img/icon44.png'
+import iconDropdown from '@/assets/img/icon46.png'
+import iconProduct from '@/assets/img/icon45.png'
 
 const formData = ref({
   name: '',
@@ -92,17 +98,26 @@ const closeDropdowns = () => {
 
 <template>
   <div @click="closeDropdowns">
-    <!-- <img src="/about.jpg" alt="Overlay Image"
-         class="pointer-events-none z-50 absolute top-0 left-1/2 -translate-x-1/2 w-full opacity-50"/> -->
-
     <div class="contactPage">
       <Header headerClass="white" />
 
       <!-- Hero Section -->
       <section class="hero mt_nav">
         <div class="heroBackground">
-          <img src="@/assets/contact/banner.jpg" class="heroImage m_hide" alt="" />
-          <img src="@/assets/contact/m_banner.jpg" class="heroImage pc_hide" alt="" />
+          <MediaAsset
+            :src="heroBanner"
+            type="image"
+            class="heroImage m_hide"
+            alt=""
+            :lazy="false"
+          />
+          <MediaAsset
+            :src="heroBannerMobile"
+            type="image"
+            class="heroImage pc_hide"
+            alt=""
+            :lazy="false"
+          />
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
@@ -112,7 +127,13 @@ const closeDropdowns = () => {
               <p class="heroEmail">Email: info@caleaftech.com</p>
               <div class="socialSection mt-[34px] pr-[4px]">
                 <p class="followText">Follow Us</p>
-                <img src="@/assets/img/icon44.png" class="socialIcon" alt="Instagram" />
+                <MediaAsset
+                  :src="iconInstagram"
+                  type="image"
+                  class="socialIcon"
+                  alt="Instagram"
+                  :lazy="false"
+                />
               </div>
             </div>
           </div>
@@ -138,8 +159,13 @@ const closeDropdowns = () => {
                   <span :class="formData.country ? 'selectedValue' : 'placeholder'">
                     {{ formData.country || 'Country*' }}
                   </span>
-                  <img src="@/assets/img/icon46.png" :class="['dropdownIcon', showCountryDropdown && 'rotated']"
-                    alt="" />
+                  <MediaAsset
+                    :src="iconDropdown"
+                    type="image"
+                    :class="['dropdownIcon', showCountryDropdown && 'rotated']"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
                   <div v-for="country in countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
@@ -153,7 +179,13 @@ const closeDropdowns = () => {
                   <span :class="formData.state ? 'selectedValue' : 'placeholder'">
                     {{ formData.state || 'State' }}
                   </span>
-                  <img src="@/assets/img/icon46.png" :class="['dropdownIcon', showStateDropdown && 'rotated']" alt="" />
+                  <MediaAsset
+                    :src="iconDropdown"
+                    type="image"
+                    :class="['dropdownIcon', showStateDropdown && 'rotated']"
+                    alt=""
+                    :lazy="false"
+                  />
                 </div>
                 <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
                   <div v-for="state in availableStates" :key="state" class="dropdownItem" @click="selectState(state)">
@@ -172,7 +204,12 @@ const closeDropdowns = () => {
             </form>
           </div>
           <div class="formImage">
-            <img src="@/assets/img/icon45.png" alt="Product Image" />
+            <MediaAsset
+              :src="iconProduct"
+              type="image"
+              alt="Product Image"
+              :lazy="false"
+            />
           </div>
         </div>
       </section>

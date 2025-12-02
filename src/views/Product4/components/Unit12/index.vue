@@ -1,5 +1,6 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import icon41 from '@/assets/img/icon41.png'
 </script>
 
 <template>
@@ -10,7 +11,13 @@
         <div
           class="size-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="min-w-full min-h-full">
-            <img class="size-full object-cover" src="@/assets/img/icon41.png" alt="">
+            <MediaAsset
+              class="size-full object-cover"
+              type="image"
+              :src="icon41"
+              alt=""
+              :lazy="false"
+            />
           </div>
         </div>
       </div>

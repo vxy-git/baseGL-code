@@ -26,7 +26,7 @@ const props = defineProps({
   src: { type: String, required: true },
   alt: { type: String, default: '' },
   cdnUrl: { type: String, default: '' },
-  lazy: { type: Boolean, default: true },
+  lazy: { type: Boolean, default: false },
   poster: { type: String, default: '' },
   controls: { type: Boolean, default: true },
   autoplay: { type: Boolean, default: false },

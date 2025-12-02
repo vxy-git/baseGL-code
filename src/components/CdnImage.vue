@@ -4,8 +4,6 @@
     :src="currentSrc"
     :alt="alt"
     class='cdn-image'
-    @load="handleLoad"
-    @error="handleError"
   />
 </template>
 

@@ -23,6 +23,7 @@ import banner1 from '@/assets/home/Banner-1-UNIVERSE.mp4'
 import banner2 from '@/assets/home/Banner-2-UNICORN.mp4'
 import banner3 from '@/assets/home/Banner-3-UNIT.mp4'
 import banner4 from '@/assets/home/Banner-4-DUKES.mp4'
+import btnIcon from '@/assets/img/icon2.png'
 
 const list = ref([
   {
@@ -96,7 +97,13 @@ const stop = ref(false)
               </div>
               <div class="btn flex items-center justify-center">
                 <div class="btnText">Learn more</div>
-                <img class="btn-icon" src="@/assets/img/icon2.png" alt="">
+                <MediaAsset
+                  class="btn-icon"
+                  type="image"
+                  :src="btnIcon"
+                  alt=""
+                  :lazy="false"
+                />
               </div>
             </div>
           </div>

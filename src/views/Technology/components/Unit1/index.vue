@@ -12,17 +12,39 @@ const showVideo = ref(false)
 <template>
   <div class="unit1">
     <div class="bg-video">
-      <MediaAsset class="!max-h-full" type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline />
+      <MediaAsset class="!max-h-full" type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :lazy="false" />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
-        <img :src="icon1_3" alt="" class="trigger-bg" />
-        <video class="preview-video" :src="videoSrc" autoplay muted loop playsinline></video>
+        <MediaAsset
+          :src="icon1_3"
+          type="image"
+          class="trigger-bg"
+          alt=""
+          :lazy="false"
+        />
+        <MediaAsset
+          class="preview-video"
+          type="video"
+          :src="videoSrc"
+          :autoplay="true"
+          :muted="true"
+          :loop="true"
+          :controls="false"
+          playsinline
+          :lazy="false"
+        />
         <div class="overlay">
           <div class="title1">Watch Video</div>
-          <img :src="Playone" alt="" class="play-icon" />
+          <MediaAsset
+            :src="Playone"
+            type="image"
+            class="play-icon"
+            alt=""
+            :lazy="false"
+          />
         </div>
       </div>
     </div>

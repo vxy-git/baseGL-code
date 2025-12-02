@@ -1,5 +1,6 @@
 <script setup>
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import bannerImg from '@/assets/home/UNICORE.jpg'
 </script>
 
 <template>
@@ -22,7 +23,13 @@
           </div>
         </div>
       </div>
-      <img class="size-full object-contain object-right px-[10%] rounded-[20px] overflow-hidden logo" src="@/assets/home/UNICORE.jpg" alt="">
+      <MediaAsset
+        class="size-full object-contain object-right px-[10%] rounded-[20px] overflow-hidden logo bg-[#f1f1f1]"
+        type="image"
+        :src="bannerImg"
+        alt=""
+        :lazy="false"
+      />
     </div>
   </div>
 </div>

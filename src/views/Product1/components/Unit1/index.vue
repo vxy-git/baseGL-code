@@ -6,7 +6,6 @@ import videoSrc from '@/assets/product1/banner.mp4'
 <template>
   <div class="unit1 h-screen relative">
     <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
-    <!-- <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt=""> -->
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
         <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
