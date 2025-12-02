@@ -286,7 +286,7 @@ const fillerCount = computed(() => {
 
 .product-card {
   flex: 0 0 auto;
-  width: 305px;
+  max-width: 47.7%;
 }
 
 .pagination {

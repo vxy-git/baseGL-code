@@ -445,6 +445,7 @@ onUnmounted(() => {
   gap: 12px;
   text-decoration: none;
   color: inherit;
+  flex: 1;
 }
 
 .logo-image {
@@ -909,7 +910,7 @@ onUnmounted(() => {
 .product-list {
   // background: #f9f9f9;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding: 0 20px 20px;
 }

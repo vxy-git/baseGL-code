@@ -121,7 +121,7 @@ const handleClick = () => {
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  max-height: 400px;
+  // max-height: 400px;
   width: 100%;
   height: 100%;
   padding: var(--card-padding);
