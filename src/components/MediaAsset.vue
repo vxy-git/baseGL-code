@@ -43,7 +43,7 @@ const videoEl = ref(null)
 const intersectionObserver = ref(null)
 const isMobile = ref(false)
 
-const effectiveAutoplay = computed(() => props.autoplay || (props.viewPlay && isMobile.value))
+const effectiveAutoplay = computed(() => props.autoplay || ((props.viewPlay || props.hoverPlay) && isMobile.value))
 const effectiveLoop = computed(() => props.loop || ((props.viewPlay || props.hoverPlay) && isMobile.value))
 
 const updateIsMobile = () => {
