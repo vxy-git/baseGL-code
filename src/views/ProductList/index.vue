@@ -437,7 +437,6 @@ const fillerCount = computed(() => {
   font-size: 16px;
   background: #ffffff;
   color: #111111;
-  text-decoration: underline;
   font-weight: 600;
 }
 
