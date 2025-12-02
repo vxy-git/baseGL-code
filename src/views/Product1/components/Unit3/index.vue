@@ -115,10 +115,10 @@ onUnmounted(() => {
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
-          <div ref="tb1" class="text-block">
+          <div ref="tb1" class="text-block c_padding">
             <div ref="tb1Title" class="title">UNICORE<br />POWERED</div>
           </div>
-          <div ref="tb2" class="text-block">
+          <div ref="tb2" class="text-block c_padding">
             <div ref="tb2SmallTitle" class="smallTitle">Award-Winning</div>
             <div ref="tb2WTitle" class="wTitle">Simply the best</div>
             <div ref="tb2Text" class="text">In June 2025, UNIT PRO secured 1st place in the Live Resin vape category at the
@@ -127,7 +127,7 @@ onUnmounted(() => {
               market validation, we are not just confident, but eager to bring this golden standard to more brands using
               Resin and Rosin.</div>
           </div>
-          <div ref="tb3" class="text-block">
+          <div ref="tb3" class="text-block c_padding">
             <div ref="tb3SmallTitle" class="smallTitle">A Significant Breakthrough</div>
             <div ref="tb3WTitle" class="wTitle">U-shape design<br />Pioneering industry</div>
             <div ref="tb3Text" class="text">Our patented U-shape ceramic design is the result of extensive testing and
@@ -135,7 +135,7 @@ onUnmounted(() => {
               various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the
               market.</div>
           </div>
-          <div ref="tb4" class="text-block">
+          <div ref="tb4" class="text-block c_padding">
             <div ref="tb4SmallTitle" class="smallTitle">
               100% Rosin-Ready
             </div>

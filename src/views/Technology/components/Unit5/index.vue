@@ -152,7 +152,7 @@ onUnmounted(() => {
           by
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
-        <div class="w-[750px] mt-[66px]">
+        <div class="w-[750px] mt-[66px] max-w-full">
           <MediaAsset
             ref="rightVideoAssetRef1"
             :src="r1"
@@ -180,7 +180,7 @@ onUnmounted(() => {
           Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
           guarantees an exceptional session every time.
         </div>
-        <div class="w-[750px] mt-[66px]">
+        <div class="w-[750px] mt-[66px] max-w-full">
           <MediaAsset
             ref="rightVideoAssetRef2"
             :src="r2"

@@ -8,7 +8,7 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
 <template>
   <div>
     <div class="unit4T">
-      <div class="flex flex-col items-center mt-[48px]">
+      <div class="flex flex-col items-center mt-[48px] c_padding">
         <div class="title1">100% Rosin-Ready&nbsp;&nbsp;</div>
         <div class="title2 mt-[19.55px]">
           Savor the most natural<br />
@@ -54,7 +54,7 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
           :view-play="true"
           class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]"
         />
-        <div class="w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] m_order mb-[20px]">
+        <div class="m_order w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] mb-[20px]">
           <div class="title1">Built-in Wires</div>
           <div class="title2 mt-[19.55px]">No more dry burning</div>
           <div class="title3  mt-[44.45px]">

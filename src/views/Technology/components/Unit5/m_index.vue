@@ -53,7 +53,7 @@ const rightVideoRef2 = ref(null)
           :loop="false"
           :controls="false"
           :view-play="true"
-          class="w-[750px] mt-[66px]"
+          class="w-[750px] mt-[66px] max-w-full"
           playsinline
           alt=""
         />
@@ -80,7 +80,7 @@ const rightVideoRef2 = ref(null)
           :loop="false"
           :controls="false"
           :view-play="true"
-          class="w-[750px] mt-[66px]"
+          class="w-[750px] mt-[66px] max-w-full"
           playsinline
           alt=""
         />

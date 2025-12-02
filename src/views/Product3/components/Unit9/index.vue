@@ -21,7 +21,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :loop="false"
           :controls="false"
           :hover-play="true"
-          class="w-full h-[440px] rounded-[20px] overflow-hidden bg-black"
+          class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
         <MediaAsset
           type="video"
@@ -31,7 +31,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :loop="false"
           :controls="false"
           :hover-play="true"
-          class="w-full h-[440px] rounded-[20px] overflow-hidden bg-black"
+          class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
       </div>
     </div>

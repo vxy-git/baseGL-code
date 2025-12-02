@@ -116,6 +116,7 @@ const handleClick = () => {
 }
 
 .card-surface {
+  // margin: auto;
   position: relative;
   display: flex;
   flex-direction: column;

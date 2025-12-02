@@ -131,7 +131,7 @@ onUnmounted(() => {
         <FrameSequence :frames="frames1" :tarURL="tarURL1" :imageURL="imageURL1" :progress="seqProgress1"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
-      <div class="size-full flex items-start justify-center">
+      <div class="size-full flex items-start justify-center c_padding">
         <div class="text-layer">
           <div ref="tb1" class="text-block">
             <div ref="tb1Title" class="title">
@@ -150,7 +150,7 @@ onUnmounted(() => {
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
-          <div ref="tb2" class="text-block">
+          <div ref="tb2" class="text-block c_padding">
             <div ref="tb2SmallTitle" class="title1">UNICORE powered</div>
             <div ref="tb2WTitle" class="title2 mt-[19.55px]">33% in pore uniformity</div>
             <div ref="tb2Text" class="title3 max-w-[1200px] mt-[19.45px]">
@@ -161,7 +161,7 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <div ref="tb3" class="text-block">
+          <div ref="tb3" class="text-block c_padding">
             <div ref="tb3Card" class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
               <div>
                 <div ref="tb3Figure" class="flex text">

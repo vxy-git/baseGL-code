@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col items-center pt-[98px] pb-[145.95px]">
+  <div class="flex flex-col items-center">
     <div class="relative w-full">
       <img class="w-full" src="@/assets/product3/unit2-1.jpg" alt="">
       <div class="absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">

@@ -51,7 +51,7 @@ const splideOptions = {
   keyboard: true,
   width: '100%',
   breakpoints: {
-    1350: {
+    1200: {
       perPage: 3,
       perMove: 3,
     },
