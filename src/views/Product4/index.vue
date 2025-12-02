@@ -11,10 +11,10 @@ import Unit7 from "./components/Unit7/index.vue";
 import Unit8 from "./components/Unit8/index.vue";
 import Unit9 from "./components/Unit9/index.vue";
 import Unit10 from "./components/Unit10/index.vue";
-import Unit11 from "./components/Unit11/index.vue";
 import Unit12 from "./components/Unit12/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
 import Footer from "@/components/Footer.vue";
+import Specifications from "@/components/Specifications/index.vue"; 
 </script>
 
 <template>
@@ -34,7 +34,7 @@ import Footer from "@/components/Footer.vue";
       <Unit9 />
       <Unit10 />
     </div>
-    <Unit11 />
+    <Specifications />
     <Unit12 />
     <Splide4 />
     <Footer />

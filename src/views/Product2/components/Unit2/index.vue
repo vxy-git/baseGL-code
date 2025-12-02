@@ -8,7 +8,7 @@
       Relish the golden hours with the UNIVERSE Series.
       Savor the sweetness, dive into <span class="text-[#3ad3ff]">smoothness</span>
     </div>
-    <img src="@/assets/product2/unit2.png" class="mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain" alt="">
+    <img src="@/assets/product2/unit2.png" class="logo mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain" alt="">
   </div>
 </template>
 
@@ -23,5 +23,11 @@
   font-style: normal;
   font-weight: 700;
   line-height: 55px;
+}
+
+@media screen and (max-width: 1024px) {
+  .logo {
+    height: 800px;
+  }
 }
 </style>
