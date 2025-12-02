@@ -69,11 +69,11 @@ onBeforeUnmount(() => {
                   <img src="@/assets/product2/realize1.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize2.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize3.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
@@ -81,11 +81,11 @@ onBeforeUnmount(() => {
                   <img src="@/assets/product2/realize1.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize2.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize3.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
@@ -97,27 +97,27 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden">
               <div ref="imgBox2Ref" class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize4.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize5.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize6.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize4.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize5.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
-                <div class="h-full w-[480px] rounded-[20px] bg-[#D9D9D9]">
+                <div class="h-full w-[480px] rounded-[20px]">
                   <img src="@/assets/product2/realize6.jpg"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden" alt="" />
                 </div>
