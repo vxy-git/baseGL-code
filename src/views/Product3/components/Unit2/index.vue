@@ -19,10 +19,10 @@
     <div class="relative w-full">
       <img class="w-full" src="@/assets/product3/unit2-2.jpg" alt="">
       <div class="absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
-        <div class="title1 !text-white">
+        <div class="title1 !text-black">
           UNICORN PRO
         </div>
-        <div class="title2 !text-black mt-[19px]">
+        <div class="title2 !text-white mt-[19px]">
           Tiny powerhouse&nbsp;<br />
           Exceptional pro capability&nbsp;
         </div>
