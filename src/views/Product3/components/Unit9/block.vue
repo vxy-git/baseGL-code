@@ -2,31 +2,6 @@
 import unit3_l from '@/assets/product3/unit3-l.mp4'
 import unit3_r from '@/assets/product3/unit3-r.mp4'
 import MediaAsset from '@/components/MediaAsset.vue'
-
-const handleContainerEnter = (e) => {
-  const box = e?.currentTarget
-  if (!box) return
-  const videos = box.querySelectorAll('video')
-  videos.forEach(v => {
-    try {
-      v.currentTime = 0
-      v.play()?.catch?.(() => {})
-    } catch {}
-  })
-}
-
-const handleContainerLeave = (e) => {
-  const box = e?.currentTarget
-  if (!box) return
-  const videos = box.querySelectorAll('video')
-  videos.forEach(v => {
-    try {
-      v.pause()
-      v.currentTime = 0
-    } catch {}
-  })
-}
-
 </script>
 
 <template>
@@ -37,7 +12,7 @@ const handleContainerLeave = (e) => {
       <div class="title2 mt-[19px]">
         Inhale & Button Activated
       </div>
-      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
         <MediaAsset
           type="video"
           :src="unit3_l"
@@ -45,6 +20,7 @@ const handleContainerLeave = (e) => {
           :muted="true"
           :loop="false"
           :controls="false"
+          :hover-play="true"
           class="w-full h-[440px] rounded-[20px] overflow-hidden bg-[#D9D9D9] object-cover"
         />
         <MediaAsset
@@ -54,6 +30,7 @@ const handleContainerLeave = (e) => {
           :muted="true"
           :loop="false"
           :controls="false"
+          :hover-play="true"
           class="w-full h-[440px] rounded-[20px] overflow-hidden bg-[#D9D9D9] object-cover"
         />
       </div>
@@ -69,7 +46,7 @@ const handleContainerLeave = (e) => {
 }
 
 .title1 {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

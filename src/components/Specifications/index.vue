@@ -56,10 +56,11 @@ const deviceSpecs2 = [
           <MediaAsset
             type="video"
             :src="UNIVERSE"
-            :autoplay="true"
+            :autoplay="false"
             :muted="true"
             :loop="false"
             :controls="false"
+            :view-play="true"
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
@@ -74,10 +75,11 @@ const deviceSpecs2 = [
           <MediaAsset
             type="video"
             :src="NIVERSE_PRO"
-            :autoplay="true"
+            :autoplay="false"
             :muted="true"
             :loop="false"
             :controls="false"
+            :view-play="true"
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>

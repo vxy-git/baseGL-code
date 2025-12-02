@@ -1,8 +1,8 @@
 <script setup>
-
 import Tabs from "./Tabs/index.vue";
-import {ref, watch} from "vue";
+import { ref, watch, nextTick } from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import MediaAsset from '@/components/MediaAsset.vue'
 import every1 from '@/assets/product2/every_Crystal-clear-Design.jpg'
 import every2 from '@/assets/product2/every_Unibody-Enclosure.mp4'
 import every3 from '@/assets/product2/every_Medical-grade-Chamber.jpg'
@@ -21,6 +21,40 @@ const list = [
 ]
 
 const isVideo = (src) => /\.mp4(\?.*)?$/i.test(src)
+
+const videoRefs = ref([])
+const setVideoRef = (el, index) => {
+  if (el) {
+    videoRefs.value[index] = el
+  }
+}
+
+const playVideo = (index) => {
+  const video = videoRefs.value[index]
+  if (!video) return
+  try {
+    video.playFromStart?.()
+  } catch {}
+}
+
+const pauseVideo = (index) => {
+  const video = videoRefs.value[index]
+  if (!video) return
+  try {
+    video.pause?.()
+    video.resetToStart?.()
+  } catch {}
+}
+
+const syncVideoPlayback = (index) => {
+  videoRefs.value.forEach((_, i) => {
+    if (i === index) {
+      playVideo(i)
+    } else {
+      pauseVideo(i)
+    }
+  })
+}
 
 const splideRef = ref(null)
 
@@ -43,14 +77,19 @@ const splideOptions = {
 const onSplideInit = (splide) => {
   splideRef.value = splide
   tabsCurrent.value = splide.index
+  nextTick(() => {
+    syncVideoPlayback(splide.index)
+  })
 }
 
 const onSlideChange = (splide) => {
   tabsCurrent.value = splide.index
+  syncVideoPlayback(splide.index)
 }
 
 watch(tabsCurrent, (index) => {
   splideRef.value?.go(index)
+  syncVideoPlayback(index)
 })
 </script>
 
@@ -65,15 +104,17 @@ watch(tabsCurrent, (index) => {
           <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
             @splide:move="onSlideChange">
             <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in tabsList" :key="index">
-              <template v-if="isVideo(list[index].img)">
-                <video :src="list[index].img" autoplay muted loop playsinline
-                  :class="{'!bg-black':index === tabsCurrent}"
-                  class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black" />
-              </template>
-              <template v-else>
-                <img :class="{'!bg-black':index === tabsCurrent}" :src="list[index].img"
-                  class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black" alt="" />
-              </template>
+              <MediaAsset
+                :ref="isVideo(list[index].img) ? (el => setVideoRef(el, index)) : null"
+                class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black"
+                :class="{'!bg-black':index === tabsCurrent}"
+                :type="isVideo(list[index].img) ? 'video' : 'image'"
+                :src="list[index].img"
+                :autoplay="false"
+                :muted="true"
+                :loop="false"
+                :controls="false"
+              />
               <div v-if="index === tabsCurrent" class="size-full absolute inset-0 bg-black opacity-5"></div>
             </SplideSlide>
           </Splide>

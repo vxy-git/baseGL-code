@@ -174,7 +174,7 @@ onUnmounted(() => {
               </div>
               <div class="ml-[63.5px]">
                 <div>
-                  <div ref="tb3Bar1" class="bar w-[480px] bg-[#caa1ed] rounded-full"></div>
+                  <div ref="tb3Bar1" class="bar w-[480px] bg-[#CAA4FB] rounded-full"></div>
                   <div ref="tb3Bar1Text" class="text2 mt-[15px]">
                     CALEAF TECH 1832 ℉ (1000℃)
                   </div>
@@ -233,14 +233,14 @@ onUnmounted(() => {
   font-style: normal;
   font-weight: 700;
   line-height: 80px;
-  background: linear-gradient(180deg, #caa1ed 0%, #E0B8FF 50%, #caa1ed 100%);
+  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .title1 {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -270,7 +270,7 @@ onUnmounted(() => {
 }
 
 .text {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -311,7 +311,6 @@ onUnmounted(() => {
   .text,
   .text1,
   .text2,
-  img,
   .bar {
     opacity: 0;
   }

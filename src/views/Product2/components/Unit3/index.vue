@@ -1,9 +1,7 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import either_L from '@/assets/product2/either-L.mp4'
 import either_R from '@/assets/product2/either-R.mp4'
-
-
-
 </script>
 
 <template>
@@ -16,10 +14,28 @@ import either_R from '@/assets/product2/either-R.mp4'
     </div>
     <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
       <div class="w-full h-[440px] bg-black rounded-[20px]">
-        <video class="w-full h-full object-cover" :src="either_L" autoplay muted playsinline loop></video>
+        <MediaAsset
+          class="w-full h-full object-cover"
+          type="video"
+          :src="either_L"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :controls="false"
+          :hover-play="true"
+        />
       </div>
       <div class="w-full h-[440px] bg-black rounded-[20px]">
-        <video class="w-full h-full object-cover" :src="either_R" autoplay muted playsinline loop></video>
+        <MediaAsset
+          class="w-full h-full object-cover"
+          type="video"
+          :src="either_R"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :controls="false"
+          :hover-play="true"
+        />
       </div>
     </div>
   </div>

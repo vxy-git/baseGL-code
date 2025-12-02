@@ -33,7 +33,7 @@
 
 <style scoped lang="scss">
 .title1 {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

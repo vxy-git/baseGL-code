@@ -112,7 +112,7 @@ onUnmounted(() => {
   <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
     <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
       <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
-        :controls="false" playsinline class="mediaBox" />
+        :controls="false" :view-play="true" playsinline class="mediaBox" />
     </div>
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
@@ -172,7 +172,7 @@ onUnmounted(() => {
           bubbles.
         </div>
         <MediaAsset ref="rightVideoAssetRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
-          playsinline alt="" />
+          :view-play="true" playsinline alt="" />
       </div>
     </div>
   </div>

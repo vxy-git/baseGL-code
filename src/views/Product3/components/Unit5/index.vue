@@ -26,10 +26,11 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
               class="unit5__card-img"
               type="video"
               :src="tempControl"
-              :autoplay="true"
+              :autoplay="false"
               :muted="true"
               :loop="true"
               :controls="false"
+              :hover-play="true"
             />
           </div>
           <div class="unit5__card unit5__card--wide">
@@ -40,10 +41,11 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
               class="unit5__card-img"
               type="video"
               :src="batteryLifeMonitor"
-              :autoplay="true"
+              :autoplay="false"
               :muted="true"
               :loop="true"
               :controls="false"
+              :hover-play="true"
             />
           </div>
         </div>
@@ -56,24 +58,26 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
               class="unit5__card-img"
               type="video"
               :src="preheatStatus"
-              :autoplay="true"
+              :autoplay="false"
               :muted="true"
               :loop="true"
               :controls="false"
+              :hover-play="true"
             />
           </div>
           <div class="unit5__card">
             <div class="tag">
-             Dosing Timer
+              Dosing Timer
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
               :src="puffCounter"
-              :autoplay="true"
+              :autoplay="false"
               :muted="true"
               :loop="true"
               :controls="false"
+              :hover-play="true"
             />
           </div>
         </div>
@@ -84,7 +88,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 
 <style scoped lang="scss">
 .title_tag {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -101,7 +105,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #caa1ed 0%, #A8FFD5 50%, #caa1ed 100%);
+  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -138,7 +142,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 }
 
 .gtext {
-  color: #caa1ed;
+  color: #CAA4FB;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

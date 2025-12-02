@@ -5,30 +5,6 @@ import functionInterfaceVideo from '@/assets/home/svg/3-Function and Interface.m
 import buttonVideo from '@/assets/home/svg/4-Button.mp4'
 import stickerVideo from '@/assets/home/svg/5-Sticker.mp4'
 import housingVideo from '@/assets/home/svg/6-Housing.mp4'
-
-const handleContainerEnter = (e) => {
-  const box = e?.currentTarget
-  if (!box) return
-  const videos = box.querySelectorAll('video')
-  videos.forEach(v => {
-    try {
-      v.currentTime = 0
-      v.play()?.catch?.(() => {})
-    } catch {}
-  })
-}
-
-const handleContainerLeave = (e) => {
-  const box = e?.currentTarget
-  if (!box) return
-  const videos = box.querySelectorAll('video')
-  videos.forEach(v => {
-    try {
-      v.pause()
-      v.currentTime = 0
-    } catch {}
-  })
-}
 </script>
 
 <template>
@@ -54,34 +30,34 @@ const handleContainerLeave = (e) => {
             </linearGradient>
           </defs>
         </svg>
-        <div class="z-[3] absolute top-0 left-0 w-[359px] h-[485px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[3] absolute top-0 left-0 w-[359px] h-[485px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="mouthpieceVideo" :autoplay="false" :muted="true"
-            :loop="true" :controls="false" playsinline alt="Mouthpiece" />
+            :loop="true" :controls="false" :hover-play="true" playsinline alt="Mouthpiece" />
           <div class="text">Mouthpiece</div>
         </div>
-        <div class="z-[1] absolute top-0 left-[369px] w-[564px] h-[485px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[1] absolute top-0 left-[369px] w-[564px] h-[485px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="functionInterfaceVideo" :autoplay="false"
-            :muted="true" :loop="true" :controls="false" playsinline alt="Function and Interface" />
+            :muted="true" :loop="true" :controls="false" :hover-play="true" playsinline alt="Function and Interface" />
           <div class="text">Function and Interface</div>
         </div>
-        <div class="z-[1] absolute top-0 left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[1] absolute top-0 left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="buttonVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" playsinline alt="Button" />
+            :controls="false" :hover-play="true" playsinline alt="Button" />
           <div class="text">Button</div>
         </div>
-        <div class="z-[3] absolute top-[247px] left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[3] absolute top-[247px] left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="stickerVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" playsinline alt="Sticker" />
+            :controls="false" :hover-play="true" playsinline alt="Sticker" />
           <div class="text">Sticker</div>
         </div>
-        <div class="z-[1] absolute top-[495px] left-0 w-[643px] h-[238px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[1] absolute top-[495px] left-0 w-[643px] h-[238px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="oilWindowVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" playsinline alt="Oil Window" />
+            :controls="false" :hover-play="true" playsinline alt="Oil Window" />
           <div class="text">Oil Window</div>
         </div>
-        <div class="z-[3] absolute top-[495px] left-[653px] w-[643px] h-[238px] rounded-[20px] overflow-hidden" @mouseenter="handleContainerEnter" @mouseleave="handleContainerLeave">
+        <div class="z-[3] absolute top-[495px] left-[653px] w-[643px] h-[238px] rounded-[20px] overflow-hidden">
           <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="housingVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" playsinline alt="Housing" />
+            :controls="false" :hover-play="true" playsinline alt="Housing" />
           <div class="text">Housing</div>
         </div>
       </div>

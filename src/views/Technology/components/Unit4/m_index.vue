@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import icon19 from '@/assets/img/icon19.png'
 import m2 from '@/assets/technology/t2/m2.mp4'
@@ -8,57 +8,12 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
 
 const bgVideoRef = ref(null)
 const mainVideoRef = ref(null)
-const observers = []
-
-const resolveVideoEl = (component) => {
-  if (!component) return null
-  const el = component.videoEl
-  if (el instanceof Element) return el
-  if (el && 'value' in el) return el.value
-  return null
-}
-
-const setupObserver = (assetRef) => {
-  const component = assetRef.value
-  const videoEl = resolveVideoEl(component)
-  if (!component || !videoEl) return
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const el = resolveVideoEl(component)
-        if (!el) return
-        if (entry.isIntersecting) {
-          component.playFromStart?.()
-        } else {
-          component.pause?.()
-          try {
-            el.currentTime = 0
-          } catch {}
-        }
-      })
-    },
-    { threshold: 0.4 }
-  )
-
-  observer.observe(videoEl)
-  observers.push(observer)
-}
-
-onMounted(() => {
-  setupObserver(bgVideoRef)
-  setupObserver(mainVideoRef)
-})
-
-onUnmounted(() => {
-  observers.forEach((observer) => observer.disconnect())
-})
 </script>
 
 <template>
   <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
     <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
-      :controls="false" preload="auto" playsinline alt="" class="w-full object-cover" />
+      :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full object-cover" />
 
     <div class="size-full overflow-hidden">
       <div class="relative z-[2] h-full w-full pt-[45px]">
@@ -105,7 +60,7 @@ onUnmounted(() => {
         </div>
         <div class="w-full mt-[60px]">
           <MediaAsset ref="mainVideoRef" type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
-            :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
+            :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>
     </div>

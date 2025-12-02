@@ -1,5 +1,4 @@
-<script setup>import { ref } from 'vue'
-import { useIntersectionObserver } from '@vueuse/core'
+<script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import ConsistentTR from '@/assets/product2/consistent-TR.mp4'
 import ConsistentBR from '@/assets/product2/consistent-BR.mp4'
@@ -7,41 +6,6 @@ import ConsistentBL from '@/assets/product2/consistent-BL.mp4'
 
 import vl from '@/assets/product2/no-L.mp4'
 import vr from '@/assets/product2/no-R.mp4'
-
-const wiresRef = ref(null)
-const pairRef = ref(null)
-
-useIntersectionObserver(
-  wiresRef,
-  ([{ isIntersecting }]) => {
-    const nodes = wiresRef.value?.querySelectorAll('.media-video') || []
-    nodes.forEach((video) => {
-      if (isIntersecting) {
-        video.currentTime = 0
-        video.play()
-      } else {
-        video.pause()
-      }
-    })
-  },
-  { threshold: 0.5 }
-)
-
-useIntersectionObserver(
-  pairRef,
-  ([{ isIntersecting }]) => {
-    const nodes = pairRef.value?.querySelectorAll('.media-video') || []
-    nodes.forEach((video) => {
-      if (isIntersecting) {
-        video.currentTime = 0
-        video.play()
-      } else {
-        video.pause()
-      }
-    })
-  },
-  { threshold: 0.5 }
-)
 </script>
 
 <template>
@@ -61,10 +25,19 @@ useIntersectionObserver(
           extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
-      <video class="h-[553px] object-cover" :src="ConsistentTR" autoplay muted playsinline loop></video>
+      <MediaAsset
+        class="h-[553px] object-cover"
+        type="video"
+        :src="ConsistentTR"
+        :autoplay="false"
+        :muted="true"
+        :controls="false"
+        :loop="true"
+        :view-play="true"
+      />
     </div>
 
-    <div class="c_1230 c_padding" ref="pairRef">
+    <div class="c_1230 c_padding">
       <div class="h-full flex justify-between m_flex_col_r gap-[20px]">
         <div class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
@@ -74,6 +47,7 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
+            :view-play="true"
             class="h-full object-cover"
           />
         </div>
@@ -85,6 +59,7 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
+            :view-play="true"
             class="h-full object-cover"
           />
         </div>
@@ -111,6 +86,7 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
+            :view-play="true"
             class="h-full object-cover"
           />
         </div>
@@ -122,6 +98,7 @@ useIntersectionObserver(
             :muted="true"
             :controls="false"
             :loop="false"
+            :view-play="true"
             class="h-full object-cover"
           />
         </div>

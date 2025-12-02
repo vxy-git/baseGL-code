@@ -1,40 +1,8 @@
 <script setup>
 import unit4Bg from '@/assets/product3/unit4.jpg'
-import { onMounted, onBeforeUnmount } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import leftVideoSrc from '@/assets/product3/unit5-l.mp4'
 import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
-
-let observer
-
-onMounted(() => {
-  const handleIntersect = (entries) => {
-    entries.forEach((entry) => {
-      const el = entry.target
-      if (entry.isIntersecting) {
-        try {
-          el.currentTime = 0
-          el.play()
-        } catch (_) {}
-      } else {
-        try {
-          el.pause()
-        } catch (_) {}
-      }
-    })
-  }
-
-  observer = new IntersectionObserver(handleIntersect, { threshold: 0.2 })
-
-  const left = document.querySelector('video.media-video[data-id="unit5-l"]')
-  const right = document.querySelector('video.media-video[data-id="unit5-r"]')
-  if (left) observer.observe(left)
-  if (right) observer.observe(right)
-})
-
-onBeforeUnmount(() => {
-  if (observer) observer.disconnect()
-})
 </script>
 
 <template>
@@ -71,12 +39,21 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <img src="@/assets/img/icon58.png" class="h-[600px] mt-[78px] object-contain m_mt_0" alt="">
+        <img src="@/assets/product3/unit4-2.jpg" class="h-[600px] mt-[78px] object-contain m_mt_0" alt="">
       </div>
       <div
         class="c_padding flex mx-auto max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
-        <MediaAsset type="video" :src="leftVideoSrc" :muted="true" :autoplay="false" :loop="false" :controls="false"
-          data-id="unit5-l" class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]" />
+        <MediaAsset
+          type="video"
+          :src="leftVideoSrc"
+          :muted="true"
+          :autoplay="false"
+          :loop="false"
+          :controls="false"
+          :hover-play="false"
+          :view-play="true"
+          class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]"
+        />
         <div class="w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] m_order mb-[20px]">
           <div class="title1">Built-in Wires</div>
           <div class="title2 mt-[19.55px]">No more dry burning</div>
@@ -87,8 +64,17 @@ onBeforeUnmount(() => {
             flawless session every time.
           </div>
         </div>
-        <MediaAsset type="video" :src="rightVideoSrc" :muted="true" :autoplay="false" :loop="false" :controls="false"
-          data-id="unit5-r" class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]" />
+        <MediaAsset
+          type="video"
+          :src="rightVideoSrc"
+          :muted="true"
+          :autoplay="false"
+          :loop="false"
+          :controls="false"
+          :hover-play="false"
+          :view-play="true"
+          class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]"
+        />
       </div>
     </div>
     <div class="unit4B h-[799px]" :style="{ backgroundImage: `url(${unit4Bg})` }">
@@ -108,7 +94,7 @@ onBeforeUnmount(() => {
 .unit4T {
   .text4 {
     // 30%
-    color: #caa1ed;
+    color: #CAA4FB;
     font-size: 40px;
     font-family: Roboto;
     font-weight: 700;
@@ -136,7 +122,7 @@ onBeforeUnmount(() => {
   }
 
   .title1 {
-    color: #caa1ed;
+    color: #CAA4FB;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -166,7 +152,7 @@ onBeforeUnmount(() => {
   }
 
   .text {
-    color: #caa1ed;
+    color: #CAA4FB;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;

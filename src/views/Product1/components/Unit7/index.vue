@@ -29,10 +29,11 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               <MediaAsset
                 type="video"
                 :src="upgrade1"
-                :autoplay="true"
+                :autoplay="false"
                 :muted="true"
                 :loop="true"
                 :controls="false"
+                :hover-play="true"
                 class="w-full h-full object-cover"
               />
             </div>
@@ -45,10 +46,11 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               <MediaAsset
                 type="video"
                 :src="upgrade2"
-                :autoplay="true"
+                :autoplay="false"
                 :muted="true"
                 :loop="true"
                 :controls="false"
+                :hover-play="true"
                 class="w-full h-full object-cover"
               />
             </div>
@@ -63,10 +65,11 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               <MediaAsset
                 type="video"
                 :src="upgrade3"
-                :autoplay="true"
+                :autoplay="false"
                 :muted="true"
                 :loop="true"
                 :controls="false"
+                :hover-play="true"
                 class="w-full h-full object-cover"
               />
             </div>
@@ -79,10 +82,11 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
               <MediaAsset
                 type="video"
                 :src="upgrade4"
-                :autoplay="true"
+                :autoplay="false"
                 :muted="true"
                 :loop="true"
                 :controls="false"
+                :hover-play="true"
                 class="w-full h-full object-cover"
               />
             </div>
@@ -134,6 +138,7 @@ import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
           :muted="true"
           :loop="true"
           :controls="false"
+          :hover-play="false"
           class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden"
         />
       </div>

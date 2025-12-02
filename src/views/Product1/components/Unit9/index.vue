@@ -1,4 +1,5 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
 import specs from '@/assets/product1/specs.mp4'
 const deviceSpecs = [
   {
@@ -53,7 +54,16 @@ const deviceSpecs = [
         </div>
       </div>
       <div class="w-[500px] h-[730px] relative">
-      <video class="absolute h-[750px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover" :src="specs" autoplay muted playsinline></video>
+        <MediaAsset
+          class="absolute h-[750px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+          type="video"
+          :src="specs"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :controls="false"
+          :view-play="true"
+        />
       </div>
     </div>
   </div>

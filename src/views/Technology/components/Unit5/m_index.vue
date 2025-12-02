@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import l1 from '@/assets/technology/t3/l1.mp4'
 import r1 from '@/assets/technology/t3/r1.mp4'
@@ -8,60 +8,24 @@ import r2 from '@/assets/technology/t3/r2.mp4'
 const leftVideoRef = ref(null)
 const rightVideoRef1 = ref(null)
 const rightVideoRef2 = ref(null)
-const observers = []
-
-const resolveVideoEl = (component) => {
-  if (!component) return null
-  const el = component.videoEl
-  if (el instanceof Element) return el
-  if (el && 'value' in el) return el.value
-  return null
-}
-
-const setupObserver = (assetRef) => {
-  const component = assetRef.value
-  const videoEl = resolveVideoEl(component)
-  if (!component || !videoEl) return
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const el = resolveVideoEl(component)
-        if (!el) return
-        if (entry.isIntersecting) {
-          component.playFromStart?.()
-        } else {
-          component.pause?.()
-          try {
-            el.currentTime = 0
-          } catch {}
-        }
-      })
-    },
-    { threshold: 0.4 }
-  )
-
-  observer.observe(videoEl)
-  observers.push(observer)
-}
-
-onMounted(() => {
-  setupObserver(leftVideoRef)
-  setupObserver(rightVideoRef1)
-  setupObserver(rightVideoRef2)
-})
-
-onUnmounted(() => {
-  observers.forEach((observer) => observer.disconnect())
-})
-
 </script>
 
 <template>
   <div class="relative max-w-[1702px] mt-[100px] mx-auto c_padding">
     <div class="mediaBox shrink-0">
-      <MediaAsset ref="leftVideoRef" :src="l1" type="video" class="size-full" muted :controls="false"
-        playsinline alt="" />
+      <MediaAsset
+        ref="leftVideoRef"
+        :src="l1"
+        type="video"
+        :autoplay="false"
+        :muted="true"
+        :loop="false"
+        :controls="false"
+        :view-play="true"
+        class="size-full"
+        playsinline
+        alt=""
+      />
     </div>
     <div class="content-wrapper will-change-transform h-max">
       <div class="content1 flex flex-col items-center">
@@ -80,8 +44,19 @@ onUnmounted(() => {
           by
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
-        <MediaAsset ref="rightVideoRef1" :src="r1" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
-          playsinline alt="" />
+        <MediaAsset
+          ref="rightVideoRef1"
+          :src="r1"
+          type="video"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :controls="false"
+          :view-play="true"
+          class="w-[750px] mt-[66px]"
+          playsinline
+          alt=""
+        />
       </div>
       <div class="content2 mt-[60px] flex flex-col items-center">
         <div class="title1">
@@ -96,8 +71,19 @@ onUnmounted(() => {
           Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
           guarantees an exceptional session every time.
         </div>
-        <MediaAsset ref="rightVideoRef2" :src="r2" type="video" class="w-[750px] mt-[66px]" muted :controls="false"
-          playsinline alt="" />
+        <MediaAsset
+          ref="rightVideoRef2"
+          :src="r2"
+          type="video"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :controls="false"
+          :view-play="true"
+          class="w-[750px] mt-[66px]"
+          playsinline
+          alt=""
+        />
       </div>
     </div>
   </div>
