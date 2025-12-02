@@ -69,7 +69,7 @@ const handleContainerLeave = (e) => {
 }
 
 .title1 {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

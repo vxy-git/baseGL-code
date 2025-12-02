@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .title {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

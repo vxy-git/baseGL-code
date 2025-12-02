@@ -5,7 +5,7 @@ import Unit1 from "./components/Unit1/index.vue"
 import Unit2 from "./components/Unit2/index.vue"
 import Unit3 from "./components/Unit3/index.vue"
 import Unit4 from "./components/Unit4/index.vue"
-// import Unit5 from "./components/Unit5/index.vue"
+import Unit5 from "./components/Unit5/index.vue"
 import Unit6 from "./components/Unit6/index.vue"
 import Unit7 from "./components/Unit7/index.vue"
 import Unit8 from "./components/Unit8/index.vue"
@@ -29,7 +29,8 @@ import Footer from "@/components/Footer.vue";
       <Unit9 />
     </div>
     <Unit6 />
-    <Specifications />
+    <Unit7 />
+    <!-- <Specifications /> -->
     <Splide4 />
     <Footer />
   </div>

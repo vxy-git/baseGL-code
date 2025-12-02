@@ -54,7 +54,7 @@ const deviceSpecs2 = [
         <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
 
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline></video>
         </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
       </div>
@@ -64,7 +64,7 @@ const deviceSpecs2 = [
         <!-- <img class="max-h-[414px]" src="@/assets/img/icon70.png" alt=""> -->
 
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
+          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline></video>
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>

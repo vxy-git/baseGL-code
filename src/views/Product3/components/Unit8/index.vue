@@ -57,7 +57,7 @@
     }
     .btn{
       border-radius: 50px;
-      background: #1CE785;
+      background: #caa1ed;
       width: 130px;
       height: 40px;
       flex-shrink: 0;
@@ -74,7 +74,7 @@
   }
 }
 .title2{
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 80px;
   font-style: italic;

@@ -4,29 +4,36 @@
 
 <template>
   <div class="flex flex-col items-center pt-[98px] pb-[145.95px]">
-    <div class="title1">
-      UNICORN
+    <div class="relative w-full">
+      <img class="w-full" src="@/assets/product3/unit2-1.jpg" alt="">
+      <div class="absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
+        <div class="title1">
+          UNICORN
+        </div>
+        <div class="title2 mt-[19.55px]">
+          Super thin. Strikingly light.<br />
+          Shockingly strong.
+        </div>
+      </div>
     </div>
-    <div class="title2 mt-[19.55px]">
-      Super thin. Strikingly light.<br />
-      Shockingly strong.
+    <div class="relative w-full">
+      <img class="w-full" src="@/assets/product3/unit2-2.jpg" alt="">
+      <div class="absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
+        <div class="title1 !text-white">
+          UNICORN PRO
+        </div>
+        <div class="title2 !text-black mt-[19px]">
+          Tiny powerhouse&nbsp;<br />
+          Exceptional pro capability&nbsp;
+        </div>
+      </div>
     </div>
-    <img class="h-[157px] mt-[175px]" src="@/assets/img/icon51.png" alt="">
-    <div class="title1 mt-[229px]">
-      UNICORN PRO
-    </div>
-    <div class="title2 mt-[19px]">
-      Tiny powerhouse&nbsp;<br />
-      Exceptional pro capability&nbsp;
-    </div>
-    <img class="h-[607px] mt-[78px]" src="@/assets/img/icon52.png" alt="">
-
   </div>
 </template>
 
 <style scoped lang="scss">
 .title1 {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

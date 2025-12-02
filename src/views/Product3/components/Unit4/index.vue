@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
 .unit4T {
   .text4 {
     // 30%
-    color: #1CE785;
+    color: #caa1ed;
     font-size: 40px;
     font-family: Roboto;
     font-weight: 700;
@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
   }
 
   .title1 {
-    color: #1CE785;
+    color: #caa1ed;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
   }
 
   .text {
-    color: #1CE785;
+    color: #caa1ed;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;

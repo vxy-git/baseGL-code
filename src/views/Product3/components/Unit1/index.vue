@@ -1,10 +1,10 @@
 <script setup>
-import videoSrc from '@/assets/product2/banner.mp4'
+import videoSrc from '@/assets/product3/banner.mp4'
 
 </script>
 
 <template>
-  <div class="unit1 h-[980px] bg-black relative">
+  <div class="unit1 h-screen bg-black relative">
     <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
   </div>
 </template>

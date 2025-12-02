@@ -30,7 +30,7 @@ const handleContainerLeave = (e) => {
 </script>
 
 <template>
-    <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
+    <div class="mt-[158px] c_1230 c_padding pb-[170px]">
       <div class="title1 text-center">
         UNICORN PRO
       </div>
@@ -69,7 +69,7 @@ const handleContainerLeave = (e) => {
 }
 
 .title1 {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

@@ -84,7 +84,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 
 <style scoped lang="scss">
 .title_tag {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -101,7 +101,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #caa1ed 0%, #A8FFD5 50%, #caa1ed 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -138,7 +138,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 }
 
 .gtext {
-  color: #1CE785;
+  color: #caa1ed;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
