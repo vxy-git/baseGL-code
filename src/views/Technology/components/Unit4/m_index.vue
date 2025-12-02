@@ -35,7 +35,7 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
               °F (1000 ℃), surpassing our peers by 20%.
             </div>
           </div>
-          <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
+          <MediaAsset type="image" :src="m1" alt="" class="w-full object-contain mt-[20px]" />
         </div>
         <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">

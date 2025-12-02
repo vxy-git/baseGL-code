@@ -1,18 +1,37 @@
 <script setup>
-
-import Header from "@/components/Header/index.vue";
-import Unit1 from "./components/Unit1/index.vue"
-import Unit2 from "./components/Unit2/index.vue"
-import Unit3 from "./components/Unit3/index.vue"
-import Unit4 from "./components/Unit4/index.vue"
-import Unit5 from "./components/Unit5/index.vue"
-import Unit6 from "./components/Unit6/index.vue"
-import Unit7 from "./components/Unit7/index.vue"
-import Unit9 from "./components/Unit9/index.vue"
-import Unit9Block from "./components/Unit9/block.vue"
-import Specifications from "@/components/Specifications/index.vue"; 
-import Splide4 from "@/components/Splide4/index.vue"; 
+import { onMounted, onUnmounted, ref } from "vue";
+import { MOBILE_BREAKPOINT } from "@/composables/fit";
 import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header/index.vue";
+import Splide4 from "@/components/Splide4/index.vue";
+import Unit1 from "./components/Unit1/index.vue";
+import Unit2 from "./components/Unit2/index.vue";
+import Unit3 from "./components/Unit3/index.vue";
+import m_Unit3 from "./components/Unit3/m_index.vue";
+import Unit4 from "./components/Unit4/index.vue";
+import Unit5 from "./components/Unit5/index.vue";
+import Unit6 from "./components/Unit6/index.vue";
+import Unit7 from "./components/Unit7/index.vue";
+import Unit9 from "./components/Unit9/index.vue";
+import Unit9Block from "./components/Unit9/block.vue";
+import Specifications from "@/components/Specifications/index.vue";
+
+const isClient = typeof window !== "undefined";
+const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
+
+const updateIsMobile = () => {
+  if (!isClient) return;
+  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
+};
+
+onMounted(() => {
+  updateIsMobile();
+  window.addEventListener("resize", updateIsMobile);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateIsMobile);
+});
 </script>
 
 <template>
@@ -22,7 +41,8 @@ import Footer from "@/components/Footer.vue";
     <Unit2 />
     <Unit9Block />
     <div class="bg-[#000]">
-      <Unit3 />
+      <Unit3 v-if="!isMobile" />
+      <m_Unit3 v-else />
       <Unit4 />
       <Unit5 />
       <Unit9 />
