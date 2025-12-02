@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import icon56 from '@/assets/img/icon56.png'
+import arrow from '@/assets/product3/arrow.svg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -169,7 +169,7 @@ onUnmounted(() => {
                 <div ref="tb3Figure" class="flex text">
                   20%
                   <MediaAsset
-                    :src="icon56"
+                    :src="arrow"
                     type="image"
                     class="h-[39.805px]"
                     alt=""

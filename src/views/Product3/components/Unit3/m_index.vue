@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from "@/components/MediaAsset.vue";
-import icon56 from "@/assets/img/icon56.png";
+import arrow from '@/assets/product3/arrow.svg'
 import m1 from '@/assets/product3/unit3/m1.jpg'
 import m2 from '@/assets/product3/unit3/m2.jpg'
 import m3 from '@/assets/product3/unit3/m3.jpg'
@@ -34,7 +34,7 @@ import m3 from '@/assets/product3/unit3/m3.jpg'
             <div>
               <div class="flex text">
                 20%
-                <MediaAsset :src="icon56" type="image" class="h-[39.805px]" alt="" :lazy="false" />
+                <MediaAsset :src="arrow" type="image" class="h-[39.805px]" alt="" :lazy="false" />
               </div>
               <div class="text1">
                 Firing temp

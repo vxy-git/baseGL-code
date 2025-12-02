@@ -3,7 +3,7 @@ import unit4Bg from '@/assets/product3/unit4.jpg'
 import MediaAsset from '@/components/MediaAsset.vue'
 import leftVideoSrc from '@/assets/product3/unit5-l.mp4'
 import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
-import icon56 from '@/assets/img/icon56.png'
+import arrow from '@/assets/product3/arrow.svg'
 import unitImg from '@/assets/product3/unit4-2.jpg'
 </script>
 
@@ -35,7 +35,7 @@ import unitImg from '@/assets/product3/unit4-2.jpg'
             <div class="text4 flex h-[39.805px]">
               45%
               <MediaAsset
-                :src="icon56"
+                :src="arrow"
                 type="image"
                 class="h-[39.805px] -ml-[3px]"
                 alt=""
