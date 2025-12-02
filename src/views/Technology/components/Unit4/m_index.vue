@@ -1,18 +1,14 @@
 <script setup>
-import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import icon19 from '@/assets/img/icon19.png'
 import m2 from '@/assets/technology/t2/m2.mp4'
 import m1 from '@/assets/technology/t2/m1.jpg'
 import bgVideo from '@/assets/technology/t2/bg.mp4'
-
-const bgVideoRef = ref(null)
-const mainVideoRef = ref(null)
 </script>
 
 <template>
   <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
-    <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full object-cover" />
 
     <div class="size-full overflow-hidden">
@@ -59,7 +55,7 @@ const mainVideoRef = ref(null)
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset ref="mainVideoRef" type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
+          <MediaAsset type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
             :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

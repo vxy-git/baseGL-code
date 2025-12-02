@@ -1,20 +1,14 @@
 <script setup>
-import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import l1 from '@/assets/technology/t3/l1.mp4'
 import r1 from '@/assets/technology/t3/r1.mp4'
 import r2 from '@/assets/technology/t3/r2.mp4'
-
-const leftVideoRef = ref(null)
-const rightVideoRef1 = ref(null)
-const rightVideoRef2 = ref(null)
 </script>
 
 <template>
   <div class="relative max-w-[1702px] mt-[100px] mx-auto c_padding">
     <div class="mediaBox shrink-0">
       <MediaAsset
-        ref="leftVideoRef"
         :src="l1"
         type="video"
         :autoplay="false"
@@ -45,7 +39,6 @@ const rightVideoRef2 = ref(null)
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
         <MediaAsset
-          ref="rightVideoRef1"
           :src="r1"
           type="video"
           :autoplay="false"
@@ -72,7 +65,6 @@ const rightVideoRef2 = ref(null)
           guarantees an exceptional session every time.
         </div>
         <MediaAsset
-          ref="rightVideoRef2"
           :src="r2"
           type="video"
           :autoplay="false"
