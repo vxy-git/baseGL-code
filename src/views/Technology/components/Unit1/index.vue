@@ -1,26 +1,21 @@
 <script setup>
 import { ref } from 'vue'
-import icon1_1 from '@/assets/img/icon1_1.png'
+import MediaAsset from '@/components/MediaAsset.vue'
 import icon1_3 from '@/assets/img/icon1_3.png'
 import Playone from '@/assets/img/Play-one.png'
 import videoSrc from '@/assets/technology/banner.mp4'
+import bannerBg from '@/assets/technology/bannerBg.mp4'
 
 const showVideo = ref(false)
 </script>
 
 <template>
   <div class="unit1">
-    <div class="relative flex c_1300 mx-auto justify-center items-start pt-[373px] pb-[173px]">
-      <div class="flex flex-col items-center">
-        <!-- 标题 -->
-        <div class="title">
-          UNICORE
-        </div>
+    <div class="bg-video">
+      <MediaAsset type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline />
+    </div>
 
-        <!-- 主图片 -->
-        <img :src="icon1_1" alt="" class="w-[445px] h-[633px] object-contain -mt-[440px]" />
-      </div>
-
+    <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
         <img :src="icon1_3" alt="" class="trigger-bg" />
@@ -38,20 +33,27 @@ const showVideo = ref(false)
 
 <style scoped lang="scss">
 .unit1 {
-  min-height: calc(980px / 1920px * 100vw);
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.title {
-  width: 842px;
-  height: 234px;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 200px;
-  line-height: normal;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.bg-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg-video :deep(.media-video) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: relative;
+  height: 100vh;
+  z-index: 1;
 }
 
 .title1 {
@@ -64,7 +66,7 @@ const showVideo = ref(false)
 
 .video-trigger {
   position: absolute;
-  bottom: 90px;
+  bottom: 95px;
   right: 35px;
   width: 300px;
   height: 60px;
