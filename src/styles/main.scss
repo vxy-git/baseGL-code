@@ -73,9 +73,7 @@ body {
   }
 }
 
-@media screen and (max-width: 1024px) {
-
-
+@media screen and (max-width: 1320px) {
   .m_flex_warp {
     flex-wrap: wrap;
     justify-content: center;
@@ -84,6 +82,8 @@ body {
   .m_order {
     order: 1;
   }
+}
+@media screen and (max-width: 1024px) {
   
   .m_ty_0 {
     transform: translateY(0);

@@ -121,7 +121,9 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 }
 
 .tag {
-  position: relative;
+  position: absolute;
+  top: 25px;
+  left: 21px;
   z-index: 1;
   width: 260px;
   height: 40px;
@@ -206,24 +208,16 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
   min-height: 440px;
   border-radius: 20px;
   // background: #D9D9D9;
-  padding: 25px 21px 21px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .unit5__card-img {
-  
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
   border-radius: 14px;
-  background: #D9D9D9;
   object-fit: cover;
   overflow: hidden;
 }

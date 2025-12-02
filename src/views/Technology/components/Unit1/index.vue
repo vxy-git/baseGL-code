@@ -12,7 +12,7 @@ const showVideo = ref(false)
 <template>
   <div class="unit1">
     <div class="bg-video">
-      <MediaAsset type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline />
+      <MediaAsset class="!max-h-full" type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">

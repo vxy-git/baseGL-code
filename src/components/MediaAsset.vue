@@ -125,5 +125,11 @@ defineExpose({ playFromStart, pause, resetToStart, videoEl })
 <style scoped lang="scss">
 .media-video {
   display: block;
+  // min-height: max-content;
+  // max-height: max-content;
+}
+
+
+@media screen and (max-width: 767px) {
 }
 </style>

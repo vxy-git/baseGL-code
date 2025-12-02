@@ -134,7 +134,7 @@ onUnmounted(() => {
       </div>
 
       <div ref="mediaBoxRef" class="media-box mt-[34px]">
-        <MediaAsset ref="mediaAssetRef" :src="b3" type="video" alt="" class="media-asset" :controls="false"
+        <MediaAsset ref="mediaAssetRef" :src="b3" type="video" alt="" class="media-asset !min-h-0" :controls="false"
           :autoplay="false" :muted="true" :loop="false" />
       </div>
 

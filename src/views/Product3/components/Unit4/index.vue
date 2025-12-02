@@ -52,7 +52,7 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
           :controls="false"
           :hover-play="false"
           :view-play="true"
-          class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]"
+          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]"
         />
         <div class="m_order w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] mb-[20px]">
           <div class="title1">Built-in Wires</div>
@@ -73,7 +73,7 @@ import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
           :controls="false"
           :hover-play="false"
           :view-play="true"
-          class="h-[740px] min-h-[500px] min-w-[300px] flex-1 w-[360px] rounded-[20px] mb-[20px]"
+          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]"
         />
       </div>
     </div>
