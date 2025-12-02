@@ -4,7 +4,7 @@ import videoSrc from '@/assets/product1/banner.mp4'
 </script>
 
 <template>
-  <div class="unit1 h-[980px] relative">
+  <div class="unit1 h-screen relative">
     <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
     <!-- <img class="size-full object-cover block" src="@/assets/img/icon13.jpg" alt=""> -->
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
@@ -79,7 +79,7 @@ import videoSrc from '@/assets/product1/banner.mp4'
 
 @media screen and (max-width: 1024px) {
   .unit1 {
-    margin-top: 60px !important;
+    margin-top: 70px !important;
   }
 
   .title {

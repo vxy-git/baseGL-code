@@ -32,7 +32,7 @@ useIntersectionObserver(
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">
         <div class="title1 text-center capitalize">
-          <span class="text-[#caa1ed]">UNICORE</span> Powered
+          UNICORE Powered
         </div>
         <div class="title2 mt-[19px]">
           The gold standard for Rosin and Resin oils

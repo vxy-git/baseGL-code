@@ -18,7 +18,7 @@ import Footer from "@/components/Footer.vue";
 <template>
   <div>
     <Header headerClass="white" />
-    <div class="bg-black pb-[140px]">
+    <div class="bg-black">
       <Unit1 />
     </div>
     <div class="bg-[#111111] pb-[140px]">
