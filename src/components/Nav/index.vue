@@ -491,10 +491,6 @@ defineExpose({
   row-gap: 19px;
 }
 
-.product-card {
-  flex: 0 0 auto;
-}
-
 .cta-row {
   display: flex;
   justify-content: center;

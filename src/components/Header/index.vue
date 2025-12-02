@@ -3,6 +3,7 @@ import {onMounted, ref, watch, computed, onUnmounted} from "vue";
 import { useRouter } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
+import ProductItem from "@/components/ProductItem/index.vue";
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { tabsList, productsData } from '@/data/products'
 
@@ -12,12 +13,9 @@ const categories = computed(() =>
     id: idx + 1,
     label,
     products: (productsData[idx] || []).map(product => ({
-      id: product.id,
-      name: product.name,
+      ...product,
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
-      image: product.image,
-      linkType: product.linkType,
     }))
   }))
 )
@@ -383,22 +381,17 @@ onUnmounted(() => {
                 <!-- 三级：产品列表 -->
                 <Transition name="expand">
                   <div v-show="expandedCategoryId === category.id" class="product-list">
-                    <a
+                    <div
                       v-for="product in category.products"
                       :key="product.id"
-                      :href="productLink(product.linkType)"
-                      class="product-item"
-                      @click.prevent="handleProductClick(product.linkType)"
+                      class="product-card"
                     >
-                      <img class="product-image" :src="product.image" :alt="product.name" />
-                      <div class="product-info">
-                        <span v-if="product.badge" class="badge">{{ product.badge }}</span>
-                        <div class="product-name">
-                          {{ product.name }}
-                        </div>
-                        <div class="product-variant">{{ product.variant }}</div>
-                      </div>
-                    </a>
+                      <ProductItem
+                        :data="product"
+                        :clickable="false"
+                        @click="handleProductClick(product.linkType)"
+                      />
+                    </div>
                   </div>
                 </Transition>
               </div>
@@ -620,17 +613,6 @@ onUnmounted(() => {
   gap: 24px;
 }
 
-.product-card {
-  position: relative;
-  background-color: #f8f9fd;
-  border-radius: 20px;
-  padding: 28px 24px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
-}
 
 .badge {
   position: absolute;
@@ -930,41 +912,6 @@ onUnmounted(() => {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   padding: 0 20px 20px;
-
-  .product-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 230px;
-    height: 300px;
-    margin: auto;
-    // padding: 12px;
-    gap: 10px;
-    text-decoration: none;
-    transition: background-color 0.2s, box-shadow 0.2s;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(17, 17, 17, 0.06);
-
-    &:active {
-      background-color: #efefef;
-    }
-
-    img {
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .chevron-right {
-      opacity: 0.3;
-      flex-shrink: 0;
-    }
-  }
 }
 
 // 抽屉底部区域
@@ -1039,26 +986,26 @@ onUnmounted(() => {
   }
 }
 
-// 页面切换动画
-.page-slide-enter-active,
-.page-slide-leave-active {
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+// // 页面切换动画
+// .page-slide-enter-active,
+// .page-slide-leave-active {
+//   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+// }
 
-.page-slide-enter-from {
-  transform: translateX(100%);
-}
+// .page-slide-enter-from {
+//   transform: translateX(100%);
+// }
 
-.page-slide-leave-to {
-  transform: translateX(-30%);
-  opacity: 0.5;
-}
+// .page-slide-leave-to {
+//   transform: translateX(-30%);
+//   opacity: 0.5;
+// }
 
-.page-slide-enter-to,
-.page-slide-leave-from {
-  transform: translateX(0);
-  opacity: 1;
-}
+// .page-slide-enter-to,
+// .page-slide-leave-from {
+//   transform: translateX(0);
+//   opacity: 1;
+// }
 
 // 手风琴展开动画
 .expand-enter-active,

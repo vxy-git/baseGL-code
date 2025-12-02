@@ -3,7 +3,7 @@
     ref="imgRef"
     :src="currentSrc"
     :alt="alt"
-    :class="['cdn-image', { 'is-loading': isLoading, 'is-loaded': isLoaded }]"
+    class='cdn-image'
     @load="handleLoad"
     @error="handleError"
   />

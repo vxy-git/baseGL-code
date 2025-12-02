@@ -71,7 +71,7 @@ export const productsData = {
       id: 2,
       name: 'DUKES',
       description: 'Dual chamber & postless tech',
-      capacity: '0.5+0.5mL/1.0+1.0mL/1.5+1.5mL',
+      capacity: '1ml/2ml/3ml',
       image: DUKES,
       background: DUKES_HOVER,
       alt: 'DUKES',

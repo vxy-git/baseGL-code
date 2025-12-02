@@ -56,7 +56,7 @@ const cardStyle = computed(() => ({
   '--card-width': normalizeSize(props.width),
   '--card-min-width': normalizeSize(props.minWidth),
   '--card-height': normalizeSize(props.height),
-  '--card-padding': normalizeSize(props.padding)
+  // '--card-padding': normalizeSize(props.padding)
 }))
 
 const handleClick = () => {
@@ -75,14 +75,16 @@ const handleClick = () => {
         <img class="product-image" :src="data.image" :alt="data.alt || data.name">
       </div>
       <span class="mask"></span>
-      <div class="text-group">
-        <span v-if="showBadge && data.isNew" class="badge">New</span>
-        <h3 class="product-name">{{ data.name }}</h3>
-        <p v-if="showDesc && data.description" class="product-desc">{{ data.description }}</p>
-      </div>
-      <div class="card-footer">
-        <span class="more">{{ ctaText }}</span>
-        <span v-if="showCapacity && data.capacity" class="capacity-chip">{{ data.capacity }}</span>
+      <div class="contentBox">
+        <div class="text-group">
+          <span v-if="showBadge && data.isNew" class="badge">New</span>
+          <h3 class="product-name">{{ data.name }}</h3>
+          <p v-if="showDesc && data.description" class="product-desc">{{ data.description }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="more">{{ ctaText }}</span>
+          <span v-if="showCapacity && data.capacity" class="capacity-chip">{{ data.capacity }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -90,12 +92,27 @@ const handleClick = () => {
 
 <style scoped lang="scss">
 .product-item {
-  min-width: var(--card-min-width);
-  width: var(--card-width);
-  height: var(--card-height);
+  // min-width: var(--card-min-width);
+  // width: var(--card-width);
+  // height: var(--card-height);
   flex-shrink: 0;
   display: flex;
   align-items: stretch;
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .card-surface {
@@ -166,9 +183,9 @@ const handleClick = () => {
 }
 
 .media {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -238,12 +255,7 @@ const handleClick = () => {
 }
 
 .card-footer {
-  position: absolute;
-  left: var(--card-padding);
-  bottom: var(--card-padding);
-  right: var(--card-padding);
   z-index: 1;
-  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -253,8 +265,8 @@ const handleClick = () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 30px;
+  padding: 0 10px;
+  line-height: 30px;
   border-radius: 50px;
   font-size: 16px;
   background: #ffffff;
