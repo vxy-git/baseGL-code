@@ -4,10 +4,10 @@ import unitImg from '@/assets/product1/unit2.png'
 </script>
 
 <template>
-<div class=" relative c_1230 h-[670px] c_padding my-[105px] flex items-center justify-center">
+<div class=" relative c_1230 h-[670px] max-h-max c_padding my-[105px] flex items-center justify-center">
   <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[880px]"></span>
   <MediaAsset
-    class="relative size-full mx-auto object-contain"
+    class="relative size-full mx-auto object-contain max-h-max"
     type="image"
     :src="unitImg"
     alt=""

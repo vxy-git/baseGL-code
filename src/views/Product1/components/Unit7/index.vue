@@ -1,10 +1,10 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import one_R from '@/assets/product1/one-R.mp4'
-import upgrade1 from '@/assets/product1/upgrade_3-Temperature-Control.mp4'
-import upgrade2 from '@/assets/product1/upgrade_Activation-Indication.mp4'
-import upgrade3 from '@/assets/product1/upgrade_Battery-Life-Monitor.mp4'
-import upgrade4 from '@/assets/product1/upgrade_Preheat-Status-Indication.mp4'
+import upgrade1 from '@/assets/product1/unit7/3_Temperature_Control.mp4'
+import upgrade2 from '@/assets/product1/unit7/Activation_Indication.mp4'
+import upgrade3 from '@/assets/product1/unit7/Battery_Life_Monitor.mp4'
+import upgrade4 from '@/assets/product1/unit7/Preheat_Status_Indication.mp4'
 import tap1 from '@/assets/product1/one-taps1.png'
 import tap2 from '@/assets/product1/one-taps2.png'
 import tap3 from '@/assets/product1/one-taps3.png'
@@ -283,7 +283,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
   position: relative;
   min-height: 440px;
   border-radius: 20px;
-  background: #D9D9D9;
+  // background: #D9D9D9;
   padding: 25px 21px 21px;
   overflow: hidden;
   display: flex;
@@ -300,7 +300,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
   width: 100%;
   height: 100%;
   border-radius: 14px;
-  background: #D9D9D9;
+  // background: #D9D9D9;
   object-fit: cover;
   overflow: hidden;
 

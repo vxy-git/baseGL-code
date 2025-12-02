@@ -29,7 +29,7 @@ const handleReset2 = () => resetProgress(progress2);
 </script>
 
 <template>
-  <div class="mt-[507px]">
+  <div class="mt-[507px] m_mt_0">
     <div class="title">
       Consistent Temp<br />
       Ideal for Rosin
