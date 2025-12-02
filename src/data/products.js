@@ -52,7 +52,7 @@ export const productsData = {
       background: UNICORN_Series_HOVER,
       alt: 'UNICORN Series',
       isNew: true,
-      linkType: '', // product3
+      linkType: 'product3',
     },
     {
       id: 102,

@@ -6,9 +6,9 @@
     v-bind="$attrs"
     :src="src"
     :poster="poster"
-    :autoplay="autoplay"
+    :autoplay="effectiveAutoplay"
     :muted="muted"
-    :loop="loop"
+    :loop="effectiveLoop"
     :controls="controls"
     playsinline
     class="media-video"
@@ -20,6 +20,7 @@
 <script setup>
 import { computed, ref, defineExpose, watch, onMounted, onBeforeUnmount } from 'vue'
 import CdnImage from './CdnImage.vue'
+import { MOBILE_BREAKPOINT } from '@/composables/fit'
 
 const props = defineProps({
   type: { type: String, required: true },
@@ -40,6 +41,15 @@ const isImage = computed(() => props.type === 'image')
 
 const videoEl = ref(null)
 const intersectionObserver = ref(null)
+const isMobile = ref(false)
+
+const effectiveAutoplay = computed(() => props.autoplay || (props.viewPlay && isMobile.value))
+const effectiveLoop = computed(() => props.loop || (props.viewPlay && isMobile.value))
+
+const updateIsMobile = () => {
+  if (typeof window === 'undefined') return
+  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT
+}
 
 function playFromStart() {
   if (videoEl.value) {
@@ -89,7 +99,7 @@ function cleanupObserver() {
 
 function setupObserver() {
   cleanupObserver()
-  if (!props.viewPlay || isImage.value || !videoEl.value) return
+  if (!props.viewPlay || isImage.value || !videoEl.value || isMobile.value) return
   intersectionObserver.value = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -111,12 +121,26 @@ watch(videoEl, () => {
   setupObserver()
 })
 
+watch(isMobile, (val) => {
+  if (val) {
+    cleanupObserver()
+    if (props.viewPlay && videoEl.value) {
+      playFromStart()
+    }
+  } else {
+    setupObserver()
+  }
+})
+
 onMounted(() => {
+  updateIsMobile()
   setupObserver()
+  window.addEventListener('resize', updateIsMobile)
 })
 
 onBeforeUnmount(() => {
   cleanupObserver()
+  window.removeEventListener('resize', updateIsMobile)
 })
 
 defineExpose({ playFromStart, pause, resetToStart, videoEl })

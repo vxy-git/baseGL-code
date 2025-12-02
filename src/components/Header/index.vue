@@ -881,7 +881,7 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding: 18px 20px;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 500;
     color: #222;
     text-decoration: none;
@@ -893,8 +893,8 @@ onUnmounted(() => {
     }
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
       opacity: 0.4;
       flex-shrink: 0;
       transition: transform 0.2s;
@@ -912,7 +912,7 @@ onUnmounted(() => {
       justify-content: space-between;
       align-items: center;
       padding: 18px 20px;
-      font-size: 16px;
+      font-size: 22px;
       font-weight: 500;
       color: #222;
       cursor: pointer;
@@ -923,8 +923,8 @@ onUnmounted(() => {
       }
 
       .arrow {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         flex-shrink: 0;
         transition: transform 0.3s;
 
@@ -956,12 +956,12 @@ onUnmounted(() => {
 
   .cta-btn {
     flex: 1;
-    height: 48px;
+    height: 68px;
     background: #1CE785;
     color: #222;
     border: none;
     border-radius: 24px;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -973,8 +973,8 @@ onUnmounted(() => {
   }
 
   .search-btn {
-    width: 48px;
-    height: 48px;
+    width: 68px;
+    height: 68px;
     background: #f5f5f5;
     border: none;
     border-radius: 50%;

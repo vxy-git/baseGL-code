@@ -137,6 +137,7 @@ const stop = ref(false)
 <style scoped lang="scss">
 // Banner 容器
 .banner-container {
+  background-color: black;
   height: 880px;
   min-height: calc(880px / 1920px * 100vw);
   position: relative;

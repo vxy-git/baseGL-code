@@ -5,6 +5,8 @@ import {resolve} from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+    // 让生成的静态资源走相对路径，避免 dist 放在子目录或刷新二级路由时资源 404
+    base: './',
     plugins: [
         vue(),
         VueDevTools()

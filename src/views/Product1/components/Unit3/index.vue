@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
@@ -52,10 +52,40 @@ if (typeof window !== 'undefined') {
 }
 
 let tl
+const buildTimeline = () => {
+  tl && tl.kill()
 
-onMounted(() => {
-  updateIsMobile()
-  window.addEventListener('resize', updateIsMobile)
+  const imageEl = tb4Image.value?.$el || tb4Image.value
+
+  const required = [
+    pinSection.value,
+    frameContainer.value,
+    tb1.value,
+    tb1Title.value,
+    tb2.value,
+    tb2SmallTitle.value,
+    tb2WTitle.value,
+    tb2Text.value,
+    tb3.value,
+    tb3SmallTitle.value,
+    tb3WTitle.value,
+    tb3Text.value,
+    tb4.value,
+    tb4SmallTitle.value,
+    tb4WTitle.value,
+    tb4Text.value,
+    tb4Stats.value,
+    imageEl
+  ]
+  if (required.some(el => !el)) {
+    console.warn('[Unit3] missing element refs, skip timeline init')
+    return
+  }
+
+  const tb2Elems = [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value].filter(Boolean)
+  const tb3Elems = [tb3SmallTitle.value, tb3WTitle.value, tb3Text.value].filter(Boolean)
+  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, imageEl].filter(Boolean)
+
   tl = gsap.timeline({
     scrollTrigger: {
       trigger: pinSection.value,
@@ -78,28 +108,34 @@ onMounted(() => {
     .to(seqProgress, { value: 0.66, duration: 3.6, ease: 'power1.inOut' })
     // tb2: 整体滑动,子元素按顺序淡入
     .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
-    .fromTo([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value],
+    .fromTo(tb2Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb2: 整体滑出,子元素一起淡出
     .to(tb2.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(tb2Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
     // tb3: 整体滑动,子元素按顺序淡入
     .fromTo(tb3.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
-    .fromTo([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value],
+    .fromTo(tb3Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb3: 整体滑出,子元素一起淡出
     .to(tb3.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    .to([tb3SmallTitle.value, tb3WTitle.value, tb3Text.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(tb3Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     // tb4 上移的同时，帧动画淡出
     .to(frameContainer.value, { opacity: 0, duration: 3.5, ease: 'power1.inOut' })
     // tb4: 整体滑动,子元素按顺序淡入
     .fromTo(tb4.value, { yPercent: 120 }, { yPercent: 0, duration: 3.3, ease: 'power1.out' }, '<+=0.4')
-    .fromTo([tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value],
+    .fromTo(tb4Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')
+}
+
+onMounted(() => {
+  updateIsMobile()
+  window.addEventListener('resize', updateIsMobile)
+  nextTick(buildTimeline)
 })
 
 onUnmounted(() => {

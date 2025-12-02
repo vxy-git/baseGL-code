@@ -21,6 +21,11 @@ const updateProgress = (e, progressRef) => {
 const resetProgress = (progressRef) => {
   progressRef.value = 0;
 };
+
+const handleProgress1 = (e) => updateProgress(e, progress1);
+const handleProgress2 = (e) => updateProgress(e, progress2);
+const handleReset1 = () => resetProgress(progress1);
+const handleReset2 = () => resetProgress(progress2);
 </script>
 
 <template>
@@ -62,9 +67,9 @@ const resetProgress = (progressRef) => {
             :loop="false"
             :controls="false"
             :view-play="true"
-            @timeupdate="updateProgress($event, progress1)"
-            @ended="resetProgress(progress1)"
-            @pause="resetProgress(progress1)"
+            @timeupdate="handleProgress1"
+            @ended="handleReset1"
+            @pause="handleReset1"
             class="w-full h-full object-cover"
           />
 
@@ -100,9 +105,9 @@ const resetProgress = (progressRef) => {
             :loop="false"
             :controls="false"
             :view-play="true"
-            @timeupdate="updateProgress($event, progress2)"
-            @ended="resetProgress(progress2)"
-            @pause="resetProgress(progress2)"
+            @timeupdate="handleProgress2"
+            @ended="handleReset2"
+            @pause="handleReset2"
             class="w-full h-full object-cover"
           />
 
