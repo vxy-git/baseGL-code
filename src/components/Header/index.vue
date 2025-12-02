@@ -17,7 +17,7 @@ const categories = computed(() =>
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
       image: product.image,
-      linkType: product.linkType || 1,
+      linkType: product.linkType,
     }))
   }))
 )

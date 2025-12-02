@@ -69,12 +69,8 @@ const handleClick = () => {
 <template>
   <div class="product-item" :style="cardStyle">
     <div class="card-surface" @click="handleClick">
-      <img
-        v-if="data.background"
-        class="product-featured-image"
-        :src="data.background"
-        :alt="(data.alt || data.name) + ' featured'"
-      >
+      <img v-if="data.background" class="product-featured-image" :src="data.background"
+        :alt="(data.alt || data.name) + ' featured'">
       <div class="media">
         <img class="product-image" :src="data.image" :alt="data.alt || data.name">
       </div>
