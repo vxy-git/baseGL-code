@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { h, ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
@@ -43,6 +44,8 @@ import { tabsList, productsData } from '@/data/products'
 
 const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Why Caleaf']
 
+const route = useRoute()
+const router = useRouter()
 const tabsCurrent = ref(0)
 
 const activeFilterIndex = 0
@@ -116,6 +119,37 @@ const updateColumns = () => {
   const calc = Math.floor((width + GAP) / (CARD_WIDTH + GAP))
   columns.value = Math.max(1, calc)
 }
+
+const normalizeTabIndex = (tabValue) => {
+  const index = Number(tabValue)
+  if (!Number.isNaN(index) && index >= 0 && index < tabsList.length) {
+    return index
+  }
+  return 0
+}
+
+watch(
+  () => route.query.tab,
+  (newTab) => {
+    tabsCurrent.value = normalizeTabIndex(newTab)
+  },
+  { immediate: true }
+)
+
+watch(
+  tabsCurrent,
+  (value) => {
+    const normalized = normalizeTabIndex(value)
+    if (value !== normalized) {
+      tabsCurrent.value = normalized
+      return
+    }
+    const routeTab = normalizeTabIndex(route.query.tab)
+    if (normalized !== routeTab) {
+      router.replace({ path: route.path, query: { ...route.query, tab: normalized } })
+    }
+  }
+)
 
 onMounted(() => {
   updateColumns()

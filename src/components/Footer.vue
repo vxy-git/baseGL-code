@@ -7,14 +7,14 @@
           <div class="footer-column">
             <h4 class="footer-heading">Products</h4>
             <ul class="footer-links">
-              <li><a href="#">For Resin/Rosin</a></li>
-              <li><a href="#">Pod System</a></li>
-              <li><a href="#">Full Ceramic</a></li>
-              <li><a href="#">D9 Distillate</a></li>
-              <li><a href="#">US STOCK</a></li>
+              <li><RouterLink :to="{ path: '/list', query: { tab: 0 } }">For Resin/Rosin</RouterLink></li>
+              <!-- <li><a href="#">Pod System</a></li>
+              <li><a href="#">Full Ceramic</a></li> -->
+              <li><RouterLink :to="{ path: '/list', query: { tab: 1 } }">D9 Distillate</RouterLink></li>
+              <!-- <li><a href="#">US STOCK</a></li>
               <li><a href="#">Dab Pen</a></li>
               <li><a href="#">510 Cartridge</a></li>
-              <li><a href="#">D8 Distillate</a></li>
+              <li><a href="#">D8 Distillate</a></li> -->
             </ul>
           </div>
 
@@ -22,11 +22,11 @@
           <div class="footer-column">
             <h4 class="footer-heading">Technology</h4>
             <ul class="footer-links">
-              <li><a href="#">Product Support</a></li>
-              <li><a href="#">Repair Service</a></li>
+              <li><RouterLink to="/technology">Product Support</RouterLink></li>
+              <!-- <li><a href="#">Repair Service</a></li>
               <li><a href="#">After-Sales Policy</a></li>
               <li><a href="#">Care Service</a></li>
-              <li><a href="#">Downloads</a></li>
+              <li><a href="#">Downloads</a></li> -->
             </ul>
           </div>
 
@@ -34,7 +34,7 @@
           <div class="footer-column pl-[20px]">
             <h4 class="footer-heading">Customize</h4>
             <ul class="footer-links">
-              <li><a href="#">For Resin/</a></li>
+              <!-- <li><a href="#">For Resin/</a></li>
               <li><a href="#">Rosin</a></li>
               <li><a href="#">Pod System</a></li>
               <li><a href="#">Full Ceramic</a></li>
@@ -42,7 +42,7 @@
               <li><a href="#">US STOCK</a></li>
               <li><a href="#">Dab Pen</a></li>
               <li><a href="#">510 Cartridge</a></li>
-              <li><a href="#">D8 Distillate</a></li>
+              <li><a href="#">D8 Distillate</a></li> -->
             </ul>
           </div>
 
@@ -50,12 +50,12 @@
           <div class="footer-column">
             <h4 class="footer-heading">Why Caleaf</h4>
             <ul class="footer-links">
-              <li><a href="#">About Caleaf</a></li>
+              <!-- <li><a href="#">About Caleaf</a></li>
               <li><a href="#">Press</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">CSR</a></li>
               <li><a href="#">Awards</a></li>
-              <li><a href="#">Join Us</a></li>
+              <li><a href="#">Join Us</a></li> -->
             </ul>
           </div>
 
@@ -247,7 +247,8 @@ const handleSubscribe = () => {
   }
 
   .signup-btn {
-    width: 90px;
+    width: max-content;
+    padding: 0 10px;
     height: 44px;
     border: none;
     background: #1ce785;
