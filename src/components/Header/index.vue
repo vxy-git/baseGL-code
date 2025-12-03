@@ -199,9 +199,10 @@ const goHome = () => {
 }
 
 // 产品点击
-const productLink = (linkType) => `/${linkType || 1}`
+const productLink = (linkType) => `/${linkType}`
 const handleProductClick = (linkType) => {
   closeMobileMenu()
+  if (!linkType) return
   router.push(productLink(linkType))
 }
 

@@ -189,10 +189,11 @@ const goList = () => {
   router.push('/list')
 }
 
-const productLink = (linkType) => `/${linkType || 1}`
+const productLink = (linkType) => `/${linkType}`
 
 const goProduct = (linkType) => {
   closeMenu()
+  if (!linkType) return
   router.push(productLink(linkType))
 }
 

@@ -49,6 +49,7 @@ const props = defineProps({
 const emit = defineEmits(['click'])
 
 const router = useRouter()
+const productLink = (linkType) => `/${linkType}`
 
 const normalizeSize = (value) => (typeof value === 'number' ? `${value}px` : value)
 
@@ -63,17 +64,29 @@ const handleClick = () => {
   emit('click', props.data)
   if (!props.clickable) return
   if (!props.data?.linkType) return
-  router.push('/' + props.data?.linkType)
+  router.push(productLink(props.data?.linkType))
 }
 </script>
 
 <template>
   <div class="product-item" :style="cardStyle">
     <div class="card-surface" @click="handleClick">
-      <MediaAsset v-if="data.background" class="product-featured-image" type="image" :src="data.background"
-        :alt="(data.alt || data.name) + ' featured'" :lazy="false" />
+      <MediaAsset
+        v-if="data.background"
+        class="product-featured-image"
+        type="image"
+        :src="data.background"
+        :alt="(data.alt || data.name) + ' featured'"
+        :lazy="false"
+      />
       <div class="media">
-        <MediaAsset class="product-image" type="image" :src="data.image" :alt="data.alt || data.name" :lazy="false" />
+        <MediaAsset
+          class="product-image"
+          type="image"
+          :src="data.image"
+          :alt="data.alt || data.name"
+          :lazy="false"
+        />
       </div>
       <span class="mask"></span>
       <div class="contentBox">
