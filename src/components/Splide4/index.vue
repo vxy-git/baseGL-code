@@ -82,7 +82,7 @@ const slideNext = () => {
 </script>
 
 <template>
-  <div class="w-full bg-[#000] pt-[114px] pb-[121px]">
+  <div class="w-full bg-[#000] pt-[114px] pb-[121px] m_pt_0">
     <div class="c_1300 c_padding mx-auto">
       <div class="title">
         More Products

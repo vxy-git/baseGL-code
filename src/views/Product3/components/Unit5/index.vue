@@ -7,7 +7,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 </script>
 
 <template>
-  <div class="unit5 pt-[250px] pb-[10px] c_1230 c_padding m_mt_0">
+  <div class="unit5 pt-[250px] pb-[10px] c_1230 c_padding m_mt_0 m_pt_100">
     <div class="c_1230 c_padding">
       <div class="title_tag">UNICORN PRO</div>
       <div class="title mt-[25px]">

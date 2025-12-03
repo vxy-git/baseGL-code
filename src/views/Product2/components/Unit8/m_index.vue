@@ -17,7 +17,7 @@ import realize6 from '@/assets/product2/realize6.jpg'
     <div class="title1 c_padding">
       Realize your unique design with CALEAF TECH.
     </div>
-    <div class="mt-[54px] overflow-hidden">
+    <div class="mt-[54px] overflow-hidden m_mt_0">
       <div class="unit-stage">
         <div class="unitbox max-w-[1500px] mx-auto w-full flex flex-col justify-center items-center">
           <div class="w-[1500px] h-[300px]">

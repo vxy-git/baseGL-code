@@ -95,7 +95,7 @@ watch(tabsCurrent, (index) => {
 
 <template>
   <div>
-    <div class="c_1230 c_padding mt-[200px]">
+    <div class="c_1230 c_padding mt-[200px] m_mt_0">
       <div class="title">
         Every Detail Matters
       </div>

@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
     <MediaAsset
       :src="unitImg"
       type="image"
-      class="logo mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain"
+      class="logo mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain max-h-max"
       alt=""
       :lazy="false"
     />

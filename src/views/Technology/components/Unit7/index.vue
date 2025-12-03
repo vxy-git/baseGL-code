@@ -73,7 +73,7 @@ onUnmounted(() => {
       <div ref="imageBoxRef" class="image-wrapper">
         <MediaAsset :src="b2" type="image" alt="" class="c_1300 h-[560px]" />
       </div>
-      <div ref="contentRef" class="content-layer">
+      <div ref="contentRef" class="content-layer m_pt_0">
         <div class="title2">
           From lab to awards: journey to the top
         </div>

@@ -5,7 +5,7 @@ import arrowIcon from '@/assets/product2/arrow.svg'
 </script>
 
 <template>
-  <div class="w-full relative h-[1210px] flex flex-col justify-end">
+  <div class="videoU w-full relative h-[1210px] flex flex-col justify-end">
     <MediaAsset
       type="video"
       :src="videoSrc"
@@ -131,6 +131,12 @@ import arrowIcon from '@/assets/product2/arrow.svg'
     font-weight: 400;
     line-height: 30px;
     /* 150% */
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .videoU {
+    height: 900px;
   }
 }
 </style>
