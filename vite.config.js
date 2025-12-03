@@ -4,8 +4,8 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import {posix, resolve, join} from 'path'
 import {readdirSync, readFileSync, writeFileSync} from 'fs'
 
-const IMG_CDN = 'http://img.cloudcode.ink'
-const VIDEO_CDN = 'http://video.cloudcode.ink'
+const IMG_CDN = ''; //'http://img.cloudcode.ink'
+const VIDEO_CDN = ''; //'http://video.cloudcode.ink'
 const imgExt = /\.(png|jpe?g|gif|webp|avif|svg|ico)$/i
 const videoExt = /\.(mp4|webm|mov|m4v)$/i
 const tarExt = /\.tar$/i
