@@ -41,6 +41,8 @@ const tb4Text = ref(null)
 const tb4Stats = ref(null)
 const tb4Image = ref(null)
 
+const getTb4ImageEl = () => tb4Image.value?.getEl?.() || null
+
 const isMobile = ref(false)
 
 const updateIsMobile = () => {
@@ -73,7 +75,7 @@ const buildTimeline = () => {
     tb4WTitle.value,
     tb4Text.value,
     tb4Stats.value,
-    tb4Image.value
+    getTb4ImageEl()
   ]
   if (required.some(el => !el)) {
     console.warn('[Unit3] missing element refs, skip timeline init')
@@ -82,7 +84,7 @@ const buildTimeline = () => {
 
   const tb2Elems = [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value].filter(Boolean)
   const tb3Elems = [tb3SmallTitle.value, tb3WTitle.value, tb3Text.value].filter(Boolean)
-  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value].filter(Boolean)
+  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, getTb4ImageEl()].filter(Boolean)
 
   tl = gsap.timeline({
     scrollTrigger: {

@@ -1,6 +1,6 @@
 <script setup>
 import UNIVERSE from '@/assets/product4/UNICORN.mp4';
-import NIVERSE_PRO from '@/assets/product4/UNICORN-PRO.mp4';
+import NIVERSE_PRO from '@/assets/product4/UNICORN-Pro.mp4';
 
 import { ref } from 'vue'
 

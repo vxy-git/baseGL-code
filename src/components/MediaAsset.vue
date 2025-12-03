@@ -1,5 +1,5 @@
 <template>
-  <CdnImage v-if="isImage" v-bind="$attrs" :src="src" :alt="alt" :cdnUrl="cdnUrl" :lazy="lazy" />
+  <CdnImage v-if="isImage" ref="imageEl" v-bind="$attrs" :src="src" :alt="alt" :cdnUrl="cdnUrl" :lazy="lazy" />
   <video
     v-else
     ref="videoEl"
@@ -39,6 +39,7 @@ const props = defineProps({
 
 const isImage = computed(() => props.type === 'image')
 
+const imageEl = ref(null)
 const videoEl = ref(null)
 const intersectionObserver = ref(null)
 const isMobile = ref(false)
@@ -143,7 +144,15 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateIsMobile)
 })
 
-defineExpose({ playFromStart, pause, resetToStart, videoEl })
+const getEl = () => {
+  if (isImage.value) {
+    // CdnImage 的根元素即 img
+    return imageEl.value?.$el || imageEl.value || null
+  }
+  return videoEl.value
+}
+
+defineExpose({ playFromStart, pause, resetToStart, videoEl, getEl })
 </script>
 
 <style scoped lang="scss">

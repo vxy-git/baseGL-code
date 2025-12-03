@@ -49,7 +49,6 @@ onUnmounted(() => {
     </div>
     <Unit6 />
     <Unit7 />
-    <!-- <Specifications /> -->
     <Splide4 />
     <Footer />
   </div>

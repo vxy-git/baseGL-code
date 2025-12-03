@@ -1,7 +1,8 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import videoSrc from '@/assets/product2/the.mp4'
-import arrowIcon from '@/assets/product2/arrow.svg'
+const base = import.meta.env.BASE_URL + 'static/product3/'
+const arrow = base + 'arrow.svg'
 </script>
 
 <template>
@@ -48,7 +49,7 @@ import arrowIcon from '@/assets/product2/arrow.svg'
               <MediaAsset
                 class="h-[39.805px] -ml-[10px] translate-x-[8px]"
                 type="image"
-                :src="arrowIcon"
+                :src="arrow"
                 alt=""
                 :lazy="false"
               />
@@ -63,7 +64,7 @@ import arrowIcon from '@/assets/product2/arrow.svg'
               <MediaAsset
                 class="h-[39.805px] -ml-[13px] translate-x-[12px]"
                 type="image"
-                :src="arrowIcon"
+                :src="arrow"
                 alt=""
                 :lazy="false"
               />

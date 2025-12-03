@@ -1,9 +1,11 @@
 <script setup>
 import MediaAsset from "@/components/MediaAsset.vue";
-import arrow from '@/assets/product3/arrow.svg'
-import m1 from '@/assets/product3/unit3/m1.jpg'
-import m2 from '@/assets/product3/unit3/m2.jpg'
-import m3 from '@/assets/product3/unit3/m3.jpg'
+
+const base = import.meta.env.BASE_URL + 'static/product3/'
+const arrow = base + 'arrow.svg'
+const m1 = base + 'unit3/m1.jpg'
+const m2 = base + 'unit3/m2.jpg'
+const m3 = base + 'unit3/m3.jpg'
 </script>
 
 <template>

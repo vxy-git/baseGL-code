@@ -1,14 +1,14 @@
 <script setup>
-import unit4Bg from '@/assets/product3/unit4.jpg'
-import MediaAsset from '@/components/MediaAsset.vue'
-import leftVideoSrc from '@/assets/product3/unit5-l.mp4'
-import rightVideoSrc from '@/assets/product3/unit5-r.mp4'
-import arrow from '@/assets/product3/arrow.svg'
-import unitImg from '@/assets/product3/unit4-2.jpg'
+const base = import.meta.env.BASE_URL + 'static/product3/'
+const unit4Bg = base + 'unit4.jpg'
+const leftVideoSrc = base + 'unit5-l.mp4'
+const rightVideoSrc = base + 'unit5-r.mp4'
+const arrow = base + 'arrow.svg'
+const unitImg = base + 'unit4-2.jpg'
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <div class="unit4T">
       <div class="flex flex-col items-center mt-[48px] c_padding">
         <div class="title1">100% Rosin-Ready&nbsp;&nbsp;</div>
@@ -101,7 +101,7 @@ import unitImg from '@/assets/product3/unit4-2.jpg'
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped lang="scss">

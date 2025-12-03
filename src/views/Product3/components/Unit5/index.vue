@@ -1,9 +1,11 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import tempControl from '@/assets/product3/3-Temperature-Control.mp4'
-import batteryLifeMonitor from '@/assets/product3/Battery-Life-Monitor.mp4'
-import preheatStatus from '@/assets/product3/Preheat-Status-Indication.mp4'
-import puffCounter from '@/assets/product3/Puff-Counter.mp4'
+
+const base = import.meta.env.BASE_URL + 'static/product3/'
+const tempControl = base + '3-Temperature-Control.mp4'
+const batteryLifeMonitor = base + 'Battery-Life-Monitor.mp4'
+const preheatStatus = base + 'Preheat-Status-Indication.mp4'
+const puffCounter = base + 'Puff-Counter.mp4'
 </script>
 
 <template>
