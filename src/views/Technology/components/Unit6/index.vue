@@ -135,12 +135,12 @@ onUnmounted(() => {
 
       <div ref="mediaBoxRef" class="media-box mt-[34px]">
         <MediaAsset ref="mediaAssetRef" :src="b3" type="video" alt="" class="media-asset !min-h-0" :controls="false"
-          :autoplay="false" :muted="true" :loop="false" />
+          :autoplay="false" :muted="true" :loop="true" />
       </div>
 
       <div ref="descRef" class="title3 mt-[34px]">
-        We take pride in having earned our clients’ trust. The trophies shine brightly and stand as<br> proof of our
-        products’ excellence.
+        We take pride in having earned our clients' trust. The trophies shine brightly and stand as<br> proof of our
+        products' excellence.
       </div>
     </div>
   </div>

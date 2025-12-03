@@ -27,7 +27,7 @@ import rightVideo from '@/assets/product4/unit5-r.mp4'
             :controls="false"
             :autoplay="false"
             :muted="true"
-            :loop="false"
+            :loop="true"
             :viewPlay="true"
             class="w-full h-full object-cover rounded-[20px]"
           />
@@ -40,7 +40,7 @@ import rightVideo from '@/assets/product4/unit5-r.mp4'
           :controls="false"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :viewPlay="true"
           class="w-full h-full object-cover rounded-[20px]"
         />

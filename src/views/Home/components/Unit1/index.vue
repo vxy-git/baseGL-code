@@ -47,7 +47,7 @@ const list = ref([
   },
   {
     title: "UNIT Pro",
-    subTitle: "From lab to award, 100% for Rosin we’ve perfected",
+    subTitle: "From lab to award, 100% for Rosin we've perfected",
     src: banner3,
     type: 'video',
     dotText: "UNIT Pro",

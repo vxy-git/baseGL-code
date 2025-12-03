@@ -10,7 +10,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
         Take Your Pick
       </div>
       <div class="title2 mt-[19px]">
-        Either one’s a winner
+        Either one's a winner
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col min-h-[440px]">
         <MediaAsset
@@ -18,9 +18,9 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :src="unit3_l"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :controls="false"
-          :hover-play="true"
+          :view-play="true"
           class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
         />
         <MediaAsset
@@ -28,9 +28,9 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :src="unit3_r"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :controls="false"
-          :hover-play="true"
+          :view-play="true"
           class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
         />
       </div>

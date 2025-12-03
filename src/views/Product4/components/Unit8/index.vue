@@ -116,14 +116,13 @@ onBeforeUnmount(() => {
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
                   <div class="btn mt-[3px]">Taste Switcher</div>
-                  <div class="title1">Let’s live it up!</div>
+                  <div class="title1">Let's live it up!</div>
                   <div class="title2">
                     Tap once—screen and flavor sync in a flash. Sit back and soak up the visual-and-taste ride.
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="logoSrc1" autoplay muted playsinline loop :controls="false">
-                  </MediaAsset>
+                  <MediaAsset type="image" :src="logoSrc1" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">
@@ -143,12 +142,11 @@ onBeforeUnmount(() => {
                   <div class="btn mt-[3px]">Hit a Blinker</div>
                   <div class="title1">Toggle the mode, bye-bye boring!</div>
                   <div class="title2">
-                    Turn the brand icon into a shape-shifting star, craft a vibe that’s signature-only.
+                    Turn the brand icon into a shape-shifting star, craft a vibe that's signature-only.
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="logoSrc2" autoplay muted playsinline loop :controls="false">
-                  </MediaAsset>
+                  <MediaAsset type="image" :src="logoSrc2" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">

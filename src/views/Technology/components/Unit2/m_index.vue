@@ -8,7 +8,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
 <template>
   <div class="unit2 relative w-[1560px] max-w-full mx-auto c_padding pb-[65px]">
     <div class="shrink-0 w-full m_video">
-      <MediaAsset type="video" :src="l1" :autoplay="false" :muted="true" :loop="false"
+      <MediaAsset type="video" :src="l1" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline class="mediaBox size-full" />
     </div>
     <div
@@ -66,7 +66,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
         <div class="title3 mt-[25px]">
           Most customers have reported bubble issues to us with various devices from different suppliers during oil filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles. 
         </div>
-        <MediaAsset :src="r2" type="video" class="w-[595px] mt-[66px]" muted
+        <MediaAsset :src="r2" type="video" class="w-[595px] mt-[66px]" muted :loop="true"
           :controls="false" :view-play="true" playsinline alt="" />
       </div>
     </div>

@@ -167,6 +167,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
           :loop="true"
           :controls="false"
           :hover-play="false"
+          :view-play="true"
           class="w-full h-full object-cover rounded-[20px] bg-black overflow-hidden"
         />
       </div>

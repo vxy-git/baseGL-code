@@ -46,7 +46,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :autoplay="false"
             :muted="true"
             :controls="false"
-            :loop="false"
+            :loop="true"
             :view-play="true"
             class="w-full h-full object-cover"
           />
@@ -58,7 +58,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :autoplay="false"
             :muted="true"
             :controls="false"
-            :loop="false"
+            :loop="true"
             :view-play="true"
             class="w-full h-full object-cover"
           />
@@ -85,7 +85,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :autoplay="false"
             :muted="true"
             :controls="false"
-            :loop="false"
+            :loop="true"
             :view-play="true"
             class="w-full h-full object-cover"
           />
@@ -97,7 +97,7 @@ import vr from '@/assets/product2/no-R.mp4'
             :autoplay="false"
             :muted="true"
             :controls="false"
-            :loop="false"
+            :loop="true"
             :view-play="true"
             class="w-full h-full object-cover"
           />

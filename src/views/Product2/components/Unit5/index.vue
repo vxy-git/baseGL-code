@@ -58,7 +58,7 @@ const deviceSpecs2 = [
             :autoplay="false"
             :muted="true"
             :loop="true"
-            :viewPlay="true"
+            :view-play="true"
             playsinline
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
@@ -76,7 +76,7 @@ const deviceSpecs2 = [
             :autoplay="false"
             :muted="true"
             :loop="true"
-            :viewPlay="true"
+            :view-play="true"
             playsinline
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />

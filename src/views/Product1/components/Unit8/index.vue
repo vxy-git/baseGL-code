@@ -235,7 +235,7 @@ const setMediaRef = (el, index) => {
 
 <template>
   <div class="pt-[110px] bg-white pb-[148px]" ref="containerRef">
-    <div class="label text-center">Design Your Own Look</div>
+    <div class="label text-center">Design your own look</div>
     <div class="title text-center mt-[20px]">Realize your unique design with CALEAF TECH</div>
     <div class="mt-[58px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
       <div class="w-full">

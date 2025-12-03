@@ -55,7 +55,7 @@ import bgVideo from '@/assets/technology/t2/bg.mp4'
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset type="video" :src="m2" :autoplay="false" :muted="true" :loop="false"
+          <MediaAsset type="video" :src="m2" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

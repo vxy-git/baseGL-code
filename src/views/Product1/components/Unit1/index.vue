@@ -24,7 +24,7 @@ import videoSrc from '@/assets/product1/banner.mp4';
           UNIT Pro
         </div>
         <div class="subTitle translate-y-[-2px]">
-          From lab to award, 100% for Rosin we’ve perfected.
+          From lab to award, 100% for Rosin we've perfected.
         </div>
         <div class="btn cursor-pointer">
           1mL/2mL

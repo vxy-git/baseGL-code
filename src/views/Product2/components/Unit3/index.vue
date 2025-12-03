@@ -10,7 +10,7 @@ import either_R from '@/assets/product2/either-R.mp4'
       Take Your Pick
     </div>
     <div class="title2 mt-[19px]">
-      Either one’s a winner
+      Either one's a winner
     </div>
     <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
       <div class="w-full h-[440px] bg-black rounded-[20px]">
@@ -20,9 +20,9 @@ import either_R from '@/assets/product2/either-R.mp4'
           :src="either_L"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :controls="false"
-          :hover-play="true"
+          :view-play="true"
         />
       </div>
       <div class="w-full h-[440px] bg-black rounded-[20px]">
@@ -32,9 +32,9 @@ import either_R from '@/assets/product2/either-R.mp4'
           :src="either_R"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :controls="false"
-          :hover-play="true"
+          :view-play="true"
         />
       </div>
     </div>

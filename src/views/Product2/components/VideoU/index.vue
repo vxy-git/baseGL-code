@@ -12,7 +12,7 @@ import arrowIcon from '@/assets/product2/arrow.svg'
       :autoplay="false"
       :muted="true"
       :controls="false"
-      :loop="false"
+      :loop="true"
       :view-play="true"
       class="w-full object-contain"
     />

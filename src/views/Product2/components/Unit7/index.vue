@@ -112,7 +112,7 @@ watch(tabsCurrent, (index) => {
                 :src="list[index].img"
                 :autoplay="false"
                 :muted="true"
-                :loop="false"
+                :loop="true"
                 :controls="false"
               />
               <div v-if="index === tabsCurrent" class="size-full absolute inset-0 bg-black opacity-5"></div>

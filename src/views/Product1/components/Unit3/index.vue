@@ -42,6 +42,7 @@ const tb4Stats = ref(null)
 const tb4Image = ref(null)
 
 const isMobile = ref(false)
+const toEl = (val) => (val && '$el' in val ? val.$el : val)
 
 const updateIsMobile = () => {
   isMobile.value = window.innerWidth <= 767
@@ -55,38 +56,39 @@ let tl
 const buildTimeline = () => {
   tl && tl.kill()
 
-  const required = [
-    pinSection.value,
-    frameContainer.value,
-    tb1.value,
-    tb1Title.value,
-    tb2.value,
-    tb2SmallTitle.value,
-    tb2WTitle.value,
-    tb2Text.value,
-    tb3.value,
-    tb3SmallTitle.value,
-    tb3WTitle.value,
-    tb3Text.value,
-    tb4.value,
-    tb4SmallTitle.value,
-    tb4WTitle.value,
-    tb4Text.value,
-    tb4Stats.value,
-    tb4Image.value
-  ]
-  if (required.some(el => !el)) {
+  const els = {
+    pinSection: toEl(pinSection.value),
+    frameContainer: toEl(frameContainer.value),
+    tb1: toEl(tb1.value),
+    tb1Title: toEl(tb1Title.value),
+    tb2: toEl(tb2.value),
+    tb2SmallTitle: toEl(tb2SmallTitle.value),
+    tb2WTitle: toEl(tb2WTitle.value),
+    tb2Text: toEl(tb2Text.value),
+    tb3: toEl(tb3.value),
+    tb3SmallTitle: toEl(tb3SmallTitle.value),
+    tb3WTitle: toEl(tb3WTitle.value),
+    tb3Text: toEl(tb3Text.value),
+    tb4: toEl(tb4.value),
+    tb4SmallTitle: toEl(tb4SmallTitle.value),
+    tb4WTitle: toEl(tb4WTitle.value),
+    tb4Text: toEl(tb4Text.value),
+    tb4Stats: toEl(tb4Stats.value),
+    tb4Image: toEl(tb4Image.value)
+  }
+
+  if (Object.values(els).some(el => !el)) {
     console.warn('[Unit3] missing element refs, skip timeline init')
     return
   }
 
-  const tb2Elems = [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value].filter(Boolean)
-  const tb3Elems = [tb3SmallTitle.value, tb3WTitle.value, tb3Text.value].filter(Boolean)
-  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value].filter(Boolean)
+  const tb2Elems = [els.tb2SmallTitle, els.tb2WTitle, els.tb2Text].map(toEl).filter(Boolean)
+  const tb3Elems = [els.tb3SmallTitle, els.tb3WTitle, els.tb3Text].map(toEl).filter(Boolean)
+  const tb4Elems = [els.tb4SmallTitle, els.tb4WTitle, els.tb4Text, els.tb4Stats, els.tb4Image].map(toEl).filter(Boolean)
 
   tl = gsap.timeline({
     scrollTrigger: {
-      trigger: pinSection.value,
+      trigger: els.pinSection,
       start: 'top top',
       end: '+=7000',
       pin: true,
@@ -98,33 +100,33 @@ const buildTimeline = () => {
   tl.add(() => { seqProgress.value = 0 })
     .to(seqProgress, { value: 0.33, duration: 3.6, ease: 'power1.inOut' })
     // tb1: 整体滑动,标题淡入
-    .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
-    .fromTo(tb1Title.value, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: 'power1.inOut' }, '<')
+    .fromTo(els.tb1, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
+    .fromTo(els.tb1Title, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: 'power1.inOut' }, '<')
     // tb1: 整体滑出,标题淡出
-    .to(tb1.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    .to(tb1Title.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(els.tb1, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to(els.tb1Title, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     .to(seqProgress, { value: 0.66, duration: 3.6, ease: 'power1.inOut' })
     // tb2: 整体滑动,子元素按顺序淡入
-    .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
+    .fromTo(els.tb2, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo(tb2Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb2: 整体滑出,子元素一起淡出
-    .to(tb2.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to(els.tb2, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to(tb2Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
     // tb3: 整体滑动,子元素按顺序淡入
-    .fromTo(tb3.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
+    .fromTo(els.tb3, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
     .fromTo(tb3Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
     // tb3: 整体滑出,子元素一起淡出
-    .to(tb3.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    .to(els.tb3, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to(tb3Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     // tb4 上移的同时，帧动画淡出
-    .to(frameContainer.value, { opacity: 0, duration: 3.5, ease: 'power1.inOut' })
+    .to(els.frameContainer, { opacity: 0, duration: 3.5, ease: 'power1.inOut' })
     // tb4: 整体滑动,子元素按顺序淡入
-    .fromTo(tb4.value, { yPercent: 120 }, { yPercent: 0, duration: 3.3, ease: 'power1.out' }, '<+=0.4')
+    .fromTo(els.tb4, { yPercent: 120 }, { yPercent: 0, duration: 3.3, ease: 'power1.out' }, '<+=0.4')
     .fromTo(tb4Elems,
       { opacity: 0, yPercent: 15 },
       { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')

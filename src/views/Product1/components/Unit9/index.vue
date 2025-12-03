@@ -60,7 +60,7 @@ const deviceSpecs = [
           :src="specs"
           :autoplay="false"
           :muted="true"
-          :loop="false"
+          :loop="true"
           :controls="false"
           :view-play="true"
         />
