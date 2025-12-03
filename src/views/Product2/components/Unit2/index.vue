@@ -3,7 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import unitImg from '@/assets/product2/unit2.png'
 
-const smoothnessWords = ['smoothness', 'silky flow', 'creamy texture', 'soft glide']
+const smoothnessWords = ['smoothness', 'purity', 'perfection', 'UNIVERSE']
 const marqueeItems = [...smoothnessWords]
 
 const marqueeKey = ref(0)

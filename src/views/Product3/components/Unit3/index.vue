@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
@@ -69,9 +69,12 @@ if (typeof window !== 'undefined') {
 let tl1
 let tl2
 
-onMounted(() => {
+onMounted(async () => {
   updateIsMobile()
   window.addEventListener('resize', updateIsMobile)
+
+  await nextTick()
+  const maskChars = tb1MaskChars.value.filter(Boolean)
 
   tl1 = gsap.timeline({
     scrollTrigger: {
@@ -86,11 +89,13 @@ onMounted(() => {
     }
   })
 
-  tl1.add(() => { seqProgress1.value = 0 })
-    .set(tb1MaskChars.value, { opacity: 0 })
+  tl1.add(() => {
+    seqProgress1.value = 0
+    gsap.set(maskChars, { opacity: 0 })
+  })
     .addLabel('printStart')
     .to(seqProgress1, { value: 1, duration: typingTotal, ease: 'none' }, 'printStart')
-    .fromTo(tb1MaskChars.value, { opacity: 0 }, { opacity: 1, duration: 0, ease: 'none', stagger: typingStagger }, 'printStart')
+    .fromTo(maskChars, { opacity: 0 }, { opacity: 1, duration: 0, ease: 'none', stagger: typingStagger }, 'printStart')
     // .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: typingTotal + 0.6, ease: 'power1.inOut' }, 'printStart')
     // .fromTo([tb1Title.value, tb1Image.value],
     //   { opacity: 0, yPercent: 10 },
