@@ -1,7 +1,8 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import {posix, resolve} from 'path'
+import {posix, resolve, join} from 'path'
+import {readdirSync, readFileSync, writeFileSync} from 'fs'
 
 const IMG_CDN = 'http://img.cloudcode.ink'
 const VIDEO_CDN = 'http://video.cloudcode.ink'
@@ -11,11 +12,56 @@ const tarExt = /\.tar$/i
 
 // https://vite.dev/config/
 export default defineConfig({
-    // 让生成的静态资源走相对路径，避免 dist 放在子目录或刷新二级路由时资源 404
-    base: './',
+    // 绝对路径输出，避免部署在 /js 下时出现 /js/js/ 重复
+    base: '/',
     plugins: [
         vue(),
-        VueDevTools()
+        VueDevTools(),
+        {
+            name: 'html-absolute-paths',
+            enforce: 'post',
+            transformIndexHtml(html) {
+                return html
+                    .replace(/(src|href)=\"js\//g, '$1="/js/')
+                    .replace(/(src|href)=\"css\//g, '$1="/css/')
+            }
+        },
+        {
+            name: 'fix-chunk-deps-path',
+            enforce: 'post',
+            apply: 'build',
+            renderChunk(code) {
+                const next = code
+                    .replace(/"js\//g, '"./')
+                    .replace(/"css\//g, '"../css/')
+                if (next !== code) {
+                    return {code: next, map: null}
+                }
+                return null
+            }
+        },
+        {
+            name: 'postprocess-chunk-paths',
+            apply: 'build',
+            closeBundle() {
+                const dir = join(__dirname, 'dist', 'js')
+                try {
+                    for (const file of readdirSync(dir)) {
+                        if (!file.endsWith('.js')) continue
+                        const p = join(dir, file)
+                        const code = readFileSync(p, 'utf8')
+                        const next = code
+                            .replace(/"js\//g, '"./')
+                            .replace(/"css\//g, '"../css/')
+                        if (next !== code) {
+                            writeFileSync(p, next, 'utf8')
+                        }
+                    }
+                } catch (err) {
+                    this.warn(`postprocess-chunk-paths skipped: ${err.message}`)
+                }
+            }
+        }
     ],
     resolve: {
         alias: {
@@ -52,7 +98,23 @@ export default defineConfig({
                     'vue-vendor': ['vue', 'vue-router'],
                     animation: ['gsap', '@vueuse/motion']
                 }
-            }
+            },
+            plugins: [
+                {
+                    name: 'fix-chunk-deps-path-rollup',
+                    enforce: 'post',
+                    apply: 'build',
+                    renderChunk(code) {
+                        const next = code
+                            .replace(/"js\//g, '"./')
+                            .replace(/"css\//g, '"../css/')
+                        if (next !== code) {
+                            return {code: next, map: null}
+                        }
+                        return null
+                    }
+                }
+            ]
         },
         minify: 'terser',
         terserOptions: {
