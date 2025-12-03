@@ -44,7 +44,7 @@ onUnmounted(() => {
     <div class="title text-center">
       Realize your unique design with CALEAF TECH
     </div>
-    <div class=" relative c_1300 w-full c_padding mt-[51px] flex justify-center items-center">
+    <div class="svgBox relative c_1300 w-full c_padding mt-[51px] flex justify-center items-center">
       <div ref="unitBoxRef" class="unitBox w-[1300px] h-[732px] shrink-0">
         <svg class="pointer-events-none z-[2] w-[1946px] mt-[40px] h-[723px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
           xmlns="http://www.w3.org/2000/svg" width="1920" height="754" viewBox="0 0 1920 754" fill="none">
@@ -165,11 +165,19 @@ onUnmounted(() => {
   .unitBox {
     transform: scale(0.6);
   }
+
+  .svgBox {
+    height: 420px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .unitBox {
     transform: scale(0.4);
+  }
+
+  .svgBox {
+    height: 320px;
   }
 }
 </style>

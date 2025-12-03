@@ -27,12 +27,11 @@ import Specifications from "@/components/Specifications/index.vue";
     <div class="bg-black">
       <Unit5 />
       <Unit6 />
-      <!-- <Unit8 /> -->
+      <Unit8 />
       <Unit9 />
       <Unit10 />
     </div>
     <Unit11 />
-    <!-- <Specifications /> -->
     <Unit12 />
     <Splide4 />
     <Footer />
