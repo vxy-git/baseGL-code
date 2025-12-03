@@ -56,7 +56,7 @@ export const productsData = {
     },
     {
       id: 102,
-      name: 'UNIT PRO',
+      name: 'UNIT Pro',
       description: 'UNICORE™ tech & large display',
       capacity: '1mL/2mL',
       image: UNIT_PRO,
@@ -76,7 +76,7 @@ export const productsData = {
       background: DUKES_HOVER,
       alt: 'DUKES',
       isNew: true,
-      linkType: '', //product4
+      linkType: 'product4',
     },
   ],
 }

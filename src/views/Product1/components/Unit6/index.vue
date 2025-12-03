@@ -9,37 +9,19 @@ import product1_inhale_R from '@/assets/product1/inhale-R.mp4'
     <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[780px]"></span>
     <div class="relative">
       <div class="label">
-        High-end feature
+        High-End Feature
       </div>
       <div class="title mt-[20px]">
         Inhale & Button Activated
       </div>
       <div class=" w-full flex justify-center gap-[20px] mt-[52px] m_flex_col">
         <div class="flex-1 w-full rounded-[20px]">
-          <MediaAsset
-            class="w-full h-full object-cover"
-            type="video"
-            :src="product1_inhale_L"
-            :autoplay="false"
-            :muted="true"
-            :loop="true"
-            :controls="false"
-            :view-play="true"
-            playsinline
-          />
+          <MediaAsset class="w-full h-full object-cover" type="video" :src="product1_inhale_L" :autoplay="false"
+            :muted="true" :loop="true" :controls="false" :view-play="true" playsinline />
         </div>
         <div class="flex-1 w-full rounded-[20px]">
-          <MediaAsset
-            class="w-full h-full object-cover"
-            type="video"
-            :src="product1_inhale_R"
-            :autoplay="false"
-            :muted="true"
-            :loop="true"
-            :controls="false"
-            :view-play="true"
-            playsinline
-          />
+          <MediaAsset class="w-full h-full object-cover" type="video" :src="product1_inhale_R" :autoplay="false"
+            :muted="true" :loop="true" :controls="false" :view-play="true" playsinline />
         </div>
       </div>
     </div>

@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
 <template>
   <div ref="moduleRef" class="pt-[153px] pb-[45px]">
     <div class="title c_padding capitalize">
-      Design your own look
+      Design Your Own Look
     </div>
     <div class="title1 c_padding">
       Realize your unique design with CALEAF TECH.
