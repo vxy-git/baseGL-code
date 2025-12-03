@@ -129,7 +129,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: #000;
