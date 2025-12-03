@@ -98,7 +98,18 @@ onMounted(async () => {
   })
     .addLabel('printStart')
     .to(seqProgress1, { value: 1, duration: typingTotal, ease: 'none' }, 'printStart')
-    .fromTo(maskChars, { opacity: 0 }, { opacity: 1, duration: 0, ease: 'none', stagger: typingStagger }, 'printStart')
+    .fromTo(
+      maskChars,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: typingStagger,
+        ease: 'none',
+        stagger: typingStagger,
+        immediateRender: false
+      },
+      'printStart'
+    )
     // .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: typingTotal + 0.6, ease: 'power1.inOut' }, 'printStart')
     // .fromTo([tb1Title.value, tb1Image.value],
     //   { opacity: 0, yPercent: 10 },
