@@ -3,7 +3,13 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import icon41 from '@/assets/img/icon41.png'
+import logo0 from '@/assets/img/icon41.png'
+import logo1 from '@/assets/product4/unit9-1.jpg'
+import logo2 from '@/assets/product4/unit9-2.jpg'
+import logo3 from '@/assets/product4/unit9-3.jpg'
+import logo4 from '@/assets/product4/unit9-4.jpg'
+import logo5 from '@/assets/product4/unit9-5.jpg'
+import logo6 from '@/assets/product4/unit9-6.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,10 +35,10 @@ onMounted(() => {
 
   tl.fromTo(
     imgBox.value,
-    { width: '100vw', height: 'max-content' },
+    { width: '100vw', height: '100vh' },
     {
       width: '100%',
-      height: 'max-content',
+      height: '100%',
       ease: 'none',
       immediateRender: false
     }
@@ -49,9 +55,9 @@ onUnmounted(() => {
     <div class="title flex justify-center items-center">
       <span class="w-[calc((100vw-261px)/2)] text-right">GO</span>
       <div class="size-[261px] relative">
-        <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div class="min-w-full min-h-full">
-            <MediaAsset class="size-full object-cover" type="image" :src="icon41" alt="" :lazy="false" />
+        <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]" :key="index">
+          <div class="size-full">
+            <MediaAsset class="size-full object-cover" type="image" :src="logo" alt="" :lazy="false" />
           </div>
         </div>
       </div>
@@ -77,6 +83,6 @@ onUnmounted(() => {
 
 .img-box {
   width: 100%;
-  height: max-content;
+  height: 100%;
 }
 </style>
