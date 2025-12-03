@@ -55,8 +55,6 @@ let tl
 const buildTimeline = () => {
   tl && tl.kill()
 
-  const imageEl = tb4Image.value?.$el || tb4Image.value
-
   const required = [
     pinSection.value,
     frameContainer.value,
@@ -75,7 +73,7 @@ const buildTimeline = () => {
     tb4WTitle.value,
     tb4Text.value,
     tb4Stats.value,
-    imageEl
+    tb4Image.value
   ]
   if (required.some(el => !el)) {
     console.warn('[Unit3] missing element refs, skip timeline init')
@@ -84,7 +82,7 @@ const buildTimeline = () => {
 
   const tb2Elems = [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value].filter(Boolean)
   const tb3Elems = [tb3SmallTitle.value, tb3WTitle.value, tb3Text.value].filter(Boolean)
-  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, imageEl].filter(Boolean)
+  const tb4Elems = [tb4SmallTitle.value, tb4WTitle.value, tb4Text.value, tb4Stats.value, tb4Image.value].filter(Boolean)
 
   tl = gsap.timeline({
     scrollTrigger: {
