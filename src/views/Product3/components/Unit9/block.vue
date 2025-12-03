@@ -7,10 +7,10 @@ import MediaAsset from '@/components/MediaAsset.vue'
 <template>
     <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
-        UNICORN PRO
+        Take your pick
       </div>
       <div class="title2 mt-[19px]">
-        Inhale & Button Activated
+        Either one’s a winner
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col min-h-[440px]">
         <MediaAsset

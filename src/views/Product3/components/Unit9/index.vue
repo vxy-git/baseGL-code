@@ -1,6 +1,6 @@
 <script setup>
-import unit3_l from '@/assets/product3/unit3-l.mp4'
-import unit3_r from '@/assets/product3/unit3-r.mp4'
+import unit7_l from '@/assets/product3/unit7-l.jpg'
+import unit7_r from '@/assets/product3/unit7-r.jpg'
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 
@@ -14,23 +14,13 @@ import MediaAsset from '@/components/MediaAsset.vue'
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
         <MediaAsset
-          type="video"
-          :src="unit3_l"
-          :autoplay="false"
-          :muted="true"
-          :loop="false"
-          :controls="false"
-          :hover-play="true"
+          type="image"
+          :src="unit7_l"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
         <MediaAsset
-          type="video"
-          :src="unit3_r"
-          :autoplay="false"
-          :muted="true"
-          :loop="false"
-          :controls="false"
-          :hover-play="true"
+          type="image"
+          :src="unit7_r"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
       </div>
