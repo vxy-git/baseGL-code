@@ -27,22 +27,22 @@ import btnIcon from '@/assets/img/icon2.png'
 
 const list = ref([
   {
-    title: "UNIVERSE SERIES",
-    subTitle: "Unicore powered, the way to infinite.",
+    title: "UNIVERSE Series",
+    subTitle: "UNICORE powered, the way to infinite.",
     src: banner1,
     type: 'video',
     dotText: "UNIVERSE"
   },
   {
-    title: "UNICORN SERIES",
-    subTitle: "Unicore powered, the way to infinite.",
+    title: "UNICORN Series",
+    subTitle: "UNICORE powered, the way to infinite.",
     src: banner2,
     type: 'video',
     dotText: "UNICORN"
   },
   {
-    title: "UNIT PRO",
-    subTitle: "From lab to award, 100% for Rosin we’ve perfected.",
+    title: "UNIT Pro",
+    subTitle: "From lab to award, 100% for Rosin we’ve perfecte",
     src: banner3,
     type: 'video',
     dotText: "UNIT"
