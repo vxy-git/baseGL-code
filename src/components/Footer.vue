@@ -247,6 +247,7 @@ const handleSubscribe = () => {
   }
 
   .signup-btn {
+    white-space: nowrap;
     width: max-content;
     padding: 0 10px;
     height: 44px;

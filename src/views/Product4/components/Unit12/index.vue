@@ -55,9 +55,9 @@ onUnmounted(() => {
     <div class="title flex justify-center items-center">
       <span class="w-[calc((100vw-261px)/2)] text-right">GO</span>
       <div class="size-[261px] relative">
-        <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]" :key="index">
-          <div class="size-full">
-            <MediaAsset class="size-full object-cover" type="image" :src="logo" alt="" :lazy="false" />
+        <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div class="size-full relative">
+            <MediaAsset class="absolute inset-0 size-full object-cover" type="image" :src="logo" alt="" :lazy="false"  v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]" :key="index" />
           </div>
         </div>
       </div>

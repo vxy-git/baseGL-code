@@ -59,7 +59,7 @@ const list = ref([
     src: banner4,
     type: 'video',
     dotText: "DUKES",
-    path: '/product4'
+    path: ''//'/product4'
   }
 ])
 

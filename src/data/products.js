@@ -76,7 +76,7 @@ export const productsData = {
       background: DUKES_HOVER,
       alt: 'DUKES',
       isNew: true,
-      linkType: 'product4',
+      linkType: '', //product4
     },
   ],
 }

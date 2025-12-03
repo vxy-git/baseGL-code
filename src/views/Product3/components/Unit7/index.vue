@@ -54,7 +54,7 @@ const deviceSpecs2 = [
           <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="UNIVERSE"
             :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNICORN</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
@@ -63,7 +63,7 @@ const deviceSpecs2 = [
           <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="NIVERSE_PRO"
             :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNICORN Pro</div>
       </div>
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">

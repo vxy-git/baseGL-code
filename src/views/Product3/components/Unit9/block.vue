@@ -12,7 +12,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
       <div class="title2 mt-[19px]">
         Either one's a winner
       </div>
-      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col min-h-[440px]">
+      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col h-[440px] min-h-max">
         <MediaAsset
           type="video"
           :src="unit3_l"
