@@ -4,7 +4,7 @@ import videoSrc from '@/assets/product1/banner.mp4'
 </script>
 
 <template>
-  <div class="unit1 h-screen relative">
+  <div class="unit1 relative mt_nav">
     <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">

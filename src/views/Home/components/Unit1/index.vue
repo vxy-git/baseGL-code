@@ -138,8 +138,7 @@ const stop = ref(false)
 // Banner 容器
 .banner-container {
   background-color: black;
-  height: 880px;
-  min-height: calc(880px / 1920px * 100vw);
+  height: 100vh;
   position: relative;
 }
 

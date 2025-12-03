@@ -4,7 +4,7 @@ import videoSrc from '@/assets/product2/banner.mp4'
 </script>
 
 <template>
-  <div class="unit1 h-screen relative">
+  <div class="unit1 mt_nav relative">
     <video
       class="w-full h-full object-cover"
       :src="videoSrc"

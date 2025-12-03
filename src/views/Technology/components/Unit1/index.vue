@@ -10,7 +10,7 @@ const showVideo = ref(false)
 </script>
 
 <template>
-  <div class="unit1">
+  <div class="unit1 mt_nav">
     <div class="bg-video">
       <MediaAsset class="!max-h-full" type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :lazy="false" />
     </div>
@@ -56,7 +56,6 @@ const showVideo = ref(false)
 <style scoped lang="scss">
 .unit1 {
   position: relative;
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -74,7 +73,7 @@ const showVideo = ref(false)
 
 .content {
   position: relative;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
 }
 
