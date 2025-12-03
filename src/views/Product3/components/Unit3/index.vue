@@ -75,6 +75,9 @@ onMounted(async () => {
 
   await nextTick()
   const maskChars = tb1MaskChars.value.filter(Boolean)
+  if (!maskChars.length) {
+    return
+  }
 
   tl1 = gsap.timeline({
     scrollTrigger: {

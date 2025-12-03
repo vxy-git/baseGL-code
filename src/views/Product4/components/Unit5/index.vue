@@ -9,8 +9,8 @@ import videoSrc from '@/assets/product4/Dual-Gemco-Core.mp4'
       Dual Gemco Core
     </div>
     <div class="w-[900px] h-[409px] mx-auto mt-[64px] max-w-full">
-      <MediaAsset type="video" :src="videoSrc" :autoplay="false" :muted="true" :loop="true"
-        :controls="false" class="w-full h-full object-cover rounded-[20px]" />
+      <MediaAsset type="video" :src="videoSrc" :autoplay="false" :muted="true" :loop="false"
+        :controls="false" :view-play="true" class="w-full h-full object-cover rounded-[20px]" />
     </div>
   </div>
 </template>
