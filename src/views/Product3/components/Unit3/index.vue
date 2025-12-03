@@ -28,6 +28,16 @@ const tb3 = ref(null)
 
 // tb1
 const tb1Title = ref(null)
+const tb1TitleText = 'Gold standard for Resin/Rosin'
+const tb1Chars = tb1TitleText.split('')
+const tb1MaskChars = ref([])
+const setTb1MaskCharRef = (el, index) => {
+  if (el) {
+    tb1MaskChars.value[index] = el
+  }
+}
+const typingStagger = 0.03
+const typingTotal = tb1Chars.length * typingStagger
 const tb1Image = ref(null)
 
 // tb2
@@ -77,13 +87,16 @@ onMounted(() => {
   })
 
   tl1.add(() => { seqProgress1.value = 0 })
-    .to(seqProgress1, { value: 1, duration: 3.6, ease: 'power1.inOut' })
-    .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
-    .fromTo([tb1Title.value, tb1Image.value],
-      { opacity: 0, yPercent: 10 },
-      { opacity: 1, yPercent: 0, duration: 1.4, stagger: 0.2, ease: 'power1.out' }, '<')
-    .to(tb1.value, { yPercent: -80, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    .to([tb1Title.value, tb1Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .set(tb1MaskChars.value, { opacity: 0 })
+    .addLabel('printStart')
+    .to(seqProgress1, { value: 1, duration: typingTotal, ease: 'none' }, 'printStart')
+    .fromTo(tb1MaskChars.value, { opacity: 0 }, { opacity: 1, duration: 0, ease: 'none', stagger: typingStagger }, 'printStart')
+    // .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: typingTotal + 0.6, ease: 'power1.inOut' }, 'printStart')
+    // .fromTo([tb1Title.value, tb1Image.value],
+    //   { opacity: 0, yPercent: 10 },
+    //   { opacity: 1, yPercent: 0, duration: typingTotal + 0.4, stagger: 0.2, ease: 'power1.out' }, 'printStart')
+    // .to(tb1.value, { yPercent: -80, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
+    // .to([tb1Title.value, tb1Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     // .to(frameContainer1.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<0.3')
 
   tl2 = gsap.timeline({
@@ -136,8 +149,18 @@ onUnmounted(() => {
       <div class="size-full flex items-start justify-center c_padding">
         <div class="text-layer">
           <div ref="tb1" class="text-block">
-            <div ref="tb1Title" class="title">
-              <span class="text-white">Gold</span> standard for Resin/Rosin
+            <div ref="tb1Title" class="title printer-title">
+              <span class="title-base">{{ tb1TitleText }}</span>
+              <span class="title-mask" aria-hidden="true">
+                <span
+                  v-for="(ch, index) in tb1Chars"
+                  :key="index"
+                  class="mask-char"
+                  :ref="el => setTb1MaskCharRef(el, index)"
+                >
+                  {{ ch === ' ' ? '\u00A0' : ch }}
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -241,10 +264,39 @@ onUnmounted(() => {
   font-style: normal;
   font-weight: 700;
   line-height: 80px;
-  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
+  // background-clip: text;
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}
+
+.printer-title {
+  position: relative;
+  display: inline-block;
+}
+
+.title-base {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  opacity: 0.5;
+}
+
+.title-mask {
+  position: absolute;
+  inset: 0;
+  color: #CAA4FB;
+  background: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: #CAA4FB;
+  white-space: pre;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.mask-char {
+  display: inline-block;
+  opacity: 0;
 }
 
 .title1 {
@@ -311,8 +363,6 @@ onUnmounted(() => {
 
 // 初始透明度由 GSAP 控制
 .text-block {
-
-  .title,
   .title1,
   .title2,
   .title3,

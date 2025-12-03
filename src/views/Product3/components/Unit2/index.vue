@@ -6,7 +6,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="relative w-full">
+    <div class="relative w-full h-screen mBox">
       <MediaAsset
         class="w-full"
         type="image"
@@ -24,7 +24,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
         </div>
       </div>
     </div>
-    <div class="relative w-full">
+    <div class="relative w-full h-screen mBox">
       <MediaAsset
         class="w-full"
         type="image"
@@ -67,11 +67,21 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
 }
 
 @media screen and (max-width: 786px) {
+  .mBox {
+    height: auto;
+  }
+
   .info {
     top: 20px;
     right: 0;
     left: 0;
     transform: translateX(0);
+    
+    // position: relative;
+    // transform: translate(0, 0);
+    // left: auto;
+    // top: auto;
+    // padding-bottom: 50px;
   }
 }
 </style>

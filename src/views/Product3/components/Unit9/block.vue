@@ -12,7 +12,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
       <div class="title2 mt-[19px]">
         Inhale & Button Activated
       </div>
-      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
+      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col min-h-[440px]">
         <MediaAsset
           type="video"
           :src="unit3_l"
@@ -21,7 +21,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :loop="false"
           :controls="false"
           :hover-play="true"
-          class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden object-cover"
+          class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
         />
         <MediaAsset
           type="video"
@@ -31,7 +31,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
           :loop="false"
           :controls="false"
           :hover-play="true"
-          class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden object-cover"
+          class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
         />
       </div>
     </div>
