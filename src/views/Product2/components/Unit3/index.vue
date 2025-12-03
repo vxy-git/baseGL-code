@@ -7,7 +7,7 @@ import either_R from '@/assets/product2/either-R.mp4'
 <template>
   <div class="mt-[158px] c_1230 c_padding">
     <div class="title1 text-center capitalize">
-      Take your pick
+      Take Your Pick
     </div>
     <div class="title2 mt-[19px]">
       Either one’s a winner

@@ -3,6 +3,12 @@ import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import {posix, resolve} from 'path'
 
+const IMG_CDN = 'http://img.cloudcode.ink'
+const VIDEO_CDN = 'http://video.cloudcode.ink'
+const imgExt = /\.(png|jpe?g|gif|webp|avif|svg|ico)$/i
+const videoExt = /\.(mp4|webm|mov|m4v)$/i
+const tarExt = /\.tar$/i
+
 // https://vite.dev/config/
 export default defineConfig({
     // 让生成的静态资源走相对路径，避免 dist 放在子目录或刷新二级路由时资源 404
@@ -57,19 +63,18 @@ export default defineConfig({
         }
     },
     experimental: {
-        // renderBuiltUrl(filename) {
-        //     if (
-        //         filename.endsWith('.webm') ||
-        //         filename.endsWith('.png') ||
-        //         filename.endsWith('.jpg') ||
-        //         filename.endsWith('.gif')
-        //     ) {
-        //         const name = filename.replace('assets/images/', '');
-        //         return `https://cdnURL/images/${name}`;
-        //     }
-        //
-        //     return filename;
-        // },
+        renderBuiltUrl(filename, {type}) {
+            if (type === 'asset') {
+                if (videoExt.test(filename)) {
+                    return `${VIDEO_CDN}/${filename}`
+                }
+                if (imgExt.test(filename) || tarExt.test(filename)) {
+                    return `${IMG_CDN}/${filename}`
+                }
+            }
+
+            return filename
+        }
     },
     // 开发服务器配置
     server: {

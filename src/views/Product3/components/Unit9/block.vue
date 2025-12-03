@@ -7,7 +7,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
 <template>
     <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
-        Take your pick
+        Take Your Pick
       </div>
       <div class="title2 mt-[19px]">
         Either one’s a winner
