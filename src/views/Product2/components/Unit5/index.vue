@@ -1,8 +1,7 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue';
 import UNIVERSE from '@/assets/product2/UNIVERSE.mp4';
 import NIVERSE_PRO from '@/assets/product2/NIVERSE_PRO.mp4';
-
-import { ref } from 'vue'
 
 
 const deviceSpecs1 = [
@@ -52,7 +51,17 @@ const deviceSpecs2 = [
       </div>
       <div class="w-full flex flex-col items-center justify-center">
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="UNIVERSE"
+            :controls="false"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :viewPlay="true"
+            playsinline
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+          />
         </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
       </div>
@@ -60,7 +69,17 @@ const deviceSpecs2 = [
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
       <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="NIVERSE_PRO"
+            :controls="false"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :viewPlay="true"
+            playsinline
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+          />
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>

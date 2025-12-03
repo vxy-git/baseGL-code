@@ -1,11 +1,22 @@
 <script setup>
-import videoSrc from '@/assets/product4/banner.mp4'
+import MediaAsset from '@/components/MediaAsset.vue';
+import videoSrc from '@/assets/product4/banner.mp4';
 
 </script>
 
 <template>
   <div class="unit1 mt_nav bg-black relative">
-    <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
+    <MediaAsset
+      class="w-full h-full object-cover"
+      type="video"
+      :src="videoSrc"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :viewPlay="true"
+      playsinline
+    />
   </div>
 </template>
 

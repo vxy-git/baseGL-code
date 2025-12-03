@@ -1,11 +1,22 @@
 <script setup>
-import videoSrc from '@/assets/product1/banner.mp4'
+import MediaAsset from '@/components/MediaAsset.vue';
+import videoSrc from '@/assets/product1/banner.mp4';
 
 </script>
 
 <template>
   <div class="unit1 relative mt_nav">
-    <video class="w-full h-full object-cover" :src="videoSrc" autoplay muted playsinline></video>
+    <MediaAsset
+      class="w-full h-full object-cover"
+      type="video"
+      :src="videoSrc"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :viewPlay="true"
+      playsinline
+    />
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
         <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
