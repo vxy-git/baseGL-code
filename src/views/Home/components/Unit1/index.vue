@@ -1,7 +1,8 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, onMounted, watch, nextTick } from "vue";
-const delay = 3000 // 设置自动播放间隔为 3 秒
+import { ref } from "vue";
+import { useRouter } from 'vue-router';
+const delay = 8000 // 每个视频固定播放 8 秒后切换
 const currentIndex = ref(0)
 const splideRef = ref()
 
@@ -25,34 +26,40 @@ import banner3 from '@/assets/home/Banner-3-UNIT.mp4'
 import banner4 from '@/assets/home/Banner-4-DUKES.mp4'
 import btnIcon from '@/assets/img/icon2.png'
 
+const router = useRouter()
+
 const list = ref([
   {
     title: "UNIVERSE Series",
     subTitle: "UNICORE powered, the way to infinite.",
     src: banner1,
     type: 'video',
-    dotText: "UNIVERSE"
+    dotText: "UNIVERSE Series",
+    path: '/product2'
   },
   {
     title: "UNICORN Series",
     subTitle: "UNICORE powered, the way to infinite.",
     src: banner2,
     type: 'video',
-    dotText: "UNICORN"
+    dotText: "UNICORN Series",
+    path: '/product3'
   },
   {
     title: "UNIT Pro",
-    subTitle: "From lab to award, 100% for Rosin we’ve perfecte",
+    subTitle: "From lab to award, 100% for Rosin we’ve perfected",
     src: banner3,
     type: 'video',
-    dotText: "UNIT"
+    dotText: "UNIT Pro",
+    path: '/product1'
   },
   {
     title: "DUKES",
     subTitle: "The best of both worlds, every puff with more hits.",
     src: banner4,
     type: 'video',
-    dotText: "DUKES"
+    dotText: "DUKES",
+    path: '/product4'
   }
 ])
 
@@ -63,6 +70,11 @@ const next = (e) => {
   splideRef.value?.splide?.go('+1')
 }
 const stop = ref(false)
+
+const handleLearnMore = (item) => {
+  if (!item?.path) return
+  router.push(item.path)
+}
 </script>
 
 <template>
@@ -84,7 +96,7 @@ const stop = ref(false)
             :controls="false"
             autoplay
             muted
-            loop
+            :loop="false"
             playsinline
           />
           <div class=" h-full relative">
@@ -95,7 +107,7 @@ const stop = ref(false)
               <div class="subTitle">
                 {{item.subTitle}}
               </div>
-              <div class="btn flex items-center justify-center">
+              <div class="btn flex items-center justify-center" @click="handleLearnMore(item)">
                 <div class="btnText">Learn more</div>
                 <MediaAsset
                   class="btn-icon"
@@ -173,6 +185,7 @@ const stop = ref(false)
   background: #1CE785;
   margin-top: 32px;
   gap: 11.5px;
+  cursor: pointer;
 
   .btnText {
     color: #222;

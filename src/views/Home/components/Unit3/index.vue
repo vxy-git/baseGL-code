@@ -1,6 +1,13 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import bannerImg from '@/assets/home/UNICORE.jpg'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goTech = () => {
+  router.push({ name: 'Technology' })
+}
 </script>
 
 <template>
@@ -18,7 +25,7 @@ import bannerImg from '@/assets/home/UNICORE.jpg'
             Patented U-shape ceramic design<br/>
             The golden standard for ROSIN
           </div>
-          <div class="btn mx-auto mt-[38px] cursor-pointer">
+          <div class="btn mx-auto mt-[38px] cursor-pointer" @click="goTech">
             Learn more
           </div>
         </div>

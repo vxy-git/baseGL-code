@@ -135,7 +135,7 @@ onUnmounted(() => {
   text-align: center;
   line-height: 1.1; // 缩短行间距
   letter-spacing: 0.2px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .title3 {

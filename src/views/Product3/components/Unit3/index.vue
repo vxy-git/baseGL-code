@@ -279,14 +279,10 @@ onUnmounted(() => {
 .title {
   text-align: center;
   font-family: Roboto;
-  font-size: 80px;
+  font-size: clamp(40px, 7vw, 80px);
   font-style: normal;
   font-weight: 700;
-  line-height: 80px;
-  // background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
-  // background-clip: text;
-  // -webkit-background-clip: text;
-  // -webkit-text-fill-color: transparent;
+  line-height: clamp(40px, 7vw, 80px);
 }
 
 .printer-title {
@@ -295,6 +291,7 @@ onUnmounted(() => {
 }
 
 .title-base {
+  white-space: nowrap;
   position: relative;
   z-index: 1;
   color: #fff;

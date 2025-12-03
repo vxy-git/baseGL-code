@@ -2,7 +2,7 @@
 import UNIVERSE from '@/assets/product4/UNICORN.mp4';
 import NIVERSE_PRO from '@/assets/product4/UNICORN-PRO.mp4';
 
-import { ref } from 'vue'
+import MediaAsset from '@/components/MediaAsset.vue';
 
 
 const deviceSpecs1 = [
@@ -52,17 +52,33 @@ const deviceSpecs2 = [
       </div>
       <div class="w-full flex flex-col items-center justify-center">
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="UNIVERSE" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="UNIVERSE"
+            :controls="false"
+            :muted="true"
+            :loop="false"
+            :viewPlay="true"
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+          />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">DUKES</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
       <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
         <div class="h-[414px]">
-          <video class="w-full h-full object-cover rounded-[20px] overflow-hidden" :src="NIVERSE_PRO" autoplay muted playsinline loop></video>
+          <MediaAsset
+            type="video"
+            :src="NIVERSE_PRO"
+            :controls="false"
+            :muted="true"
+            :loop="false"
+            :viewPlay="true"
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+          />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">DUKES</div>
       </div>
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">

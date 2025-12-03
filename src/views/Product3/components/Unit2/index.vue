@@ -6,7 +6,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="relative w-full h-screen mBox">
+    <div class="relative w-full h-screen max-h-max mBox">
       <MediaAsset class="w-full" type="image" :src="unitImg1" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
@@ -18,11 +18,11 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
         </div>
       </div>
     </div>
-    <div class="relative w-full h-screen mBox">
+    <div class="relative w-full h-screen max-h-max mBox">
       <MediaAsset class="w-full" type="image" :src="unitImg2" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
-          UNICORN PRO
+          UNICORN Pro
         </div>
         <div class="title2 !text-white mt-[19px]">
           Tiny powerhouse&nbsp;<br />
@@ -54,7 +54,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
   line-height: normal;
 }
 
-@media screen and (max-width: 786px) {
+@media screen and (max-width: 1024px) {
   .mBox {
     height: auto;
   }

@@ -108,6 +108,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
     font-size: 40px;
     text-align: center;
     line-height: 1.1; // 缩短行间距
+    font-weight: 700;
   }
 
   .title3 {
@@ -169,6 +170,7 @@ import r2 from '@/assets/technology/t1/r2.mp4'
     font-size: 40px;
     text-align: center;
     line-height: 1.14; // 缩短行间距
+    font-weight: 700;
   }
 
   .title3 {

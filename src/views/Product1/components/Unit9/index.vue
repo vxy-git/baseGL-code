@@ -44,7 +44,7 @@ const deviceSpecs = [
 <template>
   <div class="pt-[138px] pb-[47px]">
     <div class="title text-center">
-      SPECS
+      Specifications
     </div>
     <div class="flex c_1300 c_padding mx-auto px-[35px] justify-between m_flex_col_r overflow-hidden">
       <div class="w-[683px] max-w-full flex-shrink-0 pt-[66px] relative z-[1]">

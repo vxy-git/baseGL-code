@@ -153,18 +153,8 @@ onUnmounted(() => {
           exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset
-            ref="rightVideoAssetRef1"
-            :src="r1"
-            type="video"
-            :autoplay="false"
-            :muted="true"
-            :loop="false"
-            :controls="false"
-            :view-play="true"
-            playsinline
-            alt=""
-          />
+          <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" :autoplay="false" :muted="true" :loop="false"
+            :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
@@ -181,34 +171,14 @@ onUnmounted(() => {
           guarantees an exceptional session every time.
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset
-            ref="rightVideoAssetRef2"
-            :src="r2"
-            type="video"
-            :autoplay="false"
-            :muted="true"
-            :loop="false"
-            :controls="false"
-            :view-play="true"
-            playsinline
-            alt=""
-          />
+          <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" :autoplay="false" :muted="true" :loop="false"
+            :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
     </div>
     <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset
-        ref="videoAssetRef"
-        :src="l1"
-        type="video"
-        :autoplay="false"
-        :muted="true"
-        :loop="false"
-        :controls="false"
-        :view-play="true"
-        playsinline
-        alt=""
-      />
+      <MediaAsset ref="videoAssetRef" :src="l1" type="video" :autoplay="false" :muted="true" :loop="false"
+        :controls="false" :view-play="true" playsinline alt="" />
     </div>
   </div>
 </template>
@@ -237,9 +207,9 @@ onUnmounted(() => {
     max-width: 100%;
     width: 418px;
     color: #fff;
-    font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
+    font-weight: 700;
     line-height: 1.1; // 缩短行间距
   }
 
@@ -299,10 +269,10 @@ onUnmounted(() => {
     max-width: 100%;
     width: 584px;
     color: #fff;
-    font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
     line-height: 1.14; // 缩短行间距
+    font-weight: 700;
   }
 
   .title3 {

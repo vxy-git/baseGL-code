@@ -91,9 +91,9 @@ onBeforeUnmount(() => {
   line-height: 1.2em;
 }
 
-.smoothness-item:last-child {
-  color: #fff;
-}
+// .smoothness-item:last-child {
+//   color: #fff;
+// }
 
 @keyframes smoothness-vertical {
   0%,

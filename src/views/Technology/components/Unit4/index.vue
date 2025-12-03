@@ -282,7 +282,7 @@ onUnmounted(() => {
   font-size: 40px;
   line-height: 1.14; // 缩短行间距
   letter-spacing: .8px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .title3 {
