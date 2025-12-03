@@ -304,6 +304,7 @@ onUnmounted(() => {
   color: #CAA4FB;
   background: none;
   -webkit-background-clip: border-box;
+  background-clip: border-box;
   -webkit-text-fill-color: #CAA4FB;
   white-space: pre;
   pointer-events: none;
