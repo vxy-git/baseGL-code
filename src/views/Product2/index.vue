@@ -12,8 +12,10 @@ import Unit2 from "./components/Unit2/index.vue";
 import Unit3 from "./components/Unit3/index.vue";
 import Unit4 from "./components/Unit4/index.vue";
 import Unit6 from "./components/Unit6/index.vue";
+import m_Unit6 from "./components/Unit6/m_index.vue";
 import Unit7 from "./components/Unit7/index.vue";
 import Unit8 from "./components/Unit8/index.vue";
+import m_Unit8 from "./components/Unit8/m_index.vue";
 import VideoU from "./components/VideoU/index.vue";
 
 const isClient = typeof window !== "undefined";
@@ -52,9 +54,11 @@ onUnmounted(() => {
     </div>
     <Specifications />
     <div class="bg-black">
-      <Unit6 />
+      <Unit6 v-if="!isMobile" />
+      <m_Unit6 v-else />
       <Unit7 />
-      <Unit8 />
+      <Unit8 v-if="!isMobile" />
+      <m_Unit8 v-else />
       <Splide4 />
     </div>
     <div class="pt-[0px]">
