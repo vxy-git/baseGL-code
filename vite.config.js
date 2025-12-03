@@ -1,7 +1,7 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import {resolve} from 'path'
+import {posix, resolve} from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -18,25 +18,43 @@ export default defineConfig({
     },
     // CDN配置（生产环境）
     build: {
-
         rollupOptions: {
-            // output: {
-            //     assetFileNames: (chunkInfo) => {
-            //         // 用后缀名称进行区别处理
-            //         // 处理其他资源文件名 e.g. css png 等
-            //         if (
-            //             chunkInfo.name?.endsWith('.webm') ||
-            //             chunkInfo.name?.endsWith('.png') ||
-            //             chunkInfo.name?.endsWith('.jpg') ||
-            //             chunkInfo.name?.endsWith('.gif')
-            //         ) {
-            //             return `assets/images/[name].[ext]`;
-            //         }
+            output: {
+                entryFileNames: 'js/[name].js',
+                chunkFileNames: 'js/[name].js',
+                assetFileNames: (assetInfo) => {
+                    const ext = assetInfo.name ? posix.extname(assetInfo.name) : ''
+                    if (ext === '.css') {
+                        return 'css/[name][extname]'
+                    }
 
-            //         return `assets/[name].[hash].[ext]`;
-            //     },
-            // },
+                    const originalPath = assetInfo.originalFileName
+                    if (originalPath) {
+                        const normalized = posix.normalize(originalPath.replace(/\\/g, '/'))
+                        const srcPrefix = 'src/assets/'
+
+                        const srcIndex = normalized.indexOf(srcPrefix)
+                        if (srcIndex !== -1) {
+                            const relative = normalized.slice(srcIndex + srcPrefix.length)
+                            return `assets/${relative}`
+                        }
+                    }
+
+                    return 'assets/[name][extname]'
+                },
+                manualChunks: {
+                    'vue-vendor': ['vue', 'vue-router'],
+                    animation: ['gsap', '@vueuse/motion']
+                }
+            }
         },
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        }
     },
     experimental: {
         // renderBuiltUrl(filename) {
@@ -49,25 +67,9 @@ export default defineConfig({
         //         const name = filename.replace('assets/images/', '');
         //         return `https://cdnURL/images/${name}`;
         //     }
-
+        //
         //     return filename;
         // },
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    'vue-vendor': ['vue', 'vue-router'],
-                    'animation': ['gsap', '@vueuse/motion']
-                }
-            }
-        },
-        // 性能优化
-        minify: 'terser',
-        terserOptions: {
-            compress: {
-                drop_console: true,
-                drop_debugger: true
-            }
-        }
     },
     // 开发服务器配置
     server: {
