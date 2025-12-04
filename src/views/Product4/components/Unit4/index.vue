@@ -35,7 +35,7 @@ onMounted(() => {
     const getVideoStartMetrics = () => {
       if (!videoRef.value) return { width: 0, height: 0, x: 0, y: 0 }
       const rect = videoRef.value.getBoundingClientRect()
-      return { width: rect.width, height: rect.height, x: 0, y: 0 }
+      return { width: rect.width, height: rect.height, x: 0, y: 0, borderRadius: '0px' }
     }
 
     const getVideoTargetMetrics = () => {
@@ -52,7 +52,8 @@ onMounted(() => {
         width: boxRect.width,
         height: boxRect.height,
         x: boxCenterX - videoCenterX,
-        y: boxCenterY - videoCenterY
+        y: boxCenterY - videoCenterY,
+        borderRadius: '20px'
       }
     }
 
@@ -184,7 +185,7 @@ onBeforeUnmount(() => {
         </div>
         <div ref="videoBoxRef" class="w-[94.5vh] max-w-full h-[53.7vh]"></div>
         <div ref="videoRef"
-          class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)]">
+          class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)] overflow-hidden">
           <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="dualVideo"
             :autoplay="false" :muted="true" :loop="false" :controls="false" />
         </div>
@@ -239,7 +240,7 @@ onBeforeUnmount(() => {
   pointer-events: none;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 }
 
 .video-layer {

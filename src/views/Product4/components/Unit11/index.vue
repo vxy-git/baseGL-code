@@ -59,7 +59,7 @@ const deviceSpecs2 = [
             :muted="true"
             :loop="false"
             :viewPlay="true"
-            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            class="scale-[1.2] w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">DUKES</div>
@@ -75,7 +75,7 @@ const deviceSpecs2 = [
             :muted="true"
             :loop="false"
             :viewPlay="true"
-            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            class="scale-[1.2] w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">DUKES</div>
