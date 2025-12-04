@@ -15,12 +15,20 @@ gsap.registerPlugin(ScrollTrigger)
 
 const sectionRef = ref(null)
 const imgBox = ref(null)
+const imageLayers = ref([])
 let tl
 
 onMounted(() => {
   if (!sectionRef.value || !imgBox.value) {
     return
   }
+
+  const resizeDuration = 1
+  const fadeTargets = (imageLayers.value || [])
+    .map((layer) => layer?.$el ?? layer)
+    .filter(Boolean)
+    .reverse()
+    .slice(0, 6)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -41,9 +49,18 @@ onMounted(() => {
       height: '100%',
       borderRadius: '60px',
       ease: 'none',
-      immediateRender: false
+      immediateRender: false,
+      duration: resizeDuration
     }
   )
+
+  if (fadeTargets.length) {
+    const step = resizeDuration / fadeTargets.length
+    fadeTargets.forEach((layer, index) => {
+      const startTime = index * step
+      tl.set(layer, { opacity: 0 }, startTime)
+    })
+  }
 })
 
 onUnmounted(() => {
@@ -58,7 +75,16 @@ onUnmounted(() => {
       <div class="size-[261px] relative">
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
-            <MediaAsset class="absolute inset-0 size-full object-cover" type="image" :src="logo" alt="" :lazy="false"  v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]" :key="index" />
+            <MediaAsset
+              ref="imageLayers"
+              class="absolute inset-0 size-full object-cover"
+              type="image"
+              :src="logo"
+              alt=""
+              :lazy="false"
+              v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]"
+              :key="index"
+            />
           </div>
         </div>
       </div>
