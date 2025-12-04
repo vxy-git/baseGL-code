@@ -10,6 +10,7 @@ const logo3 = '/assets/product4/unit9-3.jpg'
 const logo4 = '/assets/product4/unit9-4.jpg'
 const logo5 = '/assets/product4/unit9-5.jpg'
 const logo6 = '/assets/product4/unit9-6.jpg'
+const logoPool = [logo0, logo1, logo2, logo3, logo4, logo5, logo6];
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,7 +29,7 @@ onMounted(() => {
     .map((layer) => layer?.$el ?? layer)
     .filter(Boolean)
     .reverse()
-    .slice(0, 6)
+    .slice(0, logoPool.length - 1)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -75,16 +76,8 @@ onUnmounted(() => {
       <div class="size-[261px] relative">
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
-            <MediaAsset
-              ref="imageLayers"
-              class="absolute inset-0 size-full object-cover"
-              type="image"
-              :src="logo"
-              alt=""
-              :lazy="false"
-              v-for="(logo, index) in [logo0, logo1, logo2, logo3, logo4, logo5, logo6]"
-              :key="index"
-            />
+            <MediaAsset ref="imageLayers" class="absolute inset-0 size-full object-cover" type="image" :src="logo"
+              alt="" :lazy="false" v-for="(logo, index) in logoPool" :key="index" />
           </div>
         </div>
       </div>
