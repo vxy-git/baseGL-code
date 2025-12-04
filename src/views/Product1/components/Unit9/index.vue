@@ -54,16 +54,8 @@ const deviceSpecs = [
         </div>
       </div>
       <div class="w-[500px] h-[730px] relative">
-        <MediaAsset
-          class="absolute h-[750px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
-          type="video"
-          :src="specs"
-          :autoplay="false"
-          :muted="true"
-          :loop="true"
-          :controls="false"
-          :view-play="true"
-        />
+        <MediaAsset class="absolute h-[750px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+          type="video" :src="specs" :autoplay="false" :muted="true" :loop="true" :controls="false" :view-play="true" />
       </div>
     </div>
   </div>
@@ -86,5 +78,6 @@ const deviceSpecs = [
   font-style: normal;
   font-weight: 400;
   line-height: 69px;
+  white-space: nowrap;
 }
 </style>

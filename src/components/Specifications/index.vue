@@ -81,7 +81,7 @@ const deviceSpecs2 = [
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>
-      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
+      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -106,7 +106,8 @@ const deviceSpecs2 = [
 }
 
 .item {
-  width: 220px;
+  min-width: 220px;
+  padding: 0 10px;
   height: 80px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -119,6 +120,7 @@ const deviceSpecs2 = [
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    white-space: nowrap;
   }
 
   .value {
@@ -128,6 +130,7 @@ const deviceSpecs2 = [
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    white-space: nowrap;
   }
 }
 
