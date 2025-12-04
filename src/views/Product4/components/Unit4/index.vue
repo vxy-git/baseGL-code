@@ -9,6 +9,7 @@ const dualVideo = '/assets/product4/DUAL.mp4'
 const dualLogo = import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.svg'
 
 const sectionRef = ref(null)
+const spacerRef = ref(null)
 const maskRef = ref(null)
 const videoRef = ref(null)
 const videoBoxRef = ref(null)
@@ -17,6 +18,7 @@ const titleRef = ref(null)
 let ctx
 let refreshHandler
 let sectionFadeTween
+const getPinDuration = () => window.innerHeight * 2
 
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
@@ -56,19 +58,25 @@ onMounted(() => {
 
       const startMetrics = getVideoStartMetrics()
       const targetMetrics = getVideoTargetMetrics()
+      const pinDuration = getPinDuration()
 
       tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
           trigger: sectionRef.value,
-          start: 'center center',
-          end: () => '+=200%',
+          start: 'top top',
+          end: () => '+=' + pinDuration,
           pin: true,
           scrub: true,
+          pinSpacing: false,
           anticipatePin: 1,
           invalidateOnRefresh: true
         }
       })
+
+      if (spacerRef.value) {
+        spacerRef.value.style.height = `${pinDuration}px`
+      }
 
       if (maskRef.value) {
         tl.fromTo(
@@ -141,36 +149,53 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="w-screen h-screen">
-    <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
-      <div ref="titleRef" class="">
-        <div class="title">
-          Twice the performance,<br />
-          Triple the flavors.
+  <div class="unit4-wrapper">
+    <div ref="sectionRef" class="w-screen h-screen relative overflow-hidden unit4-section">
+      <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
+        <div ref="titleRef" class="">
+          <div class="title">
+            Twice the performance,<br />
+            Triple the flavors.
+          </div>
+          <div class="label mt-[32px] mb-[32px]">
+            Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing
+            users
+            to
+            switch between tastes or enjoy a mix of both.
+          </div>
         </div>
-        <div class="label mt-[32px] mb-[32px]">
-          Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing
-          users
-          to
-          switch between tastes or enjoy a mix of both.
+        <div ref="videoBoxRef" class="w-[94.5vh] max-w-full h-[53.7vh]"></div>
+        <div ref="videoRef"
+          class="video-layer absolute mt-[49px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)]">
+          <MediaAsset class="size-full object-cover" type="video" :src="dualVideo" :autoplay="false" :muted="true"
+            :loop="false" :controls="false" />
         </div>
-      </div>
-      <div ref="videoBoxRef" class="w-[1000px] max-w-full h-[580px]"></div>
-      <div ref="videoRef"
-        class="video-layer absolute mt-[49px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)]">
-        <MediaAsset class="size-full object-cover" type="video" :src="dualVideo" :autoplay="false" :muted="true"
-          :loop="false" :controls="false" />
-      </div>
-      <div ref="maskRef"
-        class="mask-layer w-[100vw] h-[calc(100vh-96px)] absolute left-1/2 top-1/2 mt-[48px] -translate-x-1/2 -translate-y-1/2"
-        :style="{backgroundImage: `url(${dualLogo})`, backgroundOrigin: 'cover', backgroundPosition: 'center'}">
+        <div ref="maskRef"
+          class="mask-layer w-[100vw] h-[calc(100vh-96px)] absolute left-1/2 top-1/2 mt-[48px] -translate-x-1/2 -translate-y-1/2"
+          :style="{backgroundImage: `url(${dualLogo})`, backgroundOrigin: 'cover', backgroundPosition: 'center'}">
+        </div>
       </div>
     </div>
+    <div ref="spacerRef" class="unit4-spacer"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.unit4-wrapper {
+  position: relative;
+}
+
+.unit4-section {
+  isolation: isolate;
+}
+
+.unit4-spacer {
+  width: 100%;
+  height: 0;
+}
+
 .title {
+  margin-top: 80px;
   color: #111;
   text-align: center;
   font-family: Roboto;

@@ -8,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const unitRef = ref(null)
 const innerRef = ref(null)
 const trackRef = ref(null)
-const panels = 4
 const moveDuration = 1
 const pauseDuration = 1
 let ctx
@@ -39,12 +38,13 @@ onMounted(() => {
         0
       )
 
-    const endDistance = () =>
-      window.innerHeight *
-      (
+    const endDistance = () => {
+      const panelsCount = trackRef.value?.querySelectorAll('.unit6-panel').length || 1
+      return window.innerHeight * (
         1 + // first fade-only segment
-        (panels - 1) * ((moveDuration + pauseDuration) / moveDuration)
+        (Math.max(panelsCount, 1) - 1) * ((moveDuration + pauseDuration) / moveDuration)
       )
+    }
 
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
