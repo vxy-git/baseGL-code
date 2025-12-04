@@ -38,7 +38,7 @@ export default defineConfig({
     },
     server: {
         port: 3002,
-        open: false
+        open: false,
     },
     css: {
         preprocessorOptions: {

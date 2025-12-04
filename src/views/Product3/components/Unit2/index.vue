@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import unitImg1 from '@/assets/product3/unit2-1.jpg'
-import unitImg2 from '@/assets/product3/unit2-2.jpg'
+const unitImg1 = 'https://img.cloudcode.ink/assets/product3/unit2-1.jpg'
+const unitImg2 = 'https://img.cloudcode.ink/assets/product3/unit2-2.jpg'
 </script>
 
 <template>

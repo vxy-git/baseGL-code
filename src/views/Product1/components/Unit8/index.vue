@@ -3,11 +3,11 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { useIntersectionObserver } from "@vueuse/core";
 import MediaAsset from "@/components/MediaAsset.vue";
-import bannerImg1 from "@/assets/product1/realize1.jpg";
-import bannerImg2 from "@/assets/product1/realize2.jpg";
-import bannerImg3 from "@/assets/product1/realize3.jpg";
-import bannerImg4 from "@/assets/product1/realize4.jpg";
-import arrowImg from '@/assets/img/icon4_active.png'
+const bannerImg1 = 'https://img.cloudcode.ink/assets/product1/realize1.jpg';
+const bannerImg2 = 'https://img.cloudcode.ink/assets/product1/realize2.jpg';
+const bannerImg3 = 'https://img.cloudcode.ink/assets/product1/realize3.jpg';
+const bannerImg4 = 'https://img.cloudcode.ink/assets/product1/realize4.jpg';
+const arrowImg = 'https://img.cloudcode.ink/assets/img/icon4_active.png'
 
 const list = [
   { type: 'image', src: bannerImg1, alt: 'Design 1' },

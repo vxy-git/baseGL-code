@@ -1,9 +1,9 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import product1_best_L from '@/assets/product1/best-L.mp4';
-import product1_best_R from '@/assets/product1/best-R.mp4';
-import product1_no_L from '@/assets/product1/no-L.mp4';
-import product1_no_R from '@/assets/product1/no-R.mp4';
+const product1_best_L = 'https://img.cloudcode.ink/assets/product1/best-L.mp4';
+const product1_best_R = 'https://img.cloudcode.ink/assets/product1/best-R.mp4';
+const product1_no_L = 'https://img.cloudcode.ink/assets/product1/no-L.mp4';
+const product1_no_R = 'https://img.cloudcode.ink/assets/product1/no-R.mp4';
 import { ref } from 'vue';
 
 const progress1 = ref(0);

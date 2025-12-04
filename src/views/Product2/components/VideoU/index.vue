@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import videoSrc from '@/assets/product2/the.mp4'
-import arrowIcon from '@/assets/product2/arrow.svg'
+const videoSrc = 'https://img.cloudcode.ink/assets/product2/the.mp4'
+const arrowIcon = 'https://img.cloudcode.ink/assets/product2/arrow.svg'
 </script>
 
 <template>

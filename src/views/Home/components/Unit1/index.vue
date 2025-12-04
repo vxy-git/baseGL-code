@@ -20,11 +20,11 @@ const splideOptions = {
 }
 
 import MediaAsset from '@/components/MediaAsset.vue'
-import banner1 from '@/assets/home/Banner-1-UNIVERSE.mp4'
-import banner2 from '@/assets/home/Banner-2-UNICORN.mp4'
-import banner3 from '@/assets/home/Banner-3-UNIT.mp4'
-import banner4 from '@/assets/home/Banner-4-DUKES.mp4'
-import btnIcon from '@/assets/img/icon2.png'
+const banner1 = 'https://img.cloudcode.ink/assets/home/Banner-1-UNIVERSE.mp4'
+const banner2 = 'https://img.cloudcode.ink/assets/home/Banner-2-UNICORN.mp4'
+const banner3 = 'https://img.cloudcode.ink/assets/home/Banner-3-UNIT.mp4'
+const banner4 = 'https://img.cloudcode.ink/assets/home/Banner-4-DUKES.mp4'
+const btnIcon = 'https://img.cloudcode.ink/assets/img/icon2.png'
 
 const router = useRouter()
 

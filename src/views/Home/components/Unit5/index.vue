@@ -4,18 +4,18 @@ import Item from "./components/Item/index.vue";
 import {ref, onMounted, onUnmounted} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-import news1 from '@/assets/home/new/1.jpg'
-import news2 from '@/assets/home/new/2.jpg'
-import news3 from '@/assets/home/new/3.jpg'
-import news4 from '@/assets/home/new/4.jpg'
-import news5 from '@/assets/home/new/5.jpg'
-import news6 from '@/assets/home/new/6.jpg'
-import news7 from '@/assets/home/new/7.jpg'
-import news8 from '@/assets/home/new/8.jpg'
-import news9 from '@/assets/home/new/9.jpg'
-import news10 from '@/assets/home/new/10.jpg'
-import news11 from '@/assets/home/new/11.jpg'
-import arrowImg from '@/assets/img/icon4_active.png'
+const news1 = 'https://img.cloudcode.ink/assets/home/new/1.jpg'
+const news2 = 'https://img.cloudcode.ink/assets/home/new/2.jpg'
+const news3 = 'https://img.cloudcode.ink/assets/home/new/3.jpg'
+const news4 = 'https://img.cloudcode.ink/assets/home/new/4.jpg'
+const news5 = 'https://img.cloudcode.ink/assets/home/new/5.jpg'
+const news6 = 'https://img.cloudcode.ink/assets/home/new/6.jpg'
+const news7 = 'https://img.cloudcode.ink/assets/home/new/7.jpg'
+const news8 = 'https://img.cloudcode.ink/assets/home/new/8.jpg'
+const news9 = 'https://img.cloudcode.ink/assets/home/new/9.jpg'
+const news10 = 'https://img.cloudcode.ink/assets/home/new/10.jpg'
+const news11 = 'https://img.cloudcode.ink/assets/home/new/11.jpg'
+const arrowImg = 'https://img.cloudcode.ink/assets/img/icon4_active.png'
 
 const list = [
   { type: 'image', img: news1, title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024' },

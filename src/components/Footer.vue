@@ -22,7 +22,7 @@
           <div class="footer-column">
             <h4 class="footer-heading">Technology</h4>
             <ul class="footer-links">
-              <li><RouterLink to="/technology">Product Support</RouterLink></li>
+              <li><RouterLink to="/technology">UNICORE</RouterLink></li>
               <!-- <li><a href="#">Repair Service</a></li>
               <li><a href="#">After-Sales Policy</a></li>
               <li><a href="#">Care Service</a></li>

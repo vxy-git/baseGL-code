@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import icon38 from '@/assets/img/icon38.png'
+const icon38 = 'https://img.cloudcode.ink/assets/img/icon38.png'
 </script>
 
 <template>

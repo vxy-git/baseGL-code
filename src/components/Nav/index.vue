@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { tabsList, productsData } from '@/data/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import iconArrow from '@/assets/img/icon42.png'
+const iconArrow = 'https://img.cloudcode.ink/assets/img/icon42.png'
 
 // 当前激活的分类 ID
 const activeCategoryId = ref(1)

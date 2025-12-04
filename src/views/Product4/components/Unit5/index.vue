@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import videoSrc from '@/assets/product4/Dual-Gemco-Core.mp4'
+const videoSrc = 'https://img.cloudcode.ink/assets/product4/Dual-Gemco-Core.mp4'
 </script>
 
 <template>

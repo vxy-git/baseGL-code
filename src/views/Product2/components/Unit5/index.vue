@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import UNIVERSE from '@/assets/product2/UNIVERSE.mp4';
-import NIVERSE_PRO from '@/assets/product2/NIVERSE_PRO.mp4';
+const UNIVERSE = 'https://img.cloudcode.ink/assets/product2/UNIVERSE.mp4';
+const NIVERSE_PRO = 'https://img.cloudcode.ink/assets/product2/NIVERSE_PRO.mp4';
 
 
 const deviceSpecs1 = [

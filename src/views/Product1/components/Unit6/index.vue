@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import product1_inhale_L from '@/assets/product1/inhale-L.mp4'
-import product1_inhale_R from '@/assets/product1/inhale-R.mp4'
+const product1_inhale_L = 'https://img.cloudcode.ink/assets/product1/inhale-L.mp4'
+const product1_inhale_R = 'https://img.cloudcode.ink/assets/product1/inhale-R.mp4'
 </script>
 
 <template>

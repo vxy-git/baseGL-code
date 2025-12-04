@@ -1,6 +1,6 @@
 <script setup>
-import UNIVERSE from '@/assets/product4/UNICORN.mp4';
-import NIVERSE_PRO from '@/assets/product4/UNICORN-PRO.mp4';
+const UNIVERSE = 'https://img.cloudcode.ink/assets/product4/UNICORN.mp4';
+const NIVERSE_PRO = 'https://img.cloudcode.ink/assets/product4/UNICORN-PRO.mp4';
 
 import MediaAsset from '@/components/MediaAsset.vue';
 

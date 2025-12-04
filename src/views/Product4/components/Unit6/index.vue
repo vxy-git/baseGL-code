@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import leftVideo from '@/assets/product4/unit5-l.mp4'
-import rightVideo from '@/assets/product4/unit5-r.mp4'
+const leftVideo = 'https://img.cloudcode.ink/assets/product4/unit5-l.mp4'
+const rightVideo = 'https://img.cloudcode.ink/assets/product4/unit5-r.mp4'
 </script>
 
 <template>

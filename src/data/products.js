@@ -1,17 +1,17 @@
-import BLENDER from '@/assets/list/D9_Distillate/BLENDER.jpg'
-import BLENDER_HOVER from '@/assets/list/D9_Distillate/BLENDER-hover.jpg'
+const BLENDER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/BLENDER.jpg'
+const BLENDER_HOVER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/BLENDER-hover.jpg'
 
-import DUKES from '@/assets/list/D9_Distillate/DUKES.jpg'
-import DUKES_HOVER from '@/assets/list/D9_Distillate/DUKES-hover.jpg'
+const DUKES = 'https://img.cloudcode.ink/assets/list/D9_Distillate/DUKES.jpg'
+const DUKES_HOVER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/DUKES-hover.jpg'
 
-import UNICORN_Series from '@/assets/list/For_ResinRosin/UNICORN-Series.jpg'
-import UNICORN_Series_HOVER from '@/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg'
+const UNICORN_Series = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNICORN-Series.jpg'
+const UNICORN_Series_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg'
 
-import UNIT_PRO from '@/assets/list/For_ResinRosin/UNIT-PRO.jpg'
-import UNIT_PRO_HOVER from '@/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
+const UNIT_PRO = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIT-PRO.jpg'
+const UNIT_PRO_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
 
-import UNIVERSE_Series from '@/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
-import UNIVERSE_Series_HOVER from '@/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
+const UNIVERSE_Series = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
+const UNIVERSE_Series_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
 
 /**
  * @typedef {Object} Product

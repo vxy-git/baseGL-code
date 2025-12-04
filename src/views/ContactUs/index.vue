@@ -3,11 +3,11 @@ import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-import heroBanner from '@/assets/contact/banner.jpg'
-import heroBannerMobile from '@/assets/contact/m_banner.jpg'
-import iconInstagram from '@/assets/img/icon44.png'
-import iconDropdown from '@/assets/img/icon46.png'
-import iconProduct from '@/assets/img/icon45.png'
+const heroBanner = 'https://img.cloudcode.ink/assets/contact/banner.jpg'
+const heroBannerMobile = 'https://img.cloudcode.ink/assets/contact/m_banner.jpg'
+const iconInstagram = 'https://img.cloudcode.ink/assets/img/icon44.png'
+const iconDropdown = 'https://img.cloudcode.ink/assets/img/icon46.png'
+const iconProduct = 'https://img.cloudcode.ink/assets/img/icon45.png'
 
 const formData = ref({
   name: '',

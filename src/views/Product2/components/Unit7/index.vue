@@ -3,9 +3,9 @@ import Tabs from "./Tabs/index.vue";
 import { ref, watch, nextTick } from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-import every1 from '@/assets/product2/every_Crystal-clear-Design.jpg'
-import every2 from '@/assets/product2/every_Unibody-Enclosure.mp4'
-import every3 from '@/assets/product2/every_Medical-grade-Chamber.jpg'
+const every1 = 'https://img.cloudcode.ink/assets/product2/every_Crystal-clear-Design.jpg'
+const every2 = 'https://img.cloudcode.ink/assets/product2/every_Unibody-Enclosure.mp4'
+const every3 = 'https://img.cloudcode.ink/assets/product2/every_Medical-grade-Chamber.jpg'
 
 const tabsCurrent = ref(0)
 const tabsList = [

@@ -1,10 +1,10 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 
-import videoTemp from '@/assets/product4/3-Temperature-Control.mp4'
-import videoBattery from '@/assets/product4/Battery-Life-Monitor.mp4'
-import videoPreheat from '@/assets/product4/Preheat-Status-Indication.mp4'
-import videoPuff from '@/assets/product4/Puff-Counter.mp4'
+const videoTemp = 'https://img.cloudcode.ink/assets/product4/3-Temperature-Control.mp4'
+const videoBattery = 'https://img.cloudcode.ink/assets/product4/Battery-Life-Monitor.mp4'
+const videoPreheat = 'https://img.cloudcode.ink/assets/product4/Preheat-Status-Indication.mp4'
+const videoPuff = 'https://img.cloudcode.ink/assets/product4/Puff-Counter.mp4'
 </script>
 
 <template>

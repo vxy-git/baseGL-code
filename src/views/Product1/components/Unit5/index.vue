@@ -1,7 +1,7 @@
 <script setup>
-import Smooth_yet_Rugged_Design from '@/assets/product1/Smooth_yet_Rugged_Design.jpg'
-import Dual_Color_Mouthpiece from '@/assets/product1/Dual_Color_Mouthpiece.jpg'
-import Large_Side_Display from '@/assets/product1/Large_Side_Display.jpg'
+const Smooth_yet_Rugged_Design = 'https://img.cloudcode.ink/assets/product1/Smooth_yet_Rugged_Design.jpg'
+const Dual_Color_Mouthpiece = 'https://img.cloudcode.ink/assets/product1/Dual_Color_Mouthpiece.jpg'
+const Large_Side_Display = 'https://img.cloudcode.ink/assets/product1/Large_Side_Display.jpg'
 import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";

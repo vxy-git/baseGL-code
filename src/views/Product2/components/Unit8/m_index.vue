@@ -1,11 +1,11 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import realize1 from '@/assets/product2/realize1.jpg'
-import realize2 from '@/assets/product2/realize2.jpg'
-import realize3 from '@/assets/product2/realize3.jpg'
-import realize4 from '@/assets/product2/realize4.jpg'
-import realize5 from '@/assets/product2/realize5.jpg'
-import realize6 from '@/assets/product2/realize6.jpg'
+const realize1 = 'https://img.cloudcode.ink/assets/product2/realize1.jpg'
+const realize2 = 'https://img.cloudcode.ink/assets/product2/realize2.jpg'
+const realize3 = 'https://img.cloudcode.ink/assets/product2/realize3.jpg'
+const realize4 = 'https://img.cloudcode.ink/assets/product2/realize4.jpg'
+const realize5 = 'https://img.cloudcode.ink/assets/product2/realize5.jpg'
+const realize6 = 'https://img.cloudcode.ink/assets/product2/realize6.jpg'
 
 </script>
 

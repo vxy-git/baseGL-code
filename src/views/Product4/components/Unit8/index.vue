@@ -1,6 +1,6 @@
 <script setup>
-import logoSrc1 from '@/assets/product4/unit6-1.jpg'
-import logoSrc2 from '@/assets/product4/unit6-2.jpg'
+const logoSrc1 = 'https://img.cloudcode.ink/assets/product4/unit6-1.jpg'
+const logoSrc2 = 'https://img.cloudcode.ink/assets/product4/unit6-2.jpg'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'

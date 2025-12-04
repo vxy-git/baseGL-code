@@ -1,10 +1,10 @@
 <template>
-  <CdnImage v-if="isImage" v-bind="$attrs" :src="src" :alt="alt" :cdnUrl="cdnUrl" :lazy="lazy" />
+  <CdnImage v-if="isImage" v-bind="$attrs" :src="resolvedSrc" :alt="alt" :cdnUrl="resolvedCdnUrl" :lazy="lazy" />
   <video
     v-else
     ref="videoEl"
     v-bind="$attrs"
-    :src="src"
+    :src="resolvedSrc"
     :poster="poster"
     :autoplay="effectiveAutoplay"
     :muted="muted"
@@ -22,11 +22,13 @@ import { computed, ref, defineExpose, watch, onMounted, onBeforeUnmount } from '
 import CdnImage from './CdnImage.vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 
+const DEFAULT_CDN_URL = 'https://img.cloudcode.ink'
+
 const props = defineProps({
   type: { type: String, required: true },
   src: { type: String, required: true },
   alt: { type: String, default: '' },
-  cdnUrl: { type: String, default: '' },
+  cdnUrl: { type: String, default: DEFAULT_CDN_URL },
   lazy: { type: Boolean, default: false },
   poster: { type: String, default: '' },
   controls: { type: Boolean, default: true },
@@ -38,6 +40,16 @@ const props = defineProps({
 })
 
 const isImage = computed(() => props.type === 'image')
+const resolvedCdnUrl = computed(() => props.cdnUrl || DEFAULT_CDN_URL)
+
+const isAbsoluteSrc = (value = '') => /^(https?:)?\/\//.test(value) || /^(data|blob):/.test(value)
+const normalizePath = (value = '') => value.startsWith('/') ? value : `/${value}`
+const resolvedSrc = computed(() => {
+  if (isAbsoluteSrc(props.src)) return props.src
+  const base = resolvedCdnUrl.value.replace(/\/+$/, '')
+  const path = normalizePath(props.src).replace(/^\/+/, '/')
+  return `${base}${path}`
+})
 
 const videoEl = ref(null)
 const intersectionObserver = ref(null)

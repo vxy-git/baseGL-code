@@ -1,6 +1,6 @@
 <script setup>
-import unit3_l from '@/assets/product3/unit3-l.mp4'
-import unit3_r from '@/assets/product3/unit3-r.mp4'
+const unit3_l = 'https://img.cloudcode.ink/assets/product3/unit3-l.mp4'
+const unit3_r = 'https://img.cloudcode.ink/assets/product3/unit3-r.mp4'
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 

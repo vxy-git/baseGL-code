@@ -13,8 +13,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
 import { FastImageSequence } from "@mediamonks/fast-image-sequence";
+
+const DEFAULT_CDN_URL = "https://img.cloudcode.ink";
 
 // Props 按 tar 的 API 完全匹配
 const props = defineProps({
@@ -26,7 +28,19 @@ const props = defineProps({
   loop: { type: Boolean, default: false },
   useScroll: { type: Boolean, default: false },
   scrollHeight: { type: String, default: "200vh" },
+  cdnUrl: { type: String, default: DEFAULT_CDN_URL },
 });
+
+const resolvedCdnUrl = computed(() => props.cdnUrl || DEFAULT_CDN_URL);
+const isAbsolute = (val = "") => /^(https?:)?\/\//.test(val) || /^(data|blob):/.test(val);
+const normalizePath = (val = "") => (val.startsWith("/") ? val : `/${val}`).replace(/^\/+/, "/");
+const withCdn = (val = "") => {
+  if (isAbsolute(val)) return val;
+  const base = resolvedCdnUrl.value.replace(/\/+$/, "");
+  const path = normalizePath(val);
+  return `${base}${path}`;
+};
+const getImagePath = (index) => props.imageURL(index);
 
 const wrapper = ref(null);
 const scrollBox = ref(null);
@@ -47,8 +61,9 @@ onMounted(async () => {
     frames: props.frames,
     src: [
       {
-        tarURL: props.tarURL,
-        imageURL: props.imageURL,
+        tarURL: withCdn(props.tarURL),
+        // imageURL 需与 tar 内路径一致，这里不追加 CDN 前缀
+        imageURL: getImagePath,
       },
     ],
     loop: props.loop,

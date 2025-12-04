@@ -1,5 +1,5 @@
 <script setup>
-import m1 from '@/assets/product2/gsap/m1.jpg'
+const m1 = 'https://img.cloudcode.ink/assets/product2/gsap/m1.jpg'
 
 </script>
 

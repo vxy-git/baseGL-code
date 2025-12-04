@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import videoSrc from '@/assets/product1/banner.mp4';
+const videoSrc = 'https://img.cloudcode.ink/assets/product1/banner.mp4';
 
 </script>
 
