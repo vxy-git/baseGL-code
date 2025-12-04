@@ -4,8 +4,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const iconFlavor = 'https://img.cloudcode.ink/assets/img/icon19.png'
-const iconDevice = 'https://img.cloudcode.ink/assets/img/icon18.png'
+const iconFlavor = '/assets/img/icon19.png'
+const iconDevice = '/assets/img/icon18.png'
 
 gsap.registerPlugin(ScrollTrigger)
 

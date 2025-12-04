@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon38 = 'https://img.cloudcode.ink/assets/img/icon38.png'
+const icon38 = '/assets/img/icon38.png'
 </script>
 
 <template>
@@ -27,6 +27,7 @@ const icon38 = 'https://img.cloudcode.ink/assets/img/icon38.png'
 
 <style scoped lang="scss">
 .title{
+  width: 100%;
   text-align: center;
   font-family: Roboto;
   font-size: 80px;

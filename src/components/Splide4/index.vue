@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import { productsData } from '@/data/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrowImg = 'https://img.cloudcode.ink/assets/img/icon4_active.png'
+const arrowImg = '/assets/img/icon4_active.png'
 
 // Splide 状态管理
 const splideRef = ref(null)

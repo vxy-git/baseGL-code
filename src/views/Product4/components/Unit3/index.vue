@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const dualVideo = 'https://img.cloudcode.ink/assets/product4/DUAL.mp4'
+const dualVideo = '/assets/product4/DUAL.mp4'
 </script>
 
 <template>

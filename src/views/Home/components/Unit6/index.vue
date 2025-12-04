@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const bgSrc = 'https://img.cloudcode.ink/assets/home/Beyond-Limits-bg.jpg'
-const videoSrc = 'https://img.cloudcode.ink/assets/video/home5.mp4'
+const bgSrc = '/assets/home/Beyond-Limits-bg.jpg'
+const videoSrc = '/assets/video/home5.mp4'
 
 const isPlaying = ref(false)
 

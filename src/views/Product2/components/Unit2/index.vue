@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const unitImg = 'https://img.cloudcode.ink/assets/product2/unit2.png'
+const unitImg = '/assets/product2/unit2.png'
 
 const smoothnessWords = ['smoothness', 'purity', 'perfection', 'UNIVERSE']
 const marqueeItems = [...smoothnessWords]

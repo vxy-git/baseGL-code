@@ -1,8 +1,8 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrowLeft = 'https://img.cloudcode.ink/assets/img/icon4.png'
-const arrowRight = 'https://img.cloudcode.ink/assets/img/icon4_active.png'
-const cardImg = 'https://img.cloudcode.ink/assets/img/icon25.png'
+const arrowLeft = '/assets/img/icon4.png'
+const arrowRight = '/assets/img/icon4_active.png'
+const cardImg = '/assets/img/icon25.png'
 </script>
 
 <template>

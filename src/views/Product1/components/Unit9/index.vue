@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const specs = 'https://img.cloudcode.ink/assets/product1/specs.mp4'
+const specs = '/assets/product1/specs.mp4'
 const deviceSpecs = [
   {
     label: 'Dimension(mm)',

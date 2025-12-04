@@ -5,7 +5,7 @@ import ProductItem from "@/components/ProductItem/index.vue"
 import { tabsList, productsData } from "@/data/products"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrowImg = 'https://img.cloudcode.ink/assets/img/icon4_active.png'
+const arrowImg = '/assets/img/icon4_active.png'
 
 const tabsCurrent = ref(0)
 const products = computed(() => productsData[tabsCurrent.value] || [])

@@ -1,11 +1,11 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const ConsistentTR = 'https://img.cloudcode.ink/assets/product2/consistent-TR.mp4'
-const ConsistentBR = 'https://img.cloudcode.ink/assets/product2/consistent-BR.mp4'
-const ConsistentBL = 'https://img.cloudcode.ink/assets/product2/consistent-BL.mp4'
+const ConsistentTR = '/assets/product2/consistent-TR.mp4'
+const ConsistentBR = '/assets/product2/consistent-BR.mp4'
+const ConsistentBL = '/assets/product2/consistent-BL.mp4'
 
-const vl = 'https://img.cloudcode.ink/assets/product2/no-L.mp4'
-const vr = 'https://img.cloudcode.ink/assets/product2/no-R.mp4'
+const vl = '/assets/product2/no-L.mp4'
+const vr = '/assets/product2/no-R.mp4'
 </script>
 
 <template>

@@ -3,12 +3,12 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaAsset from '@/components/MediaAsset.vue'
-const realize1 = 'https://img.cloudcode.ink/assets/product2/realize1.jpg'
-const realize2 = 'https://img.cloudcode.ink/assets/product2/realize2.jpg'
-const realize3 = 'https://img.cloudcode.ink/assets/product2/realize3.jpg'
-const realize4 = 'https://img.cloudcode.ink/assets/product2/realize4.jpg'
-const realize5 = 'https://img.cloudcode.ink/assets/product2/realize5.jpg'
-const realize6 = 'https://img.cloudcode.ink/assets/product2/realize6.jpg'
+const realize1 = '/assets/product2/realize1.jpg'
+const realize2 = '/assets/product2/realize2.jpg'
+const realize3 = '/assets/product2/realize3.jpg'
+const realize4 = '/assets/product2/realize4.jpg'
+const realize5 = '/assets/product2/realize5.jpg'
+const realize6 = '/assets/product2/realize6.jpg'
 
 gsap.registerPlugin(ScrollTrigger);
 

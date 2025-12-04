@@ -5,10 +5,10 @@ import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import ProductItem from "@/components/ProductItem/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-const logoDefault = 'https://img.cloudcode.ink/assets/img/icon11.png'
-const logoActive = 'https://img.cloudcode.ink/assets/img/icon11_active.png'
-const searchDefault = 'https://img.cloudcode.ink/assets/img/icon12.png'
-const searchActive = 'https://img.cloudcode.ink/assets/img/icon12_active.png'
+const logoDefault = '/assets/img/icon11.png'
+const logoActive = '/assets/img/icon11_active.png'
+const searchDefault = '/assets/img/icon12.png'
+const searchActive = '/assets/img/icon12_active.png'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { tabsList, productsData } from '@/data/products'
 

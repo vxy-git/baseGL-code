@@ -1,8 +1,8 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const l1 = 'https://img.cloudcode.ink/assets/technology/t3/l1.mp4'
-const r1 = 'https://img.cloudcode.ink/assets/technology/t3/r1.mp4'
-const r2 = 'https://img.cloudcode.ink/assets/technology/t3/r2.mp4'
+const l1 = '/assets/technology/t3/l1.mp4'
+const r1 = '/assets/technology/t3/r1.mp4'
+const r2 = '/assets/technology/t3/r2.mp4'
 </script>
 
 <template>

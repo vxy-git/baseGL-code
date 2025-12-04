@@ -1,13 +1,13 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const screenBg1 = 'https://img.cloudcode.ink/assets/product4/screen-bg-1.png'
-const screen1 = 'https://img.cloudcode.ink/assets/product4/screen1.png'
-const screen2 = 'https://img.cloudcode.ink/assets/product4/screen2.png'
-const screen3 = 'https://img.cloudcode.ink/assets/product4/screen3.png'
-const screen4 = 'https://img.cloudcode.ink/assets/product4/screen4.png'
-const screen5 = 'https://img.cloudcode.ink/assets/product4/screen5.png'
-const screen6 = 'https://img.cloudcode.ink/assets/product4/screen6.png'
+const screenBg1 = '/assets/product4/screen-bg-1.png'
+const screen1 = '/assets/product4/screen1.png'
+const screen2 = '/assets/product4/screen2.png'
+const screen3 = '/assets/product4/screen3.png'
+const screen4 = '/assets/product4/screen4.png'
+const screen5 = '/assets/product4/screen5.png'
+const screen6 = '/assets/product4/screen6.png'
 
 const list = [screen1, screen2, screen3, screen4, screen5, screen6]
 

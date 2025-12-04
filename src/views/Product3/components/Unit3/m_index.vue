@@ -1,9 +1,9 @@
 <script setup>
 import MediaAsset from "@/components/MediaAsset.vue";
-const arrow = 'https://img.cloudcode.ink/assets/product3/arrow.svg'
-const m1 = 'https://img.cloudcode.ink/assets/product3/unit3/m1.jpg'
-const m2 = 'https://img.cloudcode.ink/assets/product3/unit3/m2.jpg'
-const m3 = 'https://img.cloudcode.ink/assets/product3/unit3/m3.jpg'
+const arrow = '/assets/product3/arrow.svg'
+const m1 = '/assets/product3/unit3/m1.jpg'
+const m2 = '/assets/product3/unit3/m2.jpg'
+const m3 = '/assets/product3/unit3/m3.jpg'
 </script>
 
 <template>

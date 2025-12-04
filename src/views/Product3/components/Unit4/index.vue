@@ -1,10 +1,10 @@
 <script setup>
-const unit4Bg = 'https://img.cloudcode.ink/assets/product3/unit4.jpg'
+const unit4Bg = '/assets/product3/unit4.jpg'
 import MediaAsset from '@/components/MediaAsset.vue'
-const leftVideoSrc = 'https://img.cloudcode.ink/assets/product3/unit5-l.mp4'
-const rightVideoSrc = 'https://img.cloudcode.ink/assets/product3/unit5-r.mp4'
-const arrow = 'https://img.cloudcode.ink/assets/product3/arrow.svg'
-const unitImg = 'https://img.cloudcode.ink/assets/product3/unit4-2.jpg'
+const leftVideoSrc = '/assets/product3/unit5-l.mp4'
+const rightVideoSrc = '/assets/product3/unit5-r.mp4'
+const arrow = '/assets/product3/arrow.svg'
+const unitImg = '/assets/product3/unit4-2.jpg'
 </script>
 
 <template>

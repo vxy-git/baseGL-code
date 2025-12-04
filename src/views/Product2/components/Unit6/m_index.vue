@@ -1,7 +1,7 @@
 <script setup>
-const pack1Src = 'https://img.cloudcode.ink/assets/product2/plck1.jpg'
-const pack2Src = 'https://img.cloudcode.ink/assets/product2/plck2.mp4'
-const pack3Src = 'https://img.cloudcode.ink/assets/product2/plck3.png'
+const pack1Src = '/assets/product2/plck1.jpg'
+const pack2Src = '/assets/product2/plck2.mp4'
+const pack3Src = '/assets/product2/plck3.png'
 </script>
 
 <template>

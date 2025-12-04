@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-const mouthpieceVideo = 'https://img.cloudcode.ink/assets/home/svg/1-Mouthpiece.mp4'
-const oilWindowVideo = 'https://img.cloudcode.ink/assets/home/svg/2-Oil Windos.mp4'
-const functionInterfaceVideo = 'https://img.cloudcode.ink/assets/home/svg/3-Function and Interface.mp4'
-const buttonVideo = 'https://img.cloudcode.ink/assets/home/svg/4-Button.mp4'
-const stickerVideo = 'https://img.cloudcode.ink/assets/home/svg/5-Sticker.mp4'
-const housingVideo = 'https://img.cloudcode.ink/assets/home/svg/6-Housing.mp4'
+const mouthpieceVideo = '/assets/home/svg/1-Mouthpiece.mp4'
+const oilWindowVideo = '/assets/home/svg/2-Oil Windos.mp4'
+const functionInterfaceVideo = '/assets/home/svg/3-Function and Interface.mp4'
+const buttonVideo = '/assets/home/svg/4-Button.mp4'
+const stickerVideo = '/assets/home/svg/5-Sticker.mp4'
+const housingVideo = '/assets/home/svg/6-Housing.mp4'
 
 const unitBoxRef = ref(null)
 const playPath = ref(false)

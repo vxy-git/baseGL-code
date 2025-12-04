@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const bannerImg = 'https://img.cloudcode.ink/assets/home/UNICORE.jpg'
+const bannerImg = '/assets/home/UNICORE.jpg'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

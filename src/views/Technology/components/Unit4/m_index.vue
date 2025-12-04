@@ -1,9 +1,9 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon19 = 'https://img.cloudcode.ink/assets/img/icon19.png'
-const m2 = 'https://img.cloudcode.ink/assets/technology/t2/m2.mp4'
-const m1 = 'https://img.cloudcode.ink/assets/technology/t2/m1.jpg'
-const bgVideo = 'https://img.cloudcode.ink/assets/technology/t2/bg.mp4'
+const icon19 = '/assets/img/icon19.png'
+const m2 = '/assets/technology/t2/m2.mp4'
+const m1 = '/assets/technology/t2/m1.jpg'
+const bgVideo = '/assets/technology/t2/bg.mp4'
 </script>
 
 <template>

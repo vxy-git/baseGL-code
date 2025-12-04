@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrow = 'https://img.cloudcode.ink/assets/product3/arrow.svg'
+const arrow = '/assets/product3/arrow.svg'
 
 gsap.registerPlugin(ScrollTrigger)
 

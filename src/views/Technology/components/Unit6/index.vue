@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const b3 = 'https://img.cloudcode.ink/assets/technology/b3.mp4'
+const b3 = '/assets/technology/b3.mp4'
 
 gsap.registerPlugin(ScrollTrigger)
 

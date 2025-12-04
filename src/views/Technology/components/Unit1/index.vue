@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon1_3 = 'https://img.cloudcode.ink/assets/img/icon1_3.png'
-const Playone = 'https://img.cloudcode.ink/assets/img/Play-one.png'
-const videoSrc = 'https://img.cloudcode.ink/assets/technology/banner.mp4'
-const bannerBg = 'https://img.cloudcode.ink/assets/technology/bannerBg.mp4'
+const icon1_3 = '/assets/img/icon1_3.png'
+const Playone = '/assets/img/Play-one.png'
+const videoSrc = '/assets/technology/banner.mp4'
+const bannerBg = '/assets/technology/bannerBg.mp4'
 
 const showVideo = ref(false)
 </script>

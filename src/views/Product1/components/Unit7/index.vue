@@ -1,14 +1,14 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const one_R = 'https://img.cloudcode.ink/assets/product1/one-R.mp4'
-const upgrade1 = 'https://img.cloudcode.ink/assets/product1/unit7/3_Temperature_Control.mp4'
-const upgrade2 = 'https://img.cloudcode.ink/assets/product1/unit7/Activation_Indication.mp4'
-const upgrade3 = 'https://img.cloudcode.ink/assets/product1/unit7/Battery_Life_Monitor.mp4'
-const upgrade4 = 'https://img.cloudcode.ink/assets/product1/unit7/Preheat_Status_Indication.mp4'
-const tap1 = 'https://img.cloudcode.ink/assets/product1/one-taps1.png'
-const tap2 = 'https://img.cloudcode.ink/assets/product1/one-taps2.png'
-const tap3 = 'https://img.cloudcode.ink/assets/product1/one-taps3.png'
-const tap4 = 'https://img.cloudcode.ink/assets/product1/one-taps4.png'
+const one_R = '/assets/product1/one-R.mp4'
+const upgrade1 = '/assets/product1/unit7/3_Temperature_Control.mp4'
+const upgrade2 = '/assets/product1/unit7/Activation_Indication.mp4'
+const upgrade3 = '/assets/product1/unit7/Battery_Life_Monitor.mp4'
+const upgrade4 = '/assets/product1/unit7/Preheat_Status_Indication.mp4'
+const tap1 = '/assets/product1/one-taps1.png'
+const tap2 = '/assets/product1/one-taps2.png'
+const tap3 = '/assets/product1/one-taps3.png'
+const tap4 = '/assets/product1/one-taps4.png'
 
 
 

@@ -1,10 +1,10 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const iconFlavor = 'https://img.cloudcode.ink/assets/img/icon19.png'
-const iconDevice = 'https://img.cloudcode.ink/assets/img/icon18.png'
-const m1 = 'https://img.cloudcode.ink/assets/product1/unit3/m1.jpg'
-const m2 = 'https://img.cloudcode.ink/assets/product1/unit3/m2.jpg'
-const m3 = 'https://img.cloudcode.ink/assets/product1/unit3/m3.jpg'
+const iconFlavor = '/assets/img/icon19.png'
+const iconDevice = '/assets/img/icon18.png'
+const m1 = '/assets/product1/unit3/m1.jpg'
+const m2 = '/assets/product1/unit3/m2.jpg'
+const m3 = '/assets/product1/unit3/m3.jpg'
 </script>
 
 <template>

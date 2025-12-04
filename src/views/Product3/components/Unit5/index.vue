@@ -1,9 +1,9 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const tempControl = 'https://img.cloudcode.ink/assets/product3/3-Temperature-Control.mp4'
-const batteryLifeMonitor = 'https://img.cloudcode.ink/assets/product3/Battery-Life-Monitor.mp4'
-const preheatStatus = 'https://img.cloudcode.ink/assets/product3/Preheat-Status-Indication.mp4'
-const puffCounter = 'https://img.cloudcode.ink/assets/product3/Puff-Counter.mp4'
+const tempControl = '/assets/product3/3-Temperature-Control.mp4'
+const batteryLifeMonitor = '/assets/product3/Battery-Life-Monitor.mp4'
+const preheatStatus = '/assets/product3/Preheat-Status-Indication.mp4'
+const puffCounter = '/assets/product3/Puff-Counter.mp4'
 </script>
 
 <template>

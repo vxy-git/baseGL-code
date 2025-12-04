@@ -1,8 +1,8 @@
 <script setup>
-const logo1 = 'https://img.cloudcode.ink/assets/product4/Advanced-Interactivity.jpg';
-const logo2 = 'https://img.cloudcode.ink/assets/product4/Dual-Chamber.jpg';
-const logo3 = 'https://img.cloudcode.ink/assets/product4/Multiple-Options.jpg';
-const logo4 = 'https://img.cloudcode.ink/assets/product4/Post-Free.jpg';
+const logo1 = '/assets/product4/Advanced-Interactivity.jpg';
+const logo2 = '/assets/product4/Dual-Chamber.jpg';
+const logo3 = '/assets/product4/Multiple-Options.jpg';
+const logo4 = '/assets/product4/Post-Free.jpg';
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 

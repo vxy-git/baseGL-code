@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const either_L = 'https://img.cloudcode.ink/assets/product2/either-L.mp4'
-const either_R = 'https://img.cloudcode.ink/assets/product2/either-R.mp4'
+const either_L = '/assets/product2/either-L.mp4'
+const either_R = '/assets/product2/either-R.mp4'
 </script>
 
 <template>

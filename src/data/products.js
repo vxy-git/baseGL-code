@@ -1,17 +1,17 @@
-const BLENDER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/BLENDER.jpg'
-const BLENDER_HOVER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/BLENDER-hover.jpg'
+const BLENDER = '/assets/list/D9_Distillate/BLENDER.jpg'
+const BLENDER_HOVER = '/assets/list/D9_Distillate/BLENDER-hover.jpg'
 
-const DUKES = 'https://img.cloudcode.ink/assets/list/D9_Distillate/DUKES.jpg'
-const DUKES_HOVER = 'https://img.cloudcode.ink/assets/list/D9_Distillate/DUKES-hover.jpg'
+const DUKES = '/assets/list/D9_Distillate/DUKES.jpg'
+const DUKES_HOVER = '/assets/list/D9_Distillate/DUKES-hover.jpg'
 
-const UNICORN_Series = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNICORN-Series.jpg'
-const UNICORN_Series_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg'
+const UNICORN_Series = '/assets/list/For_ResinRosin/UNICORN-Series.jpg'
+const UNICORN_Series_HOVER = '/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg'
 
-const UNIT_PRO = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIT-PRO.jpg'
-const UNIT_PRO_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
+const UNIT_PRO = '/assets/list/For_ResinRosin/UNIT-PRO.jpg'
+const UNIT_PRO_HOVER = '/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
 
-const UNIVERSE_Series = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
-const UNIVERSE_Series_HOVER = 'https://img.cloudcode.ink/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
+const UNIVERSE_Series = '/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
+const UNIVERSE_Series_HOVER = '/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
 
 /**
  * @typedef {Object} Product
