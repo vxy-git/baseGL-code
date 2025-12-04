@@ -22,29 +22,24 @@ const routes = [
     component: () => import('@/views/ProductList/index.vue')
   },
   {
-    path: '/product1',
-    name: 'Product1',
+    path: '/unit_pro',
+    name: 'UNIT_Pro',
     component: () => import('@/views/Product1/index.vue')
   },
   {
-    path: '/product2',
-    name: 'Product2',
+    path: '/universe_series',
+    name: 'UNIVERSE_Series',
     component: () => import('@/views/Product2/index.vue')
   },
   {
-    path: '/product3',
-    name: 'Product3',
+    path: '/unicorn_series',
+    name: 'UNICORN_Series',
     component: () => import('@/views/Product3/index.vue')
   },
   {
-    path: '/product4',
-    name: 'Product4',
+    path: '/dukes',
+    name: 'DUKES',
     component: () => import('@/views/Product4/index.vue')
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: () => import('@/views/Test/index.vue')
   },
 ]
 

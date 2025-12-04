@@ -35,7 +35,7 @@ const list = ref([
     src: banner1,
     type: 'video',
     dotText: "UNIVERSE Series",
-    path: '/product2'
+    path: '/universe_series'
   },
   {
     title: "UNICORN Series",
@@ -43,7 +43,7 @@ const list = ref([
     src: banner2,
     type: 'video',
     dotText: "UNICORN Series",
-    path: '/product3'
+    path: '/unicorn_series'
   },
   {
     title: "UNIT Pro",
@@ -51,7 +51,7 @@ const list = ref([
     src: banner3,
     type: 'video',
     dotText: "UNIT Pro",
-    path: '/product1'
+    path: '/unit_pro'
   },
   {
     title: "DUKES",
@@ -59,7 +59,7 @@ const list = ref([
     src: banner4,
     type: 'video',
     dotText: "DUKES",
-    path: ''//'/product4'
+    path: '' // /dukes
   }
 ])
 
