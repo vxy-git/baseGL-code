@@ -1,25 +1,170 @@
 <script setup>
+import { onMounted, onBeforeUnmount, ref } from 'vue'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
+
 const icon33 = '/assets/img/icon33.png'
 const dualVideo = '/assets/product4/DUAL.mp4'
-const dualLogo = '/assets/product4/unit3/logo1.svg'
+const dualLogo = import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.svg'
+
+const sectionRef = ref(null)
+const maskRef = ref(null)
+const videoRef = ref(null)
+const videoBoxRef = ref(null)
+const contentRef = ref(null)
+const titleRef = ref(null)
+let ctx
+let refreshHandler
+let sectionFadeTween
+
+onMounted(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  ctx = gsap.context(() => {
+    let tl
+
+    const getVideoStartMetrics = () => {
+      if (!videoRef.value) return { width: 0, height: 0, x: 0, y: 0 }
+      const rect = videoRef.value.getBoundingClientRect()
+      return { width: rect.width, height: rect.height, x: 0, y: 0 }
+    }
+
+    const getVideoTargetMetrics = () => {
+      if (!videoRef.value || !videoBoxRef.value) {
+        return { width: 'auto', height: 'auto', x: 0, y: 0 }
+      }
+      const videoRect = videoRef.value.getBoundingClientRect()
+      const boxRect = videoBoxRef.value.getBoundingClientRect()
+      const videoCenterX = videoRect.left + videoRect.width / 2
+      const videoCenterY = videoRect.top + videoRect.height / 2
+      const boxCenterX = boxRect.left + boxRect.width / 2
+      const boxCenterY = boxRect.top + boxRect.height / 2
+      return {
+        width: boxRect.width,
+        height: boxRect.height,
+        x: boxCenterX - videoCenterX,
+        y: boxCenterY - videoCenterY
+      }
+    }
+
+    const buildTimeline = () => {
+      if (tl) {
+        tl.scrollTrigger && tl.scrollTrigger.kill()
+        tl.kill()
+      }
+
+      const startMetrics = getVideoStartMetrics()
+      const targetMetrics = getVideoTargetMetrics()
+
+      tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: sectionRef.value,
+          start: 'center center',
+          end: () => '+=200%',
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      })
+
+      if (maskRef.value) {
+        tl.fromTo(
+          maskRef.value,
+          { scale: 1, opacity: 1 },
+          { scale: 4.5, opacity: 0 }
+        )
+      }
+
+      if (videoRef.value) {
+        gsap.set(videoRef.value, { x: 0, y: 0 })
+
+        tl.fromTo(
+          videoRef.value,
+          { ...startMetrics, immediateRender: false },
+          { ...targetMetrics, immediateRender: false },
+          maskRef.value ? '>' : 0
+        )
+      }
+
+      if (titleRef.value) {
+        tl.fromTo(
+          titleRef.value,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.6, ease: 'power1.out' },
+          '>'
+        )
+      }
+    }
+
+    const buildSectionFade = () => {
+      if (sectionFadeTween) {
+        sectionFadeTween.scrollTrigger && sectionFadeTween.scrollTrigger.kill()
+        sectionFadeTween.kill()
+        sectionFadeTween = null
+      }
+      if (sectionRef.value) {
+        gsap.set(sectionRef.value, { opacity: 1 })
+        sectionFadeTween = gsap.to(contentRef.value, {
+          opacity: 0,
+          ease: 'power1.in',
+          scrollTrigger: {
+            trigger: sectionRef.value,
+            start: 'bottom 60%',
+            end: 'bottom 20%',
+            scrub: true
+          }
+        })
+      }
+    }
+
+    buildTimeline()
+    buildSectionFade()
+
+    refreshHandler = () => {
+      buildTimeline()
+      buildSectionFade()
+    }
+    ScrollTrigger.addEventListener('refreshInit', refreshHandler)
+    ScrollTrigger.refresh()
+  }, sectionRef.value)
+})
+
+onBeforeUnmount(() => {
+  if (refreshHandler) {
+    ScrollTrigger.removeEventListener('refreshInit', refreshHandler)
+  }
+  ctx && ctx.revert()
+})
 </script>
 
 <template>
-  <div class="pb-[208px] c_1230 c_padding mt-[152px]">
-    <div class="title -mt-[8px]">
-      Twice the performance,<br />
-      Triple the flavors.
-    </div>
-    <div class="label mt-[34px] mb-[47px]">
-      Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing users to
-      switch between tastes or enjoy a mix of both.
-    </div>
-    <div class="relative w-[1020px] max-w-full mx-auto h-[580px] max-h-max min-h-max block object-cover">
-      <MediaAsset class="size-full" type="video" :src="dualVideo" :autoplay="false" :muted="true" :loop="false"
-        :controls="false" />
-
-      <MediaAsset class="size-[101%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover " type="image" :src="dualLogo" />
+  <div ref="sectionRef" class="w-screen h-screen">
+    <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
+      <div ref="titleRef" class="">
+        <div class="title">
+          Twice the performance,<br />
+          Triple the flavors.
+        </div>
+        <div class="label mt-[32px] mb-[32px]">
+          Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing
+          users
+          to
+          switch between tastes or enjoy a mix of both.
+        </div>
+      </div>
+      <div ref="videoBoxRef" class="w-[1000px] max-w-full h-[580px]"></div>
+      <div ref="videoRef"
+        class="video-layer absolute mt-[49px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)]">
+        <MediaAsset class="size-full object-cover" type="video" :src="dualVideo" :autoplay="false" :muted="true"
+          :loop="false" :controls="false" />
+      </div>
+      <div ref="maskRef"
+        class="mask-layer w-[100vw] h-[calc(100vh-96px)] absolute left-1/2 top-1/2 mt-[48px] -translate-x-1/2 -translate-y-1/2"
+        :style="{backgroundImage: `url(${dualLogo})`, backgroundOrigin: 'cover', backgroundPosition: 'center'}">
+      </div>
     </div>
   </div>
 </template>
@@ -44,5 +189,16 @@ const dualLogo = '/assets/product4/unit3/logo1.svg'
   font-weight: 400;
   line-height: 30px;
   /* 150% */
+}
+
+.mask-layer {
+  will-change: transform, opacity;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.video-layer {
+  will-change: transform, width, height;
+  transform-origin: center;
 }
 </style>

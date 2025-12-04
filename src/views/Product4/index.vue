@@ -20,7 +20,7 @@ import Specifications from "@/components/Specifications/index.vue";
   <div class="overflow-hidden">
     <Header headerClass="white" />
     <Unit1 />
-    <div class="bg-[#F8F9FD]">
+    <div class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
       <Unit2 />
       <Unit4 />
     </div>
