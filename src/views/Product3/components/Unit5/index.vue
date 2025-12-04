@@ -103,7 +103,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
-  line-height: 80px;
+  // line-height: 80px;
   /* 100% */
   background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
   background-clip: text;
@@ -241,7 +241,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 @media screen and (max-width: 1200px) {
   .title {
     font-size: 64px;
-    line-height: 1.05;
+    // line-height: 1.05;
   }
 
   .stitle {
@@ -301,7 +301,7 @@ import puffCounter from '@/assets/product3/Puff-Counter.mp4'
 
   .title {
     font-size: 40px;
-    line-height: 1.1;
+    // line-height: 1.1;
   }
 
   .stitle {

@@ -182,7 +182,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
-  line-height: 80px;
+  // line-height: 80px;
   /* 100% */
   background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
   background-clip: text;
@@ -344,7 +344,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
 @media screen and (max-width: 1200px) {
   .title {
     font-size: 64px;
-    line-height: 1.05;
+    // line-height: 1.05;
   }
 
   .stitle {
@@ -404,7 +404,7 @@ import tap4 from '@/assets/product1/one-taps4.png'
 
   .title {
     font-size: 40px;
-    line-height: 1.1;
+    // line-height: 1.1;
   }
 
   .stitle {
