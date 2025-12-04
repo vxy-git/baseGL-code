@@ -3,12 +3,12 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import dualPNG from '@/assets/dual.png'
+// import dualPNG from '@/assets/dual.png'
 
 const icon33 = '/assets/img/icon33.png'
 const dualVideo = '/assets/product4/DUAL.mp4'
 // const dualPNG = 'logo1.png'
-// const dualPNG = import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.png'
+const dualPNG = import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.png'
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)
