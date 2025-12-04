@@ -4,8 +4,8 @@ const icon38 = '/assets/img/icon38.png'
 </script>
 
 <template>
-    <div class="pt-[387px] c_padding c_1230">
-      <div class="w-[999px] mx-auto  flex relative justify-center min-w-full">
+    <div class="c_padding c_1230">
+      <div class="mx-auto flex relative justify-center w-full">
         <MediaAsset
           :src="icon38"
           type="image"
@@ -33,11 +33,22 @@ const icon38 = '/assets/img/icon38.png'
   font-size: 80px;
   font-style: italic;
   font-weight: 800;
-  line-height: 80px; /* 100% */
   background: linear-gradient(89deg, #FB7D4E 2.34%, #E25667 49.42%, #6A87D7 96.5%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -.4px;
+}
+
+@media screen and (max-width: 1100px) {
+  .title {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 40px;
+  }
 }
 </style>

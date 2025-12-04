@@ -8,10 +8,10 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
 </script>
 
 <template>
-  <div class="pt-[392px] pb-[215px]">
-    <div class="c_1300 mx-auto">
-      <div class="justify-between flex">
-        <div class="bg-[#D9D9D9] h-[440px] w-[520px] rounded-[20px] relative overflow-hidden">
+  <div class="pt-[392px] pb-[215px] m_pt_0">
+    <div class="c_1300 mx-auto c_padding">
+      <div class="justify-between flex m_flex_col gap-[15px]">
+        <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
             Dosing Timer
           </div>
@@ -26,7 +26,7 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
             class="w-full h-full object-cover"
           />
         </div>
-        <div class="h-[440px] w-[695px] rounded-[20px] relative overflow-hidden">
+        <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
             Preheat Status Indication
           </div>
@@ -42,8 +42,8 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
           />
         </div>
       </div>
-      <div class="justify-between flex mt-[15px]">
-        <div class="h-[440px] w-[695px] rounded-[20px] relative overflow-hidden">
+      <div class="justify-between flex m_flex_col gap-[15px] mt-[15px]">
+        <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
             3-Temperature Control
           </div>
@@ -58,7 +58,7 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
             class="w-full h-full object-cover"
           />
         </div>
-        <div class="bg-[#D9D9D9] h-[440px] w-[520px] rounded-[20px] relative overflow-hidden">
+        <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
             Battery Life Monitor
           </div>
@@ -73,7 +73,6 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
             class="w-full h-full object-cover"
           />
         </div>
-
       </div>
     </div>
   </div>
