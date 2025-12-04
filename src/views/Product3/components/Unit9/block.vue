@@ -15,7 +15,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col h-[440px] min-h-max">
         <MediaAsset
           type="video"
-          :src="unit3_l"
+          src="https://img.cloudcode.ink/assets/product3/unit3-l.mp4"
           :autoplay="false"
           :muted="true"
           :loop="true"
@@ -25,7 +25,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
         />
         <MediaAsset
           type="video"
-          :src="unit3_r"
+          src="https://img.cloudcode.ink/assets/product3/unit3-r.mp4"
           :autoplay="false"
           :muted="true"
           :loop="true"

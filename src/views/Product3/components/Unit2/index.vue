@@ -6,7 +6,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="relative w-full h-screen max-h-max mBox">
+    <div class="relative w-full h-[56.25vw] mBox">
       <MediaAsset class="w-full" type="image" :src="unitImg1" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
@@ -18,7 +18,7 @@ import unitImg2 from '@/assets/product3/unit2-2.jpg'
         </div>
       </div>
     </div>
-    <div class="relative w-full h-screen max-h-max mBox">
+    <div class="relative w-full h-[56.25vw] mBox">
       <MediaAsset class="w-full" type="image" :src="unitImg2" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
