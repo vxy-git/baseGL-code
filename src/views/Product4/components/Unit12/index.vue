@@ -35,10 +35,11 @@ onMounted(() => {
 
   tl.fromTo(
     imgBox.value,
-    { width: '100vw', height: '100vh' },
+    { width: '100vw', height: '100vh', borderRadius: '0px' },
     {
       width: '100%',
       height: '100%',
+      borderRadius: '60px',
       ease: 'none',
       immediateRender: false
     }
@@ -84,5 +85,6 @@ onUnmounted(() => {
 .img-box {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 </style>
