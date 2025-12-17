@@ -34,40 +34,21 @@ const unitImg = '/assets/product3/unit4-2.jpg'
           <div class="flex flex-col items-center">
             <div class="text4 flex h-[39.805px]">
               45%
-              <MediaAsset
-                :src="arrow"
-                type="image"
-                class="h-[39.805px] -ml-[3px]"
-                alt=""
-                :lazy="false"
-              />
+              <MediaAsset :src="arrow" type="image" class="h-[39.805px] -ml-[3px]" alt="" :lazy="false" />
             </div>
             <div class="text5">
               Flavor Retention
             </div>
           </div>
         </div>
-        <MediaAsset
-          :src="unitImg"
-          type="image"
-          class="h-[600px] mt-[78px] object-contain m_mt_0"
-          alt=""
-          :lazy="false"
-        />
+        <MediaAsset :src="unitImg" type="image" class="h-[600px] mt-[78px] object-contain m_mt_0" alt=""
+          :lazy="false" />
       </div>
       <div
         class="c_padding flex mx-auto max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
-        <MediaAsset
-          type="video"
-          :src="leftVideoSrc"
-          :muted="true"
-          :autoplay="false"
-          :loop="true"
-          :controls="false"
-          :hover-play="false"
-          :view-play="true"
-          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]"
-        />
+        <MediaAsset type="video" :src="leftVideoSrc" :muted="true" :autoplay="false" :loop="true" :controls="false"
+          :hover-play="false" :view-play="true"
+          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
         <div class="m_order w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] mb-[20px]">
           <div class="title1">Built-in Wires</div>
           <div class="title2 mt-[19.55px]">No more dry burning</div>
@@ -78,21 +59,14 @@ const unitImg = '/assets/product3/unit4-2.jpg'
             flawless session every time.
           </div>
         </div>
-        <MediaAsset
-          type="video"
-          :src="rightVideoSrc"
-          :muted="true"
-          :autoplay="false"
-          :loop="true"
-          :controls="false"
-          :hover-play="false"
-          :view-play="true"
-          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]"
-        />
+        <MediaAsset type="video" :src="rightVideoSrc" :muted="true" :autoplay="false" :loop="true" :controls="false"
+          :hover-play="false" :view-play="true"
+          class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
       </div>
     </div>
-    <div class="unit4B h-[800px]" :style="{ backgroundImage: `url(${unit4Bg})` }">
-      <div class="c_1230 c_padding mx-auto pt-[248px]">
+    <div class="unit4B h-[800px] relative">
+      <MediaAsset :src="unit4Bg" type="image" class="size-full absolute inset-0" alt="" :lazy="false" />
+      <div class="c_1230 c_padding mx-auto pt-[248px] relative">
         <div class="title1  ml-[2px]">
           UNICORN
         </div>

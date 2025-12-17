@@ -6,26 +6,26 @@ import MediaAsset from '@/components/MediaAsset.vue';
 
 
 const deviceSpecs1 = [
-  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
+  { label: "Dimension(mm)", value: "76.6H*38.0W*16.0D" },
+  { label: "Tank Volume", value: "0.5+0.5mL/1+1mL" },
+  { label: "Battery Capability", value: "300mAh" },
   { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "2.0V" },
+  { label: "Voltage Setting", value: "2.2V" },
   { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
+  { label: "Ceramic Core", value: "Dual Gemco" },
   { label: "Central Post", value: "Post-free" },
   { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Inhale Activated" }
+  { label: "Options of Activation", value: "Button & Inhale Activated" }
 ]
 
 const deviceSpecs2 = [
-  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
+  { label: "Dimension(mm)", value: "76.6H*38.0W*16.0D" },
+  { label: "Tank Volume", value: "1.5+1.5mL" },
+  { label: "Battery Capability", value: "300mAh" },
   { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
+  { label: "Voltage Setting", value: "2.2V" },
   { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
+  { label: "Ceramic Core", value: "Dual Gemco" },
   { label: "Central Post", value: "Post-free" },
   { label: "Charging", value: "Type-C" },
   { label: "Options of Activation", value: "Button & Inhale Activated" }
