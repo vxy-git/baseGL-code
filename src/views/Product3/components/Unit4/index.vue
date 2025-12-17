@@ -65,7 +65,7 @@ const unitImg = '/assets/product3/unit4-2.jpg'
       </div>
     </div>
     <div class="unit4B h-[800px] relative">
-      <MediaAsset :src="unit4Bg" type="image" class="size-full absolute inset-0" alt="" :lazy="false" />
+      <MediaAsset :src="unit4Bg" type="image" class="size-full absolute inset-0 object-cover" alt="" :lazy="false" />
       <div class="c_1230 c_padding mx-auto pt-[248px] relative">
         <div class="title1  ml-[2px]">
           UNICORN
