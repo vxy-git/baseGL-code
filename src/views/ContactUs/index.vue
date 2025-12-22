@@ -127,13 +127,15 @@ const closeDropdowns = () => {
               <p class="heroEmail">Email: info@caleaftech.com</p>
               <div class="socialSection mt-[34px] pr-[4px]">
                 <p class="followText">Follow Us</p>
-                <MediaAsset
-                  :src="iconInstagram"
-                  type="image"
-                  class="socialIcon"
-                  alt="Instagram"
-                  :lazy="false"
-                />
+                <a href="https://www.instagram.com/caleaftechofficial/" target="_blank" rel="noopener noreferrer">
+                  <MediaAsset
+                    :src="iconInstagram"
+                    type="image"
+                    class="socialIcon"
+                    alt="Instagram"
+                    :lazy="false"
+                  />
+                </a>
               </div>
             </div>
           </div>
