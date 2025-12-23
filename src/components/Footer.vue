@@ -318,6 +318,10 @@ const handleSubscribe = () => {
   display: flex;
   align-items: center;
   gap: 40px;
+
+  .footer-heading {
+    margin-bottom: 0;
+  }
 }
 
 .social-link {
