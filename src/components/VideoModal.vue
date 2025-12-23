@@ -7,16 +7,16 @@
             ×
           </button> -->
           <div class="video-modal__body">
-            <video
+            <MediaAsset
               ref="videoEl"
-              class="video-modal__video"
+              type="video"
               :src="src"
               :poster="poster"
               :autoplay="autoplay"
               :loop="loop"
               :muted="muted"
               :controls="controls"
-              playsinline
+              class="video-modal__video"
             />
           </div>
         </div>

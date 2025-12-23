@@ -22,8 +22,6 @@ const showVideo = ref(false)
           :src="icon1_3"
           type="image"
           class="trigger-bg"
-          alt=""
-          :lazy="false"
         />
         <MediaAsset
           class="preview-video"
@@ -33,8 +31,6 @@ const showVideo = ref(false)
           :muted="true"
           :loop="true"
           :controls="false"
-          playsinline
-          :lazy="false"
         />
         <div class="overlay">
           <div class="title1">Watch Video</div>

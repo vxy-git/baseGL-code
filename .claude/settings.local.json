@@ -35,7 +35,8 @@
       "WebFetch(domain:store.insta360.com)",
       "WebFetch(domain:www.swiper.com.cn)",
       "Bash(pnpm remove:*)",
-      "WebFetch(domain:splidejs.com)"
+      "WebFetch(domain:splidejs.com)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
