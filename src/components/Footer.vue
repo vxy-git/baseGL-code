@@ -7,10 +7,14 @@
           <div class="footer-column">
             <h4 class="footer-heading">Products</h4>
             <ul class="footer-links">
-              <li><RouterLink :to="{ path: '/list', query: { tab: 0 } }">For Resin/Rosin</RouterLink></li>
+              <li>
+                <RouterLink :to="{ path: '/list', query: { tab: 0 } }">For Resin/Rosin</RouterLink>
+              </li>
               <!-- <li><a href="#">Pod System</a></li>
               <li><a href="#">Full Ceramic</a></li> -->
-              <li><RouterLink :to="{ path: '/list', query: { tab: 1 } }">D9 Distillate</RouterLink></li>
+              <li>
+                <RouterLink :to="{ path: '/list', query: { tab: 1 } }">D9 Distillate</RouterLink>
+              </li>
               <!-- <li><a href="#">US STOCK</a></li>
               <li><a href="#">Dab Pen</a></li>
               <li><a href="#">510 Cartridge</a></li>
@@ -22,7 +26,9 @@
           <div class="footer-column">
             <h4 class="footer-heading">Technology</h4>
             <ul class="footer-links">
-              <li><RouterLink to="/technology">UNICORE</RouterLink></li>
+              <li>
+                <RouterLink to="/technology">UNICORE</RouterLink>
+              </li>
               <!-- <li><a href="#">Repair Service</a></li>
               <li><a href="#">After-Sales Policy</a></li>
               <li><a href="#">Care Service</a></li>
@@ -77,6 +83,45 @@
               and I'd like to receive the latest CALEAF TECH news and deals by email.
             </span>
           </label>
+
+
+          <div class="social-links mt-[20px]">
+            <h4 class="footer-heading">Follow</h4>
+            <!-- <a href="#" aria-label="YouTube" class="social-link">
+              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
+                <div style="width: 18px; height: 12.75px; left: 0px; top: 3px; position: absolute; background: #76767F">
+                </div>
+              </div>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="social-link">
+              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
+                <div
+                  style="width: 15.76px; height: 15.72px; left: 1.08px; top: 1.14px; position: absolute; background: #76767F">
+                </div>
+              </div>
+            </a>
+            <a href="#" aria-label="Facebook" class="social-link">
+              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
+                <div
+                  style="width: 8.68px; height: 16.71px; left: 4.66px; top: 0.64px; position: absolute; background: #76767F">
+                </div>
+              </div>
+            </a> -->
+            <a href="#" aria-label="Instagram" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+                <path
+                  d="M13.8876 9.1366C13.8876 11.7605 11.7599 13.8876 9.13661 13.8876C6.51274 13.8876 4.38567 11.7605 4.38567 9.13661C4.38554 8.82987 4.41557 8.52385 4.47532 8.22297H1.2793V14.538C1.2793 15.8936 2.37737 16.9939 3.73528 16.9939H14.5379C15.8936 16.9939 16.9939 15.8947 16.9939 14.538V8.22297H13.799C13.8578 8.52397 13.8875 8.82991 13.8876 9.1366ZM14.5379 1.2793H3.73528C2.37851 1.2793 1.2793 2.37909 1.2793 3.73528V6.39569H5.25705C6.11702 5.18053 7.53373 4.38567 9.13661 4.38567C10.7395 4.38567 12.1562 5.18055 13.0162 6.39569H16.9939V3.73528C16.9939 2.37965 15.8941 1.2793 14.5379 1.2793ZM15.7394 4.31258C15.7394 4.5547 15.5418 4.75114 15.3008 4.75114H13.9863C13.7454 4.75114 13.5478 4.55356 13.5478 4.31258V2.99694C13.5478 2.75482 13.7459 2.55839 13.9863 2.55839H15.3008C15.543 2.55839 15.7394 2.75596 15.7394 2.99694V4.31258ZM12.0603 9.13661C12.0603 7.52118 10.7509 6.21295 9.13661 6.21295C7.52233 6.21295 6.21295 7.52118 6.21295 9.13661C6.21295 10.752 7.52233 12.0603 9.13661 12.0603C10.7509 12.0603 12.0603 10.752 12.0603 9.13661Z"
+                  fill="#76767F" />
+              </svg>
+            </a>
+            <!-- <a href="#" aria-label="TikTok" class="social-link">
+              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
+                <div
+                  style="width: 15.64px; height: 18px; left: 1.18px; top: 0px; position: absolute; background: #76767F">
+                </div>
+              </div>
+            </a> -->
+          </div>
         </div>
       </div>
 
@@ -85,48 +130,6 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <!-- <div class="social-links">
-          <a href="#" aria-label="YouTube" class="social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <path
-                d="M22 12c0-2.21-.18-3.72-.35-4.5-.19-.82-.82-1.46-1.64-1.65C18.22 5.67 12 5.67 12 5.67s-6.22 0-8.01.18c-.82.19-1.45.83-1.64 1.65C2.18 8.28 2 9.79 2 12s.18 3.72.35 4.5c.19.82.82 1.46 1.64 1.65 1.78.18 8.01.18 8.01.18s6.22 0 8.01-.18c.82-.19 1.45-.83 1.64-1.65.17-.78.35-2.29.35-4.5Z"
-                fill="#111111" />
-              <path d="m10 15 5-3-5-3v6Z" fill="#fff" />
-            </svg>
-          </a>
-          <a href="#" aria-label="LinkedIn" class="social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="2" fill="#111111" />
-              <path
-                d="M9 10h2v8H9v-8Zm1-4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4 4h2v1.1c.28-.53.97-1.2 2.1-1.2 2.24 0 2.9 1.46 2.9 3.36V18h-2v-4.2c0-1-.02-2.28-1.4-2.28-1.4 0-1.62 1.1-1.62 2.2V18h-2v-8Z"
-                fill="#fff" />
-            </svg>
-          </a>
-          <a href="#" aria-label="Facebook" class="social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="2" fill="#111111" />
-              <path
-                d="M13.3 18v-4.5h1.7l.25-2h-1.95v-1.3c0-.58.19-1 1.18-1H15V7.4c-.21-.03-.93-.1-1.77-.1-1.75 0-2.95 1.07-2.95 3.03V11.5H8.5v2h1.78V18h3.02Z"
-                fill="#fff" />
-            </svg>
-          </a>
-          <a href="#" aria-label="Instagram" class="social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="5" fill="#111111" />
-              <path
-                d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm3.5-5.9a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4Z"
-                fill="#fff" />
-            </svg>
-          </a>
-          <a href="#" aria-label="TikTok" class="social-link">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="4" fill="#111111" />
-              <path
-                d="M15.5 9.8c.55.42 1.22.7 1.95.74V8.6a3.2 3.2 0 0 1-2-.74V6.5h-1.85v7.06a1.32 1.32 0 0 1-2.65 0 1.32 1.32 0 0 1 1.94-1.15v-1.9a3.23 3.23 0 0 0-.9-.13 3.2 3.2 0 1 0 3.2 3.2V9.8Z"
-                fill="#fff" />
-            </svg>
-          </a>
-        </div> -->
         <p class="copyright">Copyright © 2025 CALEAF TECH All rights reserved.</p>
         <p class="designer">Designed by HOLY</p>
       </div>
@@ -313,7 +316,8 @@ const handleSubscribe = () => {
 
 .social-links {
   display: flex;
-  gap: 18px;
+  align-items: center;
+  gap: 40px;
 }
 
 .social-link {
