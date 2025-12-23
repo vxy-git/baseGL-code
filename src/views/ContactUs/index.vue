@@ -104,20 +104,8 @@ const closeDropdowns = () => {
       <!-- Hero Section -->
       <section class="hero mt_nav">
         <div class="heroBackground">
-          <MediaAsset
-            :src="heroBanner"
-            type="image"
-            class="heroImage m_hide"
-            alt=""
-            :lazy="false"
-          />
-          <MediaAsset
-            :src="heroBannerMobile"
-            type="image"
-            class="heroImage pc_hide"
-            alt=""
-            :lazy="false"
-          />
+          <MediaAsset :src="heroBanner" type="image" class="heroImage m_hide" alt="" :lazy="false" />
+          <MediaAsset :src="heroBannerMobile" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
@@ -128,13 +116,7 @@ const closeDropdowns = () => {
               <div class="socialSection mt-[34px] pr-[4px]">
                 <p class="followText">Follow Us</p>
                 <a href="https://www.instagram.com/caleaftechofficial/" target="_blank" rel="noopener noreferrer">
-                  <MediaAsset
-                    :src="iconInstagram"
-                    type="image"
-                    class="socialIcon"
-                    alt="Instagram"
-                    :lazy="false"
-                  />
+                  <MediaAsset :src="iconInstagram" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
                 </a>
               </div>
             </div>
@@ -161,13 +143,8 @@ const closeDropdowns = () => {
                   <span :class="formData.country ? 'selectedValue' : 'placeholder'">
                     {{ formData.country || 'Country*' }}
                   </span>
-                  <MediaAsset
-                    :src="iconDropdown"
-                    type="image"
-                    :class="['dropdownIcon', showCountryDropdown && 'rotated']"
-                    alt=""
-                    :lazy="false"
-                  />
+                  <MediaAsset :src="iconDropdown" type="image"
+                    :class="['dropdownIcon', showCountryDropdown && 'rotated']" alt="" :lazy="false" />
                 </div>
                 <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
                   <div v-for="country in countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
@@ -181,13 +158,8 @@ const closeDropdowns = () => {
                   <span :class="formData.state ? 'selectedValue' : 'placeholder'">
                     {{ formData.state || 'State' }}
                   </span>
-                  <MediaAsset
-                    :src="iconDropdown"
-                    type="image"
-                    :class="['dropdownIcon', showStateDropdown && 'rotated']"
-                    alt=""
-                    :lazy="false"
-                  />
+                  <MediaAsset :src="iconDropdown" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
+                    alt="" :lazy="false" />
                 </div>
                 <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
                   <div v-for="state in availableStates" :key="state" class="dropdownItem" @click="selectState(state)">
@@ -206,12 +178,7 @@ const closeDropdowns = () => {
             </form>
           </div>
           <div class="formImage">
-            <MediaAsset
-              :src="iconProduct"
-              type="image"
-              alt="Product Image"
-              :lazy="false"
-            />
+            <MediaAsset :src="iconProduct" type="image" alt="Product Image" :lazy="false" />
           </div>
         </div>
       </section>
@@ -363,6 +330,7 @@ const closeDropdowns = () => {
 }
 
 .socialIcon {
+  object-fit: contain;
   width: 44px;
   height: 44px;
   margin-right: -5px;
