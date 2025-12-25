@@ -1,7 +1,7 @@
 <script setup>
-import MediaAsset from '@/components/MediaAsset.vue';
 const UNIVERSE = '/assets/product2/UNIVERSE.mp4';
-const NIVERSE_PRO = '/assets/product2/NIVERSE_PRO.mp4';
+const UNIVERSE_Pro = '/assets/product2/UNIVERSE_Pro.mp4';
+import MediaAsset from '@/components/MediaAsset.vue';
 
 
 const deviceSpecs1 = [
@@ -39,7 +39,7 @@ const deviceSpecs2 = [
       Specifications
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
-      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px]">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
         <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
@@ -54,12 +54,11 @@ const deviceSpecs2 = [
           <MediaAsset
             type="video"
             :src="UNIVERSE"
-            :controls="false"
             :autoplay="false"
             :muted="true"
-            :loop="true"
+            :loop="false"
+            :controls="false"
             :view-play="true"
-            playsinline
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
@@ -71,19 +70,18 @@ const deviceSpecs2 = [
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="NIVERSE_PRO"
-            :controls="false"
+            :src="UNIVERSE_Pro"
             :autoplay="false"
             :muted="true"
-            :loop="true"
+            :loop="false"
+            :controls="false"
             :view-play="true"
-            playsinline
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>
-      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] -mt-[4px]">
+      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
         <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}

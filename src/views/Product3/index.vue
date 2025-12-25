@@ -14,7 +14,6 @@ import Unit6 from "./components/Unit6/index.vue";
 import Unit7 from "./components/Unit7/index.vue";
 import Unit9 from "./components/Unit9/index.vue";
 import Unit9Block from "./components/Unit9/block.vue";
-import Specifications from "@/components/Specifications/index.vue";
 
 const isClient = typeof window !== "undefined";
 const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
@@ -49,7 +48,6 @@ onUnmounted(() => {
     </div>
     <Unit6 />
     <Unit7 />
-    <!-- <Specifications /> -->
     <Splide4 />
     <Footer />
   </div>

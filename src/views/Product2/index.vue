@@ -4,13 +4,13 @@ import { MOBILE_BREAKPOINT } from "@/composables/fit";
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
-import Specifications from "@/components/Specifications/index.vue";
 import GsapU from "./components/GsapU/index.vue";
 import m_GsapU from "./components/GsapU/m_index.vue";
 import Unit1 from "./components/Unit1/index.vue";
 import Unit2 from "./components/Unit2/index.vue";
 import Unit3 from "./components/Unit3/index.vue";
 import Unit4 from "./components/Unit4/index.vue";
+import Unit5 from "./components/Unit5/index.vue";
 import Unit6 from "./components/Unit6/index.vue";
 import m_Unit6 from "./components/Unit6/m_index.vue";
 import Unit7 from "./components/Unit7/index.vue";
@@ -52,7 +52,7 @@ onUnmounted(() => {
       <VideoU />
       <Unit4 />
     </div>
-    <Specifications />
+    <Unit5 />
     <div class="bg-black">
       <Unit6 v-if="!isMobile" />
       <m_Unit6 v-else />
