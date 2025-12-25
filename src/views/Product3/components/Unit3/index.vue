@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress1 = ref(0)
 const seqProgress2 = ref(0)
-const frames1 = 20
-const frames2 = 9
+const frames1 = 32
+const frames2 = 27
 const tarURL1 = '/product3_1.tar'
 const tarURL2 = '/product3_2.tar'
 const imageURL1 = (i) => `product3_1/frame${i + 1}.jpg`
