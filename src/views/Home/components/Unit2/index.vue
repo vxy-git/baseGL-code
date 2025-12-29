@@ -3,9 +3,9 @@ import Tabs from "@/components/Tabs/index.vue"
 import {ref, computed, onMounted, onUnmounted, watch} from "vue";
 import ProductItem from "@/components/ProductItem/index.vue"
 import { tabsList, productsData } from "@/data/products"
+import { UNIT_TITLE, ARROW_ICON, splideOptions } from "@/data/home-unit2"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrowImg = '/assets/img/icon4_active.png'
 
 const tabsCurrent = ref(0)
 const products = computed(() => productsData[tabsCurrent.value] || [])
@@ -38,33 +38,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
 })
-
-// Splide 配置选项
-const splideOptions = {
-  type: 'slide',
-  perPage: 4,
-  perMove: 4,
-  gap: '2%',
-  padding: 0,
-  speed: 800,
-  arrows: false,
-  pagination: false,
-  drag: true,
-  keyboard: true,
-  width: '100%',
-  breakpoints: {
-    1200: {
-      perPage: 3,
-      perMove: 3,
-    },
-    860: {
-      perPage: 2,
-      perMove: 2,
-    },
-  },
-  focus: 0,
-  omitEnd: true,
-}
 
 // 箭头状态更新
 const updateArrowStatus = (splide) => {
@@ -116,8 +89,7 @@ const goToGroup = (groupIndex) => {
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
       <div class="c_1300 c_padding title">
-        Innovative products:<br />
-        The most advanced, the best fit.
+        {{ UNIT_TITLE }}
       </div>
       <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
@@ -127,7 +99,7 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           type="image"
-          :src="arrowImg"
+          :src="ARROW_ICON"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -144,7 +116,7 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           type="image"
-          :src="arrowImg"
+          :src="ARROW_ICON"
           alt=""
           :lazy="false"
           @click="slideNext"

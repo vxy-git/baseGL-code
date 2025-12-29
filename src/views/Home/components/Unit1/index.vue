@@ -20,48 +20,11 @@ const splideOptions = {
 }
 
 import MediaAsset from '@/components/MediaAsset.vue'
-const banner1 = '/assets/home/Banner-1-UNIVERSE.mp4'
-const banner2 = '/assets/home/Banner-2-UNICORN.mp4'
-const banner3 = '/assets/home/Banner-3-UNIT.mp4'
-const banner4 = '/assets/home/Banner-4-DUKES.mp4'
-const btnIcon = '/assets/img/icon2.png'
+import { bannerList, BUTTON_ICON } from '@/data/home-unit1'
 
 const router = useRouter()
 
-const list = ref([
-  {
-    title: "UNIVERSE Series",
-    subTitle: "UNICORE powered, the way to infinite.",
-    src: banner1,
-    type: 'video',
-    dotText: "UNIVERSE Series",
-    path: '/universe_series'
-  },
-  {
-    title: "UNICORN Series",
-    subTitle: "UNICORE powered, the way to infinite.",
-    src: banner2,
-    type: 'video',
-    dotText: "UNICORN Series",
-    path: '/unicorn_series'
-  },
-  {
-    title: "UNIT Pro",
-    subTitle: "From lab to award, 100% for Rosin we've perfected",
-    src: banner3,
-    type: 'video',
-    dotText: "UNIT Pro",
-    path: '/unit_pro'
-  },
-  {
-    title: "DUKES",
-    subTitle: "The best of both worlds, every puff with more hits.",
-    src: banner4,
-    type: 'video',
-    dotText: "DUKES",
-    path: '/dukes'
-  }
-])
+const list = ref(bannerList)
 
 const changeEnd = (splide, newIndex) => {
   currentIndex.value = newIndex
@@ -112,7 +75,7 @@ const handleLearnMore = (item) => {
                 <MediaAsset
                   class="btn-icon"
                   type="image"
-                  :src="btnIcon"
+                  :src="BUTTON_ICON"
                   alt=""
                   :lazy="false"
                 />

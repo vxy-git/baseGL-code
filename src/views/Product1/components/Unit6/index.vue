@@ -1,7 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const product1_inhale_L = '/assets/product1/inhale-L.mp4'
-const product1_inhale_R = '/assets/product1/inhale-R.mp4'
+import { LABEL_TEXT, TITLE_TEXT, VIDEO_LEFT, VIDEO_RIGHT } from '@/data/product1-unit6'
 </script>
 
 <template>
@@ -9,18 +8,18 @@ const product1_inhale_R = '/assets/product1/inhale-R.mp4'
     <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[780px]"></span>
     <div class="relative">
       <div class="label">
-        High-End Feature
+        {{ LABEL_TEXT }}
       </div>
       <div class="title mt-[20px]">
-        Inhale & Button Activated
+        {{ TITLE_TEXT }}
       </div>
       <div class=" w-full flex justify-center gap-[20px] mt-[52px] m_flex_col">
         <div class="flex-1 w-full rounded-[20px]">
-          <MediaAsset class="w-full h-full object-cover" type="video" :src="product1_inhale_L" :autoplay="false"
+          <MediaAsset class="w-full h-full object-cover" type="video" :src="VIDEO_LEFT" :autoplay="false"
             :muted="true" :loop="true" :controls="false" :view-play="true" playsinline />
         </div>
         <div class="flex-1 w-full rounded-[20px]">
-          <MediaAsset class="w-full h-full object-cover" type="video" :src="product1_inhale_R" :autoplay="false"
+          <MediaAsset class="w-full h-full object-cover" type="video" :src="VIDEO_RIGHT" :autoplay="false"
             :muted="true" :loop="true" :controls="false" :view-play="true" playsinline />
         </div>
       </div>

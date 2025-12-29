@@ -4,32 +4,9 @@ import Item from "./components/Item/index.vue";
 import {ref, onMounted, onUnmounted} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-const news1 = '/assets/home/new/1.jpg'
-const news2 = '/assets/home/new/2.jpg'
-const news3 = '/assets/home/new/3.jpg'
-const news4 = '/assets/home/new/4.jpg'
-const news5 = '/assets/home/new/5.jpg'
-const news6 = '/assets/home/new/6.jpg'
-const news7 = '/assets/home/new/7.jpg'
-const news8 = '/assets/home/new/8.jpg'
-const news9 = '/assets/home/new/9.jpg'
-const news10 = '/assets/home/new/10.jpg'
-const news11 = '/assets/home/new/11.jpg'
-const arrowImg = '/assets/img/icon4_active.png'
+import { UNIT_TITLE, ARROW_ICON, splideOptions, newsList } from '@/data/home-unit5'
 
-const list = [
-  { type: 'image', img: news1, title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024' },
-  { type: 'image', img: news2, title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025' },
-  // { type: 'image', img: news3 },
-  // { type: 'image', img: news4 },
-  // { type: 'image', img: news5 },
-  // { type: 'image', img: news6 },
-  // { type: 'image', img: news7 },
-  // { type: 'image', img: news8 },
-  // { type: 'image', img: news9 },
-  // { type: 'image', img: news10 },
-  // { type: 'image', img: news11 },
-]
+const list = newsList
 const bannerCurrent = ref(0)
 const splideRef = ref(null)
 const canSlidePrev = ref(false)
@@ -52,23 +29,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
 })
-
-// Splide 配置
-const splideOptions = {
-  type: 'slide',
-  perPage: 1,
-  perMove: 1,
-  gap: '2.18rem',
-  speed: 800,
-  arrows: false,
-  pagination: false,
-  drag: true,
-  keyboard: true,
-  width: '100vw',
-  focus: 0,
-  omitEnd: true,
-  // trimSpace: false,
-}
 
 // 统一的箭头状态更新函数
 const updateArrowStatus = (splide) => {
@@ -114,7 +74,7 @@ const goToSlide = (index) => {
   <div class="unit5 mt-[55px]">
     <div class="mx-auto">
       <div class="title text-center">
-        The latest news and inspiring stories
+        {{ UNIT_TITLE }}
       </div>
       <div class="c_1300 mt-[46px] relative c_padding" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
@@ -128,7 +88,7 @@ const goToSlide = (index) => {
             class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
             :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
             type="image"
-            :src="arrowImg"
+            :src="ARROW_ICON"
             alt=""
             :lazy="false"
             @click="slidePrev"
@@ -137,7 +97,7 @@ const goToSlide = (index) => {
             class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
             :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
             type="image"
-            :src="arrowImg"
+            :src="ARROW_ICON"
             alt=""
             :lazy="false"
             @click="slideNext"

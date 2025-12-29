@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-const videoSrc = '/assets/product1/banner.mp4';
+import { VIDEO_SRC, TITLE, SUBTITLE, BUTTON_TEXT, SCROLL_TEXT } from '@/data/product1-unit1'
 
 </script>
 
@@ -9,7 +9,7 @@ const videoSrc = '/assets/product1/banner.mp4';
     <MediaAsset
       class="w-full h-full object-cover"
       type="video"
-      :src="videoSrc"
+      :src="VIDEO_SRC"
       :controls="false"
       :autoplay="false"
       :muted="true"
@@ -19,15 +19,15 @@ const videoSrc = '/assets/product1/banner.mp4';
     />
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
-        <div class="scroll text-center absolute w-full bottom-[67px] left-0">Scroll</div>
+        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ SCROLL_TEXT }}</div>
         <div class="title">
-          UNIT Pro
+          {{ TITLE }}
         </div>
         <div class="subTitle translate-y-[-2px]">
-          From lab to award, 100% for Rosin we've perfected.
+          {{ SUBTITLE }}
         </div>
         <div class="btn cursor-pointer">
-          1mL/2mL
+          {{ BUTTON_TEXT }}
         </div>
       </div>
     </div>

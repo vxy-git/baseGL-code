@@ -1,11 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-const mouthpieceVideo = '/assets/home/svg/1-Mouthpiece.mp4'
-const oilWindowVideo = '/assets/home/svg/2-Oil Windos.mp4'
-const functionInterfaceVideo = '/assets/home/svg/3-Function and Interface.mp4'
-const buttonVideo = '/assets/home/svg/4-Button.mp4'
-const stickerVideo = '/assets/home/svg/5-Sticker.mp4'
-const housingVideo = '/assets/home/svg/6-Housing.mp4'
+import { UNIT_TITLE, designItems } from '@/data/home-unit4'
 
 const unitBoxRef = ref(null)
 const playPath = ref(false)
@@ -42,7 +37,7 @@ onUnmounted(() => {
 <template>
   <div class="mt-[87px]">
     <div class="title text-center">
-      Realize your unique design with CALEAF TECH
+      {{ UNIT_TITLE }}
     </div>
     <div class="svgBox relative c_1300 w-full c_padding mt-[51px] flex justify-center items-center">
       <div ref="unitBoxRef" class="unitBox w-[1300px] h-[732px] shrink-0">
@@ -68,34 +63,34 @@ onUnmounted(() => {
           </defs>
         </svg>
         <div class="z-[3] absolute top-0 left-0 w-[359px] h-[485px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="mouthpieceVideo" :autoplay="false" :muted="true"
-            :loop="true" :controls="false" :hover-play="true" playsinline alt="Mouthpiece" />
-          <div class="text">Mouthpiece</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[0].video" :autoplay="false" :muted="true"
+            :loop="true" :controls="false" :hover-play="true" playsinline :alt="designItems[0].text" />
+          <div class="text">{{ designItems[0].text }}</div>
         </div>
         <div class="z-[1] absolute top-0 left-[369px] w-[564px] h-[485px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="functionInterfaceVideo" :autoplay="false"
-            :muted="true" :loop="true" :controls="false" :hover-play="true" playsinline alt="Function and Interface" />
-          <div class="text">Function and Interface</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[2].video" :autoplay="false"
+            :muted="true" :loop="true" :controls="false" :hover-play="true" playsinline :alt="designItems[2].text" />
+          <div class="text">{{ designItems[2].text }}</div>
         </div>
         <div class="z-[1] absolute top-0 left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="buttonVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline alt="Button" />
-          <div class="text">Button</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[3].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="designItems[3].text" />
+          <div class="text">{{ designItems[3].text }}</div>
         </div>
         <div class="z-[3] absolute top-[247px] left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="stickerVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline alt="Sticker" />
-          <div class="text">Sticker</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[4].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="designItems[4].text" />
+          <div class="text">{{ designItems[4].text }}</div>
         </div>
         <div class="z-[1] absolute top-[495px] left-0 w-[643px] h-[238px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="oilWindowVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline alt="Oil Window" />
-          <div class="text">Oil Window</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[1].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="designItems[1].text" />
+          <div class="text">{{ designItems[1].text }}</div>
         </div>
         <div class="z-[3] absolute top-[495px] left-[653px] w-[643px] h-[238px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="housingVideo" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline alt="Housing" />
-          <div class="text">Housing</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[5].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="designItems[5].text" />
+          <div class="text">{{ designItems[5].text }}</div>
         </div>
       </div>
     </div>

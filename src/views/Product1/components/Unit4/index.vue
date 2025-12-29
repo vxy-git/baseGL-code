@@ -1,9 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-const product1_best_L = '/assets/product1/best-L.mp4';
-const product1_best_R = '/assets/product1/best-R.mp4';
-const product1_no_L = '/assets/product1/no-L.mp4';
-const product1_no_R = '/assets/product1/no-R.mp4';
+import { MAIN_TITLE, SECTION1_DATA, SECTION2_DATA } from '@/data/product1-unit4'
 import { ref } from 'vue';
 
 const progress1 = ref(0);
@@ -31,25 +28,23 @@ const handleReset2 = () => resetProgress(progress2);
 <template>
   <div class="mt-[507px] m_mt_0">
     <div class="title">
-      Consistent Temp<br />
-      Ideal for Rosin
+      {{ MAIN_TITLE }}
     </div>
     <div class="c_1230 c_padding mt-[185px]">
-      <div class="greenText">RTD Control</div>
+      <div class="greenText">{{ SECTION1_DATA.greenText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          Best flavor preservation
+          {{ SECTION1_DATA.title }}
         </div>
         <div class="label">
-          Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene
-          extraction without burning, and guarantees an exceptional session every time.
+          {{ SECTION1_DATA.description }}
         </div>
       </div>
       <div class="flex justify-between mt-[78px] m_flex_col_r gap-[20px]">
         <div ref="smallVideo1Ref" class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product1_best_L"
+            :src="SECTION1_DATA.videos.left"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -61,7 +56,7 @@ const handleReset2 = () => resetProgress(progress2);
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
-            :src="product1_best_R"
+            :src="SECTION1_DATA.videos.right"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -85,21 +80,20 @@ const handleReset2 = () => resetProgress(progress2);
     </div>
 
     <div class="c_1230 c_padding mt-[228px]">
-      <div class="greenText">Built-in Wires</div>
+      <div class="greenText">{{ SECTION2_DATA.greenText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          No more dry burning
+          {{ SECTION2_DATA.title }}
         </div>
         <div class="label mt-[2px]">
-          The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
-          and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
+          {{ SECTION2_DATA.description }}
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
-            :src="product1_no_L"
+            :src="SECTION2_DATA.videos.left"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -122,7 +116,7 @@ const handleReset2 = () => resetProgress(progress2);
         <div ref="smallVideo2Ref" class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product1_no_R"
+            :src="SECTION2_DATA.videos.right"
             :autoplay="false"
             :muted="true"
             :loop="true"

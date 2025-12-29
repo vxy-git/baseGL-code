@@ -4,15 +4,12 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const iconFlavor = '/assets/img/icon19.png'
-const iconDevice = '/assets/img/icon18.png'
+import { ICON_FLAVOR, ICON_DEVICE, FRAME_CONFIG, TB1_DATA, TB2_DATA, TB3_DATA, TB4_DATA } from '@/data/product1-unit3'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress = ref(0)
-const frames = 71
-const tarURL = '/product1.tar'
-const imageURL = (i) => `product1/frame${i + 1}.jpg`
+const { frames, tarURL, imageURL } = FRAME_CONFIG
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -155,66 +152,49 @@ onUnmounted(() => {
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block c_padding">
-            <div ref="tb1Title" class="title">UNICORE<br />POWERED</div>
+            <div ref="tb1Title" class="title">{{ TB1_DATA.title }}</div>
           </div>
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="smallTitle">Award-Winning</div>
-            <div ref="tb2WTitle" class="wTitle">Simply the best</div>
-            <div ref="tb2Text" class="text">In June 2025, UNIT PRO secured 1st place in the Live Resin vape category at the
-              2025
-              California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this
-              market validation, we are not just confident, but eager to bring this golden standard to more brands using
-              Resin and Rosin.</div>
+            <div ref="tb2SmallTitle" class="smallTitle">{{ TB2_DATA.smallTitle }}</div>
+            <div ref="tb2WTitle" class="wTitle">{{ TB2_DATA.wTitle }}</div>
+            <div ref="tb2Text" class="text">{{ TB2_DATA.text }}</div>
           </div>
           <div ref="tb3" class="text-block c_padding">
-            <div ref="tb3SmallTitle" class="smallTitle">A Significant Breakthrough</div>
-            <div ref="tb3WTitle" class="wTitle">U-shape design<br />Pioneering industry</div>
-            <div ref="tb3Text" class="text">Our patented U-shape ceramic design is the result of extensive testing and
-              validation of
-              various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the
-              market.</div>
+            <div ref="tb3SmallTitle" class="smallTitle">{{ TB3_DATA.smallTitle }}</div>
+            <div ref="tb3WTitle" class="wTitle">{{ TB3_DATA.wTitle }}</div>
+            <div ref="tb3Text" class="text">{{ TB3_DATA.text }}</div>
           </div>
           <div ref="tb4" class="text-block c_padding">
             <div ref="tb4SmallTitle" class="smallTitle">
-              100% Rosin-Ready
+              {{ TB4_DATA.smallTitle }}
             </div>
             <div ref="tb4WTitle" class="wTitle">
-              Savor the most natural&nbsp;<br />
-              and rich flavors
+              {{ TB4_DATA.wTitle }}
             </div>
             <div ref="tb4Text" class="text !mt-[28px]">
-              Our patented U-shape ceramic design is 30% thinner than ordinary ceramics, which means fewer terpene
-              molecules
-              are filtered out and the rich, natural flavors are preserved.
+              {{ TB4_DATA.text }}
             </div>
             <div ref="tb4Stats" class="flex justify-center gap-x-[150px] mt-[68px]">
-              <div class="flex flex-col items-center justify-center ">
-                <div class="text1 h-[40px]">
-                  30%
-                </div>
-                <div class="text2">
-                  Thinner in Structure
-                </div>
-              </div>
-              <div class="flex flex-col items-center h-[40px]">
-                <div class="text1 flex">
-                  45%
+              <div v-for="(stat, index) in TB4_DATA.stats" :key="index" class="flex flex-col items-center justify-center ">
+                <div class="text1 h-[40px]" :class="{ 'flex': stat.hasIcon }">
+                  {{ stat.value }}
                   <MediaAsset
+                    v-if="stat.hasIcon"
                     class="size-[40px]"
                     type="image"
-                    :src="iconFlavor"
+                    :src="ICON_FLAVOR"
                     alt=""
                     :lazy="false"
                   />
                 </div>
                 <div class="text2">
-                  Flavor Retention
+                  {{ stat.label }}
                 </div>
               </div>
             </div>
             <MediaAsset
               ref="tb4Image"
-              :src="iconDevice"
+              :src="ICON_DEVICE"
               type="image"
               class="mx-auto mt-[82px] max-h-[600px]"
               alt=""

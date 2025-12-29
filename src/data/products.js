@@ -1,18 +1,3 @@
-const BLENDER = '/assets/list/D9_Distillate/BLENDER.jpg'
-const BLENDER_HOVER = '/assets/list/D9_Distillate/BLENDER-hover.jpg'
-
-const DUKES = '/assets/list/D9_Distillate/DUKES.jpg'
-const DUKES_HOVER = '/assets/list/D9_Distillate/DUKES-hover.jpg'
-
-const UNICORN_Series = '/assets/list/For_ResinRosin/UNICORN-Series.jpg'
-const UNICORN_Series_HOVER = '/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg'
-
-const UNIT_PRO = '/assets/list/For_ResinRosin/UNIT-PRO.jpg'
-const UNIT_PRO_HOVER = '/assets/list/For_ResinRosin/UNIT-PRO-hover.png'
-
-const UNIVERSE_Series = '/assets/list/For_ResinRosin/UNIVERSE-Series.jpg'
-const UNIVERSE_Series_HOVER = '/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg'
-
 /**
  * @typedef {Object} Product
  * @property {number} id
@@ -37,8 +22,8 @@ export const productsData = {
       name: 'UNIVERSE Series',
       description: 'UNICORE™ tech & super mini',
       capacity: '1mL/2mL',
-      image: UNIVERSE_Series,
-      background: UNIVERSE_Series_HOVER,
+      image: '/assets/list/For_ResinRosin/UNIVERSE-Series.jpg',
+      background: '/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg',
       alt: 'UNIVERSE Series',
       isNew: true,
       linkType: 'universe_series',
@@ -48,8 +33,8 @@ export const productsData = {
       name: 'UNICORN Series',
       description: 'UNICORE™ tech & ultra-slim',
       capacity: '0.5mL/1mL',
-      image: UNICORN_Series,
-      background: UNICORN_Series_HOVER,
+      image: '/assets/list/For_ResinRosin/UNICORN-Series.jpg',
+      background: '/assets/list/For_ResinRosin/UNICORN-Series-hover.jpg',
       alt: 'UNICORN Series',
       isNew: true,
       linkType: 'unicorn_series',
@@ -59,8 +44,8 @@ export const productsData = {
       name: 'UNIT Pro',
       description: 'UNICORE™ tech & large display',
       capacity: '1mL/2mL',
-      image: UNIT_PRO,
-      background: UNIT_PRO_HOVER,
+      image: '/assets/list/For_ResinRosin/UNIT-PRO.jpg',
+      background: '/assets/list/For_ResinRosin/UNIT-PRO-hover.png',
       alt: 'UNIT PRO',
       isNew: true,
       linkType: 'unit_pro',
@@ -72,8 +57,8 @@ export const productsData = {
       name: 'DUKES',
       description: 'Dual chamber & postless tech',
       capacity: '1ml/2ml/3ml',
-      image: DUKES,
-      background: DUKES_HOVER,
+      image: '/assets/list/D9_Distillate/DUKES.jpg',
+      background: '/assets/list/D9_Distillate/DUKES-hover.jpg',
       alt: 'DUKES',
       isNew: true,
       linkType: 'dukes',

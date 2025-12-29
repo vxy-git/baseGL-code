@@ -3,18 +3,9 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { useIntersectionObserver } from "@vueuse/core";
 import MediaAsset from "@/components/MediaAsset.vue";
-const bannerImg1 = '/assets/product1/realize1.jpg';
-const bannerImg2 = '/assets/product1/realize2.jpg';
-const bannerImg3 = '/assets/product1/realize3.jpg';
-const bannerImg4 = '/assets/product1/realize4.jpg';
-const arrowImg = '/assets/img/icon4_active.png'
+import { LABEL_TEXT, TITLE_TEXT, ARROW_ICON, DESIGN_IMAGES } from '@/data/product1-unit8'
 
-const list = [
-  { type: 'image', src: bannerImg1, alt: 'Design 1' },
-  { type: 'image', src: bannerImg2, alt: 'Design 2' },
-  { type: 'image', src: bannerImg3, alt: 'Design 3' },
-  { type: 'image', src: bannerImg4, alt: 'Design 4' },
-];
+const list = DESIGN_IMAGES
 
 const bannerCurrent = ref(0);
 const splideRef = ref(null);
@@ -235,8 +226,8 @@ const setMediaRef = (el, index) => {
 
 <template>
   <div class="pt-[110px] bg-white pb-[148px]" ref="containerRef">
-    <div class="label text-center">Design your own look</div>
-    <div class="title text-center mt-[20px]">Realize your unique design with CALEAF TECH</div>
+    <div class="label text-center">{{ LABEL_TEXT }}</div>
+    <div class="title text-center mt-[20px]">{{ TITLE_TEXT }}</div>
     <div class="mt-[58px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
       <div class="w-full">
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
@@ -267,7 +258,7 @@ const setMediaRef = (el, index) => {
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           type="image"
-          :src="arrowImg"
+          :src="ARROW_ICON"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -276,7 +267,7 @@ const setMediaRef = (el, index) => {
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           type="image"
-          :src="arrowImg"
+          :src="ARROW_ICON"
           alt=""
           :lazy="false"
           @click="slideNext"

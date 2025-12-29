@@ -1,53 +1,21 @@
 <script setup>
-const Smooth_yet_Rugged_Design = '/assets/product1/Smooth_yet_Rugged_Design.jpg'
-const Dual_Color_Mouthpiece = '/assets/product1/Dual_Color_Mouthpiece.jpg'
-const Large_Side_Display = '/assets/product1/Large_Side_Display.jpg'
 import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
+import { MAIN_TITLE, TABS_LIST, DESCRIPTIONS, MEDIA_LIST } from '@/data/product1-unit5'
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';
 
 const tabsCurrent = ref(0)
-const tabsList = [
-  "Smooth yet Rugged Design",
-  "Dual-Color Mouthpiece",
-  "Large Side Display"
-]
+const tabsList = TABS_LIST
 
 // 根据 Tab 显示的文案
-const labelContents = [
-  "The edge is clean and bold, making the shape stand out from everything else.",
-  "Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.",
-  "Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check."
-]
+const labelContents = DESCRIPTIONS
 
 const currentLabel = computed(() => labelContents[tabsCurrent.value] || "")
 
 // 媒体资源列表，支持图片和视频混合
-const mediaList = [
-  {
-    type: 'image',
-    src: Smooth_yet_Rugged_Design,
-    alt: 'Smooth yet Rugged Design'
-  },
-  {
-    type: 'image',
-    src: Dual_Color_Mouthpiece,
-    alt: 'Dual-Color Mouthpiece'
-  },
-  {
-    type: 'image',
-    src: Large_Side_Display,
-    alt: 'Large Side Display'
-  }
-  // 示例：添加视频资源
-  // {
-  //   type: 'video',
-  //   src: '/path/to/video.mp4',
-  //   poster: '/path/to/poster.jpg'
-  // }
-]
+const mediaList = MEDIA_LIST
 
 const containerRef = ref(null)  // 容器引用，用于可见性检测
 const isVisible = ref(false)    // 是否在视口中可见
@@ -319,7 +287,7 @@ onUnmounted(() => {
     <div class="relative">
       <div class="c_1230 c_padding">
         <div class="title">
-          Every Detail Matters
+          {{ MAIN_TITLE }}
         </div>
         <div class="mt-[58px] relative">
           <div class="w-full flex justify-center">

@@ -1,38 +1,27 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const one_R = '/assets/product1/one-R.mp4'
-const upgrade1 = '/assets/product1/unit7/3_Temperature_Control.mp4'
-const upgrade2 = '/assets/product1/unit7/Activation_Indication.mp4'
-const upgrade3 = '/assets/product1/unit7/Battery_Life_Monitor.mp4'
-const upgrade4 = '/assets/product1/unit7/Preheat_Status_Indication.mp4'
-const tap1 = '/assets/product1/one-taps1.png'
-const tap2 = '/assets/product1/one-taps2.png'
-const tap3 = '/assets/product1/one-taps3.png'
-const tap4 = '/assets/product1/one-taps4.png'
-
-
-
+import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data/product1-unit7'
 </script>
 
 <template>
   <div class=" unit7 mt-[202px] pb-[202px]">
     <div class="c_1230 c_padding">
       <div class="title">
-        Smart Display
+        {{ MAIN_TITLE }}
       </div>
       <div class="stitle text-center mt-[120px]">
-        Upgrade your adventure
+        {{ SUB_TITLE }}
       </div>
       <div class="unit7__cards mx-auto mt-[60px] scrollbar-hide">
         <div class="unit7__row">
           <div class="unit7__card">
             <div class="tag">
-              3-Temperature Control
+              {{ UPGRADE_CARDS[0].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="upgrade1"
+                :src="UPGRADE_CARDS[0].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -44,12 +33,12 @@ const tap4 = '/assets/product1/one-taps4.png'
           </div>
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              Activation Indication
+              {{ UPGRADE_CARDS[1].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="upgrade2"
+                :src="UPGRADE_CARDS[1].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -63,12 +52,12 @@ const tap4 = '/assets/product1/one-taps4.png'
         <div class="unit7__row unit7__row--swap">
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              Battery Life Monitor
+              {{ UPGRADE_CARDS[2].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="upgrade3"
+                :src="UPGRADE_CARDS[2].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -80,12 +69,12 @@ const tap4 = '/assets/product1/one-taps4.png'
           </div>
           <div class="unit7__card">
             <div class="tag">
-              Preheat Status Indication
+              {{ UPGRADE_CARDS[3].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="upgrade4"
+                :src="UPGRADE_CARDS[3].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -101,67 +90,32 @@ const tap4 = '/assets/product1/one-taps4.png'
     <div class="unit7__content c_padding c_1230 flex justify-between mt-[267px] gap-[20px] m_flex_col_r">
       <div class="unit7__text">
         <div class="gtext">
-          The Enhanced
+          {{ ONE_BUTTON_CONTROL.greenText }}
         </div>
         <div class="stitle mt-[20px]">
-          One-Button Control
+          {{ ONE_BUTTON_CONTROL.title }}
         </div>
         <div class="label mt-[44px]">
-          With just one button, you can easily turn on/off, pre-heat, and adjust temperature settings. Take full
-          control of your experience and embark on your own unique adventure.Take full control of your experience with
-          the one-button controls for pre-heating, temperature settings, and child safety lock.
+          {{ ONE_BUTTON_CONTROL.description }}
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
-          <div class="unit7__step flex flex-col items-center">
+          <div v-for="(step, index) in ONE_BUTTON_CONTROL.steps" :key="index" class="unit7__step flex flex-col items-center">
             <MediaAsset
               class="size-[80px]"
               type="image"
-              :src="tap1"
+              :src="step.icon"
               alt=""
               :lazy="false"
             />
-            <div class="itemTitle mt-[19px]">1 Tap</div>
-            <div class="itemLabel mt-[4px]">Check temp</div>
-          </div>
-          <div class="unit7__step flex flex-col items-center">
-            <MediaAsset
-              class="size-[80px]"
-              type="image"
-              :src="tap2"
-              alt=""
-              :lazy="false"
-            />
-            <div class="itemTitle mt-[19px]">2 Taps</div>
-            <div class="itemLabel mt-[4px]">Warm up</div>
-          </div>
-          <div class="unit7__step flex flex-col items-center">
-            <MediaAsset
-              class="size-[80px]"
-              type="image"
-              :src="tap3"
-              alt=""
-              :lazy="false"
-            />
-            <div class="itemTitle mt-[19px]">3 Taps</div>
-            <div class="itemLabel mt-[4px]">Change temp</div>
-          </div>
-          <div class="unit7__step flex flex-col items-center">
-            <MediaAsset
-              class="size-[80px]"
-              type="image"
-              :src="tap4"
-              alt=""
-              :lazy="false"
-            />
-            <div class="itemTitle mt-[19px]">5 Taps</div>
-            <div class="itemLabel mt-[4px]">Turn on/off</div>
+            <div class="itemTitle mt-[19px]">{{ step.title }}</div>
+            <div class="itemLabel mt-[4px]">{{ step.label }}</div>
           </div>
         </div>
       </div>
       <div class="unit7__img w-[450px] h-[540px]">
         <MediaAsset
           type="video"
-          :src="one_R"
+          :src="ONE_BUTTON_CONTROL.video"
           :autoplay="true"
           :muted="true"
           :loop="true"
