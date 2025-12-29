@@ -1,11 +1,11 @@
 <template>
   <div class="product-list-page">
-    <Header headerClass="white" border />
+    <Header :headerClass="HEADER_CLASS" border />
     <div class="header-divider" />
 
     <main class="main-content c_1300">
       <section class="catalog-intro">
-        <h1 class="catalog-title c_padding">Innovative products</h1>
+        <h1 class="catalog-title c_padding">{{ PAGE_TITLE }}</h1>
         <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       </section>
 
@@ -38,19 +38,27 @@ import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
 import ProductItem from '@/components/ProductItem/index.vue'
 import { tabsList, productsData } from '@/data/products'
-
-const navItems = ['Products', 'Technology', 'Customize', 'US Local Service', 'Why Caleaf']
+import {
+  PAGE_TITLE,
+  HEADER_CLASS,
+  NAV_ITEMS,
+  CARD_WIDTH,
+  GAP,
+  ACTIVE_FILTER_INDEX,
+  CURRENT_PAGE,
+  PAGES
+} from '@/data/productlist'
 
 const route = useRoute()
 const router = useRouter()
-const tabsCurrent = ref(0)
+const tabsCurrent = ref(ACTIVE_FILTER_INDEX)
 
-const activeFilterIndex = 0
+const activeFilterIndex = ACTIVE_FILTER_INDEX
 
 const products = computed(() => productsData[tabsCurrent.value] || [])
 
-const pages = [1]
-const currentPage = 1
+const pages = PAGES
+const currentPage = CURRENT_PAGE
 
 const YouTubeIcon = () =>
   h('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none' }, [
@@ -107,8 +115,6 @@ const socialIcons = [
 
 const catalogGridRef = ref(null)
 const columns = ref(1)
-const CARD_WIDTH = 305
-const GAP = 26
 
 const updateColumns = () => {
   const el = catalogGridRef.value
