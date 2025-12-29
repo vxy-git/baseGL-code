@@ -1,12 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  ARROW_LEFT_SRC,
-  ARROW_RIGHT_SRC,
-  CARD_IMG_SRC,
-  TITLE_TEXT,
-  CARD_DATA
-} from '@/data/product4-unit13.js'
+import { product4Unit13Data  } from '@/data/product4-unit13.js'
 </script>
 
 <template>
@@ -14,14 +8,14 @@ import {
 
     <div class=" c_1300 mx-auto pt-[114px] c_padding">
       <div class="title2">
-        {{ TITLE_TEXT }}
+        {{ product4Unit13Data.content.title }}
       </div>
 
       <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="ARROW_LEFT_SRC"
+          :src="product4Unit13Data.icons.arrowLeft"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -29,7 +23,7 @@ import {
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="ARROW_RIGHT_SRC"
+          :src="product4Unit13Data.icons.arrowRight"
           alt=""
           :lazy="false"
           @click="slideNext"
@@ -38,18 +32,18 @@ import {
           <MediaAsset
             class="w-[185px] h-[165px] mx-auto"
             type="image"
-            :src="CARD_IMG_SRC"
+            :src="product4Unit13Data.icons.card"
             alt=""
             :lazy="false"
           />
           <div class="cardTitle pl-[20px] mt-[46px]">
-            {{ CARD_DATA.title }}
+            {{ product4Unit13Data.cardData.title }}
           </div>
           <div class="cardLabel pl-[20px]">
-            {{ CARD_DATA.label }}
+            {{ product4Unit13Data.cardData.label }}
           </div>
           <div class="btn ml-[20px] mt-[17px]">
-            {{ CARD_DATA.buttonText }}
+            {{ product4Unit13Data.cardData.buttonText }}
           </div>
         </div>
       </div>

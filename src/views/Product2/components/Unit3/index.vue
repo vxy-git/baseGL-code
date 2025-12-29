@@ -1,22 +1,22 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { LABEL_TEXT, MAIN_TITLE, VIDEO_LEFT, VIDEO_RIGHT } from '@/data/product2-unit3'
+import { product2Unit3Data  } from '@/data/product2-unit3'
 </script>
 
 <template>
   <div class="mt-[158px] c_1230 c_padding">
     <div class="title1 text-center capitalize">
-      {{ LABEL_TEXT }}
+      {{ product2Unit3Data.labelText }}
     </div>
     <div class="title2 mt-[19px]">
-      {{ MAIN_TITLE }}
+      {{ product2Unit3Data.mainTitle }}
     </div>
     <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
       <div class="w-full h-[440px] bg-black rounded-[20px]">
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="VIDEO_LEFT"
+          :src="product2Unit3Data.videos.left"
           :autoplay="false"
           :muted="true"
           :loop="true"
@@ -28,7 +28,7 @@ import { LABEL_TEXT, MAIN_TITLE, VIDEO_LEFT, VIDEO_RIGHT } from '@/data/product2
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="VIDEO_RIGHT"
+          :src="product2Unit3Data.videos.right"
           :autoplay="false"
           :muted="true"
           :loop="true"

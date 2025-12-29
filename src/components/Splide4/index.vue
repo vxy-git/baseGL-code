@@ -14,7 +14,7 @@ const isHovered = ref(false)
 const isMobile = ref(false)
 
 // 展示列表（合并产品数据）
-const productList = computed(() => Object.values(productsData).flat())
+const productList = computed(() => Object.values(productsData.products).flat())
 
 // 移动端检测
 const checkMobile = () => {

@@ -3,11 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  VIDEO_SRC,
-  TITLE_TEXT,
-  DESCRIPTION_TEXT
-} from '@/data/technology-unit6.js'
+import { technologyUnit6Data } from '@/data/technology-unit6.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -134,16 +130,16 @@ onUnmounted(() => {
   <div ref="sectionRef" class="section">
     <div class="content-wrapper">
       <div ref="titleRef" class="title2">
-        {{ TITLE_TEXT }}
+        {{ technologyUnit6Data.title }}
       </div>
 
       <div ref="mediaBoxRef" class="media-box mt-[34px]">
-        <MediaAsset ref="mediaAssetRef" :src="VIDEO_SRC" type="video" alt="" class="media-asset !min-h-0" :controls="false"
+        <MediaAsset ref="mediaAssetRef" :src="technologyUnit6Data.video" type="video" alt="" class="media-asset !min-h-0" :controls="false"
           :autoplay="false" :muted="true" :loop="true" />
       </div>
 
       <div ref="descRef" class="title3 mt-[34px]">
-        {{ DESCRIPTION_TEXT }}
+        {{ technologyUnit6Data.description }}
       </div>
     </div>
   </div>

@@ -3,12 +3,27 @@
  */
 
 /**
- * 图标路径
+ * Product4 Unit9 数据对象
  */
-export const ICON38_SRC = '/assets/img/icon38.png'
+export const product4Unit9Data = {
+  /**
+   * 图标路径
+   */
+  icons: {
+    /**
+     * ICON38 图标
+     */
+    icon38: '/assets/img/icon38.png',
+  },
 
-/**
- * 标题文本
- */
-export const TITLE_TEXT = `Tap into a whole new level
-of interaction`
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标题文本
+     */
+    title: `Tap into a whole new level
+of interaction`,
+  },
+}

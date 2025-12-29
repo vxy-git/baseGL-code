@@ -20,11 +20,11 @@ const splideOptions = {
 }
 
 import MediaAsset from '@/components/MediaAsset.vue'
-import { bannerList, BUTTON_ICON } from '@/data/home-unit1'
+import { homeUnit1Data } from '@/data/home-unit1'
 
 const router = useRouter()
 
-const list = ref(bannerList)
+const list = ref(homeUnit1Data.bannerList)
 
 const changeEnd = (splide, newIndex) => {
   currentIndex.value = newIndex
@@ -75,7 +75,7 @@ const handleLearnMore = (item) => {
                 <MediaAsset
                   class="btn-icon"
                   type="image"
-                  :src="BUTTON_ICON"
+                  :src="homeUnit1Data.buttonIcon"
                   alt=""
                   :lazy="false"
                 />

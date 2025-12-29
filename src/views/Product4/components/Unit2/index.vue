@@ -1,14 +1,5 @@
 <script setup>
-import {
-  ADVANCED_INTERACTIVITY_IMG,
-  DUAL_CHAMBER_IMG,
-  MULTIPLE_OPTIONS_IMG,
-  POST_FREE_IMG,
-  DUAL_CHAMBER_LABEL,
-  POST_FREE_LABEL,
-  MULTIPLE_OPTIONS_LABEL,
-  ADVANCED_INTERACTIVITY_LABEL
-} from '@/data/product4-unit2.js';
+import { product4Unit2Data  } from '@/data/product4-unit2.js';
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 
@@ -16,22 +7,22 @@ import MediaAsset from '@/components/MediaAsset.vue'
   <div class="flex flex-col gap-y-[20px] pt-[110px] c_1230 c_padding">
     <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">{{ DUAL_CHAMBER_LABEL }}</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="DUAL_CHAMBER_IMG" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ product4Unit2Data.labels.dualChamber }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="product4Unit2Data.images.dualChamber" alt="" />
       </div>
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">{{ POST_FREE_LABEL }}</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="POST_FREE_IMG" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ product4Unit2Data.labels.postFree }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="product4Unit2Data.images.postFree" alt="" />
       </div>
     </div>
     <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">{{ MULTIPLE_OPTIONS_LABEL }}</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="MULTIPLE_OPTIONS_IMG" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ product4Unit2Data.labels.multipleOptions }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="product4Unit2Data.images.multipleOptions" alt="" />
       </div>
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">{{ ADVANCED_INTERACTIVITY_LABEL }}</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="ADVANCED_INTERACTIVITY_IMG" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ product4Unit2Data.labels.advancedInteractivity }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="product4Unit2Data.images.advancedInteractivity" alt="" />
       </div>
     </div>
   </div>

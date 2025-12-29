@@ -1,26 +1,26 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { ICON38_SRC, TITLE_TEXT } from '@/data/product4-unit9.js'
+import { product4Unit9Data  } from '@/data/product4-unit9.js'
 </script>
 
 <template>
     <div class="c_padding c_1230">
       <div class="mx-auto flex relative justify-center w-full">
         <MediaAsset
-          :src="ICON38_SRC"
+          :src="product4Unit9Data.icons.icon38"
           type="image"
           class="absolute left-0 size-[34px] -top-[4px] animate-pulse"
           alt=""
           :lazy="false"
         />
         <MediaAsset
-          :src="ICON38_SRC"
+          :src="product4Unit9Data.icons.icon38"
           type="image"
           class="absolute left-[35px] size-[22px] -top-[22px] animate-pulse"
           alt=""
           :lazy="false"
         />
-        <div class="title text-nowrap">{{ TITLE_TEXT }}</div>
+        <div class="title text-nowrap">{{ product4Unit9Data.content.title }}</div>
       </div>
     </div>
 </template>

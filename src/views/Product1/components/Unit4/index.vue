@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import { MAIN_TITLE, SECTION1_DATA, SECTION2_DATA } from '@/data/product1-unit4'
+import { product1Unit4Data  } from '@/data/product1-unit4'
 import { ref } from 'vue';
 
 const progress1 = ref(0);
@@ -28,23 +28,23 @@ const handleReset2 = () => resetProgress(progress2);
 <template>
   <div class="mt-[507px] m_mt_0">
     <div class="title">
-      {{ MAIN_TITLE }}
+      {{ product1Unit4Data.mainTitle }}
     </div>
     <div class="c_1230 c_padding mt-[185px]">
-      <div class="greenText">{{ SECTION1_DATA.greenText }}</div>
+      <div class="greenText">{{ product1Unit4Data.section1.greenText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          {{ SECTION1_DATA.title }}
+          {{ product1Unit4Data.section1.title }}
         </div>
         <div class="label">
-          {{ SECTION1_DATA.description }}
+          {{ product1Unit4Data.section1.description }}
         </div>
       </div>
       <div class="flex justify-between mt-[78px] m_flex_col_r gap-[20px]">
         <div ref="smallVideo1Ref" class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="SECTION1_DATA.videos.left"
+            :src="product1Unit4Data.section1.videos.left"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -56,7 +56,7 @@ const handleReset2 = () => resetProgress(progress2);
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
-            :src="SECTION1_DATA.videos.right"
+            :src="product1Unit4Data.section1.videos.right"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -80,20 +80,20 @@ const handleReset2 = () => resetProgress(progress2);
     </div>
 
     <div class="c_1230 c_padding mt-[228px]">
-      <div class="greenText">{{ SECTION2_DATA.greenText }}</div>
+      <div class="greenText">{{ product1Unit4Data.section2.greenText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          {{ SECTION2_DATA.title }}
+          {{ product1Unit4Data.section2.title }}
         </div>
         <div class="label mt-[2px]">
-          {{ SECTION2_DATA.description }}
+          {{ product1Unit4Data.section2.description }}
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
           <MediaAsset
             type="video"
-            :src="SECTION2_DATA.videos.left"
+            :src="product1Unit4Data.section2.videos.left"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -116,7 +116,7 @@ const handleReset2 = () => resetProgress(progress2);
         <div ref="smallVideo2Ref" class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="SECTION2_DATA.videos.right"
+            :src="product1Unit4Data.section2.videos.right"
             :autoplay="false"
             :muted="true"
             :loop="true"

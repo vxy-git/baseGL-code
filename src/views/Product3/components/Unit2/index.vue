@@ -1,36 +1,29 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  PRODUCT1_IMAGE,
-  PRODUCT2_IMAGE,
-  PRODUCT1_NAME,
-  PRODUCT2_NAME,
-  PRODUCT1_DESCRIPTION,
-  PRODUCT2_DESCRIPTION
-} from '@/data/product3-unit2'
+import { product3Unit2Data  } from '@/data/product3-unit2'
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="PRODUCT1_IMAGE" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="product3Unit2Data.products.product1Image" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
-          {{ PRODUCT1_NAME }}
+          {{ product3Unit2Data.products.product1Name }}
         </div>
         <div class="title2 mt-[19.55px]">
-          {{ PRODUCT1_DESCRIPTION }}
+          {{ product3Unit2Data.products.product1Description }}
         </div>
       </div>
     </div>
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="PRODUCT2_IMAGE" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="product3Unit2Data.products.product2Image" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
-          {{ PRODUCT2_NAME }}
+          {{ product3Unit2Data.products.product2Name }}
         </div>
         <div class="title2 !text-white mt-[19px]">
-          {{ PRODUCT2_DESCRIPTION }}
+          {{ product3Unit2Data.products.product2Description }}
         </div>
       </div>
     </div>

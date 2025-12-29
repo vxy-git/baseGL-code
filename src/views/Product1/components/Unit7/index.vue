@@ -1,27 +1,27 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data/product1-unit7'
+import { product1Unit7Data  } from '@/data/product1-unit7'
 </script>
 
 <template>
   <div class=" unit7 mt-[202px] pb-[202px]">
     <div class="c_1230 c_padding">
       <div class="title">
-        {{ MAIN_TITLE }}
+        {{ product1Unit7Data.mainTitle }}
       </div>
       <div class="stitle text-center mt-[120px]">
-        {{ SUB_TITLE }}
+        {{ product1Unit7Data.subTitle }}
       </div>
       <div class="unit7__cards mx-auto mt-[60px] scrollbar-hide">
         <div class="unit7__row">
           <div class="unit7__card">
             <div class="tag">
-              {{ UPGRADE_CARDS[0].tag }}
+              {{ product1Unit7Data.upgradeCards[0].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="UPGRADE_CARDS[0].video"
+                :src="product1Unit7Data.upgradeCards[0].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -33,12 +33,12 @@ import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data
           </div>
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              {{ UPGRADE_CARDS[1].tag }}
+              {{ product1Unit7Data.upgradeCards[1].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="UPGRADE_CARDS[1].video"
+                :src="product1Unit7Data.upgradeCards[1].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -52,12 +52,12 @@ import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data
         <div class="unit7__row unit7__row--swap">
           <div class="unit7__card unit7__card--wide">
             <div class="tag">
-              {{ UPGRADE_CARDS[2].tag }}
+              {{ product1Unit7Data.upgradeCards[2].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="UPGRADE_CARDS[2].video"
+                :src="product1Unit7Data.upgradeCards[2].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -69,12 +69,12 @@ import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data
           </div>
           <div class="unit7__card">
             <div class="tag">
-              {{ UPGRADE_CARDS[3].tag }}
+              {{ product1Unit7Data.upgradeCards[3].tag }}
             </div>
             <div class="unit7__card-img">
               <MediaAsset
                 type="video"
-                :src="UPGRADE_CARDS[3].video"
+                :src="product1Unit7Data.upgradeCards[3].video"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -90,16 +90,16 @@ import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data
     <div class="unit7__content c_padding c_1230 flex justify-between mt-[267px] gap-[20px] m_flex_col_r">
       <div class="unit7__text">
         <div class="gtext">
-          {{ ONE_BUTTON_CONTROL.greenText }}
+          {{ product1Unit7Data.oneButtonControl.greenText }}
         </div>
         <div class="stitle mt-[20px]">
-          {{ ONE_BUTTON_CONTROL.title }}
+          {{ product1Unit7Data.oneButtonControl.title }}
         </div>
         <div class="label mt-[44px]">
-          {{ ONE_BUTTON_CONTROL.description }}
+          {{ product1Unit7Data.oneButtonControl.description }}
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
-          <div v-for="(step, index) in ONE_BUTTON_CONTROL.steps" :key="index" class="unit7__step flex flex-col items-center">
+          <div v-for="(step, index) in product1Unit7Data.oneButtonControl.steps" :key="index" class="unit7__step flex flex-col items-center">
             <MediaAsset
               class="size-[80px]"
               type="image"
@@ -115,7 +115,7 @@ import { MAIN_TITLE, SUB_TITLE, UPGRADE_CARDS, ONE_BUTTON_CONTROL } from '@/data
       <div class="unit7__img w-[450px] h-[540px]">
         <MediaAsset
           type="video"
-          :src="ONE_BUTTON_CONTROL.video"
+          :src="product1Unit7Data.oneButtonControl.video"
           :autoplay="true"
           :muted="true"
           :loop="true"

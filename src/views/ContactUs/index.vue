@@ -3,21 +3,7 @@ import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  HERO_BANNER,
-  HERO_BANNER_MOBILE,
-  ICON_INSTAGRAM,
-  ICON_DROPDOWN,
-  ICON_PRODUCT,
-  INSTAGRAM_LINK,
-  CONTACT_EMAIL,
-  HERO_TITLE,
-  FOLLOW_TEXT,
-  FORM_TITLE,
-  SUBMIT_BUTTON_TEXT,
-  COUNTRIES,
-  STATES_BY_COUNTRY
-} from '@/data/contactus'
+import { contactUsData } from '@/data/contactus'
 
 const formData = ref({
   name: '',
@@ -32,7 +18,7 @@ const showCountryDropdown = ref(false)
 const showStateDropdown = ref(false)
 
 const availableStates = computed(() => {
-  return STATES_BY_COUNTRY[formData.value.country] || []
+  return contactUsData.formData.statesByCountry[formData.value.country] || []
 })
 
 const selectCountry = (country) => {
@@ -74,19 +60,19 @@ const closeDropdowns = () => {
       <!-- Hero Section -->
       <section class="hero mt_nav">
         <div class="heroBackground">
-          <MediaAsset :src="HERO_BANNER" type="image" class="heroImage m_hide" alt="" :lazy="false" />
-          <MediaAsset :src="HERO_BANNER_MOBILE" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
+          <MediaAsset :src="contactUsData.heroBanner" type="image" class="heroImage m_hide" alt="" :lazy="false" />
+          <MediaAsset :src="contactUsData.heroBannerMobile" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
-            <h1 class="heroTitle w-full c_1300 c_padding text-right">{{ HERO_TITLE }}</h1>
+            <h1 class="heroTitle w-full c_1300 c_padding text-right">{{ contactUsData.content.heroTitle }}</h1>
             <div class="divider"></div>
             <div class="w-full c_1300 c_padding m-auto flex flex-col items-end">
-              <p class="heroEmail">Email: {{ CONTACT_EMAIL }}</p>
+              <p class="heroEmail">Email: {{ contactUsData.contact.email }}</p>
               <div class="socialSection mt-[34px] pr-[4px]">
-                <p class="followText">{{ FOLLOW_TEXT }}</p>
-                <a :href="INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer">
-                  <MediaAsset :src="ICON_INSTAGRAM" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
+                <p class="followText">{{ contactUsData.content.followText }}</p>
+                <a :href="contactUsData.contact.instagramLink" target="_blank" rel="noopener noreferrer">
+                  <MediaAsset :src="contactUsData.icons.instagram" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
                 </a>
               </div>
             </div>
@@ -98,7 +84,7 @@ const closeDropdowns = () => {
       <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
           <div class="formCard px-[40px] pt-[60px]">
-            <h2 class="formTitle">{{ FORM_TITLE }}</h2>
+            <h2 class="formTitle">{{ contactUsData.content.formTitle }}</h2>
             <form class="form" @click.stop>
               <div class="formField">
                 <input type="text" v-model="formData.name" placeholder="Your name*" />
@@ -113,11 +99,11 @@ const closeDropdowns = () => {
                   <span :class="formData.country ? 'selectedValue' : 'placeholder'">
                     {{ formData.country || 'Country*' }}
                   </span>
-                  <MediaAsset :src="ICON_DROPDOWN" type="image"
+                  <MediaAsset :src="contactUsData.icons.dropdown" type="image"
                     :class="['dropdownIcon', showCountryDropdown && 'rotated']" alt="" :lazy="false" />
                 </div>
                 <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
-                  <div v-for="country in COUNTRIES" :key="country" class="dropdownItem" @click="selectCountry(country)">
+                  <div v-for="country in contactUsData.formData.countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
                     {{ country }}
                   </div>
                 </div>
@@ -128,7 +114,7 @@ const closeDropdowns = () => {
                   <span :class="formData.state ? 'selectedValue' : 'placeholder'">
                     {{ formData.state || 'State' }}
                   </span>
-                  <MediaAsset :src="ICON_DROPDOWN" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
+                  <MediaAsset :src="contactUsData.icons.dropdown" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
                     alt="" :lazy="false" />
                 </div>
                 <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
@@ -144,11 +130,11 @@ const closeDropdowns = () => {
               <div class="formField">
                 <textarea v-model="formData.message" placeholder="Message"></textarea>
               </div>
-              <button type="submit" class="submitBtn">{{ SUBMIT_BUTTON_TEXT }}</button>
+              <button type="submit" class="submitBtn">{{ contactUsData.content.submitButtonText }}</button>
             </form>
           </div>
           <div class="formImage">
-            <MediaAsset :src="ICON_PRODUCT" type="image" alt="Product Image" :lazy="false" />
+            <MediaAsset :src="contactUsData.icons.product" type="image" alt="Product Image" :lazy="false" />
           </div>
         </div>
       </section>

@@ -3,11 +3,26 @@
  */
 
 /**
- * 视频路径
+ * Product4 Unit5 数据对象
  */
-export const DUAL_GEMCO_CORE_VIDEO = '/assets/product4/Dual-Gemco-Core.mp4'
+export const product4Unit5Data = {
+  /**
+   * 视频路径
+   */
+  videos: {
+    /**
+     * Dual Gemco Core 视频
+     */
+    dualGemcoCore: '/assets/product4/Dual-Gemco-Core.mp4',
+  },
 
-/**
- * 标题文本
- */
-export const TITLE_TEXT = 'Dual Gemco Core'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标题文本
+     */
+    title: 'Dual Gemco Core',
+  },
+}

@@ -1,16 +1,9 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  SCREEN_BG,
-  SCREEN_IMAGES,
-  SMALL_TITLE,
-  MAIN_TITLE,
-  DESCRIPTION,
-  CAROUSEL_CONFIG
-} from '@/data/product3-unit6'
+import { product3Unit6Data  } from '@/data/product3-unit6'
 
-const list = SCREEN_IMAGES
+const list = product3Unit6Data.screenImages
 
 const listBox = ref(null)
 const currentIndex = ref(0)
@@ -19,8 +12,8 @@ const noTransition = ref(false)
 const autoTimer = ref(null)
 const resetTimer = ref(null)
 
-const intervalMs = CAROUSEL_CONFIG.intervalMs
-const transitionMs = CAROUSEL_CONFIG.transitionMs
+const intervalMs = product3Unit6Data.carouselConfig.intervalMs
+const transitionMs = product3Unit6Data.carouselConfig.transitionMs
 
 const displayList = computed(() => [...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list])
 
@@ -100,20 +93,20 @@ onBeforeUnmount(() => {
           <MediaAsset
             class="w-full absolute top-0 left-0"
             type="image"
-            :src="SCREEN_BG"
+            :src="product3Unit6Data.screenBg"
             alt=""
             :lazy="false"
           />
         </div>
         <div class="mt-[126px] textBox">
           <div class="title">
-            {{ SMALL_TITLE }}
+            {{ product3Unit6Data.content.smallTitle }}
           </div>
           <div class="title2">
-            {{ MAIN_TITLE }}
+            {{ product3Unit6Data.content.mainTitle }}
           </div>
           <div class="w-[500px] title3">
-            {{ DESCRIPTION }}
+            {{ product3Unit6Data.content.description }}
           </div>
         </div>
       </div>

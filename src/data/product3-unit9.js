@@ -3,33 +3,41 @@
  */
 
 /**
- * 左箭头图标
+ * Product3 Unit9 数据对象
  */
-export const ARROW_LEFT = '/assets/img/icon4.png'
+export const product3Unit9Data = {
+  /**
+   * 产品标签
+   */
+  labels: {
+    /**
+     * Unicorn 标签
+     */
+    unicorn: 'UNICORE',
+  },
 
-/**
- * 右箭头图标
- */
-export const ARROW_RIGHT = '/assets/img/icon4_active.png'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 主标题
+     */
+    mainTitle: 'Inhale & Button Activated',
+  },
 
-/**
- * 卡片图片
- */
-export const CARD_IMG = '/assets/img/icon25.png'
+  /**
+   * 媒体资源
+   */
+  media: {
+    /**
+     * 左侧图片
+     */
+    leftImage: '/assets/product3/unit7-l.jpg',
 
-/**
- * 页面标题
- */
-export const PAGE_TITLE = 'More Products'
-
-/**
- * 产品卡片配置
- */
-export const PRODUCT_CARDS = [
-  {
-    img: CARD_IMG,
-    title: 'UNIT',
-    label: 'UNICORE™ tech & large display',
-    btnText: 'View More'
-  }
-]
+    /**
+     * 右侧图片
+     */
+    rightImage: '/assets/product3/unit7-r.jpg',
+  },
+}

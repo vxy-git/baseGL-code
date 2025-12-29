@@ -38,7 +38,18 @@
       "WebFetch(domain:splidejs.com)",
       "Bash(npm run build:*)",
       "Bash(for:*)",
-      "Bash(done:*)"
+      "Bash(done:*)",
+      "Bash(do python3:*)",
+      "Bash(cd:*)",
+      "Bash(echo:*)",
+      "Bash(while read file)",
+      "Bash(do if grep -v \"Data\\|header\\.js\\|footer\\.js\\|products\\.js\" \"$file\")",
+      "Bash(then echo \"未更新: $file\" grep \"from ''''@/data/\" \"$file\")",
+      "Bash(wc -l echo echo 剩余需要手动检查的文件: find /Users/wming/Documents/workBox/boss3/gl-item/baseGL-code/src/views -name *.vue -exec grep -l \"from ''''@/data/\" {})",
+      "Bash(xargs:*)",
+      "Bash(wc:*)",
+      "Bash(bc:*)",
+      "Bash(git ls-tree:*)"
     ],
     "deny": [],
     "ask": []

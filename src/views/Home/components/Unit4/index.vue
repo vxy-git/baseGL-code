@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { UNIT_TITLE, designItems } from '@/data/home-unit4'
+import { homeUnit4Data } from '@/data/home-unit4'
+import MediaAsset from '@/components/MediaAsset.vue'
 
 const unitBoxRef = ref(null)
 const playPath = ref(false)
@@ -37,7 +38,7 @@ onUnmounted(() => {
 <template>
   <div class="mt-[87px]">
     <div class="title text-center">
-      {{ UNIT_TITLE }}
+      {{ homeUnit4Data.unitTitle }}
     </div>
     <div class="svgBox relative c_1300 w-full c_padding mt-[51px] flex justify-center items-center">
       <div ref="unitBoxRef" class="unitBox w-[1300px] h-[732px] shrink-0">
@@ -63,34 +64,34 @@ onUnmounted(() => {
           </defs>
         </svg>
         <div class="z-[3] absolute top-0 left-0 w-[359px] h-[485px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[0].video" :autoplay="false" :muted="true"
-            :loop="true" :controls="false" :hover-play="true" playsinline :alt="designItems[0].text" />
-          <div class="text">{{ designItems[0].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[0].video" :autoplay="false" :muted="true"
+            :loop="true" :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[0].text" />
+          <div class="text">{{ homeUnit4Data.designItems[0].text }}</div>
         </div>
         <div class="z-[1] absolute top-0 left-[369px] w-[564px] h-[485px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[2].video" :autoplay="false"
-            :muted="true" :loop="true" :controls="false" :hover-play="true" playsinline :alt="designItems[2].text" />
-          <div class="text">{{ designItems[2].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[2].video" :autoplay="false"
+            :muted="true" :loop="true" :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[2].text" />
+          <div class="text">{{ homeUnit4Data.designItems[2].text }}</div>
         </div>
         <div class="z-[1] absolute top-0 left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[3].video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline :alt="designItems[3].text" />
-          <div class="text">{{ designItems[3].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[3].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[3].text" />
+          <div class="text">{{ homeUnit4Data.designItems[3].text }}</div>
         </div>
         <div class="z-[3] absolute top-[247px] left-[943px] w-[355px] h-[237px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[4].video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline :alt="designItems[4].text" />
-          <div class="text">{{ designItems[4].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[4].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[4].text" />
+          <div class="text">{{ homeUnit4Data.designItems[4].text }}</div>
         </div>
         <div class="z-[1] absolute top-[495px] left-0 w-[643px] h-[238px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[1].video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline :alt="designItems[1].text" />
-          <div class="text">{{ designItems[1].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[1].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[1].text" />
+          <div class="text">{{ homeUnit4Data.designItems[1].text }}</div>
         </div>
         <div class="z-[3] absolute top-[495px] left-[653px] w-[643px] h-[238px] rounded-[20px] overflow-hidden">
-          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="designItems[5].video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :hover-play="true" playsinline :alt="designItems[5].text" />
-          <div class="text">{{ designItems[5].text }}</div>
+          <MediaAsset class="mediaAsset size-full object-cover rounded-[20px]" type="video" :src="homeUnit4Data.designItems[5].video" :autoplay="false" :muted="true" :loop="true"
+            :controls="false" :hover-play="true" playsinline :alt="homeUnit4Data.designItems[5].text" />
+          <div class="text">{{ homeUnit4Data.designItems[5].text }}</div>
         </div>
       </div>
     </div>

@@ -3,26 +3,46 @@
  */
 
 /**
- * 图标路径
+ * Technology Unit1 数据对象
  */
-export const ICON_IMAGE = '/assets/img/icon1_3.png'
+export const technologyUnit1Data = {
+  /**
+   * 图标路径
+   */
+  icons: {
+    /**
+     * 图标图片
+     */
+    icon: '/assets/img/icon1_3.png',
 
-/**
- * 播放图标路径
- */
-export const PLAY_ICON = '/assets/img/Play-one.png'
+    /**
+     * 播放图标
+     */
+    play: '/assets/img/Play-one.png',
+  },
 
-/**
- * 视频源路径
- */
-export const VIDEO_SRC = '/assets/technology/banner.mp4'
+  /**
+   * 视频源路径
+   */
+  videos: {
+    /**
+     * 视频源
+     */
+    src: '/assets/technology/banner.mp4',
 
-/**
- * 背景视频路径
- */
-export const BANNER_BG_VIDEO = '/assets/technology/bannerBg.mp4'
+    /**
+     * 背景视频
+     */
+    bannerBg: '/assets/technology/bannerBg.mp4',
+  },
 
-/**
- * 按钮文本
- */
-export const WATCH_VIDEO_TEXT = 'Watch Video'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 按钮文本
+     */
+    watchVideoText: 'Watch Video',
+  },
+}

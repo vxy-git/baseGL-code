@@ -4,12 +4,12 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { ICON_FLAVOR, ICON_DEVICE, FRAME_CONFIG, TB1_DATA, TB2_DATA, TB3_DATA, TB4_DATA } from '@/data/product1-unit3'
+import { product1Unit3Data } from '@/data/product1-unit3'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress = ref(0)
-const { frames, tarURL, imageURL } = FRAME_CONFIG
+const { frames, tarURL, imageURL } = product1Unit3Data.frameConfig
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -152,37 +152,37 @@ onUnmounted(() => {
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block c_padding">
-            <div ref="tb1Title" class="title">{{ TB1_DATA.title }}</div>
+            <div ref="tb1Title" class="title">{{ product1Unit3Data.textBlocks.tb1.title }}</div>
           </div>
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="smallTitle">{{ TB2_DATA.smallTitle }}</div>
-            <div ref="tb2WTitle" class="wTitle">{{ TB2_DATA.wTitle }}</div>
-            <div ref="tb2Text" class="text">{{ TB2_DATA.text }}</div>
+            <div ref="tb2SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb2.smallTitle }}</div>
+            <div ref="tb2WTitle" class="wTitle">{{ product1Unit3Data.textBlocks.tb2.wTitle }}</div>
+            <div ref="tb2Text" class="text">{{ product1Unit3Data.textBlocks.tb2.text }}</div>
           </div>
           <div ref="tb3" class="text-block c_padding">
-            <div ref="tb3SmallTitle" class="smallTitle">{{ TB3_DATA.smallTitle }}</div>
-            <div ref="tb3WTitle" class="wTitle">{{ TB3_DATA.wTitle }}</div>
-            <div ref="tb3Text" class="text">{{ TB3_DATA.text }}</div>
+            <div ref="tb3SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb3.smallTitle }}</div>
+            <div ref="tb3WTitle" class="wTitle">{{ product1Unit3Data.textBlocks.tb3.wTitle }}</div>
+            <div ref="tb3Text" class="text">{{ product1Unit3Data.textBlocks.tb3.text }}</div>
           </div>
           <div ref="tb4" class="text-block c_padding">
             <div ref="tb4SmallTitle" class="smallTitle">
-              {{ TB4_DATA.smallTitle }}
+              {{ product1Unit3Data.textBlocks.tb4.smallTitle }}
             </div>
             <div ref="tb4WTitle" class="wTitle">
-              {{ TB4_DATA.wTitle }}
+              {{ product1Unit3Data.textBlocks.tb4.wTitle }}
             </div>
             <div ref="tb4Text" class="text !mt-[28px]">
-              {{ TB4_DATA.text }}
+              {{ product1Unit3Data.textBlocks.tb4.text }}
             </div>
             <div ref="tb4Stats" class="flex justify-center gap-x-[150px] mt-[68px]">
-              <div v-for="(stat, index) in TB4_DATA.stats" :key="index" class="flex flex-col items-center justify-center ">
+              <div v-for="(stat, index) in product1Unit3Data.textBlocks.tb4.stats" :key="index" class="flex flex-col items-center justify-center ">
                 <div class="text1 h-[40px]" :class="{ 'flex': stat.hasIcon }">
                   {{ stat.value }}
                   <MediaAsset
                     v-if="stat.hasIcon"
                     class="size-[40px]"
                     type="image"
-                    :src="ICON_FLAVOR"
+                    :src="product1Unit3Data.icons.flavor"
                     alt=""
                     :lazy="false"
                   />
@@ -194,7 +194,7 @@ onUnmounted(() => {
             </div>
             <MediaAsset
               ref="tb4Image"
-              :src="ICON_DEVICE"
+              :src="product1Unit3Data.icons.device"
               type="image"
               class="mx-auto mt-[82px] max-h-[600px]"
               alt=""

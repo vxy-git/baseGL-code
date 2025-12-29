@@ -3,13 +3,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  ICON33_SRC,
-  DUAL_VIDEO,
-  DUAL_MASK_IMG,
-  TITLE_TEXT,
-  DESCRIPTION_TEXT
-} from '@/data/product4-unit4.js'
+import { product4Unit4Data  } from '@/data/product4-unit4.js'
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)
@@ -174,21 +168,21 @@ onBeforeUnmount(() => {
       <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
         <div ref="titleRef" class="">
           <div class="title">
-            {{ TITLE_TEXT }}
+            {{ product4Unit4Data.content.title }}
           </div>
           <div class="label mt-[32px] mb-[32px]">
-            {{ DESCRIPTION_TEXT }}
+            {{ product4Unit4Data.content.description }}
           </div>
         </div>
         <div ref="videoBoxRef" class="w-[94.5vh] max-w-full h-[53.7vh]"></div>
         <div ref="videoRef"
           class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)] overflow-hidden">
-          <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="DUAL_VIDEO"
+          <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="product4Unit4Data.videos.dual"
             :autoplay="false" :muted="true" :loop="false" :controls="false" />
         </div>
         <div ref="maskRef"
           class="mask-layer w-screen h-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          :style="{ backgroundImage: `url(${DUAL_MASK_IMG})` }"></div>
+          :style="{ backgroundImage: `url(${product4Unit4Data.dualMaskImg})` }"></div>
       </div>
     </div>
     <div ref="spacerRef" class="unit4-spacer"></div>

@@ -1,15 +1,5 @@
 <script setup>
-import {
-  TASTE_SWITCHER_IMG,
-  HIT_A_BLINKER_IMG,
-  TITLE_TEXT,
-  TASTE_SWITCHER_LABEL,
-  HIT_A_BLINKER_LABEL,
-  TASTE_SWITCHER_TITLE,
-  HIT_A_BLINKER_TITLE,
-  TASTE_SWITCHER_DESCRIPTION,
-  HIT_A_BLINKER_DESCRIPTION
-} from '@/data/product4-unit8.js'
+import { product4Unit8Data  } from '@/data/product4-unit8.js'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -114,7 +104,7 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">{{ TITLE_TEXT }}</div>
+              <div class="title">{{ product4Unit8Data.content.title }}</div>
             </div>
           </div>
         </div>
@@ -124,14 +114,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">{{ TASTE_SWITCHER_LABEL }}</div>
-                  <div class="title1">{{ TASTE_SWITCHER_TITLE }}</div>
+                  <div class="btn mt-[3px]">{{ product4Unit8Data.features.tasteSwitcher.label }}</div>
+                  <div class="title1">{{ product4Unit8Data.features.tasteSwitcher.title }}</div>
                   <div class="title2">
-                    {{ TASTE_SWITCHER_DESCRIPTION }}
+                    {{ product4Unit8Data.features.tasteSwitcher.description }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="TASTE_SWITCHER_IMG" />
+                  <MediaAsset type="image" :src="product4Unit8Data.images.tasteSwitcher" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">
@@ -148,14 +138,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">{{ HIT_A_BLINKER_LABEL }}</div>
-                  <div class="title1">{{ HIT_A_BLINKER_TITLE }}</div>
+                  <div class="btn mt-[3px]">{{ product4Unit8Data.features.hitABlinker.label }}</div>
+                  <div class="title1">{{ product4Unit8Data.features.hitABlinker.title }}</div>
                   <div class="title2">
-                    {{ HIT_A_BLINKER_DESCRIPTION }}
+                    {{ product4Unit8Data.features.hitABlinker.description }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="HIT_A_BLINKER_IMG" />
+                  <MediaAsset type="image" :src="product4Unit8Data.images.hitABlinker" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">

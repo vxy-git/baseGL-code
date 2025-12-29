@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { BACKGROUND_IMAGE, VIDEO_SRC, TITLE, DESCRIPTION } from '@/data/home-unit6'
+import { homeUnit6Data } from '@/data/home-unit6'
 
 const isPlaying = ref(false)
 
@@ -16,24 +16,24 @@ const playVideo = () => {
       <div>
         <div class="relative">
           <div v-if="!isPlaying" class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center">
-            <div class="titleText">{{ TITLE }}</div>
+            <div class="titleText">{{ homeUnit6Data.title }}</div>
             <div class="label">
-               {{ DESCRIPTION }}
+               {{ homeUnit6Data.description }}
             </div>
           </div>
           <MediaAsset
             v-if="!isPlaying"
             class="h-[560px] w-full object-cover block"
             type="image"
-            :src="BACKGROUND_IMAGE"
+            :src="homeUnit6Data.backgroundImage"
             alt="Beyond Limits background"
           />
           <MediaAsset
             v-else
             class="h-[560px] w-full object-contain bg-black"
             type="video"
-            :src="VIDEO_SRC"
-            :poster="BACKGROUND_IMAGE"
+            :src="homeUnit6Data.videoSrc"
+            :poster="homeUnit6Data.backgroundImage"
             :autoplay="true"
             :loop="true"
             :controls="true"

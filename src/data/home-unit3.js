@@ -3,31 +3,41 @@
  */
 
 /**
- * 背景图片路径
+ * Home Unit3 数据对象
  */
-export const BANNER_IMAGE = '/assets/home/UNICORE.jpg'
+export const homeUnit3Data = {
+  /**
+   * 背景图片路径
+   */
+  bannerImage: '/assets/home/UNICORE.jpg',
 
-/**
- * 标签文本
- */
-export const TAG_TEXT = 'New'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标签文本
+     */
+    tagText: 'New',
 
-/**
- * 标题文本
- */
-export const TITLE = `UNICORE™\nceramic heating technology`
+    /**
+     * 标题文本
+     */
+    title: `UNICORE™\nceramic heating technology`,
 
-/**
- * 副标题文本
- */
-export const SUBTITLE = `Patented U-shape ceramic design\nThe golden standard for ROSIN`
+    /**
+     * 副标题文本
+     */
+    subtitle: `Patented U-shape ceramic design\nThe golden standard for ROSIN`,
 
-/**
- * 按钮文本
- */
-export const BUTTON_TEXT = 'Learn more'
+    /**
+     * 按钮文本
+     */
+    buttonText: 'Learn more',
+  },
 
-/**
- * 跳转路由名称
- */
-export const ROUTE_NAME = 'Technology'
+  /**
+   * 跳转路由名称
+   */
+  routeName: 'Technology',
+}

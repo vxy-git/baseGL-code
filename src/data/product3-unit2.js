@@ -3,31 +3,41 @@
  */
 
 /**
- * 产品1图片
+ * Product3 Unit2 数据对象
  */
-export const PRODUCT1_IMAGE = '/assets/product3/unit2-1.jpg'
+export const product3Unit2Data = {
+  /**
+   * 产品数据
+   */
+  products: {
+    /**
+     * 产品1图片
+     */
+    product1Image: '/assets/product3/unit2-1.jpg',
 
-/**
- * 产品2图片
- */
-export const PRODUCT2_IMAGE = '/assets/product3/unit2-2.jpg'
+    /**
+     * 产品2图片
+     */
+    product2Image: '/assets/product3/unit2-2.jpg',
 
-/**
- * 产品1名称
- */
-export const PRODUCT1_NAME = 'UNICORN'
+    /**
+     * 产品1名称
+     */
+    product1Name: 'UNICORN',
 
-/**
- * 产品2名称
- */
-export const PRODUCT2_NAME = 'UNICORN Pro'
+    /**
+     * 产品2名称
+     */
+    product2Name: 'UNICORN Pro',
 
-/**
- * 产品1描述
- */
-export const PRODUCT1_DESCRIPTION = 'Super thin. Strikingly light.\nShockingly strong.'
+    /**
+     * 产品1描述
+     */
+    product1Description: 'Super thin. Strikingly light.\nShockingly strong.',
 
-/**
- * 产品2描述
- */
-export const PRODUCT2_DESCRIPTION = 'Tiny powerhouse\nExceptional pro capability'
+    /**
+     * 产品2描述
+     */
+    product2Description: 'Tiny powerhouse\nExceptional pro capability',
+  },
+}

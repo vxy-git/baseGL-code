@@ -2,13 +2,13 @@
 import Tabs from "@/components/Tabs/index.vue"
 import {ref, computed, onMounted, onUnmounted, watch} from "vue";
 import ProductItem from "@/components/ProductItem/index.vue"
-import { tabsList, productsData } from "@/data/products"
-import { UNIT_TITLE, ARROW_ICON, splideOptions } from "@/data/home-unit2"
+import { productsData } from "@/data/products"
+import { homeUnit2Data } from "@/data/home-unit2"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const tabsCurrent = ref(0)
-const products = computed(() => productsData[tabsCurrent.value] || [])
+const products = computed(() => productsData.products[tabsCurrent.value] || [])
 
 
 // Splide 状态管理
@@ -21,7 +21,7 @@ const isHovered = ref(false)
 const isMobile = ref(false)
 
 // 展示列表（合并产品数据）
-const productList = computed(() => Object.values(productsData).flat())
+const productList = computed(() => Object.values(productsData.products).flat())
 
 // 检测是否为移动端
 const checkMobile = () => {
@@ -89,9 +89,9 @@ const goToGroup = (groupIndex) => {
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
       <div class="c_1300 c_padding title">
-        {{ UNIT_TITLE }}
+        {{ homeUnit2Data.unitTitle }}
       </div>
-      <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+      <Tabs class="mt-[44px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
 
       <div class="c_1300 c_padding mt-[50px] relative" @mouseenter="isHovered = true"
         @mouseleave="isHovered = false">
@@ -99,13 +99,13 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           type="image"
-          :src="ARROW_ICON"
+          :src="homeUnit2Data.arrowIcon"
           alt=""
           :lazy="false"
           @click="slidePrev"
         />
         <div class="w-full">
-          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
+          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="homeUnit2Data.splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
             <SplideSlide v-for="(product, index) in products" :key="product.id">
               <ProductItem :data="product" />
@@ -116,7 +116,7 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           type="image"
-          :src="ARROW_ICON"
+          :src="homeUnit2Data.arrowIcon"
           alt=""
           :lazy="false"
           @click="slideNext"

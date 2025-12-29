@@ -3,17 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  LEFT_VIDEO,
-  RIGHT_VIDEO_1,
-  RIGHT_VIDEO_2,
-  CONTENT1_TITLE1,
-  CONTENT1_TITLE2,
-  CONTENT1_TITLE3,
-  CONTENT2_TITLE1,
-  CONTENT2_TITLE2,
-  CONTENT2_TITLE3
-} from '@/data/technology-unit5.js'
+import { technologyUnit5Data } from '@/data/technology-unit5.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -146,41 +136,41 @@ onUnmounted(() => {
       class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
       <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
         <div class="title1">
-          {{ CONTENT1_TITLE1 }}
+          {{ technologyUnit5Data.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">
-          {{ CONTENT1_TITLE2 }}
+          {{ technologyUnit5Data.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[23px]">
-          {{ CONTENT1_TITLE3 }}
+          {{ technologyUnit5Data.sections.section1.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef1" :src="RIGHT_VIDEO_1" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef1" :src="technologyUnit5Data.media.rightVideo1" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          {{ CONTENT2_TITLE1 }}
+          {{ technologyUnit5Data.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[23px]">
-          {{ CONTENT2_TITLE2 }}
+          {{ technologyUnit5Data.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          {{ CONTENT2_TITLE3 }}
+          {{ technologyUnit5Data.sections.section2.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef2" :src="RIGHT_VIDEO_2" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef2" :src="technologyUnit5Data.media.rightVideo2" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
     </div>
     <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" :src="LEFT_VIDEO" type="video" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" :src="technologyUnit5Data.media.leftVideo" type="video" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline alt="" />
     </div>
   </div>

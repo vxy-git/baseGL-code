@@ -3,31 +3,49 @@
  */
 
 /**
- * 图标路径
+ * Product4 Unit12 数据对象
  */
-export const ICON41_SRC = '/assets/img/icon41.png'
-export const UNIT9_1_IMG = '/assets/product4/unit9-1.jpg'
-export const UNIT9_2_IMG = '/assets/product4/unit9-2.jpg'
-export const UNIT9_3_IMG = '/assets/product4/unit9-3.jpg'
-export const UNIT9_4_IMG = '/assets/product4/unit9-4.jpg'
-export const UNIT9_5_IMG = '/assets/product4/unit9-5.jpg'
-export const UNIT9_6_IMG = '/assets/product4/unit9-6.jpg'
+export const product4Unit12Data = {
+  /**
+   * 图标路径
+   */
+  icons: {
+    /**
+     * ICON41 图标
+     */
+    icon41: '/assets/img/icon41.png',
+  },
 
-/**
- * 图片池
- */
-export const IMAGE_POOL = [
-  ICON41_SRC,
-  UNIT9_1_IMG,
-  UNIT9_2_IMG,
-  UNIT9_3_IMG,
-  UNIT9_4_IMG,
-  UNIT9_5_IMG,
-  UNIT9_6_IMG
-]
+  /**
+   * 图片资源
+   */
+  images: {
+    /**
+     * 单元图片列表
+     */
+    units: [
+      '/assets/img/icon41.png',
+      '/assets/product4/unit9-1.jpg',
+      '/assets/product4/unit9-2.jpg',
+      '/assets/product4/unit9-3.jpg',
+      '/assets/product4/unit9-4.jpg',
+      '/assets/product4/unit9-5.jpg',
+      '/assets/product4/unit9-6.jpg'
+    ]
+  },
 
-/**
- * 标题文本
- */
-export const LEFT_TITLE_TEXT = 'GO'
-export const RIGHT_TITLE_TEXT = 'Creative'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 左侧标题文本
+     */
+    leftTitle: 'GO',
+
+    /**
+     * 右侧标题文本
+     */
+    rightTitle: 'Creative',
+  },
+}

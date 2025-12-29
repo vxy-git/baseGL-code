@@ -1,23 +1,16 @@
 <script setup>
-import {
-  UNIVERSE_VIDEO,
-  UNIVERSE_PRO_VIDEO,
-  TITLE_TEXT,
-  PRODUCT_NAME_TEXT,
-  DEVICE_SPECS_1,
-  DEVICE_SPECS_2
-} from '@/data/product4-unit11.js'
+import { product4Unit11Data  } from '@/data/product4-unit11.js'
 import MediaAsset from '@/components/MediaAsset.vue';
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
-      {{ TITLE_TEXT }}
+      {{ product4Unit11Data.content.title }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px]">
-        <div v-for="item in DEVICE_SPECS_1" class="item flex flex-col items-center justify-center">
+        <div v-for="item in product4Unit11Data.deviceSpecs.dukes" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>
@@ -30,7 +23,7 @@ import MediaAsset from '@/components/MediaAsset.vue';
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="UNIVERSE_VIDEO"
+            :src="product4Unit11Data.videos.universe"
             :controls="false"
             :muted="true"
             :loop="false"
@@ -38,7 +31,7 @@ import MediaAsset from '@/components/MediaAsset.vue';
             class="scale-[1.2] w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ PRODUCT_NAME_TEXT }}</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ product4Unit11Data.content.productName }}</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
@@ -46,7 +39,7 @@ import MediaAsset from '@/components/MediaAsset.vue';
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="UNIVERSE_PRO_VIDEO"
+            :src="product4Unit11Data.videos.universePro"
             :controls="false"
             :muted="true"
             :loop="false"
@@ -54,10 +47,10 @@ import MediaAsset from '@/components/MediaAsset.vue';
             class="scale-[1.2] w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ PRODUCT_NAME_TEXT }}</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ product4Unit11Data.content.productName }}</div>
       </div>
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] -mt-[4px]">
-        <div v-for="item in DEVICE_SPECS_2" class="item flex flex-col items-center justify-center">
+        <div v-for="item in product4Unit11Data.deviceSpecs.dukesPro" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>

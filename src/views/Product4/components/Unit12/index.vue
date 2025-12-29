@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { IMAGE_POOL, LEFT_TITLE_TEXT, RIGHT_TITLE_TEXT } from '@/data/product4-unit12.js'
+import { product4Unit12Data  } from '@/data/product4-unit12.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,7 +22,7 @@ onMounted(() => {
     .map((layer) => layer?.$el ?? layer)
     .filter(Boolean)
     .reverse()
-    .slice(0, IMAGE_POOL.length - 1)
+    .slice(0, product4Unit12Data.images.units.length - 1)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -65,16 +65,16 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="h-screen flex justify-center items-center bg-[#F8F9FD] overflow-hidden">
     <div class="title flex justify-center items-center">
-      <span class="w-[calc((100vw-261px)/2)] text-right">{{ LEFT_TITLE_TEXT }}</span>
+      <span class="w-[calc((100vw-261px)/2)] text-right">{{ product4Unit12Data.content.leftTitle }}</span>
       <div class="size-[261px] relative">
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
             <MediaAsset ref="imageLayers" class="absolute inset-0 size-full object-cover" type="image" :src="logo"
-              alt="" :lazy="false" v-for="(logo, index) in IMAGE_POOL" :key="index" />
+              alt="" :lazy="false" v-for="(logo, index) in product4Unit12Data.images.units" :key="index" />
           </div>
         </div>
       </div>
-      <span class="w-[calc((100vw-261px)/2)] text-left">{{ RIGHT_TITLE_TEXT }}</span>
+      <span class="w-[calc((100vw-261px)/2)] text-left">{{ product4Unit12Data.content.rightTitle }}</span>
     </div>
   </div>
 </template>

@@ -1,13 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  ICON_IMAGE,
-  PLAY_ICON,
-  VIDEO_SRC,
-  BANNER_BG_VIDEO,
-  WATCH_VIDEO_TEXT
-} from '@/data/technology-unit1.js'
+import { technologyUnit1Data } from '@/data/technology-unit1.js'
 
 const showVideo = ref(false)
 </script>
@@ -15,30 +9,30 @@ const showVideo = ref(false)
 <template>
   <div class="unit1 mt_nav">
     <div class="bg-video">
-      <MediaAsset class="!max-h-full" type="video" :src="BANNER_BG_VIDEO" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
+      <MediaAsset class="!max-h-full" type="video" :src="technologyUnit1Data.videos.bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
         <MediaAsset
-          :src="ICON_IMAGE"
+          :src="technologyUnit1Data.icons.icon"
           type="image"
           class="trigger-bg"
         />
         <MediaAsset
           class="preview-video"
           type="video"
-          :src="VIDEO_SRC"
+          :src="technologyUnit1Data.videos.src"
           :autoplay="true"
           :muted="true"
           :loop="true"
           :controls="false"
         />
         <div class="overlay">
-          <div class="title1">{{ WATCH_VIDEO_TEXT }}</div>
+          <div class="title1">{{ technologyUnit1Data.content.watchVideoText }}</div>
           <MediaAsset
-            :src="PLAY_ICON"
+            :src="technologyUnit1Data.icons.play"
             type="image"
             class="play-icon"
             alt=""
@@ -48,7 +42,7 @@ const showVideo = ref(false)
       </div>
     </div>
 
-    <VideoModal v-model:visible="showVideo" :src="VIDEO_SRC" :muted="false" :loop="false" :controls="true" />
+    <VideoModal v-model:visible="showVideo" :src="technologyUnit1Data.videos.src" :muted="false" :loop="false" :controls="true" />
   </div>
 </template>
 

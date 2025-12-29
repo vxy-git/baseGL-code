@@ -3,21 +3,31 @@
  */
 
 /**
- * 绿色标签文本
+ * Product1 Unit6 数据对象
  */
-export const LABEL_TEXT = 'High-End Feature'
+export const product1Unit6Data = {
+  /**
+   * 绿色标签文本
+   */
+  labelText: 'High-End Feature',
 
-/**
- * 主标题文本
- */
-export const TITLE_TEXT = 'Inhale & Button Activated'
+  /**
+   * 主标题文本
+   */
+  titleText: 'Inhale & Button Activated',
 
-/**
- * 左侧视频路径
- */
-export const VIDEO_LEFT = '/assets/product1/inhale-L.mp4'
+  /**
+   * 视频路径
+   */
+  videos: {
+    /**
+     * 左侧视频路径
+     */
+    left: '/assets/product1/inhale-L.mp4',
 
-/**
- * 右侧视频路径
- */
-export const VIDEO_RIGHT = '/assets/product1/inhale-R.mp4'
+    /**
+     * 右侧视频路径
+     */
+    right: '/assets/product1/inhale-R.mp4',
+  },
+}

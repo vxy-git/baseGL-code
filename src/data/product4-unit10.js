@@ -3,17 +3,56 @@
  */
 
 /**
- * 视频路径
+ * Product4 Unit10 数据对象
  */
-export const DOSING_TIMER_VIDEO = '/assets/product4/Puff-Counter.mp4'
-export const PREHEAT_STATUS_VIDEO = '/assets/product4/Preheat-Status-Indication.mp4'
-export const TEMPERATURE_CONTROL_VIDEO = '/assets/product4/3-Temperature-Control.mp4'
-export const BATTERY_MONITOR_VIDEO = '/assets/product4/Battery-Life-Monitor.mp4'
+export const product4Unit10Data = {
+  /**
+   * 视频路径
+   */
+  videos: {
+    /**
+     * Dosing Timer 视频
+     */
+    dosingTimer: '/assets/product4/Puff-Counter.mp4',
 
-/**
- * 标签文本
- */
-export const DOSING_TIMER_LABEL = 'Dosing Timer'
-export const PREHEAT_STATUS_LABEL = 'Preheat Status Indication'
-export const TEMPERATURE_CONTROL_LABEL = '3-Temperature Control'
-export const BATTERY_MONITOR_LABEL = 'Battery Life Monitor'
+    /**
+     * Preheat Status 视频
+     */
+    preheatStatus: '/assets/product4/Preheat-Status-Indication.mp4',
+
+    /**
+     * Temperature Control 视频
+     */
+    temperatureControl: '/assets/product4/3-Temperature-Control.mp4',
+
+    /**
+     * Battery Monitor 视频
+     */
+    batteryMonitor: '/assets/product4/Battery-Life-Monitor.mp4',
+  },
+
+  /**
+   * 标签文本
+   */
+  labels: {
+    /**
+     * Dosing Timer 标签
+     */
+    dosingTimer: 'Dosing Timer',
+
+    /**
+     * Preheat Status 标签
+     */
+    preheatStatus: 'Preheat Status Indication',
+
+    /**
+     * Temperature Control 标签
+     */
+    temperatureControl: '3-Temperature Control',
+
+    /**
+     * Battery Monitor 标签
+     */
+    batteryMonitor: 'Battery Life Monitor',
+  },
+}

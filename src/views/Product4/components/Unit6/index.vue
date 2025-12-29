@@ -1,35 +1,28 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  LEFT_VIDEO,
-  RIGHT_VIDEO,
-  TITLE_TEXT,
-  GREEN_LABEL_TEXT,
-  SUBTITLE_TEXT,
-  DESCRIPTION_TEXT
-} from '@/data/product4-unit6.js'
+import { product4Unit6Data  } from '@/data/product4-unit6.js'
 </script>
 
 <template>
   <div class="pt-[236px] c_1230 c_padding">
     <div class="title">
-      {{ TITLE_TEXT }}
+      {{ product4Unit6Data.content.title }}
     </div>
     <div class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full">
       <div class="pt-[7px] max-w-full">
         <div class="gtext">
-          {{ GREEN_LABEL_TEXT }}
+          {{ product4Unit6Data.content.greenLabel }}
         </div>
         <div class="title1">
-          {{ SUBTITLE_TEXT }}
+          {{ product4Unit6Data.content.subtitle }}
         </div>
         <div class="label">
-          {{ DESCRIPTION_TEXT }}
+          {{ product4Unit6Data.content.description }}
         </div>
         <div class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden max-w-full">
           <MediaAsset
             type="video"
-            :src="LEFT_VIDEO"
+            :src="product4Unit6Data.videos.left"
             :controls="false"
             :autoplay="false"
             :muted="true"
@@ -42,7 +35,7 @@ import {
       <div class="w-[500px] h-[650px] rounded-[20px] overflow-hidden">
         <MediaAsset
           type="video"
-          :src="RIGHT_VIDEO"
+          :src="product4Unit6Data.videos.right"
           :controls="false"
           :autoplay="false"
           :muted="true"

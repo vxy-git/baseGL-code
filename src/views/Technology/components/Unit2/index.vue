@@ -3,18 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  LEFT_VIDEO,
-  RIGHT_IMAGE_1,
-  RIGHT_VIDEO,
-  CONTENT1_TITLE1,
-  CONTENT1_TITLE2,
-  CONTENT1_TITLE3,
-  CONTENT1_STATS,
-  CONTENT2_TITLE1,
-  CONTENT2_TITLE2,
-  CONTENT2_TITLE3
-} from '@/data/technology-unit2.js'
+import { technologyUnit2Data } from '@/data/technology-unit2.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -120,26 +109,26 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
     <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" type="video" :src="LEFT_VIDEO" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" type="video" :src="technologyUnit2Data.media.leftVideo" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline class="mediaBox" />
     </div>
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          {{ CONTENT1_TITLE1 }}
+          {{ technologyUnit2Data.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[20px] -ml-[5px] tracking-[0.2px]">
-          {{ CONTENT1_TITLE2 }}
+          {{ technologyUnit2Data.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[28px]">
-          {{ CONTENT1_TITLE3 }}
+          {{ technologyUnit2Data.sections.section1.title3 }}
         </div>
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
-          <div v-for="(stat, index) in CONTENT1_STATS" :key="index" class="flex flex-col items-center justify-center">
+          <div v-for="(stat, index) in technologyUnit2Data.sections.section1.stats" :key="index" class="flex flex-col items-center justify-center">
             <div class="text1">
               {{ stat.percentage }}
             </div>
@@ -148,21 +137,21 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] object-contain" type="image" :src="RIGHT_IMAGE_1" alt="" />
+        <MediaAsset class="w-[763px] object-contain" type="image" :src="technologyUnit2Data.media.rightImage1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          {{ CONTENT2_TITLE1 }}
+          {{ technologyUnit2Data.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[20px]">
-          {{ CONTENT2_TITLE2 }}
+          {{ technologyUnit2Data.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          {{ CONTENT2_TITLE3 }}
+          {{ technologyUnit2Data.sections.section2.title3 }}
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="RIGHT_VIDEO" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
+        <MediaAsset ref="rightVideoAssetRef" :src="technologyUnit2Data.media.rightVideo" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
           :view-play="true" :loop="true" playsinline alt="" />
       </div>
     </div>

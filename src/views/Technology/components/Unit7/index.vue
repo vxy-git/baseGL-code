@@ -3,11 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  BG_IMAGE,
-  TITLE_TEXT,
-  DESCRIPTION_TEXT
-} from '@/data/technology-unit7.js'
+import { technologyUnit7Data } from '@/data/technology-unit7.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -75,14 +71,14 @@ onUnmounted(() => {
   <div ref="sectionRef" class="section pt-[97px]">
     <div class="inner c_1300">
       <div ref="imageBoxRef" class="image-wrapper">
-        <MediaAsset :src="BG_IMAGE" type="image" alt="" class="c_1300 h-[560px]" />
+        <MediaAsset :src="technologyUnit7Data.background" type="image" alt="" class="c_1300 h-[560px]" />
       </div>
       <div ref="contentRef" class="content-layer m_pt_0">
         <div class="title2">
-          {{ TITLE_TEXT }}
+          {{ technologyUnit7Data.title }}
         </div>
         <div class="title3 mt-[54px]">
-          {{ DESCRIPTION_TEXT }}
+          {{ technologyUnit7Data.description }}
         </div>
       </div>
     </div>

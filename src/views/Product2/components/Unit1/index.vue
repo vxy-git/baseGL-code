@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import { BANNER_VIDEO } from '@/data/product2-unit1'
+import { product2Unit1Data  } from '@/data/product2-unit1'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { BANNER_VIDEO } from '@/data/product2-unit1'
     <MediaAsset
       class="w-full h-full object-cover"
       type="video"
-      :src="BANNER_VIDEO"
+      :src="product2Unit1Data.banner"
       :controls="false"
       :autoplay="false"
       :muted="true"

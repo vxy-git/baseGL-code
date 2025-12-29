@@ -3,26 +3,36 @@
  */
 
 /**
- * 视频/媒体路径
+ * Product1 Unit1 数据对象
  */
-export const VIDEO_SRC = '/assets/product1/banner.mp4'
+export const product1Unit1Data = {
+  /**
+   * 视频/媒体路径
+   */
+  videoSrc: '/assets/product1/banner.mp4',
 
-/**
- * 标题文本
- */
-export const TITLE = 'UNIT Pro'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标题文本
+     */
+    title: 'UNIT Pro',
 
-/**
- * 副标题文本
- */
-export const SUBTITLE = "From lab to award, 100% for Rosin we've perfected."
+    /**
+     * 副标题文本
+     */
+    subtitle: "From lab to award, 100% for Rosin we've perfected.",
 
-/**
- * 按钮文本
- */
-export const BUTTON_TEXT = '1mL/2mL'
+    /**
+     * 按钮文本
+     */
+    buttonText: '1mL/2mL',
 
-/**
- * 滚动提示文本
- */
-export const SCROLL_TEXT = 'Scroll'
+    /**
+     * 滚动提示文本
+     */
+    scrollText: 'Scroll',
+  },
+}

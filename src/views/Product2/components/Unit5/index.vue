@@ -1,24 +1,16 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  TITLE_TEXT,
-  VIDEO_UNIVERSE,
-  VIDEO_UNIVERSE_PRO,
-  DEVICE_SPECS_UNIVERSE,
-  DEVICE_SPECS_UNIVERSE_PRO,
-  PRODUCT_NAME_1,
-  PRODUCT_NAME_2
-} from '@/data/product2-unit5'
+import { product2Unit5Data  } from '@/data/product2-unit5'
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
-      {{ TITLE_TEXT }}
+      {{ product2Unit5Data.titleText }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in DEVICE_SPECS_UNIVERSE" class="item flex flex-col items-center justify-center">
+        <div v-for="item in product2Unit5Data.deviceSpecs.universe" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>
@@ -31,7 +23,7 @@ import {
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="VIDEO_UNIVERSE"
+            :src="product2Unit5Data.videos.universe"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -40,7 +32,7 @@ import {
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ PRODUCT_NAME_1 }}</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ product2Unit5Data.productNames.universe }}</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
@@ -48,7 +40,7 @@ import {
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="VIDEO_UNIVERSE_PRO"
+            :src="product2Unit5Data.videos.universePro"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -57,10 +49,10 @@ import {
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ PRODUCT_NAME_2 }}</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ product2Unit5Data.productNames.universePro }}</div>
       </div>
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in DEVICE_SPECS_UNIVERSE_PRO" class="item flex flex-col items-center justify-center">
+        <div v-for="item in product2Unit5Data.deviceSpecs.universePro" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>

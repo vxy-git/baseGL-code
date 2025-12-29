@@ -1,73 +1,58 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  UNIT4_BG,
-  LEFT_VIDEO_SRC,
-  RIGHT_VIDEO_SRC,
-  ARROW_ICON,
-  UNIT_IMG,
-  UNIT4_T_TITLE1,
-  UNIT4_T_TITLE2,
-  UNIT4_T_DESCRIPTION,
-  UNIT4_T_STATS,
-  BUILT_IN_WIRES_TITLE,
-  BUILT_IN_WIRES_SUBTITLE,
-  BUILT_IN_WIRES_DESCRIPTION,
-  UNIT4_B_TITLE,
-  UNIT4_B_SUBTITLE
-} from '@/data/product3-unit4'
+import { product3Unit4Data  } from '@/data/product3-unit4'
 </script>
 
 <template>
   <div>
     <div class="unit4T">
       <div class="flex flex-col items-center mt-[48px] c_padding">
-        <div class="title1" v-html="UNIT4_T_TITLE1"></div>
-        <div class="title2 mt-[19.55px]" v-html="UNIT4_T_TITLE2">
+        <div class="title1" v-html="product3Unit4Data.unit4T.title1"></div>
+        <div class="title2 mt-[19.55px]" v-html="product3Unit4Data.unit4T.title2">
         </div>
         <div class="title3 max-w-[1200px] mt-[-2.5px]">
           <br />
-          {{ UNIT4_T_DESCRIPTION }}
+          {{ product3Unit4Data.unit4T.description }}
         </div>
         <div class="flex gap-x-[152px] mt-[70px]">
-          <div class="flex flex-col items-center" v-for="(stat, index) in UNIT4_T_STATS" :key="index">
+          <div class="flex flex-col items-center" v-for="(stat, index) in product3Unit4Data.unit4T.stats" :key="index">
             <div class="text4 flex h-[39.805px]">
               {{ stat.value }}
-              <MediaAsset v-if="index === 1" :src="ARROW_ICON" type="image" class="h-[39.805px] -ml-[3px]" alt="" :lazy="false" />
+              <MediaAsset v-if="index === 1" :src="product3Unit4Data.media.arrowIcon" type="image" class="h-[39.805px] -ml-[3px]" alt="" :lazy="false" />
             </div>
             <div class="text5">
               {{ stat.label }}
             </div>
           </div>
         </div>
-        <MediaAsset :src="UNIT_IMG" type="image" class="h-[600px] mt-[78px] object-contain m_mt_0" alt=""
+        <MediaAsset :src="product3Unit4Data.media.productImage" type="image" class="h-[600px] mt-[78px] object-contain m_mt_0" alt=""
           :lazy="false" />
       </div>
       <div
         class="c_padding flex mx-auto max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
-        <MediaAsset type="video" :src="LEFT_VIDEO_SRC" :muted="true" :autoplay="false" :loop="true" :controls="false"
+        <MediaAsset type="video" :src="product3Unit4Data.media.leftVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
           :hover-play="false" :view-play="true"
           class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
         <div class="m_order w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] mb-[20px]">
-          <div class="title1">{{ BUILT_IN_WIRES_TITLE }}</div>
-          <div class="title2 mt-[19.55px]">{{ BUILT_IN_WIRES_SUBTITLE }}</div>
+          <div class="title1">{{ product3Unit4Data.unit4T.builtInWiresTitle }}</div>
+          <div class="title2 mt-[19.55px]">{{ product3Unit4Data.unit4T.builtInWiresSubtitle }}</div>
           <div class="title3  mt-[44.45px]">
-            {{ BUILT_IN_WIRES_DESCRIPTION }}
+            {{ product3Unit4Data.unit4T.builtInWiresDescription }}
           </div>
         </div>
-        <MediaAsset type="video" :src="RIGHT_VIDEO_SRC" :muted="true" :autoplay="false" :loop="true" :controls="false"
+        <MediaAsset type="video" :src="product3Unit4Data.media.rightVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
           :hover-play="false" :view-play="true"
           class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
       </div>
     </div>
     <div class="unit4B h-[800px] relative">
-      <MediaAsset :src="UNIT4_BG" type="image" class="size-full absolute inset-0 object-cover" alt="" :lazy="false" />
+      <MediaAsset :src="product3Unit4Data.media.background" type="image" class="size-full absolute inset-0 object-cover" alt="" :lazy="false" />
       <div class="c_1230 c_padding mx-auto pt-[248px] relative">
         <div class="title1  ml-[2px]">
-          {{ UNIT4_B_TITLE }}
+          {{ product3Unit4Data.unit4B.title }}
         </div>
         <div class="title2 mt-[19.55px] w-max ml-[2px]">
-          {{ UNIT4_B_SUBTITLE }}
+          {{ product3Unit4Data.unit4B.subtitle }}
         </div>
       </div>
     </div>

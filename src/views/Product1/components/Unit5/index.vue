@@ -1,21 +1,21 @@
 <script setup>
 import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
-import { MAIN_TITLE, TABS_LIST, DESCRIPTIONS, MEDIA_LIST } from '@/data/product1-unit5'
+import { product1Unit5Data  } from '@/data/product1-unit5'
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';
 
 const tabsCurrent = ref(0)
-const tabsList = TABS_LIST
+const tabsList = product1Unit5Data.tabsList
 
 // 根据 Tab 显示的文案
-const labelContents = DESCRIPTIONS
+const labelContents = product1Unit5Data.descriptions
 
 const currentLabel = computed(() => labelContents[tabsCurrent.value] || "")
 
 // 媒体资源列表，支持图片和视频混合
-const mediaList = MEDIA_LIST
+const mediaList = product1Unit5Data.mediaList
 
 const containerRef = ref(null)  // 容器引用，用于可见性检测
 const isVisible = ref(false)    // 是否在视口中可见
@@ -287,7 +287,7 @@ onUnmounted(() => {
     <div class="relative">
       <div class="c_1230 c_padding">
         <div class="title">
-          {{ MAIN_TITLE }}
+          {{ product1Unit5Data.mainTitle }}
         </div>
         <div class="mt-[58px] relative">
           <div class="w-full flex justify-center">

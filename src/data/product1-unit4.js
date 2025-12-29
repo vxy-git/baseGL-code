@@ -10,32 +10,37 @@
  */
 
 /**
- * 主标题
+ * Product1 Unit4 数据对象
  */
-export const MAIN_TITLE = `Consistent Temp\nIdeal for Rosin`
+export const product1Unit4Data = {
+  /**
+   * 主标题
+   */
+  mainTitle: `Consistent Temp\nIdeal for Rosin`,
 
-/**
- * 第一部分数据: RTD Control
- */
-export const SECTION1_DATA = {
-  greenText: 'RTD Control',
-  title: 'Best flavor preservation',
-  description: `Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.`,
-  videos: {
-    left: '/assets/product1/best-L.mp4',
-    right: '/assets/product1/best-R.mp4'
-  }
-}
+  /**
+   * 第一部分数据: RTD Control
+   */
+  section1: {
+    greenText: 'RTD Control',
+    title: 'Best flavor preservation',
+    description: `Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.`,
+    videos: {
+      left: '/assets/product1/best-L.mp4',
+      right: '/assets/product1/best-R.mp4'
+    }
+  },
 
-/**
- * 第二部分数据: Built-in Wires
- */
-export const SECTION2_DATA = {
-  greenText: 'Built-in Wires',
-  title: 'No more dry burning',
-  description: `The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.`,
-  videos: {
-    left: '/assets/product1/no-L.mp4',
-    right: '/assets/product1/no-R.mp4'
-  }
+  /**
+   * 第二部分数据: Built-in Wires
+   */
+  section2: {
+    greenText: 'Built-in Wires',
+    title: 'No more dry burning',
+    description: `The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.`,
+    videos: {
+      left: '/assets/product1/no-L.mp4',
+      right: '/assets/product1/no-R.mp4'
+    }
+  },
 }

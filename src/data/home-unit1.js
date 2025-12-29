@@ -10,45 +10,50 @@
  */
 
 /**
- * Banner 列表数据
- * @type {BannerItem[]}
+ * Home Unit1 数据对象
  */
-export const bannerList = [
-  {
-    title: "UNIVERSE Series",
-    subTitle: "UNICORE powered, the way to infinite.",
-    src: '/assets/home/Banner-1-UNIVERSE.mp4',
-    type: 'video',
-    dotText: "UNIVERSE Series",
-    path: '/universe_series'
-  },
-  {
-    title: "UNICORN Series",
-    subTitle: "UNICORE powered, the way to infinite.",
-    src: '/assets/home/Banner-2-UNICORN.mp4',
-    type: 'video',
-    dotText: "UNICORN Series",
-    path: '/unicorn_series'
-  },
-  {
-    title: "UNIT Pro",
-    subTitle: "From lab to award, 100% for Rosin we've perfected",
-    src: '/assets/home/Banner-3-UNIT.mp4',
-    type: 'video',
-    dotText: "UNIT Pro",
-    path: '/unit_pro'
-  },
-  {
-    title: "DUKES",
-    subTitle: "The best of both worlds, every puff with more hits.",
-    src: '/assets/home/Banner-4-DUKES.mp4',
-    type: 'video',
-    dotText: "DUKES",
-    path: '/dukes'
-  }
-]
+export const homeUnit1Data = {
+  /**
+   * Banner 列表数据
+   * @type {BannerItem[]}
+   */
+  bannerList: [
+    {
+      title: "UNIVERSE Series",
+      subTitle: "UNICORE powered, the way to infinite.",
+      src: '/assets/home/Banner-1-UNIVERSE.mp4',
+      type: 'video',
+      dotText: "UNIVERSE Series",
+      path: '/universe_series'
+    },
+    {
+      title: "UNICORN Series",
+      subTitle: "UNICORE powered, the way to infinite.",
+      src: '/assets/home/Banner-2-UNICORN.mp4',
+      type: 'video',
+      dotText: "UNICORN Series",
+      path: '/unicorn_series'
+    },
+    {
+      title: "UNIT Pro",
+      subTitle: "From lab to award, 100% for Rosin we've perfected",
+      src: '/assets/home/Banner-3-UNIT.mp4',
+      type: 'video',
+      dotText: "UNIT Pro",
+      path: '/unit_pro'
+    },
+    {
+      title: "DUKES",
+      subTitle: "The best of both worlds, every puff with more hits.",
+      src: '/assets/home/Banner-4-DUKES.mp4',
+      type: 'video',
+      dotText: "DUKES",
+      path: '/dukes'
+    }
+  ],
 
-/**
- * 按钮图标路径
- */
-export const BUTTON_ICON = '/assets/img/icon2.png'
+  /**
+   * 按钮图标路径
+   */
+  buttonIcon: '/assets/img/icon2.png',
+}

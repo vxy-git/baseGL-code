@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { MAIN_TITLE, PANELS_LIST, TRACK_PREFIX } from '@/data/product2-unit6'
+import { product2Unit6Data  } from '@/data/product2-unit6'
 
 const unitRef = ref(null)
 const innerRef = ref(null)
@@ -107,12 +107,12 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">{{ MAIN_TITLE }}</div>
+              <div class="title">{{ product2Unit6Data.mainTitle }}</div>
             </div>
           </div>
         </div>
 
-        <div class="unit6-panel" v-for="(panel, index) in PANELS_LIST" :key="index">
+        <div class="unit6-panel" v-for="(panel, index) in product2Unit6Data.panelsList" :key="index">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
               <div class="title3 mt-[70px]">
-                {{ TRACK_PREFIX }}
+                {{ product2Unit6Data.trackPrefix }}
                 <span class="mx-[10px]">|</span>
                 <span class="num inline-block">{{ panel.number }}</span>
               </div>

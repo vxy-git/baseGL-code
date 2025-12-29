@@ -3,17 +3,56 @@
  */
 
 /**
- * 特性图片路径
+ * Product4 Unit2 数据对象
  */
-export const ADVANCED_INTERACTIVITY_IMG = '/assets/product4/Advanced-Interactivity.jpg'
-export const DUAL_CHAMBER_IMG = '/assets/product4/Dual-Chamber.jpg'
-export const MULTIPLE_OPTIONS_IMG = '/assets/product4/Multiple-Options.jpg'
-export const POST_FREE_IMG = '/assets/product4/Post-Free.jpg'
+export const product4Unit2Data = {
+  /**
+   * 特性图片路径
+   */
+  images: {
+    /**
+     * Advanced Interactivity 图片
+     */
+    advancedInteractivity: '/assets/product4/Advanced-Interactivity.jpg',
 
-/**
- * 特性标签文本
- */
-export const DUAL_CHAMBER_LABEL = 'Dual Chamber'
-export const POST_FREE_LABEL = 'Post-Free'
-export const MULTIPLE_OPTIONS_LABEL = 'Multiple Options'
-export const ADVANCED_INTERACTIVITY_LABEL = 'Advanced Interactivity'
+    /**
+     * Dual Chamber 图片
+     */
+    dualChamber: '/assets/product4/Dual-Chamber.jpg',
+
+    /**
+     * Multiple Options 图片
+     */
+    multipleOptions: '/assets/product4/Multiple-Options.jpg',
+
+    /**
+     * Post-Free 图片
+     */
+    postFree: '/assets/product4/Post-Free.jpg',
+  },
+
+  /**
+   * 特性标签文本
+   */
+  labels: {
+    /**
+     * Dual Chamber 标签
+     */
+    dualChamber: 'Dual Chamber',
+
+    /**
+     * Post-Free 标签
+     */
+    postFree: 'Post-Free',
+
+    /**
+     * Multiple Options 标签
+     */
+    multipleOptions: 'Multiple Options',
+
+    /**
+     * Advanced Interactivity 标签
+     */
+    advancedInteractivity: 'Advanced Interactivity',
+  },
+}

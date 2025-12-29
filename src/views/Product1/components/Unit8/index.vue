@@ -3,9 +3,9 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { useIntersectionObserver } from "@vueuse/core";
 import MediaAsset from "@/components/MediaAsset.vue";
-import { LABEL_TEXT, TITLE_TEXT, ARROW_ICON, DESIGN_IMAGES } from '@/data/product1-unit8'
+import { product1Unit8Data  } from '@/data/product1-unit8'
 
-const list = DESIGN_IMAGES
+const list = product1Unit8Data.designImages
 
 const bannerCurrent = ref(0);
 const splideRef = ref(null);
@@ -226,8 +226,8 @@ const setMediaRef = (el, index) => {
 
 <template>
   <div class="pt-[110px] bg-white pb-[148px]" ref="containerRef">
-    <div class="label text-center">{{ LABEL_TEXT }}</div>
-    <div class="title text-center mt-[20px]">{{ TITLE_TEXT }}</div>
+    <div class="label text-center">{{ product1Unit8Data.labelText }}</div>
+    <div class="title text-center mt-[20px]">{{ product1Unit8Data.titleText }}</div>
     <div class="mt-[58px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
       <div class="w-full">
         <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
@@ -258,7 +258,7 @@ const setMediaRef = (el, index) => {
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           type="image"
-          :src="ARROW_ICON"
+          :src="product1Unit8Data.arrowIcon"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -267,7 +267,7 @@ const setMediaRef = (el, index) => {
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           type="image"
-          :src="ARROW_ICON"
+          :src="product1Unit8Data.arrowIcon"
           alt=""
           :lazy="false"
           @click="slideNext"

@@ -1,15 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  DOSING_TIMER_VIDEO,
-  PREHEAT_STATUS_VIDEO,
-  TEMPERATURE_CONTROL_VIDEO,
-  BATTERY_MONITOR_VIDEO,
-  DOSING_TIMER_LABEL,
-  PREHEAT_STATUS_LABEL,
-  TEMPERATURE_CONTROL_LABEL,
-  BATTERY_MONITOR_LABEL
-} from '@/data/product4-unit10.js'
+import { product4Unit10Data  } from '@/data/product4-unit10.js'
 </script>
 
 <template>
@@ -18,11 +9,11 @@ import {
       <div class="justify-between flex m_flex_col gap-[15px]">
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ DOSING_TIMER_LABEL }}
+            {{ product4Unit10Data.labels.dosingTimer }}
           </div>
           <MediaAsset
             type="video"
-            :src="DOSING_TIMER_VIDEO"
+            :src="product4Unit10Data.videos.dosingTimer"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -33,11 +24,11 @@ import {
         </div>
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ PREHEAT_STATUS_LABEL }}
+            {{ product4Unit10Data.labels.preheatStatus }}
           </div>
           <MediaAsset
             type="video"
-            :src="PREHEAT_STATUS_VIDEO"
+            :src="product4Unit10Data.videos.preheatStatus"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -50,11 +41,11 @@ import {
       <div class="justify-between flex m_flex_col gap-[15px] mt-[15px]">
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ TEMPERATURE_CONTROL_LABEL }}
+            {{ product4Unit10Data.labels.temperatureControl }}
           </div>
           <MediaAsset
             type="video"
-            :src="TEMPERATURE_CONTROL_VIDEO"
+            :src="product4Unit10Data.videos.temperatureControl"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -65,11 +56,11 @@ import {
         </div>
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ BATTERY_MONITOR_LABEL }}
+            {{ product4Unit10Data.labels.batteryMonitor }}
           </div>
           <MediaAsset
             type="video"
-            :src="BATTERY_MONITOR_VIDEO"
+            :src="product4Unit10Data.videos.batteryMonitor"
             :autoplay="false"
             :muted="true"
             :loop="true"

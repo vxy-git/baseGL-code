@@ -3,7 +3,7 @@ import Tabs from "./Tabs/index.vue";
 import { ref, watch, nextTick } from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-import { MAIN_TITLE, TABS_LIST, MEDIA_LIST, SPLIDE_OPTIONS } from '@/data/product2-unit7'
+import { product2Unit7Data  } from '@/data/product2-unit7'
 
 const tabsCurrent = ref(0)
 
@@ -68,19 +68,19 @@ watch(tabsCurrent, (index) => {
   <div>
     <div class="c_1230 c_padding mt-[200px] m_mt_0">
       <div class="title">
-        {{ MAIN_TITLE }}
+        {{ product2Unit7Data.mainTitle }}
       </div>
       <div class="mt-[58px] relative">
         <div class="w-full flex justify-center">
-          <Splide :options="SPLIDE_OPTIONS" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+          <Splide :options="product2Unit7Data.splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
             @splide:move="onSlideChange">
-            <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in TABS_LIST" :key="index">
+            <SplideSlide class="w-[800px] max-w-[94vw] h-[500px]" v-for="(item, index) in product2Unit7Data.tabsList" :key="index">
               <MediaAsset
-                :ref="isVideo(MEDIA_LIST[index].src) ? (el => setVideoRef(el, index)) : null"
+                :ref="isVideo(product2Unit7Data.mediaList[index].src) ? (el => setVideoRef(el, index)) : null"
                 class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black"
                 :class="{'!bg-black':index === tabsCurrent}"
-                :type="MEDIA_LIST[index].type"
-                :src="MEDIA_LIST[index].src"
+                :type="product2Unit7Data.mediaList[index].type"
+                :src="product2Unit7Data.mediaList[index].src"
                 :autoplay="false"
                 :muted="true"
                 :loop="true"
@@ -92,7 +92,7 @@ watch(tabsCurrent, (index) => {
         </div>
       </div>
     </div>
-    <Tabs class="!h-[50px] mt-[40px]" :list="TABS_LIST" v-model="tabsCurrent"></Tabs>
+    <Tabs class="!h-[50px] mt-[40px]" :list="product2Unit7Data.tabsList" v-model="tabsCurrent"></Tabs>
   </div>
 </template>
 

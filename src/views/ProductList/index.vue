@@ -1,12 +1,12 @@
 <template>
   <div class="product-list-page">
-    <Header :headerClass="HEADER_CLASS" border />
+    <Header :headerClass="productListData.headerClass" border />
     <div class="header-divider" />
 
     <main class="main-content c_1300">
       <section class="catalog-intro">
-        <h1 class="catalog-title c_padding">{{ PAGE_TITLE }}</h1>
-        <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+        <h1 class="catalog-title c_padding">{{ productListData.pageTitle }}</h1>
+        <Tabs class="mt-[30px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
       </section>
 
       <section class="catalog-grid c_padding" aria-label="Product Gallery" ref="catalogGridRef">
@@ -37,28 +37,19 @@ import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
 import ProductItem from '@/components/ProductItem/index.vue'
-import { tabsList, productsData } from '@/data/products'
-import {
-  PAGE_TITLE,
-  HEADER_CLASS,
-  NAV_ITEMS,
-  CARD_WIDTH,
-  GAP,
-  ACTIVE_FILTER_INDEX,
-  CURRENT_PAGE,
-  PAGES
-} from '@/data/productlist'
+import { productsData } from '@/data/products'
+import { productListData } from '@/data/productlist'
 
 const route = useRoute()
 const router = useRouter()
-const tabsCurrent = ref(ACTIVE_FILTER_INDEX)
+const tabsCurrent = ref(productListData.pagination.activeFilterIndex)
 
-const activeFilterIndex = ACTIVE_FILTER_INDEX
+const activeFilterIndex = productListData.pagination.activeFilterIndex
 
-const products = computed(() => productsData[tabsCurrent.value] || [])
+const products = computed(() => productsData.products[tabsCurrent.value] || [])
 
-const pages = PAGES
-const currentPage = CURRENT_PAGE
+const pages = productListData.pagination.pages
+const currentPage = productListData.pagination.currentPage
 
 const YouTubeIcon = () =>
   h('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none' }, [
@@ -119,13 +110,13 @@ const columns = ref(1)
 const updateColumns = () => {
   const el = catalogGridRef.value
   const width = el ? el.clientWidth : 0
-  const calc = Math.floor((width + GAP) / (CARD_WIDTH + GAP))
+  const calc = Math.floor((width + productListData.card.gap) / (productListData.card.width + productListData.card.gap))
   columns.value = Math.max(1, calc)
 }
 
 const normalizeTabIndex = (tabValue) => {
   const index = Number(tabValue)
-  if (!Number.isNaN(index) && index >= 0 && index < tabsList.length) {
+  if (!Number.isNaN(index) && index >= 0 && index < productsData.tabs.length) {
     return index
   }
   return 0

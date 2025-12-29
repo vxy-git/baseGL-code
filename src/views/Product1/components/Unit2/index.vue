@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { UNIT_IMAGE } from '@/data/product1-unit2'
+import { product1Unit2Data  } from '@/data/product1-unit2'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { UNIT_IMAGE } from '@/data/product1-unit2'
   <MediaAsset
     class="relative size-full mx-auto object-contain max-h-max"
     type="image"
-    :src="UNIT_IMAGE"
+    :src="product1Unit2Data.image"
     alt=""
     :lazy="false"
   />

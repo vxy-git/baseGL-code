@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import { VIDEO_SRC, TITLE, SUBTITLE, BUTTON_TEXT, SCROLL_TEXT } from '@/data/product1-unit1'
+import { product1Unit1Data } from '@/data/product1-unit1'
 
 </script>
 
@@ -9,7 +9,7 @@ import { VIDEO_SRC, TITLE, SUBTITLE, BUTTON_TEXT, SCROLL_TEXT } from '@/data/pro
     <MediaAsset
       class="w-full h-full object-cover"
       type="video"
-      :src="VIDEO_SRC"
+      :src="product1Unit1Data.videoSrc"
       :controls="false"
       :autoplay="false"
       :muted="true"
@@ -19,15 +19,15 @@ import { VIDEO_SRC, TITLE, SUBTITLE, BUTTON_TEXT, SCROLL_TEXT } from '@/data/pro
     />
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
-        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ SCROLL_TEXT }}</div>
+        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ product1Unit1Data.content.scrollText }}</div>
         <div class="title">
-          {{ TITLE }}
+          {{ product1Unit1Data.content.title }}
         </div>
         <div class="subTitle translate-y-[-2px]">
-          {{ SUBTITLE }}
+          {{ product1Unit1Data.content.subtitle }}
         </div>
         <div class="btn cursor-pointer">
-          {{ BUTTON_TEXT }}
+          {{ product1Unit1Data.content.buttonText }}
         </div>
       </div>
     </div>

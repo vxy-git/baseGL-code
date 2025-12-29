@@ -3,22 +3,45 @@
  */
 
 /**
- * 图标路径
+ * Product4 Unit13 数据对象
  */
-export const ARROW_LEFT_SRC = '/assets/img/icon4.png'
-export const ARROW_RIGHT_SRC = '/assets/img/icon4_active.png'
-export const CARD_IMG_SRC = '/assets/img/icon25.png'
+export const product4Unit13Data = {
+  /**
+   * 图标路径
+   */
+  icons: {
+    /**
+     * 左箭头图标
+     */
+    arrowLeft: '/assets/img/icon4.png',
 
-/**
- * 标题文本
- */
-export const TITLE_TEXT = 'More Products'
+    /**
+     * 右箭头图标
+     */
+    arrowRight: '/assets/img/icon4_active.png',
 
-/**
- * 卡片数据
- */
-export const CARD_DATA = {
-  title: 'UNIT',
-  label: 'UNICORE tech & large display',
-  buttonText: 'View More'
+    /**
+     * 卡片图片
+     */
+    card: '/assets/img/icon25.png',
+  },
+
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标题文本
+     */
+    title: 'More Products',
+  },
+
+  /**
+   * 卡片数据
+   */
+  cardData: {
+    title: 'UNIT',
+    label: 'UNICORE tech & large display',
+    buttonText: 'View More'
+  },
 }

@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
-import { tabsList, productsData } from '@/data/products'
+import { productsData } from '@/data/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 const iconArrow = '/assets/img/icon42.png'
@@ -13,10 +13,10 @@ const router = useRouter()
 
 // 分类及其对应的产品数据（来自 products.js）
 const categories = computed(() =>
-  tabsList.map((label, idx) => ({
+  productsData.tabs.map((label, idx) => ({
     id: idx + 1,
     label,
-    products: (productsData[idx] || []).map(product => ({
+    products: (productsData.products[idx] || []).map(product => ({
       ...product,
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,

@@ -3,27 +3,46 @@
  */
 
 /**
- * 视频路径
+ * Product4 Unit6 数据对象
  */
-export const LEFT_VIDEO = '/assets/product4/unit5-l.mp4'
-export const RIGHT_VIDEO = '/assets/product4/unit5-r.mp4'
+export const product4Unit6Data = {
+  /**
+   * 视频路径
+   */
+  videos: {
+    /**
+     * 左侧视频
+     */
+    left: '/assets/product4/unit5-l.mp4',
 
-/**
- * 标题文本
- */
-export const TITLE_TEXT = 'Post-Free Design'
+    /**
+     * 右侧视频
+     */
+    right: '/assets/product4/unit5-r.mp4',
+  },
 
-/**
- * 绿色标签文本
- */
-export const GREEN_LABEL_TEXT = 'Terpene-Boosted'
+  /**
+   * 文本内容
+   */
+  content: {
+    /**
+     * 标题文本
+     */
+    title: 'Post-Free Design',
 
-/**
- * 子标题文本
- */
-export const SUBTITLE_TEXT = 'Get the smoothest and cleanest hit.'
+    /**
+     * 绿色标签文本
+     */
+    greenLabel: 'Terpene-Boosted',
 
-/**
- * 描述文本
- */
-export const DESCRIPTION_TEXT = `The Gemco core in dual chamber can release the purest, richest, and most authentic terpene flavors when used individually. When both chambers are engaged, it creates the most perfect flavor collision, allowing the dual aromas to swirl on your taste buds.`
+    /**
+     * 子标题文本
+     */
+    subtitle: 'Get the smoothest and cleanest hit.',
+
+    /**
+     * 描述文本
+     */
+    description: `The Gemco core in dual chamber can release the purest, richest, and most authentic terpene flavors when used individually. When both chambers are engaged, it creates the most perfect flavor collision, allowing the dual aromas to swirl on your taste buds.`,
+  },
+}

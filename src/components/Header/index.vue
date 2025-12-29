@@ -7,14 +7,14 @@ import ProductItem from "@/components/ProductItem/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
 import { headerData } from '@/data/header'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
-import { tabsList, productsData } from '@/data/products'
+import { productsData } from '@/data/products'
 
 // 从Nav组件迁移分类和产品数据
 const categories = computed(() =>
-  tabsList.map((label, idx) => ({
+  productsData.tabs.map((label, idx) => ({
     id: idx + 1,
     label,
-    products: (productsData[idx] || []).map(product => ({
+    products: (productsData.products[idx] || []).map(product => ({
       ...product,
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,

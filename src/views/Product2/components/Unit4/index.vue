@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
+import { product2Unit4Data  } from '@/data/product2-unit4'
 </script>
 
 <template>
@@ -8,18 +8,18 @@ import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
     <div class="c_1230 c_padding m_flex_col mt-[42px] mx-auto flex gap-[32px]">
       <div class="w-[622.074px] pt-[145px] c_padding">
         <div class="title1 text-left">
-          {{ RTD_SECTION.labelText }}
+          {{ product2Unit4Data.rtdSection.labelText }}
         </div>
-        <div class="title2 mt-[19px]  !text-left" v-html="RTD_SECTION.title">
+        <div class="title2 mt-[19px]  !text-left" v-html="product2Unit4Data.rtdSection.title">
         </div>
-        <div class="title3 mt-[56px] !text-left" v-html="RTD_SECTION.description">
+        <div class="title3 mt-[56px] !text-left" v-html="product2Unit4Data.rtdSection.description">
 
         </div>
       </div>
       <MediaAsset
         class="h-[553px] object-cover"
         type="video"
-        :src="RTD_SECTION.videos.topRight"
+        :src="product2Unit4Data.rtdSection.videos.topRight"
         :autoplay="false"
         :muted="true"
         :controls="false"
@@ -33,7 +33,7 @@ import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
         <div class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="RTD_SECTION.videos.bottomLeft"
+            :src="product2Unit4Data.rtdSection.videos.bottomLeft"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -45,7 +45,7 @@ import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="RTD_SECTION.videos.bottomRight"
+            :src="product2Unit4Data.rtdSection.videos.bottomRight"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -58,19 +58,19 @@ import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
     </div>
 
     <div class="c_1230 c_padding mt-[145px]">
-      <div class="greenText">{{ WIRES_SECTION.labelText }}</div>
+      <div class="greenText">{{ product2Unit4Data.wiresSection.labelText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          {{ WIRES_SECTION.title }}
+          {{ product2Unit4Data.wiresSection.title }}
         </div>
-        <div class="label mt-[2px]" v-html="WIRES_SECTION.description">
+        <div class="label mt-[2px]" v-html="product2Unit4Data.wiresSection.description">
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="WIRES_SECTION.videos.left"
+            :src="product2Unit4Data.wiresSection.videos.left"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -82,7 +82,7 @@ import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="WIRES_SECTION.videos.right"
+            :src="product2Unit4Data.wiresSection.videos.right"
             :autoplay="false"
             :muted="true"
             :controls="false"

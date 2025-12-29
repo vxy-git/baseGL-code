@@ -1,30 +1,25 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  UNIT7_LEFT_IMG,
-  UNIT7_RIGHT_IMG,
-  PRODUCT_TAG,
-  MAIN_TITLE
-} from '@/data/product3-unit7'
+import { product3Unit9Data } from '@/data/product3-unit9'
 </script>
 
 <template>
     <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
-        {{ PRODUCT_TAG }}
+        {{ product3Unit9Data.labels.unicorn }}
       </div>
       <div class="title2 mt-[19px]">
-        {{ MAIN_TITLE }}
+        {{ product3Unit9Data.content.mainTitle }}
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
         <MediaAsset
           type="image"
-          :src="UNIT7_LEFT_IMG"
+          :src="product3Unit9Data.media.leftImage"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
         <MediaAsset
           type="image"
-          :src="UNIT7_RIGHT_IMG"
+          :src="product3Unit9Data.media.rightImage"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
       </div>

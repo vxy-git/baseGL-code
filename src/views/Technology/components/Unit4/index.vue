@@ -3,18 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import {
-  ICON_IMAGE,
-  VIDEO_2,
-  IMAGE_1,
-  BG_VIDEO,
-  LEFT_TEXT_LABEL,
-  LEFT_TITLE,
-  LEFT_DESCRIPTION,
-  RIGHT_TEXT_LABEL,
-  RIGHT_TITLE,
-  RIGHT_DESCRIPTION
-} from '@/data/technology-unit4.js'
+import { technologyUnit4Data } from '@/data/technology-unit4.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -202,7 +191,7 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
-    <MediaAsset ref="bgVideoRef" type="video" :src="BG_VIDEO" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset ref="bgVideoRef" type="video" :src="technologyUnit4Data.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
     <div ref="maskRef" class="absolute inset-0 bg-black opacity-0 pointer-events-none z-[1]"></div>
 
@@ -213,41 +202,41 @@ onUnmounted(() => {
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="ICON_IMAGE" alt="" />
-                <span>{{ LEFT_TEXT_LABEL }}</span>
+                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="technologyUnit4Data.icons.icon" alt="" />
+                <span>{{ technologyUnit4Data.sections.left.textLabel }}</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] ">
-              {{ LEFT_TITLE }}
+              {{ technologyUnit4Data.sections.left.title }}
             </div>
 
             <div class="title3 mt-[32px]">
-              {{ LEFT_DESCRIPTION }}
+              {{ technologyUnit4Data.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="IMAGE_1" alt="" class="w-[640px] h-[341px] object-contain" />
+          <MediaAsset type="image" :src="technologyUnit4Data.media.image1" alt="" class="w-[640px] h-[341px] object-contain" />
         </div>
         <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="ICON_IMAGE" alt="" />
-              {{ RIGHT_TEXT_LABEL }}
+              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="technologyUnit4Data.icons.icon" alt="" />
+              {{ technologyUnit4Data.sections.right.textLabel }}
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            {{ RIGHT_TITLE }}
+            {{ technologyUnit4Data.sections.right.title }}
           </div>
 
           <div class="title3 mt-[32px]">
-            {{ RIGHT_DESCRIPTION }}
+            {{ technologyUnit4Data.sections.right.description }}
           </div>
         </div>
         <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
-            <MediaAsset ref="videoAssetRef" type="video" :src="VIDEO_2" :autoplay="false" :muted="true" :loop="true"
+            <MediaAsset ref="videoAssetRef" type="video" :src="technologyUnit4Data.media.video2" :autoplay="false" :muted="true" :loop="true"
               :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
           </div>
         </div>
