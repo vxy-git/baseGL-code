@@ -5,10 +5,7 @@ import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import ProductItem from "@/components/ProductItem/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-const logoDefault = '/assets/img/icon11.png'
-const logoActive = '/assets/img/icon11_active.png'
-const searchDefault = '/assets/img/icon12.png'
-const searchActive = '/assets/img/icon12_active.png'
+import { headerData } from '@/data/header'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { tabsList, productsData } from '@/data/products'
 
@@ -246,43 +243,48 @@ onUnmounted(() => {
             <MediaAsset
               v-show="currentHeaderClass==='opacity'"
               type="image"
-              :src="logoDefault"
-              alt="Caleaf Tech logo"
+              :src="headerData.logo.default"
+              :alt="headerData.logo.alt"
               class="logo-image"
             />
             <MediaAsset
               v-show="currentHeaderClass==='white'"
               type="image"
-              :src="logoActive"
-              alt="Caleaf Tech logo"
+              :src="headerData.logo.active"
+              :alt="headerData.logo.alt"
               class="logo-image"
             />
-            <span class="logo-text">CALEAF TECH</span>
+            <span class="logo-text">{{ headerData.logo.text }}</span>
           </router-link>
           <!-- 桌面端导航 -->
           <nav v-if="!isMobile" class="nav-links">
-            <a href="#" class="nav-link nav-link-dropdown" :class="{ active: showDropdown }"
-              @mouseenter="handleProductsMouseEnter" @mouseleave="handleProductsMouseLeave">Products</a>
-            <router-link to="/technology" class="nav-link">Technology</router-link>
-            <a href="#" class="nav-link">Customize</a>
-            <a href="#" class="nav-link">US Local Service</a>
-            <a href="#" class="nav-link">Why Caleaf</a>
+            <a
+              v-for="(item, index) in headerData.navItems"
+              :key="index"
+              :href="item.href"
+              :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
+              @mouseenter="item.type === 'dropdown' && handleProductsMouseEnter()"
+              @mouseleave="item.type === 'dropdown' && handleProductsMouseLeave()"
+            >
+              <router-link v-if="item.to" :to="item.to">{{ item.text }}</router-link>
+              <template v-else>{{ item.text }}</template>
+            </a>
           </nav>
         </div>
         <div class="nav-right">
           <!-- 桌面端右侧按钮 -->
-          <button v-if="!isMobile" class="contact-button" @click="goContact">Contact</button>
+          <button v-if="!isMobile" class="contact-button" @click="goContact">{{ headerData.buttonText.contact }}</button>
           <button v-if="!isMobile" class="icon-button" aria-label="Search">
             <MediaAsset
               v-show="currentHeaderClass==='opacity'"
               type="image"
-              :src="searchDefault"
+              :src="headerData.search.default"
               alt=""
             />
             <MediaAsset
               v-show="currentHeaderClass==='white'"
               type="image"
-              :src="searchActive"
+              :src="headerData.search.active"
               alt=""
             />
           </button>
@@ -313,8 +315,8 @@ onUnmounted(() => {
           <router-link to="/" class="logo" @click="goHome">
             <MediaAsset
               type="image"
-              :src="logoActive"
-              alt="Caleaf Tech logo"
+              :src="headerData.logo.active"
+              :alt="headerData.logo.alt"
               class="logo-image"
             />
           </router-link>
@@ -333,7 +335,7 @@ onUnmounted(() => {
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </button>
-          <span class="page-title">Products</span>
+          <span class="page-title">{{ headerData.navItems[0].text }}</span>
           <button class="close-btn active" @click="closeMobileMenu" aria-label="Close">
             <span></span>
             <span></span>
@@ -348,45 +350,25 @@ onUnmounted(() => {
         <Transition name="page-slide">
           <div v-if="currentLevel === 1" class="level-1-page">
             <div class="mobile-nav-list">
-              <div class="mobile-nav-item">
-                <div class="nav-item-header" @click="openProductsPage">
-                  <span>Products</span>
+              <div
+                v-for="(item, index) in headerData.navItems"
+                :key="index"
+                class="mobile-nav-item"
+              >
+                <div v-if="item.type === 'dropdown'" class="nav-item-header" @click="openProductsPage">
+                  <span>{{ item.text }}</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </div>
-              </div>
-
-              <div class="mobile-nav-item">
-                <router-link to="/technology" class="nav-item-link" @click="closeMobileMenu">
-                  <span>Technology</span>
+                <router-link v-else-if="item.to" :to="item.to" class="nav-item-link" @click="closeMobileMenu">
+                  <span>{{ item.text }}</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </router-link>
-              </div>
-
-              <div class="mobile-nav-item">
-                <a href="#" class="nav-item-link" @click="closeMobileMenu">
-                  <span>Customize</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="7 13 12 8 7 3"></polyline>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="mobile-nav-item">
-                <a href="#" class="nav-item-link" @click="closeMobileMenu">
-                  <span>US Local Service</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="7 13 12 8 7 3"></polyline>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="mobile-nav-item">
-                <a href="#" class="nav-item-link" @click="closeMobileMenu">
-                  <span>Why Caleaf</span>
+                <a v-else :href="item.href" class="nav-item-link" @click="closeMobileMenu">
+                  <span>{{ item.text }}</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
@@ -433,7 +415,7 @@ onUnmounted(() => {
 
       <!-- 底部CTA区域 -->
       <div class="mobile-drawer-footer">
-        <button class="cta-btn" @click="goContact">Contact Us</button>
+        <button class="cta-btn" @click="goContact">{{ headerData.buttonText.contactUs }}</button>
         <button class="search-btn" aria-label="Search">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="9" cy="9" r="6"></circle>

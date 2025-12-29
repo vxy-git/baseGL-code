@@ -3,112 +3,45 @@
     <div class="footer-container c_1300">
       <div class="footer-box">
         <div class="footer-columns">
-          <!-- Products Column -->
-          <div class="footer-column">
-            <h4 class="footer-heading">Products</h4>
-            <ul class="footer-links">
-              <li>
-                <RouterLink :to="{ path: '/list', query: { tab: 0 } }">For Resin/Rosin</RouterLink>
+          <div v-for="(column, index) in footerData.columns" :key="index" class="footer-column" :class="{ 'pl-[20px]': column.title === 'Customize' }">
+            <h4 class="footer-heading">{{ column.title }}</h4>
+            <ul v-if="column.links.length > 0" class="footer-links">
+              <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
+                <RouterLink v-if="link.to" :to="link.to">{{ link.text }}</RouterLink>
+                <a v-else-if="link.href" :href="link.href">{{ link.text }}</a>
               </li>
-              <!-- <li><a href="#">Pod System</a></li>
-              <li><a href="#">Full Ceramic</a></li> -->
-              <li>
-                <RouterLink :to="{ path: '/list', query: { tab: 1 } }">D9 Distillate</RouterLink>
-              </li>
-              <!-- <li><a href="#">US STOCK</a></li>
-              <li><a href="#">Dab Pen</a></li>
-              <li><a href="#">510 Cartridge</a></li>
-              <li><a href="#">D8 Distillate</a></li> -->
             </ul>
+            <ul v-else class="footer-links"></ul>
           </div>
-
-          <!-- Technology Column -->
-          <div class="footer-column">
-            <h4 class="footer-heading">Technology</h4>
-            <ul class="footer-links">
-              <li>
-                <RouterLink to="/technology">UNICORE</RouterLink>
-              </li>
-              <!-- <li><a href="#">Repair Service</a></li>
-              <li><a href="#">After-Sales Policy</a></li>
-              <li><a href="#">Care Service</a></li>
-              <li><a href="#">Downloads</a></li> -->
-            </ul>
-          </div>
-
-          <!-- Customize Column -->
-          <div class="footer-column pl-[20px]">
-            <h4 class="footer-heading">Customize</h4>
-            <ul class="footer-links">
-              <!-- <li><a href="#">For Resin/</a></li>
-              <li><a href="#">Rosin</a></li>
-              <li><a href="#">Pod System</a></li>
-              <li><a href="#">Full Ceramic</a></li>
-              <li><a href="#">D9 Distillate</a></li>
-              <li><a href="#">US STOCK</a></li>
-              <li><a href="#">Dab Pen</a></li>
-              <li><a href="#">510 Cartridge</a></li>
-              <li><a href="#">D8 Distillate</a></li> -->
-            </ul>
-          </div>
-
-          <!-- Why Caleaf Column -->
-          <div class="footer-column">
-            <h4 class="footer-heading">Why Caleaf</h4>
-            <ul class="footer-links">
-              <!-- <li><a href="#">About Caleaf</a></li>
-              <li><a href="#">Press</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">CSR</a></li>
-              <li><a href="#">Awards</a></li>
-              <li><a href="#">Join Us</a></li> -->
-            </ul>
-          </div>
-
         </div>
         <!-- Subscribe Column -->
         <div class="footer-column subscribe-column">
-          <h4 class="footer-heading">Subscribe</h4>
-          <p class="subscribe-text">Get the latest news from CALEAF TECH</p>
+          <h4 class="footer-heading">{{ footerData.subscribe.title }}</h4>
+          <p class="subscribe-text">{{ footerData.subscribe.description }}</p>
           <form class="subscribe-form" @submit.prevent="handleSubscribe">
-            <input id="subscribe-email" type="email" name="email" placeholder="Email" v-model="email"
+            <input id="subscribe-email" type="email" name="email" :placeholder="footerData.subscribe.inputPlaceholder" v-model="email"
               autocomplete="email" class="email-input" />
-            <button type="submit" class="signup-btn">Sign Up</button>
+            <button type="submit" class="signup-btn">{{ footerData.subscribe.buttonText }}</button>
           </form>
           <label class="consent-label">
             <input type="checkbox" v-model="agreeToPrivacy" />
             <span>
-              I agree with the
-              <a href="#">Privacy Policy</a>
-              and I'd like to receive the latest CALEAF TECH news and deals by email.
+              {{ footerData.subscribe.privacyText }}
+              <a href="#">{{ footerData.subscribe.privacyLinkText }}</a>
+              {{ footerData.subscribe.privacySuffix }}
             </span>
           </label>
 
-
           <div class="social-links mt-[20px]">
-            <h4 class="footer-heading">Follow</h4>
-            <!-- <a href="#" aria-label="YouTube" class="social-link">
-              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
-                <div style="width: 18px; height: 12.75px; left: 0px; top: 3px; position: absolute; background: #76767F">
-                </div>
-              </div>
-            </a>
-            <a href="#" aria-label="LinkedIn" class="social-link">
-              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
-                <div
-                  style="width: 15.76px; height: 15.72px; left: 1.08px; top: 1.14px; position: absolute; background: #76767F">
-                </div>
-              </div>
-            </a>
-            <a href="#" aria-label="Facebook" class="social-link">
-              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
-                <div
-                  style="width: 8.68px; height: 16.71px; left: 4.66px; top: 0.64px; position: absolute; background: #76767F">
-                </div>
-              </div>
-            </a> -->
-            <a href="https://www.instagram.com/caleaftechofficial/" target="_blank" aria-label="Instagram"
-              class="social-link">
+            <h4 class="footer-heading">{{ footerData.social.title }}</h4>
+            <a
+              v-for="(social, index) in footerData.social.links"
+              :key="index"
+              :href="social.href"
+              target="_blank"
+              :aria-label="social.ariaLabel"
+              class="social-link"
+            >
               <svg t="1766474912709" class="icon" viewBox="0 0 1024 1024" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" p-id="1613" xmlns:xlink="http://www.w3.org/1999/xlink" width="200"
                 height="200">
@@ -120,13 +53,6 @@
                   p-id="1615"></path>
               </svg>
             </a>
-            <!-- <a href="#" aria-label="TikTok" class="social-link">
-              <div style="width: 100%; height: 100%; position: relative; overflow: hidden">
-                <div
-                  style="width: 15.64px; height: 18px; left: 1.18px; top: 0px; position: absolute; background: #76767F">
-                </div>
-              </div>
-            </a> -->
           </div>
         </div>
       </div>
@@ -136,8 +62,8 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p class="copyright">Copyright © 2025 CALEAF TECH All rights reserved.</p>
-        <p class="designer">Designed by HOLY</p>
+        <p class="copyright">{{ footerData.bottom.copyright }}</p>
+        <p class="designer">{{ footerData.bottom.designer }}</p>
       </div>
     </div>
   </footer>
@@ -145,6 +71,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { footerData } from '@/data/footer'
 
 const email = ref('')
 const agreeToPrivacy = ref(false)

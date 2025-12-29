@@ -36,7 +36,9 @@
       "WebFetch(domain:www.swiper.com.cn)",
       "Bash(pnpm remove:*)",
       "WebFetch(domain:splidejs.com)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(for:*)",
+      "Bash(done:*)"
     ],
     "deny": [],
     "ask": []
