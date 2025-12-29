@@ -51,8 +51,9 @@ body {
 }
 
 .mt_nav {
-  margin-top: 97px;
-  height: calc(100vh - 97px);
+  height: 100vh;
+  // margin-top: 97px;
+  // height: calc(100vh - 97px);
 }
 
 @media screen and (min-width: 1920px) {
@@ -132,10 +133,10 @@ body {
     height: 70px !important;
   }
 
-  .mt_nav {
-    margin-top: 70px !important;
-    height: calc(100vh - 70px);
-  }
+  // .mt_nav {
+  //   margin-top: 70px !important;
+  //   height: calc(100vh - 70px);
+  // }
 
   .footer-box {
     gap: 30px;

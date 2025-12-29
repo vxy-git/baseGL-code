@@ -35,7 +35,7 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <Header headerClass="white" />
+    <Header />
     <Unit1 />
     <Unit2 />
     <Unit9Block />

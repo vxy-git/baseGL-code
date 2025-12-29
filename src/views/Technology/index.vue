@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative bg-black">
-    <Header headerClass="white" />
+    <Header />
     <Unit1 />
     <Unit2 v-if="!isMobile" />
     <m_Unit2 v-else />

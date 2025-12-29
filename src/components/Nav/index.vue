@@ -272,7 +272,7 @@ defineExpose({
 
           <div ref="ctaButtonRef" class="cta-row">
             <button class="cta-button" @click="goList">
-              <span>View all</span>
+              <span class="text-center w-full block">View all</span>
               <MediaAsset
                 type="image"
                 :src="iconArrow"

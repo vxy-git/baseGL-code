@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
   <div class="overflow-hidden">
-    <Header headerClass="white" />
+    <Header />
     <Unit1 />
     <div class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
       <Unit2 />
