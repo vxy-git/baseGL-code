@@ -1,8 +1,12 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrowLeft = '/assets/img/icon4.png'
-const arrowRight = '/assets/img/icon4_active.png'
-const cardImg = '/assets/img/icon25.png'
+import {
+  ARROW_LEFT,
+  ARROW_RIGHT,
+  CARD_IMG,
+  PAGE_TITLE,
+  PRODUCT_CARDS
+} from '@/data/product3-unit9'
 </script>
 
 <template>
@@ -10,14 +14,14 @@ const cardImg = '/assets/img/icon25.png'
 
     <div class=" c_1300 mx-auto pt-[114px]">
       <div class="title2">
-        More Products
+        {{ PAGE_TITLE }}
       </div>
 
       <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="arrowLeft"
+          :src="ARROW_LEFT"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -25,7 +29,7 @@ const cardImg = '/assets/img/icon25.png'
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="arrowRight"
+          :src="ARROW_RIGHT"
           alt=""
           :lazy="false"
           @click="slideNext"
@@ -34,18 +38,18 @@ const cardImg = '/assets/img/icon25.png'
           <MediaAsset
             class="w-[185px] h-[165px] mx-auto"
             type="image"
-            :src="cardImg"
+            :src="CARD_IMG"
             alt=""
             :lazy="false"
           />
           <div class="cardTitle pl-[20px] mt-[46px]">
-            UNIT
+            {{ PRODUCT_CARDS[0].title }}
           </div>
           <div class="cardLabel mt-[2px] pl-[20px]">
-            UNICORE™ tech & large display
+            {{ PRODUCT_CARDS[0].label }}
           </div>
           <div class="btn ml-[20px] mt-[17px]">
-            View More
+            {{ PRODUCT_CARDS[0].btnText }}
           </div>
         </div>
       </div>

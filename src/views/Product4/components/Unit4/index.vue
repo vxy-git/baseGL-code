@@ -3,12 +3,13 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-// import dualPNG from '@/assets/dual.png'
-
-const icon33 = '/assets/img/icon33.png'
-const dualVideo = '/assets/product4/DUAL.mp4'
-// const dualPNG = 'logo1.png'
-const dualPNG = import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.svg'
+import {
+  ICON33_SRC,
+  DUAL_VIDEO,
+  DUAL_MASK_IMG,
+  TITLE_TEXT,
+  DESCRIPTION_TEXT
+} from '@/data/product4-unit4.js'
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)
@@ -173,25 +174,21 @@ onBeforeUnmount(() => {
       <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
         <div ref="titleRef" class="">
           <div class="title">
-            Twice the performance,<br />
-            Triple the flavors.
+            {{ TITLE_TEXT }}
           </div>
           <div class="label mt-[32px] mb-[32px]">
-            Get ready for DUKES to spice up your taste buds. It combines both flavors for a new experience, allowing
-            users
-            to
-            switch between tastes or enjoy a mix of both.
+            {{ DESCRIPTION_TEXT }}
           </div>
         </div>
         <div ref="videoBoxRef" class="w-[94.5vh] max-w-full h-[53.7vh]"></div>
         <div ref="videoRef"
           class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)] overflow-hidden">
-          <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="dualVideo"
+          <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="DUAL_VIDEO"
             :autoplay="false" :muted="true" :loop="false" :controls="false" />
         </div>
         <div ref="maskRef"
           class="mask-layer w-screen h-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          :style="{ backgroundImage: `url(${dualPNG})` }"></div>
+          :style="{ backgroundImage: `url(${DUAL_MASK_IMG})` }"></div>
       </div>
     </div>
     <div ref="spacerRef" class="unit4-spacer"></div>

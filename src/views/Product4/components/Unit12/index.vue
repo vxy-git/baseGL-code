@@ -3,14 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const logo0 = '/assets/img/icon41.png'
-const logo1 = '/assets/product4/unit9-1.jpg'
-const logo2 = '/assets/product4/unit9-2.jpg'
-const logo3 = '/assets/product4/unit9-3.jpg'
-const logo4 = '/assets/product4/unit9-4.jpg'
-const logo5 = '/assets/product4/unit9-5.jpg'
-const logo6 = '/assets/product4/unit9-6.jpg'
-const logoPool = [logo0, logo1, logo2, logo3, logo4, logo5, logo6];
+import { IMAGE_POOL, LEFT_TITLE_TEXT, RIGHT_TITLE_TEXT } from '@/data/product4-unit12.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,7 +22,7 @@ onMounted(() => {
     .map((layer) => layer?.$el ?? layer)
     .filter(Boolean)
     .reverse()
-    .slice(0, logoPool.length - 1)
+    .slice(0, IMAGE_POOL.length - 1)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -72,16 +65,16 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="h-screen flex justify-center items-center bg-[#F8F9FD] overflow-hidden">
     <div class="title flex justify-center items-center">
-      <span class="w-[calc((100vw-261px)/2)] text-right">GO</span>
+      <span class="w-[calc((100vw-261px)/2)] text-right">{{ LEFT_TITLE_TEXT }}</span>
       <div class="size-[261px] relative">
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
             <MediaAsset ref="imageLayers" class="absolute inset-0 size-full object-cover" type="image" :src="logo"
-              alt="" :lazy="false" v-for="(logo, index) in logoPool" :key="index" />
+              alt="" :lazy="false" v-for="(logo, index) in IMAGE_POOL" :key="index" />
           </div>
         </div>
       </div>
-      <span class="w-[calc((100vw-261px)/2)] text-left">Creative</span>
+      <span class="w-[calc((100vw-261px)/2)] text-left">{{ RIGHT_TITLE_TEXT }}</span>
     </div>
   </div>
 </template>

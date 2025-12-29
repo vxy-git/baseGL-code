@@ -1,10 +1,15 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-
-const videoTemp = '/assets/product4/3-Temperature-Control.mp4'
-const videoBattery = '/assets/product4/Battery-Life-Monitor.mp4'
-const videoPreheat = '/assets/product4/Preheat-Status-Indication.mp4'
-const videoPuff = '/assets/product4/Puff-Counter.mp4'
+import {
+  DOSING_TIMER_VIDEO,
+  PREHEAT_STATUS_VIDEO,
+  TEMPERATURE_CONTROL_VIDEO,
+  BATTERY_MONITOR_VIDEO,
+  DOSING_TIMER_LABEL,
+  PREHEAT_STATUS_LABEL,
+  TEMPERATURE_CONTROL_LABEL,
+  BATTERY_MONITOR_LABEL
+} from '@/data/product4-unit10.js'
 </script>
 
 <template>
@@ -13,11 +18,11 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
       <div class="justify-between flex m_flex_col gap-[15px]">
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            Dosing Timer
+            {{ DOSING_TIMER_LABEL }}
           </div>
           <MediaAsset
             type="video"
-            :src="videoPuff"
+            :src="DOSING_TIMER_VIDEO"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -28,11 +33,11 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
         </div>
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            Preheat Status Indication
+            {{ PREHEAT_STATUS_LABEL }}
           </div>
           <MediaAsset
             type="video"
-            :src="videoPreheat"
+            :src="PREHEAT_STATUS_VIDEO"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -45,11 +50,11 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
       <div class="justify-between flex m_flex_col gap-[15px] mt-[15px]">
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            3-Temperature Control
+            {{ TEMPERATURE_CONTROL_LABEL }}
           </div>
           <MediaAsset
             type="video"
-            :src="videoTemp"
+            :src="TEMPERATURE_CONTROL_VIDEO"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -60,11 +65,11 @@ const videoPuff = '/assets/product4/Puff-Counter.mp4'
         </div>
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            Battery Life Monitor
+            {{ BATTERY_MONITOR_LABEL }}
           </div>
           <MediaAsset
             type="video"
-            :src="videoBattery"
+            :src="BATTERY_MONITOR_VIDEO"
             :autoplay="false"
             :muted="true"
             :loop="true"

@@ -1,11 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const ConsistentTR = '/assets/product2/consistent-TR.mp4'
-const ConsistentBR = '/assets/product2/consistent-BR.mp4'
-const ConsistentBL = '/assets/product2/consistent-BL.mp4'
-
-const vl = '/assets/product2/no-L.mp4'
-const vr = '/assets/product2/no-R.mp4'
+import { RTD_SECTION, WIRES_SECTION } from '@/data/product2-unit4'
 </script>
 
 <template>
@@ -13,22 +8,18 @@ const vr = '/assets/product2/no-R.mp4'
     <div class="c_1230 c_padding m_flex_col mt-[42px] mx-auto flex gap-[32px]">
       <div class="w-[622.074px] pt-[145px] c_padding">
         <div class="title1 text-left">
-          RTD Control
+          {{ RTD_SECTION.labelText }}
         </div>
-        <div class="title2 mt-[19px]  !text-left">
-          Consistent temp, <br />
-          Ideal for Rosin
+        <div class="title2 mt-[19px]  !text-left" v-html="RTD_SECTION.title">
         </div>
-        <div class="title3 mt-[56px] !text-left">
+        <div class="title3 mt-[56px] !text-left" v-html="RTD_SECTION.description">
 
-          Powered by Unicore tech, UNIT PRO combines smoothness with <br /> purity, ensuring efficient THC and terpene
-          extraction without burning, and guarantees an exceptional session every time.
         </div>
       </div>
       <MediaAsset
         class="h-[553px] object-cover"
         type="video"
-        :src="ConsistentTR"
+        :src="RTD_SECTION.videos.topRight"
         :autoplay="false"
         :muted="true"
         :controls="false"
@@ -42,7 +33,7 @@ const vr = '/assets/product2/no-R.mp4'
         <div class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="ConsistentBL"
+            :src="RTD_SECTION.videos.bottomLeft"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -54,7 +45,7 @@ const vr = '/assets/product2/no-R.mp4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="ConsistentBR"
+            :src="RTD_SECTION.videos.bottomRight"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -67,21 +58,19 @@ const vr = '/assets/product2/no-R.mp4'
     </div>
 
     <div class="c_1230 c_padding mt-[145px]">
-      <div class="greenText">Built-in Wires</div>
+      <div class="greenText">{{ WIRES_SECTION.labelText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          No more dry burning
+          {{ WIRES_SECTION.title }}
         </div>
-        <div class="label mt-[2px]">
-          The heating coil is embedded within the ceramic core, this way, the oil<br /> is heated by the ceramic core
-          and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.
+        <div class="label mt-[2px]" v-html="WIRES_SECTION.description">
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="vl"
+            :src="WIRES_SECTION.videos.left"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -93,7 +82,7 @@ const vr = '/assets/product2/no-R.mp4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="vr"
+            :src="WIRES_SECTION.videos.right"
             :autoplay="false"
             :muted="true"
             :controls="false"

@@ -1,15 +1,16 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const screenBg1 = '/assets/product4/screen-bg-1.png'
-const screen1 = '/assets/product4/screen1.png'
-const screen2 = '/assets/product4/screen2.png'
-const screen3 = '/assets/product4/screen3.png'
-const screen4 = '/assets/product4/screen4.png'
-const screen5 = '/assets/product4/screen5.png'
-const screen6 = '/assets/product4/screen6.png'
+import {
+  SCREEN_BG,
+  SCREEN_IMAGES,
+  SMALL_TITLE,
+  MAIN_TITLE,
+  DESCRIPTION,
+  CAROUSEL_CONFIG
+} from '@/data/product3-unit6'
 
-const list = [screen1, screen2, screen3, screen4, screen5, screen6]
+const list = SCREEN_IMAGES
 
 const listBox = ref(null)
 const currentIndex = ref(0)
@@ -18,8 +19,8 @@ const noTransition = ref(false)
 const autoTimer = ref(null)
 const resetTimer = ref(null)
 
-const intervalMs = 2600
-const transitionMs = 700
+const intervalMs = CAROUSEL_CONFIG.intervalMs
+const transitionMs = CAROUSEL_CONFIG.transitionMs
 
 const displayList = computed(() => [...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list])
 
@@ -99,21 +100,20 @@ onBeforeUnmount(() => {
           <MediaAsset
             class="w-full absolute top-0 left-0"
             type="image"
-            :src="screenBg1"
+            :src="SCREEN_BG"
             alt=""
             :lazy="false"
           />
         </div>
         <div class="mt-[126px] textBox">
           <div class="title">
-            ULTRA-LARGE SMART DISPLAY
+            {{ SMALL_TITLE }}
           </div>
           <div class="title2">
-            Design Your Own
+            {{ MAIN_TITLE }}
           </div>
           <div class="w-[500px] title3">
-            Customize it further with any brand graphics to create your unique brand screen. Drive market trends with a
-            design that breaks the mold and leads the way.
+            {{ DESCRIPTION }}
           </div>
         </div>
       </div>

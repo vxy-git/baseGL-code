@@ -1,46 +1,24 @@
 <script setup>
-const UNIVERSE = '/assets/product2/UNIVERSE.mp4';
-const UNIVERSE_Pro = '/assets/product2/UNIVERSE_Pro.mp4';
-import MediaAsset from '@/components/MediaAsset.vue';
-
-
-const deviceSpecs1 = [
-  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "2.0V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Inhale Activated" }
-]
-
-const deviceSpecs2 = [
-  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Button & Inhale Activated" }
-]
-
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import {
+  TITLE_TEXT,
+  VIDEO_UNIVERSE,
+  VIDEO_UNIVERSE_PRO,
+  DEVICE_SPECS_UNIVERSE,
+  DEVICE_SPECS_UNIVERSE_PRO,
+  PRODUCT_NAME_1,
+  PRODUCT_NAME_2
+} from '@/data/product2-unit5'
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
-      Specifications
+      {{ TITLE_TEXT }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
+        <div v-for="item in DEVICE_SPECS_UNIVERSE" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>
@@ -53,7 +31,7 @@ const deviceSpecs2 = [
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="UNIVERSE"
+            :src="VIDEO_UNIVERSE"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -62,7 +40,7 @@ const deviceSpecs2 = [
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNIVERSE</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ PRODUCT_NAME_1 }}</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
@@ -70,7 +48,7 @@ const deviceSpecs2 = [
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="UNIVERSE_Pro"
+            :src="VIDEO_UNIVERSE_PRO"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -79,10 +57,10 @@ const deviceSpecs2 = [
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ PRODUCT_NAME_2 }}</div>
       </div>
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
+        <div v-for="item in DEVICE_SPECS_UNIVERSE_PRO" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>

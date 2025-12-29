@@ -1,31 +1,33 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const tempControl = '/assets/product3/3-Temperature-Control.mp4'
-const batteryLifeMonitor = '/assets/product3/Battery-Life-Monitor.mp4'
-const preheatStatus = '/assets/product3/Preheat-Status-Indication.mp4'
-const puffCounter = '/assets/product3/Puff-Counter.mp4'
+import {
+  FEATURE_CARDS,
+  PRODUCT_TAG,
+  MAIN_TITLE,
+  SUBTITLE
+} from '@/data/product3-unit5'
 </script>
 
 <template>
   <div class="unit5 pt-[250px] pb-[10px] c_1230 c_padding m_mt_0 m_pt_100">
     <div class="c_1230 c_padding">
-      <div class="title_tag">UNICORN PRO</div>
+      <div class="title_tag">{{ PRODUCT_TAG }}</div>
       <div class="title mt-[25px]">
-        Smart Display
+        {{ MAIN_TITLE }}
       </div>
       <div class="stitle text-center mt-[120px]">
-        Upgrade your adventure
+        {{ SUBTITLE }}
       </div>
       <div class="unit5__cards mx-auto mt-[60px] scrollbar-hide">
         <div class="unit5__row">
-          <div class="unit5__card">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': FEATURE_CARDS[0].wide }">
             <div class="tag">
-              3-Temperature Control
+              {{ FEATURE_CARDS[0].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="tempControl"
+              :src="FEATURE_CARDS[0].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -33,14 +35,14 @@ const puffCounter = '/assets/product3/Puff-Counter.mp4'
               :hover-play="true"
             />
           </div>
-          <div class="unit5__card unit5__card--wide">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': FEATURE_CARDS[1].wide }">
             <div class="tag">
-              Battery Life Monitor
+              {{ FEATURE_CARDS[1].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="batteryLifeMonitor"
+              :src="FEATURE_CARDS[1].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -50,14 +52,14 @@ const puffCounter = '/assets/product3/Puff-Counter.mp4'
           </div>
         </div>
         <div class="unit5__row unit5__row--swap">
-          <div class="unit5__card unit5__card--wide">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': FEATURE_CARDS[2].wide }">
             <div class="tag">
-              Preheat Status Indication
+              {{ FEATURE_CARDS[2].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="preheatStatus"
+              :src="FEATURE_CARDS[2].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -65,14 +67,14 @@ const puffCounter = '/assets/product3/Puff-Counter.mp4'
               :hover-play="true"
             />
           </div>
-          <div class="unit5__card">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': FEATURE_CARDS[3].wide }">
             <div class="tag">
-              Dosing Timer
+              {{ FEATURE_CARDS[3].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="puffCounter"
+              :src="FEATURE_CARDS[3].video"
               :autoplay="false"
               :muted="true"
               :loop="true"

@@ -1,8 +1,14 @@
 <script setup>
-const logo1 = '/assets/product4/Advanced-Interactivity.jpg';
-const logo2 = '/assets/product4/Dual-Chamber.jpg';
-const logo3 = '/assets/product4/Multiple-Options.jpg';
-const logo4 = '/assets/product4/Post-Free.jpg';
+import {
+  ADVANCED_INTERACTIVITY_IMG,
+  DUAL_CHAMBER_IMG,
+  MULTIPLE_OPTIONS_IMG,
+  POST_FREE_IMG,
+  DUAL_CHAMBER_LABEL,
+  POST_FREE_LABEL,
+  MULTIPLE_OPTIONS_LABEL,
+  ADVANCED_INTERACTIVITY_LABEL
+} from '@/data/product4-unit2.js';
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 
@@ -10,22 +16,22 @@ import MediaAsset from '@/components/MediaAsset.vue'
   <div class="flex flex-col gap-y-[20px] pt-[110px] c_1230 c_padding">
     <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">Dual Chamber</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo2" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ DUAL_CHAMBER_LABEL }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="DUAL_CHAMBER_IMG" alt="" />
       </div>
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">Post-Free</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo4" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ POST_FREE_LABEL }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="POST_FREE_IMG" alt="" />
       </div>
     </div>
     <div class="flex justify-center gap-[20px] m_flex_warp">
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">Multiple Options</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo3" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ MULTIPLE_OPTIONS_LABEL }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="MULTIPLE_OPTIONS_IMG" alt="" />
       </div>
       <div class="w-[605px] h-[340px] relative">
-        <div class="text absolute top-[21px] left-[28px]">Advanced Interactivity</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="logo1" alt="" />
+        <div class="text absolute top-[21px] left-[28px]">{{ ADVANCED_INTERACTIVITY_LABEL }}</div>
+        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="ADVANCED_INTERACTIVITY_IMG" alt="" />
       </div>
     </div>
   </div>

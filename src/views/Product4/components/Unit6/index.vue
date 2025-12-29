@@ -1,29 +1,35 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const leftVideo = '/assets/product4/unit5-l.mp4'
-const rightVideo = '/assets/product4/unit5-r.mp4'
+import {
+  LEFT_VIDEO,
+  RIGHT_VIDEO,
+  TITLE_TEXT,
+  GREEN_LABEL_TEXT,
+  SUBTITLE_TEXT,
+  DESCRIPTION_TEXT
+} from '@/data/product4-unit6.js'
 </script>
 
 <template>
   <div class="pt-[236px] c_1230 c_padding">
     <div class="title">
-      Post-Free Design
+      {{ TITLE_TEXT }}
     </div>
     <div class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full">
       <div class="pt-[7px] max-w-full">
         <div class="gtext">
-          Terpene-Boosted
+          {{ GREEN_LABEL_TEXT }}
         </div>
         <div class="title1">
-          Get the smoothest and cleanest hit.
+          {{ SUBTITLE_TEXT }}
         </div>
         <div class="label">
-          The Gemco core in dual chamber can release the purest, richest, and most authentic terpene flavors when used individually. When both chambers are engaged, it creates the most perfect flavor collision, allowing the dual aromas to swirl on your taste buds.
+          {{ DESCRIPTION_TEXT }}
         </div>
         <div class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden max-w-full">
           <MediaAsset
             type="video"
-            :src="leftVideo"
+            :src="LEFT_VIDEO"
             :controls="false"
             :autoplay="false"
             :muted="true"
@@ -36,7 +42,7 @@ const rightVideo = '/assets/product4/unit5-r.mp4'
       <div class="w-[500px] h-[650px] rounded-[20px] overflow-hidden">
         <MediaAsset
           type="video"
-          :src="rightVideo"
+          :src="RIGHT_VIDEO"
           :controls="false"
           :autoplay="false"
           :muted="true"

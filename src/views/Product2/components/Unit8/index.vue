@@ -3,12 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaAsset from '@/components/MediaAsset.vue'
-const realize1 = '/assets/product2/realize1.jpg'
-const realize2 = '/assets/product2/realize2.jpg'
-const realize3 = '/assets/product2/realize3.jpg'
-const realize4 = '/assets/product2/realize4.jpg'
-const realize5 = '/assets/product2/realize5.jpg'
-const realize6 = '/assets/product2/realize6.jpg'
+import { LABEL_TEXT, MAIN_TITLE, DESIGN_IMAGES_TOP, DESIGN_IMAGES_BOTTOM } from '@/data/product2-unit8'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,10 +55,10 @@ onBeforeUnmount(() => {
 <template>
   <div ref="moduleRef" class="pt-[153px] pb-[45px]">
     <div class="title c_padding capitalize">
-      Design Your Own Look
+      {{ LABEL_TEXT }}
     </div>
     <div class="title1 c_padding">
-      Realize your unique design with CALEAF TECH.
+      {{ MAIN_TITLE }}
     </div>
     <div class="mt-[54px] overflow-hidden">
       <div ref="stageRef" class="unit-stage">
@@ -72,54 +67,9 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden flex justify-end">
               <div ref="imgBox1Ref" class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
-                <div class="h-full w-[480px]">
+                <div v-for="(img, index) in [...DESIGN_IMAGES_TOP, ...DESIGN_IMAGES_TOP]" :key="`top-${index}`" class="h-full w-[480px]" :class="{ 'rounded-[20px]': index % 2 === 1 }">
                   <MediaAsset
-                    :src="realize1"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize2"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize3"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px]">
-                  <MediaAsset
-                    :src="realize1"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize2"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize3"
+                    :src="img"
                     type="image"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden"
                     alt=""
@@ -134,54 +84,9 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden">
               <div ref="imgBox2Ref" class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <div class="h-full w-[480px] rounded-[20px]">
+                <div v-for="(img, index) in [...DESIGN_IMAGES_BOTTOM, ...DESIGN_IMAGES_BOTTOM]" :key="`bottom-${index}`" class="h-full w-[480px] rounded-[20px]">
                   <MediaAsset
-                    :src="realize4"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize5"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize6"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize4"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize5"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize6"
+                    :src="img"
                     type="image"
                     class="w-full h-full object-cover rounded-[20px] overflow-hidden"
                     alt=""

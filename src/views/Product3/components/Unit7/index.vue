@@ -1,46 +1,24 @@
 <script setup>
-import MediaAsset from '@/components/MediaAsset.vue';
-const UNIVERSE = '/assets/product3/UNICORN.mp4';
-const NIVERSE_PRO = '/assets/product3/UNICORN-PRO.mp4';
-
-
-const deviceSpecs1 = [
-  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "2.0V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Inhale Activated" }
-]
-
-const deviceSpecs2 = [
-  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Button & Inhale Activated" }
-]
-
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import {
+  UNICORN_VIDEO,
+  UNICORN_PRO_VIDEO,
+  PAGE_TITLE,
+  UNICORN_SPECS,
+  UNICORN_PRO_SPECS,
+  UNICORN_LABEL,
+  UNICORN_PRO_LABEL
+} from '@/data/product3-unit8'
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
-      Specifications
+      {{ PAGE_TITLE }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px]">
-        <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
+        <div v-for="item in UNICORN_SPECS" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>
@@ -51,22 +29,22 @@ const deviceSpecs2 = [
       </div>
       <div class="w-full h-[414px] flex flex-col items-center justify-center">
         <div class="h-[414px]">
-          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="UNIVERSE"
+          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="UNICORN_VIDEO"
             :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">UNICORN</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ UNICORN_LABEL }}</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
       <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
         <div class="h-[414px]">
-          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="NIVERSE_PRO"
+          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="UNICORN_PRO_VIDEO"
             :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNICORN Pro</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ UNICORN_PRO_LABEL }}</div>
       </div>
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] -mt-[4px]">
-        <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
+        <div v-for="item in UNICORN_PRO_SPECS" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>

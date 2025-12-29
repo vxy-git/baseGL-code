@@ -1,10 +1,8 @@
 <script setup>
-const pack1Src = '/assets/product2/plck1.jpg'
-const pack2Src = '/assets/product2/plck2.mp4'
-const pack3Src = '/assets/product2/plck3.png'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { MAIN_TITLE, PANELS_LIST, TRACK_PREFIX } from '@/data/product2-unit6'
 
 const unitRef = ref(null)
 const innerRef = ref(null)
@@ -109,71 +107,37 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">Pick Your Option</div>
+              <div class="title">{{ MAIN_TITLE }}</div>
             </div>
           </div>
         </div>
 
-        <div class="unit6-panel">
+        <div class="unit6-panel" v-for="(panel, index) in PANELS_LIST" :key="index">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">UNIVERSE</div>
-                  <div class="title1">It looks — and stays — beautiful.</div>
-                  <div class="title2">With big branding potential, it matches your vibe and makes the style uniquely
-                    yours.</div>
+                  <div class="btn mt-[3px]">{{ panel.btn }}</div>
+                  <div class="title1">{{ panel.title }}</div>
+                  <div class="title2">{{ panel.description }}</div>
                 </div>
                 <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="image" :src="pack1Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
+                  <MediaAsset
+                    :type="panel.mediaType"
+                    :src="panel.mediaSrc"
+                    autoplay
+                    muted
+                    playsinline
+                    loop
+                    :controls="false"
+                  ></MediaAsset>
                 </div>
               </div>
               <div class="title3 mt-[70px]">
-                DEEP TRACK 3.0
+                {{ TRACK_PREFIX }}
                 <span class="mx-[10px]">|</span>
-                <span class="num inline-block">01</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="unit6-panel">
-          <div class="c_1230 c_padding">
-            <div>
-              <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
-                <div>
-                  <div class="btn mt-[3px]">UNIVERSE Pro</div>
-                  <div class="title1">Upgrade your adventure.</div>
-                  <div class="title2">With advanced interactivity, it will dominate the market like a pro.</div>
-                </div>
-                <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="video" :src="pack2Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
-                </div>
+                <span class="num inline-block">{{ panel.number }}</span>
               </div>
-              <div class="title3 mt-[70px]">
-                DEEP TRACK 3.0
-                <span class="mx-[10px]">|</span>
-                <span class="num inline-block">02</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="unit6-panel">
-          <div class="c_1230 c_padding">
-            <div>
-              <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
-                <div>
-                  <div class="btn mt-[3px]">UNIVERSE Pro</div>
-                  <div class="title1">Upgrade your adventure.</div>
-                  <div class="title2">With advanced interactivity, it will dominate the market like a pro.</div>
-                </div>
-                <div class="shrink-0 h-[340px] w-[560px] rounded-[20px] bg-black">
-                  <MediaAsset type="image" :src="pack3Src" autoplay muted playsinline loop :controls="false"></MediaAsset>
-                </div>
-              </div>
-              <div class="title3 mt-[70px]">
-                DEEP TRACK 3.0
-                <span class="mx-[10px]">|</span>
-                <span class="num inline-block">03</span></div>
             </div>
           </div>
         </div>

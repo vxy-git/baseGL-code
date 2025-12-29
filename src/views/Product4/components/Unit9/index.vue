@@ -1,26 +1,26 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon38 = '/assets/img/icon38.png'
+import { ICON38_SRC, TITLE_TEXT } from '@/data/product4-unit9.js'
 </script>
 
 <template>
     <div class="c_padding c_1230">
       <div class="mx-auto flex relative justify-center w-full">
         <MediaAsset
-          :src="icon38"
+          :src="ICON38_SRC"
           type="image"
           class="absolute left-0 size-[34px] -top-[4px] animate-pulse"
           alt=""
           :lazy="false"
         />
         <MediaAsset
-          :src="icon38"
+          :src="ICON38_SRC"
           type="image"
           class="absolute left-[35px] size-[22px] -top-[22px] animate-pulse"
           alt=""
           :lazy="false"
         />
-        <div class="title text-nowrap">Tap into a whole new level<br/>of interaction</div>
+        <div class="title text-nowrap">{{ TITLE_TEXT }}</div>
       </div>
     </div>
 </template>

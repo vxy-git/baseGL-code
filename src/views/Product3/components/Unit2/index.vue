@@ -1,32 +1,36 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const unitImg1 = '/assets/product3/unit2-1.jpg'
-const unitImg2 = '/assets/product3/unit2-2.jpg'
+import {
+  PRODUCT1_IMAGE,
+  PRODUCT2_IMAGE,
+  PRODUCT1_NAME,
+  PRODUCT2_NAME,
+  PRODUCT1_DESCRIPTION,
+  PRODUCT2_DESCRIPTION
+} from '@/data/product3-unit2'
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="unitImg1" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="PRODUCT1_IMAGE" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
-          UNICORN
+          {{ PRODUCT1_NAME }}
         </div>
         <div class="title2 mt-[19.55px]">
-          Super thin. Strikingly light.<br />
-          Shockingly strong.
+          {{ PRODUCT1_DESCRIPTION }}
         </div>
       </div>
     </div>
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="unitImg2" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="PRODUCT2_IMAGE" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
-          UNICORN Pro
+          {{ PRODUCT2_NAME }}
         </div>
         <div class="title2 !text-white mt-[19px]">
-          Tiny powerhouse&nbsp;<br />
-          Exceptional pro capability&nbsp;
+          {{ PRODUCT2_DESCRIPTION }}
         </div>
       </div>
     </div>

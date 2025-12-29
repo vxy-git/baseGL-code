@@ -1,15 +1,15 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const videoSrc = '/assets/product4/Dual-Gemco-Core.mp4'
+import { DUAL_GEMCO_CORE_VIDEO, TITLE_TEXT } from '@/data/product4-unit5.js'
 </script>
 
 <template>
   <div class="pt-[294px] c_1230 c_padding">
     <div class="title">
-      Dual Gemco Core
+      {{ TITLE_TEXT }}
     </div>
     <div class="w-[900px] h-[409px] mx-auto mt-[64px] max-w-full">
-      <MediaAsset type="video" :src="videoSrc" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset type="video" :src="DUAL_GEMCO_CORE_VIDEO" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" class="w-full h-full object-cover rounded-[20px]" />
     </div>
   </div>

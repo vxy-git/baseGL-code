@@ -1,6 +1,15 @@
 <script setup>
-const logoSrc1 = '/assets/product4/unit6-1.jpg'
-const logoSrc2 = '/assets/product4/unit6-2.jpg'
+import {
+  TASTE_SWITCHER_IMG,
+  HIT_A_BLINKER_IMG,
+  TITLE_TEXT,
+  TASTE_SWITCHER_LABEL,
+  HIT_A_BLINKER_LABEL,
+  TASTE_SWITCHER_TITLE,
+  HIT_A_BLINKER_TITLE,
+  TASTE_SWITCHER_DESCRIPTION,
+  HIT_A_BLINKER_DESCRIPTION
+} from '@/data/product4-unit8.js'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -105,7 +114,7 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">Advanced Interactivity</div>
+              <div class="title">{{ TITLE_TEXT }}</div>
             </div>
           </div>
         </div>
@@ -115,14 +124,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">Taste Switcher</div>
-                  <div class="title1">Let's live it up!</div>
+                  <div class="btn mt-[3px]">{{ TASTE_SWITCHER_LABEL }}</div>
+                  <div class="title1">{{ TASTE_SWITCHER_TITLE }}</div>
                   <div class="title2">
-                    Tap once—screen and flavor sync in a flash. Sit back and soak up the visual-and-taste ride.
+                    {{ TASTE_SWITCHER_DESCRIPTION }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="logoSrc1" />
+                  <MediaAsset type="image" :src="TASTE_SWITCHER_IMG" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">
@@ -139,14 +148,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">Hit a Blinker</div>
-                  <div class="title1">Toggle the mode, bye-bye boring!</div>
+                  <div class="btn mt-[3px]">{{ HIT_A_BLINKER_LABEL }}</div>
+                  <div class="title1">{{ HIT_A_BLINKER_TITLE }}</div>
                   <div class="title2">
-                    Turn the brand icon into a shape-shifting star, craft a vibe that's signature-only.
+                    {{ HIT_A_BLINKER_DESCRIPTION }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="logoSrc2" />
+                  <MediaAsset type="image" :src="HIT_A_BLINKER_IMG" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">

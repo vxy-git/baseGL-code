@@ -4,18 +4,19 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const arrow = '/assets/product3/arrow.svg'
+import {
+  ARROW_ICON,
+  FRAME_SEQUENCE_1,
+  FRAME_SEQUENCE_2,
+  TB1_TITLE_TEXT,
+  TB2_CONTENT,
+  TB3_CONTENT
+} from '@/data/product3-unit3'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress1 = ref(0)
 const seqProgress2 = ref(0)
-const frames1 = 32
-const frames2 = 27
-const tarURL1 = '/product3_1.tar'
-const tarURL2 = '/product3_2.tar'
-const imageURL1 = (i) => `product3_1/frame${i + 1}.jpg`
-const imageURL2 = (i) => `product3_2/frame${i + 1}.jpg`
 
 const pinSection1 = ref(null)
 const pinSection2 = ref(null)
@@ -28,8 +29,7 @@ const tb3 = ref(null)
 
 // tb1
 const tb1Title = ref(null)
-const tb1TitleText = 'Gold standard for Resin/Rosin'
-const tb1Chars = tb1TitleText.split('')
+const tb1Chars = TB1_TITLE_TEXT.split('')
 const tb1MaskChars = ref([])
 const setTb1MaskCharRef = (el, index) => {
   if (el) {
@@ -110,13 +110,6 @@ onMounted(async () => {
       },
       'printStart'
     )
-    // .fromTo(tb1.value, { yPercent: 60 }, { yPercent: 0, duration: typingTotal + 0.6, ease: 'power1.inOut' }, 'printStart')
-    // .fromTo([tb1Title.value, tb1Image.value],
-    //   { opacity: 0, yPercent: 10 },
-    //   { opacity: 1, yPercent: 0, duration: typingTotal + 0.4, stagger: 0.2, ease: 'power1.out' }, 'printStart')
-    // .to(tb1.value, { yPercent: -80, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    // .to([tb1Title.value, tb1Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
-    // .to(frameContainer1.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<0.3')
 
   tl2 = gsap.timeline({
     scrollTrigger: {
@@ -162,14 +155,14 @@ onUnmounted(() => {
     <!-- 模块 1：帧动画 + tb1 -->
     <section ref="pinSection1" class="sequence-wrap relative">
       <div ref="frameContainer1" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames1" :tarURL="tarURL1" :imageURL="imageURL1" :progress="seqProgress1"
+        <FrameSequence :frames="FRAME_SEQUENCE_1.frames" :tarURL="FRAME_SEQUENCE_1.tarURL" :imageURL="FRAME_SEQUENCE_1.imageURL" :progress="seqProgress1"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
       <div class="size-full flex items-start justify-center c_padding">
         <div class="text-layer">
           <div ref="tb1" class="text-block">
             <div ref="tb1Title" class="title printer-title">
-              <span class="title-base">{{ tb1TitleText }}</span>
+              <span class="title-base">{{ TB1_TITLE_TEXT }}</span>
               <span class="title-mask" aria-hidden="true">
                 <span
                   v-for="(ch, index) in tb1Chars"
@@ -189,19 +182,16 @@ onUnmounted(() => {
     <!-- 模块 2：tb2 + tb3 -->
     <section ref="pinSection2" class="sequence-wrap relative">
       <div ref="frameContainer2" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames2" :tarURL="tarURL2" :imageURL="imageURL2" :progress="seqProgress2"
+        <FrameSequence :frames="FRAME_SEQUENCE_2.frames" :tarURL="FRAME_SEQUENCE_2.tarURL" :imageURL="FRAME_SEQUENCE_2.imageURL" :progress="seqProgress2"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="title1">UNICORE powered</div>
-            <div ref="tb2WTitle" class="title2 mt-[19.55px]">33% in pore uniformity</div>
+            <div ref="tb2SmallTitle" class="title1">{{ TB2_CONTENT.smallTitle }}</div>
+            <div ref="tb2WTitle" class="title2 mt-[19.55px]">{{ TB2_CONTENT.title }}</div>
             <div ref="tb2Text" class="title3 max-w-[1200px] mt-[19.45px]">
-              We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F
-              to
-              create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating
-              any risk of dry burn for consistently optimal performance.
+              {{ TB2_CONTENT.description }}
             </div>
           </div>
 
@@ -209,9 +199,9 @@ onUnmounted(() => {
             <div ref="tb3Card" class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
               <div>
                 <div ref="tb3Figure" class="flex text">
-                  20%
+                  {{ TB3_CONTENT.figure }}
                   <MediaAsset
-                    :src="arrow"
+                    :src="ARROW_ICON"
                     type="image"
                     class="h-[39.805px]"
                     alt=""
@@ -219,20 +209,20 @@ onUnmounted(() => {
                   />
                 </div>
                 <div ref="tb3Label" class="text1">
-                  Firing temp
+                  {{ TB3_CONTENT.label }}
                 </div>
               </div>
               <div class="ml-[63.5px]">
                 <div>
                   <div ref="tb3Bar1" class="bar w-[480px] bg-[#CAA4FB] rounded-full"></div>
                   <div ref="tb3Bar1Text" class="text2 mt-[15px]">
-                    CALEAF TECH 1832 ℉ (1000℃)
+                    {{ TB3_CONTENT.bar1Text }}
                   </div>
                 </div>
                 <div class="mt-[46px]">
                   <div ref="tb3Bar2" class="bar w-[319px] bg-[#D9D9D9] rounded-full"></div>
                   <div ref="tb3Bar2Text" class="text2 mt-[15px]">
-                    Others 1472 ℉ (800℃)
+                    {{ TB3_CONTENT.bar2Text }}
                   </div>
                 </div>
               </div>

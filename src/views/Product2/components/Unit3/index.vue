@@ -1,23 +1,22 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const either_L = '/assets/product2/either-L.mp4'
-const either_R = '/assets/product2/either-R.mp4'
+import { LABEL_TEXT, MAIN_TITLE, VIDEO_LEFT, VIDEO_RIGHT } from '@/data/product2-unit3'
 </script>
 
 <template>
   <div class="mt-[158px] c_1230 c_padding">
     <div class="title1 text-center capitalize">
-      Take Your Pick
+      {{ LABEL_TEXT }}
     </div>
     <div class="title2 mt-[19px]">
-      Either one's a winner
+      {{ MAIN_TITLE }}
     </div>
     <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
       <div class="w-full h-[440px] bg-black rounded-[20px]">
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="either_L"
+          :src="VIDEO_LEFT"
           :autoplay="false"
           :muted="true"
           :loop="true"
@@ -29,7 +28,7 @@ const either_R = '/assets/product2/either-R.mp4'
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="either_R"
+          :src="VIDEO_RIGHT"
           :autoplay="false"
           :muted="true"
           :loop="true"
