@@ -3,7 +3,11 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const b2 = '/assets/technology/b2.png'
+import {
+  BG_IMAGE,
+  TITLE_TEXT,
+  DESCRIPTION_TEXT
+} from '@/data/technology-unit7.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -71,19 +75,14 @@ onUnmounted(() => {
   <div ref="sectionRef" class="section pt-[97px]">
     <div class="inner c_1300">
       <div ref="imageBoxRef" class="image-wrapper">
-        <MediaAsset :src="b2" type="image" alt="" class="c_1300 h-[560px]" />
+        <MediaAsset :src="BG_IMAGE" type="image" alt="" class="c_1300 h-[560px]" />
       </div>
       <div ref="contentRef" class="content-layer m_pt_0">
         <div class="title2">
-          From lab to awards: journey to the top
+          {{ TITLE_TEXT }}
         </div>
         <div class="title3 mt-[54px]">
-          Our R&D Director, Frank, with 20 years of industry experience, has worked with US labs for 18 months,
-          conducting round-the-clock tests to redefine the gold standard for Rosin and Resin oils. This dedication means
-          we don't just offer testing capabilities—we offer proven results.<br />
-          We once partnered with a client for a year-long testing phase to ensure their product not only made a big hit
-          in the market but also stood the test of time.<br />
-          Choose us, and you're not just choosing a supplier—you're choosing a reliable partner you can always count on.
+          {{ DESCRIPTION_TEXT }}
         </div>
       </div>
     </div>

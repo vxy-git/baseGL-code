@@ -3,9 +3,17 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const l1 = '/assets/technology/t3/l1.mp4'
-const r1 = '/assets/technology/t3/r1.mp4'
-const r2 = '/assets/technology/t3/r2.mp4'
+import {
+  LEFT_VIDEO,
+  RIGHT_VIDEO_1,
+  RIGHT_VIDEO_2,
+  CONTENT1_TITLE1,
+  CONTENT1_TITLE2,
+  CONTENT1_TITLE3,
+  CONTENT2_TITLE1,
+  CONTENT2_TITLE2,
+  CONTENT2_TITLE3
+} from '@/data/technology-unit5.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -138,46 +146,41 @@ onUnmounted(() => {
       class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
       <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
         <div class="title1">
-          Built-in Wires
+          {{ CONTENT1_TITLE1 }}
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">
-          No more dry burning
+          {{ CONTENT1_TITLE2 }}
         </div>
 
         <div class="title3 mt-[23px]">
-          We pay attention to every detail.<br>
-          It is only when we use the highest-grade nichrome alloy as the heating coil material, shape it for uniform
-          heat distribution, and embed it into the ceramic core, allowing the oil to be heated by the ceramic and not
-          by
-          exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
+          {{ CONTENT1_TITLE3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef1" :src="r1" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef1" :src="RIGHT_VIDEO_1" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          RTD Control
+          {{ CONTENT2_TITLE1 }}
         </div>
 
         <div class="title2 mt-[23px]">
-          Consistent Temp
+          {{ CONTENT2_TITLE2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
-          guarantees an exceptional session every time.
+          {{ CONTENT2_TITLE3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef2" :src="r2" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef2" :src="RIGHT_VIDEO_2" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
     </div>
     <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" :src="l1" type="video" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" :src="LEFT_VIDEO" type="video" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline alt="" />
     </div>
   </div>

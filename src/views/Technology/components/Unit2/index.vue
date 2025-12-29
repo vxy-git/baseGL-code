@@ -3,9 +3,18 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const l1 = '/assets/technology/t1/l1.mp4'
-const r1 = '/assets/technology/t1/r1.jpg'
-const r2 = '/assets/technology/t1/r2.mp4'
+import {
+  LEFT_VIDEO,
+  RIGHT_IMAGE_1,
+  RIGHT_VIDEO,
+  CONTENT1_TITLE1,
+  CONTENT1_TITLE2,
+  CONTENT1_TITLE3,
+  CONTENT1_STATS,
+  CONTENT2_TITLE1,
+  CONTENT2_TITLE2,
+  CONTENT2_TITLE3
+} from '@/data/technology-unit2.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -111,67 +120,49 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
     <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" type="video" :src="l1" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" type="video" :src="LEFT_VIDEO" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline class="mediaBox" />
     </div>
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          100% Rosin-Ready
+          {{ CONTENT1_TITLE1 }}
         </div>
 
         <div class="title2 mt-[20px] -ml-[5px] tracking-[0.2px]">
-          Savor the most natural
-          and rich flavors
+          {{ CONTENT1_TITLE2 }}
         </div>
 
         <div class="title3 mt-[28px]">
-          We always strive to be pioneers in the industry.
-          Our patented U-shape ceramic design is the result of extensive testing and validation of various
-          structures.
-          It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
-          It is 30% thinner than ordinary ceramics while maintaining the strength, which means fewer terpene
-          molecules
-          are filtered out, and the rich, natural flavors are preserved.
+          {{ CONTENT1_TITLE3 }}
         </div>
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
-          <div class="flex flex-col items-center justify-center ">
+          <div v-for="(stat, index) in CONTENT1_STATS" :key="index" class="flex flex-col items-center justify-center">
             <div class="text1">
-              30%
+              {{ stat.percentage }}
             </div>
             <div class="text2">
-              Thinner in Structure
-            </div>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="text1 flex">
-              45%
-            </div>
-            <div class="text2">
-              Flavor Retention
+              {{ stat.label }}
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] object-contain" type="image" :src="r1" alt="" />
+        <MediaAsset class="w-[763px] object-contain" type="image" :src="RIGHT_IMAGE_1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          We Fixed It First
+          {{ CONTENT2_TITLE1 }}
         </div>
 
         <div class="title2 mt-[20px]">
-          The most effective <br>
-          anti-clogging solution ever built.
+          {{ CONTENT2_TITLE2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          Most customers have reported bubble issues to us with various devices from different suppliers during oil
-          filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged
-          bubbles.
+          {{ CONTENT2_TITLE3 }}
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="r2" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
+        <MediaAsset ref="rightVideoAssetRef" :src="RIGHT_VIDEO" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
           :view-play="true" :loop="true" playsinline alt="" />
       </div>
     </div>

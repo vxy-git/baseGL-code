@@ -3,11 +3,21 @@ import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-const heroBanner = '/assets/contact/banner.jpg'
-const heroBannerMobile = '/assets/contact/m_banner.jpg'
-const iconInstagram = '/assets/img/icon44.png'
-const iconDropdown = '/assets/img/icon46.png'
-const iconProduct = '/assets/img/icon45.png'
+import {
+  HERO_BANNER,
+  HERO_BANNER_MOBILE,
+  ICON_INSTAGRAM,
+  ICON_DROPDOWN,
+  ICON_PRODUCT,
+  INSTAGRAM_LINK,
+  CONTACT_EMAIL,
+  HERO_TITLE,
+  FOLLOW_TEXT,
+  FORM_TITLE,
+  SUBMIT_BUTTON_TEXT,
+  COUNTRIES,
+  STATES_BY_COUNTRY
+} from '@/data/contactus'
 
 const formData = ref({
   name: '',
@@ -21,48 +31,8 @@ const formData = ref({
 const showCountryDropdown = ref(false)
 const showStateDropdown = ref(false)
 
-const countries = [
-  'United States',
-  'Canada',
-  'United Kingdom',
-  'Australia',
-  'Germany',
-  'France',
-  'China',
-  'Japan',
-  'South Korea',
-  'Singapore',
-  'India',
-  'Brazil',
-  'Mexico',
-  'Netherlands',
-  'Sweden'
-]
-
-const statesByCountry = {
-  'United States': [
-    'California', 'Texas', 'Florida', 'New York', 'Pennsylvania',
-    'Illinois', 'Ohio', 'Georgia', 'North Carolina', 'Michigan',
-    'New Jersey', 'Virginia', 'Washington', 'Arizona', 'Massachusetts'
-  ],
-  'Canada': [
-    'Ontario', 'Quebec', 'British Columbia', 'Alberta', 'Manitoba',
-    'Saskatchewan', 'Nova Scotia', 'New Brunswick', 'Newfoundland and Labrador',
-    'Prince Edward Island'
-  ],
-  'China': [
-    'Beijing', 'Shanghai', 'Guangdong', 'Zhejiang', 'Jiangsu',
-    'Sichuan', 'Hubei', 'Fujian', 'Shaanxi', 'Hunan'
-  ],
-  'Australia': [
-    'New South Wales', 'Victoria', 'Queensland', 'Western Australia',
-    'South Australia', 'Tasmania', 'Australian Capital Territory',
-    'Northern Territory'
-  ]
-}
-
 const availableStates = computed(() => {
-  return statesByCountry[formData.value.country] || []
+  return STATES_BY_COUNTRY[formData.value.country] || []
 })
 
 const selectCountry = (country) => {
@@ -104,19 +74,19 @@ const closeDropdowns = () => {
       <!-- Hero Section -->
       <section class="hero mt_nav">
         <div class="heroBackground">
-          <MediaAsset :src="heroBanner" type="image" class="heroImage m_hide" alt="" :lazy="false" />
-          <MediaAsset :src="heroBannerMobile" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
+          <MediaAsset :src="HERO_BANNER" type="image" class="heroImage m_hide" alt="" :lazy="false" />
+          <MediaAsset :src="HERO_BANNER_MOBILE" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
-            <h1 class="heroTitle w-full c_1300 c_padding text-right">Get in Touch</h1>
+            <h1 class="heroTitle w-full c_1300 c_padding text-right">{{ HERO_TITLE }}</h1>
             <div class="divider"></div>
             <div class="w-full c_1300 c_padding m-auto flex flex-col items-end">
-              <p class="heroEmail">Email: info@caleaftech.com</p>
+              <p class="heroEmail">Email: {{ CONTACT_EMAIL }}</p>
               <div class="socialSection mt-[34px] pr-[4px]">
-                <p class="followText">Follow Us</p>
-                <a href="https://www.instagram.com/caleaftechofficial/" target="_blank" rel="noopener noreferrer">
-                  <MediaAsset :src="iconInstagram" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
+                <p class="followText">{{ FOLLOW_TEXT }}</p>
+                <a :href="INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer">
+                  <MediaAsset :src="ICON_INSTAGRAM" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
                 </a>
               </div>
             </div>
@@ -128,7 +98,7 @@ const closeDropdowns = () => {
       <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
           <div class="formCard px-[40px] pt-[60px]">
-            <h2 class="formTitle">Get Samples and Pricing</h2>
+            <h2 class="formTitle">{{ FORM_TITLE }}</h2>
             <form class="form" @click.stop>
               <div class="formField">
                 <input type="text" v-model="formData.name" placeholder="Your name*" />
@@ -143,11 +113,11 @@ const closeDropdowns = () => {
                   <span :class="formData.country ? 'selectedValue' : 'placeholder'">
                     {{ formData.country || 'Country*' }}
                   </span>
-                  <MediaAsset :src="iconDropdown" type="image"
+                  <MediaAsset :src="ICON_DROPDOWN" type="image"
                     :class="['dropdownIcon', showCountryDropdown && 'rotated']" alt="" :lazy="false" />
                 </div>
                 <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
-                  <div v-for="country in countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
+                  <div v-for="country in COUNTRIES" :key="country" class="dropdownItem" @click="selectCountry(country)">
                     {{ country }}
                   </div>
                 </div>
@@ -158,7 +128,7 @@ const closeDropdowns = () => {
                   <span :class="formData.state ? 'selectedValue' : 'placeholder'">
                     {{ formData.state || 'State' }}
                   </span>
-                  <MediaAsset :src="iconDropdown" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
+                  <MediaAsset :src="ICON_DROPDOWN" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
                     alt="" :lazy="false" />
                 </div>
                 <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
@@ -174,11 +144,11 @@ const closeDropdowns = () => {
               <div class="formField">
                 <textarea v-model="formData.message" placeholder="Message"></textarea>
               </div>
-              <button type="submit" class="submitBtn">SUBMIT</button>
+              <button type="submit" class="submitBtn">{{ SUBMIT_BUTTON_TEXT }}</button>
             </form>
           </div>
           <div class="formImage">
-            <MediaAsset :src="iconProduct" type="image" alt="Product Image" :lazy="false" />
+            <MediaAsset :src="ICON_PRODUCT" type="image" alt="Product Image" :lazy="false" />
           </div>
         </div>
       </section>

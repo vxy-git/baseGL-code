@@ -3,10 +3,18 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon19 = '/assets/img/icon19.png'
-const m2 = '/assets/technology/t2/m2.mp4'
-const m1 = '/assets/technology/t2/m1.jpg'
-const bgVideo = '/assets/technology/t2/bg.mp4'
+import {
+  ICON_IMAGE,
+  VIDEO_2,
+  IMAGE_1,
+  BG_VIDEO,
+  LEFT_TEXT_LABEL,
+  LEFT_TITLE,
+  LEFT_DESCRIPTION,
+  RIGHT_TEXT_LABEL,
+  RIGHT_TITLE,
+  RIGHT_DESCRIPTION
+} from '@/data/technology-unit4.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -194,7 +202,7 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
-    <MediaAsset ref="bgVideoRef" type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset ref="bgVideoRef" type="video" :src="BG_VIDEO" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
     <div ref="maskRef" class="absolute inset-0 bg-black opacity-0 pointer-events-none z-[1]"></div>
 
@@ -205,47 +213,41 @@ onUnmounted(() => {
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="icon19" alt="" />
-                <span>20% at Firing Temp</span>
+                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="ICON_IMAGE" alt="" />
+                <span>{{ LEFT_TEXT_LABEL }}</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] ">
-              Aerospace-grade,<br>
-              High thermal conductivity.
+              {{ LEFT_TITLE }}
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back.
-              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
-              Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
-              °F (1000 ℃), surpassing our peers by 20%.
+              {{ LEFT_DESCRIPTION }}
             </div>
           </div>
-          <MediaAsset type="image" :src="m1" alt="" class="w-[640px] h-[341px] object-contain" />
+          <MediaAsset type="image" :src="IMAGE_1" alt="" class="w-[640px] h-[341px] object-contain" />
         </div>
         <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="icon19" alt="" />
-              33% in Pore Uniformity
+              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="ICON_IMAGE" alt="" />
+              {{ RIGHT_TEXT_LABEL }}
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            Ideal for Rosin's molecular structure.
+            {{ RIGHT_TITLE }}
           </div>
 
           <div class="title3 mt-[32px]">
-            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular
-            structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best
-            performance from beginning to end.
+            {{ RIGHT_DESCRIPTION }}
           </div>
         </div>
         <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
-            <MediaAsset ref="videoAssetRef" type="video" :src="m2" :autoplay="false" :muted="true" :loop="true"
+            <MediaAsset ref="videoAssetRef" type="video" :src="VIDEO_2" :autoplay="false" :muted="true" :loop="true"
               :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
           </div>
         </div>

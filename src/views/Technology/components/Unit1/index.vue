@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon1_3 = '/assets/img/icon1_3.png'
-const Playone = '/assets/img/Play-one.png'
-const videoSrc = '/assets/technology/banner.mp4'
-const bannerBg = '/assets/technology/bannerBg.mp4'
+import {
+  ICON_IMAGE,
+  PLAY_ICON,
+  VIDEO_SRC,
+  BANNER_BG_VIDEO,
+  WATCH_VIDEO_TEXT
+} from '@/data/technology-unit1.js'
 
 const showVideo = ref(false)
 </script>
@@ -12,30 +15,30 @@ const showVideo = ref(false)
 <template>
   <div class="unit1 mt_nav">
     <div class="bg-video">
-      <MediaAsset class="!max-h-full" type="video" :src="bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
+      <MediaAsset class="!max-h-full" type="video" :src="BANNER_BG_VIDEO" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
         <MediaAsset
-          :src="icon1_3"
+          :src="ICON_IMAGE"
           type="image"
           class="trigger-bg"
         />
         <MediaAsset
           class="preview-video"
           type="video"
-          :src="videoSrc"
+          :src="VIDEO_SRC"
           :autoplay="true"
           :muted="true"
           :loop="true"
           :controls="false"
         />
         <div class="overlay">
-          <div class="title1">Watch Video</div>
+          <div class="title1">{{ WATCH_VIDEO_TEXT }}</div>
           <MediaAsset
-            :src="Playone"
+            :src="PLAY_ICON"
             type="image"
             class="play-icon"
             alt=""
@@ -45,7 +48,7 @@ const showVideo = ref(false)
       </div>
     </div>
 
-    <VideoModal v-model:visible="showVideo" :src="videoSrc" :muted="false" :loop="false" :controls="true" />
+    <VideoModal v-model:visible="showVideo" :src="VIDEO_SRC" :muted="false" :loop="false" :controls="true" />
   </div>
 </template>
 
