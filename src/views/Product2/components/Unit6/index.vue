@@ -10,88 +10,91 @@ const trackRef = ref(null)
 const panels = 4
 const moveDuration = 1
 const pauseDuration = 1
-let ctx
+let scrollTl1
+let scrollTl2
+
+const initScroll = () => {
+  const maskEls = innerRef.value.querySelectorAll('.mask')
+
+  scrollTl1 = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: unitRef.value,
+      start: 'center bottom',
+      end: 'center center',
+      scrub: true,
+      invalidateOnRefresh: true
+    }
+  })
+    .fromTo(
+      innerRef.value,
+      { yPercent: 50 },
+      { yPercent: 0 }
+    )
+    .to(
+      maskEls,
+      { width: '0%', height: '0%' },
+      0
+    )
+
+  const endDistance = () =>
+    window.innerHeight *
+    (
+      1 + // first fade-only segment
+      (panels - 1) * ((moveDuration + pauseDuration) / moveDuration)
+    )
+
+  scrollTl2 = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: unitRef.value,
+      pin: true,
+      start: 'center center',
+      end: () => '+=' + endDistance(),
+      scrub: true,
+      invalidateOnRefresh: true
+    }
+  })
+
+  const firstPanel = trackRef.value.querySelector('.unit6-panel')
+  scrollTl2.to(firstPanel, {
+    opacity: 0.2,
+    duration: moveDuration
+  })
+  scrollTl2.to(trackRef.value, {
+    x: () => -1 * window.innerWidth,
+    duration: moveDuration
+  })
+  scrollTl2.to(firstPanel, {
+    opacity: 0,
+    duration: moveDuration
+  }, '-=' + moveDuration)
+  scrollTl2.to(trackRef.value, {
+    x: () => -1 * window.innerWidth,
+    duration: pauseDuration
+  })
+
+  for (let i = 2; i < panels; i++) {
+    scrollTl2.to(trackRef.value, {
+      x: () => -i * window.innerWidth,
+      duration: moveDuration
+    })
+    scrollTl2.to(trackRef.value, {
+      x: () => -i * window.innerWidth,
+      duration: pauseDuration
+    })
+  }
+}
 
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
-  ctx = gsap.context(() => {
-    const maskEls = innerRef.value.querySelectorAll('.mask')
-
-    gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: unitRef.value,
-        start: 'center bottom',
-        end: 'center center',
-        scrub: true,
-        invalidateOnRefresh: true
-      }
-    })
-      .fromTo(
-        innerRef.value,
-        { yPercent: 50 },
-        { yPercent: 0 }
-      )
-      .to(
-        maskEls,
-        { width: '0%', height: '0%' },
-        0
-      )
-
-    const endDistance = () =>
-      window.innerHeight *
-      (
-        1 + // first fade-only segment
-        (panels - 1) * ((moveDuration + pauseDuration) / moveDuration)
-      )
-
-    const tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: unitRef.value,
-        pin: true,
-        start: 'center center',
-        end: () => '+=' + endDistance(),
-        scrub: true,
-        invalidateOnRefresh: true
-      }
-    })
-
-    const firstPanel = trackRef.value.querySelector('.unit6-panel')
-    tl.to(firstPanel, {
-      opacity: 0.2,
-      duration: moveDuration
-    })
-    tl.to(trackRef.value, {
-      x: () => -1 * window.innerWidth,
-      duration: moveDuration
-    })
-    tl.to(firstPanel, {
-      opacity: 0,
-      duration: moveDuration
-    }, '-=' + moveDuration)
-    tl.to(trackRef.value, {
-      x: () => -1 * window.innerWidth,
-      duration: pauseDuration
-    })
-
-    for (let i = 2; i < panels; i++) {
-      tl.to(trackRef.value, {
-        x: () => -i * window.innerWidth,
-        duration: moveDuration
-      })
-      tl.to(trackRef.value, {
-        x: () => -i * window.innerWidth,
-        duration: pauseDuration
-      })
-    }
-
-    ScrollTrigger.refresh()
-  }, unitRef)
+  initScroll()
+  ScrollTrigger.refresh()
 })
 
 onBeforeUnmount(() => {
-  if (ctx) ctx.revert()
+  scrollTl1 && scrollTl1.kill()
+  scrollTl2 && scrollTl2.kill()
 })
 </script>
 

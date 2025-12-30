@@ -13,7 +13,7 @@ const videoMediaRef = ref(null)
 const videoBoxRef = ref(null)
 const contentRef = ref(null)
 const titleRef = ref(null)
-let ctx
+let scrollTl
 let refreshHandler
 let sectionFadeTween
 const getPinDuration = () => window.innerHeight * 2
@@ -21,144 +21,144 @@ let isVideoPlaying = false
 const playStartProgress = 0.65
 const stopProgress = 0.7
 
+const getVideoStartMetrics = () => {
+  if (!videoRef.value) return { width: 0, height: 0, x: 0, y: 0 }
+  const rect = videoRef.value.getBoundingClientRect()
+  return { width: rect.width, height: rect.height, x: 0, y: 0, borderRadius: '0px' }
+}
+
+const getVideoTargetMetrics = () => {
+  if (!videoRef.value || !videoBoxRef.value) {
+    return { width: 'auto', height: 'auto', x: 0, y: 0 }
+  }
+  const videoRect = videoRef.value.getBoundingClientRect()
+  const boxRect = videoBoxRef.value.getBoundingClientRect()
+  const videoCenterX = videoRect.left + videoRect.width / 2
+  const videoCenterY = videoRect.top + videoRect.height / 2
+  const boxCenterX = boxRect.left + boxRect.width / 2
+  const boxCenterY = boxRect.top + boxRect.height / 2
+  return {
+    width: boxRect.width,
+    height: boxRect.height,
+    x: boxCenterX - videoCenterX,
+    y: boxCenterY - videoCenterY,
+    borderRadius: '20px'
+  }
+}
+
+const buildTimeline = () => {
+  if (scrollTl) {
+    scrollTl.scrollTrigger && scrollTl.scrollTrigger.kill()
+    scrollTl.kill()
+  }
+
+  const startMetrics = getVideoStartMetrics()
+  const targetMetrics = getVideoTargetMetrics()
+  const pinDuration = getPinDuration()
+
+  scrollTl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: sectionRef.value,
+      start: 'top top',
+      end: () => '+=' + pinDuration,
+      pin: true,
+      scrub: true,
+      pinSpacing: false,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const shouldPlay = self.progress >= playStartProgress
+        const shouldStop = self.progress <= stopProgress
+        if (shouldPlay && !isVideoPlaying) {
+          isVideoPlaying = true
+          videoMediaRef.value?.playFromStart?.()
+        } else if (shouldStop && isVideoPlaying) {
+          isVideoPlaying = false
+          videoMediaRef.value?.pause?.()
+          videoMediaRef.value?.resetToStart?.()
+        }
+      }
+    }
+  })
+
+  if (spacerRef.value) {
+    spacerRef.value.style.height = `${pinDuration}px`
+  }
+
+  if (maskRef.value) {
+    scrollTl.fromTo(
+      maskRef.value,
+      { scale: 1, opacity: 1 },
+      { scale: 3, opacity: 0 }
+    )
+  }
+
+  if (videoRef.value) {
+    gsap.set(videoRef.value, { x: 0, y: 0 })
+
+    scrollTl.fromTo(
+      videoRef.value,
+      { ...startMetrics, immediateRender: false },
+      { ...targetMetrics, immediateRender: false },
+      maskRef.value ? '>' : 0
+    )
+  }
+
+  if (titleRef.value) {
+    scrollTl.fromTo(
+      titleRef.value,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power1.out' },
+      '>'
+    )
+  }
+}
+
+const buildSectionFade = () => {
+  if (sectionFadeTween) {
+    sectionFadeTween.scrollTrigger && sectionFadeTween.scrollTrigger.kill()
+    sectionFadeTween.kill()
+    sectionFadeTween = null
+  }
+  if (sectionRef.value) {
+    gsap.set(sectionRef.value, { opacity: 1 })
+    sectionFadeTween = gsap.to(contentRef.value, {
+      opacity: 0,
+      ease: 'power1.in',
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: 'bottom 60%',
+        end: 'bottom 20%',
+        scrub: true
+      }
+    })
+  }
+}
+
+const initScroll = () => {
+  buildTimeline()
+  buildSectionFade()
+}
+
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
+  initScroll()
 
-  ctx = gsap.context(() => {
-    let tl
-
-    const getVideoStartMetrics = () => {
-      if (!videoRef.value) return { width: 0, height: 0, x: 0, y: 0 }
-      const rect = videoRef.value.getBoundingClientRect()
-      return { width: rect.width, height: rect.height, x: 0, y: 0, borderRadius: '0px' }
-    }
-
-    const getVideoTargetMetrics = () => {
-      if (!videoRef.value || !videoBoxRef.value) {
-        return { width: 'auto', height: 'auto', x: 0, y: 0 }
-      }
-      const videoRect = videoRef.value.getBoundingClientRect()
-      const boxRect = videoBoxRef.value.getBoundingClientRect()
-      const videoCenterX = videoRect.left + videoRect.width / 2
-      const videoCenterY = videoRect.top + videoRect.height / 2
-      const boxCenterX = boxRect.left + boxRect.width / 2
-      const boxCenterY = boxRect.top + boxRect.height / 2
-      return {
-        width: boxRect.width,
-        height: boxRect.height,
-        x: boxCenterX - videoCenterX,
-        y: boxCenterY - videoCenterY,
-        borderRadius: '20px'
-      }
-    }
-
-    const buildTimeline = () => {
-      if (tl) {
-        tl.scrollTrigger && tl.scrollTrigger.kill()
-        tl.kill()
-      }
-
-      const startMetrics = getVideoStartMetrics()
-      const targetMetrics = getVideoTargetMetrics()
-      const pinDuration = getPinDuration()
-
-      tl = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: sectionRef.value,
-          start: 'top top',
-          end: () => '+=' + pinDuration,
-          pin: true,
-          scrub: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const shouldPlay = self.progress >= playStartProgress
-            const shouldStop = self.progress <= stopProgress
-            if (shouldPlay && !isVideoPlaying) {
-              isVideoPlaying = true
-              videoMediaRef.value?.playFromStart?.()
-            } else if (shouldStop && isVideoPlaying) {
-              isVideoPlaying = false
-              videoMediaRef.value?.pause?.()
-              videoMediaRef.value?.resetToStart?.()
-            }
-          }
-        }
-      })
-
-      if (spacerRef.value) {
-        spacerRef.value.style.height = `${pinDuration}px`
-      }
-
-      if (maskRef.value) {
-        tl.fromTo(
-          maskRef.value,
-          { scale: 1, opacity: 1 },
-          { scale: 3, opacity: 0 }
-        )
-      }
-
-      if (videoRef.value) {
-        gsap.set(videoRef.value, { x: 0, y: 0 })
-
-        tl.fromTo(
-          videoRef.value,
-          { ...startMetrics, immediateRender: false },
-          { ...targetMetrics, immediateRender: false },
-          maskRef.value ? '>' : 0
-        )
-      }
-
-      if (titleRef.value) {
-        tl.fromTo(
-          titleRef.value,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.6, ease: 'power1.out' },
-          '>'
-        )
-      }
-    }
-
-    const buildSectionFade = () => {
-      if (sectionFadeTween) {
-        sectionFadeTween.scrollTrigger && sectionFadeTween.scrollTrigger.kill()
-        sectionFadeTween.kill()
-        sectionFadeTween = null
-      }
-      if (sectionRef.value) {
-        gsap.set(sectionRef.value, { opacity: 1 })
-        sectionFadeTween = gsap.to(contentRef.value, {
-          opacity: 0,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: 'bottom 60%',
-            end: 'bottom 20%',
-            scrub: true
-          }
-        })
-      }
-    }
-
+  refreshHandler = () => {
     buildTimeline()
     buildSectionFade()
-
-    refreshHandler = () => {
-      buildTimeline()
-      buildSectionFade()
-    }
-    ScrollTrigger.addEventListener('refreshInit', refreshHandler)
-    ScrollTrigger.refresh()
-  }, sectionRef.value)
+  }
+  ScrollTrigger.addEventListener('refreshInit', refreshHandler)
+  ScrollTrigger.refresh()
 })
 
 onBeforeUnmount(() => {
   if (refreshHandler) {
     ScrollTrigger.removeEventListener('refreshInit', refreshHandler)
   }
-  ctx && ctx.revert()
+  scrollTl && scrollTl.kill()
+  sectionFadeTween && sectionFadeTween.kill()
 })
 </script>
 

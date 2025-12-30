@@ -12,43 +12,46 @@ const stageRef = ref(null);
 const unitRef = ref(null);
 const imgBox1Ref = ref(null);
 const imgBox2Ref = ref(null);
-let ctx;
+let scrollTl;
+
+const initScroll = () => {
+  scrollTl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: moduleRef.value,
+      start: 'center center',
+      end: '+=300%',
+      scrub: true,
+      pin: moduleRef.value,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  scrollTl.to(unitRef.value, { scale: 1, duration: 1 });
+  scrollTl.fromTo(
+    imgBox1Ref.value,
+    { xPercent: 0 },
+    { xPercent: 50, duration: 1, immediateRender: false },
+    'move'
+  );
+  scrollTl.fromTo(
+    imgBox2Ref.value,
+    { xPercent: 0 },
+    { xPercent: -50, duration: 1, immediateRender: false },
+    'move'
+  );
+  scrollTl.to({}, { duration: 0.5 }); // 结束后额外停留，再滚动离开
+}
 
 onMounted(() => {
-  ctx = gsap.context(() => {
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: moduleRef.value,
-        start: 'center center',
-        end: '+=300%',
-        scrub: true,
-        pin: moduleRef.value,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    timeline.to(unitRef.value, { scale: 1, duration: 1 });
-    timeline.fromTo(
-      imgBox1Ref.value,
-      { xPercent: 0 },
-      { xPercent: 50, duration: 1, immediateRender: false },
-      'move'
-    );
-    timeline.fromTo(
-      imgBox2Ref.value,
-      { xPercent: 0 },
-      { xPercent: -50, duration: 1, immediateRender: false },
-      'move'
-    );
-    timeline.to({}, { duration: 0.5 }); // 结束后额外停留，再滚动离开
-  }, moduleRef);
+  initScroll();
+  ScrollTrigger.refresh();
 });
 
 onBeforeUnmount(() => {
-  if (ctx) ctx.revert();
+  scrollTl && scrollTl.kill();
 });
 </script>
 
