@@ -1,5 +1,5 @@
 <script setup>
-import { product4Unit8Data  } from '@/data/product4-unit8.js'
+import { product4Unit8Data  } from '@/data/product4/product4-unit8.js'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'

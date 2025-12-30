@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
-import { productsData } from '@/data/products'
+import { productsData } from '@/data/productlist/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 const iconArrow = '/assets/img/icon42.png'

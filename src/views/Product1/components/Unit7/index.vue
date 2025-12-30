@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product1Unit7Data  } from '@/data/product1-unit7'
+import { product1Unit7Data  } from '@/data/product1/product1-unit7'
 </script>
 
 <template>

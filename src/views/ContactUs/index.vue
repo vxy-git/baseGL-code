@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-import { contactUsData } from '@/data/contactus'
+import { contactUsData } from '@/data/contactus/contactus'
 
 const formData = ref({
   name: '',

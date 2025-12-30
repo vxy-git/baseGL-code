@@ -71,7 +71,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { footerData } from '@/data/footer'
+import { footerData } from '@/data/common/footer'
 
 const email = ref('')
 const agreeToPrivacy = ref(false)

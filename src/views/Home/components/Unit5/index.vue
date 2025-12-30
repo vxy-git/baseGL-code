@@ -4,7 +4,7 @@ import Item from "./components/Item/index.vue";
 import {ref, onMounted, onUnmounted} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit5Data } from '@/data/home-unit5'
+import { homeUnit5Data } from '@/data/home/home-unit5'
 
 const list = homeUnit5Data.newsList
 const bannerCurrent = ref(0)

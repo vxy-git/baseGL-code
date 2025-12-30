@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { technologyUnit5Data } from '@/data/technology-unit5.js'
+import { technologyUnit5Data } from '@/data/technology/technology-unit5.js'
 
 gsap.registerPlugin(ScrollTrigger)
 

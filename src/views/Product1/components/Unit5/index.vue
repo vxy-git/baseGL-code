@@ -1,7 +1,7 @@
 <script setup>
 import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
-import { product1Unit5Data  } from '@/data/product1-unit5'
+import { product1Unit5Data  } from '@/data/product1/product1-unit5'
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';

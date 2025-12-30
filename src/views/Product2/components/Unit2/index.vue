@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit2Data  } from '@/data/product2-unit2'
+import { product2Unit2Data  } from '@/data/product2/product2-unit2'
 
 const marqueeItems = [...product2Unit2Data.marqueeWords]
 

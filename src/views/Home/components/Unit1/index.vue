@@ -20,7 +20,7 @@ const splideOptions = {
 }
 
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit1Data } from '@/data/home-unit1'
+import { homeUnit1Data } from '@/data/home/home-unit1'
 
 const router = useRouter()
 

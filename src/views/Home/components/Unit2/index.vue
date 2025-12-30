@@ -2,8 +2,8 @@
 import Tabs from "@/components/Tabs/index.vue"
 import {ref, computed, onMounted, onUnmounted, watch} from "vue";
 import ProductItem from "@/components/ProductItem/index.vue"
-import { productsData } from "@/data/products"
-import { homeUnit2Data } from "@/data/home-unit2"
+import { productsData } from "@/data/productlist/products"
+import { homeUnit2Data } from "@/data/home/home-unit2"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 

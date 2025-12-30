@@ -3,7 +3,7 @@ import Tabs from "./Tabs/index.vue";
 import { ref, watch, nextTick } from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit7Data  } from '@/data/product2-unit7'
+import { product2Unit7Data  } from '@/data/product2/product2-unit7'
 
 const tabsCurrent = ref(0)
 

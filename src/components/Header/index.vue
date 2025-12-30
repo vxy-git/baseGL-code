@@ -5,9 +5,9 @@ import { useEventListener } from '@vueuse/core'
 import NavDropdown from "@/components/Nav/index.vue";
 import ProductItem from "@/components/ProductItem/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
-import { headerData } from '@/data/header'
+import { headerData } from '@/data/common/header'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
-import { productsData } from '@/data/products'
+import { productsData } from '@/data/productlist/products'
 
 // 从Nav组件迁移分类和产品数据
 const categories = computed(() =>

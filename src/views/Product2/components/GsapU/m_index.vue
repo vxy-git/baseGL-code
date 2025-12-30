@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2GsapUData } from '@/data/product2-gsapu.js'
+import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
 </script>
 
 <template>

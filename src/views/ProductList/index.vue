@@ -37,8 +37,8 @@ import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
 import ProductItem from '@/components/ProductItem/index.vue'
-import { productsData } from '@/data/products'
-import { productListData } from '@/data/productlist'
+import { productsData } from '@/data/productlist/products'
+import { productListData } from '@/data/productlist/productlist'
 
 const route = useRoute()
 const router = useRouter()

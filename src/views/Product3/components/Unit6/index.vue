@@ -1,7 +1,7 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit6Data  } from '@/data/product3-unit6'
+import { product3Unit6Data  } from '@/data/product3/product3-unit6'
 
 const list = product3Unit6Data.screenImages
 

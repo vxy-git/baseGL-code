@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product1Unit3Data } from '@/data/product1-unit3'
+import { product1Unit3Data } from '@/data/product1/product1-unit3'
 
 gsap.registerPlugin(ScrollTrigger)
 

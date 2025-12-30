@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit6Data } from '@/data/home-unit6'
+import { homeUnit6Data } from '@/data/home/home-unit6'
 
 const isPlaying = ref(false)
 

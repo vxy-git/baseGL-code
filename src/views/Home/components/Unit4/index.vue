@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { homeUnit4Data } from '@/data/home-unit4'
+import { homeUnit4Data } from '@/data/home/home-unit4'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const unitBoxRef = ref(null)

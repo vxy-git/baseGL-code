@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
-import { product1Unit4Data  } from '@/data/product1-unit4'
+import { product1Unit4Data  } from '@/data/product1/product1-unit4'
 import { ref } from 'vue';
 
 const progress1 = ref(0);

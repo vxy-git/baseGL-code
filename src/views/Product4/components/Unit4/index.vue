@@ -3,7 +3,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product4Unit4Data  } from '@/data/product4-unit4.js'
+import { product4Unit4Data  } from '@/data/product4/product4-unit4.js'
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)

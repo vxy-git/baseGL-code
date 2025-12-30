@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { technologyUnit1Data } from '@/data/technology-unit1.js'
+import { technologyUnit1Data } from '@/data/technology/technology-unit1.js'
 
 const showVideo = ref(false)
 </script>

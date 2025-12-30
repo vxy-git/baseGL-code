@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { product2Unit6Data  } from '@/data/product2-unit6'
+import { product2Unit6Data  } from '@/data/product2/product2-unit6'
 
 const unitRef = ref(null)
 const innerRef = ref(null)

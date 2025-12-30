@@ -1,5 +1,5 @@
 <script setup>
-import { product4Unit2Data  } from '@/data/product4-unit2.js';
+import { product4Unit2Data  } from '@/data/product4/product4-unit2.js';
 import MediaAsset from '@/components/MediaAsset.vue'
 </script>
 

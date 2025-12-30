@@ -49,7 +49,9 @@
       "Bash(xargs:*)",
       "Bash(wc:*)",
       "Bash(bc:*)",
-      "Bash(git ls-tree:*)"
+      "Bash(git ls-tree:*)",
+      "Bash(do if [ -f $dir/index.js ])",
+      "Bash(then echo 'Directory: $dir' grep '^export const' $dir*.js)"
     ],
     "deny": [],
     "ask": []

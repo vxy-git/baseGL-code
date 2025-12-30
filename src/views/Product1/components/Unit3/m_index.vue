@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product1Unit3Data } from '@/data/product1-unit3'
+import { product1Unit3Data } from '@/data/product1/product1-unit3'
 const iconFlavor = product1Unit3Data.icons.flavor
 const iconDevice = product1Unit3Data.icons.device
 const m1 = '/assets/product1/unit3/m1.jpg'

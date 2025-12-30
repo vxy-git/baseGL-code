@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { useIntersectionObserver } from "@vueuse/core";
 import MediaAsset from "@/components/MediaAsset.vue";
-import { product1Unit8Data  } from '@/data/product1-unit8'
+import { product1Unit8Data  } from '@/data/product1/product1-unit8'
 
 const list = product1Unit8Data.designImages
 
