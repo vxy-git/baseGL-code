@@ -1,72 +1,54 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const l1 = '/assets/technology/t1/l1.mp4'
-const r1 = '/assets/technology/t1/r1.jpg'
-const r2 = '/assets/technology/t1/r2.mp4'
+import { technologyUnit2Data } from '@/data/technology-unit2'
 </script>
 
 <template>
   <div class="unit2 relative w-[1560px] max-w-full mx-auto c_padding pb-[65px]">
     <div class="shrink-0 w-full m_video">
-      <MediaAsset type="video" :src="l1" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset type="video" :src="technologyUnit2Data.media.leftVideo" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline class="mediaBox size-full" />
     </div>
     <div
       class="content-wrapper mt-[55px] will-change-transform h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          100% Rosin-Ready
+          {{ technologyUnit2Data.sections.section1.title1 }}
         </div>
 
-        <div class="title2 mt-[20px] -ml-[5px] tracking-[0.2px]">
-          Savor the most natural
-          and rich flavors
+        <div class="title2 mt-[20px] -ml-[5px] tracking-[0.2px] whitespace-break-spaces">
+          {{ technologyUnit2Data.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[28px]">
-          We always strive to be pioneers in the industry.
-          Our patented U-shape ceramic design is the result of extensive testing and validation of various
-          structures.
-          It is the optimal structure for the vast majority of Resin and Rosin oils on the market.
-          It is 30% thinner than ordinary ceramics while maintaining the strength, which means fewer terpene
-          molecules
-          are filtered out, and the rich, natural flavors are preserved.
+          {{ technologyUnit2Data.sections.section1.title3 }}
         </div>
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
-          <div class="flex flex-col items-center justify-center ">
+          <div class="flex flex-col items-center justify-center " v-for="stat in technologyUnit2Data.sections.section1.stats" :key="stat.label">
             <div class="text1">
-              30%
+              {{ stat.percentage }}
             </div>
             <div class="text2">
-              Thinner in Structure
-            </div>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="text1 flex">
-              45%
-            </div>
-            <div class="text2">
-              Flavor Retention
+              {{ stat.label }}
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] object-contain" type="image" :src="r1" alt="" />
+        <MediaAsset class="w-[763px] object-contain" type="image" :src="technologyUnit2Data.media.rightImage1" alt="" />
       </div>
       <div class="content2 mt-[60px] flex flex-col items-center">
         <div class="title1">
-          We Fixed It First
+          {{ technologyUnit2Data.sections.section2.title1 }}
         </div>
 
-        <div class="title2 mt-[20px]">
-          The most effective <br>
-          anti-clogging solution ever built.
+        <div class="title2 mt-[20px] whitespace-break-spaces">
+          {{ technologyUnit2Data.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          Most customers have reported bubble issues to us with various devices from different suppliers during oil filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged bubbles. 
+          {{ technologyUnit2Data.sections.section2.title3 }}
         </div>
-        <MediaAsset :src="r2" type="video" class="w-[595px] mt-[66px]" muted :loop="true"
+        <MediaAsset :src="technologyUnit2Data.media.rightVideo" type="video" class="w-[595px] mt-[66px]" muted :loop="true"
           :controls="false" :view-play="true" playsinline alt="" />
       </div>
     </div>

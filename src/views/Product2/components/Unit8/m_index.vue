@@ -1,21 +1,15 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const realize1 = '/assets/product2/realize1.jpg'
-const realize2 = '/assets/product2/realize2.jpg'
-const realize3 = '/assets/product2/realize3.jpg'
-const realize4 = '/assets/product2/realize4.jpg'
-const realize5 = '/assets/product2/realize5.jpg'
-const realize6 = '/assets/product2/realize6.jpg'
-
+import { product2Unit8Data } from '@/data/product2-unit8'
 </script>
 
 <template>
   <div class="pt-[153px] pb-[45px]">
     <div class="title c_padding capitalize">
-      Design Your Own Look
+      {{ product2Unit8Data.labelText }}
     </div>
     <div class="title1 c_padding">
-      Realize your unique design with CALEAF TECH.
+      {{ product2Unit8Data.mainTitle }}
     </div>
     <div class="mt-[54px] overflow-hidden m_mt_0">
       <div class="unit-stage">
@@ -24,60 +18,17 @@ const realize6 = '/assets/product2/realize6.jpg'
             <div class="size-full overflow-hidden flex justify-end">
               <div class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
-                <div class="h-full w-[480px]">
-                  <MediaAsset
-                    :src="realize1"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize2"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize3"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px]">
-                  <MediaAsset
-                    :src="realize1"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize2"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize3"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
+                <template v-for="i in 2" :key="'top-'+i">
+                  <div v-for="(img, idx) in product2Unit8Data.designImages.top" :key="'top-'+i+'-'+idx" class="h-full w-[480px]" :class="{ 'rounded-[20px]': idx !== 0 }">
+                    <MediaAsset
+                      :src="img"
+                      type="image"
+                      class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                      alt=""
+                      :lazy="false"
+                    />
+                  </div>
+                </template>
                 <div class="mask1 absolute right-[-1px] top-1/2 translate-y-[-50%]"></div>
               </div>
             </div>
@@ -86,60 +37,17 @@ const realize6 = '/assets/product2/realize6.jpg'
             <div class="size-full overflow-hidden">
               <div class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize4"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize5"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize6"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize4"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize5"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
-                <div class="h-full w-[480px] rounded-[20px]">
-                  <MediaAsset
-                    :src="realize6"
-                    type="image"
-                    class="w-full h-full object-cover rounded-[20px] overflow-hidden"
-                    alt=""
-                    :lazy="false"
-                  />
-                </div>
+                <template v-for="i in 2" :key="'bottom-'+i">
+                  <div v-for="(img, idx) in product2Unit8Data.designImages.bottom" :key="'bottom-'+i+'-'+idx" class="h-full w-[480px] rounded-[20px]">
+                    <MediaAsset
+                      :src="img"
+                      type="image"
+                      class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+                      alt=""
+                      :lazy="false"
+                    />
+                  </div>
+                </template>
                 <div class="mask1 absolute right-[-1px] top-[-1px]"></div>
               </div>
             </div>

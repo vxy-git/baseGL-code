@@ -52,7 +52,7 @@ export const technologyUnit4Data = {
       /**
        * 标题
        */
-      title: 'Aerospace-grade,<br>High thermal conductivity.',
+      title: 'Aerospace-grade,\nHigh thermal conductivity.',
 
       /**
        * 描述

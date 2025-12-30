@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
     <div ref="sectionRef" class="w-screen h-screen relative overflow-hidden unit4-section">
       <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
         <div ref="titleRef" class="">
-          <div class="title">
+          <div class="title whitespace-break-spaces">
             {{ product4Unit4Data.content.title }}
           </div>
           <div class="label mt-[32px] mb-[32px]">

@@ -23,7 +23,6 @@ export const product4Unit9Data = {
     /**
      * 标题文本
      */
-    title: `Tap into a whole new level
-of interaction`,
+    title: `Tap into a whole new level\nof interaction`,
   },
 }

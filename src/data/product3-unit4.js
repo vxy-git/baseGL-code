@@ -48,7 +48,7 @@ export const product3Unit4Data = {
     /**
      * 第二个标题
      */
-    title2: 'Savor the most natural<br />and rich flavors',
+    title2: 'Savor the most natural\nand rich flavors',
 
     /**
      * 描述文本

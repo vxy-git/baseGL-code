@@ -143,7 +143,7 @@ onUnmounted(() => {
           {{ technologyUnit5Data.sections.section1.title2 }}
         </div>
 
-        <div class="title3 mt-[23px]">
+        <div class="title3 mt-[23px] whitespace-break-spaces">
           {{ technologyUnit5Data.sections.section1.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">

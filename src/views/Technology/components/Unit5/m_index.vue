@@ -1,15 +1,13 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const l1 = '/assets/technology/t3/l1.mp4'
-const r1 = '/assets/technology/t3/r1.mp4'
-const r2 = '/assets/technology/t3/r2.mp4'
+import { technologyUnit5Data } from '@/data/technology-unit5'
 </script>
 
 <template>
   <div class="relative max-w-[1702px] mt-[100px] mx-auto c_padding">
     <div class="mediaBox shrink-0">
       <MediaAsset
-        :src="l1"
+        :src="technologyUnit5Data.media.leftVideo"
         type="video"
         :autoplay="false"
         :muted="true"
@@ -24,22 +22,18 @@ const r2 = '/assets/technology/t3/r2.mp4'
     <div class="content-wrapper will-change-transform h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          Built-in Wires
+          {{ technologyUnit5Data.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">
-          No more dry burning
+          {{ technologyUnit5Data.sections.section1.title2 }}
         </div>
 
-        <div class="title3 mt-[23px]">
-          We pay attention to every detail.<br>
-          It is only when we use the highest-grade nichrome alloy as the heating coil material, shape it for uniform
-          heat distribution, and embed it into the ceramic core, allowing the oil to be heated by the ceramic and not
-          by
-          exposed hot wires, that we say, "That's it. This is a truly perfect structure!"
+        <div class="title3 mt-[23px] whitespace-break-spaces">
+          {{ technologyUnit5Data.sections.section1.title3 }}
         </div>
         <MediaAsset
-          :src="r1"
+          :src="technologyUnit5Data.media.rightVideo1"
           type="video"
           :autoplay="false"
           :muted="true"
@@ -53,19 +47,18 @@ const r2 = '/assets/technology/t3/r2.mp4'
       </div>
       <div class="content2 mt-[60px] flex flex-col items-center">
         <div class="title1">
-          RTD Control
+          {{ technologyUnit5Data.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[23px]">
-          Consistent Temp
+          {{ technologyUnit5Data.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
-          guarantees an exceptional session every time.
+          {{ technologyUnit5Data.sections.section2.title3 }}
         </div>
         <MediaAsset
-          :src="r2"
+          :src="technologyUnit5Data.media.rightVideo2"
           type="video"
           :autoplay="false"
           :muted="true"

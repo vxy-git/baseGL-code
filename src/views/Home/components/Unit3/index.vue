@@ -17,10 +17,10 @@ const goTech = () => {
       <div class="absolute size-full left-0 top-0 z-10">
         <div class="w-[374px] pt-[128.5px] ml-[118px]">
           <div class="tag text-center">{{ homeUnit3Data.tagText }}</div>
-          <div class="title mt-[11px]">
+          <div class="title mt-[11px] whitespace-break-spaces">
             {{ homeUnit3Data.title }}
           </div>
-          <div class="subTitle mt-[15px]">
+          <div class="subTitle mt-[15px] whitespace-break-spaces">
             {{ homeUnit3Data.subtitle }}
           </div>
           <div class="btn mx-auto mt-[38px] cursor-pointer" @click="goTech">

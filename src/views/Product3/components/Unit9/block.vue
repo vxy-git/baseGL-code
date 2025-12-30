@@ -1,21 +1,20 @@
 <script setup>
-const unit3_l = '/assets/product3/unit3-l.mp4'
-const unit3_r = '/assets/product3/unit3-r.mp4'
 import MediaAsset from '@/components/MediaAsset.vue'
+import { product3Unit9BlockData } from '@/data/product3-unit9-block'
 </script>
 
 <template>
     <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
-        Take Your Pick
+        {{ product3Unit9BlockData.labels.firstLabel }}
       </div>
       <div class="title2 mt-[19px]">
-        Either one's a winner
+        {{ product3Unit9BlockData.content.mainTitle }}
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col h-[440px] min-h-max">
         <MediaAsset
           type="video"
-          src="/assets/product3/unit3-l.mp4"
+          :src="product3Unit9BlockData.media.leftImage"
           :autoplay="false"
           :muted="true"
           :loop="true"
@@ -25,7 +24,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
         />
         <MediaAsset
           type="video"
-          src="/assets/product3/unit3-r.mp4"
+          :src="product3Unit9BlockData.media.rightImage"
           :autoplay="false"
           :muted="true"
           :loop="true"

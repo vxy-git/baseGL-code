@@ -10,10 +10,11 @@ import { product2Unit4Data  } from '@/data/product2-unit4'
         <div class="title1 text-left">
           {{ product2Unit4Data.rtdSection.labelText }}
         </div>
-        <div class="title2 mt-[19px]  !text-left" v-html="product2Unit4Data.rtdSection.title">
+        <div class="title2 mt-[19px]  !text-left whitespace-break-spaces">
+          {{ product2Unit4Data.rtdSection.title }}
         </div>
-        <div class="title3 mt-[56px] !text-left" v-html="product2Unit4Data.rtdSection.description">
-
+        <div class="title3 mt-[56px] !text-left whitespace-break-spaces">
+          {{ product2Unit4Data.rtdSection.description }}
         </div>
       </div>
       <MediaAsset
@@ -63,7 +64,7 @@ import { product2Unit4Data  } from '@/data/product2-unit4'
         <div class="title2">
           {{ product2Unit4Data.wiresSection.title }}
         </div>
-        <div class="label mt-[2px]" v-html="product2Unit4Data.wiresSection.description">
+        <div class="label mt-[2px] whitespace-break-spaces" v-html="product2Unit4Data.wiresSection.description">
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
@@ -181,6 +182,7 @@ import { product2Unit4Data  } from '@/data/product2-unit4'
   }
 
   .label {
+    white-space: normal;
     width: 100% !important;
     text-align: center;
     margin-top: 10px;

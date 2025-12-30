@@ -82,7 +82,7 @@ are filtered out, and the rich, natural flavors are preserved.`,
       /**
        * 标题2
        */
-      title2: 'The most effective <br>anti-clogging solution ever built.',
+      title2: 'The most effective\nanti-clogging solution ever built.',
 
       /**
        * 标题3

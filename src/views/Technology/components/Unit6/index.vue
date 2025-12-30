@@ -138,7 +138,7 @@ onUnmounted(() => {
           :autoplay="false" :muted="true" :loop="true" />
       </div>
 
-      <div ref="descRef" class="title3 mt-[34px]">
+      <div ref="descRef" class="title3 mt-[34px] whitespace-break-spaces">
         {{ technologyUnit6Data.description }}
       </div>
     </div>

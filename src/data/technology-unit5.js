@@ -47,11 +47,7 @@ export const technologyUnit5Data = {
       /**
        * 标题3
        */
-      title3: `We pay attention to every detail.<br>
-It is only when we use the highest-grade nichrome alloy as the heating coil material, shape it for uniform
-heat distribution, and embed it into the ceramic core, allowing the oil to be heated by the ceramic and not
-by
-exposed hot wires, that we say, "That's it. This is a truly perfect structure!"`,
+      title3: `We pay attention to every detail.\nIt is only when we use the highest-grade nichrome alloy as the heating coil material, shape it for uniform heat distribution, and embed it into the ceramic core, allowing the oil to be heated by the ceramic and not by exposed hot wires, that we say, "That's it. This is a truly perfect structure!"`,
     },
 
     /**

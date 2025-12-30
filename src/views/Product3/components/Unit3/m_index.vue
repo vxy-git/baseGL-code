@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from "@/components/MediaAsset.vue";
-const arrow = '/assets/product3/arrow.svg'
+import { product3Unit3Data } from '@/data/product3-unit3'
 const m1 = '/assets/product3/unit3/m1.jpg'
 const m2 = '/assets/product3/unit3/m2.jpg'
 const m3 = '/assets/product3/unit3/m3.jpg'
@@ -11,19 +11,16 @@ const m3 = '/assets/product3/unit3/m3.jpg'
     <div class="c_padding c_1230 mx-auto flex flex-col gap-[56px] py-[96px]">
       <div class="text-block text-center flex flex-col gap-[14px]">
         <div class="title">
-          <span class="text-white">Gold</span> standard for Resin/Rosin
+          <span class="text-white">Gold</span> {{ product3Unit3Data.textBlocks.tb1TitleText }}
         </div>
         <MediaAsset :src="m1" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
       </div>
 
       <div class="text-block c_padding">
-        <div class="title1">UNICORE powered</div>
-        <div class="title2 mt-[19.55px]">33% in pore uniformity</div>
+        <div class="title1">{{ product3Unit3Data.textBlocks.tb2Content.smallTitle }}</div>
+        <div class="title2 mt-[19.55px]">{{ product3Unit3Data.textBlocks.tb2Content.title }}</div>
         <div class="title3 max-w-[1200px] mt-[19.45px]">
-          We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F
-          to
-          create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating
-          any risk of dry burn for consistently optimal performance.
+          {{ product3Unit3Data.textBlocks.tb2Content.description }}
         </div>
       </div>
       <MediaAsset :src="m2" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
@@ -33,24 +30,24 @@ const m3 = '/assets/product3/unit3/m3.jpg'
           <div class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
             <div>
               <div class="flex text">
-                20%
-                <MediaAsset :src="arrow" type="image" class="h-[39.805px]" alt="" :lazy="false" />
+                {{ product3Unit3Data.textBlocks.tb3Content.figure }}
+                <MediaAsset :src="product3Unit3Data.arrowIcon" type="image" class="h-[39.805px]" alt="" :lazy="false" />
               </div>
               <div class="text1">
-                Firing temp
+                {{ product3Unit3Data.textBlocks.tb3Content.label }}
               </div>
             </div>
             <div class="ml-[63.5px]">
               <div>
                 <div class="bar w-[480px] bg-[#CAA4FB] rounded-full"></div>
                 <div class="text2 mt-[15px]">
-                  CALEAF TECH 1832 ℉ (1000℃)
+                  {{ product3Unit3Data.textBlocks.tb3Content.bar1Text }}
                 </div>
               </div>
               <div class="mt-[46px]">
                 <div class="bar w-[319px] bg-[#D9D9D9] rounded-full"></div>
                 <div class="text2 mt-[15px]">
-                  Others 1472 ℉ (800℃)
+                  {{ product3Unit3Data.textBlocks.tb3Content.bar2Text }}
                 </div>
               </div>
             </div>

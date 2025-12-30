@@ -152,7 +152,7 @@ onUnmounted(() => {
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block c_padding">
-            <div ref="tb1Title" class="title">{{ product1Unit3Data.textBlocks.tb1.title }}</div>
+            <div ref="tb1Title" class="title whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb1.title }}</div>
           </div>
           <div ref="tb2" class="text-block c_padding">
             <div ref="tb2SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb2.smallTitle }}</div>
@@ -161,14 +161,14 @@ onUnmounted(() => {
           </div>
           <div ref="tb3" class="text-block c_padding">
             <div ref="tb3SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb3.smallTitle }}</div>
-            <div ref="tb3WTitle" class="wTitle">{{ product1Unit3Data.textBlocks.tb3.wTitle }}</div>
+            <div ref="tb3WTitle" class="wTitle whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb3.wTitle }}</div>
             <div ref="tb3Text" class="text">{{ product1Unit3Data.textBlocks.tb3.text }}</div>
           </div>
           <div ref="tb4" class="text-block c_padding">
             <div ref="tb4SmallTitle" class="smallTitle">
               {{ product1Unit3Data.textBlocks.tb4.smallTitle }}
             </div>
-            <div ref="tb4WTitle" class="wTitle">
+            <div ref="tb4WTitle" class="wTitle whitespace-break-spaces">
               {{ product1Unit3Data.textBlocks.tb4.wTitle }}
             </div>
             <div ref="tb4Text" class="text !mt-[28px]">

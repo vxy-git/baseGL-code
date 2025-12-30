@@ -12,29 +12,24 @@ export const homeUnit3Data = {
   bannerImage: '/assets/home/UNICORE.jpg',
 
   /**
-   * 文本内容
+   * 标签文本
    */
-  content: {
-    /**
-     * 标签文本
-     */
-    tagText: 'New',
+  tagText: 'New',
 
-    /**
-     * 标题文本
-     */
-    title: `UNICORE™\nceramic heating technology`,
+  /**
+   * 标题文本
+   */
+  title: `UNICORE™\nceramic heating technology`,
 
-    /**
-     * 副标题文本
-     */
-    subtitle: `Patented U-shape ceramic design\nThe golden standard for ROSIN`,
+  /**
+   * 副标题文本
+   */
+  subtitle: `Patented U-shape ceramic design\nThe golden standard for ROSIN`,
 
-    /**
-     * 按钮文本
-     */
-    buttonText: 'Learn more',
-  },
+  /**
+   * 按钮文本
+   */
+  buttonText: 'Learn more',
 
   /**
    * 跳转路由名称

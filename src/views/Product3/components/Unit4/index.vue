@@ -8,7 +8,7 @@ import { product3Unit4Data  } from '@/data/product3-unit4'
     <div class="unit4T">
       <div class="flex flex-col items-center mt-[48px] c_padding">
         <div class="title1" v-html="product3Unit4Data.unit4T.title1"></div>
-        <div class="title2 mt-[19.55px]" v-html="product3Unit4Data.unit4T.title2">
+        <div class="title2 mt-[19.55px] whitespace-break-spaces" v-html="product3Unit4Data.unit4T.title2">
         </div>
         <div class="title3 max-w-[1200px] mt-[-2.5px]">
           <br />

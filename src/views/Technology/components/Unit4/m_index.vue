@@ -1,14 +1,11 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-const icon19 = '/assets/img/icon19.png'
-const m2 = '/assets/technology/t2/m2.mp4'
-const m1 = '/assets/technology/t2/m1.jpg'
-const bgVideo = '/assets/technology/t2/bg.mp4'
+import { technologyUnit4Data } from '@/data/technology-unit4'
 </script>
 
 <template>
   <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
-    <MediaAsset type="video" :src="bgVideo" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset type="video" :src="technologyUnit4Data.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full object-cover" />
 
     <div class="size-full overflow-hidden">
@@ -18,44 +15,40 @@ const bgVideo = '/assets/technology/t2/bg.mp4'
             <div class="flex flex-col">
               <div class="text1 flex items-center">
                 <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                  :src="icon19" alt="" />
-                <span>20% at Firing Temp</span>
+                  :src="technologyUnit4Data.icons.icon" alt="" />
+                <span>{{ technologyUnit4Data.sections.left.textLabel }}</span>
               </div>
             </div>
 
-            <div class="title2 mt-[8px] ">
-              Aerospace-grade,<br>
-              High thermal conductivity.
+            <div class="title2 mt-[8px] whitespace-break-spaces">
+              {{ technologyUnit4Data.sections.left.title }}
             </div>
 
             <div class="title3 mt-[32px]">
-              We never let existing rules and regulations hold us back.
-              We pioneered the incorporation of aerospace-grade high thermal conductivity materials into ceramics.
-              Through round-the-clock firing and suction tests, we have finally succeeded in firing the ceramic at 1832
-              °F (1000 ℃), surpassing our peers by 20%.
+              {{ technologyUnit4Data.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="m1" alt="" class="w-full object-contain mt-[20px]" />
+          <MediaAsset type="image" :src="technologyUnit4Data.media.image1" alt="" class="w-full object-contain mt-[20px]" />
         </div>
         <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                :src="icon19" alt="" />
-              33% in Pore Uniformity
+                :src="technologyUnit4Data.icons.icon" alt="" />
+              {{ technologyUnit4Data.sections.right.textLabel }}
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            Ideal for Rosin's molecular structure.
+            {{ technologyUnit4Data.sections.right.title }}
           </div>
 
           <div class="title3 mt-[32px]">
-            UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best performance from beginning to end.
+            {{ technologyUnit4Data.sections.right.description }}
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset type="video" :src="m2" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset type="video" :src="technologyUnit4Data.media.video2" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

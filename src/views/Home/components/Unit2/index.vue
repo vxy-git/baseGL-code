@@ -88,7 +88,7 @@ const goToGroup = (groupIndex) => {
 <template>
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
-      <div class="c_1300 c_padding title">
+      <div class="c_1300 c_padding title whitespace-break-spaces">
         {{ homeUnit2Data.unitTitle }}
       </div>
       <Tabs class="mt-[44px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
@@ -134,7 +134,6 @@ const goToGroup = (groupIndex) => {
 
 <style scoped lang="scss">
 .title {
-  white-space: nowrap;
   color: #000;
   font-family: Roboto;
   font-size: 40px;
@@ -149,5 +148,11 @@ const goToGroup = (groupIndex) => {
   flex-shrink: 0;
   border-radius: 5px;
   background: #D9D9D9;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    white-space: normal;
+  }
 }
 </style>

@@ -27,7 +27,7 @@ const handleReset2 = () => resetProgress(progress2);
 
 <template>
   <div class="mt-[507px] m_mt_0">
-    <div class="title">
+    <div class="title whitespace-break-spaces">
       {{ product1Unit4Data.mainTitle }}
     </div>
     <div class="c_1230 c_padding mt-[185px]">

@@ -38,8 +38,7 @@ export const product4Unit4Data = {
     /**
      * 标题文本
      */
-    title: `Twice the performance,
-Triple the flavors.`,
+    title: `Twice the performance,\nTriple the flavors.`,
 
     /**
      * 描述文本

@@ -20,7 +20,7 @@ import { product4Unit9Data  } from '@/data/product4-unit9.js'
           alt=""
           :lazy="false"
         />
-        <div class="title text-nowrap">{{ product4Unit9Data.content.title }}</div>
+        <div class="title text-nowrap whitespace-break-spaces">{{ product4Unit9Data.content.title }}</div>
       </div>
     </div>
 </template>

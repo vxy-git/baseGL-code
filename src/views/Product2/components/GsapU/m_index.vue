@@ -1,6 +1,6 @@
 <script setup>
-const m1 = '/assets/product2/gsap/m1.jpg'
-
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product2GsapUData } from '@/data/product2-gsapu.js'
 </script>
 
 <template>
@@ -10,14 +10,12 @@ const m1 = '/assets/product2/gsap/m1.jpg'
         <div class="text-layer">
           <div class="text-block">
             <div class="c_1230 c_padding">
-              <div class="title1 translate-y-[1px] text-center">Tiny but Mighty</div>
-              <div class="title2 mt-[19px]">A plam-sized<br />Rosin powerhouse</div>
-              <div class="title3 mt-[19px]">UNIVERSE Series is the ultimate portable solution for rosin
-                enthusiasts. The little cutie disappears in your hand and fits flat in your pocket, making it the
-                perfect companion for those on the go.</div>
+              <div class="title1 translate-y-[1px] text-center">{{ product2GsapUData.content.labelText }}</div>
+              <div class="title2 mt-[19px] whitespace-break-spaces">{{ product2GsapUData.content.mainTitle }}</div>
+              <div class="title3 mt-[19px]">{{ product2GsapUData.content.description }}</div>
             </div>
           </div>
-          <MediaAsset :src="m1" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+          <MediaAsset :src="product2GsapUData.media.image" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
       </div>
     </section>

@@ -64,7 +64,7 @@ export const product1Unit3Data = {
      */
     tb4: {
       smallTitle: '100% Rosin-Ready',
-      wTitle: 'Savor the most natural and rich flavors',
+      wTitle: 'Savor the most natural\nand rich flavors',
       text: `Our patented U-shape ceramic design is 30% thinner than ordinary ceramics, which means fewer terpene molecules are filtered out and the rich, natural flavors are preserved.`,
       stats: [
         {

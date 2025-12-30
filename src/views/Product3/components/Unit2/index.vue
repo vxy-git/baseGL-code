@@ -11,7 +11,7 @@ import { product3Unit2Data  } from '@/data/product3-unit2'
         <div class="title1">
           {{ product3Unit2Data.products.product1Name }}
         </div>
-        <div class="title2 mt-[19.55px]">
+        <div class="title2 mt-[19.55px] whitespace-break-spaces">
           {{ product3Unit2Data.products.product1Description }}
         </div>
       </div>
@@ -22,7 +22,7 @@ import { product3Unit2Data  } from '@/data/product3-unit2'
         <div class="title1 !text-black">
           {{ product3Unit2Data.products.product2Name }}
         </div>
-        <div class="title2 !text-white mt-[19px]">
+        <div class="title2 !text-white mt-[19px] whitespace-break-spaces">
           {{ product3Unit2Data.products.product2Description }}
         </div>
       </div>

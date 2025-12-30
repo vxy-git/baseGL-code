@@ -31,12 +31,12 @@ export const product3Unit9Data = {
    */
   media: {
     /**
-     * 左侧图片
+     * 左侧视频/图片
      */
     leftImage: '/assets/product3/unit7-l.jpg',
 
     /**
-     * 右侧图片
+     * 右侧视频/图片
      */
     rightImage: '/assets/product3/unit7-r.jpg',
   },

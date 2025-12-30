@@ -3,14 +3,8 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-const logo0 = '/assets/img/icon41.png'
-const logo1 = '/assets/product4/unit9-1.jpg'
-const logo2 = '/assets/product4/unit9-2.jpg'
-const logo3 = '/assets/product4/unit9-3.jpg'
-const logo4 = '/assets/product4/unit9-4.jpg'
-const logo5 = '/assets/product4/unit9-5.jpg'
-const logo6 = '/assets/product4/unit9-6.jpg'
-const logoPool = [logo0, logo1, logo2, logo3, logo4, logo5, logo6];
+import { product4Unit12Data } from '@/data/product4-unit12'
+const logoPool = product4Unit12Data.images.units;
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -72,7 +66,7 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="h-screen flex justify-center items-center bg-[#F8F9FD] overflow-hidden">
     <div class="title flex justify-center items-center">
-      <span class="w-[calc((100vw-100px)/2)] text-right">GO</span>
+      <span class="w-[calc((100vw-100px)/2)] text-right">{{ product4Unit12Data.content.leftTitle }}</span>
       <div class="size-[100px] relative">
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
@@ -81,7 +75,7 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <span class="w-[calc((100vw-100px)/2)] text-left">Creative</span>
+      <span class="w-[calc((100vw-100px)/2)] text-left">{{ product4Unit12Data.content.rightTitle }}</span>
     </div>
   </div>
 </template>
