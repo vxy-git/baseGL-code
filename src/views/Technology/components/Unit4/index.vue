@@ -14,7 +14,7 @@ const mediaRef = ref(null)
 const videoAssetRef = ref(null)
 const bgVideoRef = ref(null)
 const maskRef = ref(null)
-let ctx
+let scrollTl
 let bgVideoObserver
 
 let videoPlaying = false
@@ -63,124 +63,125 @@ const setupBgVideoObserver = () => {
 }
 
 const handleResize = () => {
+  initScroll()
   ScrollTrigger.refresh()
 }
 
-onMounted(() => {
-  ctx = gsap.context(() => {
-    const sectionEl = sectionRef.value
-    const movingEl = contentRef.value
-    const textEl = textRef2.value
-    const mediaEl = mediaRef.value
-    const maskEl = maskRef.value
-    if (!sectionEl || !movingEl) return
+const initScroll = () => {
+  const sectionEl = sectionRef.value
+  const movingEl = contentRef.value
+  const textEl = textRef2.value
+  const mediaEl = mediaRef.value
+  const maskEl = maskRef.value
+  if (!sectionEl || !movingEl) return
 
-    let startX = 0
-    let endX = 0
-    const textStartX = '100%'
-    const mediaStartSize = { width: 341, height: 341 }
-    const mediaEndSize = { width: 1000, height: 533 }
-    let mediaSizeTween
-    const pauseHeadRoom = 0.1 // 末尾提前暂停的滚动比例
-    const tailDuration = 2 // 尺寸补间完成后的停留时长
+  // 清理旧的 timeline
+  scrollTl && scrollTl.kill()
 
-    const computePositions = () => {
-      // 暂时归零位移方便获取真实位置
-      const prevX = Number(gsap.getProperty(movingEl, 'x')) || 0
-      gsap.set(movingEl, { x: 0 })
-      const rect = movingEl.getBoundingClientRect()
-      startX = 0 // 居中
-      endX = window.innerWidth - rect.width - rect.left // 右侧贴边
-      gsap.set(movingEl, { x: prevX })
-    }
+  let startX = 0
+  let endX = 0
+  const textStartX = '100%'
+  const mediaStartSize = { width: 341, height: 341 }
+  const mediaEndSize = { width: 1000, height: 533 }
+  let mediaSizeTween
+  const pauseHeadRoom = 0.1
+  const tailDuration = 2
 
-    const setInitialStates = () => {
-      if (textEl) gsap.set(textEl, { x: textStartX })
-      if (mediaEl) gsap.set(mediaEl, { width: mediaStartSize.width, height: mediaStartSize.height })
-      if (maskEl) gsap.set(maskEl, { opacity: 0 })
-      pauseVideo()
-    }
+  const computePositions = () => {
+    const prevX = Number(gsap.getProperty(movingEl, 'x')) || 0
+    gsap.set(movingEl, { x: 0 })
+    const rect = movingEl.getBoundingClientRect()
+    startX = 0
+    endX = window.innerWidth - rect.width - rect.left
+    gsap.set(movingEl, { x: prevX })
+  }
 
-    computePositions()
-    gsap.set(movingEl, { x: startX })
-    setInitialStates()
-    setupBgVideoObserver()
+  const setInitialStates = () => {
+    if (textEl) gsap.set(textEl, { x: textStartX })
+    if (mediaEl) gsap.set(mediaEl, { width: mediaStartSize.width, height: mediaStartSize.height })
+    if (maskEl) gsap.set(maskEl, { opacity: 0 })
+    pauseVideo()
+  }
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionEl,
-        start: 'center center',
-        end: '+=260%',
-        pin: true,
-        scrub: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onEnter: () => playVideo(),
-        onEnterBack: () => playVideo(),
-        onRefresh: () => {
-          computePositions()
-          gsap.set(movingEl, { x: startX })
-          setInitialStates()
-        },
-        onLeave: () => pauseVideo(),
-        onLeaveBack: () => pauseVideo()
+  computePositions()
+  gsap.set(movingEl, { x: startX })
+  setInitialStates()
+  setupBgVideoObserver()
+
+  scrollTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: sectionEl,
+      start: 'center center',
+      end: '+=260%',
+      pin: true,
+      scrub: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onEnter: () => playVideo(),
+      onEnterBack: () => playVideo(),
+      onRefresh: () => {
+        computePositions()
+        gsap.set(movingEl, { x: startX })
+        setInitialStates()
       },
-      defaults: { ease: 'none' }
-    })
+      onLeave: () => pauseVideo(),
+      onLeaveBack: () => pauseVideo()
+    },
+    defaults: { ease: 'none' }
+  })
 
-    tl.to(movingEl, {
-      x: () => endX,
-      duration: 1
-    })
+  scrollTl.to(movingEl, {
+    x: () => endX,
+    duration: 1
+  })
 
-    if (textEl) {
-      tl.to(textEl, {
-        x: 0,
-        duration: 0.8
-      }, 'textMedia')
+  if (textEl) {
+    scrollTl.to(textEl, {
+      x: () => 0,
+      duration: 0.8
+    }, 'textMedia')
+  }
+
+  if (mediaEl) {
+    mediaSizeTween = scrollTl.to(mediaEl, {
+      width: mediaEndSize.width,
+      height: mediaEndSize.height,
+      duration: 0.8
+    }, 'textMedia')
+
+    mediaSizeTween.eventCallback('onComplete', () => {
+      playVideo()
+    })
+  }
+
+  scrollTl.to({}, { duration: tailDuration })
+
+  scrollTl.eventCallback('onUpdate', () => {
+    const st = scrollTl.scrollTrigger
+    const nearEnd = st ? st.progress >= 1 - pauseHeadRoom : false
+    if (nearEnd && videoPlaying) pauseVideo()
+    if (!nearEnd && !videoPlaying) playVideo()
+
+    if (maskEl) {
+      const currentX = Number(gsap.getProperty(movingEl, 'x')) || 0
+      const travel = endX - startX
+      const moveProgress = travel ? (currentX - startX) / travel : 0
+      const maskProgress = gsap.utils.clamp(0, 1, moveProgress / 0.5)
+      const targetOpacity = maskProgress * 0.8
+      gsap.set(maskEl, { opacity: targetOpacity })
     }
+  })
+}
 
-    if (mediaEl) {
-      mediaSizeTween = tl.to(mediaEl, {
-        width: mediaEndSize.width,
-        height: mediaEndSize.height,
-        duration: 0.8
-      }, 'textMedia')
-
-      mediaSizeTween.eventCallback('onComplete', () => {
-        playVideo()
-      })
-      
-    }
-
-    // 在尾部增加停留段，给视频播放和暂停缓冲
-    tl.to({}, { duration: tailDuration })
-
-    tl.eventCallback('onUpdate', () => {
-      const st = tl.scrollTrigger
-      const nearEnd = st ? st.progress >= 1 - pauseHeadRoom : false
-      if (nearEnd && videoPlaying) pauseVideo()
-      if (!nearEnd && !videoPlaying) playVideo()
-
-      // 根据内容位移进度控制背景遮罩透明度
-      if (maskEl) {
-        const currentX = Number(gsap.getProperty(movingEl, 'x')) || 0
-        const travel = endX - startX
-        const moveProgress = travel ? (currentX - startX) / travel : 0
-        const maskProgress = gsap.utils.clamp(0, 1, moveProgress / 0.5) // 0-50% 位移
-        const targetOpacity = maskProgress * 0.8
-        gsap.set(maskEl, { opacity: targetOpacity })
-      }
-    })
-
-    ScrollTrigger.refresh()
-  }, sectionRef)
+onMounted(() => {
+  initScroll()
+  ScrollTrigger.refresh()
   window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
-  ctx && ctx.revert()
+  scrollTl && scrollTl.kill()
   if (bgVideoObserver) {
     bgVideoObserver.disconnect()
     bgVideoObserver = null
