@@ -1,12 +1,27 @@
 <script setup>
 
 import Item from "./components/Item/index.vue";
-import {ref, onMounted, onUnmounted} from "vue";
+import {ref, onMounted, onUnmounted, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit5Data } from '@/data/home/home-unit5'
 
-const list = homeUnit5Data.newsList
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const unitData = computed(() => {
+  if (!props.data) return homeUnit5Data
+  return {
+    ...homeUnit5Data,
+    ...props.data
+  }
+})
+const list = computed(() => unitData.value.newsList)
+
 const bannerCurrent = ref(0)
 const splideRef = ref(null)
 const canSlidePrev = ref(false)
@@ -74,10 +89,10 @@ const goToSlide = (index) => {
   <div class="unit5 mt-[55px]">
     <div class="mx-auto">
       <div class="title text-center">
-        {{ homeUnit5Data.unitTitle }}
+        {{ unitData.unitTitle }}
       </div>
       <div class="c_1300 mt-[46px] relative c_padding" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-        <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="homeUnit5Data.splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
+        <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="unitData.splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
           @splide:move="changeEnd">
           <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
             <Item :data="item" />
@@ -88,7 +103,7 @@ const goToSlide = (index) => {
             class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
             :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
             type="image"
-            :src="homeUnit5Data.arrowIcon"
+            :src="unitData.arrowIcon"
             alt=""
             :lazy="false"
             @click="slidePrev"
@@ -97,7 +112,7 @@ const goToSlide = (index) => {
             class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
             :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
             type="image"
-            :src="homeUnit5Data.arrowIcon"
+            :src="unitData.arrowIcon"
             alt=""
             :lazy="false"
             @click="slideNext"

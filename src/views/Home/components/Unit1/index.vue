@@ -1,6 +1,6 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from 'vue-router';
 const delay = 8000 // 每个视频固定播放 8 秒后切换
 const currentIndex = ref(0)
@@ -21,10 +21,58 @@ const splideOptions = {
 
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit1Data } from '@/data/home/home-unit1'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const router = useRouter()
 
-const list = ref(homeUnit1Data.bannerList)
+// ========== 使用 Pinia Store 获取导航数据 ==========
+const cmsNavStore = useCmsNavStore()
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+// 计算属性:将 CMS Banner 数据转换为组件所需格式
+const list = computed(() => {
+  // 1. 优先使用 Props 传入的数据
+  if (props.data?.bannerList?.length > 0) {
+    return props.data.bannerList.map(banner => ({
+      title: banner.title || '',
+      subTitle: banner.subTitle || '',
+      src: banner.src || '',
+      type: (banner.src && banner.src.endsWith('.mp4')) ? 'video' : 'image',
+      dotText: banner.dotText || banner.title || '',
+      path: banner.path || ''
+    }))
+  }
+
+  // 2. 其次使用 Store 中的数据 (兼容旧逻辑)
+  if (cmsNavStore.bannerNavs.length > 0) {
+    return cmsNavStore.bannerNavs.map(banner => ({
+      title: banner.title,
+      subTitle: banner.subTitle || '',
+      src: banner.src,
+      type: banner.src.endsWith('.mp4') ? 'video' : 'image',
+      dotText: banner.dotText || banner.title,
+      path: banner.path
+    }))
+  }
+  // 3. 最后使用本地配置
+  return homeUnit1Data.bannerList
+})
+
+// 组件挂载时获取数据
+onMounted(async () => {
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  try {
+    await cmsNavStore.fetchAllNavs()
+  } catch (error) {
+    console.error('❌ Unit1 组件获取导航数据失败:', error)
+  }
+})
 
 const changeEnd = (splide, newIndex) => {
   currentIndex.value = newIndex

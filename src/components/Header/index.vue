@@ -8,6 +8,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
 import { headerData } from '@/data/common/header'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { productsData } from '@/data/productlist/products'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 // 从Nav组件迁移分类和产品数据
 const categories = computed(() =>
@@ -34,6 +35,15 @@ const props = defineProps({
 
 // 使用本地可变状态而不是直接修改只读的 props
 const currentHeaderClass = ref(props.headerClass)
+
+// ========== 使用 Pinia Store 获取导航数据 ==========
+const cmsNavStore = useCmsNavStore()
+
+// 计算属性: 返回最终使用的导航数据
+const navItems = computed(() => {
+  // 如果 Store 中有动态数据,使用动态数据,否则使用静态配置
+  return cmsNavStore.headerNavs.length > 0 ? cmsNavStore.headerNavs : headerData.navItems
+})
 
 const router = useRouter()
 
@@ -204,7 +214,19 @@ const handleProductClick = (linkType) => {
 }
 
 // 生命周期
-onMounted(() => {
+onMounted(async () => {
+  // ========== 获取当前路由信息 ==========
+  const currentRoute = router.currentRoute.value
+  console.log('📍 当前路由:', currentRoute.path)
+
+  // ========== 调用 Pinia Store 获取导航数据 ==========
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  try {
+    await cmsNavStore.fetchAllNavs()
+  } catch (error) {
+    console.error('❌ Header 组件获取导航数据失败:', error)
+  }
+
   // 滚动监听
   addEventListener("scroll", () => {
     if(props.headerClass === "white")return
@@ -244,22 +266,21 @@ onUnmounted(() => {
               v-show="currentHeaderClass==='opacity'"
               type="image"
               :src="headerData.logo.default"
-              :alt="headerData.logo.alt"
+              alt="logo"
               class="logo-image"
             />
             <MediaAsset
               v-show="currentHeaderClass==='white'"
               type="image"
               :src="headerData.logo.active"
-              :alt="headerData.logo.alt"
+              alt="logo"
               class="logo-image"
             />
-            <span class="logo-text">{{ headerData.logo.text }}</span>
           </router-link>
           <!-- 桌面端导航 -->
           <nav v-if="!isMobile" class="nav-links">
             <a
-              v-for="(item, index) in headerData.navItems"
+              v-for="(item, index) in navItems"
               :key="index"
               :href="item.href"
               :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
@@ -335,7 +356,7 @@ onUnmounted(() => {
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </button>
-          <span class="page-title">{{ headerData.navItems[0].text }}</span>
+          <span class="page-title">{{ navItems[0]?.text || 'Products' }}</span>
           <button class="close-btn active" @click="closeMobileMenu" aria-label="Close">
             <span></span>
             <span></span>
@@ -351,7 +372,7 @@ onUnmounted(() => {
           <div v-if="currentLevel === 1" class="level-1-page">
             <div class="mobile-nav-list">
               <div
-                v-for="(item, index) in headerData.navItems"
+                v-for="(item, index) in navItems"
                 :key="index"
                 class="mobile-nav-item"
               >

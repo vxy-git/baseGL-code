@@ -2,11 +2,27 @@
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit3Data } from '@/data/home/home-unit3'
 import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const unitData = computed(() => {
+  if (!props.data) return homeUnit3Data
+  return {
+    ...homeUnit3Data,
+    ...props.data
+  }
+})
 
 const router = useRouter()
 
 const goTech = () => {
-  router.push({ name: homeUnit3Data.routeName })
+  router.push({ name: unitData.value.routeName })
 }
 </script>
 
@@ -16,22 +32,22 @@ const goTech = () => {
     <div class="relative size-full">
       <div class="absolute size-full left-0 top-0 z-10">
         <div class="w-[374px] pt-[128.5px] ml-[118px]">
-          <div class="tag text-center">{{ homeUnit3Data.tagText }}</div>
+          <div class="tag text-center">{{ unitData.tagText }}</div>
           <div class="title mt-[11px] whitespace-break-spaces">
-            {{ homeUnit3Data.title }}
+            {{ unitData.title }}
           </div>
           <div class="subTitle mt-[15px] whitespace-break-spaces">
-            {{ homeUnit3Data.subtitle }}
+            {{ unitData.subtitle }}
           </div>
           <div class="btn mx-auto mt-[38px] cursor-pointer" @click="goTech">
-            {{ homeUnit3Data.buttonText }}
+            {{ unitData.buttonText }}
           </div>
         </div>
       </div>
       <MediaAsset
         class="size-full object-contain object-right px-[10%] rounded-[20px] overflow-hidden logo bg-[#f1f1f1]"
         type="image"
-        :src="homeUnit3Data.bannerImage"
+        :src="unitData.bannerImage"
         alt=""
         :lazy="false"
       />

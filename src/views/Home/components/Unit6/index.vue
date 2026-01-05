@@ -1,7 +1,22 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit6Data } from '@/data/home/home-unit6'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const unitData = computed(() => {
+  if (!props.data) return homeUnit6Data
+  return {
+    ...homeUnit6Data,
+    ...props.data
+  }
+})
 
 const isPlaying = ref(false)
 
@@ -16,24 +31,24 @@ const playVideo = () => {
       <div>
         <div class="relative">
           <div v-if="!isPlaying" class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center">
-            <div class="titleText">{{ homeUnit6Data.title }}</div>
+            <div class="titleText">{{ unitData.title }}</div>
             <div class="label">
-               {{ homeUnit6Data.description }}
+               {{ unitData.description }}
             </div>
           </div>
           <MediaAsset
             v-if="!isPlaying"
             class="h-[560px] w-full object-cover block"
             type="image"
-            :src="homeUnit6Data.backgroundImage"
+            :src="unitData.backgroundImage"
             alt="Beyond Limits background"
           />
           <MediaAsset
             v-else
             class="h-[560px] w-full object-contain bg-black"
             type="video"
-            :src="homeUnit6Data.videoSrc"
-            :poster="homeUnit6Data.backgroundImage"
+            :src="unitData.videoSrc"
+            :poster="unitData.backgroundImage"
             :autoplay="true"
             :loop="true"
             :controls="true"

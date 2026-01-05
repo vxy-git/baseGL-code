@@ -7,6 +7,21 @@ import { homeUnit2Data } from "@/data/home/home-unit2"
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const unitData = computed(() => {
+  if (!props.data) return homeUnit2Data
+  return {
+    ...homeUnit2Data,
+    ...props.data
+  }
+})
+
 const tabsCurrent = ref(0)
 const products = computed(() => productsData.products[tabsCurrent.value] || [])
 
@@ -89,7 +104,7 @@ const goToGroup = (groupIndex) => {
   <div class="unit2">
     <div class="mx-auto pt-[80px]">
       <div class="c_1300 c_padding title whitespace-break-spaces">
-        {{ homeUnit2Data.unitTitle }}
+        {{ unitData.unitTitle }}
       </div>
       <Tabs class="mt-[44px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
 
@@ -99,13 +114,13 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
           type="image"
-          :src="homeUnit2Data.arrowIcon"
+          :src="unitData.arrowIcon"
           alt=""
           :lazy="false"
           @click="slidePrev"
         />
         <div class="w-full">
-          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="homeUnit2Data.splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
+          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="unitData.splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
             @splide:moved="updateArrowStatus">
             <SplideSlide v-for="(product, index) in products" :key="product.id">
               <ProductItem :data="product" />
@@ -116,7 +131,7 @@ const goToGroup = (groupIndex) => {
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
           :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
           type="image"
-          :src="homeUnit2Data.arrowIcon"
+          :src="unitData.arrowIcon"
           alt=""
           :lazy="false"
           @click="slideNext"

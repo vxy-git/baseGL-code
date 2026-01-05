@@ -3,9 +3,9 @@
     <div class="footer-container c_1300">
       <div class="footer-box">
         <div class="footer-columns">
-          <div v-for="(column, index) in footerData.columns" :key="index" class="footer-column" :class="{ 'pl-[20px]': column.title === 'Customize' }">
+          <div v-for="(column, index) in footerColumns" :key="index" class="footer-column" :class="{ 'pl-[20px]': column.title === 'Customize' }">
             <h4 class="footer-heading">{{ column.title }}</h4>
-            <ul v-if="column.links.length > 0" class="footer-links">
+            <ul v-if="column.links && column.links.length > 0" class="footer-links">
               <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
                 <RouterLink v-if="link.to" :to="link.to">{{ link.text }}</RouterLink>
                 <a v-else-if="link.href" :href="link.href">{{ link.text }}</a>
@@ -70,8 +70,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { footerData } from '@/data/common/footer'
+import { useCmsNavStore } from '@/stores/cmsNav'
+
+// ========== 使用 Pinia Store 获取导航数据 ==========
+const cmsNavStore = useCmsNavStore()
+
+// 计算属性: 返回最终使用的 Footer 列数据
+const footerColumns = computed(() => {
+  // 如果 Store 中有动态数据,使用动态数据,否则使用静态配置
+  return cmsNavStore.footerNavs.length > 0 ? cmsNavStore.footerNavs : footerData.columns
+})
 
 const email = ref('')
 const agreeToPrivacy = ref(false)
@@ -83,6 +93,18 @@ const handleSubscribe = () => {
     // 可以在这里添加实际的订阅 API 调用
   }
 }
+
+// ========== 生命周期 ==========
+onMounted(async () => {
+  console.log('📍 Footer 组件已挂载')
+
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  try {
+    await cmsNavStore.fetchAllNavs()
+  } catch (error) {
+    console.error('❌ Footer 组件获取导航数据失败:', error)
+  }
+})
 </script>
 
 <style scoped lang="scss">
