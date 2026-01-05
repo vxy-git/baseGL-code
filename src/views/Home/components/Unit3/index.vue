@@ -2,7 +2,7 @@
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit3Data } from '@/data/home/home-unit3'
 import { useRouter } from 'vue-router'
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
@@ -41,12 +41,7 @@ const goTech = () => {
   router.push({ name: unitData.value.routeName })
 }
 
-onMounted(() => {
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  cmsNavStore.fetchAllNavs().catch(error => {
-    console.error('❌ Unit3 组件获取导航数据失败:', error)
-  })
-})
+
 </script>
 
 <template>

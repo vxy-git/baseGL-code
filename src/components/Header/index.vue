@@ -219,14 +219,6 @@ onMounted(async () => {
   const currentRoute = router.currentRoute.value
   console.log('📍 当前路由:', currentRoute.path)
 
-  // ========== 调用 Pinia Store 获取导航数据 ==========
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  try {
-    await cmsNavStore.fetchAllNavs()
-  } catch (error) {
-    console.error('❌ Header 组件获取导航数据失败:', error)
-  }
-
   // 滚动监听
   addEventListener("scroll", () => {
     if(props.headerClass === "white")return

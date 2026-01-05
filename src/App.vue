@@ -2,15 +2,23 @@
   <div id="app">
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <component :is="Component" />
+        <component :is="Component" :key="route.fullPath" />
       </transition>
     </router-view>
   </div>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
+import { useCmsNavStore } from '@/stores/cmsNav'
 import '@splidejs/vue-splide/css';
 import './composables/rem'
+
+const route = useRoute()
+const cmsNavStore = useCmsNavStore()
+
+// App 启动时立即获取全局导航数据
+cmsNavStore.fetchAllNavs()
 // App级别的逻辑可以在这里添加
 </script>
 

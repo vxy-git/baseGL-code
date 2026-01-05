@@ -39,10 +39,6 @@ const playPath = ref(false)
 let observer
 
 onMounted(() => {
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  cmsNavStore.fetchAllNavs().catch(error => {
-    console.error('❌ Unit4 组件获取导航数据失败:', error)
-  })
 
   observer = new IntersectionObserver(
     (entries) => {

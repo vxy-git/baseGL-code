@@ -97,13 +97,6 @@ const handleSubscribe = () => {
 // ========== 生命周期 ==========
 onMounted(async () => {
   console.log('📍 Footer 组件已挂载')
-
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  try {
-    await cmsNavStore.fetchAllNavs()
-  } catch (error) {
-    console.error('❌ Footer 组件获取导航数据失败:', error)
-  }
 })
 </script>
 

@@ -77,6 +77,18 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   }
 
   /**
+   * 手动设置导航数据（用于从路由预加载的数据同步）
+   * @param {Array} data - 导航列表数据
+   */
+  function setNavData(data) {
+    if (data && Array.isArray(data) && data.length > 0) {
+      navList.value = data
+      isLoaded.value = true
+      console.log('📦 从外部同步 CMS 导航数据，共', data.length, '条')
+    }
+  }
+
+  /**
    * 根据 navName 获取导航项
    * @param {string} navName - 导航名称，如 'Home', 'Technology'
    * @returns {Object|null} 导航项对象
@@ -226,6 +238,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
     // Actions
     fetchAllNavs,
+    setNavData,
     getNavByName,
     getPageData,
     getNavByRoute,

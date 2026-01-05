@@ -54,10 +54,6 @@ const checkMobile = () => {
 onMounted(() => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  cmsNavStore.fetchAllNavs().catch(error => {
-    console.error('❌ Unit5 组件获取导航数据失败:', error)
-  })
 })
 
 // 清理事件监听器

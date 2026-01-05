@@ -15,6 +15,8 @@ const pageTypeComponentMap = {
   'product': () => import('@/views/Product1/index.vue'), // 通用产品页
 }
 
+export let initialCmsNavData = null
+
 /**
  * 动态生成路由配置
  * 优先使用本地配置，如果本地配置不足则从 CMS API 补充
@@ -33,6 +35,9 @@ async function generateRoutes() {
     })
 
     if (result.success && result.data) {
+      // 保存原始数据供 Store 使用
+      initialCmsNavData = result.data
+      
       // 转换 CMS 数据为路由格式
       cmsPages = result.data
         .filter(nav => nav.status === '启用')

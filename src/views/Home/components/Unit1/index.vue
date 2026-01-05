@@ -1,6 +1,6 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from 'vue-router';
 const delay = 8000 // 每个视频固定播放 8 秒后切换
 const currentIndex = ref(0)
@@ -64,15 +64,7 @@ const list = computed(() => {
   return homeUnit1Data.bannerList
 })
 
-// 组件挂载时获取数据
-onMounted(async () => {
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  try {
-    await cmsNavStore.fetchAllNavs()
-  } catch (error) {
-    console.error('❌ Unit1 组件获取导航数据失败:', error)
-  }
-})
+
 
 const changeEnd = (splide, newIndex) => {
   currentIndex.value = newIndex

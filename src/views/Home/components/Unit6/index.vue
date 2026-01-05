@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit6Data } from '@/data/home/home-unit6'
 import { useCmsNavStore } from '@/stores/cmsNav'
@@ -40,12 +40,7 @@ const playVideo = () => {
   isPlaying.value = true
 }
 
-onMounted(() => {
-  // Store 会自动处理缓存，只在首次调用时请求 API
-  cmsNavStore.fetchAllNavs().catch(error => {
-    console.error('❌ Unit6 组件获取导航数据失败:', error)
-  })
-})
+
 </script>
 
 <template>
