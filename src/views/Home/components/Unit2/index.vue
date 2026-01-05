@@ -1,11 +1,16 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
 import {ref, computed, onMounted, onUnmounted, watch} from "vue";
+import { useRouter } from 'vue-router';
 import ProductItem from "@/components/ProductItem/index.vue"
 import { productsData } from "@/data/productlist/products"
 import { homeUnit2Data } from "@/data/home/home-unit2"
+import { useCmsNavStore } from '@/stores/cmsNav'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
+
+const router = useRouter()
+const cmsNavStore = useCmsNavStore()
 
 const props = defineProps({
   data: {
@@ -14,16 +19,45 @@ const props = defineProps({
   }
 })
 
+const cmsData = computed(() => {
+  const homeNav = cmsNavStore.getNavByName('Home')
+  return homeNav?.moduleList?.unit2?.data || null
+})
+
 const unitData = computed(() => {
-  if (!props.data) return homeUnit2Data
-  return {
-    ...homeUnit2Data,
-    ...props.data
+  // 1. Props
+  if (props.data) return { ...homeUnit2Data, ...props.data }
+
+  // 2. CMS Store
+  if (cmsData.value) {
+    return {
+      ...homeUnit2Data,
+      ...cmsData.value
+    }
   }
+
+  // 3. Local
+  return homeUnit2Data
 })
 
 const tabsCurrent = ref(0)
-const products = computed(() => productsData.products[tabsCurrent.value] || [])
+const products = computed(() => {
+  // 优先使用 CMS 数据中的 products
+  if (unitData.value.products && Array.isArray(unitData.value.products)) {
+     // 如果 CMS 数据结构是直接的数组列表（未分组），可能需要适配
+     // 这里假设如果 CMS 提供了 products，它可能是一个包含所有产品的数组，或者是分组对象
+     // 简单起见，如果 CMS 有 products，我们尝试使用它。
+     // 但是原逻辑是 productsData.products[tabsCurrent.value]
+     // 如果 CMS 数据结构是 { products: { 0: [...], 1: [...] } } 或者是 { products: [...] }
+     
+     // 如果 CMS 返回的是类似 productsData.products 的结构（对象，key 为 index）
+     if (unitData.value.products[tabsCurrent.value]) {
+         return unitData.value.products[tabsCurrent.value]
+     }
+  }
+  
+  return productsData.products[tabsCurrent.value] || []
+})
 
 
 // Splide 状态管理
@@ -48,6 +82,10 @@ const checkMobile = () => {
 onMounted(() => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  cmsNavStore.fetchAllNavs().catch(error => {
+    console.error('❌ Unit2 组件获取导航数据失败:', error)
+  })
 })
 
 onUnmounted(() => {

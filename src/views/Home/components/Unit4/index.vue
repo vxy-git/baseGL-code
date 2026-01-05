@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { homeUnit4Data } from '@/data/home/home-unit4'
 import MediaAsset from '@/components/MediaAsset.vue'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
   data: {
@@ -10,12 +11,27 @@ const props = defineProps({
   }
 })
 
+const cmsNavStore = useCmsNavStore()
+
+const cmsData = computed(() => {
+  const homeNav = cmsNavStore.getNavByName('Home')
+  return homeNav?.moduleList?.unit4?.data || null
+})
+
 const unitData = computed(() => {
-  if (!props.data) return homeUnit4Data
-  return {
-    ...homeUnit4Data,
-    ...props.data
+  // 1. Props
+  if (props.data) return { ...homeUnit4Data, ...props.data }
+
+  // 2. CMS Store
+  if (cmsData.value) {
+    return {
+      ...homeUnit4Data,
+      ...cmsData.value
+    }
   }
+
+  // 3. Local
+  return homeUnit4Data
 })
 
 const unitBoxRef = ref(null)
@@ -23,6 +39,11 @@ const playPath = ref(false)
 let observer
 
 onMounted(() => {
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  cmsNavStore.fetchAllNavs().catch(error => {
+    console.error('❌ Unit4 组件获取导航数据失败:', error)
+  })
+
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

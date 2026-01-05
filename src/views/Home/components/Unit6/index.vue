@@ -1,7 +1,8 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit6Data } from '@/data/home/home-unit6'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
   data: {
@@ -10,12 +11,27 @@ const props = defineProps({
   }
 })
 
+const cmsNavStore = useCmsNavStore()
+
+const cmsData = computed(() => {
+  const homeNav = cmsNavStore.getNavByName('Home')
+  return homeNav?.moduleList?.unit6?.data || null
+})
+
 const unitData = computed(() => {
-  if (!props.data) return homeUnit6Data
-  return {
-    ...homeUnit6Data,
-    ...props.data
+  // 1. Props
+  if (props.data) return { ...homeUnit6Data, ...props.data }
+
+  // 2. CMS Store
+  if (cmsData.value) {
+    return {
+      ...homeUnit6Data,
+      ...cmsData.value
+    }
   }
+
+  // 3. Local
+  return homeUnit6Data
 })
 
 const isPlaying = ref(false)
@@ -23,6 +39,13 @@ const isPlaying = ref(false)
 const playVideo = () => {
   isPlaying.value = true
 }
+
+onMounted(() => {
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  cmsNavStore.fetchAllNavs().catch(error => {
+    console.error('❌ Unit6 组件获取导航数据失败:', error)
+  })
+})
 </script>
 
 <template>

@@ -2,7 +2,8 @@
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit3Data } from '@/data/home/home-unit3'
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
   data: {
@@ -11,12 +12,27 @@ const props = defineProps({
   }
 })
 
+const cmsNavStore = useCmsNavStore()
+
+const cmsData = computed(() => {
+  const homeNav = cmsNavStore.getNavByName('Home')
+  return homeNav?.moduleList?.unit3?.data || null
+})
+
 const unitData = computed(() => {
-  if (!props.data) return homeUnit3Data
-  return {
-    ...homeUnit3Data,
-    ...props.data
+  // 1. Props
+  if (props.data) return { ...homeUnit3Data, ...props.data }
+
+  // 2. CMS Store
+  if (cmsData.value) {
+    return {
+      ...homeUnit3Data,
+      ...cmsData.value
+    }
   }
+
+  // 3. Local
+  return homeUnit3Data
 })
 
 const router = useRouter()
@@ -24,6 +40,13 @@ const router = useRouter()
 const goTech = () => {
   router.push({ name: unitData.value.routeName })
 }
+
+onMounted(() => {
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  cmsNavStore.fetchAllNavs().catch(error => {
+    console.error('❌ Unit3 组件获取导航数据失败:', error)
+  })
+})
 </script>
 
 <template>

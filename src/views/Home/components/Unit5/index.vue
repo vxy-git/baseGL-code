@@ -5,6 +5,7 @@ import {ref, onMounted, onUnmounted, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit5Data } from '@/data/home/home-unit5'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
   data: {
@@ -13,12 +14,27 @@ const props = defineProps({
   }
 })
 
+const cmsNavStore = useCmsNavStore()
+
+const cmsData = computed(() => {
+  const homeNav = cmsNavStore.getNavByName('Home')
+  return homeNav?.moduleList?.unit5?.data || null
+})
+
 const unitData = computed(() => {
-  if (!props.data) return homeUnit5Data
-  return {
-    ...homeUnit5Data,
-    ...props.data
+  // 1. Props
+  if (props.data) return { ...homeUnit5Data, ...props.data }
+
+  // 2. CMS Store
+  if (cmsData.value) {
+    return {
+      ...homeUnit5Data,
+      ...cmsData.value
+    }
   }
+
+  // 3. Local
+  return homeUnit5Data
 })
 const list = computed(() => unitData.value.newsList)
 
@@ -38,6 +54,10 @@ const checkMobile = () => {
 onMounted(() => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
+  // Store 会自动处理缓存，只在首次调用时请求 API
+  cmsNavStore.fetchAllNavs().catch(error => {
+    console.error('❌ Unit5 组件获取导航数据失败:', error)
+  })
 })
 
 // 清理事件监听器
