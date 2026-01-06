@@ -1,28 +1,43 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit6Data  } from '@/data/product4/product4-unit6.js'
+import { computed } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit6Data, ...props.data };
+  }
+  return product4Unit6Data;
+});
 </script>
 
 <template>
   <div class="pt-[236px] c_1230 c_padding">
     <div class="title">
-      {{ product4Unit6Data.content.title }}
+      {{ unitData.content.title }}
     </div>
     <div class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full">
       <div class="pt-[7px] max-w-full">
         <div class="gtext">
-          {{ product4Unit6Data.content.greenLabel }}
+          {{ unitData.content.greenLabel }}
         </div>
         <div class="title1">
-          {{ product4Unit6Data.content.subtitle }}
+          {{ unitData.content.subtitle }}
         </div>
         <div class="label">
-          {{ product4Unit6Data.content.description }}
+          {{ unitData.content.description }}
         </div>
         <div class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden max-w-full">
           <MediaAsset
             type="video"
-            :src="product4Unit6Data.videos.left"
+            :src="unitData.videos.left"
             :controls="false"
             :autoplay="false"
             :muted="true"
@@ -35,7 +50,7 @@ import { product4Unit6Data  } from '@/data/product4/product4-unit6.js'
       <div class="w-[500px] h-[650px] rounded-[20px] overflow-hidden">
         <MediaAsset
           type="video"
-          :src="product4Unit6Data.videos.right"
+          :src="unitData.videos.right"
           :controls="false"
           :autoplay="false"
           :muted="true"

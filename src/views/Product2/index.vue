@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
 import { MOBILE_BREAKPOINT } from "@/composables/fit";
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header/index.vue";
@@ -18,6 +18,31 @@ import Unit8 from "./components/Unit8/index.vue";
 import m_Unit8 from "./components/Unit8/m_index.vue";
 import VideoU from "./components/VideoU/index.vue";
 
+// 接收 pageConfig
+const props = defineProps({
+  pageConfig: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+// 组件映射
+const componentMap = {
+  unit1: Unit1,
+  unit2: Unit2,
+  gsapU: GsapU,
+  m_gsapU: m_GsapU,
+  unit3: Unit3,
+  videoU: VideoU,
+  unit4: Unit4,
+  unit5: Unit5,
+  unit6: Unit6,
+  m_unit6: m_Unit6,
+  unit7: Unit7,
+  unit8: Unit8,
+  m_unit8: m_Unit8
+};
+
 const isClient = typeof window !== "undefined";
 const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
 
@@ -25,6 +50,48 @@ const updateIsMobile = () => {
   if (!isClient) return;
   isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
 };
+
+// 定义默认 Unit 顺序（按原有结构分组）
+const defaultOrder = computed(() => {
+  if (!isMobile.value) {
+    return [
+      'unit1',                    // bg-black
+      'unit2',                    // bg-[#111111]
+      'gsapU', 'unit3', 'videoU', 'unit4',  // bg-black
+      'unit5',                    // 无背景
+      'unit6', 'unit7', 'unit8'   // bg-black
+    ];
+  }
+  return [
+    'unit1',                     // bg-black
+    'unit2',                     // bg-[#111111]
+    'm_gsapU', 'unit3', 'videoU', 'unit4',  // bg-black
+    'unit5',                     // 无背景
+    'm_unit6', 'unit7', 'm_unit8'  // bg-black
+  ];
+});
+
+// 动态渲染列表
+const renderList = computed(() => {
+  const moduleList = props.pageConfig?.moduleList;
+
+  if (moduleList) {
+    return defaultOrder.value
+      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
+      .map(key => ({
+        key,
+        component: componentMap[key],
+        data: moduleList[key].data
+      }));
+  }
+
+  // 降级：无 CMS 数据时使用默认渲染
+  return defaultOrder.value.map(key => ({
+    key,
+    component: componentMap[key],
+    data: null
+  }));
+});
 
 onMounted(() => {
   updateIsMobile();
@@ -39,28 +106,41 @@ onUnmounted(() => {
 <template>
   <div>
     <Header />
+
+    <!-- 动态渲染 Unit -->
+    <template v-for="item in renderList" :key="item.key">
+      <!-- unit1 需要 bg-black 容器 -->
+      <div v-if="item.key === 'unit1'" class="bg-black">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- unit2 需要 bg-[#111111] 容器 -->
+      <div v-else-if="item.key === 'unit2'" class="bg-[#111111] pb-[140px]">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- gsapU, unit3, videoU, unit4 需要 bg-black 容器 -->
+      <div v-else-if="['gsapU', 'm_gsapU', 'unit3', 'videoU', 'unit4'].includes(item.key)" class="bg-black pb-[140px]">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- unit5 无背景容器 -->
+      <component v-else-if="item.key === 'unit5'" :is="item.component" :data="item.data" />
+
+      <!-- unit6, unit7, unit8, splide4 需要 bg-black 容器 -->
+      <div v-else-if="['unit6', 'm_unit6', 'unit7', 'unit8', 'm_unit8'].includes(item.key)" class="bg-black">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- 其他组件正常渲染 -->
+      <component v-else :is="item.component" :data="item.data" />
+    </template>
+
+    <!-- Splide4 固定在最后 -->
     <div class="bg-black">
-      <Unit1 />
-    </div>
-    <div class="bg-[#111111] pb-[140px]">
-      <Unit2 />
-    </div>
-    <div class="bg-black pb-[140px]">
-      <GsapU v-if="!isMobile" />
-      <m_GsapU v-else />
-      <Unit3 />
-      <VideoU />
-      <Unit4 />
-    </div>
-    <Unit5 />
-    <div class="bg-black">
-      <Unit6 v-if="!isMobile" />
-      <m_Unit6 v-else />
-      <Unit7 />
-      <Unit8 v-if="!isMobile" />
-      <m_Unit8 v-else />
       <Splide4 />
     </div>
+
     <div class="pt-[0px]">
       <Footer />
     </div>

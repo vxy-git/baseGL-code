@@ -1,6 +1,21 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
+import { computed } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit10Data, ...props.data };
+  }
+  return product4Unit10Data;
+});
 </script>
 
 <template>
@@ -9,11 +24,11 @@ import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
       <div class="justify-between flex m_flex_col gap-[15px]">
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ product4Unit10Data.labels.dosingTimer }}
+            {{ unitData.labels.dosingTimer }}
           </div>
           <MediaAsset
             type="video"
-            :src="product4Unit10Data.videos.dosingTimer"
+            :src="unitData.videos.dosingTimer"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -24,11 +39,11 @@ import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
         </div>
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ product4Unit10Data.labels.preheatStatus }}
+            {{ unitData.labels.preheatStatus }}
           </div>
           <MediaAsset
             type="video"
-            :src="product4Unit10Data.videos.preheatStatus"
+            :src="unitData.videos.preheatStatus"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -41,11 +56,11 @@ import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
       <div class="justify-between flex m_flex_col gap-[15px] mt-[15px]">
         <div class="min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ product4Unit10Data.labels.temperatureControl }}
+            {{ unitData.labels.temperatureControl }}
           </div>
           <MediaAsset
             type="video"
-            :src="product4Unit10Data.videos.temperatureControl"
+            :src="unitData.videos.temperatureControl"
             :autoplay="false"
             :muted="true"
             :loop="true"
@@ -56,11 +71,11 @@ import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
         </div>
         <div class="bg-[#D9D9D9] min-h-[440px] max-w-full rounded-[20px] relative overflow-hidden">
           <div class="tag absolute left-[21px] top-[25px]">
-            {{ product4Unit10Data.labels.batteryMonitor }}
+            {{ unitData.labels.batteryMonitor }}
           </div>
           <MediaAsset
             type="video"
-            :src="product4Unit10Data.videos.batteryMonitor"
+            :src="unitData.videos.batteryMonitor"
             :autoplay="false"
             :muted="true"
             :loop="true"

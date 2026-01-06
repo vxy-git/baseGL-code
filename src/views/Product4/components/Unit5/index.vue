@@ -1,15 +1,30 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit5Data  } from '@/data/product4/product4-unit5.js'
+import { computed } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit5Data, ...props.data };
+  }
+  return product4Unit5Data;
+});
 </script>
 
 <template>
   <div class="pt-[294px] c_1230 c_padding">
     <div class="title">
-      {{ product4Unit5Data.content.title }}
+      {{ unitData.content.title }}
     </div>
     <div class="w-[900px] h-[409px] mx-auto mt-[64px] max-w-full">
-      <MediaAsset type="video" :src="product4Unit5Data.videos.dualGemcoCore" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset type="video" :src="unitData.videos.dualGemcoCore" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" class="w-full h-full object-cover rounded-[20px]" />
     </div>
   </div>

@@ -1,16 +1,31 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit5Data  } from '@/data/product2/product2-unit5'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit5Data, ...props.data };
+  }
+  return product2Unit5Data;
+});
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
     <div class="title">
-      {{ product2Unit5Data.titleText }}
+      {{ unitData.titleText }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in product2Unit5Data.deviceSpecs.universe" class="item flex flex-col items-center justify-center">
+        <div v-for="item in unitData.deviceSpecs.universe" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>
@@ -23,7 +38,7 @@ import { product2Unit5Data  } from '@/data/product2/product2-unit5'
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="product2Unit5Data.videos.universe"
+            :src="unitData.videos.universe"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -32,7 +47,7 @@ import { product2Unit5Data  } from '@/data/product2/product2-unit5'
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ product2Unit5Data.productNames.universe }}</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ unitData.productNames.universe }}</div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
@@ -40,7 +55,7 @@ import { product2Unit5Data  } from '@/data/product2/product2-unit5'
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="product2Unit5Data.videos.universePro"
+            :src="unitData.videos.universePro"
             :autoplay="false"
             :muted="true"
             :loop="false"
@@ -49,10 +64,10 @@ import { product2Unit5Data  } from '@/data/product2/product2-unit5'
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ product2Unit5Data.productNames.universePro }}</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ unitData.productNames.universePro }}</div>
       </div>
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in product2Unit5Data.deviceSpecs.universePro" class="item flex flex-col items-center justify-center">
+        <div v-for="item in unitData.deviceSpecs.universePro" class="item flex flex-col items-center justify-center">
           <div class="label">
             {{item.label}}
           </div>

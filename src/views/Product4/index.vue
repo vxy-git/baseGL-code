@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
 import { MOBILE_BREAKPOINT } from "@/composables/fit";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
@@ -14,7 +14,32 @@ import Unit9 from "./components/Unit9/index.vue";
 import Unit10 from "./components/Unit10/index.vue";
 import Unit11 from "./components/Unit11/index.vue";
 import Unit12 from "./components/Unit12/index.vue";
+import Unit13 from "./components/Unit13/index.vue";
 import m_Unit12 from "./components/Unit12/m_index.vue";
+
+// 接收 pageConfig
+const props = defineProps({
+  pageConfig: {
+    type: Object,
+    default: () => ({})
+  }
+});
+
+// 组件映射
+const componentMap = {
+  unit1: Unit1,
+  unit2: Unit2,
+  unit4: Unit4,
+  unit5: Unit5,
+  unit6: Unit6,
+  unit8: Unit8,
+  unit9: Unit9,
+  unit10: Unit10,
+  unit11: Unit11,
+  unit12: Unit12,
+  m_unit12: m_Unit12,
+  unit13: Unit13
+};
 
 const isClient = typeof window !== "undefined";
 const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
@@ -23,6 +48,38 @@ const updateIsMobile = () => {
   if (typeof window === "undefined") return;
   isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
 };
+
+// 定义默认 Unit 顺序
+const defaultOrder = computed(() => {
+  if (!isMobile.value) {
+    return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'unit12', 'unit13'];
+  }
+  return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'm_unit12', 'unit13'];
+});
+
+// 动态渲染列表
+const renderList = computed(() => {
+  console.log(props.pageConfig)
+  // 优先使用 CMS 的 moduleList，如果没有则使用本地配置的 modules
+  const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
+
+  if (moduleList) {
+    return defaultOrder.value
+      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
+      .map(key => ({
+        key,
+        component: componentMap[key],
+        data: moduleList[key].data
+      }));
+  }
+
+  // 降级：无数据时使用默认渲染
+  return defaultOrder.value.map(key => ({
+    key,
+    component: componentMap[key],
+    data: null
+  }));
+});
 
 onMounted(() => {
   updateIsMobile();
@@ -37,21 +94,26 @@ onUnmounted(() => {
 <template>
   <div class="overflow-hidden">
     <Header />
-    <Unit1 />
-    <div class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
-      <Unit2 />
-      <Unit4 />
-    </div>
-    <div class="bg-black">
-      <Unit5 />
-      <Unit6 />
-      <Unit8 />
-      <Unit9 />
-      <Unit10 />
-    </div>
-    <Unit11 />
-    <Unit12 v-if="!isMobile" />
-    <m_Unit12 v-else />
+
+    <!-- 动态渲染 Unit -->
+    <template v-for="item in renderList" :key="item.key">
+      <!-- unit1 独立渲染 -->
+      <component v-if="item.key === 'unit1'" :is="item.component" :data="item.data" />
+
+      <!-- unit2,4 需要 bg-[#F8F9FD] 容器 -->
+      <div v-else-if="['unit2', 'unit4'].includes(item.key)" class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- unit5,6,8,9,10 需要 bg-black 容器 -->
+      <div v-else-if="['unit5', 'unit6', 'unit8', 'unit9', 'unit10'].includes(item.key)" class="bg-black">
+        <component :is="item.component" :data="item.data" />
+      </div>
+
+      <!-- 其他 Unit 正常渲染 -->
+      <component v-else :is="item.component" :data="item.data" />
+    </template>
+
     <Splide4 />
     <Footer />
   </div>

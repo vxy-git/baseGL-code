@@ -1,8 +1,22 @@
 <script setup>
 import { product4Unit8Data  } from '@/data/product4/product4-unit8.js'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit8Data, ...props.data };
+  }
+  return product4Unit8Data;
+});
 
 const unitRef = ref(null)
 const innerRef = ref(null)
@@ -107,7 +121,7 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">{{ product4Unit8Data.content.title }}</div>
+              <div class="title">{{ unitData.content.title }}</div>
             </div>
           </div>
         </div>
@@ -117,14 +131,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">{{ product4Unit8Data.features.tasteSwitcher.label }}</div>
-                  <div class="title1">{{ product4Unit8Data.features.tasteSwitcher.title }}</div>
+                  <div class="btn mt-[3px]">{{ unitData.features.tasteSwitcher.label }}</div>
+                  <div class="title1">{{ unitData.features.tasteSwitcher.title }}</div>
                   <div class="title2">
-                    {{ product4Unit8Data.features.tasteSwitcher.description }}
+                    {{ unitData.features.tasteSwitcher.description }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="product4Unit8Data.images.tasteSwitcher" />
+                  <MediaAsset type="image" :src="unitData.images.tasteSwitcher" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">
@@ -141,14 +155,14 @@ onBeforeUnmount(() => {
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
                 <div>
-                  <div class="btn mt-[3px]">{{ product4Unit8Data.features.hitABlinker.label }}</div>
-                  <div class="title1">{{ product4Unit8Data.features.hitABlinker.title }}</div>
+                  <div class="btn mt-[3px]">{{ unitData.features.hitABlinker.label }}</div>
+                  <div class="title1">{{ unitData.features.hitABlinker.title }}</div>
                   <div class="title2">
-                    {{ product4Unit8Data.features.hitABlinker.description }}
+                    {{ unitData.features.hitABlinker.description }}
                   </div>
                 </div>
                 <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
-                  <MediaAsset type="image" :src="product4Unit8Data.images.hitABlinker" />
+                  <MediaAsset type="image" :src="unitData.images.hitABlinker" />
                 </div>
               </div>
               <!-- <div class="title3 mt-[70px]">

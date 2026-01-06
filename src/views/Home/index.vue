@@ -46,7 +46,7 @@ const componentMap = {
 const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6']
 
 const renderList = computed(() => {
-  const moduleList = props.pageConfig?.moduleList
+  const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
   
   // 如果有 CMS 配置，基于配置生成
   if (moduleList) {

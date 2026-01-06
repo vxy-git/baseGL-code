@@ -1,26 +1,41 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit9Data  } from '@/data/product4/product4-unit9.js'
+import { computed } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit9Data, ...props.data };
+  }
+  return product4Unit9Data;
+});
 </script>
 
 <template>
     <div class="c_padding c_1230">
       <div class="mx-auto flex relative justify-center w-full">
         <MediaAsset
-          :src="product4Unit9Data.icons.icon38"
+          :src="unitData.icons.icon38"
           type="image"
           class="absolute left-0 size-[34px] -top-[4px] animate-pulse"
           alt=""
           :lazy="false"
         />
         <MediaAsset
-          :src="product4Unit9Data.icons.icon38"
+          :src="unitData.icons.icon38"
           type="image"
           class="absolute left-[35px] size-[22px] -top-[22px] animate-pulse"
           alt=""
           :lazy="false"
         />
-        <div class="title text-nowrap whitespace-break-spaces">{{ product4Unit9Data.content.title }}</div>
+        <div class="title text-nowrap whitespace-break-spaces">{{ unitData.content.title }}</div>
       </div>
     </div>
 </template>

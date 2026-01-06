@@ -1,6 +1,21 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit4Data  } from '@/data/product2/product2-unit4'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit4Data, ...props.data };
+  }
+  return product2Unit4Data;
+});
 </script>
 
 <template>
@@ -8,19 +23,19 @@ import { product2Unit4Data  } from '@/data/product2/product2-unit4'
     <div class="c_1230 c_padding m_flex_col mt-[42px] mx-auto flex gap-[32px]">
       <div class="w-[622.074px] pt-[145px] c_padding">
         <div class="title1 text-left">
-          {{ product2Unit4Data.rtdSection.labelText }}
+          {{ unitData.rtdSection.labelText }}
         </div>
         <div class="title2 mt-[19px]  !text-left whitespace-break-spaces">
-          {{ product2Unit4Data.rtdSection.title }}
+          {{ unitData.rtdSection.title }}
         </div>
         <div class="title3 mt-[56px] !text-left whitespace-break-spaces">
-          {{ product2Unit4Data.rtdSection.description }}
+          {{ unitData.rtdSection.description }}
         </div>
       </div>
       <MediaAsset
         class="h-[553px] object-cover"
         type="video"
-        :src="product2Unit4Data.rtdSection.videos.topRight"
+        :src="unitData.rtdSection.videos.topRight"
         :autoplay="false"
         :muted="true"
         :controls="false"
@@ -34,7 +49,7 @@ import { product2Unit4Data  } from '@/data/product2/product2-unit4'
         <div class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product2Unit4Data.rtdSection.videos.bottomLeft"
+            :src="unitData.rtdSection.videos.bottomLeft"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -46,7 +61,7 @@ import { product2Unit4Data  } from '@/data/product2/product2-unit4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product2Unit4Data.rtdSection.videos.bottomRight"
+            :src="unitData.rtdSection.videos.bottomRight"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -59,19 +74,19 @@ import { product2Unit4Data  } from '@/data/product2/product2-unit4'
     </div>
 
     <div class="c_1230 c_padding mt-[145px]">
-      <div class="greenText">{{ product2Unit4Data.wiresSection.labelText }}</div>
+      <div class="greenText">{{ unitData.wiresSection.labelText }}</div>
       <div class="flex justify-between mt-[19px] gap-[20px] m_flex_col">
         <div class="title2">
-          {{ product2Unit4Data.wiresSection.title }}
+          {{ unitData.wiresSection.title }}
         </div>
-        <div class="label mt-[2px] whitespace-break-spaces" v-html="product2Unit4Data.wiresSection.description">
+        <div class="label mt-[2px] whitespace-break-spaces" v-html="unitData.wiresSection.description">
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product2Unit4Data.wiresSection.videos.left"
+            :src="unitData.wiresSection.videos.left"
             :autoplay="false"
             :muted="true"
             :controls="false"
@@ -83,7 +98,7 @@ import { product2Unit4Data  } from '@/data/product2/product2-unit4'
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
-            :src="product2Unit4Data.wiresSection.videos.right"
+            :src="unitData.wiresSection.videos.right"
             :autoplay="false"
             :muted="true"
             :controls="false"

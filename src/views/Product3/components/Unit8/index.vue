@@ -1,6 +1,31 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit8Data  } from '@/data/product3/product3-unit8'
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit8Data, ...props.data };
+  }
+  return product3Unit8Data;
+});
+
+const slidePrev = () => {
+  // TODO: 实现幻灯片切换逻辑
+}
+
+const slideNext = () => {
+  // TODO: 实现幻灯片切换逻辑
+}
 </script>
 
 <template>
@@ -8,14 +33,14 @@ import { product3Unit8Data  } from '@/data/product3/product3-unit8'
 
     <div class=" c_1300 mx-auto pt-[114px]">
       <div class="title2">
-        {{ product3Unit8Data.pageTitle }}
+        {{ unitData.pageTitle }}
       </div>
 
       <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="product3Unit8Data.icons.arrowLeft"
+          :src="unitData.icons.arrowLeft"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -23,7 +48,7 @@ import { product3Unit8Data  } from '@/data/product3/product3-unit8'
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="product3Unit8Data.icons.arrowRight"
+          :src="unitData.icons.arrowRight"
           alt=""
           :lazy="false"
           @click="slideNext"
@@ -32,18 +57,18 @@ import { product3Unit8Data  } from '@/data/product3/product3-unit8'
           <MediaAsset
             class="w-[185px] h-[165px] mx-auto"
             type="image"
-            :src="product3Unit8Data.images.card"
+            :src="unitData.images.card"
             alt=""
             :lazy="false"
           />
           <div class="cardTitle pl-[20px] mt-[46px]">
-            {{ product3Unit8Data.specs.unicorn[0].title }}
+            {{ unitData.specs.unicorn[0].title }}
           </div>
           <div class="cardLabel mt-[2px] pl-[20px]">
-            {{ product3Unit8Data.specs.unicorn[0].label }}
+            {{ unitData.specs.unicorn[0].label }}
           </div>
           <div class="btn ml-[20px] mt-[17px]">
-            {{ product3Unit8Data.specs.unicorn[0].btnText }}
+            {{ unitData.specs.unicorn[0].btnText }}
           </div>
         </div>
       </div>

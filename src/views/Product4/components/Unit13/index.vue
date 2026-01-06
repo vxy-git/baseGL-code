@@ -1,6 +1,35 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit13Data  } from '@/data/product4/product4-unit13.js'
+import { computed, ref } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit13Data, ...props.data };
+  }
+  return product4Unit13Data;
+});
+
+const cardBoxRef = ref(null);
+
+const slidePrev = () => {
+  if (cardBoxRef.value) {
+    cardBoxRef.value.scrollBy({ left: -332, behavior: 'smooth' });
+  }
+};
+
+const slideNext = () => {
+  if (cardBoxRef.value) {
+    cardBoxRef.value.scrollBy({ left: 332, behavior: 'smooth' });
+  }
+};
 </script>
 
 <template>
@@ -8,14 +37,14 @@ import { product4Unit13Data  } from '@/data/product4/product4-unit13.js'
 
     <div class=" c_1300 mx-auto pt-[114px] c_padding">
       <div class="title2">
-        {{ product4Unit13Data.content.title }}
+        {{ unitData.content.title }}
       </div>
 
-      <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
+      <div class="relative mt-[45px]">
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="product4Unit13Data.icons.arrowLeft"
+          :src="unitData.icons.arrowLeft"
           alt=""
           :lazy="false"
           @click="slidePrev"
@@ -23,27 +52,29 @@ import { product4Unit13Data  } from '@/data/product4/product4-unit13.js'
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
           type="image"
-          :src="product4Unit13Data.icons.arrowRight"
+          :src="unitData.icons.arrowRight"
           alt=""
           :lazy="false"
           @click="slideNext"
         />
-        <div class="card pt-[63px]" v-for="item in 4">
-          <MediaAsset
-            class="w-[185px] h-[165px] mx-auto"
-            type="image"
-            :src="product4Unit13Data.icons.card"
-            alt=""
-            :lazy="false"
-          />
-          <div class="cardTitle pl-[20px] mt-[46px]">
-            {{ product4Unit13Data.cardData.title }}
-          </div>
-          <div class="cardLabel pl-[20px]">
-            {{ product4Unit13Data.cardData.label }}
-          </div>
-          <div class="btn ml-[20px] mt-[17px]">
-            {{ product4Unit13Data.cardData.buttonText }}
+        <div class="flex cardBox gap-x-[27px]" ref="cardBoxRef">
+          <div class="card pt-[63px]" v-for="item in 4">
+            <MediaAsset
+              class="w-[185px] h-[165px] mx-auto"
+              type="image"
+              :src="unitData.icons.card"
+              alt=""
+              :lazy="false"
+            />
+            <div class="cardTitle pl-[20px] mt-[46px]">
+              {{ unitData.cardData.title }}
+            </div>
+            <div class="cardLabel pl-[20px]">
+              {{ unitData.cardData.label }}
+            </div>
+            <div class="btn ml-[20px] mt-[17px]">
+              {{ unitData.cardData.buttonText }}
+            </div>
           </div>
         </div>
       </div>
@@ -54,6 +85,11 @@ import { product4Unit13Data  } from '@/data/product4/product4-unit13.js'
 
 <style scoped lang="scss">
 .cardBox{
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .card{
     width: 305px;
     height: 440px;

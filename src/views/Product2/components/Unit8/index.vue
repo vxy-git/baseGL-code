@@ -1,11 +1,25 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit8Data  } from '@/data/product2/product2-unit8'
 
 gsap.registerPlugin(ScrollTrigger);
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit8Data, ...props.data };
+  }
+  return product2Unit8Data;
+});
 
 const moduleRef = ref(null);
 const stageRef = ref(null);
@@ -58,10 +72,10 @@ onBeforeUnmount(() => {
 <template>
   <div ref="moduleRef" class="pt-[153px] pb-[45px]">
     <div class="title c_padding capitalize">
-      {{ product2Unit8Data.labelText }}
+      {{ unitData.labelText }}
     </div>
     <div class="title1 c_padding">
-      {{ product2Unit8Data.mainTitle }}
+      {{ unitData.mainTitle }}
     </div>
     <div class="mt-[54px] overflow-hidden">
       <div ref="stageRef" class="unit-stage">
@@ -70,7 +84,7 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden flex justify-end">
               <div ref="imgBox1Ref" class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
-                <div v-for="(img, index) in [...product2Unit8Data.designImages.top, ...product2Unit8Data.designImages.top]" :key="`top-${index}`" class="h-full w-[480px]" :class="{ 'rounded-[20px]': index % 2 === 1 }">
+                <div v-for="(img, index) in [...unitData.designImages.top, ...unitData.designImages.top]" :key="`top-${index}`" class="h-full w-[480px]" :class="{ 'rounded-[20px]': index % 2 === 1 }">
                   <MediaAsset
                     :src="img"
                     type="image"
@@ -87,7 +101,7 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden">
               <div ref="imgBox2Ref" class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <div v-for="(img, index) in [...product2Unit8Data.designImages.bottom, ...product2Unit8Data.designImages.bottom]" :key="`bottom-${index}`" class="h-full w-[480px] rounded-[20px]">
+                <div v-for="(img, index) in [...unitData.designImages.bottom, ...unitData.designImages.bottom]" :key="`bottom-${index}`" class="h-full w-[480px] rounded-[20px]">
                   <MediaAsset
                     :src="img"
                     type="image"

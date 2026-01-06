@@ -1,8 +1,26 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit3Data } from '@/data/product1/product1-unit3'
-const iconFlavor = product1Unit3Data.icons.flavor
-const iconDevice = product1Unit3Data.icons.device
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product1Unit3Data, ...props.data };
+  }
+  return product1Unit3Data;
+});
+
+const iconFlavor = computed(() => unitData.value.icons.flavor)
+const iconDevice = computed(() => unitData.value.icons.device)
 const m1 = '/assets/product1/unit3/m1.jpg'
 const m2 = '/assets/product1/unit3/m2.jpg'
 const m3 = '/assets/product1/unit3/m3.jpg'
@@ -13,35 +31,35 @@ const m3 = '/assets/product1/unit3/m3.jpg'
     <div class="size-full flex items-start justify-center">
       <div class="text-layer">
         <div class="text-block c_padding">
-          <div class="title whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb1.title }}</div>
+          <div class="title whitespace-break-spaces">{{ unitData.textBlocks.tb1.title }}</div>
           <MediaAsset :src="m1" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
         <div class="text-block c_padding">
-          <div class="smallTitle">{{ product1Unit3Data.textBlocks.tb2.smallTitle }}</div>
-          <div class="wTitle">{{ product1Unit3Data.textBlocks.tb2.wTitle }}</div>
-          <div class="text">{{ product1Unit3Data.textBlocks.tb2.text }}
+          <div class="smallTitle">{{ unitData.textBlocks.tb2.smallTitle }}</div>
+          <div class="wTitle">{{ unitData.textBlocks.tb2.wTitle }}</div>
+          <div class="text">{{ unitData.textBlocks.tb2.text }}
           </div>
           <MediaAsset :src="m2" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
         <div class="text-block c_padding">
-          <div class="smallTitle">{{ product1Unit3Data.textBlocks.tb3.smallTitle }}</div>
-          <div class="wTitle whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb3.wTitle }}</div>
-          <div class="text">{{ product1Unit3Data.textBlocks.tb3.text }}
+          <div class="smallTitle">{{ unitData.textBlocks.tb3.smallTitle }}</div>
+          <div class="wTitle whitespace-break-spaces">{{ unitData.textBlocks.tb3.wTitle }}</div>
+          <div class="text">{{ unitData.textBlocks.tb3.text }}
           </div>
           <MediaAsset :src="m3" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
         <div class="text-block c_padding">
           <div class="smallTitle">
-            {{ product1Unit3Data.textBlocks.tb4.smallTitle }}
+            {{ unitData.textBlocks.tb4.smallTitle }}
           </div>
           <div class="wTitle whitespace-break-spaces">
-            {{ product1Unit3Data.textBlocks.tb4.wTitle }}
+            {{ unitData.textBlocks.tb4.wTitle }}
           </div>
           <div class="text !mt-[28px]">
-            {{ product1Unit3Data.textBlocks.tb4.text }}
+            {{ unitData.textBlocks.tb4.text }}
           </div>
           <div class="flex justify-center gap-x-[150px] mt-[68px]">
-            <div class="flex flex-col items-center justify-center " v-for="stat in product1Unit3Data.textBlocks.tb4.stats" :key="stat.label">
+            <div class="flex flex-col items-center justify-center " v-for="stat in unitData.textBlocks.tb4.stats" :key="stat.label">
               <div class="text1 h-[40px]">
                 {{ stat.value }}
               </div>
@@ -50,7 +68,7 @@ const m3 = '/assets/product1/unit3/m3.jpg'
               </div>
             </div>
           </div>
-          <MediaAsset :src="iconDevice" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+          <MediaAsset :src="iconDevice.value" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
       </div>
     </div>

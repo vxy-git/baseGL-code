@@ -1,6 +1,21 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue';
 import { product4Unit1Data  } from '@/data/product4/product4-unit1.js';
+import { computed } from 'vue';
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product4Unit1Data, ...props.data };
+  }
+  return product4Unit1Data;
+});
 
 </script>
 
@@ -9,7 +24,7 @@ import { product4Unit1Data  } from '@/data/product4/product4-unit1.js';
     <MediaAsset
       class="w-full h-full object-cover"
       type="video"
-      :src="product4Unit1Data.banner"
+      :src="unitData.banner"
       :controls="false"
       :autoplay="false"
       :muted="true"

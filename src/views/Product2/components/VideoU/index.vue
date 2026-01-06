@@ -1,7 +1,22 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 const videoSrc = '/assets/product2/the.mp4'
 const arrowIcon = '/assets/product2/arrow.svg'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return props.data;
+  }
+  return {};
+});
 </script>
 
 <template>

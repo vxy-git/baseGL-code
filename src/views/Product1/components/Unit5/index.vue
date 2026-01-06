@@ -6,16 +6,32 @@ import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';
 
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product1Unit5Data, ...props.data };
+  }
+  return product1Unit5Data;
+});
+
 const tabsCurrent = ref(0)
-const tabsList = product1Unit5Data.tabsList
+const tabsList = computed(() => unitData.tabsList)
 
 // 根据 Tab 显示的文案
-const labelContents = product1Unit5Data.descriptions
+const labelContents = computed(() => unitData.descriptions)
 
-const currentLabel = computed(() => labelContents[tabsCurrent.value] || "")
+const currentLabel = computed(() => labelContents.value[tabsCurrent.value] || "")
 
 // 媒体资源列表，支持图片和视频混合
-const mediaList = product1Unit5Data.mediaList
+const mediaList = computed(() => unitData.mediaList)
 
 const containerRef = ref(null)  // 容器引用，用于可见性检测
 const isVisible = ref(false)    // 是否在视口中可见
@@ -65,7 +81,7 @@ const splideOptions = {
 
 // 初始化进度值
 const initProgress = () => {
-  progressValues.value = mediaList.map(() => 0)
+  progressValues.value = mediaList.value.map(() => 0)
 }
 
 // 设置媒体元素引用
@@ -96,7 +112,7 @@ const clearAllTimers = () => {
 // 暂停所有视频
 const pauseAllVideos = () => {
   mediaRefs.value.forEach((el, index) => {
-    if (mediaList[index].type === 'video' && el) {
+    if (mediaList.value[index].type === 'video' && el) {
       const video = el.querySelector('video')
       if (video) {
         video.pause()
@@ -132,9 +148,9 @@ const playCurrentSlide = (index) => {
   pauseAllVideos()
 
   // 立即重置所有进度条为 0，确保从 0 开始
-  progressValues.value = mediaList.map(() => 0)
+  progressValues.value = mediaList.value.map(() => 0)
 
-  const media = mediaList[index]
+  const media = mediaList.value[index]
 
   // 延迟 500ms 等待遮罩过渡完成后再开始播放进度
   const delayTimerId = setTimeout(() => {
@@ -202,7 +218,7 @@ const playCurrentSlide = (index) => {
 const goToNext = () => {
   if (splideRef.value) {
     const currentIndex = tabsCurrent.value
-    const totalSlides = mediaList.length
+    const totalSlides = mediaList.value.length
 
     if (currentIndex === totalSlides - 1) {
       // 最后一个 Slide：跳转到第一个，实现循环
@@ -287,7 +303,7 @@ onUnmounted(() => {
     <div class="relative">
       <div class="c_1230 c_padding">
         <div class="title">
-          {{ product1Unit5Data.mainTitle }}
+          {{ unitData.mainTitle }}
         </div>
         <div class="mt-[58px] relative">
           <div class="w-full flex justify-center">
@@ -314,7 +330,7 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList.value" v-model="tabsCurrent"></Tabs>
       <div class="c_1230 c_padding">
         <transition name="fade-up" mode="out-in">
           <div :key="tabsCurrent" class="label max-w-[1000px] w-full mx-auto mt-[28px]">

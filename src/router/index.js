@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { fetchAllPages } from '@/api/cms'
 import { getCmsNavPublicList } from '@/api/cmsNav'
-import { useCmsNavStore } from '@/stores/cmsNav'
 
 /**
  * pageType 到组件的映射表
@@ -11,21 +9,22 @@ const pageTypeComponentMap = {
   'home': () => import('@/views/Home/index.vue'),
   'technology': () => import('@/views/Technology/index.vue'),
   'contactus': () => import('@/views/ContactUs/index.vue'),
+  'universe_series': () => import('@/views/Product2/index.vue'),
+  'unicorn_series': () => import('@/views/Product3/index.vue'),
+  'unit_pro': () => import('@/views/Product1/index.vue'),
+  'dukes': () => import('@/views/Product4/index.vue'),
   'list': () => import('@/views/ProductList/index.vue'),
-  'product': () => import('@/views/Product1/index.vue'), // 通用产品页
+  'page': () => import('@/views/Page/index.vue'),
 }
 
 export let initialCmsNavData = null
 
 /**
  * 动态生成路由配置
- * 优先使用本地配置，如果本地配置不足则从 CMS API 补充
+ * 仅从 CMS API 获取数据
  */
 async function generateRoutes() {
-  // 1. 获取本地配置的路由
-  const { pages: localPages } = await fetchAllPages()
-
-  // 2. 从 CMS API 获取所有导航数据
+  // 1. 从 CMS API 获取所有导航数据
   let cmsPages = []
   try {
     const result = await getCmsNavPublicList({
@@ -45,7 +44,6 @@ async function generateRoutes() {
           route: nav.navUrl.startsWith('/') ? nav.navUrl : `/${nav.navUrl}`,
           routeName: nav.navName, // 使用 navName 作为 routeName
           pageType: nav.pageType || 'home',
-          template: nav.pageType === 'home' ? 'HomePage' : undefined,
           navLabel: nav.navName,
           showInHeader: nav.headerShow === true,
           showInFooter: nav.footerShow === true,
@@ -56,62 +54,25 @@ async function generateRoutes() {
         }))
     }
   } catch (error) {
-    console.error('❌ 获取 CMS 路由数据失败，仅使用本地配置:', error)
+    console.error('❌ 获取 CMS 路由数据失败:', error)
   }
 
-  // 3. 合并本地配置和 CMS 数据
-  // 本地配置作为基础，CMS 数据作为补充
-  const localRoutesMap = new Map()
-  localPages.forEach(page => {
-    localRoutesMap.set(page.route, page)
-  })
-
-  // 添加 CMS 路由（如果本地没有该路由）
-  cmsPages.forEach(cmsPage => {
-    if (!localRoutesMap.has(cmsPage.route)) {
-      localRoutesMap.set(cmsPage.route, cmsPage)
+  // 2. 生成路由配置
+  return cmsPages.map(page => {
+    // 组件选择优先级：pageType
+    const component = pageTypeComponentMap[page.pageType] ||
+                      pageTypeComponentMap['page']
+    
+    if (!component) {
+      console.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
     }
-  })
-
-  const allPages = Array.from(localRoutesMap.values())
-
-  // 4. 生成路由配置
-  return allPages.map(page => {
-    // 本地组件映射表（用于向后兼容）
-    const templateComponentMap = {
-      'HomePage': () => import('@/views/Home/index.vue'),
-      'ProductPage': () => import('@/views/Product1/index.vue'),
-      'ProductListPage': () => import('@/views/ProductList/index.vue'),
-      'TechnologyPage': () => import('@/views/Technology/index.vue'),
-      'ContactPage': () => import('@/views/ContactUs/index.vue')
-    }
-
-    // routeName 映射表（用于向后兼容）
-    const componentMap = {
-      'home': () => import('@/views/Home/index.vue'),
-      'product1': () => import('@/views/Product1/index.vue'),
-      'product2': () => import('@/views/Product2/index.vue'),
-      'product3': () => import('@/views/Product3/index.vue'),
-      'product4': () => import('@/views/Product4/index.vue'),
-      'productlist': () => import('@/views/ProductList/index.vue'),
-      'technology': () => import('@/views/Technology/index.vue'),
-      'contactus': () => import('@/views/ContactUs/index.vue')
-    }
-
-    // 组件选择优先级：routeName → template → pageType
-    const component = componentMap[page.routeName] ||
-                      templateComponentMap[page.template] ||
-                      pageTypeComponentMap[page.pageType] ||
-                      componentMap['home'] // 默认使用 Home 组件
 
     return {
       path: page.route,
       name: page.routeName || page.route.replace('/', ''),
       component,
       meta: {
-        ...page.meta,
         pageId: page.routeName,
-        template: page.template,
         pageType: page.pageType,
         showInHeader: page.showInHeader,
         showInFooter: page.showInFooter,

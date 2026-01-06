@@ -1,6 +1,21 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2GsapUData, ...props.data };
+  }
+  return product2GsapUData;
+});
 </script>
 
 <template>
@@ -10,12 +25,12 @@ import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
         <div class="text-layer">
           <div class="text-block">
             <div class="c_1230 c_padding">
-              <div class="title1 translate-y-[1px] text-center">{{ product2GsapUData.content.labelText }}</div>
-              <div class="title2 mt-[19px] whitespace-break-spaces">{{ product2GsapUData.content.mainTitle }}</div>
-              <div class="title3 mt-[19px]">{{ product2GsapUData.content.description }}</div>
+              <div class="title1 translate-y-[1px] text-center">{{ unitData.content.labelText }}</div>
+              <div class="title2 mt-[19px] whitespace-break-spaces">{{ unitData.content.mainTitle }}</div>
+              <div class="title3 mt-[19px]">{{ unitData.content.description }}</div>
             </div>
           </div>
-          <MediaAsset :src="product2GsapUData.media.image" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+          <MediaAsset :src="unitData.media.image" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
       </div>
     </section>

@@ -1,6 +1,23 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue';
 import { product1Unit1Data } from '@/data/product1/product1-unit1'
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product1Unit1Data, ...props.data };
+  }
+  return product1Unit1Data;
+});
 
 </script>
 
@@ -9,7 +26,7 @@ import { product1Unit1Data } from '@/data/product1/product1-unit1'
     <MediaAsset
       class="w-full h-full object-cover"
       type="video"
-      :src="product1Unit1Data.videoSrc"
+      :src="unitData.videoSrc"
       :controls="false"
       :autoplay="false"
       :muted="true"
@@ -19,15 +36,15 @@ import { product1Unit1Data } from '@/data/product1/product1-unit1'
     />
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
-        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ product1Unit1Data.content.scrollText }}</div>
+        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ unitData.content.scrollText }}</div>
         <div class="title">
-          {{ product1Unit1Data.content.title }}
+          {{ unitData.content.title }}
         </div>
         <div class="subTitle translate-y-[-2px]">
-          {{ product1Unit1Data.content.subtitle }}
+          {{ unitData.content.subtitle }}
         </div>
         <div class="btn cursor-pointer">
-          {{ product1Unit1Data.content.buttonText }}
+          {{ unitData.content.buttonText }}
         </div>
       </div>
     </div>

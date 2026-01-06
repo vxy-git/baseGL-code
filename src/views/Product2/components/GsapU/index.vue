@@ -1,10 +1,25 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
+import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2GsapUData, ...props.data }
+  }
+  return product2GsapUData
+})
 
 const seqProgress = ref(0)
 const frames = 26
@@ -65,11 +80,9 @@ onUnmounted(() => {
         <div class="text-layer">
           <div class="text-block">
             <div class="c_1230 c_padding">
-              <div ref="title1" class="title1 translate-y-[1px] text-center">Tiny but Mighty</div>
-              <div ref="title2" class="title2 mt-[19px]">A plam-sized<br />Rosin powerhouse</div>
-              <div ref="title3" class="title3 mt-[19px]">UNIVERSE Series is the ultimate portable solution for rosin
-                enthusiasts. The little cutie disappears in your hand and fits flat in your pocket, making it the
-                perfect companion for those on the go.</div>
+              <div ref="title1" class="title1 translate-y-[1px] text-center">{{ unitData.content.labelText }}</div>
+              <div ref="title2" class="title2 mt-[19px] whitespace-break-spaces">{{ unitData.content.mainTitle }}</div>
+              <div ref="title3" class="title3 mt-[19px]">{{ unitData.content.description }}</div>
             </div>
           </div>
         </div>

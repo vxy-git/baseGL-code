@@ -29,7 +29,7 @@ export const product4Unit4Data = {
   /**
    * 遮罩图片路径
    */
-  dualMaskImg: import.meta.env.VITE_BASE_URL + 'assets/product4/unit3/logo1.svg',
+  dualMaskImg: 'assets/product4/unit3/logo1.svg',
 
   /**
    * 文本内容

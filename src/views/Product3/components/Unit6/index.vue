@@ -3,7 +3,23 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit6Data  } from '@/data/product3/product3-unit6'
 
-const list = product3Unit6Data.screenImages
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit6Data, ...props.data };
+  }
+  return product3Unit6Data;
+});
+
+const list = computed(() => unitData.value.screenImages)
 
 const listBox = ref(null)
 const currentIndex = ref(0)
@@ -12,10 +28,10 @@ const noTransition = ref(false)
 const autoTimer = ref(null)
 const resetTimer = ref(null)
 
-const intervalMs = product3Unit6Data.carouselConfig.intervalMs
-const transitionMs = product3Unit6Data.carouselConfig.transitionMs
+const intervalMs = computed(() => unitData.value.carouselConfig.intervalMs)
+const transitionMs = computed(() => unitData.value.carouselConfig.transitionMs)
 
-const displayList = computed(() => [...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list,...list])
+const displayList = computed(() => [...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value])
 
 const trackStyle = computed(() => ({
   transform: `translateX(-${currentIndex.value * stepWidth.value}px)`
@@ -45,7 +61,7 @@ const goNext = () => {
   if (!displayList.value.length) return
   currentIndex.value += 1
 
-  if (currentIndex.value === list.length) {
+  if (currentIndex.value === list.value.length) {
     if (resetTimer.value) {
       window.clearTimeout(resetTimer.value)
     }
@@ -93,20 +109,20 @@ onBeforeUnmount(() => {
           <MediaAsset
             class="w-full absolute top-0 left-0"
             type="image"
-            :src="product3Unit6Data.screenBg"
+            :src="unitData.screenBg"
             alt=""
             :lazy="false"
           />
         </div>
         <div class="mt-[126px] textBox">
           <div class="title">
-            {{ product3Unit6Data.content.smallTitle }}
+            {{ unitData.content.smallTitle }}
           </div>
           <div class="title2">
-            {{ product3Unit6Data.content.mainTitle }}
+            {{ unitData.content.mainTitle }}
           </div>
           <div class="w-[500px] title3">
-            {{ product3Unit6Data.content.description }}
+            {{ unitData.content.description }}
           </div>
         </div>
       </div>

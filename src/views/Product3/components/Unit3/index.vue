@@ -1,10 +1,26 @@
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit3Data  } from '@/data/product3/product3-unit3'
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit3Data, ...props.data };
+  }
+  return product3Unit3Data;
+});
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,7 +38,7 @@ const tb3 = ref(null)
 
 // tb1
 const tb1Title = ref(null)
-const tb1Chars = product3Unit3Data.textBlocks.tb1TitleText.split('')
+const tb1Chars = computed(() => unitData.value.textBlocks.tb1TitleText.split(''))
 const tb1MaskChars = ref([])
 const setTb1MaskCharRef = (el, index) => {
   if (el) {
@@ -30,7 +46,7 @@ const setTb1MaskCharRef = (el, index) => {
   }
 }
 const typingStagger = 0.03
-const typingTotal = tb1Chars.length * typingStagger
+const typingTotal = computed(() => tb1Chars.value.length * typingStagger)
 const tb1Image = ref(null)
 
 // tb2
@@ -68,7 +84,7 @@ onMounted(async () => {
 
   await nextTick()
   const maskChars = tb1MaskChars.value.filter(Boolean)
-  if (!maskChars.length) {
+  if (!maskChars.length || !tb1Chars.value.length) {
     return
   }
 
@@ -90,7 +106,7 @@ onMounted(async () => {
     gsap.set(maskChars, { opacity: 0 })
   })
     .addLabel('printStart')
-    .to(seqProgress1, { value: 1, duration: typingTotal, ease: 'none' }, 'printStart')
+    .to(seqProgress1, { value: 1, duration: typingTotal.value, ease: 'none' }, 'printStart')
     .fromTo(
       maskChars,
       { opacity: 0 },
@@ -148,14 +164,14 @@ onUnmounted(() => {
     <!-- 模块 1：帧动画 + tb1 -->
     <section ref="pinSection1" class="sequence-wrap relative">
       <div ref="frameContainer1" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="product3Unit3Data.frameSequences.sequence1.frames" :tarURL="product3Unit3Data.frameSequences.sequence1.tarURL" :imageURL="product3Unit3Data.frameSequences.sequence1.imageURL" :progress="seqProgress1"
+        <FrameSequence :frames="unitData.frameSequences.sequence1.frames" :tarURL="unitData.frameSequences.sequence1.tarURL" :imageURL="unitData.frameSequences.sequence1.imageURL" :progress="seqProgress1"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
       <div class="size-full flex items-start justify-center c_padding">
         <div class="text-layer">
           <div ref="tb1" class="text-block">
             <div ref="tb1Title" class="title printer-title">
-              <span class="title-base">{{ product3Unit3Data.textBlocks.tb1TitleText }}</span>
+              <span class="title-base">{{ unitData.textBlocks.tb1TitleText }}</span>
               <span class="title-mask" aria-hidden="true">
                 <span
                   v-for="(ch, index) in tb1Chars"
@@ -175,16 +191,16 @@ onUnmounted(() => {
     <!-- 模块 2：tb2 + tb3 -->
     <section ref="pinSection2" class="sequence-wrap relative">
       <div ref="frameContainer2" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="product3Unit3Data.frameSequences.sequence2.frames" :tarURL="product3Unit3Data.frameSequences.sequence2.tarURL" :imageURL="product3Unit3Data.frameSequences.sequence2.imageURL" :progress="seqProgress2"
+        <FrameSequence :frames="unitData.frameSequences.sequence2.frames" :tarURL="unitData.frameSequences.sequence2.tarURL" :imageURL="unitData.frameSequences.sequence2.imageURL" :progress="seqProgress2"
           :objectFit="isMobile ? 'contain' : 'cover'" />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="title1">{{ product3Unit3Data.textBlocks.tb2Content.smallTitle }}</div>
-            <div ref="tb2WTitle" class="title2 mt-[19.55px]">{{ product3Unit3Data.textBlocks.tb2Content.title }}</div>
+            <div ref="tb2SmallTitle" class="title1">{{ unitData.textBlocks.tb2Content.smallTitle }}</div>
+            <div ref="tb2WTitle" class="title2 mt-[19.55px]">{{ unitData.textBlocks.tb2Content.title }}</div>
             <div ref="tb2Text" class="title3 max-w-[1200px] mt-[19.45px]">
-              {{ product3Unit3Data.textBlocks.tb2Content.description }}
+              {{ unitData.textBlocks.tb2Content.description }}
             </div>
           </div>
 
@@ -192,9 +208,9 @@ onUnmounted(() => {
             <div ref="tb3Card" class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
               <div>
                 <div ref="tb3Figure" class="flex text">
-                  {{ product3Unit3Data.textBlocks.tb3Content.figure }}
+                  {{ unitData.textBlocks.tb3Content.figure }}
                   <MediaAsset
-                    :src="product3Unit3Data.arrowIcon"
+                    :src="unitData.arrowIcon"
                     type="image"
                     class="h-[39.805px]"
                     alt=""
@@ -202,20 +218,20 @@ onUnmounted(() => {
                   />
                 </div>
                 <div ref="tb3Label" class="text1">
-                  {{ product3Unit3Data.textBlocks.tb3Content.label }}
+                  {{ unitData.textBlocks.tb3Content.label }}
                 </div>
               </div>
               <div class="ml-[63.5px]">
                 <div>
                   <div ref="tb3Bar1" class="bar w-[480px] bg-[#CAA4FB] rounded-full"></div>
                   <div ref="tb3Bar1Text" class="text2 mt-[15px]">
-                    {{ product3Unit3Data.textBlocks.tb3Content.bar1Text }}
+                    {{ unitData.textBlocks.tb3Content.bar1Text }}
                   </div>
                 </div>
                 <div class="mt-[46px]">
                   <div ref="tb3Bar2" class="bar w-[319px] bg-[#D9D9D9] rounded-full"></div>
                   <div ref="tb3Bar2Text" class="text2 mt-[15px]">
-                    {{ product3Unit3Data.textBlocks.tb3Content.bar2Text }}
+                    {{ unitData.textBlocks.tb3Content.bar2Text }}
                   </div>
                 </div>
               </div>

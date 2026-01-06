@@ -1,6 +1,23 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit2Data  } from '@/data/product1/product1-unit2'
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product1Unit2Data, ...props.data };
+  }
+  return product1Unit2Data;
+});
 </script>
 
 <template>
@@ -9,7 +26,7 @@ import { product1Unit2Data  } from '@/data/product1/product1-unit2'
   <MediaAsset
     class="relative size-full mx-auto object-contain max-h-max"
     type="image"
-    :src="product1Unit2Data.image"
+    :src="unitData.image"
     alt=""
     :lazy="false"
   />

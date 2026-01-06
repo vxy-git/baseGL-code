@@ -1,8 +1,22 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { product2Unit6Data  } from '@/data/product2/product2-unit6'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit6Data, ...props.data };
+  }
+  return product2Unit6Data;
+});
 
 const unitRef = ref(null)
 const innerRef = ref(null)
@@ -110,12 +124,12 @@ onBeforeUnmount(() => {
                 <span class="mask mask_l"></span>
                 <span class="mask mask_r"></span>
               </div>
-              <div class="title">{{ product2Unit6Data.mainTitle }}</div>
+              <div class="title">{{ unitData.mainTitle }}</div>
             </div>
           </div>
         </div>
 
-        <div class="unit6-panel" v-for="(panel, index) in product2Unit6Data.panelsList" :key="index">
+        <div class="unit6-panel" v-for="(panel, index) in unitData.panelsList" :key="index">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
@@ -137,7 +151,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
               <div class="title3 mt-[70px]">
-                {{ product2Unit6Data.trackPrefix }}
+                {{ unitData.trackPrefix }}
                 <span class="mx-[10px]">|</span>
                 <span class="num inline-block">{{ panel.number }}</span>
               </div>

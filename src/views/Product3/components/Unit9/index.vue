@@ -1,25 +1,42 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit9Data } from '@/data/product3/product3-unit9'
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit9Data, ...props.data };
+  }
+  return product3Unit9Data;
+});
 </script>
 
 <template>
     <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
-        {{ product3Unit9Data.labels.unicorn }}
+        {{ unitData.labels.unicorn }}
       </div>
       <div class="title2 mt-[19px]">
-        {{ product3Unit9Data.content.mainTitle }}
+        {{ unitData.content.mainTitle }}
       </div>
       <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
         <MediaAsset
           type="image"
-          :src="product3Unit9Data.media.leftImage"
+          :src="unitData.media.leftImage"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
         <MediaAsset
           type="image"
-          :src="product3Unit9Data.media.rightImage"
+          :src="unitData.media.rightImage"
           class="w-auto max-w-full h-[440px] rounded-[20px] overflow-hidden"
         />
       </div>

@@ -1,22 +1,37 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit3Data  } from '@/data/product2/product2-unit3'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit3Data, ...props.data };
+  }
+  return product2Unit3Data;
+});
 </script>
 
 <template>
   <div class="mt-[158px] c_1230 c_padding">
     <div class="title1 text-center capitalize">
-      {{ product2Unit3Data.labelText }}
+      {{ unitData.labelText }}
     </div>
     <div class="title2 mt-[19px]">
-      {{ product2Unit3Data.mainTitle }}
+      {{ unitData.mainTitle }}
     </div>
     <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col">
       <div class="w-full h-[440px] bg-black rounded-[20px]">
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="product2Unit3Data.videos.left"
+          :src="unitData.videos.left"
           :autoplay="false"
           :muted="true"
           :loop="true"
@@ -28,7 +43,7 @@ import { product2Unit3Data  } from '@/data/product2/product2-unit3'
         <MediaAsset
           class="w-full h-full object-cover"
           type="video"
-          :src="product2Unit3Data.videos.right"
+          :src="unitData.videos.right"
           :autoplay="false"
           :muted="true"
           :loop="true"

@@ -1,29 +1,46 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit2Data  } from '@/data/product3/product3-unit2'
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit2Data, ...props.data };
+  }
+  return product3Unit2Data;
+});
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="product3Unit2Data.products.product1Image" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="unitData.products.product1Image" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1">
-          {{ product3Unit2Data.products.product1Name }}
+          {{ unitData.products.product1Name }}
         </div>
         <div class="title2 mt-[19.55px] whitespace-break-spaces">
-          {{ product3Unit2Data.products.product1Description }}
+          {{ unitData.products.product1Description }}
         </div>
       </div>
     </div>
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="product3Unit2Data.products.product2Image" alt="" :lazy="false" />
+      <MediaAsset class="w-full" type="image" :src="unitData.products.product2Image" alt="" :lazy="false" />
       <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
         <div class="title1 !text-black">
-          {{ product3Unit2Data.products.product2Name }}
+          {{ unitData.products.product2Name }}
         </div>
         <div class="title2 !text-white mt-[19px] whitespace-break-spaces">
-          {{ product3Unit2Data.products.product2Description }}
+          {{ unitData.products.product2Description }}
         </div>
       </div>
     </div>

@@ -1,58 +1,75 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit4Data  } from '@/data/product3/product3-unit4'
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit4Data, ...props.data };
+  }
+  return product3Unit4Data;
+});
 </script>
 
 <template>
   <div>
     <div class="unit4T">
       <div class="flex flex-col items-center mt-[48px] c_padding">
-        <div class="title1" v-html="product3Unit4Data.unit4T.title1"></div>
-        <div class="title2 mt-[19.55px] whitespace-break-spaces" v-html="product3Unit4Data.unit4T.title2">
+        <div class="title1" v-html="unitData.unit4T.title1"></div>
+        <div class="title2 mt-[19.55px] whitespace-break-spaces" v-html="unitData.unit4T.title2">
         </div>
         <div class="title3 max-w-[1200px] mt-[-2.5px]">
           <br />
-          {{ product3Unit4Data.unit4T.description }}
+          {{ unitData.unit4T.description }}
         </div>
         <div class="flex gap-x-[152px] mt-[70px]">
-          <div class="flex flex-col items-center" v-for="(stat, index) in product3Unit4Data.unit4T.stats" :key="index">
+          <div class="flex flex-col items-center" v-for="(stat, index) in unitData.unit4T.stats" :key="index">
             <div class="text4 flex h-[39.805px]">
               {{ stat.value }}
-              <MediaAsset v-if="index === 1" :src="product3Unit4Data.media.arrowIcon" type="image" class="h-[39.805px] -ml-[3px]" alt="" :lazy="false" />
+              <MediaAsset v-if="index === 1" :src="unitData.media.arrowIcon" type="image" class="h-[39.805px] -ml-[3px]" alt="" :lazy="false" />
             </div>
             <div class="text5">
               {{ stat.label }}
             </div>
           </div>
         </div>
-        <MediaAsset :src="product3Unit4Data.media.productImage" type="image" class="h-[600px] mt-[78px] object-contain m_mt_0" alt=""
+        <MediaAsset :src="unitData.media.productImage" type="image" class="h-[600px] mt-[78px] object-contain m_mt_0" alt=""
           :lazy="false" />
       </div>
       <div
         class="c_padding flex mx-auto max-w-[1400px] w-full mt-[214px] justify-between pb-[155px] m_flex_warp gap-[5%] m_mt_0">
-        <MediaAsset type="video" :src="product3Unit4Data.media.leftVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
+        <MediaAsset type="video" :src="unitData.media.leftVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
           :hover-play="false" :view-play="true"
           class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
         <div class="m_order w-[500px] min-w-[400px] flex-1 flex flex-col items-center pt-[147px] mb-[20px]">
-          <div class="title1">{{ product3Unit4Data.unit4T.builtInWiresTitle }}</div>
-          <div class="title2 mt-[19.55px]">{{ product3Unit4Data.unit4T.builtInWiresSubtitle }}</div>
+          <div class="title1">{{ unitData.unit4T.builtInWiresTitle }}</div>
+          <div class="title2 mt-[19.55px]">{{ unitData.unit4T.builtInWiresSubtitle }}</div>
           <div class="title3  mt-[44.45px]">
-            {{ product3Unit4Data.unit4T.builtInWiresDescription }}
+            {{ unitData.unit4T.builtInWiresDescription }}
           </div>
         </div>
-        <MediaAsset type="video" :src="product3Unit4Data.media.rightVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
+        <MediaAsset type="video" :src="unitData.media.rightVideo" :muted="true" :autoplay="false" :loop="true" :controls="false"
           :hover-play="false" :view-play="true"
           class="h-[740px] max-h-max flex-1 w-[360px] max-w-[47%] rounded-[20px] mb-[20px]" />
       </div>
     </div>
     <div class="unit4B h-[800px] relative">
-      <MediaAsset :src="product3Unit4Data.media.background" type="image" class="size-full absolute inset-0 object-cover" alt="" :lazy="false" />
+      <MediaAsset :src="unitData.media.background" type="image" class="size-full absolute inset-0 object-cover" alt="" :lazy="false" />
       <div class="c_1230 c_padding mx-auto pt-[248px] relative">
         <div class="title1  ml-[2px]">
-          {{ product3Unit4Data.unit4B.title }}
+          {{ unitData.unit4B.title }}
         </div>
         <div class="title2 mt-[19.55px] w-max ml-[2px]">
-          {{ product3Unit4Data.unit4B.subtitle }}
+          {{ unitData.unit4B.subtitle }}
         </div>
       </div>
     </div>

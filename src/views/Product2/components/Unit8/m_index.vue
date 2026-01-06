@@ -1,15 +1,30 @@
 <script setup>
+import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit8Data } from '@/data/product2/product2-unit8'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit8Data, ...props.data };
+  }
+  return product2Unit8Data;
+});
 </script>
 
 <template>
   <div class="pt-[153px] pb-[45px]">
     <div class="title c_padding capitalize">
-      {{ product2Unit8Data.labelText }}
+      {{ unitData.labelText }}
     </div>
     <div class="title1 c_padding">
-      {{ product2Unit8Data.mainTitle }}
+      {{ unitData.mainTitle }}
     </div>
     <div class="mt-[54px] overflow-hidden m_mt_0">
       <div class="unit-stage">
@@ -19,7 +34,7 @@ import { product2Unit8Data } from '@/data/product2/product2-unit8'
               <div class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
                 <template v-for="i in 2" :key="'top-'+i">
-                  <div v-for="(img, idx) in product2Unit8Data.designImages.top" :key="'top-'+i+'-'+idx" class="h-full w-[480px]" :class="{ 'rounded-[20px]': idx !== 0 }">
+                  <div v-for="(img, idx) in unitData.designImages.top" :key="'top-'+i+'-'+idx" class="h-full w-[480px]" :class="{ 'rounded-[20px]': idx !== 0 }">
                     <MediaAsset
                       :src="img"
                       type="image"
@@ -38,7 +53,7 @@ import { product2Unit8Data } from '@/data/product2/product2-unit8'
               <div class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
                 <template v-for="i in 2" :key="'bottom-'+i">
-                  <div v-for="(img, idx) in product2Unit8Data.designImages.bottom" :key="'bottom-'+i+'-'+idx" class="h-full w-[480px] rounded-[20px]">
+                  <div v-for="(img, idx) in unitData.designImages.bottom" :key="'bottom-'+i+'-'+idx" class="h-full w-[480px] rounded-[20px]">
                     <MediaAsset
                       :src="img"
                       type="image"

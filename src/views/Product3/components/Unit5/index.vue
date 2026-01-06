@@ -1,28 +1,45 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit5Data  } from '@/data/product3/product3-unit5'
+import { computed } from 'vue';
+
+// 接收 data prop
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+// 合并 CMS 数据和本地数据
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product3Unit5Data, ...props.data };
+  }
+  return product3Unit5Data;
+});
 </script>
 
 <template>
   <div class="unit5 pt-[250px] pb-[10px] c_1230 c_padding m_mt_0 m_pt_100">
     <div class="c_1230 c_padding">
-      <div class="title_tag">{{ product3Unit5Data.productTag }}</div>
+      <div class="title_tag">{{ unitData.productTag }}</div>
       <div class="title mt-[25px]">
-        {{ product3Unit5Data.content.mainTitle }}
+        {{ unitData.content.mainTitle }}
       </div>
       <div class="stitle text-center mt-[120px]">
-        {{ product3Unit5Data.content.subtitle }}
+        {{ unitData.content.subtitle }}
       </div>
       <div class="unit5__cards mx-auto mt-[60px] scrollbar-hide">
         <div class="unit5__row">
-          <div class="unit5__card" :class="{ 'unit5__card--wide': product3Unit5Data.featureCards[0].wide }">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': unitData.featureCards[0].wide }">
             <div class="tag">
-              {{ product3Unit5Data.featureCards[0].tag }}
+              {{ unitData.featureCards[0].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="product3Unit5Data.featureCards[0].video"
+              :src="unitData.featureCards[0].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -30,14 +47,14 @@ import { product3Unit5Data  } from '@/data/product3/product3-unit5'
               :hover-play="true"
             />
           </div>
-          <div class="unit5__card" :class="{ 'unit5__card--wide': product3Unit5Data.featureCards[1].wide }">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': unitData.featureCards[1].wide }">
             <div class="tag">
-              {{ product3Unit5Data.featureCards[1].tag }}
+              {{ unitData.featureCards[1].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="product3Unit5Data.featureCards[1].video"
+              :src="unitData.featureCards[1].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -47,14 +64,14 @@ import { product3Unit5Data  } from '@/data/product3/product3-unit5'
           </div>
         </div>
         <div class="unit5__row unit5__row--swap">
-          <div class="unit5__card" :class="{ 'unit5__card--wide': product3Unit5Data.featureCards[2].wide }">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': unitData.featureCards[2].wide }">
             <div class="tag">
-              {{ product3Unit5Data.featureCards[2].tag }}
+              {{ unitData.featureCards[2].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="product3Unit5Data.featureCards[2].video"
+              :src="unitData.featureCards[2].video"
               :autoplay="false"
               :muted="true"
               :loop="true"
@@ -62,14 +79,14 @@ import { product3Unit5Data  } from '@/data/product3/product3-unit5'
               :hover-play="true"
             />
           </div>
-          <div class="unit5__card" :class="{ 'unit5__card--wide': product3Unit5Data.featureCards[3].wide }">
+          <div class="unit5__card" :class="{ 'unit5__card--wide': unitData.featureCards[3].wide }">
             <div class="tag">
-              {{ product3Unit5Data.featureCards[3].tag }}
+              {{ unitData.featureCards[3].tag }}
             </div>
             <MediaAsset
               class="unit5__card-img"
               type="video"
-              :src="product3Unit5Data.featureCards[3].video"
+              :src="unitData.featureCards[3].video"
               :autoplay="false"
               :muted="true"
               :loop="true"

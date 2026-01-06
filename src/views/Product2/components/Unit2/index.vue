@@ -1,7 +1,21 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit2Data  } from '@/data/product2/product2-unit2'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+});
+
+const unitData = computed(() => {
+  if (props.data) {
+    return { ...product2Unit2Data, ...props.data };
+  }
+  return product2Unit2Data;
+});
 
 const marqueeItems = [...product2Unit2Data.marqueeWords]
 
@@ -37,7 +51,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="c_1230 c_padding pt-[120px]">
     <div class="title">
-      {{ product2Unit2Data.mainTitle }}
+      {{ unitData.mainTitle }}
       <span ref="marqueeEl" class="text-[#3ad3ff] smoothness-marquee" aria-label="Smoothness ticker">
         <span :key="marqueeKey" class="smoothness-track">
           <span v-for="(word, index) in marqueeItems" :key="index" class="smoothness-item">
@@ -47,7 +61,7 @@ onBeforeUnmount(() => {
       </span>
     </div>
     <MediaAsset
-      :src="product2Unit2Data.unitImage"
+      :src="unitData.unitImage"
       type="image"
       class="logo mx-auto block mt-[63px] h-[1152px] c_1230 w-full object-contain"
       alt=""
