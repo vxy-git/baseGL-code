@@ -2,6 +2,7 @@
  * Product2 (UNIVERSE Series) 页面 CMS 数据配置
  */
 
+import { product2ItemData } from './product2-item.js'
 import { product2Unit1Data } from './product2-unit1.js'
 import { product2Unit2Data } from './product2-unit2.js'
 import { product2Unit3Data } from './product2-unit3.js'
@@ -34,6 +35,10 @@ export default {
 
   // 模块数据集合
   modules: {
+    item: {
+      enabled: true,
+      data: product2ItemData
+    },
     unit1: {
       enabled: true,
       data: product2Unit1Data

@@ -2,6 +2,7 @@
  * Product3 (UNICORN Series) 页面 CMS 数据配置
  */
 
+import { product3ItemData } from './product3-item.js'
 import { product3Unit1Data } from './product3-unit1.js'
 import { product3Unit2Data } from './product3-unit2.js'
 import { product3Unit3Data } from './product3-unit3.js'
@@ -35,6 +36,10 @@ export default {
 
   // 模块数据集合
   modules: {
+    item: {
+      enabled: true,
+      data: product3ItemData
+    },
     unit1: {
       enabled: true,
       data: product3Unit1Data

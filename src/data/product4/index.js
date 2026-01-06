@@ -2,6 +2,7 @@
  * Product4 (DUKES) 页面 CMS 数据配置
  */
 
+import { product4ItemData } from './product4-item.js'
 import { product4Unit1Data } from './product4-unit1.js'
 import { product4Unit2Data } from './product4-unit2.js'
 import { product4Unit4Data } from './product4-unit4.js'
@@ -36,6 +37,10 @@ export default {
 
   // 模块数据集合
   modules: {
+    item: {
+      enabled: true,
+      data: product4ItemData
+    },
     unit1: {
       enabled: true,
       data: product4Unit1Data

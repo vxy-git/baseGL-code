@@ -2,6 +2,7 @@
  * Product1 (UNIT Pro) 页面 CMS 数据配置
  */
 
+import { product1ItemData } from './product1-item.js'
 import { product1Unit1Data } from './product1-unit1.js'
 import { product1Unit2Data } from './product1-unit2.js'
 import { product1Unit3Data } from './product1-unit3.js'
@@ -34,6 +35,10 @@ export default {
 
   // 模块数据集合
   modules: {
+    item: {
+      enabled: true,
+      data: product1ItemData
+    },
     unit1: {
       enabled: true,
       data: product1Unit1Data
