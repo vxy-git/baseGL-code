@@ -6,7 +6,7 @@
     <main class="main-content c_1300">
       <section class="catalog-intro">
         <h1 class="catalog-title c_padding">{{ productListData.pageTitle }}</h1>
-        <Tabs class="mt-[30px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
+        <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       </section>
 
       <section class="catalog-grid c_padding" aria-label="Product Gallery" ref="catalogGridRef">
@@ -39,14 +39,37 @@ import Tabs from "@/components/Tabs/index.vue";
 import ProductItem from '@/components/ProductItem/index.vue'
 import { productsData } from '@/data/productlist/products'
 import { productListData } from '@/data/productlist/productlist'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const route = useRoute()
 const router = useRouter()
+const cmsNavStore = useCmsNavStore()
 const tabsCurrent = ref(productListData.pagination.activeFilterIndex)
 
 const activeFilterIndex = productListData.pagination.activeFilterIndex
 
-const products = computed(() => productsData.products[tabsCurrent.value] || [])
+// 提取 tabs 列表（优先使用 CMS 数据）
+const tabsList = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories.map(cat => cat.label)
+  }
+
+  // 降级到静态数据
+  return productsData.tabs
+})
+
+// 产品列表（优先使用 CMS 数据）
+const products = computed(() => {
+  // 优先使用 CMS 数据
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0 && cmsCategories[tabsCurrent.value]) {
+    return cmsCategories[tabsCurrent.value].products
+  }
+
+  // 降级到静态数据
+  return productsData.products[tabsCurrent.value] || []
+})
 
 const pages = productListData.pagination.pages
 const currentPage = productListData.pagination.currentPage
@@ -116,7 +139,8 @@ const updateColumns = () => {
 
 const normalizeTabIndex = (tabValue) => {
   const index = Number(tabValue)
-  if (!Number.isNaN(index) && index >= 0 && index < productsData.tabs.length) {
+  const maxLength = tabsList.value.length
+  if (!Number.isNaN(index) && index >= 0 && index < maxLength) {
     return index
   }
   return 0
