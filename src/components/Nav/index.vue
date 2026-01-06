@@ -5,15 +5,25 @@ import gsap from 'gsap'
 import { productsData } from '@/data/productlist/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-const iconArrow = '/assets/img/icon42.png'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
-// 当前激活的分类 ID
-const activeCategoryId = ref(1)
+const iconArrow = '/assets/img/icon42.png'
+const cmsNavStore = useCmsNavStore()
+
+// 当前激活的分类 ID（默认为第一个分类）
+const activeCategoryId = ref(null)
 const router = useRouter()
 
-// 分类及其对应的产品数据（来自 products.js）
-const categories = computed(() =>
-  productsData.tabs.map((label, idx) => ({
+// 分类及其对应的产品数据（优先使用 CMS 数据，降级到静态数据）
+const categories = computed(() => {
+  // 优先使用 CMS 数据
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories
+  }
+
+  // 降级到静态数据
+  return productsData.tabs.map((label, idx) => ({
     id: idx + 1,
     label,
     products: (productsData.products[idx] || []).map(product => ({
@@ -23,7 +33,17 @@ const categories = computed(() =>
       linkType: product.linkType,
     }))
   }))
-)
+})
+
+// 监听 categories 变化，自动设置默认选中第一个分类
+watch(categories, (newCategories) => {
+  if (newCategories.length > 0) {
+    // 如果当前没有选中的分类，或者选中的分类不在新列表中，默认选中第一个
+    if (!activeCategoryId.value || !newCategories.find(c => c.id === activeCategoryId.value)) {
+      activeCategoryId.value = newCategories[0].id
+    }
+  }
+}, { immediate: true })
 
 // 计算属性：当前激活的分类
 const activeCategory = computed(() =>

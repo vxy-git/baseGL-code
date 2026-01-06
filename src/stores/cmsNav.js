@@ -293,6 +293,58 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     return homeNav?.moduleList?.unit1?.data?.bannerList || []
   })
 
+  // 产品分类数据（供 Nav 下拉菜单使用）
+  const productCategories = computed(() => {
+    if (!navList.value || !navList.value.length) return []
+
+    // 1. 找到 Products 导航（通过 navName='Products'）
+    const productsNav = navList.value.find(n =>
+      n.navName === 'Products' &&
+      n.status === '启用'
+    )
+
+    if (!productsNav) return []
+
+    // 2. 提取 Products 的下级作为 tabs（分类）
+    const categories = navList.value.filter(n =>
+      n.parentId === productsNav.ID &&
+      n.status === '启用' &&
+      n.headerShow === true
+    )
+
+    // 3. 提取每个 tab 的下级作为产品列表
+    return categories.map(cat => {
+      const products = navList.value.filter(p =>
+        p.parentId === cat.ID &&
+        p.status === '启用' &&
+        p.headerShow === true
+      )
+
+      return {
+        id: cat.ID,
+        label: cat.navName,
+        products: products.map(p => {
+          // 从 moduleList.item.data 中提取产品详细信息
+          const itemData = p.moduleList?.item?.data || {}
+
+          return {
+            id: p.ID,
+            name: itemData.name || p.navName,
+            description: itemData.description || '',
+            capacity: itemData.capacity || '',
+            image: itemData.image || '',
+            background: itemData.background || '',
+            alt: itemData.name || p.navName,
+            isNew: itemData.isNew || false,
+            linkType: p.navUrl?.replace(/^\//, '') || '',
+            navUrl: p.navUrl,
+            moduleList: p.moduleList
+          }
+        })
+      }
+    })
+  })
+
   // 判断数据是否已加载
   const hasData = computed(() => isLoaded.value && navList.value.length > 0)
 
@@ -316,6 +368,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     footerNavs,
     footerColumns,
     bannerNavs,
+    productCategories,
     hasData
   }
 })
