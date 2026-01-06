@@ -1,11 +1,31 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit7Data } from '@/data/technology/technology-unit7.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit7?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit7Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit7Data, ...cmsData.value }
+  return technologyUnit7Data
+})
 
 const sectionRef = ref(null)
 const imageBoxRef = ref(null)
@@ -71,14 +91,14 @@ onUnmounted(() => {
   <div ref="sectionRef" class="section pt-[97px]">
     <div class="inner c_1300">
       <div ref="imageBoxRef" class="image-wrapper">
-        <MediaAsset :src="technologyUnit7Data.background" type="image" alt="" class="c_1300 h-[560px]" />
+        <MediaAsset :src="unitData.background" type="image" alt="" class="c_1300 h-[560px]" />
       </div>
       <div ref="contentRef" class="content-layer m_pt_0">
         <div class="title2">
-          {{ technologyUnit7Data.title }}
+          {{ unitData.title }}
         </div>
         <div class="title3 mt-[54px] whitespace-break-spaces">
-          {{ technologyUnit7Data.description }}
+          {{ unitData.description }}
         </div>
       </div>
     </div>

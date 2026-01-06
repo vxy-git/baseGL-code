@@ -1,11 +1,31 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit5Data } from '@/data/technology/technology-unit5.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit5?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit5Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit5Data, ...cmsData.value }
+  return technologyUnit5Data
+})
 
 const sectionRef = ref(null)
 const videoBoxRef = ref(null)
@@ -136,41 +156,41 @@ onUnmounted(() => {
       class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
       <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
         <div class="title1">
-          {{ technologyUnit5Data.sections.section1.title1 }}
+          {{ unitData.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">
-          {{ technologyUnit5Data.sections.section1.title2 }}
+          {{ unitData.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[23px] whitespace-break-spaces">
-          {{ technologyUnit5Data.sections.section1.title3 }}
+          {{ unitData.sections.section1.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef1" :src="technologyUnit5Data.media.rightVideo1" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef1" :src="unitData.media.rightVideo1" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          {{ technologyUnit5Data.sections.section2.title1 }}
+          {{ unitData.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[23px]">
-          {{ technologyUnit5Data.sections.section2.title2 }}
+          {{ unitData.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          {{ technologyUnit5Data.sections.section2.title3 }}
+          {{ unitData.sections.section2.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef2" :src="technologyUnit5Data.media.rightVideo2" type="video" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset ref="rightVideoAssetRef2" :src="unitData.media.rightVideo2" type="video" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" playsinline alt="" />
         </div>
       </div>
     </div>
     <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" :src="technologyUnit5Data.media.leftVideo" type="video" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" :src="unitData.media.leftVideo" type="video" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline alt="" />
     </div>
   </div>

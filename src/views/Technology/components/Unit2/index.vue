@@ -1,11 +1,31 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit2Data } from '@/data/technology/technology-unit2.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit2?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit2Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit2Data, ...cmsData.value }
+  return technologyUnit2Data
+})
 
 const sectionRef = ref(null)
 const videoBoxRef = ref(null)
@@ -109,26 +129,26 @@ onUnmounted(() => {
 <template>
   <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
     <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" type="video" :src="technologyUnit2Data.media.leftVideo" :autoplay="false" :muted="true" :loop="true"
+      <MediaAsset ref="videoAssetRef" type="video" :src="unitData.media.leftVideo" :autoplay="false" :muted="true" :loop="true"
         :controls="false" :view-play="true" playsinline class="mediaBox" />
     </div>
     <div ref="rightWrapRef"
       class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          {{ technologyUnit2Data.sections.section1.title1 }}
+          {{ unitData.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[20px] -ml-[5px] tracking-[0.2px]">
-          {{ technologyUnit2Data.sections.section1.title2 }}
+          {{ unitData.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[28px]">
-          {{ technologyUnit2Data.sections.section1.title3 }}
+          {{ unitData.sections.section1.title3 }}
         </div>
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
-          <div v-for="(stat, index) in technologyUnit2Data.sections.section1.stats" :key="index" class="flex flex-col items-center justify-center">
+          <div v-for="(stat, index) in unitData.sections.section1.stats" :key="index" class="flex flex-col items-center justify-center">
             <div class="text1">
               {{ stat.percentage }}
             </div>
@@ -137,21 +157,21 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] object-contain" type="image" :src="technologyUnit2Data.media.rightImage1" alt="" />
+        <MediaAsset class="w-[763px] object-contain" type="image" :src="unitData.media.rightImage1" alt="" />
       </div>
       <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
         <div class="title1">
-          {{ technologyUnit2Data.sections.section2.title1 }}
+          {{ unitData.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[20px] whitespace-break-spaces">
-          {{ technologyUnit2Data.sections.section2.title2 }}
+          {{ unitData.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          {{ technologyUnit2Data.sections.section2.title3 }}
+          {{ unitData.sections.section2.title3 }}
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="technologyUnit2Data.media.rightVideo" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
+        <MediaAsset ref="rightVideoAssetRef" :src="unitData.media.rightVideo" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
           :view-play="true" :loop="true" playsinline alt="" />
       </div>
     </div>

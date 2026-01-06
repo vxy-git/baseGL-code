@@ -220,6 +220,73 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       .map(nav => formatNavItemForHeader(nav, navList.value))
   })
 
+  /**
+   * 将顶级 Footer 导航项格式化为列结构
+   * @param {Object} nav - 顶级导航
+   * @param {Array} allNavs - 所有导航列表
+   * @returns {{title: string, links: Array<{text: string, to?: any, href?: string, target?: string}>}}
+   */
+  function formatFooterColumn(nav, allNavs) {
+    const column = {
+      title: nav.navName || '',
+      links: []
+    }
+
+    // 查找子项（仅一层）
+    const children = allNavs.filter(n =>
+      n.parentId === nav.ID &&
+      n.status === '启用' &&
+      n.footerShow === true
+    )
+
+    // 子项转链接
+    column.links = children.map(child => {
+      const link = {
+        text: child.navName || ''
+      }
+      if (child.navUrl) {
+        if (child.navUrl.startsWith('http://') || child.navUrl.startsWith('https://')) {
+          link.href = child.navUrl
+          link.target = child.target || '_blank'
+        } else {
+          link.to = child.navUrl.startsWith('/') ? child.navUrl : `/${child.navUrl}`
+          link.target = child.target || '_self'
+        }
+      }
+      return link
+    })
+
+    // 如果没有子项且顶级本身有链接，则作为单链接展示
+    if (column.links.length === 0 && nav.navUrl) {
+      const topLink = {
+        text: nav.navName || ''
+      }
+      if (nav.navUrl.startsWith('http://') || nav.navUrl.startsWith('https://')) {
+        topLink.href = nav.navUrl
+        topLink.target = nav.target || '_blank'
+      } else {
+        topLink.to = nav.navUrl.startsWith('/') ? nav.navUrl : `/${nav.navUrl}`
+        topLink.target = nav.target || '_self'
+      }
+      column.links.push(topLink)
+    }
+
+    return column
+  }
+
+  // Footer 列数据（按顶级导航分列，并包含其子链接）
+  const footerColumns = computed(() => {
+    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+      return []
+    }
+    const topLevel = navList.value.filter(nav =>
+      nav.status === '启用' &&
+      nav.footerShow === true &&
+      (!nav.parentId || nav.parentId === 0)
+    )
+    return topLevel.map(nav => formatFooterColumn(nav, navList.value))
+  })
+
   // Banner 数据（从 Home 页面的 moduleList 中提取）
   const bannerNavs = computed(() => {
     const homeNav = getNavByName('Home')
@@ -247,6 +314,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     allNavs,
     headerNavs,
     footerNavs,
+    footerColumns,
     bannerNavs,
     hasData
   }

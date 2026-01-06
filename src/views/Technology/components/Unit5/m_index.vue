@@ -1,13 +1,34 @@
 <script setup>
+import { computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit5Data } from '@/data/technology/technology-unit5'
+import { useCmsNavStore } from '@/stores/cmsNav'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit5?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit5Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit5Data, ...cmsData.value }
+  return technologyUnit5Data
+})
 </script>
 
 <template>
   <div class="relative max-w-[1702px] mt-[100px] mx-auto c_padding">
     <div class="mediaBox shrink-0">
       <MediaAsset
-        :src="technologyUnit5Data.media.leftVideo"
+        :src="unitData.media.leftVideo"
         type="video"
         :autoplay="false"
         :muted="true"
@@ -22,18 +43,18 @@ import { technologyUnit5Data } from '@/data/technology/technology-unit5'
     <div class="content-wrapper will-change-transform h-max">
       <div class="content1 flex flex-col items-center">
         <div class="title1">
-          {{ technologyUnit5Data.sections.section1.title1 }}
+          {{ unitData.sections.section1.title1 }}
         </div>
 
         <div class="title2 mt-[23px] tracking-[0.3px]">
-          {{ technologyUnit5Data.sections.section1.title2 }}
+          {{ unitData.sections.section1.title2 }}
         </div>
 
         <div class="title3 mt-[23px] whitespace-break-spaces">
-          {{ technologyUnit5Data.sections.section1.title3 }}
+          {{ unitData.sections.section1.title3 }}
         </div>
         <MediaAsset
-          :src="technologyUnit5Data.media.rightVideo1"
+          :src="unitData.media.rightVideo1"
           type="video"
           :autoplay="false"
           :muted="true"
@@ -47,18 +68,18 @@ import { technologyUnit5Data } from '@/data/technology/technology-unit5'
       </div>
       <div class="content2 mt-[60px] flex flex-col items-center">
         <div class="title1">
-          {{ technologyUnit5Data.sections.section2.title1 }}
+          {{ unitData.sections.section2.title1 }}
         </div>
 
         <div class="title2 mt-[23px]">
-          {{ technologyUnit5Data.sections.section2.title2 }}
+          {{ unitData.sections.section2.title2 }}
         </div>
 
         <div class="title3 mt-[25px]">
-          {{ technologyUnit5Data.sections.section2.title3 }}
+          {{ unitData.sections.section2.title3 }}
         </div>
         <MediaAsset
-          :src="technologyUnit5Data.media.rightVideo2"
+          :src="unitData.media.rightVideo2"
           type="video"
           :autoplay="false"
           :muted="true"

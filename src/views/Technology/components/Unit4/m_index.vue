@@ -1,11 +1,32 @@
 <script setup>
+import { computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit4Data } from '@/data/technology/technology-unit4'
+import { useCmsNavStore } from '@/stores/cmsNav'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit4?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit4Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit4Data, ...cmsData.value }
+  return technologyUnit4Data
+})
 </script>
 
 <template>
   <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
-    <MediaAsset type="video" :src="technologyUnit4Data.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset type="video" :src="unitData.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full object-cover" />
 
     <div class="size-full overflow-hidden">
@@ -15,40 +36,40 @@ import { technologyUnit4Data } from '@/data/technology/technology-unit4'
             <div class="flex flex-col">
               <div class="text1 flex items-center">
                 <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                  :src="technologyUnit4Data.icons.icon" alt="" />
-                <span>{{ technologyUnit4Data.sections.left.textLabel }}</span>
+                  :src="unitData.icons.icon" alt="" />
+                <span>{{ unitData.sections.left.textLabel }}</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] whitespace-break-spaces">
-              {{ technologyUnit4Data.sections.left.title }}
+              {{ unitData.sections.left.title }}
             </div>
 
             <div class="title3 mt-[32px]">
-              {{ technologyUnit4Data.sections.left.description }}
+              {{ unitData.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="technologyUnit4Data.media.image1" alt="" class="w-full object-contain mt-[20px]" />
+          <MediaAsset type="image" :src="unitData.media.image1" alt="" class="w-full object-contain mt-[20px]" />
         </div>
         <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
               <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                :src="technologyUnit4Data.icons.icon" alt="" />
-              {{ technologyUnit4Data.sections.right.textLabel }}
+                :src="unitData.icons.icon" alt="" />
+              {{ unitData.sections.right.textLabel }}
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            {{ technologyUnit4Data.sections.right.title }}
+            {{ unitData.sections.right.title }}
           </div>
 
           <div class="title3 mt-[32px]">
-            {{ technologyUnit4Data.sections.right.description }}
+            {{ unitData.sections.right.description }}
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset type="video" :src="technologyUnit4Data.media.video2" :autoplay="false" :muted="true" :loop="true"
+          <MediaAsset type="video" :src="unitData.media.video2" :autoplay="false" :muted="true" :loop="true"
             :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
         </div>
       </div>

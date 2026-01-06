@@ -1,11 +1,31 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit6Data } from '@/data/technology/technology-unit6.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit6?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit6Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit6Data, ...cmsData.value }
+  return technologyUnit6Data
+})
 
 const sectionRef = ref(null)
 const mediaBoxRef = ref(null)
@@ -130,16 +150,16 @@ onUnmounted(() => {
   <div ref="sectionRef" class="section">
     <div class="content-wrapper">
       <div ref="titleRef" class="title2">
-        {{ technologyUnit6Data.title }}
+        {{ unitData.title }}
       </div>
 
       <div ref="mediaBoxRef" class="media-box mt-[34px]">
-        <MediaAsset ref="mediaAssetRef" :src="technologyUnit6Data.video" type="video" alt="" class="media-asset !min-h-0" :controls="false"
+        <MediaAsset ref="mediaAssetRef" :src="unitData.video" type="video" alt="" class="media-asset !min-h-0" :controls="false"
           :autoplay="false" :muted="true" :loop="true" />
       </div>
 
       <div ref="descRef" class="title3 mt-[34px] whitespace-break-spaces">
-        {{ technologyUnit6Data.description }}
+        {{ unitData.description }}
       </div>
     </div>
   </div>

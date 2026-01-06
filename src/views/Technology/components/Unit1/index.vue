@@ -1,38 +1,58 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit1Data } from '@/data/technology/technology-unit1.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const showVideo = ref(false)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit1?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit1Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit1Data, ...cmsData.value }
+  return technologyUnit1Data
+})
 </script>
 
 <template>
   <div class="unit1 mt_nav">
     <div class="bg-video">
-      <MediaAsset class="!max-h-full" type="video" :src="technologyUnit1Data.videos.bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
+      <MediaAsset class="!max-h-full" type="video" :src="unitData.videos.bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
         <MediaAsset
-          :src="technologyUnit1Data.icons.icon"
+          :src="unitData.icons.icon"
           type="image"
           class="trigger-bg"
         />
         <MediaAsset
           class="preview-video"
           type="video"
-          :src="technologyUnit1Data.videos.src"
+          :src="unitData.videos.src"
           :autoplay="true"
           :muted="true"
           :loop="true"
           :controls="false"
         />
         <div class="overlay">
-          <div class="title1">{{ technologyUnit1Data.content.watchVideoText }}</div>
+          <div class="title1">{{ unitData.content.watchVideoText }}</div>
           <MediaAsset
-            :src="technologyUnit1Data.icons.play"
+            :src="unitData.icons.play"
             type="image"
             class="play-icon"
             alt=""
@@ -42,7 +62,7 @@ const showVideo = ref(false)
       </div>
     </div>
 
-    <VideoModal v-model:visible="showVideo" :src="technologyUnit1Data.videos.src" :muted="false" :loop="false" :controls="true" />
+    <VideoModal v-model:visible="showVideo" :src="unitData.videos.src" :muted="false" :loop="false" :controls="true" />
   </div>
 </template>
 
@@ -71,7 +91,7 @@ const showVideo = ref(false)
 }
 
 .title1 {
-  width: 113px;
+  // width: 113px;
   height: 23px;
   color: #fff;
   font-family: 'Roboto', sans-serif;

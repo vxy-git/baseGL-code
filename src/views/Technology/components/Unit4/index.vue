@@ -1,11 +1,31 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit4Data } from '@/data/technology/technology-unit4.js'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
+const cmsNavStore = useCmsNavStore()
+const cmsData = computed(() => {
+  const techNav = cmsNavStore.getNavByName('Technology')
+  return techNav?.moduleList?.unit4?.data || null
+})
+
+const unitData = computed(() => {
+  if (props.data) return { ...technologyUnit4Data, ...props.data }
+  if (cmsData.value) return { ...technologyUnit4Data, ...cmsData.value }
+  return technologyUnit4Data
+})
 
 const sectionRef = ref(null)
 const contentRef = ref(null)
@@ -192,7 +212,7 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
-    <MediaAsset ref="bgVideoRef" type="video" :src="technologyUnit4Data.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
+    <MediaAsset ref="bgVideoRef" type="video" :src="unitData.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
       :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
     <div ref="maskRef" class="absolute inset-0 bg-black opacity-0 pointer-events-none z-[1]"></div>
 
@@ -203,41 +223,41 @@ onUnmounted(() => {
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="technologyUnit4Data.icons.icon" alt="" />
-                <span>{{ technologyUnit4Data.sections.left.textLabel }}</span>
+                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="unitData.icons.icon" alt="" />
+                <span>{{ unitData.sections.left.textLabel }}</span>
               </div>
             </div>
 
             <div class="title2 mt-[8px] whitespace-break-spaces">
-              {{ technologyUnit4Data.sections.left.title }}
+              {{ unitData.sections.left.title }}
             </div>
 
             <div class="title3 mt-[32px]">
-              {{ technologyUnit4Data.sections.left.description }}
+              {{ unitData.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="technologyUnit4Data.media.image1" alt="" class="w-[640px] h-[341px] object-contain" />
+          <MediaAsset type="image" :src="unitData.media.image1" alt="" class="w-[640px] h-[341px] object-contain" />
         </div>
         <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="technologyUnit4Data.icons.icon" alt="" />
-              {{ technologyUnit4Data.sections.right.textLabel }}
+              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="unitData.icons.icon" alt="" />
+              {{ unitData.sections.right.textLabel }}
             </div>
           </div>
 
           <div class="title2 mt-[8px] ">
-            {{ technologyUnit4Data.sections.right.title }}
+            {{ unitData.sections.right.title }}
           </div>
 
           <div class="title3 mt-[32px]">
-            {{ technologyUnit4Data.sections.right.description }}
+            {{ unitData.sections.right.description }}
           </div>
         </div>
         <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
-            <MediaAsset ref="videoAssetRef" type="video" :src="technologyUnit4Data.media.video2" :autoplay="false" :muted="true" :loop="true"
+            <MediaAsset ref="videoAssetRef" type="video" :src="unitData.media.video2" :autoplay="false" :muted="true" :loop="true"
               :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
           </div>
         </div>

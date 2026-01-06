@@ -77,10 +77,11 @@ import { useCmsNavStore } from '@/stores/cmsNav'
 // ========== 使用 Pinia Store 获取导航数据 ==========
 const cmsNavStore = useCmsNavStore()
 
-// 计算属性: 返回最终使用的 Footer 列数据
+// 计算属性: 返回最终使用的 Footer 列数据（优先使用 CMS 列结构）
 const footerColumns = computed(() => {
-  // 如果 Store 中有动态数据,使用动态数据,否则使用静态配置
-  return cmsNavStore.footerNavs.length > 0 ? cmsNavStore.footerNavs : footerData.columns
+  return (cmsNavStore.footerColumns && cmsNavStore.footerColumns.length > 0)
+    ? cmsNavStore.footerColumns
+    : footerData.columns
 })
 
 const email = ref('')
