@@ -2,30 +2,34 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { MotionPlugin } from '@vueuse/motion'
 import App from './App.vue'
-import router, { initialCmsNavData } from './router'
+import { createAppRouter, initialCmsNavData } from './router'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import CdnImage from './components/CdnImage.vue'
 import MediaAsset from './components/MediaAsset.vue'
 import VideoModal from './components/VideoModal.vue'
 import './styles/main.scss'
 
-const app = createApp(App)
-const pinia = createPinia()
+;(async () => {
+  const app = createApp(App)
+  const pinia = createPinia()
 
-// 注册全局组件
-app.component('CdnImage', CdnImage)
-app.component('MediaAsset', MediaAsset)
-app.component('VideoModal', VideoModal)
+  // 注册全局组件
+  app.component('CdnImage', CdnImage)
+  app.component('MediaAsset', MediaAsset)
+  app.component('VideoModal', VideoModal)
 
-app.use(pinia)
+  app.use(pinia)
 
-// 同步路由预加载的数据到 Store
-if (initialCmsNavData) {
-  const cmsNavStore = useCmsNavStore(pinia)
-  cmsNavStore.setNavData(initialCmsNavData)
-}
+  const router = await createAppRouter()
 
-app.use(router)
-app.use(MotionPlugin)
+  // 同步路由预加载的数据到 Store
+  if (initialCmsNavData) {
+    const cmsNavStore = useCmsNavStore(pinia)
+    cmsNavStore.setNavData(initialCmsNavData)
+  }
 
-app.mount('#app')
+  app.use(router)
+  app.use(MotionPlugin)
+
+  app.mount('#app')
+})()

@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(pnpm install:*)",
       "mcp__ide__getDiagnostics",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

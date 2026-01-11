@@ -33,17 +33,24 @@ async function generateRoutes() {
       order: 'sort'
     })
 
-    if (result.success && result.data) {
+    const navList = Array.isArray(result?.data)
+      ? result.data
+      : (Array.isArray(result?.data?.list) ? result.data.list : [])
+
+    const isSuccess = result?.success === true || result?.code === 0
+
+    if (isSuccess && navList.length > 0) {
       // 保存原始数据供 Store 使用
-      initialCmsNavData = result.data
+      initialCmsNavData = navList
       
       // 转换 CMS 数据为路由格式
-      cmsPages = result.data
-        .filter(nav => nav.status === '启用')
+      cmsPages = navList
+        .filter(nav => nav.status === '启用' || nav.status === true || nav.status === 1)
+        .filter(nav => typeof nav.navUrl === 'string' && nav.navUrl.trim() !== '')
         .map(nav => ({
-          route: nav.navUrl.startsWith('/') ? nav.navUrl : `/${nav.navUrl}`,
-          routeName: nav.navName, // 使用 navName 作为 routeName
-          pageType: nav.pageType || 'home',
+          route: nav.navUrl.trim().startsWith('/') ? nav.navUrl.trim() : `/${nav.navUrl.trim()}`,
+          routeName: `${nav.navName}_${nav.ID}`,
+          pageType: nav.pageType || 'page',
           navLabel: nav.navName,
           showInHeader: nav.headerShow === true,
           showInFooter: nav.footerShow === true,
@@ -62,7 +69,6 @@ async function generateRoutes() {
     // 组件选择优先级：pageType
     const component = pageTypeComponentMap[page.pageType] ||
                       pageTypeComponentMap['page']
-    
     if (!component) {
       console.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
     }
@@ -88,13 +94,13 @@ async function generateRoutes() {
   })
 }
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: await generateRoutes(),
-  scrollBehavior(to, from, savedPosition) {
-    // 始终滚动到页面顶部，即使是浏览器前进/后退
-    return { top: 0 }
-  }
-})
-
-export default router
+export async function createAppRouter() {
+  const routes = await generateRoutes()
+  return createRouter({
+    history: createWebHistory(),
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+      return { top: 0 }
+    }
+  })
+}
