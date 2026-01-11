@@ -21,7 +21,7 @@ const unitData = computed(() => {
 </script>
 
 <template>
-    <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
+    <div class="pt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
       <div class="title1 text-center">
         {{ unitData.labels.unicorn }}
       </div>

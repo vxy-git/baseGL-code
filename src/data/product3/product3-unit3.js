@@ -21,7 +21,8 @@ export const product3Unit3Data = {
     sequence1: {
       frames: 32,
       tarURL: '/product3_1.tar',
-      imageURL: (i) => `product3_1/frame${i + 1}.jpg`
+      imageName: 'frame',
+      imageExtension: '.jpg'
     },
 
     /**
@@ -30,7 +31,8 @@ export const product3Unit3Data = {
     sequence2: {
       frames: 27,
       tarURL: '/product3_2.tar',
-      imageURL: (i) => `product3_2/frame${i + 1}.jpg`
+      imageName: 'frame',
+      imageExtension: '.jpg'
     }
   },
 

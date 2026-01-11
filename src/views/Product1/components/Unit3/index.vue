@@ -25,7 +25,7 @@ const unitData = computed(() => {
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress = ref(0)
-const { frames, tarURL, imageURL } = unitData.value.frameConfig
+const { frames, tarURL, imageName, imageExtension } = unitData.value.frameConfig
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -162,43 +162,49 @@ onUnmounted(() => {
   <div class="pt-[133px]">
     <section ref="pinSection" class="sequence-wrap relative">
       <div ref="frameContainer" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames" :tarURL="tarURL" :imageURL="imageURL" :progress="seqProgress"
-          :objectFit="isMobile ? 'contain' : 'cover'" />
+        <FrameSequence
+          :frames="frames"
+          :tarURL="tarURL"
+          :imageName="imageName"
+          :imageExtension="imageExtension || '.jpg'"
+          :progress="seqProgress"
+          :objectFit="isMobile ? 'contain' : 'cover'"
+        />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block c_padding">
-            <div ref="tb1Title" class="title whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb1.title }}</div>
+            <div ref="tb1Title" class="title whitespace-break-spaces">{{ unitData.textBlocks.tb1.title }}</div>
           </div>
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb2.smallTitle }}</div>
-            <div ref="tb2WTitle" class="wTitle">{{ product1Unit3Data.textBlocks.tb2.wTitle }}</div>
-            <div ref="tb2Text" class="text">{{ product1Unit3Data.textBlocks.tb2.text }}</div>
+            <div ref="tb2SmallTitle" class="smallTitle">{{ unitData.textBlocks.tb2.smallTitle }}</div>
+            <div ref="tb2WTitle" class="wTitle">{{ unitData.textBlocks.tb2.wTitle }}</div>
+            <div ref="tb2Text" class="text">{{ unitData.textBlocks.tb2.text }}</div>
           </div>
           <div ref="tb3" class="text-block c_padding">
-            <div ref="tb3SmallTitle" class="smallTitle">{{ product1Unit3Data.textBlocks.tb3.smallTitle }}</div>
-            <div ref="tb3WTitle" class="wTitle whitespace-break-spaces">{{ product1Unit3Data.textBlocks.tb3.wTitle }}</div>
-            <div ref="tb3Text" class="text">{{ product1Unit3Data.textBlocks.tb3.text }}</div>
+            <div ref="tb3SmallTitle" class="smallTitle">{{ unitData.textBlocks.tb3.smallTitle }}</div>
+            <div ref="tb3WTitle" class="wTitle whitespace-break-spaces">{{ unitData.textBlocks.tb3.wTitle }}</div>
+            <div ref="tb3Text" class="text">{{ unitData.textBlocks.tb3.text }}</div>
           </div>
           <div ref="tb4" class="text-block c_padding">
             <div ref="tb4SmallTitle" class="smallTitle">
-              {{ product1Unit3Data.textBlocks.tb4.smallTitle }}
+              {{ unitData.textBlocks.tb4.smallTitle }}
             </div>
             <div ref="tb4WTitle" class="wTitle whitespace-break-spaces">
-              {{ product1Unit3Data.textBlocks.tb4.wTitle }}
+              {{ unitData.textBlocks.tb4.wTitle }}
             </div>
             <div ref="tb4Text" class="text !mt-[28px]">
-              {{ product1Unit3Data.textBlocks.tb4.text }}
+              {{ unitData.textBlocks.tb4.text }}
             </div>
             <div ref="tb4Stats" class="flex justify-center gap-x-[150px] mt-[68px]">
-              <div v-for="(stat, index) in product1Unit3Data.textBlocks.tb4.stats" :key="index" class="flex flex-col items-center justify-center ">
+              <div v-for="(stat, index) in unitData.textBlocks.tb4.stats" :key="index" class="flex flex-col items-center justify-center ">
                 <div class="text1 h-[40px]" :class="{ 'flex': stat.hasIcon }">
                   {{ stat.value }}
                   <MediaAsset
                     v-if="stat.hasIcon"
                     class="size-[40px]"
                     type="image"
-                    :src="product1Unit3Data.icons.flavor"
+                    :src="unitData.icons.flavor"
                     alt=""
                     :lazy="false"
                   />
@@ -210,7 +216,7 @@ onUnmounted(() => {
             </div>
             <MediaAsset
               ref="tb4Image"
-              :src="product1Unit3Data.icons.device"
+              :src="unitData.icons.device"
               type="image"
               class="mx-auto mt-[82px] max-h-[600px]"
               alt=""

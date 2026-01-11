@@ -120,7 +120,7 @@ onUnmounted(() => {
       </div>
 
       <!-- gsapU, unit3, videoU, unit4 需要 bg-black 容器 -->
-      <div v-else-if="['gsapU', 'm_gsapU', 'unit3', 'videoU', 'unit4'].includes(item.key)" class="bg-black pb-[140px]">
+      <div v-else-if="['gsapU', 'm_gsapU', 'unit3', 'videoU', 'unit4'].includes(item.key)" class="bg-black pb-[140px] pt-[1px]">
         <component :is="item.component" :data="item.data" />
       </div>
 

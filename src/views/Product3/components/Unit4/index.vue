@@ -23,7 +23,7 @@ const unitData = computed(() => {
 <template>
   <div>
     <div class="unit4T">
-      <div class="flex flex-col items-center mt-[48px] c_padding">
+      <div class="flex flex-col items-center pt-[48px] c_padding">
         <div class="title1" v-html="unitData.unit4T.title1"></div>
         <div class="title2 mt-[19.55px] whitespace-break-spaces" v-html="unitData.unit4T.title2">
         </div>

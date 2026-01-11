@@ -22,7 +22,9 @@ const DEFAULT_CDN_URL = "https://img.cloudcode.ink";
 const props = defineProps({
   frames: { type: Number, required: true },
   tarURL: { type: String, required: true },     // tar 文件路径
-  imageURL: { type: Function, required: true }, // index => 路径
+  imageURL: { type: Function, required: false }, // index => 路径（可选，用于向后兼容）
+  imageName: { type: String, required: false }, // 图片名称（如 "frame"）
+  imageExtension: { type: String, default: ".jpg" }, // 图片扩展名（默认 .jpg）
   progress: { type: Number, default: 0 },       // 0~1，由 GSAP 或 v-model 驱动
   objectFit: { type: String, default: "cover" },
   loop: { type: Boolean, default: false },
@@ -40,7 +42,30 @@ const withCdn = (val = "") => {
   const path = normalizePath(val);
   return `${base}${path}`;
 };
-const getImagePath = (index) => props.imageURL(index);
+
+// 根据 tarURL 和 imageName 生成 imageURL 函数
+const generateImageURL = (tarURL, imageName, extension = ".jpg") => {
+  // 从 tarURL 提取目录名："/product3_1.tar" → "product3_1"
+  const dirName = tarURL.replace(/^\/+/, "").replace(/\.tar$/, "");
+  // 返回函数：(i) => `product3_1/frame${i + 1}.jpg`
+  return (i) => `${dirName}/${imageName}${i + 1}${extension}`;
+};
+
+// 计算最终的 imageURL 函数（支持向后兼容）
+const finalImageURL = computed(() => {
+  // 优先使用传入的函数（向后兼容）
+  if (typeof props.imageURL === "function") {
+    return props.imageURL;
+  }
+  // 否则根据 tarURL 和 imageName 生成
+  if (props.tarURL && props.imageName) {
+    return generateImageURL(props.tarURL, props.imageName, props.imageExtension);
+  }
+  console.error("FrameSequence: 缺少 imageURL 或 (tarURL + imageName)");
+  return (i) => `frame${i}.jpg`;
+});
+
+const getImagePath = (index) => finalImageURL.value(index);
 
 const wrapper = ref(null);
 const scrollBox = ref(null);

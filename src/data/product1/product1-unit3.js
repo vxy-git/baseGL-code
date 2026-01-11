@@ -27,7 +27,8 @@ export const product1Unit3Data = {
   frameConfig: {
     frames: 71,
     tarURL: '/product1.tar',
-    imageURL: (i) => `product1/frame${i + 1}.jpg`
+    imageName: 'frame',
+    imageExtension: '.jpg'
   },
 
   /**

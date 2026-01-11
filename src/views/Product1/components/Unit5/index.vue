@@ -23,16 +23,18 @@ const unitData = computed(() => {
 });
 
 const tabsCurrent = ref(0)
-const tabsList = computed(() => unitData.tabsList)
+const tabsList = computed(() => unitData.value.tabsList)
+
+console.log(tabsList.value)
 
 // 根据 Tab 显示的文案
-const labelContents = computed(() => unitData.descriptions)
+const labelContents = computed(() => unitData.value.descriptions)
 
 const currentLabel = computed(() => labelContents.value[tabsCurrent.value] || "")
 
 // 媒体资源列表，支持图片和视频混合
-const mediaList = computed(() => unitData.mediaList)
-
+const mediaList = computed(() => unitData.value.mediaList)
+console.log(mediaList.value)
 const containerRef = ref(null)  // 容器引用，用于可见性检测
 const isVisible = ref(false)    // 是否在视口中可见
 const splideRef = ref(null)
@@ -316,7 +318,7 @@ onUnmounted(() => {
                   <div class="overlay"></div>
 
                   <!-- MediaAsset 组件 -->
-                  <MediaAsset :type="media.type" :src="media.src" :alt="media.alt" :poster="media.poster"
+                  <MediaAsset :src="media.src" :alt="media.alt" :poster="media.poster"
                     :autoplay="false" :muted="true" :loop="false" :controls="false" class="media-content"
                     :class="{'!border-[#D9D9D9]': index === tabsCurrent}" />
 
@@ -330,7 +332,7 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList.value" v-model="tabsCurrent"></Tabs>
+      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
       <div class="c_1230 c_padding">
         <transition name="fade-up" mode="out-in">
           <div :key="tabsCurrent" class="label max-w-[1000px] w-full mx-auto mt-[28px]">

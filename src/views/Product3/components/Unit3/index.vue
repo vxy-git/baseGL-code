@@ -160,12 +160,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="pt-[133px]">
+  <div class="pt-[133px] bg-[#000]">
     <!-- 模块 1：帧动画 + tb1 -->
     <section ref="pinSection1" class="sequence-wrap relative">
       <div ref="frameContainer1" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="unitData.frameSequences.sequence1.frames" :tarURL="unitData.frameSequences.sequence1.tarURL" :imageURL="unitData.frameSequences.sequence1.imageURL" :progress="seqProgress1"
-          :objectFit="isMobile ? 'contain' : 'cover'" />
+        <FrameSequence
+          :frames="unitData.frameSequences.sequence1.frames"
+          :tarURL="unitData.frameSequences.sequence1.tarURL"
+          :imageName="unitData.frameSequences.sequence1.imageName"
+          :imageExtension="unitData.frameSequences.sequence1.imageExtension || '.jpg'"
+          :progress="seqProgress1"
+          :objectFit="isMobile ? 'contain' : 'cover'"
+        />
       </div>
       <div class="size-full flex items-start justify-center c_padding">
         <div class="text-layer">
@@ -191,8 +197,14 @@ onUnmounted(() => {
     <!-- 模块 2：tb2 + tb3 -->
     <section ref="pinSection2" class="sequence-wrap relative">
       <div ref="frameContainer2" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="unitData.frameSequences.sequence2.frames" :tarURL="unitData.frameSequences.sequence2.tarURL" :imageURL="unitData.frameSequences.sequence2.imageURL" :progress="seqProgress2"
-          :objectFit="isMobile ? 'contain' : 'cover'" />
+        <FrameSequence
+          :frames="unitData.frameSequences.sequence2.frames"
+          :tarURL="unitData.frameSequences.sequence2.tarURL"
+          :imageName="unitData.frameSequences.sequence2.imageName"
+          :imageExtension="unitData.frameSequences.sequence2.imageExtension || '.jpg'"
+          :progress="seqProgress2"
+          :objectFit="isMobile ? 'contain' : 'cover'"
+        />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">

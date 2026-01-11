@@ -21,7 +21,7 @@ const unitData = computed(() => {
   return product1Unit8Data;
 });
 
-const list = computed(() => unitData.designImages)
+const list = computed(() => unitData.value.designImages)
 
 const bannerCurrent = ref(0);
 const splideRef = ref(null);
@@ -255,7 +255,7 @@ const setMediaRef = (el, index) => {
               <div class="overlay"></div>
 
               <!-- MediaAsset 组件 -->
-              <MediaAsset :ref="el => setMediaRef(el, index)" :type="media.type" :src="media.src" :alt="media.alt"
+              <MediaAsset :ref="el => setMediaRef(el, index)" :src="media.src" :alt="media.alt"
                 :poster="media.poster" :autoplay="false" :muted="true" :loop="false" :controls="false" :lazy="false"
                 class="media-content w-full h-full object-cover rounded-[20px]" />
 

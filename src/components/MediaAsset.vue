@@ -25,7 +25,7 @@ import { MOBILE_BREAKPOINT } from '@/composables/fit'
 const DEFAULT_CDN_URL = 'https://img.cloudcode.ink'
 
 const props = defineProps({
-  type: { type: String, required: true },
+  type: { type: String, required: false, default: null },
   src: { type: String, required: true },
   alt: { type: String, default: '' },
   cdnUrl: { type: String, default: DEFAULT_CDN_URL },
@@ -39,7 +39,28 @@ const props = defineProps({
   viewPlay: { type: Boolean, default: false }
 })
 
-const isImage = computed(() => props.type === 'image')
+// 根据 src 自动判断资源类型
+const computedType = computed(() => {
+  // 如果显式传入了 type，则使用传入的值
+  if (props.type) {
+    return props.type
+  }
+
+  // 否则根据文件扩展名判断
+  const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.ogg', '.video']
+  const lowerSrc = props.src.toLowerCase()
+
+  for (const ext of videoExtensions) {
+    if (lowerSrc.includes(ext)) {
+      return 'video'
+    }
+  }
+
+  // 默认为图片
+  return 'image'
+})
+
+const isImage = computed(() => computedType.value === 'image')
 const resolvedCdnUrl = computed(() => props.cdnUrl || DEFAULT_CDN_URL)
 
 const isAbsoluteSrc = (value = '') => /^(https?:)?\/\//.test(value) || /^(data|blob):/.test(value)

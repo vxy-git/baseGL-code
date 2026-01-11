@@ -28,8 +28,8 @@ const noTransition = ref(false)
 const autoTimer = ref(null)
 const resetTimer = ref(null)
 
-const intervalMs = computed(() => unitData.value.carouselConfig.intervalMs)
-const transitionMs = computed(() => unitData.value.carouselConfig.transitionMs)
+const intervalMs = 2600
+const transitionMs = 700
 
 const displayList = computed(() => [...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value])
 
