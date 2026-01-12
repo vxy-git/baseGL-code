@@ -99,7 +99,7 @@ const closeDropdowns = () => {
                   <span :class="formData.country ? 'selectedValue' : 'placeholder'">
                     {{ formData.country || 'Country*' }}
                   </span>
-                  <MediaAsset :src="contactUsData.icons.dropdown" type="image"
+                  <MediaAsset src="/assets/img/icon46.png" type="image"
                     :class="['dropdownIcon', showCountryDropdown && 'rotated']" alt="" :lazy="false" />
                 </div>
                 <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
@@ -114,7 +114,7 @@ const closeDropdowns = () => {
                   <span :class="formData.state ? 'selectedValue' : 'placeholder'">
                     {{ formData.state || 'State' }}
                   </span>
-                  <MediaAsset :src="contactUsData.icons.dropdown" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
+                  <MediaAsset src="/assets/img/icon46.png" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
                     alt="" :lazy="false" />
                 </div>
                 <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>

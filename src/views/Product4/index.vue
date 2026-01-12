@@ -59,7 +59,6 @@ const defaultOrder = computed(() => {
 
 // 动态渲染列表
 const renderList = computed(() => {
-  console.log(props.pageConfig)
   // 优先使用 CMS 的 moduleList，如果没有则使用本地配置的 modules
   const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
 

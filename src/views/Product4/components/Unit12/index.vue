@@ -13,11 +13,15 @@ const props = defineProps({
 });
 
 const unitData = computed(() => {
-  if (props.data && props.data.images) {
+  if (props.data) {
     return {
       ...product4Unit12Data,
       ...props.data,
-      images: { ...product4Unit12Data.images, ...props.data.images }
+      content: {
+        ...product4Unit12Data.content,
+        ...(props.data.content || {})
+      },
+      images: props.data.images || product4Unit12Data.images
     };
   }
   return product4Unit12Data;
@@ -40,7 +44,7 @@ onMounted(() => {
     .map((layer) => layer?.$el ?? layer)
     .filter(Boolean)
     .reverse()
-    .slice(0, unitData.images?.units?.length - 1 || 0)
+    .slice(0, unitData.value.images?.length - 1 || 0)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -66,6 +70,7 @@ onMounted(() => {
     }
   )
 
+  console.log(fadeTargets)
   if (fadeTargets.length) {
     const step = resizeDuration / fadeTargets.length
     fadeTargets.forEach((layer, index) => {
@@ -88,7 +93,7 @@ onUnmounted(() => {
         <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div class="size-full relative">
             <MediaAsset ref="imageLayers" class="absolute inset-0 size-full object-cover" type="image" :src="logo"
-              alt="" :lazy="false" v-for="(logo, index) in unitData.images.units" :key="index" />
+              alt="" :lazy="false" v-for="(logo, index) in unitData.images" :key="index" />
           </div>
         </div>
       </div>

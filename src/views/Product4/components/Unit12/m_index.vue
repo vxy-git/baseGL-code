@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit12Data } from '@/data/product4/product4-unit12'
-const logoPool = product4Unit12Data.images.units;
+const logoPool = product4Unit12Data.images;
 
 gsap.registerPlugin(ScrollTrigger)
 

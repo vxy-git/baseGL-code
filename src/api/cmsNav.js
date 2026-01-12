@@ -45,14 +45,14 @@ export async function getCmsNavPublicList(params = {}) {
 
     // 检查业务状态码
     if (result.code === 0) {
-      console.log('✅ getCmsNavPublicList API 调用成功')
-      console.log('📊 导航列表数据:', {
-        total: result.data.total,
-        page: result.data.page,
-        pageSize: result.data.pageSize,
-        listCount: result.data.list.length,
-        list: result.data.list
-      })
+      // console.log('✅ getCmsNavPublicList API 调用成功')
+      // console.log('📊 导航列表数据:', {
+      //   total: result.data.total,
+      //   page: result.data.page,
+      //   pageSize: result.data.pageSize,
+      //   listCount: result.data.list.length,
+      //   list: result.data.list
+      // })
 
       return {
         success: true,

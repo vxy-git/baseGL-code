@@ -13,7 +13,6 @@ import { product4Unit9Data } from './product4-unit9.js'
 import { product4Unit10Data } from './product4-unit10.js'
 import { product4Unit11Data } from './product4-unit11.js'
 import { product4Unit12Data } from './product4-unit12.js'
-import { product4Unit13Data } from './product4-unit13.js'
 
 export default {
   // 路由配置
@@ -81,9 +80,5 @@ export default {
       enabled: true,
       data: product4Unit12Data
     },
-    unit13: {
-      enabled: true,
-      data: product4Unit13Data
-    }
   }
 }
