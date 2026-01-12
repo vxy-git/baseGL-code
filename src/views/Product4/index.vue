@@ -64,12 +64,20 @@ const renderList = computed(() => {
 
   if (moduleList) {
     return defaultOrder.value
-      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
-      .map(key => ({
-        key,
-        component: componentMap[key],
-        data: moduleList[key].data
-      }));
+      .filter(key => {
+        // m_unitX → unitX 的数据键映射
+        const dataKey = key.startsWith('m_') ? key.substring(2) : key;
+        return moduleList[dataKey] && moduleList[dataKey].enabled !== false;
+      })
+      .map(key => {
+        // m_unitX 使用 unitX 的数据
+        const dataKey = key.startsWith('m_') ? key.substring(2) : key;
+        return {
+          key,
+          component: componentMap[key],
+          data: moduleList[dataKey].data
+        };
+      });
   }
 
   // 降级：无数据时使用默认渲染
