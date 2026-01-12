@@ -174,8 +174,16 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       n.headerShow === true
     )
 
+    // 特殊处理 Products：如果有子菜单，还需要确保 productCategories 不为空
     if (hasChildren) {
-      item.type = 'dropdown'
+      if (nav.navName === 'Products') {
+        // 对于 Products，只有当 productCategories 有数据时才显示下拉
+        if (productCategories.value && productCategories.value.length > 0) {
+          item.type = 'dropdown'
+        }
+      } else {
+        item.type = 'dropdown'
+      }
     }
 
     return item
@@ -323,6 +331,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       return {
         id: cat.ID,
         label: cat.navName,
+        navUrl: cat.navUrl,
         products: products.map(p => {
           // 从 moduleList.item.data 中提取产品详细信息
           const itemData = p.moduleList?.item?.data || {}

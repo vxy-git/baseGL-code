@@ -206,7 +206,13 @@ const closeMenu = () => {
 
 const goList = () => {
   closeMenu()
-  router.push('/list')
+  // 优先使用第一个分类的 navUrl
+  const firstCategory = cmsNavStore.productCategories[0]
+  if (firstCategory?.navUrl) {
+    router.push(firstCategory.navUrl)
+  } else {
+    console.warn('⚠️ [Nav] 当前激活的分类没有 navUrl，无法跳转')
+  }
 }
 
 const productLink = (linkType) => `/${linkType}`

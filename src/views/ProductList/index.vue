@@ -6,7 +6,7 @@
     <main class="main-content c_1300">
       <section class="catalog-intro">
         <h1 class="catalog-title c_padding">{{ productListData.pageTitle }}</h1>
-        <Tabs class="mt-[30px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+        <Tabs class="mt-[30px]" :list="tabsList" :modelValue="tabsCurrent" @update:modelValue="handleTabChange"></Tabs>
       </section>
 
       <section class="catalog-grid c_padding" aria-label="Product Gallery" ref="catalogGridRef">
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { h, ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import Header from "@/components/Header/index.vue";
@@ -44,9 +44,6 @@ import { useCmsNavStore } from '@/stores/cmsNav'
 const route = useRoute()
 const router = useRouter()
 const cmsNavStore = useCmsNavStore()
-const tabsCurrent = ref(productListData.pagination.activeFilterIndex)
-
-const activeFilterIndex = productListData.pagination.activeFilterIndex
 
 // 提取 tabs 列表（优先使用 CMS 数据）
 const tabsList = computed(() => {
@@ -57,6 +54,38 @@ const tabsList = computed(() => {
 
   // 降级到静态数据
   return productsData.tabs
+})
+
+// 根据路由判断当前分类
+const currentCategory = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+
+  // 1. 优先从路由 meta 获取分类 ID
+  if (route.meta.ID) {
+    return cmsCategories.find(cat => cat.id === route.meta.ID)
+  }
+
+  // 2. 根据 navUrl 匹配当前路径
+  const currentPath = route.path
+  return cmsCategories.find(cat => cat.navUrl === currentPath)
+})
+
+// 当前分类的索引
+const tabsCurrent = computed(() => {
+  if (!currentCategory.value) {
+    console.warn('⚠️ [ProductList] 未找到当前分类，使用默认索引 0')
+    return 0
+  }
+
+  const cmsCategories = cmsNavStore.productCategories || []
+  const index = cmsCategories.findIndex(cat => cat.id === currentCategory.value.id)
+
+  if (index === -1) {
+    console.warn(`⚠️ [ProductList] 分类索引未找到: ${currentCategory.value.label}`)
+    return 0
+  }
+
+  return index
 })
 
 // 产品列表（优先使用 CMS 数据）
@@ -70,6 +99,18 @@ const products = computed(() => {
   // 降级到静态数据
   return productsData.products[tabsCurrent.value] || []
 })
+
+// Tab 切换事件处理：跳转到对应分类的路由
+const handleTabChange = (index) => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  const category = cmsCategories[index]
+
+  if (category?.navUrl) {
+    router.push(category.navUrl)
+  } else {
+    console.warn(`⚠️ [ProductList] Tab ${index} 对应的路由不存在`)
+  }
+}
 
 const pages = productListData.pagination.pages
 const currentPage = productListData.pagination.currentPage
@@ -136,38 +177,6 @@ const updateColumns = () => {
   const calc = Math.floor((width + productListData.card.gap) / (productListData.card.width + productListData.card.gap))
   columns.value = Math.max(1, calc)
 }
-
-const normalizeTabIndex = (tabValue) => {
-  const index = Number(tabValue)
-  const maxLength = tabsList.value.length
-  if (!Number.isNaN(index) && index >= 0 && index < maxLength) {
-    return index
-  }
-  return 0
-}
-
-watch(
-  () => route.query.tab,
-  (newTab) => {
-    tabsCurrent.value = normalizeTabIndex(newTab)
-  },
-  { immediate: true }
-)
-
-watch(
-  tabsCurrent,
-  (value) => {
-    const normalized = normalizeTabIndex(value)
-    if (value !== normalized) {
-      tabsCurrent.value = normalized
-      return
-    }
-    const routeTab = normalizeTabIndex(route.query.tab)
-    if (normalized !== routeTab) {
-      router.replace({ path: route.path, query: { ...route.query, tab: normalized } })
-    }
-  }
-)
 
 onMounted(() => {
   updateColumns()

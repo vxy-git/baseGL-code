@@ -72,16 +72,53 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { footerData } from '@/data/common/footer'
+import { productsData } from '@/data/productlist/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
 
 // ========== 使用 Pinia Store 获取导航数据 ==========
 const cmsNavStore = useCmsNavStore()
 
+/**
+ * 获取产品分类链接数据
+ * 显示产品分类（For Resin/Rosin、D9 Distillate），而不是具体产品
+ * 优先使用 CMS 数据，降级到本地数据
+ */
+const getProductLinks = computed(() => {
+  // 优先使用 CMS 产品分类数据
+  const productCategoriesData = cmsNavStore.productCategories
+  if (productCategoriesData && productCategoriesData.length > 0) {
+    return productCategoriesData.map((category) => ({
+      text: category.label,
+      to: category.navUrl || `/list?tab=${category.id}`
+    }))
+  }
+
+  // 降级: 使用本地产品数据的 tabs
+  return productsData.tabs.map((tab, index) => ({
+    text: tab,
+    to: `/list?tab=${index}`
+  }))
+})
+
 // 计算属性: 返回最终使用的 Footer 列数据（优先使用 CMS 列结构）
 const footerColumns = computed(() => {
-  return (cmsNavStore.footerColumns && cmsNavStore.footerColumns.length > 0)
+  const columns = (cmsNavStore.footerColumns && cmsNavStore.footerColumns.length > 0)
     ? cmsNavStore.footerColumns
     : footerData.columns
+
+  // 为 Products 列添加产品分类数据
+  return columns.map(column => {
+    // 如果是 Products 列，使用产品分类数据
+    if (column.title === 'Products') {
+      return {
+        title: column.title,
+        links: getProductLinks.value
+      }
+    }
+
+    // 其他列保持原样
+    return column
+  })
 })
 
 const email = ref('')
