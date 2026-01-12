@@ -12,6 +12,7 @@ import { product2Unit6Data } from './product2-unit6.js'
 import { product2Unit7Data } from './product2-unit7.js'
 import { product2Unit8Data } from './product2-unit8.js'
 import { product2GsapUData } from './product2-gsapu.js'
+import { product2VideoUData } from './product2-videou.js'
 
 export default {
   // 路由配置
@@ -74,6 +75,10 @@ export default {
     gsapu: {
       enabled: true,
       data: product2GsapUData
+    },
+    videou: {
+      enabled: true,
+      data: product2VideoUData
     }
   }
 }

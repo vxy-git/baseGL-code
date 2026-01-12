@@ -1,8 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import MediaAsset from '@/components/MediaAsset.vue'
-const videoSrc = '/assets/product2/the.mp4'
-const arrowIcon = '/assets/product2/arrow.svg'
+import { product2VideoUData } from '@/data/product2/product2-videou.js'
 
 const props = defineProps({
   data: {
@@ -13,9 +12,9 @@ const props = defineProps({
 
 const unitData = computed(() => {
   if (props.data) {
-    return props.data;
+    return { ...product2VideoUData, ...props.data };
   }
-  return {};
+  return product2VideoUData;
 });
 </script>
 
@@ -23,7 +22,7 @@ const unitData = computed(() => {
   <div class="videoU w-full relative h-[1210px] flex flex-col justify-end">
     <MediaAsset
       type="video"
-      :src="videoSrc"
+      :src="unitData.media.videoSrc"
       :autoplay="false"
       :muted="true"
       :controls="false"
@@ -35,56 +34,51 @@ const unitData = computed(() => {
     <div class="w-full c_padding absolute top-0">
       <div class="mt-[117px] w-full c_1230">
         <div class="title1 text-center capitalize">
-          UNICORE Powered
+          {{ unitData.content.title1 }}
         </div>
         <div class="title2 mt-[19px]">
-          The gold standard for Rosin and Resin oils
+          {{ unitData.content.title2 }}
         </div>
         <div class="title3 mt-[19px]">
-          Our patented U-shape ceramic features an extremely uniform pore structure, ideally suited for the molecular
-          structure of Resin and
-          Rosin. It is 30% thinner than ordinary ceramics, yet maintains the same strength. This means fewer terpene
-          molecules are filtered out,
-          preserving the rich, natural flavors.
+          {{ unitData.content.title3 }}
         </div>
         <div class="flex gap-x-[150px] valBox justify-center mt-[82px] max-w-[95%]">
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px]">
-              30%
-
+              {{ unitData.values[0].label }}
             </div>
             <div class="value">
-              Thinner in Structure
+              {{ unitData.values[0].text }}
             </div>
           </div>
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
-              45%
+              {{ unitData.values[1].label }}
               <MediaAsset
                 class="h-[39.805px] -ml-[10px] translate-x-[8px]"
                 type="image"
-                :src="arrowIcon"
+                :src="unitData.media.arrowIcon"
                 alt=""
                 :lazy="false"
               />
             </div>
             <div class="value">
-              Flavor Retention
+              {{ unitData.values[1].text }}
             </div>
           </div>
           <div class="flex flex-col items-center">
             <div class="label h-[39.805px] flex">
-              35%
+              {{ unitData.values[2].label }}
               <MediaAsset
                 class="h-[39.805px] -ml-[13px] translate-x-[12px]"
                 type="image"
-                :src="arrowIcon"
+                :src="unitData.media.arrowIcon"
                 alt=""
                 :lazy="false"
               />
             </div>
             <div class="value">
-              in Pore Uniformity
+              {{ unitData.values[2].text }}
             </div>
           </div>
         </div>

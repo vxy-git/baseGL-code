@@ -30,10 +30,10 @@ const props = defineProps({
 const componentMap = {
   unit1: Unit1,
   unit2: Unit2,
-  gsapU: GsapU,
-  m_gsapU: m_GsapU,
+  gsapu: GsapU,
+  m_gsapu: m_GsapU,
   unit3: Unit3,
-  videoU: VideoU,
+  videou: VideoU,
   unit4: Unit4,
   unit5: Unit5,
   unit6: Unit6,
@@ -57,7 +57,7 @@ const defaultOrder = computed(() => {
     return [
       'unit1',                    // bg-black
       'unit2',                    // bg-[#111111]
-      'gsapU', 'unit3', 'videoU', 'unit4',  // bg-black
+      'gsapu', 'unit3', 'videou', 'unit4',  // bg-black
       'unit5',                    // 无背景
       'unit6', 'unit7', 'unit8'   // bg-black
     ];
@@ -65,7 +65,7 @@ const defaultOrder = computed(() => {
   return [
     'unit1',                     // bg-black
     'unit2',                     // bg-[#111111]
-    'm_gsapU', 'unit3', 'videoU', 'unit4',  // bg-black
+    'm_gsapu', 'unit3', 'videou', 'unit4',  // bg-black
     'unit5',                     // 无背景
     'm_unit6', 'unit7', 'm_unit8'  // bg-black
   ];
@@ -119,8 +119,8 @@ onUnmounted(() => {
         <component :is="item.component" :data="item.data" />
       </div>
 
-      <!-- gsapU, unit3, videoU, unit4 需要 bg-black 容器 -->
-      <div v-else-if="['gsapU', 'm_gsapU', 'unit3', 'videoU', 'unit4'].includes(item.key)" class="bg-black pb-[140px] pt-[1px]">
+      <!-- gsapu, unit3, videou, unit4 需要 bg-black 容器 -->
+      <div v-else-if="['gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4'].includes(item.key)" class="bg-black pb-[140px] pt-[1px]">
         <component :is="item.component" :data="item.data" />
       </div>
 
