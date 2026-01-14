@@ -14,6 +14,7 @@ const formRule = ref([])
 const formOption = ref({})
 const loading = ref(true)
 const formComponent = ref(null)
+const formApi = ref(null) // form-create API 对象
 
 // 表单数据
 const formData = ref({})
@@ -195,8 +196,8 @@ async function handleSubmit(formData) {
 
       // 提交成功后重置表单
       setTimeout(() => {
-        if (formComponent.value) {
-          formComponent.value.resetFields()
+        if (formApi.value) {
+          formApi.value.resetFields()
         }
         submitMessage.value = ''
       }, 3000)
@@ -229,6 +230,37 @@ async function handleSubmit(formData) {
     })
   } finally {
     submitting.value = false
+  }
+}
+
+// 外部按钮提交处理
+async function handleExternalSubmit() {
+  if (!formApi.value) {
+    console.error('❌ Form API not ready')
+    return
+  }
+
+  try {
+    // 使用 form-create 的 submit 方法
+    // 会自动验证表单，验证通过后调用 success 回调
+    await formApi.value.submit(
+      // success 回调：验证通过
+      (formData) => {
+        console.log('✅ 表单验证通过')
+        handleSubmit(formData)  // 调用原有的提交逻辑
+      },
+      // fail 回调：验证失败
+      () => {
+        console.log('❌ 表单验证失败')
+        ElMessage({
+          message: 'Please fill in all required fields correctly.',
+          type: 'warning',
+          duration: 3000
+        })
+      }
+    )
+  } catch (error) {
+    console.error('❌ 提交异常:', error)
   }
 }
 
@@ -311,22 +343,22 @@ const closeDropdowns = () => {
               <form-create
                 ref="formComponent"
                 v-model="formData"
+                v-model:api="formApi"
                 :rule="formRule"
                 :option="formOption"
-                @submit="handleSubmit"
               />
 
               <!-- 提交消息 -->
-              <div v-if="submitMessage" :class="['submit-message', submitSuccess ? 'success' : 'error']">
+              <!-- <div v-if="submitMessage" :class="['submit-message', submitSuccess ? 'success' : 'error']">
                 {{ submitMessage }}
-              </div>
+              </div> -->
 
               <!-- 自定义提交按钮 -->
               <button
                 type="button"
                 class="submitBtn"
-                @click="() => formComponent?.submit()"
                 :disabled="submitting"
+                @click="handleExternalSubmit"
               >
                 {{ submitting ? 'Submitting...' : contactUsData.content.submitButtonText }}
               </button>
