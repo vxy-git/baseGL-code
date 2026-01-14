@@ -1,19 +1,200 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Header from "@/components/Header/index.vue";
 import Footer from "@/components/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
 import { contactUsData } from '@/data/contactus/contactus'
+import { getFormRuleAndOption } from '@/api/formdesign'
+import { submitContactUsForm } from '@/api/infoData'
+import formCreate from '@form-create/element-ui'
+import 'element-plus/dist/index.css'
 
-const formData = ref({
-  name: '',
-  email: '',
-  country: '',
-  state: '',
-  phone: '',
-  message: ''
+// 表单配置
+const formRule = ref([])
+const formOption = ref({})
+const loading = ref(true)
+const formComponent = ref(null)
+
+// 表单数据
+const formData = ref({})
+
+// 提交状态
+const submitting = ref(false)
+const submitMessage = ref('')
+const submitSuccess = ref(false)
+
+// 初始化：从后端加载表单配置
+// 注意：你需要在后端 formdesign 插件中创建一个 ContactUs 表单配置
+// 并设置一个 UUID，然后在这里替换成你的 UUID
+const FORM_UUID = '4ce3147d-23ae-4467-bf7b-b225f4ce76a1' // TODO: 替换为实际的表单 UUID
+
+onMounted(async () => {
+  await loadFormConfig()
 })
 
+// 加载表单配置
+async function loadFormConfig() {
+  try {
+    loading.value = true
+    console.log('📋 正在加载表单配置... UUID:', FORM_UUID)
+
+    const result = await getFormRuleAndOption(FORM_UUID)
+
+    if (result.success) {
+      formRule.value = result.rule
+      formOption.value = result.option
+      console.log('✅ 表单配置加载成功')
+    } else {
+      console.error('❌ 表单配置加载失败:', result.message)
+      // 如果加载失败，使用本地静态表单
+      useLocalForm()
+    }
+  } catch (error) {
+    console.error('❌ 表单配置加载异常:', error)
+    // 如果加载失败，使用本地静态表单
+    useLocalForm()
+  } finally {
+    loading.value = false
+  }
+}
+
+// 降级方案：使用本地静态表单配置
+function useLocalForm() {
+  console.log('⚠️ 使用本地静态表单配置')
+  formRule.value = [
+    {
+      type: 'input',
+      field: 'name',
+      title: 'Your name',
+      value: '',
+      props: {
+        placeholder: 'Your name*'
+      },
+      validate: [
+        { required: true, message: 'Please enter your name' }
+      ]
+    },
+    {
+      type: 'input',
+      field: 'email',
+      title: 'Email Address',
+      value: '',
+      props: {
+        placeholder: 'Email Address*'
+      },
+      validate: [
+        { required: true, message: 'Please enter your email' },
+        { type: 'email', message: 'Please enter a valid email' }
+      ]
+    },
+    {
+      type: 'select',
+      field: 'country',
+      title: 'Country',
+      value: '',
+      options: contactUsData.formData.countries.map(country => ({
+        label: country,
+        value: country
+      })),
+      props: {
+        placeholder: 'Country*'
+      },
+      validate: [
+        { required: true, message: 'Please select your country' }
+      ]
+    },
+    {
+      type: 'select',
+      field: 'state',
+      title: 'State',
+      value: '',
+      options: [],
+      props: {
+        placeholder: 'State'
+      },
+      link: [
+        {
+          // 联动规则：根据 country 字段的值动态更新 options
+          field: 'country',
+          handler: (api) => {
+            const country = api.form.country
+            const states = contactUsData.formData.statesByCountry[country] || []
+            api.updateRules('state', {
+              options: states.map(state => ({ label: state, value: state }))
+            })
+          }
+        }
+      ]
+    },
+    {
+      type: 'input',
+      field: 'phone',
+      title: 'Phone Number',
+      value: '',
+      props: {
+        placeholder: 'Phone Number'
+      }
+    },
+    {
+      type: 'textarea',
+      field: 'message',
+      title: 'Message',
+      value: '',
+      props: {
+        placeholder: 'Message',
+        rows: 4
+      }
+    }
+  ]
+
+  formOption.value = {
+    submitBtn: false,
+    resetBtn: false,
+    form: {
+      labelWidth: '0px'
+    }
+  }
+}
+
+// 表单提交处理
+async function handleSubmit(formData) {
+  try {
+    submitting.value = true
+    submitMessage.value = ''
+    submitSuccess.value = false
+
+    console.log('📤 正在提交表单数据...', formData)
+
+    // 调用 API 提交表单
+    const result = await submitContactUsForm(formData)
+
+    if (result.success) {
+      submitSuccess.value = true
+      submitMessage.value = 'Thank you! Your message has been sent successfully.'
+      console.log('✅ 表单提交成功')
+
+      // 提交成功后重置表单
+      setTimeout(() => {
+        if (formComponent.value) {
+          formComponent.value.resetFields()
+        }
+        submitMessage.value = ''
+      }, 3000)
+    } else {
+      submitSuccess.value = false
+      submitMessage.value = result.message || 'Submission failed. Please try again.'
+      console.error('❌ 表单提交失败:', result.message)
+    }
+  } catch (error) {
+    submitSuccess.value = false
+    submitMessage.value = 'An error occurred. Please try again later.'
+    console.error('❌ 表单提交异常:', error)
+  } finally {
+    submitting.value = false
+  }
+}
+
+// 本地静态表单的旧逻辑（降级使用）
 const showCountryDropdown = ref(false)
 const showStateDropdown = ref(false)
 
@@ -23,7 +204,7 @@ const availableStates = computed(() => {
 
 const selectCountry = (country) => {
   formData.value.country = country
-  formData.value.state = '' // 重置州选择
+  formData.value.state = ''
   showCountryDropdown.value = false
 }
 
@@ -32,7 +213,6 @@ const selectState = (state) => {
   showStateDropdown.value = false
 }
 
-// 切换下拉框显示
 const toggleCountryDropdown = () => {
   showCountryDropdown.value = !showCountryDropdown.value
   showStateDropdown.value = false
@@ -45,7 +225,6 @@ const toggleStateDropdown = () => {
   }
 }
 
-// 关闭所有下拉框
 const closeDropdowns = () => {
   showCountryDropdown.value = false
   showStateDropdown.value = false
@@ -85,53 +264,35 @@ const closeDropdowns = () => {
         <div class="formContainer">
           <div class="formCard px-[40px] pt-[60px]">
             <h2 class="formTitle">{{ contactUsData.content.formTitle }}</h2>
-            <form class="form" @click.stop>
-              <div class="formField">
-                <input type="text" v-model="formData.name" placeholder="Your name*" />
 
-              </div>
-              <div class="formField">
-                <input type="email" v-model="formData.email" placeholder="Email Address*" />
-              </div>
+            <!-- 动态表单 -->
+            <div v-if="loading" class="formLoading">
+              Loading form...
+            </div>
+            <div v-else class="form-wrapper" @click.stop>
+              <form-create
+                ref="formComponent"
+                v-model="formData"
+                :rule="formRule"
+                :option="formOption"
+                @submit="handleSubmit"
+              />
 
-              <div class="formField selectField">
-                <div class="selectInput" @click="toggleCountryDropdown">
-                  <span :class="formData.country ? 'selectedValue' : 'placeholder'">
-                    {{ formData.country || 'Country*' }}
-                  </span>
-                  <MediaAsset src="/assets/img/icon46.png" type="image"
-                    :class="['dropdownIcon', showCountryDropdown && 'rotated']" alt="" :lazy="false" />
-                </div>
-                <div v-if="showCountryDropdown" class="dropdownList" @click.stop>
-                  <div v-for="country in contactUsData.formData.countries" :key="country" class="dropdownItem" @click="selectCountry(country)">
-                    {{ country }}
-                  </div>
-                </div>
+              <!-- 提交消息 -->
+              <div v-if="submitMessage" :class="['submit-message', submitSuccess ? 'success' : 'error']">
+                {{ submitMessage }}
               </div>
 
-              <div class="formField selectField">
-                <div :class="['selectInput', !formData.country && 'disabled']" @click="toggleStateDropdown">
-                  <span :class="formData.state ? 'selectedValue' : 'placeholder'">
-                    {{ formData.state || 'State' }}
-                  </span>
-                  <MediaAsset src="/assets/img/icon46.png" type="image" :class="['dropdownIcon', showStateDropdown && 'rotated']"
-                    alt="" :lazy="false" />
-                </div>
-                <div v-if="showStateDropdown && availableStates.length > 0" class="dropdownList" @click.stop>
-                  <div v-for="state in availableStates" :key="state" class="dropdownItem" @click="selectState(state)">
-                    {{ state }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="formField">
-                <input type="tel" v-model="formData.phone" placeholder="Phone Number" />
-              </div>
-              <div class="formField">
-                <textarea v-model="formData.message" placeholder="Message"></textarea>
-              </div>
-              <button type="submit" class="submitBtn">{{ contactUsData.content.submitButtonText }}</button>
-            </form>
+              <!-- 自定义提交按钮 -->
+              <button
+                type="button"
+                class="submitBtn"
+                @click="() => formComponent?.submit()"
+                :disabled="submitting"
+              >
+                {{ submitting ? 'Submitting...' : contactUsData.content.submitButtonText }}
+              </button>
+            </div>
           </div>
           <div class="formImage">
             <MediaAsset :src="contactUsData.icons.product" type="image" alt="Product Image" :lazy="false" />
@@ -336,6 +497,124 @@ const closeDropdowns = () => {
   gap: 10px;
 }
 
+.form-wrapper {
+  margin-top: 26px;
+}
+
+.formLoading {
+  margin-top: 26px;
+  text-align: center;
+  color: #999;
+  padding: 40px 0;
+}
+
+/* Element Plus 表单样式覆盖 */
+.form-wrapper :deep(.el-form-item) {
+  margin-bottom: 10px;
+}
+
+.form-wrapper :deep(.el-input__wrapper) {
+  padding: 15px 14px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+}
+
+.form-wrapper :deep(.el-input__wrapper):hover {
+  border-color: #1ce785;
+}
+
+.form-wrapper :deep(.el-input__wrapper.is-focus) {
+  border-color: #1ce785;
+}
+
+.form-wrapper :deep(.el-input__inner) {
+  color: #555;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+}
+
+.form-wrapper :deep(.el-input__inner::placeholder) {
+  color: #555;
+}
+
+.form-wrapper :deep(.el-textarea__inner) {
+  padding: 15px 14px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 0;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+  color: #555;
+  resize: none;
+  min-height: 100px;
+}
+
+.form-wrapper :deep(.el-textarea__inner):hover {
+  border-color: #1ce785;
+}
+
+.form-wrapper :deep(.el-textarea__inner):focus {
+  border-color: #1ce785;
+}
+
+.form-wrapper :deep(.el-select .el-input__wrapper) {
+  cursor: pointer;
+}
+
+.form-wrapper :deep(.el-select:hover .el-input__wrapper) {
+  border-color: #1ce785;
+}
+
+.form-wrapper :deep(.el-select__placeholder) {
+  color: #555;
+}
+
+.form-wrapper :deep(.el-select__selected-item) {
+  color: #222;
+  font-weight: 500;
+}
+
+.form-wrapper :deep(.el-select-dropdown__item) {
+  font-size: 16px;
+  color: #555;
+  padding: 12px 14px;
+}
+
+.form-wrapper :deep(.el-select-dropdown__item:hover) {
+  background-color: #f8f9fc;
+  color: #222;
+}
+
+.form-wrapper :deep(.el-select-dropdown__item.selected) {
+  color: #1ce785;
+  font-weight: 500;
+}
+
+/* 提交消息样式 */
+.submit-message {
+  margin-top: 15px;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.submit-message.success {
+  background-color: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.submit-message.error {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
 .formField {
   position: relative;
 }
@@ -485,6 +764,21 @@ const closeDropdowns = () => {
   font-size: 18px;
   color: #111;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .formImage {
