@@ -607,6 +607,7 @@ const closeDropdowns = () => {
   font-family: Roboto, sans-serif;
 }
 
+.form-wrapper :deep(.el-textarea__inner::placeholder),
 .form-wrapper :deep(.el-input__inner::placeholder) {
   color: #555;
 }
