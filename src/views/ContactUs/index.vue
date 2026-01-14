@@ -7,7 +7,7 @@ import { contactUsData } from '@/data/contactus/contactus'
 import { getFormRuleAndOption } from '@/api/formdesign'
 import { submitContactUsForm } from '@/api/infoData'
 import formCreate from '@form-create/element-ui'
-import 'element-plus/dist/index.css'
+import { ElMessage } from 'element-plus'
 
 // 表单配置
 const formRule = ref([])
@@ -41,24 +41,49 @@ async function loadFormConfig() {
     const result = await getFormRuleAndOption(FORM_UUID)
 
     if (result.success) {
+      // 详细调试日志
+      console.log('✅ 原始 rule:', result.rule)
+      console.log('✅ 原始 option:', result.option)
+      console.log('✅ rule 类型:', typeof result.rule)
+      console.log('✅ rule 是否为数组:', Array.isArray(result.rule))
+      console.log('✅ rule 长度:', result.rule?.length)
+
       formRule.value = result.rule
       formOption.value = result.option
+
+      // 验证赋值后的值
+      console.log('📋 formRule.value:', formRule.value)
+      console.log('📋 formOption.value:', formOption.value)
       console.log('✅ 表单配置加载成功')
     } else {
       console.error('❌ 表单配置加载失败:', result.message)
       // 如果加载失败，使用本地静态表单
       useLocalForm()
+      // 显示降级提示
+      ElMessage({
+        message: 'Using offline form. Some features may be limited.',
+        type: 'warning',
+        duration: 3000,
+        showClose: true
+      })
     }
   } catch (error) {
     console.error('❌ 表单配置加载异常:', error)
     // 如果加载失败，使用本地静态表单
     useLocalForm()
+    // 显示降级提示
+    ElMessage({
+      message: 'Using offline form. Some features may be limited.',
+      type: 'warning',
+      duration: 3000,
+      showClose: true
+    })
   } finally {
     loading.value = false
   }
 }
 
-// 降级方案：使用本地静态表单配置
+// 降级方案：使用本地静态表单配置（与文档对齐：5个字段）
 function useLocalForm() {
   console.log('⚠️ 使用本地静态表单配置')
   formRule.value = [
@@ -71,7 +96,7 @@ function useLocalForm() {
         placeholder: 'Your name*'
       },
       validate: [
-        { required: true, message: 'Please enter your name' }
+        { required: true, message: 'name is required' }
       ]
     },
     {
@@ -83,8 +108,11 @@ function useLocalForm() {
         placeholder: 'Email Address*'
       },
       validate: [
-        { required: true, message: 'Please enter your email' },
-        { type: 'email', message: 'Please enter a valid email' }
+        { required: true, message: 'email is required' },
+        {
+          pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+          message: 'Please enter a valid email address'
+        }
       ]
     },
     {
@@ -100,30 +128,7 @@ function useLocalForm() {
         placeholder: 'Country*'
       },
       validate: [
-        { required: true, message: 'Please select your country' }
-      ]
-    },
-    {
-      type: 'select',
-      field: 'state',
-      title: 'State',
-      value: '',
-      options: [],
-      props: {
-        placeholder: 'State'
-      },
-      link: [
-        {
-          // 联动规则：根据 country 字段的值动态更新 options
-          field: 'country',
-          handler: (api) => {
-            const country = api.form.country
-            const states = contactUsData.formData.statesByCountry[country] || []
-            api.updateRules('state', {
-              options: states.map(state => ({ label: state, value: state }))
-            })
-          }
-        }
+        { required: true, message: 'country is required' }
       ]
     },
     {
@@ -133,7 +138,13 @@ function useLocalForm() {
       value: '',
       props: {
         placeholder: 'Phone Number'
-      }
+      },
+      validate: [
+        {
+          pattern: /^[\d\s\-+()]+$/,
+          message: 'Please enter a valid phone number'
+        }
+      ]
     },
     {
       type: 'textarea',
@@ -164,14 +175,23 @@ async function handleSubmit(formData) {
     submitSuccess.value = false
 
     console.log('📤 正在提交表单数据...', formData)
+    console.log('📋 表单 UUID:', FORM_UUID)
 
-    // 调用 API 提交表单
-    const result = await submitContactUsForm(formData)
+    // 调用 API 提交表单（传递 UUID 和原始表单数据）
+    const result = await submitContactUsForm(formData, FORM_UUID)
 
     if (result.success) {
       submitSuccess.value = true
       submitMessage.value = 'Thank you! Your message has been sent successfully.'
       console.log('✅ 表单提交成功')
+
+      // 显示成功提示
+      ElMessage({
+        message: 'Thank you! Your message has been sent successfully.',
+        type: 'success',
+        duration: 3000,
+        showClose: true
+      })
 
       // 提交成功后重置表单
       setTimeout(() => {
@@ -182,13 +202,31 @@ async function handleSubmit(formData) {
       }, 3000)
     } else {
       submitSuccess.value = false
-      submitMessage.value = result.message || 'Submission failed. Please try again.'
+      const errorMsg = result.message || 'Submission failed. Please try again.'
+      submitMessage.value = errorMsg
       console.error('❌ 表单提交失败:', result.message)
+
+      // 显示错误提示
+      ElMessage({
+        message: errorMsg,
+        type: 'error',
+        duration: 5000,
+        showClose: true
+      })
     }
   } catch (error) {
     submitSuccess.value = false
-    submitMessage.value = 'An error occurred. Please try again later.'
+    const errorMsg = 'An error occurred. Please try again later.'
+    submitMessage.value = errorMsg
     console.error('❌ 表单提交异常:', error)
+
+    // 显示错误提示
+    ElMessage({
+      message: errorMsg,
+      type: 'error',
+      duration: 5000,
+      showClose: true
+    })
   } finally {
     submitting.value = false
   }
@@ -510,11 +548,11 @@ const closeDropdowns = () => {
 
 /* Element Plus 表单样式覆盖 */
 .form-wrapper :deep(.el-form-item) {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .form-wrapper :deep(.el-input__wrapper) {
-  padding: 15px 14px;
+  padding: 9px 14px;
   border: 1px solid #d9d9d9;
   background-color: #fff;
   box-shadow: none;
@@ -542,8 +580,9 @@ const closeDropdowns = () => {
 }
 
 .form-wrapper :deep(.el-textarea__inner) {
+  outline: none;
   padding: 15px 14px;
-  border: 1px solid #d9d9d9;
+  // border: 1px solid #d9d9d9;
   background-color: #fff;
   border-radius: 0;
   font-size: 16px;
@@ -558,6 +597,7 @@ const closeDropdowns = () => {
 }
 
 .form-wrapper :deep(.el-textarea__inner):focus {
+  box-shadow: none;
   border-color: #1ce785;
 }
 

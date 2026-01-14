@@ -9,7 +9,8 @@
       "Bash(find:*)",
       "Bash(node:*)",
       "Bash(pkill:*)",
-      "WebSearch"
+      "WebSearch",
+      "mcp__zai-mcp-server__analyze_image"
     ],
     "deny": [],
     "ask": []
