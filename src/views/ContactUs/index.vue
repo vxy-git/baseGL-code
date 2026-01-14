@@ -580,9 +580,9 @@ const closeDropdowns = () => {
 }
 
 .form-wrapper :deep(.el-textarea__inner) {
-  outline: none;
+  box-shadow: none;
   padding: 15px 14px;
-  // border: 1px solid #d9d9d9;
+  outline: 1px solid #d9d9d9;
   background-color: #fff;
   border-radius: 0;
   font-size: 16px;
@@ -593,12 +593,13 @@ const closeDropdowns = () => {
 }
 
 .form-wrapper :deep(.el-textarea__inner):hover {
-  border-color: #1ce785;
+  box-shadow: none;
+  outline: 1px solid #1ce785;
 }
 
 .form-wrapper :deep(.el-textarea__inner):focus {
+  outline: 1px solid #1ce785;
   box-shadow: none;
-  border-color: #1ce785;
 }
 
 .form-wrapper :deep(.el-select .el-input__wrapper) {
