@@ -22,9 +22,7 @@ const unitData = computed(() => {
 })
 
 const seqProgress = ref(0)
-const frames = 26
-const tarURL = '/api/uploads/file/default/product2.tar'
-const imageURL = (i) => `/api/uploads/file/default/product2/frame${i + 1}.jpg`
+const { frames, tarURL, imageName, imageExtension } = unitData.value.frameConfig
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -73,8 +71,14 @@ onUnmounted(() => {
   <div class="pt-[133px]">
     <section ref="pinSection" class="sequence-wrap relative">
       <div ref="frameContainer" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-        <FrameSequence :frames="frames" :tarURL="tarURL" :imageURL="imageURL" :progress="seqProgress"
-          :objectFit="isMobile ? 'contain' : 'cover'" />
+         <FrameSequence
+          :frames="frames"
+          :tarURL="tarURL"
+          :imageName="imageName"
+          :imageExtension="imageExtension || '.jpg'"
+          :progress="seqProgress"
+          :objectFit="isMobile ? 'contain' : 'cover'"
+        />
       </div>
       <div ref="textBlock" class="size-full flex items-start justify-center">
         <div class="text-layer">

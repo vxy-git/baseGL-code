@@ -45,10 +45,14 @@ const withCdn = (val = "") => {
 
 // 根据 tarURL 和 imageName 生成 imageURL 函数
 const generateImageURL = (tarURL, imageName, extension = ".jpg") => {
-  // 从 tarURL 提取目录名："/product3_1.tar" → "product3_1"
-  const dirName = tarURL.replace(/^\/+/, "").replace(/\.tar$/, "");
-  // 返回函数：(i) => `product3_1/frame${i + 1}.jpg`
-  return (i) => `${dirName}/${imageName}${i + 1}${extension}`;
+  // 从 tarURL 提取纯文件名（不含路径和扩展名）
+  // "/api/uploads/file/default/product1.tar" → "product1"
+  // "/path/to/product3_1.tar" → "product3_1"
+  const fileName = tarURL.split('/').pop().replace(/\.tar$/, "");
+  // 确保扩展名以点号开头（兼容 "jpg" 和 ".jpg" 两种格式）
+  const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`;
+  // 返回函数：(i) => `product1/frame${i + 1}.jpg` (tar 文件内部的相对路径)
+  return (i) => `${fileName}/${imageName}${i + 1}${normalizedExtension}`;
 };
 
 // 计算最终的 imageURL 函数（支持向后兼容）
