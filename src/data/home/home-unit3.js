@@ -9,7 +9,7 @@ export const homeUnit3Data = {
   /**
    * 背景图片路径
    */
-  bannerImage: '/assets/home/UNICORE.jpg',
+  bannerImage: '/api/uploads/file/default/assets/home/UNICORE.jpg',
 
   /**
    * 标签文本

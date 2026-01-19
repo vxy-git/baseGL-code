@@ -13,7 +13,7 @@ export const product4Unit5Data = {
     /**
      * Dual Gemco Core 视频
      */
-    dualGemcoCore: '/assets/product4/Dual-Gemco-Core.mp4',
+    dualGemcoCore: '/api/uploads/file/default/assets/product4/Dual-Gemco-Core.mp4',
   },
 
   /**

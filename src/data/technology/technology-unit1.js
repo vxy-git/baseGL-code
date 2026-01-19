@@ -13,12 +13,12 @@ export const technologyUnit1Data = {
     /**
      * 图标图片
      */
-    icon: '/assets/img/icon1_3.png',
+    icon: '/api/uploads/file/default/assets/img/icon1_3.png',
 
     /**
      * 播放图标
      */
-    play: '/assets/img/Play-one.png',
+    play: '/api/uploads/file/default/assets/img/Play-one.png',
   },
 
   /**
@@ -28,12 +28,12 @@ export const technologyUnit1Data = {
     /**
      * 视频源
      */
-    src: '/assets/technology/banner.mp4',
+    src: '/api/uploads/file/default/assets/technology/banner.mp4',
 
     /**
      * 背景视频
      */
-    bannerBg: '/assets/technology/bannerBg.mp4',
+    bannerBg: '/api/uploads/file/default/assets/technology/bannerBg.mp4',
   },
 
   /**

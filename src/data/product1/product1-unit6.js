@@ -23,11 +23,11 @@ export const product1Unit6Data = {
     /**
      * 左侧视频路径
      */
-    left: '/assets/product1/inhale-L.mp4',
+    left: '/api/uploads/file/default/assets/product1/inhale-L.mp4',
 
     /**
      * 右侧视频路径
      */
-    right: '/assets/product1/inhale-R.mp4',
+    right: '/api/uploads/file/default/assets/product1/inhale-R.mp4',
   },
 }

@@ -18,12 +18,12 @@ export const product2Unit5Data = {
     /**
      * UNIVERSE 视频路径
      */
-    universe: '/assets/product2/UNIVERSE.mp4',
+    universe: '/api/uploads/file/default/assets/product2/UNIVERSE.mp4',
 
     /**
      * UNIVERSE Pro 视频路径
      */
-    universePro: '/assets/product2/UNIVERSE_Pro.mp4',
+    universePro: '/api/uploads/file/default/assets/product2/UNIVERSE_Pro.mp4',
   },
 
   /**

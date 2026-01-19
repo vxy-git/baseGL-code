@@ -35,13 +35,13 @@ export const product2ItemData = {
    * 产品图片路径
    * @type {string}
    */
-  image: '/assets/list/For_ResinRosin/UNIVERSE-Series.jpg',
+  image: '/api/uploads/file/default/assets/list/For_ResinRosin/UNIVERSE-Series.jpg',
 
   /**
    * 产品悬停背景图片路径
    * @type {string}
    */
-  background: '/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg',
+  background: '/api/uploads/file/default/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg',
 
   /**
    * 图片 alt 文本

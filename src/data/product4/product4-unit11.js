@@ -13,12 +13,12 @@ export const product4Unit11Data = {
     /**
      * UNIVERSE 视频
      */
-    universe: '/assets/product4/UNICORN.mp4',
+    universe: '/api/uploads/file/default/assets/product4/UNICORN.mp4',
 
     /**
      * UNIVERSE PRO 视频
      */
-    universePro: '/assets/product4/UNICORN-Pro.mp4',
+    universePro: '/api/uploads/file/default/assets/product4/UNICORN-Pro.mp4',
   },
 
   /**

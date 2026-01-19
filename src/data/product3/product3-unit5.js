@@ -13,22 +13,22 @@ export const product3Unit5Data = {
     /**
      * 温度控制视频
      */
-    tempControl: '/assets/product3/3-Temperature-Control.mp4',
+    tempControl: '/api/uploads/file/default/assets/product3/3-Temperature-Control.mp4',
 
     /**
      * 电池寿命监控视频
      */
-    batteryLifeMonitor: '/assets/product3/Battery-Life-Monitor.mp4',
+    batteryLifeMonitor: '/api/uploads/file/default/assets/product3/Battery-Life-Monitor.mp4',
 
     /**
      * 预热状态指示视频
      */
-    preheatStatus: '/assets/product3/Preheat-Status-Indication.mp4',
+    preheatStatus: '/api/uploads/file/default/assets/product3/Preheat-Status-Indication.mp4',
 
     /**
      * 吸入计数器视频
      */
-    puffCounter: '/assets/product3/Puff-Counter.mp4',
+    puffCounter: '/api/uploads/file/default/assets/product3/Puff-Counter.mp4',
   },
 
   /**
@@ -57,22 +57,22 @@ export const product3Unit5Data = {
   featureCards: [
     {
       tag: '3-Temperature Control',
-      video: '/assets/product3/3-Temperature-Control.mp4',
+      video: '/api/uploads/file/default/assets/product3/3-Temperature-Control.mp4',
       wide: false
     },
     {
       tag: 'Battery Life Monitor',
-      video: '/assets/product3/Battery-Life-Monitor.mp4',
+      video: '/api/uploads/file/default/assets/product3/Battery-Life-Monitor.mp4',
       wide: true
     },
     {
       tag: 'Preheat Status Indication',
-      video: '/assets/product3/Preheat-Status-Indication.mp4',
+      video: '/api/uploads/file/default/assets/product3/Preheat-Status-Indication.mp4',
       wide: true
     },
     {
       tag: 'Dosing Timer',
-      video: '/assets/product3/Puff-Counter.mp4',
+      video: '/api/uploads/file/default/assets/product3/Puff-Counter.mp4',
       wide: false
     }
   ],

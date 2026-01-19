@@ -11,19 +11,19 @@ export const product4Unit2Data = {
    */
   features: [
     {
-      image: '/assets/product4/Advanced-Interactivity.jpg',
+      image: '/api/uploads/file/default/assets/product4/Advanced-Interactivity.jpg',
       label: 'Advanced Interactivity',
     },
     {
-      image: '/assets/product4/Dual-Chamber.jpg',
+      image: '/api/uploads/file/default/assets/product4/Dual-Chamber.jpg',
       label: 'Dual Chamber',
     },
     {
-      image: '/assets/product4/Multiple-Options.jpg',
+      image: '/api/uploads/file/default/assets/product4/Multiple-Options.jpg',
       label: 'Multiple Options',
     },
     {
-      image: '/assets/product4/Post-Free.jpg',
+      image: '/api/uploads/file/default/assets/product4/Post-Free.jpg',
       label: 'Post-Free',
     },
   ],

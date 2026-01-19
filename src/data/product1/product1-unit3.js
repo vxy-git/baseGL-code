@@ -13,12 +13,12 @@ export const product1Unit3Data = {
     /**
      * 口味图标
      */
-    flavor: '/assets/img/icon19.png',
+    flavor: '/api/uploads/file/default/assets/img/icon19.png',
 
     /**
      * 设备图标
      */
-    device: '/assets/img/icon18.png',
+    device: '/api/uploads/file/default/assets/img/icon18.png',
   },
 
   /**
@@ -26,7 +26,7 @@ export const product1Unit3Data = {
    */
   frameConfig: {
     frames: 71,
-    tarURL: '/product1.tar',
+    tarURL: '/api/uploads/file/default/product1.tar',
     imageName: 'frame',
     imageExtension: '.jpg'
   },

@@ -13,7 +13,7 @@ export const product2GsapUData = {
     /**
      * 主图片
      */
-    image: '/assets/product2/gsap/m1.jpg',
+    image: '/api/uploads/file/default/assets/product2/gsap/m1.jpg',
   },
 
   /**

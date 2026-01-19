@@ -14,7 +14,7 @@ export const homeUnit2Data = {
   /**
    * 箭头图标路径
    */
-  arrowIcon: '/assets/img/icon4_active.png',
+  arrowIcon: '/api/uploads/file/default/assets/img/icon4_active.png',
 
   /**
    * Splide 轮播配置

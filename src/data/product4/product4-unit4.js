@@ -13,7 +13,7 @@ export const product4Unit4Data = {
     /**
      * ICON33 图标
      */
-    icon33: '/assets/img/icon33.png',
+    icon33: '/api/uploads/file/default/assets/img/icon33.png',
   },
 
   /**
@@ -23,13 +23,13 @@ export const product4Unit4Data = {
     /**
      * DUAL 视频
      */
-    dual: '/assets/product4/DUAL.mp4',
+    dual: '/api/uploads/file/default/assets/product4/DUAL.mp4',
   },
 
   /**
    * 遮罩图片路径
    */
-  dualMaskImg: '/assets/product4/unit3/logo1.svg',
+  dualMaskImg: '/api/uploads/file/default/assets/product4/unit3/logo1.svg',
 
   /**
    * 文本内容

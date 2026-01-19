@@ -26,8 +26,8 @@ export const product1Unit4Data = {
     title: 'Best flavor preservation',
     description: `Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.`,
     videos: {
-      left: '/assets/product1/best-L.mp4',
-      right: '/assets/product1/best-R.mp4'
+      left: '/api/uploads/file/default/assets/product1/best-L.mp4',
+      right: '/api/uploads/file/default/assets/product1/best-R.mp4'
     }
   },
 
@@ -39,8 +39,8 @@ export const product1Unit4Data = {
     title: 'No more dry burning',
     description: `The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.`,
     videos: {
-      left: '/assets/product1/no-L.mp4',
-      right: '/assets/product1/no-R.mp4'
+      left: '/api/uploads/file/default/assets/product1/no-L.mp4',
+      right: '/api/uploads/file/default/assets/product1/no-R.mp4'
     }
   },
 }

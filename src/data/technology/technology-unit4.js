@@ -13,7 +13,7 @@ export const technologyUnit4Data = {
     /**
      * 图标图片
      */
-    icon: '/assets/img/icon19.png',
+    icon: '/api/uploads/file/default/assets/img/icon19.png',
   },
 
   /**
@@ -23,17 +23,17 @@ export const technologyUnit4Data = {
     /**
      * 视频2路径
      */
-    video2: '/assets/technology/t2/m2.mp4',
+    video2: '/api/uploads/file/default/assets/technology/t2/m2.mp4',
 
     /**
      * 图片1路径
      */
-    image1: '/assets/technology/t2/m1.jpg',
+    image1: '/api/uploads/file/default/assets/technology/t2/m1.jpg',
 
     /**
      * 背景视频路径
      */
-    bgVideo: '/assets/technology/t2/bg.mp4',
+    bgVideo: '/api/uploads/file/default/assets/technology/t2/bg.mp4',
   },
 
   /**

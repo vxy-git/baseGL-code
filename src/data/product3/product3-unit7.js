@@ -18,12 +18,12 @@ export const product3Unit7Data = {
     /**
      * Unicorn 视频
      */
-    unicornVideo: '/assets/product3/UNICORN.mp4',
+    unicornVideo: '/api/uploads/file/default/assets/product3/UNICORN.mp4',
 
     /**
      * Unicorn Pro 视频
      */
-    unicornProVideo: '/assets/product3/UNICORN-PRO.mp4',
+    unicornProVideo: '/api/uploads/file/default/assets/product3/UNICORN-PRO.mp4',
   },
 
   /**

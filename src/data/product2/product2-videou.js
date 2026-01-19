@@ -6,8 +6,8 @@
 export const product2VideoUData = {
   // 媒体资源
   media: {
-    videoSrc: '/assets/product2/the.mp4',
-    arrowIcon: '/assets/product2/arrow.svg'
+    videoSrc: '/api/uploads/file/default/assets/product2/the.mp4',
+    arrowIcon: '/api/uploads/file/default/assets/product2/arrow.svg'
   },
 
   // 内容文本

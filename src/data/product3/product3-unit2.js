@@ -13,12 +13,12 @@ export const product3Unit2Data = {
     /**
      * 产品1图片
      */
-    product1Image: '/assets/product3/unit2-1.jpg',
+    product1Image: '/api/uploads/file/default/assets/product3/unit2-1.jpg',
 
     /**
      * 产品2图片
      */
-    product2Image: '/assets/product3/unit2-2.jpg',
+    product2Image: '/api/uploads/file/default/assets/product3/unit2-2.jpg',
 
     /**
      * 产品1名称

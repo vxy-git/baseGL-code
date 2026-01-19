@@ -13,17 +13,17 @@ export const product4Unit13Data = {
     /**
      * 左箭头图标
      */
-    arrowLeft: '/assets/img/icon4.png',
+    arrowLeft: '/api/uploads/file/default/assets/img/icon4.png',
 
     /**
      * 右箭头图标
      */
-    arrowRight: '/assets/img/icon4_active.png',
+    arrowRight: '/api/uploads/file/default/assets/img/icon4_active.png',
 
     /**
      * 卡片图片
      */
-    card: '/assets/img/icon25.png',
+    card: '/api/uploads/file/default/assets/img/icon25.png',
   },
 
   /**

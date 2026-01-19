@@ -13,12 +13,12 @@ export const product4Unit6Data = {
     /**
      * 左侧视频
      */
-    left: '/assets/product4/unit5-l.mp4',
+    left: '/api/uploads/file/default/assets/product4/unit5-l.mp4',
 
     /**
      * 右侧视频
      */
-    right: '/assets/product4/unit5-r.mp4',
+    right: '/api/uploads/file/default/assets/product4/unit5-r.mp4',
   },
 
   /**

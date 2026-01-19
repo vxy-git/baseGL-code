@@ -33,11 +33,11 @@ export const product3Unit9BlockData = {
     /**
      * 左侧视频/图片
      */
-    leftImage: '/assets/product3/unit3-l.mp4',
+    leftImage: '/api/uploads/file/default/assets/product3/unit3-l.mp4',
 
     /**
      * 右侧视频/图片
      */
-    rightImage: '/assets/product3/unit3-r.mp4',
+    rightImage: '/api/uploads/file/default/assets/product3/unit3-r.mp4',
   },
 }

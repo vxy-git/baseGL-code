@@ -23,8 +23,8 @@ const unitData = computed(() => {
 
 const seqProgress = ref(0)
 const frames = 26
-const tarURL = '/product2.tar'
-const imageURL = (i) => `product2/frame${i + 1}.jpg`
+const tarURL = '/api/uploads/file/default/product2.tar'
+const imageURL = (i) => `/api/uploads/file/default/product2/frame${i + 1}.jpg`
 
 const pinSection = ref(null)
 const frameContainer = ref(null)

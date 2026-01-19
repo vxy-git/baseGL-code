@@ -9,12 +9,12 @@ export const contactUsData = {
   /**
    * Hero Banner 图片
    */
-  heroBanner: '/assets/contact/banner.jpg',
+  heroBanner: '/api/uploads/file/default/assets/contact/banner.jpg',
 
   /**
    * 移动端 Hero Banner 图片
    */
-  heroBannerMobile: '/assets/contact/m_banner.jpg',
+  heroBannerMobile: '/api/uploads/file/default/assets/contact/m_banner.jpg',
 
   /**
    * 图标路径
@@ -23,17 +23,17 @@ export const contactUsData = {
     /**
      * Instagram 图标
      */
-    instagram: '/assets/img/icon44.png',
+    instagram: '/api/uploads/file/default/assets/img/icon44.png',
 
     /**
      * 下拉箭头图标
      */
-    dropdown: '/assets/img/icon46.png',
+    dropdown: '/api/uploads/file/default/assets/img/icon46.png',
 
     /**
      * 产品展示图标
      */
-    product: '/assets/img/icon45.png',
+    product: '/api/uploads/file/default/assets/img/icon45.png',
   },
 
   /**

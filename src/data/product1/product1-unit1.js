@@ -9,7 +9,7 @@ export const product1Unit1Data = {
   /**
    * 视频/媒体路径
    */
-  videoSrc: '/assets/product1/banner.mp4',
+  videoSrc: '/api/uploads/file/default/assets/product1/banner.mp4',
 
   /**
    * 文本内容

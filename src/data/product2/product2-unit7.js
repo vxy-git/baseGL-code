@@ -25,15 +25,15 @@ export const product2Unit7Data = {
    */
   mediaList: [
     {
-      src: '/assets/product2/every_Crystal-clear-Design.jpg',
+      src: '/api/uploads/file/default/assets/product2/every_Crystal-clear-Design.jpg',
       type: 'image'
     },
     {
-      src: '/assets/product2/every_Unibody-Enclosure.mp4',
+      src: '/api/uploads/file/default/assets/product2/every_Unibody-Enclosure.mp4',
       type: 'video'
     },
     {
-      src: '/assets/product2/every_Medical-grade-Chamber.jpg',
+      src: '/api/uploads/file/default/assets/product2/every_Medical-grade-Chamber.jpg',
       type: 'image'
     }
   ],

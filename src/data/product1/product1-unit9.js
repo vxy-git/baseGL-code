@@ -14,7 +14,7 @@ export const product1Unit9Data = {
   /**
    * 规格视频路径
    */
-  specsVideo: '/assets/product1/specs.mp4',
+  specsVideo: '/api/uploads/file/default/assets/product1/specs.mp4',
 
   /**
    * 设备规格列表

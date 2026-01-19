@@ -22,7 +22,7 @@ export const bannerFallbackData = [
   {
     id: 1,
     title: "UNIVERSE Series",
-    image: '/assets/home/Banner-1-UNIVERSE.mp4',
+    image: '/api/uploads/file/default/assets/home/Banner-1-UNIVERSE.mp4',
     link: '/universe_series',
     description: "UNICORE powered, the way to infinite.",
     alt: "UNIVERSE Series"
@@ -30,7 +30,7 @@ export const bannerFallbackData = [
   {
     id: 2,
     title: "UNICORN Series",
-    image: '/assets/home/Banner-2-UNICORN.mp4',
+    image: '/api/uploads/file/default/assets/home/Banner-2-UNICORN.mp4',
     link: '/unicorn_series',
     description: "UNICORE powered, the way to infinite.",
     alt: "UNICORN Series"
@@ -38,7 +38,7 @@ export const bannerFallbackData = [
   {
     id: 3,
     title: "UNIT Pro",
-    image: '/assets/home/Banner-3-UNIT.mp4',
+    image: '/api/uploads/file/default/assets/home/Banner-3-UNIT.mp4',
     link: '/unit_pro',
     description: "From lab to award, 100% for Rosin we've perfected",
     alt: "UNIT Pro"
@@ -46,7 +46,7 @@ export const bannerFallbackData = [
   {
     id: 4,
     title: "DUKES",
-    image: '/assets/home/Banner-4-DUKES.mp4',
+    image: '/api/uploads/file/default/assets/home/Banner-4-DUKES.mp4',
     link: '/dukes',
     description: "The best of both worlds, every puff with more hits.",
     alt: "DUKES"

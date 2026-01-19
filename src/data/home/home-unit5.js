@@ -18,7 +18,7 @@ export const homeUnit5Data = {
   /**
    * 箭头图标路径
    */
-  arrowIcon: '/assets/img/icon4_active.png',
+  arrowIcon: '/api/uploads/file/default/assets/img/icon4_active.png',
 
   /**
    * Splide 轮播配置
@@ -45,23 +45,23 @@ export const homeUnit5Data = {
   newsList: [
     {
       type: 'image',
-      img: '/assets/home/new/1.jpg',
+      img: '/api/uploads/file/default/assets/home/new/1.jpg',
       title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024'
     },
     {
       type: 'image',
-      img: '/assets/home/new/2.jpg',
+      img: '/api/uploads/file/default/assets/home/new/2.jpg',
       title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025'
     },
     // 备用新闻项(可根据需要取消注释)
-    // { type: 'image', img: '/assets/home/new/3.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/4.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/5.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/6.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/7.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/8.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/9.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/10.jpg', title: '' },
-    // { type: 'image', img: '/assets/home/new/11.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/3.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/4.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/5.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/6.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/7.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/8.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/9.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/10.jpg', title: '' },
+    // { type: 'image', img: '/api/uploads/file/default/assets/home/new/11.jpg', title: '' },
   ],
 }

@@ -13,22 +13,22 @@ export const product4Unit10Data = {
     /**
      * Dosing Timer 视频
      */
-    dosingTimer: '/assets/product4/Puff-Counter.mp4',
+    dosingTimer: '/api/uploads/file/default/assets/product4/Puff-Counter.mp4',
 
     /**
      * Preheat Status 视频
      */
-    preheatStatus: '/assets/product4/Preheat-Status-Indication.mp4',
+    preheatStatus: '/api/uploads/file/default/assets/product4/Preheat-Status-Indication.mp4',
 
     /**
      * Temperature Control 视频
      */
-    temperatureControl: '/assets/product4/3-Temperature-Control.mp4',
+    temperatureControl: '/api/uploads/file/default/assets/product4/3-Temperature-Control.mp4',
 
     /**
      * Battery Monitor 视频
      */
-    batteryMonitor: '/assets/product4/Battery-Life-Monitor.mp4',
+    batteryMonitor: '/api/uploads/file/default/assets/product4/Battery-Life-Monitor.mp4',
   },
 
   /**

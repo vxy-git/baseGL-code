@@ -11,16 +11,16 @@ export const headerData = {
    * Logo 相关配置
    */
   logo: {
-    default: '/assets/img/icon11.png',
-    active: '/assets/img/icon11_active.png',
+    default: '/api/uploads/file/default/assets/img/icon11.png',
+    active: '/api/uploads/file/default/assets/img/icon11_active.png',
   },
 
   /**
    * 搜索图标配置
    */
   search: {
-    default: '/assets/img/icon12.png',
-    active: '/assets/img/icon12_active.png'
+    default: '/api/uploads/file/default/assets/img/icon12.png',
+    active: '/api/uploads/file/default/assets/img/icon12_active.png'
   },
 
   /**

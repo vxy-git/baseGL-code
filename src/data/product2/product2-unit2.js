@@ -19,5 +19,5 @@ export const product2Unit2Data = {
   /**
    * 单元图片路径
    */
-  unitImage: '/assets/product2/unit2.png',
+  unitImage: '/api/uploads/file/default/assets/product2/unit2.png',
 }

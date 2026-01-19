@@ -35,13 +35,13 @@ export const product4ItemData = {
    * 产品图片路径
    * @type {string}
    */
-  image: '/assets/list/D9_Distillate/DUKES.jpg',
+  image: '/api/uploads/file/default/assets/list/D9_Distillate/DUKES.jpg',
 
   /**
    * 产品悬停背景图片路径
    * @type {string}
    */
-  background: '/assets/list/D9_Distillate/DUKES-hover.jpg',
+  background: '/api/uploads/file/default/assets/list/D9_Distillate/DUKES-hover.jpg',
 
   /**
    * 图片 alt 文本

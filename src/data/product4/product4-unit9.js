@@ -13,7 +13,7 @@ export const product4Unit9Data = {
     /**
      * ICON38 图标
      */
-    icon38: '/assets/img/icon38.png',
+    icon38: '/api/uploads/file/default/assets/img/icon38.png',
   },
 
   /**

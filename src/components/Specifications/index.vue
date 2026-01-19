@@ -1,6 +1,6 @@
 <script setup>
-const UNIVERSE = '/assets/img/UNIVERSE.mp4';
-const NIVERSE_PRO = '/assets/img/UNIVERSE_Pro.mp4';
+const UNIVERSE = '/api/uploads/file/default/assets/img/UNIVERSE.mp4';
+const NIVERSE_PRO = '/api/uploads/file/default/assets/img/UNIVERSE_Pro.mp4';
 import MediaAsset from '@/components/MediaAsset.vue';
 
 

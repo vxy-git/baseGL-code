@@ -9,19 +9,19 @@ export const product3Unit6Data = {
   /**
    * 屏幕背景图片
    */
-  screenBg: '/assets/product4/screen-bg-1.png',
+  screenBg: '/api/uploads/file/default/assets/product4/screen-bg-1.png',
 
   /**
    * 屏幕图片列表
    * 注意：这些图片路径指向 product4，保持原样
    */
   screenImages: [
-    '/assets/product4/screen1.png',
-    '/assets/product4/screen2.png',
-    '/assets/product4/screen3.png',
-    '/assets/product4/screen4.png',
-    '/assets/product4/screen5.png',
-    '/assets/product4/screen6.png'
+    '/api/uploads/file/default/assets/product4/screen1.png',
+    '/api/uploads/file/default/assets/product4/screen2.png',
+    '/api/uploads/file/default/assets/product4/screen3.png',
+    '/api/uploads/file/default/assets/product4/screen4.png',
+    '/api/uploads/file/default/assets/product4/screen5.png',
+    '/api/uploads/file/default/assets/product4/screen6.png'
   ],
 
   /**

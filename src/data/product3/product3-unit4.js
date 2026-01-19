@@ -13,27 +13,27 @@ export const product3Unit4Data = {
     /**
      * 背景图片
      */
-    background: '/assets/product3/unit4.jpg',
+    background: '/api/uploads/file/default/assets/product3/unit4.jpg',
 
     /**
      * 左侧视频
      */
-    leftVideo: '/assets/product3/unit5-l.mp4',
+    leftVideo: '/api/uploads/file/default/assets/product3/unit5-l.mp4',
 
     /**
      * 右侧视频
      */
-    rightVideo: '/assets/product3/unit5-r.mp4',
+    rightVideo: '/api/uploads/file/default/assets/product3/unit5-r.mp4',
 
     /**
      * 箭头图标
      */
-    arrowIcon: '/assets/product3/arrow.svg',
+    arrowIcon: '/api/uploads/file/default/assets/product3/arrow.svg',
 
     /**
      * 产品图片
      */
-    productImage: '/assets/product3/unit4-2.jpg',
+    productImage: '/api/uploads/file/default/assets/product3/unit4-2.jpg',
   },
 
   /**

@@ -24,18 +24,18 @@ export const product2Unit8Data = {
      * 上排设计图片
      */
     top: [
-      '/assets/product2/realize1.jpg',
-      '/assets/product2/realize2.jpg',
-      '/assets/product2/realize3.jpg'
+      '/api/uploads/file/default/assets/product2/realize1.jpg',
+      '/api/uploads/file/default/assets/product2/realize2.jpg',
+      '/api/uploads/file/default/assets/product2/realize3.jpg'
     ],
 
     /**
      * 下排设计图片
      */
     bottom: [
-      '/assets/product2/realize4.jpg',
-      '/assets/product2/realize5.jpg',
-      '/assets/product2/realize6.jpg'
+      '/api/uploads/file/default/assets/product2/realize4.jpg',
+      '/api/uploads/file/default/assets/product2/realize5.jpg',
+      '/api/uploads/file/default/assets/product2/realize6.jpg'
     ]
   },
 }

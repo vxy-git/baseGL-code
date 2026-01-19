@@ -9,12 +9,12 @@ export const homeUnit6Data = {
   /**
    * 背景图片路径
    */
-  backgroundImage: '/assets/home/Beyond-Limits-bg.jpg',
+  backgroundImage: '/api/uploads/file/default/assets/home/Beyond-Limits-bg.jpg',
 
   /**
    * 视频路径
    */
-  videoSrc: '/assets/video/home5.mp4',
+  videoSrc: '/api/uploads/file/default/assets/video/home5.mp4',
 
   /**
    * 标题文本

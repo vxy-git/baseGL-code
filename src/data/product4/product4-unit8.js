@@ -13,12 +13,12 @@ export const product4Unit8Data = {
     /**
      * Taste Switcher 图片
      */
-    tasteSwitcher: '/assets/product4/unit6-1.jpg',
+    tasteSwitcher: '/api/uploads/file/default/assets/product4/unit6-1.jpg',
 
     /**
      * Hit a Blinker 图片
      */
-    hitABlinker: '/assets/product4/unit6-2.jpg',
+    hitABlinker: '/api/uploads/file/default/assets/product4/unit6-2.jpg',
   },
 
   /**

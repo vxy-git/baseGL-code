@@ -7,7 +7,7 @@ import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useCmsNavStore } from '@/stores/cmsNav'
 
-const iconArrow = '/assets/img/icon42.png'
+const iconArrow = '/api/uploads/file/default/assets/img/icon42.png'
 const cmsNavStore = useCmsNavStore()
 
 // 当前激活的分类 ID（默认为第一个分类）

@@ -10,13 +10,13 @@ export const product4Unit12Data = {
    * 图片资源
    */
   images: [
-    '/assets/img/icon41.png',
-    '/assets/product4/unit9-1.jpg',
-    '/assets/product4/unit9-2.jpg',
-    '/assets/product4/unit9-3.jpg',
-    '/assets/product4/unit9-4.jpg',
-    '/assets/product4/unit9-5.jpg',
-    '/assets/product4/unit9-6.jpg'
+    '/api/uploads/file/default/assets/img/icon41.png',
+    '/api/uploads/file/default/assets/product4/unit9-1.jpg',
+    '/api/uploads/file/default/assets/product4/unit9-2.jpg',
+    '/api/uploads/file/default/assets/product4/unit9-3.jpg',
+    '/api/uploads/file/default/assets/product4/unit9-4.jpg',
+    '/api/uploads/file/default/assets/product4/unit9-5.jpg',
+    '/api/uploads/file/default/assets/product4/unit9-6.jpg'
   ],
 
   /**

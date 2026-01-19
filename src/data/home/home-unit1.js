@@ -21,7 +21,7 @@ export const homeUnit1Data = {
     {
       title: "UNIVERSE Series",
       subTitle: "UNICORE powered, the way to infinite.",
-      src: '/assets/home/Banner-1-UNIVERSE.mp4',
+      src: '/api/uploads/file/default/assets/home/Banner-1-UNIVERSE.mp4',
       type: 'video',
       dotText: "UNIVERSE Series",
       path: '/universe_series'
@@ -29,7 +29,7 @@ export const homeUnit1Data = {
     {
       title: "UNICORN Series",
       subTitle: "UNICORE powered, the way to infinite.",
-      src: '/assets/home/Banner-2-UNICORN.mp4',
+      src: '/api/uploads/file/default/assets/home/Banner-2-UNICORN.mp4',
       type: 'video',
       dotText: "UNICORN Series",
       path: '/unicorn_series'
@@ -37,7 +37,7 @@ export const homeUnit1Data = {
     {
       title: "UNIT Pro",
       subTitle: "From lab to award, 100% for Rosin we've perfected",
-      src: '/assets/home/Banner-3-UNIT.mp4',
+      src: '/api/uploads/file/default/assets/home/Banner-3-UNIT.mp4',
       type: 'video',
       dotText: "UNIT Pro",
       path: '/unit_pro'
@@ -45,7 +45,7 @@ export const homeUnit1Data = {
     {
       title: "DUKES",
       subTitle: "The best of both worlds, every puff with more hits.",
-      src: '/assets/home/Banner-4-DUKES.mp4',
+      src: '/api/uploads/file/default/assets/home/Banner-4-DUKES.mp4',
       type: 'video',
       dotText: "DUKES",
       path: '/dukes'
@@ -55,5 +55,5 @@ export const homeUnit1Data = {
   /**
    * 按钮图标路径
    */
-  buttonIcon: '/assets/img/icon2.png',
+  buttonIcon: '/api/uploads/file/default/assets/img/icon2.png',
 }

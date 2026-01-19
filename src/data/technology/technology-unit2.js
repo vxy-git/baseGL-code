@@ -13,17 +13,17 @@ export const technologyUnit2Data = {
     /**
      * 左侧视频路径
      */
-    leftVideo: '/assets/technology/t1/l1.mp4',
+    leftVideo: '/api/uploads/file/default/assets/technology/t1/l1.mp4',
 
     /**
      * 右侧第一张图片路径
      */
-    rightImage1: '/assets/technology/t1/r1.jpg',
+    rightImage1: '/api/uploads/file/default/assets/technology/t1/r1.jpg',
 
     /**
      * 右侧视频路径
      */
-    rightVideo: '/assets/technology/t1/r2.mp4',
+    rightVideo: '/api/uploads/file/default/assets/technology/t1/r2.mp4',
   },
 
   /**

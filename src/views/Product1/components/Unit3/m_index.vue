@@ -21,9 +21,9 @@ const unitData = computed(() => {
 
 const iconFlavor = computed(() => unitData.value.icons.flavor)
 const iconDevice = computed(() => unitData.value.icons.device)
-const m1 = '/assets/product1/unit3/m1.jpg'
-const m2 = '/assets/product1/unit3/m2.jpg'
-const m3 = '/assets/product1/unit3/m3.jpg'
+const m1 = '/api/uploads/file/default/assets/product1/unit3/m1.jpg'
+const m2 = '/api/uploads/file/default/assets/product1/unit3/m2.jpg'
+const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 </script>
 
 <template>
