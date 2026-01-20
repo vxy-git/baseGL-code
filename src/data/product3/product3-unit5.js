@@ -7,31 +7,6 @@
  */
 export const product3Unit5Data = {
   /**
-   * 视频路径
-   */
-  videos: {
-    /**
-     * 温度控制视频
-     */
-    tempControl: '/api/uploads/file/default/assets/product3/3-Temperature-Control.mp4',
-
-    /**
-     * 电池寿命监控视频
-     */
-    batteryLifeMonitor: '/api/uploads/file/default/assets/product3/Battery-Life-Monitor.mp4',
-
-    /**
-     * 预热状态指示视频
-     */
-    preheatStatus: '/api/uploads/file/default/assets/product3/Preheat-Status-Indication.mp4',
-
-    /**
-     * 吸入计数器视频
-     */
-    puffCounter: '/api/uploads/file/default/assets/product3/Puff-Counter.mp4',
-  },
-
-  /**
    * 产品标签
    */
   productTag: 'UNICORN PRO',
