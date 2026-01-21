@@ -25,7 +25,7 @@ const unitData = computed(() => {
 gsap.registerPlugin(ScrollTrigger)
 
 const seqProgress = ref(0)
-const { frames, tarURL, imageName, imageExtension } = unitData.value.frameConfig
+const { frames, tarURL, imageFile, imageName, imageExtension } = unitData.value.frameConfig
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -166,6 +166,7 @@ onUnmounted(() => {
           :frames="frames"
           :tarURL="tarURL"
           :imageName="imageName"
+          :imageFile="imageFile"
           :imageExtension="imageExtension || '.jpg'"
           :progress="seqProgress"
           :objectFit="isMobile ? 'contain' : 'cover'"

@@ -22,7 +22,7 @@ const unitData = computed(() => {
 })
 
 const seqProgress = ref(0)
-const { frames, tarURL, imageName, imageExtension } = unitData.value.frameConfig
+const { frames, tarURL, imageFile, imageName, imageExtension } = unitData.value.frameConfig
 
 const pinSection = ref(null)
 const frameContainer = ref(null)
@@ -74,6 +74,7 @@ onUnmounted(() => {
          <FrameSequence
           :frames="frames"
           :tarURL="tarURL"
+          :imageFile="imageFile"
           :imageName="imageName"
           :imageExtension="imageExtension || '.jpg'"
           :progress="seqProgress"

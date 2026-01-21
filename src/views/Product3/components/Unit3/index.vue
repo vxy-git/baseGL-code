@@ -167,6 +167,7 @@ onUnmounted(() => {
         <FrameSequence
           :frames="unitData.frameSequences.sequence1.frames"
           :tarURL="unitData.frameSequences.sequence1.tarURL"
+          :imageFile="unitData.frameSequences.sequence1.imageFile"
           :imageName="unitData.frameSequences.sequence1.imageName"
           :imageExtension="unitData.frameSequences.sequence1.imageExtension || '.jpg'"
           :progress="seqProgress1"
@@ -200,6 +201,7 @@ onUnmounted(() => {
         <FrameSequence
           :frames="unitData.frameSequences.sequence2.frames"
           :tarURL="unitData.frameSequences.sequence2.tarURL"
+          :imageFile="unitData.frameSequences.sequence2.imageFile"
           :imageName="unitData.frameSequences.sequence2.imageName"
           :imageExtension="unitData.frameSequences.sequence2.imageExtension || '.jpg'"
           :progress="seqProgress2"
