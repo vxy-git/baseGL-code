@@ -26,7 +26,7 @@ const unitData = computed(() => {
         :key="index"
         class="w-[605px] h-[340px] relative"
       >
-        <div class="text absolute top-[21px] left-[28px]">{{ feature.label }}</div>
+        <div class="text absolute top-[21px] left-[28px]" :style="{ color: `${feature.color}` }">{{ feature.label }}</div>
         <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="feature.image" alt="" />
       </div>
     </div>
