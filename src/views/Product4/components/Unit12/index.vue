@@ -70,7 +70,6 @@ onMounted(() => {
     }
   )
 
-  console.log(fadeTargets)
   if (fadeTargets.length) {
     const step = resizeDuration / fadeTargets.length
     fadeTargets.forEach((layer, index) => {

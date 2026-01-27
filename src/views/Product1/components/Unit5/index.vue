@@ -25,8 +25,6 @@ const unitData = computed(() => {
 const tabsCurrent = ref(0)
 const tabsList = computed(() => unitData.value.tabsList)
 
-console.log(tabsList.value)
-
 // 根据 Tab 显示的文案
 const labelContents = computed(() => unitData.value.descriptions)
 
@@ -34,7 +32,6 @@ const currentLabel = computed(() => labelContents.value[tabsCurrent.value] || ""
 
 // 媒体资源列表，支持图片和视频混合
 const mediaList = computed(() => unitData.value.mediaList)
-console.log(mediaList.value)
 const containerRef = ref(null)  // 容器引用，用于可见性检测
 const isVisible = ref(false)    // 是否在视口中可见
 const splideRef = ref(null)
