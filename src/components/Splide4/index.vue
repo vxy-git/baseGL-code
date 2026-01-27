@@ -4,6 +4,9 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import { productsData } from '@/data/productlist/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
+import { useCmsNavStore } from '@/stores/cmsNav'
+
+const cmsNavStore = useCmsNavStore()
 const arrowImg = '/api/uploads/file/default/assets/img/icon4_active.png'
 
 // Splide 状态管理
@@ -13,8 +16,15 @@ const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
 
-// 展示列表（合并产品数据）
-const productList = computed(() => Object.values(productsData.products).flat())
+// 展示列表（合并产品数据，优先使用 CMS 数据）
+const productList = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories.flatMap(cat => cat.products || [])
+  }
+  // 降级到静态数据
+  return Object.values(productsData.products).flat()
+})
 
 // 移动端检测
 const checkMobile = () => {
