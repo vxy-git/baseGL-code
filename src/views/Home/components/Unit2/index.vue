@@ -9,6 +9,9 @@ import { useCmsNavStore } from '@/stores/cmsNav'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 
+// 降级导入（保留用于无 CMS 数据时）
+const { tabs: staticTabs, products: staticProducts } = productsData
+
 const router = useRouter()
 const cmsNavStore = useCmsNavStore()
 
@@ -40,23 +43,26 @@ const unitData = computed(() => {
   return homeUnit2Data
 })
 
-const tabsCurrent = ref(0)
-const products = computed(() => {
-  // 优先使用 CMS 数据中的 products
-  if (unitData.value.products && Array.isArray(unitData.value.products)) {
-     // 如果 CMS 数据结构是直接的数组列表（未分组），可能需要适配
-     // 这里假设如果 CMS 提供了 products，它可能是一个包含所有产品的数组，或者是分组对象
-     // 简单起见，如果 CMS 有 products，我们尝试使用它。
-     // 但是原逻辑是 productsData.products[tabsCurrent.value]
-     // 如果 CMS 数据结构是 { products: { 0: [...], 1: [...] } } 或者是 { products: [...] }
-     
-     // 如果 CMS 返回的是类似 productsData.products 的结构（对象，key 为 index）
-     if (unitData.value.products[tabsCurrent.value]) {
-         return unitData.value.products[tabsCurrent.value]
-     }
+// 提取 tabs 列表（优先使用 CMS 数据，与 ProductList 保持一致）
+const tabsList = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories.map(cat => cat.label)
   }
-  
-  return productsData.products[tabsCurrent.value] || []
+  // 降级到静态数据
+  return staticTabs
+})
+
+const tabsCurrent = ref(0)
+
+// 产品列表（优先使用 CMS 数据，与 ProductList 保持一致）
+const products = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0 && cmsCategories[tabsCurrent.value]) {
+    return cmsCategories[tabsCurrent.value].products
+  }
+  // 降级到静态数据
+  return staticProducts[tabsCurrent.value] || []
 })
 
 
@@ -69,8 +75,15 @@ const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
 
-// 展示列表（合并产品数据）
-const productList = computed(() => Object.values(productsData.products).flat())
+// 展示列表（合并产品数据，用于链接或其他用途）
+const productList = computed(() => {
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories.flatMap(cat => cat.products || [])
+  }
+  // 降级到静态数据
+  return Object.values(staticProducts).flat()
+})
 
 // 检测是否为移动端
 const checkMobile = () => {
@@ -140,7 +153,7 @@ const goToGroup = (groupIndex) => {
       <div class="c_1300 c_padding title whitespace-break-spaces">
         {{ unitData.unitTitle }}
       </div>
-      <Tabs class="mt-[44px]" :list="productsData.tabs" v-model="tabsCurrent"></Tabs>
+      <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
 
       <div class="c_1300 c_padding mt-[50px] relative" @mouseenter="isHovered = true"
         @mouseleave="isHovered = false">
