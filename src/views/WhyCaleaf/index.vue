@@ -1,6 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from 'vue'
-import { MOBILE_BREAKPOINT } from '@/composables/fit'
+import { useRenderList } from '@/composables/useRenderList'
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/Footer.vue'
 import Unit1 from './components/Unit1/index.vue'
@@ -30,47 +29,10 @@ const componentMap = {
   unit8: Unit8
 }
 
-const isClient = typeof window !== 'undefined'
-const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false)
+const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6', 'unit7', 'unit8']
 
-const updateIsMobile = () => {
-  if (!isClient) return
-  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT
-}
-
-const defaultOrder = computed(() => {
-  return ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6', 'unit7', 'unit8']
-})
-
-const renderList = computed(() => {
-  const moduleList = props.pageConfig?.moduleList
-
-  if (moduleList && Object.keys(moduleList).length > 0) {
-    return defaultOrder.value
-      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
-      .map(key => ({
-        key,
-        component: componentMap[key],
-        data: moduleList[key].data
-      }))
-  }
-
-  // 降级：无 CMS 数据或 moduleList 为空时使用默认渲染
-  return defaultOrder.value.map(key => ({
-    key,
-    component: componentMap[key],
-    data: null
-  }))
-})
-
-onMounted(() => {
-  updateIsMobile()
-  window.addEventListener('resize', updateIsMobile)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateIsMobile)
-})
+// 动态渲染列表（CMS 数据优先，本地降级）
+const { renderList } = useRenderList(props, componentMap, defaultOrder)
 </script>
 
 <template>

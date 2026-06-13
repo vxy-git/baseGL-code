@@ -1,6 +1,7 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
-import { MOBILE_BREAKPOINT } from "@/composables/fit";
+import { computed } from "vue";
+import { useMobileDetect } from "@/composables/useMobileDetect";
+import { useRenderList } from "@/composables/useRenderList";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
 import Footer from "@/components/Footer/Footer.vue";
@@ -25,7 +26,8 @@ const props = defineProps({
   }
 });
 
-// 组件映射
+const { isMobile } = useMobileDetect();
+
 const componentMap = {
   unit1: Unit1,
   unit2: Unit2,
@@ -41,14 +43,6 @@ const componentMap = {
   unit13: Unit13
 };
 
-const isClient = typeof window !== "undefined";
-const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
-
-const updateIsMobile = () => {
-  if (typeof window === "undefined") return;
-  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
-};
-
 // 定义默认 Unit 顺序
 const defaultOrder = computed(() => {
   if (!isMobile.value) {
@@ -57,45 +51,11 @@ const defaultOrder = computed(() => {
   return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'm_unit12', 'unit13'];
 });
 
-// 动态渲染列表
-const renderList = computed(() => {
-  // 优先使用 CMS 的 moduleList，如果没有则使用本地配置的 modules
-  const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
+// m_unitX → unitX 的数据键映射
+const dataKeyFor = (key) => key.startsWith('m_') ? key.substring(2) : key;
 
-  if (moduleList && Object.keys(moduleList).length > 0) {
-    return defaultOrder.value
-      .filter(key => {
-        // m_unitX → unitX 的数据键映射
-        const dataKey = key.startsWith('m_') ? key.substring(2) : key;
-        return moduleList[dataKey] && moduleList[dataKey].enabled !== false;
-      })
-      .map(key => {
-        // m_unitX 使用 unitX 的数据
-        const dataKey = key.startsWith('m_') ? key.substring(2) : key;
-        return {
-          key,
-          component: componentMap[key],
-          data: moduleList[dataKey].data
-        };
-      });
-  }
-
-  // 降级：无数据时使用默认渲染
-  return defaultOrder.value.map(key => ({
-    key,
-    component: componentMap[key],
-    data: null
-  }));
-});
-
-onMounted(() => {
-  updateIsMobile();
-  window.addEventListener("resize", updateIsMobile);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", updateIsMobile);
-});
+// 动态渲染列表（CMS 数据优先，本地降级）
+const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyFor);
 </script>
 
 <template>

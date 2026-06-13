@@ -1,6 +1,7 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
-import { MOBILE_BREAKPOINT } from "@/composables/fit";
+import { computed } from "vue";
+import { useMobileDetect } from "@/composables/useMobileDetect";
+import { useRenderList } from "@/composables/useRenderList";
 import Footer from "@/components/Footer/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
@@ -26,7 +27,8 @@ const props = defineProps({
   }
 });
 
-// 组件映射
+const { isMobile } = useMobileDetect();
+
 const componentMap = {
   unit1: Unit1,
   unit2: Unit2,
@@ -41,14 +43,6 @@ const componentMap = {
   unit7: Unit7,
   unit8: Unit8,
   m_unit8: m_Unit8
-};
-
-const isClient = typeof window !== "undefined";
-const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
-
-const updateIsMobile = () => {
-  if (!isClient) return;
-  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
 };
 
 // 定义默认 Unit 顺序（按原有结构分组）
@@ -71,36 +65,8 @@ const defaultOrder = computed(() => {
   ];
 });
 
-// 动态渲染列表
-const renderList = computed(() => {
-  const moduleList = props.pageConfig?.moduleList;
-
-  if (moduleList && Object.keys(moduleList).length > 0) {
-    return defaultOrder.value
-      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
-      .map(key => ({
-        key,
-        component: componentMap[key],
-        data: moduleList[key].data
-      }));
-  }
-
-  // 降级：无 CMS 数据或 moduleList 为空时使用默认渲染
-  return defaultOrder.value.map(key => ({
-    key,
-    component: componentMap[key],
-    data: null
-  }));
-});
-
-onMounted(() => {
-  updateIsMobile();
-  window.addEventListener("resize", updateIsMobile);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", updateIsMobile);
-});
+// 动态渲染列表（CMS 数据优先，本地降级）
+const { renderList } = useRenderList(props, componentMap, defaultOrder);
 </script>
 
 <template>
@@ -128,7 +94,7 @@ onUnmounted(() => {
       <!-- unit5 无背景容器 -->
       <component v-else-if="item.key === 'unit5'" :is="item.component" :data="item.data" />
 
-      <!-- unit6, unit7, unit8, splide4 需要 bg-black 容器 -->
+      <!-- unit6, unit7, unit8 需要 bg-black 容器 -->
       <div v-else-if="['unit6', 'm_unit6', 'unit7', 'unit8', 'm_unit8'].includes(item.key)" class="bg-black">
         <component :is="item.component" :data="item.data" />
       </div>

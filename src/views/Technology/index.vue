@@ -1,11 +1,10 @@
-
-
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
+import { computed } from "vue";
+import { useMobileDetect } from "@/composables/useMobileDetect";
+import { useRenderList } from "@/composables/useRenderList";
 import Footer from "@/components/Footer/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
-import { MOBILE_BREAKPOINT } from "@/composables/fit";
 import Unit1 from "./components/Unit1/index.vue";
 import Unit2 from "./components/Unit2/index.vue";
 import m_Unit2 from "./components/Unit2/m_index.vue";
@@ -21,68 +20,47 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   }
-})
+});
 
-const isClient = typeof window !== "undefined";
-const isMobile = ref(isClient ? window.innerWidth < MOBILE_BREAKPOINT : false);
+const { isMobile } = useMobileDetect();
 
-const updateIsMobile = () => {
-  if (typeof window === "undefined") return;
-  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
+const componentMap = {
+  unit1: Unit1,
+  unit2: Unit2,
+  m_unit2: m_Unit2,
+  unit4: Unit4,
+  m_unit4: m_Unit4,
+  unit5: Unit5,
+  m_unit5: m_Unit5,
+  unit6: Unit6,
+  unit7: Unit7
 };
 
-onMounted(() => {
-  updateIsMobile();
-  window.addEventListener("resize", updateIsMobile);
+// 定义默认 Unit 顺序（PC/移动端切换）
+const defaultOrder = computed(() => {
+  if (!isMobile.value) {
+    return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit7'];
+  }
+  return ['unit1', 'm_unit2', 'm_unit4', 'm_unit5', 'unit6', 'unit7'];
 });
 
-onUnmounted(() => {
-  window.removeEventListener("resize", updateIsMobile);
-});
+// CMS 数据 key 映射：m_unitX → unitX
+const dataKeyFor = (key) => key.startsWith('m_') ? key.substring(2) : key;
 
-const defaultOrder = ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit7']
-
-const renderList = computed(() => {
-  const moduleList = props.pageConfig?.moduleList
-  const pickComponent = (key) => {
-    if (key === 'unit2') return isMobile.value ? m_Unit2 : Unit2
-    if (key === 'unit4') return isMobile.value ? m_Unit4 : Unit4
-    if (key === 'unit5') return isMobile.value ? m_Unit5 : Unit5
-    if (key === 'unit1') return Unit1
-    if (key === 'unit6') return Unit6
-    if (key === 'unit7') return Unit7
-    return null
-  }
-
-  if (moduleList && Object.keys(moduleList).length > 0) {
-    return defaultOrder
-      .filter(key => moduleList[key] && moduleList[key].enabled !== false)
-      .map(key => ({
-        key,
-        component: pickComponent(key),
-        data: moduleList[key].data
-      }))
-  }
-
-  return defaultOrder.map(key => ({
-    key,
-    component: pickComponent(key),
-    data: null
-  }))
-})
+// 动态渲染列表（CMS 数据优先，本地降级）
+const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyFor);
 </script>
 
 <template>
   <div class="relative bg-black">
     <Header />
-    <component 
-      v-for="item in renderList" 
-      :key="item.key" 
-      :is="item.component" 
+    <component
+      v-for="item in renderList"
+      :key="item.key"
+      :is="item.component"
       :data="item.data"
     />
     <Splide4 />
-    
     <Footer />
   </div>
 </template>

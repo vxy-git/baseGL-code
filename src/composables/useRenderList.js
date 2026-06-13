@@ -8,9 +8,12 @@ import { computed } from 'vue'
  * @param {Object}  props         - 组件的 props（需包含 pageConfig）
  * @param {Object}  componentMap  - 组件映射表，如 { unit1: Unit1, m_unit3: m_Unit3 }
  * @param {Ref|Array} defaultOrder - 默认 Unit 渲染顺序（computed 或普通数组）
+ * @param {Function} [dataKeyFor]  - 可选，将渲染 key 映射到 CMS 数据 key（如 m_unit12 → unit12）
  * @returns {{ renderList: ComputedRef }}
  */
-export function useRenderList(props, componentMap, defaultOrder) {
+export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
+  const resolveDataKey = dataKeyFor || (key => key)
+
   const renderList = computed(() => {
     // 兼容 moduleList 和 modules 两种 key 命名
     const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules
@@ -21,11 +24,14 @@ export function useRenderList(props, componentMap, defaultOrder) {
 
     if (moduleList && Object.keys(moduleList).length > 0) {
       return order
-        .filter(key => moduleList[key] && moduleList[key].enabled !== false)
+        .filter(key => {
+          const dataKey = resolveDataKey(key)
+          return moduleList[dataKey] && moduleList[dataKey].enabled !== false
+        })
         .map(key => ({
           key,
           component: componentMap[key],
-          data: moduleList[key].data
+          data: moduleList[resolveDataKey(key)].data
         }))
     }
 
