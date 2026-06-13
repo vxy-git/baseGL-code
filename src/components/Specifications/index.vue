@@ -1,6 +1,6 @@
 <script setup>
 const UNIVERSE = '/api/uploads/file/default/assets/img/UNIVERSE.mp4';
-const NIVERSE_PRO = '/api/uploads/file/default/assets/img/UNIVERSE_Pro.mp4';
+const UNIVERSE_PRO = '/api/uploads/file/default/assets/img/UNIVERSE_Pro.mp4';
 import MediaAsset from '@/components/MediaAsset.vue';
 
 
@@ -70,7 +70,7 @@ const deviceSpecs2 = [
         <div class="h-[414px]">
           <MediaAsset
             type="video"
-            :src="NIVERSE_PRO"
+            :src="UNIVERSE_PRO"
             :autoplay="false"
             :muted="true"
             :loop="false"

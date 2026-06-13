@@ -51,7 +51,7 @@ const initScroll = () => {
     )
 
   const endDistance = () => {
-    const panelsCount = trackRef.value?.querySelectorAll('.unit6-panel').length || 1
+    const panelsCount = trackRef.value?.querySelectorAll('.unit8-panel').length || 1
     return window.innerHeight * (
       1 + // first fade-only segment
       (Math.max(panelsCount, 1) - 1) * ((moveDuration + pauseDuration) / moveDuration)
@@ -70,7 +70,7 @@ const initScroll = () => {
     }
   })
 
-  const firstPanel = trackRef.value.querySelector('.unit6-panel')
+  const firstPanel = trackRef.value.querySelector('.unit8-panel')
   scrollTl2.to(firstPanel, {
     opacity: 0.2,
     duration: moveDuration
@@ -110,10 +110,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="unitRef" class="unit6-scroll">
-    <div ref="innerRef" class="unit6-inner">
-      <div ref="trackRef" class="unit6-track">
-        <div class="unit6-panel">
+  <div ref="unitRef" class="unit8-scroll">
+    <div ref="innerRef" class="unit8-inner">
+      <div ref="trackRef" class="unit8-track">
+        <div class="unit8-panel">
           <div class="c_1230 c_padding w-full">
             <div class="relative w-full mx-[4px] flex flex-col items-center justify-center">
               <div class="style-line">
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="unit6-panel">
+        <div class="unit8-panel">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
@@ -150,7 +150,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="unit6-panel">
+        <div class="unit8-panel">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[98px] m_flex_col">
@@ -179,24 +179,24 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
-.unit6-scroll {
+.unit8-scroll {
   width: 100%;
   min-height: 100vh;
 }
 
-.unit6-inner {
+.unit8-inner {
   display: flex;
   will-change: transform;
   min-height: 100vh;
 }
 
-.unit6-track {
+.unit8-track {
   display: flex;
   align-items: center;
   will-change: transform;
 }
 
-.unit6-panel {
+.unit8-panel {
   width: 100vw;
   flex-shrink: 0;
 }

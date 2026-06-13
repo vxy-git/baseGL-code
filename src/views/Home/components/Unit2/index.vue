@@ -1,6 +1,6 @@
 <script setup>
 import Tabs from "@/components/Tabs/index.vue"
-import {ref, computed, onMounted, onUnmounted, watch} from "vue";
+import {ref, computed, onMounted, onUnmounted} from "vue";
 import { useRouter } from 'vue-router';
 import ProductItem from "@/components/ProductItem/index.vue"
 import { productsData } from "@/data/productlist/products"
