@@ -3,11 +3,7 @@
  * 用于从后端获取网站导航配置数据
  */
 
-/**
- * 获取 API 基础 URL
- * 优先使用环境变量配置,否则使用默认值
- */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+import request from '@/utils/request'
 
 /**
  * getCmsNavPublicList API 调用
@@ -19,63 +15,30 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
  * @returns {Promise<Object>} API 响应数据
  */
 export async function getCmsNavPublicList(params = {}) {
-  try {
-    // 构建查询参数 - 只保留分页和排序参数
-    const defaultParams = {
-      page: 1,
-      pageSize: 100,  // 获取足够多的数据
-      order: 'sort'   // 按排序字段排序
-    }
+  // 构建查询参数 - 只保留分页和排序参数
+  const defaultParams = {
+    page: 1,
+    pageSize: 100,  // 获取足够多的数据
+    order: 'sort'   // 按排序字段排序
+  }
 
-    const queryParams = new URLSearchParams({ ...defaultParams, ...params })
+  const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...params })
 
-    // 发送 GET 请求
-    const response = await fetch(
-      `${API_BASE_URL}/cmsnav/getCmsNavPublicList?${queryParams.toString()}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-
-    // 解析 JSON 响应
-    const result = await response.json()
-
-    // 检查业务状态码
-    if (result.code === 0) {
-      // console.log('✅ getCmsNavPublicList API 调用成功')
-      // console.log('📊 导航列表数据:', {
-      //   total: result.data.total,
-      //   page: result.data.page,
-      //   pageSize: result.data.pageSize,
-      //   listCount: result.data.list.length,
-      //   list: result.data.list
-      // })
-
-      return {
-        success: true,
-        data: result.data.list,
-        total: result.data.total,
-        page: result.data.page,
-        pageSize: result.data.pageSize
-      }
-    } else {
-      console.error('❌ getCmsNavPublicList API 业务错误:', result.msg)
-      return {
-        success: false,
-        message: result.msg,
-        data: []
-      }
-    }
-  } catch (error) {
-    console.error('❌ getCmsNavPublicList API 请求异常:', error)
+  if (result.success) {
     return {
-      success: false,
-      message: error.message,
-      data: []
+      success: true,
+      data: result.data?.list || [],
+      total: result.data?.total,
+      page: result.data?.page,
+      pageSize: result.data?.pageSize
     }
+  }
+
+  console.error('❌ getCmsNavPublicList API 业务错误:', result.message)
+  return {
+    success: false,
+    message: result.message,
+    data: []
   }
 }
 

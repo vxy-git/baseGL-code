@@ -47,7 +47,7 @@ async function generateRoutes() {
       ? result.data
       : (Array.isArray(result?.data?.list) ? result.data.list : [])
 
-    const isSuccess = result?.success === true || result?.code === 0
+    const isSuccess = result?.success === true
 
     if (isSuccess && navList.length > 0) {
       // 保存原始数据供 Store 使用

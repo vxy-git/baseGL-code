@@ -3,11 +3,7 @@
  * 用于从后端获取表单设计器配置数据
  */
 
-/**
- * 获取 API 基础 URL
- * 优先使用环境变量配置,否则使用默认值
- */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+import request from '@/utils/request'
 
 /**
  * 根据 UUID 获取动态表单配置
@@ -16,59 +12,38 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
  * @returns {Promise<Object>} 包含表单规则和选项的对象
  */
 export async function getDynamicForm(uuid) {
-  try {
-    if (!uuid) {
-      throw new Error('UUID 参数不能为空')
-    }
-
-    // 发送 GET 请求
-    const response = await fetch(
-      `${API_BASE_URL}/df/findDynamicFormPublic?uuid=${encodeURIComponent(uuid)}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-
-    // 解析 JSON 响应
-    const result = await response.json()
-
-    // 检查业务状态码
-    if (result.code === 0) {
-      console.log('✅ getDynamicForm API 调用成功')
-      console.log('📋 表单配置数据:', {
-        uuid: uuid,
-        formData: result.data.formData
-      })
-
-      return {
-        success: true,
-        data: result.data.formData, // 包含 rule 和 option
-        uuid: uuid
-      }
-    } else {
-      console.error('❌ getDynamicForm API 业务错误:', result.msg)
-      return {
-        success: false,
-        message: result.msg,
-        data: null
-      }
-    }
-  } catch (error) {
-    console.error('❌ getDynamicForm API 请求异常:', error)
+  if (!uuid) {
     return {
       success: false,
-      message: error.message,
+      message: 'UUID 参数不能为空',
       data: null
     }
+  }
+
+  const result = await request.get('/df/findDynamicFormPublic', { uuid })
+
+  if (!result.success) {
+    console.error('❌ getDynamicForm API 错误:', result.message)
+    return {
+      success: false,
+      message: result.message,
+      data: null
+    }
+  }
+
+  console.log('✅ getDynamicForm API 调用成功')
+  console.log('📋 表单配置数据:', { uuid, formData: result.data?.formData })
+
+  return {
+    success: true,
+    data: result.data?.formData,
+    uuid: uuid
   }
 }
 
 /**
  * 获取表单规则和配置
- * 这是一个便捷方法，用于从完整的表单数据中提取 rule 和 option
+ * 便捷方法，从完整的表单数据中提取 rule 和 option
  *
  * @param {string} uuid - 表单的唯一标识符
  * @returns {Promise<Object>} 包含 rule 和 option 的对象
@@ -91,14 +66,12 @@ export async function getFormRuleAndOption(uuid) {
 
   try {
     if (result.data.rule) {
-      // 如果是字符串，解析为 JSON
       rule = typeof result.data.rule === 'string'
         ? JSON.parse(result.data.rule)
         : result.data.rule
     }
 
     if (result.data.option) {
-      // 如果是字符串，解析为 JSON
       option = typeof result.data.option === 'string'
         ? JSON.parse(result.data.option)
         : result.data.option
