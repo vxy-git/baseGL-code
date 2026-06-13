@@ -12,11 +12,6 @@ export const productListData = {
   pageTitle: 'Innovative products',
 
   /**
-   * Header 样式类
-   */
-  headerClass: 'white',
-
-  /**
    * 导航项目列表
    */
   navItems: [

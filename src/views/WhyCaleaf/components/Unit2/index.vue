@@ -18,53 +18,55 @@ const unitData = computed(() => {
       <h2 class="facts-title">{{ unitData.title }}</h2>
 
       <div class="facts-grid">
-        <!-- Row 1 -->
-        <div class="fact-item">
-          <div class="fact-number">
-            <span class="fact-prefix">{{ unitData.items[0].prefix }}</span>
-            <span class="fact-suffix">{{ unitData.items[0].suffix }}</span>
+        <!-- Row 1: 4 items -->
+        <div class="facts-row-top">
+          <div class="fact-item">
+            <div class="fact-number">
+              <span class="fact-prefix">{{ unitData.items[0].prefix }}</span>
+              <span class="fact-suffix">{{ unitData.items[0].suffix }}</span>
+            </div>
+            <div class="fact-label">{{ unitData.items[0].label }}</div>
           </div>
-          <div class="fact-label">{{ unitData.items[0].label }}</div>
-        </div>
 
-        <div class="fact-item">
-          <div class="fact-number-single">{{ unitData.items[1].number }}</div>
-          <div class="fact-label">{{ unitData.items[1].label }}</div>
-        </div>
-
-        <div class="fact-item">
-          <div class="fact-number">
-            <span class="fact-prefix">{{ unitData.items[5].prefix }}</span>
-            <span class="fact-suffix">{{ unitData.items[5].suffix }}</span>
+          <div class="fact-item">
+            <div class="fact-number-single">{{ unitData.items[1].number }}</div>
+            <div class="fact-label">{{ unitData.items[1].label }}</div>
           </div>
-          <div class="fact-label">{{ unitData.items[5].label }}</div>
-        </div>
 
-        <div class="fact-item">
-          <div class="fact-number">
-            <span class="fact-prefix">{{ unitData.items[6].prefix }}</span>
-            <span class="fact-suffix">{{ unitData.items[6].suffix }}</span>
+          <div class="fact-item">
+            <div class="fact-number">
+              <span class="fact-prefix">{{ unitData.items[5].prefix }}</span>
+              <span class="fact-suffix">{{ unitData.items[5].suffix }}</span>
+            </div>
+            <div class="fact-label">{{ unitData.items[5].label }}</div>
           </div>
-          <div class="fact-label">{{ unitData.items[6].label }}</div>
+
+          <div class="fact-item">
+            <div class="fact-number">
+              <span class="fact-prefix">{{ unitData.items[6].prefix }}</span>
+              <span class="fact-suffix">{{ unitData.items[6].suffix }}</span>
+            </div>
+            <div class="fact-label">{{ unitData.items[6].label }}</div>
+          </div>
         </div>
 
-        <!-- Row 2 -->
-        <div class="fact-item">
-          <div class="fact-number-single">{{ unitData.items[2].number }}</div>
-          <div class="fact-label">{{ unitData.items[2].label }}</div>
-        </div>
+        <!-- Row 2: 3 items, centered -->
+        <div class="facts-row-bottom">
+          <div class="fact-item">
+            <div class="fact-number-single">{{ unitData.items[2].number }}</div>
+            <div class="fact-label">{{ unitData.items[2].label }}</div>
+          </div>
 
-        <div class="fact-item">
-          <div class="fact-number-single">{{ unitData.items[3].number }}</div>
-          <div class="fact-label">{{ unitData.items[3].label }}</div>
-        </div>
+          <div class="fact-item">
+            <div class="fact-number-single">{{ unitData.items[3].number }}</div>
+            <div class="fact-label">{{ unitData.items[3].label }}</div>
+          </div>
 
-        <div class="fact-item">
-          <div class="fact-locations">{{ unitData.items[4].locations }}</div>
-          <div class="fact-label">{{ unitData.items[4].label }}</div>
+          <div class="fact-item">
+            <div class="fact-locations">{{ unitData.items[4].locations }}</div>
+            <div class="fact-label">{{ unitData.items[4].label }}</div>
+          </div>
         </div>
-
-        <div class="fact-item fact-item-empty"></div>
       </div>
     </div>
   </section>
@@ -93,21 +95,31 @@ const unitData = computed(() => {
 }
 
 .facts-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0 30px;
-  padding: 0 310px;
-  max-width: $breakpoint-design;
+  max-width: 100%;
+  width: 1300px;
   margin: 0 auto;
+}
+
+.facts-row-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+
+  .fact-item {
+    flex: 1;
+  }
+}
+
+.facts-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 73%;
+  margin: auto;
+  // gap: 100px;
 }
 
 .fact-item {
   text-align: center;
-  padding-bottom: 80px; // 1293 (row2 top) - 1213 (row1 label bottom) = 80
-}
-
-.fact-item-empty {
-  // 占位保持网格对齐
 }
 
 .fact-number {
@@ -143,6 +155,7 @@ const unitData = computed(() => {
   text-align: center;
   margin-bottom: 12px;
   line-height: 1.4;
+  white-space: break-spaces;
 }
 
 .fact-label {
@@ -160,14 +173,8 @@ const unitData = computed(() => {
 
   .facts-title {
     font-size: 28px;
-    margin-bottom: 36px;
   }
 
-  .facts-grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 20px;
-    gap: 30px 20px;
-  }
 
   .fact-number-single {
     font-size: 36px;

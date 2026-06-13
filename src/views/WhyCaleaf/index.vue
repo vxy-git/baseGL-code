@@ -77,7 +77,7 @@ onUnmounted(() => {
   <div class="why-caleaf-page">
     <!-- Header 区域 -->
     <div class="why-caleaf-header-wrapper">
-      <Header />
+      <Header headerClass="white" border />
     </div>
 
     <!-- 动态渲染 Unit -->

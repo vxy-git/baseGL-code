@@ -1,6 +1,6 @@
 <template>
   <div class="product-list-page">
-    <Header :headerClass="productListData.headerClass" border />
+    <Header headerClass="white" border />
     <div class="header-divider" />
 
     <main class="main-content c_1300">

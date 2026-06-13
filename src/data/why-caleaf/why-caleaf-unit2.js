@@ -9,7 +9,7 @@ export const whyCaleafUnit2Data = {
     { number: '200+', label: 'Patents' },
     { number: '2', label: 'Manufacturing Bases' },
     { number: '1500+', label: 'Employees' },
-    { locations: 'Los Angeles、New York、Indonesia、Shenzhen', label: 'Offices in' },
+    { locations: 'Los Angeles、New York\nIndonesia、Shenzhen', label: 'Offices in' },
     { prefix: '$80', suffix: 'Million', label: 'Annual Sales' },
     { prefix: '5', suffix: 'Million', label: 'Monthly Capacity' }
   ]

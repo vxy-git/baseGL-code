@@ -24,7 +24,7 @@ const categories = computed(() =>
 )
 
 const props = defineProps({
-  headerClass:{
+  headerClass: {
     type:String,
     default:"opacity"
   },
