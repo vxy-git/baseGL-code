@@ -150,6 +150,8 @@ export function useHeaderNav(propsHeaderClass) {
       window.removeEventListener('scroll', scrollHandler)
       scrollHandler = null
     }
+    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
     document.body.style.overflow = ''
   })
 
@@ -159,7 +161,6 @@ export function useHeaderNav(propsHeaderClass) {
     isMobile,
     isMobileMenuOpen,
     currentLevel,
-    currentMenuItem,
     expandedCategoryId,
     showDropdown,
 
@@ -180,7 +181,6 @@ export function useHeaderNav(propsHeaderClass) {
     // 导航方法
     goContact,
     goHome,
-    productLink,
     handleProductClick
   }
 }

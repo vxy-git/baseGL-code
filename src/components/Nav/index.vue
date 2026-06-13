@@ -6,6 +6,7 @@ import { productsData } from '@/data/productlist/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { logger } from '@/utils/logger'
 
 const iconArrow = '/api/uploads/file/default/assets/img/icon42.png'
 const cmsNavStore = useCmsNavStore()
@@ -211,7 +212,7 @@ const goList = () => {
   if (firstCategory?.navUrl) {
     router.push(firstCategory.navUrl)
   } else {
-    console.warn('⚠️ [Nav] 当前激活的分类没有 navUrl，无法跳转')
+    logger.warn('[Nav] 当前激活的分类没有 navUrl，无法跳转')
   }
 }
 
@@ -352,113 +353,6 @@ defineExpose({
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   // overflow-y: auto;
   will-change: transform, opacity;
-}
-
-.product-page {
-  font-family: 'Roboto', 'Arial', sans-serif;
-  color: #111111;
-  background-color: #ffffff;
-  height: 100vh;
-  box-sizing: border-box;
-}
-
-.top-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-image {
-  width: 187px;
-  height: 30px;
-  object-fit: contain;
-}
-
-.logo-text {
-  display: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  font-size: 16px;
-  color: #555555;
-}
-
-.nav-link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: #1ce785;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.contact-button {
-  background-color: #1ce785;
-  color: #222222;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 36px;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(28, 231, 133, 0.25);
-}
-
-.icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.icon-button:hover {
-  background-color: rgba(28, 231, 133, 0.1);
-}
-
-.icon-button img {
-  width: 22px;
-  height: 22px;
-}
-
-.divider {
-  margin-top: 20px;
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, rgba(232, 236, 243, 0), #e8ecf3 20%, #e8ecf3 80%, rgba(232, 236, 243, 0));
 }
 
 .content {

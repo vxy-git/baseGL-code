@@ -18,17 +18,26 @@ const emit = defineEmits([
 
 <template>
   <nav class="nav-links">
-    <a
-      v-for="(item, index) in navItems"
-      :key="index"
-      :href="item.href"
-      :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
-      @mouseenter="item.type === 'dropdown' && emit('products-mouse-enter')"
-      @mouseleave="item.type === 'dropdown' && emit('products-mouse-leave')"
-    >
-      <router-link v-if="item.to" :to="item.to">{{ item.text }}</router-link>
-      <template v-else>{{ item.text }}</template>
-    </a>
+    <template v-for="(item, index) in navItems" :key="index">
+      <router-link
+        v-if="item.to"
+        :to="item.to"
+        :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
+        @mouseenter="item.type === 'dropdown' && emit('products-mouse-enter')"
+        @mouseleave="item.type === 'dropdown' && emit('products-mouse-leave')"
+      >
+        {{ item.text }}
+      </router-link>
+      <a
+        v-else
+        :href="item.href"
+        :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
+        @mouseenter="item.type === 'dropdown' && emit('products-mouse-enter')"
+        @mouseleave="item.type === 'dropdown' && emit('products-mouse-leave')"
+      >
+        {{ item.text }}
+      </a>
+    </template>
   </nav>
 </template>
 

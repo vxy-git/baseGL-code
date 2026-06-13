@@ -177,7 +177,20 @@ const emit = defineEmits([
     object-fit: contain;
   }
 
-  .back-btn,
+  .back-btn {
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 201;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .close-btn {
     position: relative;
     width: 30px;
@@ -197,11 +210,6 @@ const emit = defineEmits([
       background: #000;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       transform-origin: center;
-    }
-
-    svg {
-      width: 100%;
-      height: 100%;
     }
 
     &.active {

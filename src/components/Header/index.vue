@@ -72,7 +72,7 @@ const {
       'white': currentHeaderClass === 'white',
       'opacity': currentHeaderClass === 'opacity',
     }" class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center">
-    <div class="w-full box transition-all" :class="`${showLine && 'border-b-solid border-black/5 border-b-[1px]'}`">
+    <div class="w-full box transition-all" :class="{ 'border-b-solid border-black/5 border-b-[1px]': showLine }">
       <header class="top-nav c_1300 mx-auto c_padding">
         <div class="nav-left">
           <router-link to="/" class="logo" @click="goHome">
