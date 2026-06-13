@@ -25,8 +25,15 @@ const navItems = computed(() =>
   cmsNavStore.headerNavs.length > 0 ? cmsNavStore.headerNavs : headerData.navItems
 )
 
-const categories = computed(() =>
-  productsData.tabs.map((label, idx) => ({
+const categories = computed(() => {
+  // 优先使用 CMS 数据
+  const cmsCategories = cmsNavStore.productCategories || []
+  if (cmsCategories.length > 0) {
+    return cmsCategories
+  }
+
+  // 降级到静态数据
+  return productsData.tabs.map((label, idx) => ({
     id: idx + 1,
     label,
     products: (productsData.products[idx] || []).map(product => ({
@@ -35,7 +42,7 @@ const categories = computed(() =>
       variant: product.capacity,
     }))
   }))
-)
+})
 
 const {
   currentHeaderClass,
