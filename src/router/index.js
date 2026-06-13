@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { h } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
 import { isEnabled } from '@/utils/navFilter'
@@ -139,6 +140,13 @@ const staticFallbackRoutes = [
         },
       },
     },
+  },
+  // 通配兜底路由：在 CMS 动态路由加载完成前，静默吸收所有未匹配路径，
+  // 避免 Vue Router 发出 "No match found" 警告
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'catchAll',
+    component: { render: () => h('div') },
   },
 ]
 
