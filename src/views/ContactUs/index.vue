@@ -64,7 +64,7 @@ async function loadFormConfig() {
       useLocalForm()
       // 显示降级提示
       ElMessage({
-        message: 'Using offline form. Some features may be limited.',
+        message: '正在使用离线表单，部分功能可能受限',
         type: 'warning',
         duration: 3000,
         showClose: true
@@ -76,7 +76,7 @@ async function loadFormConfig() {
     useLocalForm()
     // 显示降级提示
     ElMessage({
-      message: 'Using offline form. Some features may be limited.',
+      message: '正在使用离线表单，部分功能可能受限',
       type: 'warning',
       duration: 3000,
       showClose: true

@@ -21,6 +21,7 @@
 import { computed, ref, defineExpose, watch, onMounted, onBeforeUnmount } from 'vue'
 import CdnImage from './CdnImage.vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
+import { logger } from '@/utils/logger'
 
 const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || ''
 
@@ -92,13 +93,13 @@ function playFromStart() {
       if (p && typeof p.then === 'function') {
         p.catch((err) => {
           if (err.name !== 'AbortError') {
-            console.debug('[MediaAsset] 视频播放失败 (可能是自动播放限制):', err.message)
+            logger.debug('[MediaAsset] 视频播放失败 (可能是自动播放限制):', err.message)
           }
         })
       }
     } catch (err) {
       if (err.name !== 'AbortError') {
-        console.debug('[MediaAsset] 视频播放异常:', err.message)
+        logger.debug('[MediaAsset] 视频播放异常:', err.message)
       }
     }
   }
@@ -109,7 +110,7 @@ function pause() {
     try {
       videoEl.value.pause()
     } catch (err) {
-      console.debug('[MediaAsset] 视频暂停异常:', err.message)
+      logger.debug('[MediaAsset] 视频暂停异常:', err.message)
     }
   }
 }
@@ -119,7 +120,7 @@ function resetToStart() {
     try {
       videoEl.value.currentTime = 0
     } catch (err) {
-      console.debug('[MediaAsset] 重置视频进度异常:', err.message)
+      logger.debug('[MediaAsset] 重置视频进度异常:', err.message)
     }
   }
 }

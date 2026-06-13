@@ -19,8 +19,8 @@ const unitData = useUnitData(props, product3Unit4Data)
   <div>
     <div class="unit4T">
       <div class="flex flex-col items-center pt-[48px] c_padding">
-        <div class="title1" v-html="unitData.unit4T.title1"></div>
-        <div class="title2 mt-[19.55px] whitespace-break-spaces" v-html="unitData.unit4T.title2">
+        <div class="title1 whitespace-pre-line">{{ unitData.unit4T.title1 }}</div>
+        <div class="title2 mt-[19.55px] whitespace-pre-line">{{ unitData.unit4T.title2 }}
         </div>
         <div class="title3 max-w-[1200px] mt-[-2.5px]">
           <br />

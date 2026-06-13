@@ -5,7 +5,8 @@ import { product1Unit5Data  } from '@/data/product1/product1-unit5'
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
 import { useUnitData } from '@/composables/useUnitData'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { useIntersectionObserver } from '@vueuse/core';
+import { useIntersectionObserver } from '@vueuse/core'
+import { logger } from '@/utils/logger'
 
 // 接收 data prop
 const props = defineProps({
@@ -156,7 +157,7 @@ const playCurrentSlide = (index) => {
       const videoEl = mediaRefs.value[index]?.querySelector('video')
       if (videoEl) {
         videoEl.currentTime = 0
-        videoEl.play().catch(err => console.error('视频播放失败:', err))
+        videoEl.play().catch(err => logger.error('视频播放失败:', err))
 
         const updateProgress = () => {
           if (stopIfStale()) return

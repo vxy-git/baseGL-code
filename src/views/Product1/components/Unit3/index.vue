@@ -6,6 +6,7 @@ import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit3Data } from '@/data/product1/product1-unit3'
 import { useUnitData } from '@/composables/useUnitData'
+import { logger } from '@/utils/logger'
 
 // 接收 data prop
 const props = defineProps({
@@ -87,7 +88,7 @@ const buildTimeline = () => {
   }
 
   if (Object.values(els).some(el => !el)) {
-    console.warn('[Unit3] missing element refs, skip timeline init')
+    logger.warn('[Unit3] missing element refs, skip timeline init')
     return
   }
 

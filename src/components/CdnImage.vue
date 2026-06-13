@@ -13,6 +13,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
+import { logger } from '@/utils/logger'
 
 const props = defineProps({
   // 图片路径（支持本地或CDN路径）
@@ -87,7 +88,7 @@ const handleLoad = () => {
 
 const handleError = () => {
   isLoading.value = false
-  console.error(`图片加载失败: ${props.src}`)
+  logger.error(`图片加载失败: ${props.src}`)
 }
 </script>
 

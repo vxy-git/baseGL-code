@@ -4,6 +4,7 @@
  */
 
 import request from '@/utils/request'
+import { logger } from '@/utils/logger'
 
 /**
  * 根据 UUID 获取动态表单配置
@@ -23,7 +24,7 @@ export async function getDynamicForm(uuid) {
   const result = await request.get('/df/findDynamicFormPublic', { uuid })
 
   if (!result.success) {
-    console.error('❌ getDynamicForm API 错误:', result.message)
+    logger.error('❌ getDynamicForm API 错误:', result.message)
     return {
       success: false,
       message: result.message,
@@ -31,8 +32,8 @@ export async function getDynamicForm(uuid) {
     }
   }
 
-  console.log('✅ getDynamicForm API 调用成功')
-  console.log('📋 表单配置数据:', { uuid, formData: result.data?.formData })
+  logger.log('✅ getDynamicForm API 调用成功')
+  logger.log('📋 表单配置数据:', { uuid, formData: result.data?.formData })
 
   return {
     success: true,
@@ -77,11 +78,11 @@ export async function getFormRuleAndOption(uuid) {
         : result.data.option
     }
 
-    console.log('✅ 表单配置解析完成:')
-    console.log('  - Rule 字段数:', rule.length)
-    console.log('  - Option 配置:', option)
+    logger.log('✅ 表单配置解析完成:')
+    logger.log('  - Rule 字段数:', rule.length)
+    logger.log('  - Option 配置:', option)
   } catch (error) {
-    console.error('❌ 表单配置解析失败:', error)
+    logger.error('❌ 表单配置解析失败:', error)
     return {
       success: false,
       message: '表单配置数据格式错误',

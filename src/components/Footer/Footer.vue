@@ -38,7 +38,7 @@
             <div class="social-links mt-[20px]">
               <h4 class="footer-heading">{{ footerData.social.title }}</h4>
               <a v-for="(social, index) in footerData.social.links" :key="index" :href="social.href" target="_blank"
-                :aria-label="social.ariaLabel" class="social-link">
+                rel="noopener noreferrer" :aria-label="social.ariaLabel" class="social-link">
                 <svg t="1766474912709" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="1613" xmlns:xlink="http://www.w3.org/1999/xlink" width="200"
                   height="200">
@@ -72,6 +72,7 @@ import { ref, computed } from 'vue'
 import { footerData } from '@/data/common/footer'
 import { productsData } from '@/data/productlist/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { logger } from '@/utils/logger'
 
 
 
@@ -133,7 +134,7 @@ const agreeToPrivacy = ref(false)
 const handleSubscribe = () => {
   if (email.value && agreeToPrivacy.value) {
     // 处理订阅逻辑
-    console.log('Subscribe:', email.value)
+    logger.log('Subscribe:', email.value)
     // 可以在这里添加实际的订阅 API 调用
   }
 }

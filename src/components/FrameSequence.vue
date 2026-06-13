@@ -21,6 +21,7 @@ const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || "";
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
 import { FastImageSequence } from "@mediamonks/fast-image-sequence";
+import { logger } from '@/utils/logger'
 
 // Props 按 tar 的 API 完全匹配
 const props = defineProps({
@@ -70,7 +71,7 @@ const finalImageURL = computed(() => {
   if (props.tarURL && props.imageName) {
     return generateImageURL(props.tarURL, props.imageFile, props.imageName, props.imageExtension);
   }
-  console.error("FrameSequence: 缺少 imageURL 或 (tarURL + imageName)");
+  logger.error("FrameSequence: 缺少 imageURL 或 (tarURL + imageName)");
   return (i) => `frame${i}.jpg`;
 });
 
@@ -117,7 +118,7 @@ onMounted(async () => {
     window.addEventListener("resize", handleResize);
     handleResize();
   } catch (err) {
-    console.error("FastImageSequence 初始化失败", err);
+    logger.error("FastImageSequence 初始化失败", err);
   }
 });
 

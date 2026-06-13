@@ -67,13 +67,13 @@ CMS API (getCmsNavPublicList)
 
 基于原生 `fetch`，15s 超时，统一 `{ success, data, message }` 返回格式，`code === 0` 为业务成功。通过 `request.get()` / `request.post()` 调用。
 
-### 环境变量（`.env`）
+### 环境变量（`.env` / `.env.example`）
 
 - `VITE_BASE_URL`：CDN 域名（`https://img.cloudcode.ink/`）
 - `VITE_API_BASE_URL`：API 基础地址
 - `VITE_FORM_UUID`：表单 UUID
 
-**注意**：`.env` 已被 `.gitignore` 排除。新增环境变量需同步到 `.env.example`（如存在）。
+**注意**：`.env` 已被 `.gitignore` 排除，不会被 Git 跟踪。新增环境变量需同步到 `.env.example` 模板文件。
 
 ## 关键 Composables
 
@@ -99,5 +99,5 @@ CMS API (getCmsNavPublicList)
 - **静态资源**：`public/` 目录约 749MB，含大量 tar 压缩包和媒体资源，构建产物 `dist/` 约 751MB。
 - **Element Plus**：全量导入 + 中文语言包，约 2MB。
 - **@form-create/element-ui**：仅 ContactUs 页面使用，用于动态表单渲染。
-- **useMobileDetect.js**：已弃用，未被任何组件引用。所有移动端检测通过 `fit.js` 的 `MOBILE_BREAKPOINT` 常量直接判断。
+- **useMobileDetect.js**：移动端检测 composable，封装了 `MOBILE_BREAKPOINT` + resize 监听 + 生命周期管理。用于 Product1~4 和 Technology 页面组件。
 - **项目无单元测试、无 ESLint/Prettier 配置**，代码审查依赖人工。

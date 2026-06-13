@@ -10,6 +10,7 @@ import { useCmsNavStore } from '@/stores/cmsNav'
 import CdnImage from './components/CdnImage.vue'
 import MediaAsset from './components/MediaAsset.vue'
 import VideoModal from './components/VideoModal.vue'
+import { logger } from '@/utils/logger'
 import './styles/main.scss'
 
 ;(async () => {
@@ -58,6 +59,6 @@ import './styles/main.scss'
     // 重新匹配当前路径，确保新加载的 CMS 路由生效
     router.replace(currentPath)
   } catch (err) {
-    console.error('[main] CMS 动态路由加载失败，使用静态降级路由:', err.message)
+    logger.error('[main] CMS 动态路由加载失败，使用静态降级路由:', err.message)
   }
 })()

@@ -74,7 +74,7 @@ const unitData = useUnitData(props, product2Unit4Data)
         <div class="title2">
           {{ unitData.wiresSection.title }}
         </div>
-        <div class="label mt-[2px] whitespace-break-spaces" v-html="unitData.wiresSection.description">
+        <div class="label mt-[2px] whitespace-pre-line">{{ unitData.wiresSection.description }}
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">

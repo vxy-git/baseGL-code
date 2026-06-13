@@ -14,7 +14,10 @@
       "Bash(pnpm list:*)",
       "Bash(claude:*)",
       "Bash(pnpm:*)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(grep -rnE \"\\(api[_-]?key|secret|token|password|sk-[a-zA-Z0-9]{20,}\\)\" src/ --include=\"*.js\" --include=\"*.vue\" --include=\"*.ts\")",
+      "Bash(git rm *)",
+      "Bash(git check-ignore *)"
     ],
     "deny": [],
     "ask": []
