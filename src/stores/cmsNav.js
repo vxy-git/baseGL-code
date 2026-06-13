@@ -20,6 +20,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   const isLoading = ref(false)
   const error = ref(null)
   const isLoaded = ref(false)
+  const navResolved = ref(false)
 
   // 缓存正在进行的请求 Promise（防止并发重复请求）
   let requestPromise = null
@@ -54,6 +55,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
       navList.value = Array.isArray(result.data) ? result.data : []
       isLoaded.value = true
+      navResolved.value = true
 
       logger.log('✅ CMS 导航数据加载完成，共', navList.value.length, '条')
       return navList.value
@@ -76,6 +78,11 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       isLoaded.value = true
       logger.log('📦 从外部同步 CMS 导航数据，共', data.length, '条')
     }
+    navResolved.value = true
+  }
+
+  function markResolved() {
+    navResolved.value = true
   }
 
   /**
@@ -275,10 +282,12 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     isLoading,
     error,
     isLoaded,
+    navResolved,
 
     // Actions
     fetchAllNavs,
     setNavData,
+    markResolved,
     getNavByName,
     getPageData,
     getNavByRoute,
