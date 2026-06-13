@@ -77,8 +77,15 @@ const dataKeyFor = key => (key.startsWith('m_') ? key.substring(2) : key)
 // 动态渲染列表（CMS 数据优先，本地降级）
 const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyFor)
 
-const lightBgKeys = new Set(['unit2', 'unit4'])
-const blackBgKeys = new Set(['unit5', 'unit6', 'unit8', 'unit9', 'unit10'])
+const wrapperClass = {
+  unit2: 'bg-[#F8F9FD] pt-[97px] pb-[120px]',
+  unit4: 'bg-[#F8F9FD] pt-[97px] pb-[120px]',
+  unit5: 'bg-black',
+  unit6: 'bg-black',
+  unit8: 'bg-black',
+  unit9: 'bg-black',
+  unit10: 'bg-black',
+}
 </script>
 
 <template>
@@ -87,20 +94,9 @@ const blackBgKeys = new Set(['unit5', 'unit6', 'unit8', 'unit9', 'unit10'])
 
     <!-- 动态渲染 Unit -->
     <template v-for="item in renderList" :key="item.key">
-      <!-- unit1 独立渲染 -->
-      <component :is="item.component" v-if="item.key === 'unit1'" :data="item.data" />
-
-      <!-- unit2,4 需要 bg-[#F8F9FD] 容器 -->
-      <div v-else-if="lightBgKeys.has(item.key)" class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
+      <div v-if="wrapperClass[item.key]" :class="wrapperClass[item.key]">
         <component :is="item.component" :data="item.data" />
       </div>
-
-      <!-- unit5,6,8,9,10 需要 bg-black 容器 -->
-      <div v-else-if="blackBgKeys.has(item.key)" class="bg-black">
-        <component :is="item.component" :data="item.data" />
-      </div>
-
-      <!-- 其他 Unit 正常渲染 -->
       <component :is="item.component" v-else :data="item.data" />
     </template>
 
