@@ -49,6 +49,8 @@ const defaultOrder = computed(() => {
 
 // 动态渲染列表（CMS 数据优先，本地降级）
 const { renderList } = useRenderList(props, componentMap, defaultOrder);
+
+const blackBgKeys = new Set(['unit4', 'unit5', 'unit9'])
 </script>
 
 <template>
@@ -58,7 +60,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder);
     <!-- 动态渲染 Unit -->
     <template v-for="item in renderList" :key="item.key">
       <!-- unit4,5,9 需要黑色背景容器 -->
-      <div v-if="['unit4', 'unit5', 'unit9'].includes(item.key)" class="bg-[#000]">
+      <div v-if="blackBgKeys.has(item.key)" class="bg-[#000]">
         <component :is="item.component" :data="item.data" />
       </div>
       <!-- 其他 Unit 正常渲染 -->

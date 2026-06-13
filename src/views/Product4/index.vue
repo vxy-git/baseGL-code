@@ -54,6 +54,9 @@ const dataKeyFor = (key) => key.startsWith('m_') ? key.substring(2) : key;
 
 // 动态渲染列表（CMS 数据优先，本地降级）
 const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyFor);
+
+const lightBgKeys = new Set(['unit2', 'unit4'])
+const blackBgKeys = new Set(['unit5', 'unit6', 'unit8', 'unit9', 'unit10'])
 </script>
 
 <template>
@@ -66,12 +69,12 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyF
       <component v-if="item.key === 'unit1'" :is="item.component" :data="item.data" />
 
       <!-- unit2,4 需要 bg-[#F8F9FD] 容器 -->
-      <div v-else-if="['unit2', 'unit4'].includes(item.key)" class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
+      <div v-else-if="lightBgKeys.has(item.key)" class="bg-[#F8F9FD] pt-[97px] pb-[120px]">
         <component :is="item.component" :data="item.data" />
       </div>
 
       <!-- unit5,6,8,9,10 需要 bg-black 容器 -->
-      <div v-else-if="['unit5', 'unit6', 'unit8', 'unit9', 'unit10'].includes(item.key)" class="bg-black">
+      <div v-else-if="blackBgKeys.has(item.key)" class="bg-black">
         <component :is="item.component" :data="item.data" />
       </div>
 
