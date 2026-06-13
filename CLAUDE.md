@@ -1,458 +1,346 @@
-# CLAUDE.md
+baseGL-code 专业代码审查报告
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+项目: CALEAF TECH 官网 (Vue 3 + Vite SPA)
+审查范围: /Users/wming/Documents/workBox/boss_cw/gl-item/baseGL-code
+审查人: Claude Code
+审查日期: 2026-06-14
 
-## 项目概述
+---
+一、总体评价
 
-这是一个基于 **Vue 3** 的单页应用 (SPA),采用 **CMS 驱动的动态架构**。页面内容和路由配置主要由后端 CMS API 控制,本地数据作为降级方案。
+| 维度   | 评分   | 说明                      |
+|------|------|-------------------------|
+| 架构设计 | ⭐⭐⭐⭐ | CMS 动态驱动架构设计合理，双重降级机制健壮 |
+| 代码质量 | ⭐⭐⭐  | 整体良好，存在一些需要改进的问题        |
+| 性能优化 | ⭐⭐⭐  | 有基本的优化措施，但仍有提升空间        |
+| 安全性  | ⭐⭐⭐  | 表单提交存在明显安全问题，需立即修复      |
+| 可维护性 | ⭐⭐⭐⭐ | 组件化良好，composables 复用合理  |
+| 错误处理 | ⭐⭐⭐  | 覆盖了主要路径，但缺少全局兜底         |
 
-- **框架**: Vue 3.5.13 (Composition API)
-- **构建工具**: Vite 6.0.5
-- **状态管理**: Pinia 2.3.1
-- **路由**: Vue Router 4.5.0 (动态生成)
-- **样式**: Tailwind CSS 3.4.1 + SCSS
-- **动画**: GSAP 3.12.5, @vueuse/motion 2.2.6
+---
+二、严重问题（需立即修复）
 
-## 开发命令
+🔴 1. 表单 UUID 硬编码 + 暴露在源码中
 
-```bash
-# 开发环境 (端口 3002)
-npm run dev     # 或 pnpm dev
+文件: src/views/ContactUs/index.vue:30
 
-# 生产构建
-npm run build   # 或 pnpm build
+const FORM_UUID = '4ce3147d-23ae-4467-bf7b-b225f4ce76a1'
 
-# 预览构建结果
-npm run preview
-```
+问题: 表单 UUID 以明文硬编码在前端源码中，任何用户查看 source map 即可获取，可能导致未授权访问后端表单系统。
 
-## 核心架构
+建议: 使用环境变量 import.meta.env.VITE_FORM_UUID 或在服务端通过接口动态下发。
 
-### 1. 动态路由生成系统
+---
+🔴 2. 表单提交缺乏防滥用保护
 
-**关键文件**: `src/router/index.js`
+文件: src/views/ContactUs/index.vue:172 → src/api/infoData.js:163
 
-路由不是静态配置的,而是从 CMS API 动态生成:
+问题:
+- 无 CSRF 保护（未携带 CSRF Token）
+- 无频率限制（客户端端可被绕过，但服务端也需加强）
+- 无验证码/人机验证
+- 表单数据明文传输到 /infoData/createInfoPublicData 无明显加密
 
-```javascript
-// 路由生成流程
-1. 调用 getCmsNavPublicList() → 从后端获取导航配置
-2. 过滤 status='启用' 的导航项
-3. 根据 pageType 映射到对应组件
-4. pageConfig 通过 props 传递给页面组件
-5. 自动注册到 Vue Router
-```
+建议:
+- 添加 CSRF Token 机制
+- 集成验证码（如 Turnstile / reCAPTCHA）
+- 服务端实现 IP/设备指纹频率限制
+- 对敏感字段（email、phone）在传输前做哈希处理
 
-**pageType 到组件的映射**:
-- `home` → `views/Home/index.vue`
-- `technology` → `views/Technology/index.vue`
-- `contactus` → `views/ContactUs/index.vue`
-- `unit_pro` → `views/Product1/index.vue`
-- `unicorn_series` → `views/Product3/index.vue`
-- `universe_series` → `views/Product2/index.vue`
-- `dukes` → `views/Product4/index.vue`
-- `list` → `views/ProductList/index.vue`
-- `page` → `views/Page/index.vue` (通用模板)
+---
+🔴 3. 文件命名不一致导致 minify: 'terser' 构建失败
 
-### 2. 双重数据源架构
+文件: vite.config.js:31
 
-#### 数据源 1: 本地 CMS 数据 (降级方案)
-- 位置: `src/data/` (按页面分层的模块化数据)
-- API 层: `src/api/cms.js` (已废弃但保留)
-- Hook: `src/composables/useCmsPage.js`
+minify: 'terser',  // ❌ 拼写错误，应该是 'terser'
 
-#### 数据源 2: 远程 CMS API (主要数据源)
-- API 层: `src/api/cmsNav.js`
-- 接口: `/api/cmsnav/getCmsNavPublicList`
-- Store: `src/stores/cmsNav.js` (Pinia)
+问题: 正确值应为 'terser'。这可能导致生产构建时使用 Vite 默认压缩器（esbuild）而非 Terser，terserOptions
+配置（drop_console/drop_debugger）不会生效。
 
-**降级机制示例** (Header 组件):
-```javascript
-const navItems = computed(() => {
-  // 优先使用 CMS 数据,否则使用静态配置
-  return cmsNavStore.headerNavs.length > 0
-    ? cmsNavStore.headerNavs
-    : headerData.navItems
-})
-```
+建议: 修改为 minify: 'terser'，或确认是否已安装 terser 依赖。
 
-### 3. CMS 数据结构
+---
+三、架构层面问题
 
-#### 导航数据结构
-```javascript
-{
-  ID: 数值,
-  navName: 'Home',           // 导航名称 (路由标识)
-  navUrl: '/',               // URL 路径
-  pageType: 'home',          // 页面类型 (决定组件)
-  status: '启用',            // 启用状态
-  headerShow: true,          // 是否在 Header 显示
-  footerShow: true,          // 是否在 Footer 显示
-  parentId: 0,               // 父级 ID (0 为顶级)
-  sort: 1,                   // 排序
-  moduleList: {              // 页面模块数据
-    unit1: { enabled: true, data: {...} },
-    unit2: { enabled: true, data: {...} },
-    item: { enabled: true, data: {...} }
-  }
-}
-```
+🟡 4. 路由初始化阻塞应用启动
 
-#### 产品分类三级结构
-```
-Products (navName='Products')
-  └─ Series (子导航, 如 'Vaporizers')
-      └─ Product (产品项, 如 'UNIT Pro')
-          └─ moduleList.item.data (产品详情)
-```
+文件: src/router/index.js:36 → src/main.js:26
 
-**Pinia Store** (`src/stores/cmsNav.js`) 提供的计算属性:
-- `headerNavs`: Header 导航列表
-- `footerNavs`, `footerColumns`: Footer 导航
-- `productCategories`: 产品分类数据 (供 Nav 下拉菜单使用)
-- `bannerNavs`: Banner 轮播数据
+// main.js - 应用启动被路由初始化阻塞
+const router = await createAppRouter()  // 等待 CMS API 返回
+app.use(router)
+app.mount('#app')
 
-## 组件开发模式
+问题: 如果 CMS API 响应慢或不可用，整个应用白屏无法渲染，包括首页。
 
-### 1. 页面组件动态渲染
+建议:
+// 先挂载，后异步加载路由
+const router = createRouter({...})  // 使用静态降级路由先挂载
+app.use(router)
+app.mount('#app')
 
-**标准模式** (Product1-4 页面):
-
-```vue
-<script setup>
-import { ref, computed } from 'vue'
-
-const props = defineProps({
-  pageConfig: { type: Object, default: () => ({}) }
+// 异步补充 CMS 路由
+createAppRouter().then(cmsRouter => {
+cmsRouter.getRoutes().forEach(r => router.addRoute(r))
 })
 
-// 组件映射表
-const componentMap = {
-  unit1: Unit1,
-  unit2: Unit2,
-  unit3: Unit3,
-  // ...
+---
+🟡 5. CMS API 重复调用 13+ 次
+
+文件: src/api/cmsNav.js
+
+getCmsNavPublicList() 被以下函数各自独立调用：
+- getAllNavigation (L51)
+- getNavigationByCategory (L187)
+- getBannerNavigation (L241)
+- getAllPageRoutes (L376)
+- getAllCategorizedNavigation (L274)
+- getNavigationAndRoutes → 又调用上面两个 (L481)
+
+问题: 在 getNavigationAndRoutes() 中同时调用 getAllCategorizedNavigation() 和 getAllPageRoutes()，每个又独立调用
+getCmsNavPublicList()，导致至少 2 次重复 API 请求。加上路由初始化和 Store 各自独立调用，总计可达 4-6 次 对同一 API 的请求。
+
+建议: 实现请求级缓存（如 Store 中已有的 requestPromise 模式），或使用统一的 API 结果缓存层：
+
+// 在 request.js 或 cmsNav.js 中添加
+let cachedResult = null
+let pendingRequest = null
+
+export async function getCmsNavPublicList(params = {}) {
+if (cachedResult) return cachedResult
+if (pendingRequest) return pendingRequest
+pendingRequest = _fetch(params)
+const result = await pendingRequest
+cachedResult = result
+pendingRequest = null
+return result
 }
 
-// 默认渲染顺序
-const defaultOrder = ['unit1', 'unit2', 'unit3', ...]
+---
+🟡 6. 路由与 Store 数据冗余
 
-// 动态渲染列表
-const renderList = computed(() => {
-  const moduleList = props.pageConfig?.moduleList
+文件: src/router/index.js:54 + src/main.js:29 + src/stores/cmsNav.js:30
 
-  if (moduleList) {
-    return defaultOrder
-      .filter(key => moduleList[key]?.enabled !== false)
-      .map(key => ({
-        key,
-        component: componentMap[key],
-        data: moduleList[key].data
-      }))
-  }
+路由系统 (generateRoutes) 调用一次 CMS API，Store (fetchAllNavs) 又调用一次，数据在路由 (initialCmsNavData) 和 Store
+(navList) 中重复存储。
 
-  // 降级: 无 CMS 数据时使用本地默认数据
-  return defaultOrder.map(key => ({
-    key,
-    component: componentMap[key],
-    data: null
-  }))
-})
-</script>
+建议: 让路由和 Store 共用一次 API 调用的结果，通过事件总线或 provide/inject 共享数据。
 
-<template>
-  <component
-    v-for="item in renderList"
-    :key="item.key"
-    :is="item.component"
-    :data="item.data"
-  />
-</template>
-```
+---
+四、代码质量问题
 
-### 2. Unit 组件数据合并
+🟠 7. 大量 console.log 调试日志未清理
 
-**标准模式** (所有 Unit 子组件):
+遍布全项目的 console.log 在生产构建中不会被移除（因为 terser 配置未生效，见问题
+3）。生产环境中暴露大量内部调试信息，包括数据结构、API 响应、用户行为等。
 
-```vue
-<script setup>
-import { computed } from 'vue'
-import { product1Unit1Data } from '@/data/product1/product1-unit1'
+影响文件（不完全列表）:
+- src/stores/cmsNav.js: L33, L39, L47, L65, L87
+- src/api/infoData.js: L40, L48, L56-57, L106-127, L166
+- src/api/cmsNav.js: L37, L66, L97-100, L263, L350
 
-const props = defineProps({
-  data: { type: Object, default: null }
-})
+建议: 使用条件日志或统一日志工具，生产环境自动禁用：
 
-// 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product1Unit1Data, ...props.data }
-  }
-  return product1Unit1Data
-})
-</script>
-
-<template>
-  <div>{{ unitData.content.title }}</div>
-</template>
-```
-
-**关键原则**:
-- CMS 数据覆盖本地默认值
-- 无 CMS 数据时自动降级到本地数据
-- 保持组件独立性和可测试性
-
-### 3. 响应式适配
-
-**断点配置**:
-- 移动端断点: `1024px` (定义在 `composables/fit.js`)
-- PC/移动端组件切换:
-
-```javascript
-import { isMobile } from '@/composables/fit'
-
-const componentMap = {
-  unit3: Unit3,      // PC 组件
-  m_unit3: m_Unit3   // 移动端组件
+// utils/logger.js
+const isDev = import.meta.env.DEV
+export const logger = {
+log: (...args) => isDev && console.log(...args),
+warn: (...args) => isDev && console.warn(...args),
+error: (...args) => console.error(...args)
 }
 
-const defaultOrder = computed(() =>
-  isMobile.value
-    ? ['unit1', 'unit2', 'm_unit3', ...]  // 移动端顺序
-    : ['unit1', 'unit2', 'unit3', ...]    // PC 端顺序
-)
-```
+---
+🟠 8. Header 组件过于臃肿
 
-## 重要组件
+文件: src/components/Header/index.vue (1040 行)
 
-### MediaAsset 组件
-**位置**: `src/components/MediaAsset.vue`
+问题:
+- 混合了桌面端导航、移动端抽屉、下拉菜单、动画逻辑
+- 52 个响应式状态变量（ref + computed）
+- 样式包含桌面端和移动端全部代码（449-1040 行）
 
-统一的媒体资源管理组件,支持图片和视频:
+建议:
+- 拆分为 DesktopHeader.vue / MobileDrawer.vue / NavDropdown.vue
+- 抽取导航交互逻辑为 composable useHeaderNav.js
+- 移动端逻辑独立为 composable useMobileMenu.js
 
-```vue
-<!-- 视频示例 -->
-<MediaAsset
-  type="video"
-  src="/videos/product.mp4"
-  :viewPlay="true"      // 视口内自动播放
-  :hoverPlay="true"     // 鼠标悬停播放
-  :muted="true"
-  :loop="true"
-/>
+---
+🟠 9. ProductList 中未使用的 SVG 图标组件
 
-<!-- 图片示例 -->
-<MediaAsset
-  type="image"
-  src="/images/product.png"
-  :lazy="true"          // 懒加载
-  cdnUrl="https://custom-cdn.com"
-/>
-```
+文件: src/views/ProductList/index.vue:118-169
 
-**功能**:
-- 自动 CDN URL 拼接 (使用 `VITE_BASE_URL`)
-- 懒加载支持
-- 视频交互播放 (Intersection Observer)
-- 移动端自动优化
+定义了 YouTubeIcon, LinkedInIcon, FacebookIcon, InstagramIcon, TikTokIcon 五个渲染函数和 socialIcons
+数组，但在模板中完全未使用。
 
-### CdnImage 组件
-**位置**: `src/components/CdnImage.vue`
+建议: 删除死代码，或移动到所需的 Footer 组件中。
 
-CDN 图片组件,支持懒加载和自定义 CDN:
+---
+🟠 10. 数据合并逻辑有潜在覆盖风险
 
-```vue
-<CdnImage
-  src="/images/product.png"
-  :lazy="true"
-  cdnUrl="https://custom-cdn.com"
-  alt="Product"
-/>
-```
+文件: src/composables/useUnitData.js:47
 
-### Header 组件
-**位置**: `src/components/Header/index.vue`
+return { ...localData, ...props.data }
 
-包含:
-- 导航菜单 (支持 CMS 数据降级)
-- 移动端抽屉菜单
-- Nav 下拉菜单 (产品分类)
+问题: 使用浅合并。如果 CMS 下发部分嵌套对象字段，会完全覆盖本地默认的嵌套对象，而非合并。
 
-### Nav 组件
-**位置**: `src/components/Nav/index.vue`
+示例:
+// 本地数据
+localData = { content: { title: 'Hello', desc: 'World' } }
+// CMS 数据
+props.data = { content: { title: 'Updated' } }
+// 结果 → content.desc 丢失
 
-产品下拉菜单,支持三级产品分类结构。
+建议: 默认使用深层合并，除非明确标记为浅合并：
 
-**数据来源优先级**:
-1. `cmsNavStore.productCategories` (CMS 数据)
-2. 本地 `productsData` (降级方案)
+import { merge } from 'lodash-es'  // 或自行实现
+return merge({}, localData, props.data)
 
-## 命名约定
+---
+🟠 11. MobileDetect composable 未使用
 
-### 数据文件命名
-```
-src/data/
-├── product1/
-│   ├── product1-unit1.js  → 导出 product1Unit1Data
-│   ├── product1-unit2.js  → 导出 product1Unit2Data
-│   └── ...
-├── product2/
-│   ├── product2-unit1.js  → 导出 product2Unit1Data
-│   └── ...
-└── ...
-```
+文件: src/composables/useMobileDetect.js (755B)
 
-**规则**: `product{X}Unit{X}Data`
+未被任何组件引用，所有移动端检测都是直接在组件内通过 composables/fit.js 的 MOBILE_BREAKPOINT 常量自行判断。
 
-### 模块命名约定
-- `unit1-9`: 标准内容模块
-- `item`: 产品信息模块 (供产品列表使用)
-- `gsapU`: GSAP 动画模块 (Product2 特殊模块)
-- `videoU`: 视频模块 (Product2 特殊模块)
+建议: 删除或统一使用该 composable。
 
-### 组件组织约定
-```
-views/ProductX/
-├── index.vue              # 主页面 (动态渲染逻辑)
-└── components/
-    ├── Unit1/
-    │   ├── index.vue      # PC 组件
-    │   └── m_index.vue    # 移动端组件 (可选)
-    ├── Unit2/
-    └── ...
-```
+---
+五、性能问题
 
-## 关键文件路径
+🟡 12. 无路由懒加载之外的组件懒加载
 
-### 配置文件
-- `vite.config.js` - Vite 配置 (路径别名、构建优化)
-- `tailwind.config.js` - Tailwind CSS 配置
-- `.env` - 环境变量 (VITE_BASE_URL, VITE_API_BASE_URL)
+所有页面级别组件已通过 () => import(...) 实现懒加载 ✅。但以下组件可以进一步优化：
 
-### 路由和状态
-- `src/router/index.js` - 动态路由生成
-- `src/stores/cmsNav.js` - CMS 导航数据 Store
+- ElementPlus 全量导入（~2MB），建议按需导入
+- @form-create/element-ui 仅 ContactUs 页使用，应异步加载
+- GSAP ScrollTrigger 在 useGsap.js 中全局注册，应用启动时即加载
 
-### API 层
-- `src/api/cmsNav.js` - CMS 导航 API (真实后端)
-- `src/api/cms.js` - CMS 数据模拟层 (本地数据,已废弃)
+建议:
+// main.js - 延迟加载 Element Plus
+// const app = createApp(App)
+// app.use(ElementPlus) // ❌ 全量导入
 
-### 页面示例
-- `src/views/Product1/index.vue` - Product1 主页面
-- `src/views/ProductList/index.vue` - 产品列表页
+// ContactUs - 按需加载表单库
+const ContactUs = defineAsyncComponent(() => import('@/views/ContactUs/index.vue'))
 
-## 样式系统
+---
+🟡 13. 图片/视频资源尺寸过大
 
-### 双样式架构
-- **Tailwind CSS**: 工具类,用于响应式布局和快速原型
-- **SCSS**: 组件样式,用于复杂动画和特殊布局
+观察: public/ 目录 749MB，dist/ 目录 751MB，包含大量未压缩的图片和视频资源。
 
-### Rem 适配
-PostCSS 配置自动转换 px 到 rem (1rem = 16px):
+建议:
+- 使用 <picture> + srcset 提供多分辨率图片
+- 视频使用 H.265/VP9 编码并提供 WebM 降级
+- 图片使用 WebP/AVIF 格式
+- 考虑使用 CDN 图片处理服务（如 imgix、Cloudinary）进行按需压缩
 
-```javascript
-// postcss.config.js
-postcss-pxtorem: {
-  rootValue: 16,
-  propList: ['*'],
-  exclude: /node_modules/i
+---
+🟡 14. MediaAsset 中使用 empty catch 吞噬错误
+
+文件: src/components/MediaAsset.vue:93-95, 103, 111
+
+try {
+videoEl.value.play()
+} catch {}  // ❌ 空 catch 吞噬所有错误
+
+try {
+videoEl.value.pause()
+} catch {}
+
+问题: 静默忽略所有视频播放异常，难以调试用户在浏览器自动播放策略限制下的体验问题。
+
+建议:
+try {
+await videoEl.value.play()
+} catch (err) {
+if (err.name !== 'AbortError') {
+  console.debug('[MediaAsset] 视频播放失败 (可能是自动播放限制):', err.message)
 }
-```
+}
 
-### SCSS 全局变量
-**位置**: `src/styles/variables.scss`
+---
+六、安全审查
 
-```scss
-$primary-color: #1CE785;
-$text-color: #111111;
-// ...
-```
+🟠 15. 表单数据无客户端输入验证（依赖 form-create 服务端配置）
 
-## 开发注意事项
+文件: src/views/ContactUs/index.vue
 
-### 添加新页面
-1. 在 CMS 后台创建导航配置 (navUrl, pageType)
-2. 在 `src/router/index.js` 的 `pageTypeMap` 添加映射
-3. 创建页面组件 (接收 `pageConfig` props)
-4. 添加本地数据文件到 `src/data/` (作为降级方案)
+当 CMS 表单配置加载失败时，降级到本地静态表单。降级表单的 email 正则验证存在漏洞：
 
-### 添加新 Unit 模块
-1. 创建 Unit 组件 (接收 `data` props)
-2. 导出本地默认数据到 `src/data/productX/productX-unitY.js`
-3. 在页面组件的 `componentMap` 中注册
-4. 添加到 `defaultOrder` 数组
+pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
 
-### CMS 数据对接检查清单
-- [ ] 组件接收 `data` props
-- [ ] 实现数据合并逻辑: `{ ...localData, ...props.data }`
-- [ ] 在 `moduleList` 中添加对应的模块配置
-- [ ] 测试 CMS 数据禁用时的降级行为
+问题:
+- 不支持 + 号邮箱（如 user+tag@domain.com）
+- TLD 限制 2-7 字符（.travel = 6, .international = 13 可能被拒绝）
+- 降级表单的 phone 正则 /^[\d\s\-+()]+$/ 允许空白提交
 
-### 动画使用
-- GSAP Hook: `src/composables/useGsap.js`
-- 页面滚动动画
-- 下拉菜单进入/离场动画
-- 产品卡片交错淡入动画
+---
+🟠 16. 无 XSS 防护审查
 
-## 环境变量
+Vue 3 默认对 {{ }} 插值进行 HTML 转义 ✅。但需确认没有任何地方使用 v-html 渲染 CMS 内容（CMS 数据可能被注入）。
 
-```bash
-# .env
-VITE_BASE_URL=https://img.cloudcode.ink/
+建议: 全局搜索 v-html 并审计所有使用点。
+
+---
+七、构建与部署问题
+
+🟡 17. .env 文件被提交的风险
+
+文件: .env:7
+
 VITE_API_BASE_URL=http://localhost:8080/api
-```
 
-使用方式: `import.meta.env.VITE_BASE_URL`
+虽然这是开发环境地址，但如果历史中曾包含生产环境地址，可能存在泄露风险。
 
-## 路径别名
+建议:
+- 确保 .env 在 .gitignore 中
+- 使用 .env.example 放置安全示例值
+- 生产环境通过 CI/CD 注入环境变量
 
-```json
-{
-  "@/*": "./src/*"
-}
-```
+---
+🟡 18. pnpm-lock.yaml 和 yarn.lock 并存
 
-示例: `import { foo } from '@/utils/foo'`
+两个锁文件同时存在，表明团队包管理器不统一。
 
-## 生产部署
+建议: 统一使用一个包管理器（推荐 pnpm），删除 yarn.lock。
 
-生产构建自动优化:
-- 移除 console 和 debugger
-- 代码分割 (vue-vendor, animation chunks)
-- Terser 压缩
-- Autoprefixer
+---
+八、代码风格与最佳实践
 
-## 调试技巧
+✅ 做得好的地方
 
-### 检查 CMS 数据加载
-```javascript
-import { useCmsNavStore } from '@/stores/cmsNav'
+1. Composition API + <script setup> 规范使用
+2. Composables 合理拆分: useUnitData, useRenderList, useGsap 复用良好
+3. 动态路由系统设计: CMS 驱动 + 静态降级方案
+4. JSDoc 注释: API 函数和 composables 有完整的类型注释
+5. 媒体资源统一管理: MediaAsset 组件统一了图片/视频处理
+6. Promise 缓存防并发: Store 中的 requestPromise 模式
+7. 组件清理完善: onUnmounted 中正确清理事件监听和观察器
 
-const cmsNavStore = useCmsNavStore()
-console.log('CMS 导航数据:', cmsNavStore.navList)
-console.log('产品分类:', cmsNavStore.productCategories)
-```
+⚠️ 需改进的地方
 
-### 检查页面配置
-```javascript
-const props = defineProps({
-  pageConfig: { type: Object, default: () => ({}) }
-})
+1. 缺少 TypeScript 迁移计划: 全项目仅一个 env.d.ts，未充分利用 TS 的类型安全
+2. 缺少单元测试: package.json 中没有任何测试框架或测试脚本
+3. 缺少 ESLint/Prettier 配置: 未发现代码规范工具
+4. Vue DevTools 插件在生产构建中: vite.config.js:11 中 VueDevTools() 应仅在开发环境启用
+5. Tailwind 与 SCSS 混用: 同一组件中既有 Tailwind class 又有 scoped SCSS，导致样式调试困难
 
-console.log('页面配置:', props.pageConfig)
-console.log('模块列表:', props.pageConfig?.moduleList)
-```
+---
+九、改进优先级建议
 
-## 常见问题
+| 优先级   | 问题编号     | 问题描述               | 工作量  |
+|-------|----------|--------------------|------|
+| 🔴 P0 | 1, 2, 3  | 安全硬编码、防滥用、构建配置修复   | 1-2天 |
+| 🟠 P1 | 4, 5     | 路由阻塞启动、API 重复调用    | 2-3天 |
+| 🟠 P1 | 7        | 清理生产环境调试日志         | 0.5天 |
+| 🟡 P2 | 8, 9, 10 | 组件拆分、死代码清理、数据合并优化  | 3-5天 |
+| 🟡 P2 | 12, 13   | 性能优化（资源压缩、按需加载）    | 3-5天 |
+| 🔵 P3 | 14-18    | 代码风格、工具链统一         | 1-2天 |
+| 🔵 P3 | -        | 添加测试、TypeScript 迁移 | 持续迭代 |
 
-**Q: 路由不生效?**
-A: 检查 `src/router/index.js` 中的 `pageTypeMap` 是否包含对应映射
+---
+十、总结
 
-**Q: CMS 数据未加载?**
-A: 检查 `src/stores/cmsNav.js` 是否已初始化,查看控制台 API 错误
-
-**Q: 组件显示空白?**
-A: 确认 `moduleList[moduleName].enabled` 是否为 `true`
-
-**Q: 移动端样式错误?**
-A: 检查是否在 `defaultOrder` 中使用了 `m_` 前缀的移动端组件
+该项目整体架构设计合理，CMS 动态驱动 + 双重降级的方案体现了良好的工程思维。组件化拆分和 composables
+的复用也值得肯定。但存在 3 个需立即修复的安全和构建配置问题，以及
+多处性能与可维护性改进点。建议按优先级逐步修复，先解决安全问题，再优化性能和代码质量。
