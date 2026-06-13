@@ -4,6 +4,7 @@
  */
 
 import request from '@/utils/request'
+import { logger } from '@/utils/logger'
 
 /**
  * 提交表单数据到公开接口（无需鉴权）
@@ -37,7 +38,7 @@ export async function createInfoDataPublic(data) {
     formJson: data.formJson
   }
 
-  console.log('📤 准备提交表单数据:', {
+  logger.log('📤 准备提交表单数据:', {
     userName: requestData.userName,
     formJsonKeys: Object.keys(requestData.formJson)
   })
@@ -45,7 +46,7 @@ export async function createInfoDataPublic(data) {
   const result = await request.post('/infoData/createInfoPublicData', requestData)
 
   if (!result.success) {
-    console.error('❌ createInfoDataPublic API 错误:', result.message)
+    logger.error('❌ createInfoDataPublic API 错误:', result.message)
     return {
       success: false,
       message: result.message || '提交失败',
@@ -53,8 +54,8 @@ export async function createInfoDataPublic(data) {
     }
   }
 
-  console.log('✅ createInfoDataPublic API 调用成功')
-  console.log('📊 提交结果:', result.message)
+  logger.log('✅ createInfoDataPublic API 调用成功')
+  logger.log('📊 提交结果:', result.message)
 
   return {
     success: true,
@@ -103,7 +104,7 @@ export async function extractUserNameByUuid(formData, uuid) {
       if (formResult.success && formResult.rule) {
         const rules = formResult.rule
 
-        console.log('🔍 根据 UUID 查询表单配置，字段数:', rules.length)
+        logger.log('🔍 根据 UUID 查询表单配置，字段数:', rules.length)
 
         // 查找 name 字段（通过 placeholder 或 info 识别）
         const nameField = rules.find(r =>
@@ -112,7 +113,7 @@ export async function extractUserNameByUuid(formData, uuid) {
         )
 
         if (nameField && formData[nameField.field]) {
-          console.log('✅ 通过 name 字段提取用户名:', formData[nameField.field])
+          logger.log('✅ 通过 name 字段提取用户名:', formData[nameField.field])
           return formData[nameField.field]
         }
 
@@ -123,19 +124,19 @@ export async function extractUserNameByUuid(formData, uuid) {
         )
 
         if (emailField && formData[emailField.field]) {
-          console.log('✅ 通过 email 字段提取用户名:', formData[emailField.field])
+          logger.log('✅ 通过 email 字段提取用户名:', formData[emailField.field])
           return formData[emailField.field]
         }
       }
     } catch (error) {
-      console.warn('⚠️ 根据 UUID 提取用户名失败，使用智能识别:', error.message)
+      logger.warn('⚠️ 根据 UUID 提取用户名失败，使用智能识别:', error.message)
     }
   }
 
   // 2. 降级：智能识别（查找包含 @ 的字段，可能是 email）
   for (const [key, value] of Object.entries(formData)) {
     if (typeof value === 'string' && value.includes('@') && value.trim()) {
-      console.log('✅ 通过邮箱格式提取用户名:', value)
+      logger.log('✅ 通过邮箱格式提取用户名:', value)
       return value
     }
   }
@@ -143,12 +144,12 @@ export async function extractUserNameByUuid(formData, uuid) {
   // 3. 降级：返回第一个非空字符串字段
   for (const [key, value] of Object.entries(formData)) {
     if (typeof value === 'string' && value.trim() && value.length < 100) {
-      console.log('✅ 通过第一个非空字段提取用户名:', value)
+      logger.log('✅ 通过第一个非空字段提取用户名:', value)
       return value
     }
   }
 
-  console.log('⚠️ 无法提取用户名，使用默认值')
+  logger.log('⚠️ 无法提取用户名，使用默认值')
   return '匿名用户'
 }
 
@@ -161,7 +162,7 @@ export async function extractUserNameByUuid(formData, uuid) {
  * @returns {Promise<Object>} API 响应结果
  */
 export async function submitContactUsForm(formData, formUuid) {
-  console.log('📤 submitContactUsForm 调用:', {
+  logger.log('📤 submitContactUsForm 调用:', {
     formDataKeys: Object.keys(formData),
     formUuid: formUuid
   })
@@ -169,7 +170,7 @@ export async function submitContactUsForm(formData, formUuid) {
   // 提取 userName（支持 UUID 查询和智能识别）
   const userName = await extractUserNameByUuid(formData, formUuid)
 
-  console.log('👤 提取的用户名:', userName)
+  logger.log('👤 提取的用户名:', userName)
 
   // 提交数据（直接提交原始表单数据，不做字段映射）
   return await createInfoDataPublic({

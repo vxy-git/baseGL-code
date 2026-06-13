@@ -8,7 +8,7 @@ export default defineConfig({
     base: '/',
     plugins: [
         vue(),
-        VueDevTools()
+        ...(process.env.NODE_ENV === 'development' ? [VueDevTools()] : [])
     ],
     resolve: {
         alias: {

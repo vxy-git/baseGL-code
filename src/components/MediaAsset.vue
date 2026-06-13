@@ -90,9 +90,17 @@ function playFromStart() {
       videoEl.value.currentTime = 0
       const p = videoEl.value.play()
       if (p && typeof p.then === 'function') {
-        p.catch(() => {})
+        p.catch((err) => {
+          if (err.name !== 'AbortError') {
+            console.debug('[MediaAsset] 视频播放失败 (可能是自动播放限制):', err.message)
+          }
+        })
       }
-    } catch {}
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        console.debug('[MediaAsset] 视频播放异常:', err.message)
+      }
+    }
   }
 }
 
@@ -100,7 +108,9 @@ function pause() {
   if (videoEl.value) {
     try {
       videoEl.value.pause()
-    } catch {}
+    } catch (err) {
+      console.debug('[MediaAsset] 视频暂停异常:', err.message)
+    }
   }
 }
 
@@ -108,7 +118,9 @@ function resetToStart() {
   if (videoEl.value) {
     try {
       videoEl.value.currentTime = 0
-    } catch {}
+    } catch (err) {
+      console.debug('[MediaAsset] 重置视频进度异常:', err.message)
+    }
   }
 }
 

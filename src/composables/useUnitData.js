@@ -30,26 +30,44 @@ export function useUnitData(props, localData, options = {}) {
   const { cmsData, deepMergeKeys } = options
 
   return computed(() => {
+    // 通用深层合并工具函数
+    const deepMerge = (target, source) => {
+      const result = { ...target }
+      for (const key of Object.keys(source)) {
+        if (
+          source[key] &&
+          typeof source[key] === 'object' &&
+          !Array.isArray(source[key]) &&
+          target[key] &&
+          typeof target[key] === 'object' &&
+          !Array.isArray(target[key])
+        ) {
+          result[key] = deepMerge(target[key], source[key])
+        } else {
+          result[key] = source[key]
+        }
+      }
+      return result
+    }
+
     // 1. 优先使用 CMS 通过 props 传入的数据
     if (props.data && typeof props.data === 'object') {
       if (deepMergeKeys && deepMergeKeys.length > 0) {
         const result = { ...localData, ...props.data }
         for (const key of deepMergeKeys) {
           if (localData[key] && typeof localData[key] === 'object' && !Array.isArray(localData[key])) {
-            result[key] = {
-              ...localData[key],
-              ...(props.data[key] || {})
-            }
+            result[key] = deepMerge(localData[key], props.data[key] || {})
           }
         }
         return result
       }
-      return { ...localData, ...props.data }
+      // 默认使用深层合并，防止浅合并导致嵌套对象字段丢失
+      return deepMerge(localData, props.data)
     }
 
     // 2. 降级到 CMS Store 数据
     if (cmsData?.value && typeof cmsData.value === 'object') {
-      return { ...localData, ...cmsData.value }
+      return deepMerge(localData, cmsData.value)
     }
 
     // 3. 使用本地默认数据

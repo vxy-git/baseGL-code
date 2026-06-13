@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
+import { logger } from '@/utils/logger'
 
 /**
  * CMS 导航数据 Store
@@ -30,13 +31,13 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   async function fetchAllNavs() {
     // 如果已经加载过，直接返回缓存数据
     if (isLoaded.value && navList.value.length > 0) {
-      console.log('📦 使用缓存的 CMS 导航数据')
+      logger.log('📦 使用缓存的 CMS 导航数据')
       return navList.value
     }
 
     // 如果有请求正在进行，等待该请求完成（防止并发重复请求）
     if (requestPromise) {
-      console.log('⏳ 请求正在进行中，等待现有请求完成...')
+      logger.log('⏳ 请求正在进行中，等待现有请求完成...')
       return await requestPromise
     }
 
@@ -44,7 +45,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     error.value = null
 
     try {
-      console.log('🔄 开始获取 CMS 导航数据...')
+      logger.log('🔄 开始获取 CMS 导航数据...')
 
       // 创建请求 Promise 并缓存
       requestPromise = getCmsNavPublicList({
@@ -62,11 +63,11 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       navList.value = Array.isArray(result.data) ? result.data : []
       isLoaded.value = true
 
-      console.log('✅ CMS 导航数据加载完成，共', navList.value.length, '条')
+      logger.log('✅ CMS 导航数据加载完成，共', navList.value.length, '条')
 
       return navList.value
     } catch (err) {
-      console.error('❌ 获取 CMS 导航数据失败:', err)
+      logger.error('❌ 获取 CMS 导航数据失败:', err)
       error.value = err.message || '获取导航数据失败'
       throw err
     } finally {
@@ -84,7 +85,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     if (data && Array.isArray(data) && data.length > 0) {
       navList.value = data
       isLoaded.value = true
-      console.log('📦 从外部同步 CMS 导航数据，共', data.length, '条')
+      logger.log('📦 从外部同步 CMS 导航数据，共', data.length, '条')
     }
   }
 
@@ -95,14 +96,14 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
    */
   function getNavByName(navName) {
     if (!navList.value.length) {
-      console.warn('⚠️ 导航数据未加载，请先调用 fetchAllNavs()')
+      logger.warn('⚠️ 导航数据未加载，请先调用 fetchAllNavs()')
       return null
     }
 
     const nav = navList.value.find(n => n.navName === navName)
 
     if (!nav) {
-      console.warn(`⚠️ 未找到 navName='${navName}' 的导航项`)
+      logger.warn(`⚠️ 未找到 navName='${navName}' 的导航项`)
       return null
     }
 
@@ -126,7 +127,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
    */
   function getNavByRoute(route) {
     if (!navList.value.length) {
-      console.warn('⚠️ 导航数据未加载，请先调用 fetchAllNavs()')
+      logger.warn('⚠️ 导航数据未加载，请先调用 fetchAllNavs()')
       return null
     }
 
@@ -136,7 +137,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     const nav = navList.value.find(n => n.navUrl === normalizedPath)
 
     if (!nav) {
-      console.warn(`⚠️ 未找到路由='${normalizedPath}' 的导航项`)
+      logger.warn(`⚠️ 未找到路由='${normalizedPath}' 的导航项`)
       return null
     }
 

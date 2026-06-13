@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Environment variables (may contain sensitive information)
+.env
+.env.production
+
 /public/zip/*
 
 # Editor directories and files

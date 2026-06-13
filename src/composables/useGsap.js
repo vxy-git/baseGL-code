@@ -1,6 +1,7 @@
 import { onMounted, onUnmounted, getCurrentInstance } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { logger } from '@/utils/logger'
 
 // 注册 GSAP 插件（全局只需要注册一次）
 gsap.registerPlugin(ScrollTrigger)
@@ -45,7 +46,7 @@ export function useGsap(options = {}) {
 export function useScrollAnimation(trigger, animationProps, scrollTriggerProps = {}) {
   // 确保在 Vue 组件上下文中调用
   if (!getCurrentInstance()) {
-    console.warn('[useScrollAnimation] 必须在组件的 setup() 中调用')
+    logger.warn('[useScrollAnimation] 必须在组件的 setup() 中调用')
     return
   }
 
@@ -81,7 +82,7 @@ export function useScrollAnimation(trigger, animationProps, scrollTriggerProps =
 export function useParallax(element, speed = 0.5) {
   // 确保在 Vue 组件上下文中调用
   if (!getCurrentInstance()) {
-    console.warn('[useParallax] 必须在组件的 setup() 中调用')
+    logger.warn('[useParallax] 必须在组件的 setup() 中调用')
     return
   }
 

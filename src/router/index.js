@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCmsNavPublicList } from '@/api/cmsNav'
+import { logger } from '@/utils/logger'
 
 /**
  * pageType 到组件的映射表
@@ -71,7 +72,7 @@ async function generateRoutes() {
         }))
     }
   } catch (error) {
-    console.error('❌ 获取 CMS 路由数据失败:', error)
+    logger.error('❌ 获取 CMS 路由数据失败:', error)
   }
 
   // 2. 生成路由配置
@@ -80,7 +81,7 @@ async function generateRoutes() {
     const component = pageTypeComponentMap[page.pageType] ||
       pageTypeComponentMap['page']
     if (!component) {
-      console.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
+      logger.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
     }
 
     return {
@@ -176,6 +177,20 @@ export async function createAppRouter() {
   return createRouter({
     history: createWebHistory(),
     routes: [...finalRoutes, ...effectiveFallbacks],
+    scrollBehavior(to, from, savedPosition) {
+      return { top: 0 }
+    }
+  })
+}
+
+/**
+ * 创建包含静态降级路由的路由器（不等待 CMS API）
+ * 应用启动后立即挂载，随后异步补充 CMS 路由
+ */
+export function createStaticRouter() {
+  return createRouter({
+    history: createWebHistory(),
+    routes: [...staticFallbackRoutes],
     scrollBehavior(to, from, savedPosition) {
       return { top: 0 }
     }

@@ -4,6 +4,11 @@
  */
 
 import request from '@/utils/request'
+import { logger } from '@/utils/logger'
+
+// 模块级缓存：防止同一页面生命周期内重复请求 CMS API
+let _cachedResult = null
+let _pendingRequest = null
 
 /**
  * getCmsNavPublicList API 调用
@@ -12,9 +17,22 @@ import request from '@/utils/request'
  * @param {number} params.page - 页码 (默认: 1)
  * @param {number} params.pageSize - 每页大小 (默认: 100)
  * @param {string} params.order - 排序字段: 'ID', 'CreatedAt', 'sort'
+ * @param {boolean} params.forceRefresh - 是否强制刷新缓存
  * @returns {Promise<Object>} API 响应数据
  */
 export async function getCmsNavPublicList(params = {}) {
+  const { forceRefresh, ...queryParams } = params
+
+  // 有缓存数据时直接返回，避免重复 API 调用
+  if (_cachedResult && !forceRefresh) {
+    return _cachedResult
+  }
+
+  // 有正在进行的请求时，复用该请求（防并发）
+  if (_pendingRequest) {
+    return await _pendingRequest
+  }
+
   // 构建查询参数 - 只保留分页和排序参数
   const defaultParams = {
     page: 1,
@@ -22,24 +40,32 @@ export async function getCmsNavPublicList(params = {}) {
     order: 'sort'   // 按排序字段排序
   }
 
-  const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...params })
+  _pendingRequest = (async () => {
+    const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...queryParams })
 
-  if (result.success) {
-    return {
-      success: true,
-      data: result.data?.list || [],
-      total: result.data?.total,
-      page: result.data?.page,
-      pageSize: result.data?.pageSize
+    if (result.success) {
+      const cached = {
+        success: true,
+        data: result.data?.list || [],
+        total: result.data?.total,
+        page: result.data?.page,
+        pageSize: result.data?.pageSize
+      }
+      _cachedResult = cached
+      _pendingRequest = null
+      return cached
     }
-  }
 
-  console.error('❌ getCmsNavPublicList API 业务错误:', result.message)
-  return {
-    success: false,
-    message: result.message,
-    data: []
-  }
+    _pendingRequest = null
+    logger.error('❌ getCmsNavPublicList API 业务错误:', result.message)
+    return {
+      success: false,
+      message: result.message,
+      data: []
+    }
+  })()
+
+  return await _pendingRequest
 }
 
 /**
@@ -55,7 +81,7 @@ export async function getAllNavigation() {
   })
 
   if (!result.success) {
-    console.warn('⚠️ 获取导航数据失败,返回空对象')
+    logger.warn('⚠️ 获取导航数据失败,返回空对象')
     return {
       all: [],
       header: [],
@@ -63,7 +89,7 @@ export async function getAllNavigation() {
     }
   }
 
-  console.log('📊 获取到全部导航数据:', result.data.length, '条')
+  logger.log('📊 获取到全部导航数据:', result.data.length, '条')
 
   // 客户端筛选和分配数据
   const allNavs = result.data
@@ -94,10 +120,10 @@ export async function getAllNavigation() {
         }))
     }))
 
-  console.log('✅ 导航数据分配完成:')
-  console.log('  - 全部导航:', allNavs.length, '条')
-  console.log('  - Header 导航:', headerNavs.length, '条')
-  console.log('  - Footer 导航:', footerNavs.length, '条')
+  logger.log('✅ 导航数据分配完成:')
+  logger.log('  - 全部导航:', allNavs.length, '条')
+  logger.log('  - Header 导航:', headerNavs.length, '条')
+  logger.log('  - Footer 导航:', footerNavs.length, '条')
 
   return {
     all: allNavs,
@@ -191,11 +217,11 @@ export async function getNavigationByCategory(category) {
   })
 
   if (!result.success) {
-    console.warn(`⚠️ 获取 ${category} 分类数据失败`)
+    logger.warn(`⚠️ 获取 ${category} 分类数据失败`)
     return []
   }
 
-  console.log(`📊 获取 ${category} 分类数据:`, result.data.length, '条')
+  logger.log(`📊 获取 ${category} 分类数据:`, result.data.length, '条')
 
   // 筛选指定分类的导航数据
   const categoryNavs = result.data
@@ -204,7 +230,7 @@ export async function getNavigationByCategory(category) {
     .filter(nav => !nav.parentId || nav.parentId === 0)  // 只返回顶级导航
     .map(nav => formatNavItem(nav, result.data))
 
-  console.log(`✅ ${category} 分类导航数据:`, categoryNavs.length, '条')
+  logger.log(`✅ ${category} 分类导航数据:`, categoryNavs.length, '条')
 
   return categoryNavs
 }
@@ -245,11 +271,11 @@ export async function getBannerNavigation() {
   })
 
   if (!result.success) {
-    console.warn('⚠️ 获取 Banner 数据失败')
+    logger.warn('⚠️ 获取 Banner 数据失败')
     return []
   }
 
-  console.log('📊 获取导航数据，准备提取 Banner...')
+  logger.log('📊 获取导航数据，准备提取 Banner...')
 
   // 找到 pageType === 'home' 的导航项，并提取 bannerList
   const homeNav = result.data.find(nav =>
@@ -260,7 +286,7 @@ export async function getBannerNavigation() {
 
   const banners = homeNav ? homeNav.moduleList.unit1.data.bannerList : []
 
-  console.log('✅ Banner 数据提取成功:', banners.length, '条')
+  logger.log('✅ Banner 数据提取成功:', banners.length, '条')
 
   return banners
 }
@@ -278,7 +304,7 @@ export async function getAllCategorizedNavigation() {
   })
 
   if (!result.success) {
-    console.warn('⚠️ 获取分类导航数据失败')
+    logger.warn('⚠️ 获取分类导航数据失败')
     return {
       all: [],
       header: [],
@@ -290,7 +316,7 @@ export async function getAllCategorizedNavigation() {
     }
   }
 
-  console.log('📊 获取到全部导航数据:', result.data.length, '条')
+  logger.log('📊 获取到全部导航数据:', result.data.length, '条')
 
   const allNavs = result.data
 
@@ -347,14 +373,14 @@ export async function getAllCategorizedNavigation() {
       alt: nav.alt || nav.navName || ''
     }))
 
-  console.log('✅ 分类导航数据分配完成:')
-  console.log('  - 全部导航:', allNavs.length, '条')
-  console.log('  - Header 导航:', headerNavs.length, '条')
-  console.log('  - Footer 导航:', footerNavs.length, '条')
-  console.log('  - 产品导航:', productNavs.length, '条')
-  console.log('  - 技术导航:', technologyNavs.length, '条')
-  console.log('  - 公司导航:', companyNavs.length, '条')
-  console.log('  - Banner 数据:', banners.length, '条')
+  logger.log('✅ 分类导航数据分配完成:')
+  logger.log('  - 全部导航:', allNavs.length, '条')
+  logger.log('  - Header 导航:', headerNavs.length, '条')
+  logger.log('  - Footer 导航:', footerNavs.length, '条')
+  logger.log('  - 产品导航:', productNavs.length, '条')
+  logger.log('  - 技术导航:', technologyNavs.length, '条')
+  logger.log('  - 公司导航:', companyNavs.length, '条')
+  logger.log('  - Banner 数据:', banners.length, '条')
 
   return {
     all: allNavs,
@@ -381,11 +407,11 @@ export async function getAllPageRoutes() {
   })
 
   if (!result.success) {
-    console.warn('⚠️ 获取页面路由配置失败')
+    logger.warn('⚠️ 获取页面路由配置失败')
     return []
   }
 
-  console.log('📊 获取页面路由配置:', result.data.length, '条')
+  logger.log('📊 获取页面路由配置:', result.data.length, '条')
 
   // 提取页面级别的导航项 (parentId 为 0 或 null)
   const pageRoutes = result.data
@@ -423,7 +449,7 @@ export async function getAllPageRoutes() {
     }))
     .sort((a, b) => a.navOrder - b.navOrder)
 
-  console.log('✅ 页面路由配置提取完成:', pageRoutes.length, '条')
+  logger.log('✅ 页面路由配置提取完成:', pageRoutes.length, '条')
 
   return pageRoutes
 }
@@ -441,10 +467,10 @@ export async function getPageByLinkType(linkType) {
   const page = pageRoutes.find(p => p.linkType === linkType)
 
   if (page) {
-    console.log('✅ 找到页面配置:', linkType, '→', page.routeName)
+    logger.log('✅ 找到页面配置:', linkType, '→', page.routeName)
     return page
   } else {
-    console.warn('⚠️ 未找到页面配置:', linkType)
+    logger.warn('⚠️ 未找到页面配置:', linkType)
     return null
   }
 }
@@ -464,10 +490,10 @@ export async function getPageByRoute(routePath) {
   const page = pageRoutes.find(p => p.route === normalizedPath)
 
   if (page) {
-    console.log('✅ 找到页面配置:', normalizedPath, '→', page.routeName)
+    logger.log('✅ 找到页面配置:', normalizedPath, '→', page.routeName)
     return page
   } else {
-    console.warn('⚠️ 未找到页面配置:', normalizedPath)
+    logger.warn('⚠️ 未找到页面配置:', normalizedPath)
     return null
   }
 }

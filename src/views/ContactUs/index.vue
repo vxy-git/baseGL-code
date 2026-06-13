@@ -8,6 +8,7 @@ import { getFormRuleAndOption } from '@/api/formdesign'
 import { submitContactUsForm } from '@/api/infoData'
 import formCreate from '@form-create/element-ui'
 import { ElMessage } from 'element-plus'
+import { logger } from '@/utils/logger'
 
 // 表单配置
 const formRule = ref([])
@@ -38,27 +39,27 @@ onMounted(async () => {
 async function loadFormConfig() {
   try {
     loading.value = true
-    console.log('📋 正在加载表单配置... UUID:', FORM_UUID)
+    logger.log('📋 正在加载表单配置... UUID:', FORM_UUID)
 
     const result = await getFormRuleAndOption(FORM_UUID)
 
     if (result.success) {
       // 详细调试日志
-      console.log('✅ 原始 rule:', result.rule)
-      console.log('✅ 原始 option:', result.option)
-      console.log('✅ rule 类型:', typeof result.rule)
-      console.log('✅ rule 是否为数组:', Array.isArray(result.rule))
-      console.log('✅ rule 长度:', result.rule?.length)
+      logger.log('✅ 原始 rule:', result.rule)
+      logger.log('✅ 原始 option:', result.option)
+      logger.log('✅ rule 类型:', typeof result.rule)
+      logger.log('✅ rule 是否为数组:', Array.isArray(result.rule))
+      logger.log('✅ rule 长度:', result.rule?.length)
 
       formRule.value = result.rule
       formOption.value = result.option
 
       // 验证赋值后的值
-      console.log('📋 formRule.value:', formRule.value)
-      console.log('📋 formOption.value:', formOption.value)
-      console.log('✅ 表单配置加载成功')
+      logger.log('📋 formRule.value:', formRule.value)
+      logger.log('📋 formOption.value:', formOption.value)
+      logger.log('✅ 表单配置加载成功')
     } else {
-      console.error('❌ 表单配置加载失败:', result.message)
+      logger.error('❌ 表单配置加载失败:', result.message)
       // 如果加载失败，使用本地静态表单
       useLocalForm()
       // 显示降级提示
@@ -70,7 +71,7 @@ async function loadFormConfig() {
       })
     }
   } catch (error) {
-    console.error('❌ 表单配置加载异常:', error)
+    logger.error('❌ 表单配置加载异常:', error)
     // 如果加载失败，使用本地静态表单
     useLocalForm()
     // 显示降级提示
@@ -87,7 +88,7 @@ async function loadFormConfig() {
 
 // 降级方案：使用本地静态表单配置（与文档对齐：5个字段）
 function useLocalForm() {
-  console.log('⚠️ 使用本地静态表单配置')
+  logger.log('⚠️ 使用本地静态表单配置')
   formRule.value = [
     {
       type: 'input',
@@ -112,7 +113,7 @@ function useLocalForm() {
       validate: [
         { required: true, message: 'email is required' },
         {
-          pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
           message: 'Please enter a valid email address'
         }
       ]
@@ -143,7 +144,7 @@ function useLocalForm() {
       },
       validate: [
         {
-          pattern: /^[\d\s\-+()]+$/,
+          pattern: /^(?=.*\d)[\d\s\-+()]+$/,
           message: 'Please enter a valid phone number'
         }
       ]
@@ -176,8 +177,8 @@ async function handleSubmit(formData) {
     submitMessage.value = ''
     submitSuccess.value = false
 
-    console.log('📤 正在提交表单数据...', formData)
-    console.log('📋 表单 UUID:', FORM_UUID)
+    logger.log('📤 正在提交表单数据...', formData)
+    logger.log('📋 表单 UUID:', FORM_UUID)
 
     // 调用 API 提交表单（传递 UUID 和原始表单数据）
     const result = await submitContactUsForm(formData, FORM_UUID)
@@ -185,7 +186,7 @@ async function handleSubmit(formData) {
     if (result.success) {
       submitSuccess.value = true
       submitMessage.value = 'Thank you! Your message has been sent successfully.'
-      console.log('✅ 表单提交成功')
+      logger.log('✅ 表单提交成功')
 
       // 显示成功提示
       ElMessage({
@@ -206,7 +207,7 @@ async function handleSubmit(formData) {
       submitSuccess.value = false
       const errorMsg = result.message || 'Submission failed. Please try again.'
       submitMessage.value = errorMsg
-      console.error('❌ 表单提交失败:', result.message)
+      logger.error('❌ 表单提交失败:', result.message)
 
       // 显示错误提示
       ElMessage({
@@ -220,7 +221,7 @@ async function handleSubmit(formData) {
     submitSuccess.value = false
     const errorMsg = 'An error occurred. Please try again later.'
     submitMessage.value = errorMsg
-    console.error('❌ 表单提交异常:', error)
+    logger.error('❌ 表单提交异常:', error)
 
     // 显示错误提示
     ElMessage({
@@ -237,7 +238,7 @@ async function handleSubmit(formData) {
 // 外部按钮提交处理
 async function handleExternalSubmit() {
   if (!formApi.value) {
-    console.error('❌ Form API not ready')
+    logger.error('❌ Form API not ready')
     return
   }
 
@@ -258,13 +259,13 @@ async function handleExternalSubmit() {
     await formApi.value.submit(
       // success 回调：验证通过
       (formData) => {
-        console.log('✅ 表单验证通过')
+        logger.log('✅ 表单验证通过')
         lastSubmitTime.value = Date.now()
         handleSubmit(formData)  // 调用原有的提交逻辑
       },
       // fail 回调：验证失败
       () => {
-        console.log('❌ 表单验证失败')
+        logger.log('❌ 表单验证失败')
         ElMessage({
           message: 'Please fill in all required fields correctly.',
           type: 'warning',
@@ -273,7 +274,7 @@ async function handleExternalSubmit() {
       }
     )
   } catch (error) {
-    console.error('❌ 提交异常:', error)
+    logger.error('❌ 提交异常:', error)
   }
 }
 

@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer/Footer.vue'
 import Header from "@/components/Header/index.vue";
@@ -40,6 +40,7 @@ import ProductItem from '@/components/ProductItem/index.vue'
 import { productsData } from '@/data/productlist/products'
 import { productListData } from '@/data/productlist/productlist'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { logger } from '@/utils/logger'
 
 const route = useRoute()
 const router = useRouter()
@@ -73,7 +74,7 @@ const currentCategory = computed(() => {
 // 当前分类的索引
 const tabsCurrent = computed(() => {
   if (!currentCategory.value) {
-    console.warn('⚠️ [ProductList] 未找到当前分类，使用默认索引 0')
+    logger.warn('⚠️ [ProductList] 未找到当前分类，使用默认索引 0')
     return 0
   }
 
@@ -81,7 +82,7 @@ const tabsCurrent = computed(() => {
   const index = cmsCategories.findIndex(cat => cat.id === currentCategory.value.id)
 
   if (index === -1) {
-    console.warn(`⚠️ [ProductList] 分类索引未找到: ${currentCategory.value.label}`)
+    logger.warn(`⚠️ [ProductList] 分类索引未找到: ${currentCategory.value.label}`)
     return 0
   }
 
@@ -108,65 +109,12 @@ const handleTabChange = (index) => {
   if (category?.navUrl) {
     router.push(category.navUrl)
   } else {
-    console.warn(`⚠️ [ProductList] Tab ${index} 对应的路由不存在`)
+    logger.warn(`⚠️ [ProductList] Tab ${index} 对应的路由不存在`)
   }
 }
 
 const pages = productListData.pagination.pages
 const currentPage = productListData.pagination.currentPage
-
-const YouTubeIcon = () =>
-  h('svg', { viewBox: '0 0 24 24', width: 20, height: 20, fill: 'none' }, [
-    h('path', {
-      d: 'M22 12c0-2.21-.18-3.72-.35-4.5-.19-.82-.82-1.46-1.64-1.65C18.22 5.67 12 5.67 12 5.67s-6.22 0-8.01.18c-.82.19-1.45.83-1.64 1.65C2.18 8.28 2 9.79 2 12s.18 3.72.35 4.5c.19.82.82 1.46 1.64 1.65 1.78.18 8.01.18 8.01.18s6.22 0 8.01-.18c.82-.19 1.45-.83 1.64-1.65.17-.78.35-2.29.35-4.5Z',
-      fill: '#111111'
-    }),
-    h('path', { d: 'm10 15 5-3-5-3v6Z', fill: '#fff' })
-  ])
-
-const LinkedInIcon = () =>
-  h('svg', { viewBox: '0 0 24 24', width: 18, height: 18, fill: 'none' }, [
-    h('rect', { x: 3, y: 3, width: 18, height: 18, rx: 2, fill: '#111111' }),
-    h('path', {
-      d: 'M9 10h2v8H9v-8Zm1-4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4 4h2v1.1c.28-.53.97-1.2 2.1-1.2 2.24 0 2.9 1.46 2.9 3.36V18h-2v-4.2c0-1-.02-2.28-1.4-2.28-1.4 0-1.62 1.1-1.62 2.2V18h-2v-8Z',
-      fill: '#fff'
-    })
-  ])
-
-const FacebookIcon = () =>
-  h('svg', { viewBox: '0 0 24 24', width: 18, height: 18, fill: 'none' }, [
-    h('rect', { x: 3, y: 3, width: 18, height: 18, rx: 2, fill: '#111111' }),
-    h('path', {
-      d: 'M13.3 18v-4.5h1.7l.25-2h-1.95v-1.3c0-.58.19-1 1.18-1H15V7.4c-.21-.03-.93-.1-1.77-.1-1.75 0-2.95 1.07-2.95 3.03V11.5H8.5v2h1.78V18h3.02Z',
-      fill: '#fff'
-    })
-  ])
-
-const InstagramIcon = () =>
-  h('svg', { viewBox: '0 0 24 24', width: 18, height: 18, fill: 'none' }, [
-    h('rect', { x: 3, y: 3, width: 18, height: 18, rx: 5, fill: '#111111' }),
-    h('path', {
-      d: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm3.5-5.9a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4Z',
-      fill: '#fff'
-    })
-  ])
-
-const TikTokIcon = () =>
-  h('svg', { viewBox: '0 0 24 24', width: 18, height: 18, fill: 'none' }, [
-    h('rect', { x: 3, y: 3, width: 18, height: 18, rx: 4, fill: '#111111' }),
-    h('path', {
-      d: 'M15.5 9.8c.55.42 1.22.7 1.95.74V8.6a3.2 3.2 0 0 1-2-.74V6.5h-1.85v7.06a1.32 1.32 0 0 1-2.65 0 1.32 1.32 0 0 1 1.94-1.15v-1.9a3.23 3.23 0 0 0-.9-.13 3.2 3.2 0 1 0 3.2 3.2V9.8Z',
-      fill: '#fff'
-    })
-  ])
-
-const socialIcons = [
-  { name: 'YouTube', href: '#', icon: YouTubeIcon },
-  { name: 'LinkedIn', href: '#', icon: LinkedInIcon },
-  { name: 'Facebook', href: '#', icon: FacebookIcon },
-  { name: 'Instagram', href: '#', icon: InstagramIcon },
-  { name: 'TikTok', href: '#', icon: TikTokIcon }
-]
 
 const catalogGridRef = ref(null)
 const columns = ref(1)
