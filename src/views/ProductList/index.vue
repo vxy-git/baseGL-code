@@ -42,11 +42,23 @@ import { productListData } from '@/data/productlist/productlist'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
 
+const props = defineProps({
+  pageConfig: { type: Object, default: () => ({}) }
+})
+
 const route = useRoute()
 const router = useRouter()
 const cmsNavStore = useCmsNavStore()
 
+// 页码容量：CMS 优先 → 静态降级，兜底 8
+const pageSize = computed(() => {
+  const cms = props.pageConfig?.moduleList?.productlist?.data?.pageSize
+  if (typeof cms === 'number' && cms > 0) return cms
+  return productListData.pageSize || 8
+})
+
 const cmsCategories = computed(() => cmsNavStore.productCategories || [])
+const currentPage = ref(1)
 
 // 提取 tabs 列表（优先使用 CMS 数据）
 const tabsList = computed(() => {
@@ -87,16 +99,28 @@ const tabsCurrent = computed(() => {
   return index
 })
 
-// 产品列表（优先使用 CMS 数据）
-const products = computed(() => {
-  // 优先使用 CMS 数据
+// 全部产品列表（不分页）
+const allProducts = computed(() => {
   if (cmsCategories.value.length > 0 && cmsCategories.value[tabsCurrent.value]) {
     return cmsCategories.value[tabsCurrent.value].products
   }
-
-  // 降级到静态数据
   return productsData.products[tabsCurrent.value] || []
 })
+
+// 当前页产品（客户端分页）
+const products = computed(() => {
+  const size = pageSize.value
+  const start = (currentPage.value - 1) * size
+  return allProducts.value.slice(start, start + size)
+})
+
+// 总页数（根据产品数量动态计算）
+const totalPages = computed(() => {
+  const count = allProducts.value.length
+  return Math.max(1, Math.ceil(count / pageSize.value))
+})
+
+const pages = computed(() => Array.from({ length: totalPages.value }, (_, i) => i + 1))
 
 // Tab 切换事件处理：跳转到对应分类的路由
 const handleTabChange = (index) => {
@@ -104,19 +128,17 @@ const handleTabChange = (index) => {
   const category = cmsCategories[index]
 
   if (category?.navUrl) {
+    currentPage.value = 1 // 切换分类时重置页码
     router.push(category.navUrl)
   } else {
     logger.warn(`⚠️ [ProductList] Tab ${index} 对应的路由不存在`)
   }
 }
 
-const currentPage = ref(1)
-const totalPages = ref(productListData.pagination.pages.length || 1)
-const pages = computed(() => Array.from({ length: totalPages.value }, (_, i) => i + 1))
-
 const handlePageChange = (page) => {
   currentPage.value = page
-  // TODO: 接入 API 分页查询后，在此触发数据重新加载
+  // 滚动到产品列表顶部
+  catalogGridRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 const catalogGridRef = ref(null)

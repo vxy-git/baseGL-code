@@ -12,48 +12,15 @@ export const productListData = {
   pageTitle: 'Innovative products',
 
   /**
-   * 导航项目列表
+   * 每页显示产品数量（CMS 可覆盖）
    */
-  navItems: [
-    'Products',
-    'Technology',
-    'Customize',
-    'US Local Service',
-    'Why Caleaf'
-  ],
+  pageSize: '8',
 
   /**
    * 卡片配置
    */
   card: {
-    /**
-     * 产品卡片宽度
-     */
     width: 305,
-
-    /**
-     * 卡片间距
-     */
     gap: 26,
   },
-
-  /**
-   * 分页配置
-   */
-  pagination: {
-    /**
-     * 默认激活的过滤器索引
-     */
-    activeFilterIndex: 0,
-
-    /**
-     * 当前页码
-     */
-    currentPage: 1,
-
-    /**
-     * 可用页码数组
-     */
-    pages: [1],
-  }
 }
