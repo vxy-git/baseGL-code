@@ -17,10 +17,10 @@ const props = defineProps({
     type: String,
     required: true
   },
-  // CDN域名（可选）
+  // CDN域名（可选，默认取环境变量 VITE_BASE_URL）
   cdnUrl: {
     type: String,
-    default: ''
+    default: import.meta.env.VITE_BASE_URL || ''
   },
   // 占位图
   placeholder: {
@@ -51,7 +51,9 @@ const currentSrc = computed(() => {
 
   // 如果提供了CDN域名，拼接完整URL
   if (props.cdnUrl && !props.src.startsWith('http')) {
-    return `${props.cdnUrl}${props.src}`
+    const base = props.cdnUrl.replace(/\/+$/, '')
+    const path = props.src.startsWith('/') ? props.src : `/${props.src}`
+    return `${base}${path}`
   }
 
   return props.src

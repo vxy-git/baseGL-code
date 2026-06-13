@@ -4,7 +4,7 @@
  */
 export const whyCaleafUnit3Data = {
   title: 'Milestones',
-  image: '/images/why-caleaf/milestone-2023.png',
+  image: '/assets/why-caleaf/milestone-2023.png',
   years: [
     { year: '2014', active: false },
     { year: '2016', active: false },

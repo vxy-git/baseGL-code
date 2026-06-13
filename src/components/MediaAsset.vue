@@ -22,13 +22,13 @@ import { computed, ref, defineExpose, watch, onMounted, onBeforeUnmount } from '
 import CdnImage from './CdnImage.vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 
-const DEFAULT_CDN_URL = '';//'https://img.cloudcode.ink'
+const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || ''
 
 const props = defineProps({
   type: { type: String, required: false, default: null },
   src: { type: String, required: true },
   alt: { type: String, default: '' },
-  cdnUrl: { type: String, default: DEFAULT_CDN_URL },
+  cdnUrl: { type: String, default: import.meta.env.VITE_BASE_URL || '' },
   lazy: { type: Boolean, default: false },
   poster: { type: String, default: '' },
   controls: { type: Boolean, default: true },

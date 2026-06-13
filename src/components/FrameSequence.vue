@@ -16,7 +16,7 @@
 import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
 import { FastImageSequence } from "@mediamonks/fast-image-sequence";
 
-const DEFAULT_CDN_URL = "https://img.cloudcode.ink";
+const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || "";
 
 // Props 按 tar 的 API 完全匹配
 const props = defineProps({
