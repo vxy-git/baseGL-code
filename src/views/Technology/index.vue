@@ -2,7 +2,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from "vue";
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
 import { MOBILE_BREAKPOINT } from "@/composables/fit";
@@ -82,8 +82,7 @@ const renderList = computed(() => {
       :data="item.data"
     />
     <Splide4 />
-    <div class="bg-white">
-      <Footer />
-    </div>
+    
+    <Footer />
   </div>
 </template>

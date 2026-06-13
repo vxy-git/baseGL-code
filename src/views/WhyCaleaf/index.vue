@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import Header from '@/components/Header/index.vue'
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/Footer/Footer.vue'
 import Unit1 from './components/Unit1/index.vue'
 import Unit2 from './components/Unit2/index.vue'
 import Unit3 from './components/Unit3/index.vue'
@@ -77,21 +77,14 @@ onUnmounted(() => {
   <div class="why-caleaf-page">
     <!-- Header 区域 -->
     <div class="why-caleaf-header-wrapper">
-      <Header headerClass="white" border />
+      <Header headerClass="white" showLine />
     </div>
 
     <!-- 动态渲染 Unit -->
-    <component
-      v-for="item in renderList"
-      :key="item.key"
-      :is="item.component"
-      :data="item.data"
-    />
+    <component v-for="item in renderList" :key="item.key" :is="item.component" :data="item.data" />
 
     <!-- Footer -->
-    <div class="why-caleaf-footer-wrapper">
-      <Footer class="bg-white" />
-    </div>
+    <Footer showLine />
   </div>
 </template>
 

@@ -24,7 +24,7 @@ import Unit3 from "./components/Unit3/index.vue"
 import Unit4 from "./components/Unit4/index.vue"
 import Unit5 from "./components/Unit5/index.vue"
 import Unit6 from "./components/Unit6/index.vue"
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 
 const props = defineProps({
   pageConfig: {

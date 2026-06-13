@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import Header from "@/components/Header/index.vue";
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import MediaAsset from '@/components/MediaAsset.vue'
 import { contactUsData } from '@/data/contactus/contactus'
 import { getFormRuleAndOption } from '@/api/formdesign'
@@ -370,7 +370,7 @@ const closeDropdowns = () => {
         </div>
       </section>
     </div>
-    <div class="bg-white mt-[16px]">
+    <div class="mt-[16px]">
       <Footer />
     </div>
   </div>

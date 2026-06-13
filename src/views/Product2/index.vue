@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from "vue";
 import { MOBILE_BREAKPOINT } from "@/composables/fit";
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
 import GsapU from "./components/GsapU/index.vue";
@@ -120,7 +120,8 @@ onUnmounted(() => {
       </div>
 
       <!-- gsapu, unit3, videou, unit4 需要 bg-black 容器 -->
-      <div v-else-if="['gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4'].includes(item.key)" class="bg-black pb-[140px] pt-[1px]">
+      <div v-else-if="['gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4'].includes(item.key)"
+        class="bg-black pb-[140px] pt-[1px]">
         <component :is="item.component" :data="item.data" />
       </div>
 
@@ -140,10 +141,7 @@ onUnmounted(() => {
     <div class="bg-black">
       <Splide4 />
     </div>
-
-    <div class="pt-[0px]">
-      <Footer />
-    </div>
+    <Footer />
   </div>
 </template>
 

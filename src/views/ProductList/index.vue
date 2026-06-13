@@ -1,6 +1,6 @@
 <template>
   <div class="product-list-page">
-    <Header headerClass="white" border />
+    <Header headerClass="white" showLine />
     <div class="header-divider" />
 
     <main class="main-content c_1300">
@@ -26,14 +26,14 @@
       </nav>
     </main>
 
-    <Footer />
+    <Footer showLine />
   </div>
 </template>
 
 <script setup>
 import { h, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/Footer/Footer.vue'
 import Header from "@/components/Header/index.vue";
 import Tabs from "@/components/Tabs/index.vue";
 import ProductItem from '@/components/ProductItem/index.vue'
@@ -283,7 +283,6 @@ const fillerCount = computed(() => {
 .main-content {
   margin: 0 auto;
   padding-top: 205px;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
   padding-bottom: 124px;
 }
 

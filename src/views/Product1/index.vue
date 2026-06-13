@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from "vue";
 import { MOBILE_BREAKPOINT } from "@/composables/fit";
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Header from "@/components/Header/index.vue";
 import Splide4 from "@/components/Splide4/index.vue";
 import Unit1 from "./components/Unit1/index.vue";
@@ -101,9 +101,7 @@ onUnmounted(() => {
       />
 
       <Splide4 />
-      <div class="">
-        <Footer class="bg-white" />
-      </div>
+      <Footer />
     </div>
   </div>
 </template>

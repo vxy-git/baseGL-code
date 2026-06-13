@@ -33,7 +33,7 @@ const unitData = computed(() => {
 .connect-container {
   max-width: $breakpoint-design;
   width: 100%;
-  padding: 165px 0 0; // 6899 - end of services section
+  padding: 154px 0 124px;
   text-align: center;
 }
 
