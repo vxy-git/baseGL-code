@@ -34,7 +34,7 @@ export const headerData = {
     { text: 'Technology', to: '/technology' },
     { text: 'Customize', href: '#' },
     { text: 'US Local Service', href: '#' },
-    { text: 'Why Caleaf', href: '#' },
+    { text: 'Why Caleaf', href: '/why-caleaf' },
   ],
 
   /**

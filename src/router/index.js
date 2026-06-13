@@ -114,32 +114,80 @@ async function generateRoutes() {
  * 静态降级路由
  * 当 CMS 中没有对应页面数据时，这些路由仍然可访问，使用本地默认数据渲染
  */
+/**
+ * 创建页面配置的工厂函数
+ * pageConfig.moduleList 为空对象 → useRenderList 走降级路径 → useUnitData 使用本地数据
+ */
+const makePageConfig = (route, pageType) => ({
+  route,
+  routeName: `${pageType}_default`,
+  pageType,
+  moduleList: {},
+})
+
 const staticFallbackRoutes = [
+  {
+    path: '/',
+    name: 'home_default',
+    component: () => import('@/views/Home/index.vue'),
+    meta: { pageType: 'home', navLabel: 'Home' },
+    props: { pageConfig: makePageConfig('/', 'home') },
+  },
+  {
+    path: '/technology',
+    name: 'technology_default',
+    component: () => import('@/views/Technology/index.vue'),
+    meta: { pageType: 'technology', navLabel: 'Technology' },
+    props: { pageConfig: makePageConfig('/technology', 'technology') },
+  },
+  {
+    path: '/contact',
+    name: 'contactus_default',
+    component: () => import('@/views/ContactUs/index.vue'),
+    meta: { pageType: 'contactus', navLabel: 'Contact Us' },
+    props: { pageConfig: makePageConfig('/contact', 'contactus') },
+  },
+  {
+    path: '/unit_pro',
+    name: 'product1_default',
+    component: () => import('@/views/Product1/index.vue'),
+    meta: { pageType: 'unit_pro', navLabel: 'UNIT Pro' },
+    props: { pageConfig: makePageConfig('/unit_pro', 'unit_pro') },
+  },
+  {
+    path: '/universe_series',
+    name: 'product2_default',
+    component: () => import('@/views/Product2/index.vue'),
+    meta: { pageType: 'universe_series', navLabel: 'Universe Series' },
+    props: { pageConfig: makePageConfig('/universe_series', 'universe_series') },
+  },
+  {
+    path: '/unicorn_series',
+    name: 'product3_default',
+    component: () => import('@/views/Product3/index.vue'),
+    meta: { pageType: 'unicorn_series', navLabel: 'Unicorn Series' },
+    props: { pageConfig: makePageConfig('/unicorn_series', 'unicorn_series') },
+  },
+  {
+    path: '/dukes',
+    name: 'product4_default',
+    component: () => import('@/views/Product4/index.vue'),
+    meta: { pageType: 'dukes', navLabel: 'Dukes' },
+    props: { pageConfig: makePageConfig('/dukes', 'dukes') },
+  },
+  {
+    path: '/list',
+    name: 'productlist_default',
+    component: () => import('@/views/ProductList/index.vue'),
+    meta: { pageType: 'list', navLabel: 'Product List' },
+    props: { pageConfig: makePageConfig('/list', 'list') },
+  },
   {
     path: '/why_caleaf',
     name: 'why_caleaf_default',
     component: () => import('@/views/WhyCaleaf/index.vue'),
-    meta: {
-      pageType: 'why_caleaf',
-      navLabel: 'Why Caleaf',
-    },
-    props: {
-      pageConfig: {
-        route: '/why-caleaf',
-        routeName: 'WhyCaleaf_0',
-        pageType: 'why_caleaf',
-        moduleList: {
-          unit1: { enabled: true, data: null },
-          unit2: { enabled: true, data: null },
-          unit3: { enabled: true, data: null },
-          unit4: { enabled: true, data: null },
-          unit5: { enabled: true, data: null },
-          unit6: { enabled: true, data: null },
-          unit7: { enabled: true, data: null },
-          unit8: { enabled: true, data: null },
-        },
-      },
-    },
+    meta: { pageType: 'why_caleaf', navLabel: 'Why Caleaf' },
+    props: { pageConfig: makePageConfig('/why_caleaf', 'why_caleaf') },
   },
   // 通配兜底路由：在 CMS 动态路由加载完成前，静默吸收所有未匹配路径，
   // 避免 Vue Router 发出 "No match found" 警告
