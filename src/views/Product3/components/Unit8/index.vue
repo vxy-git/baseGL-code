@@ -1,7 +1,7 @@
 <script setup>
+import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit8Data  } from '@/data/product3/product3-unit8'
-import { computed } from 'vue';
 
 // 接收 data prop
 const props = defineProps({
@@ -19,13 +19,39 @@ const unitData = computed(() => {
   return product3Unit8Data;
 });
 
+// 卡片总数量
+const totalCards = 4
+
+// 当前幻灯片索引
+const currentIndex = ref(0)
+
+// 单张卡片宽度 (305px card + 27px gap = 332px)
+const cardWidth = 332
+
+/**
+ * 切换到上一张幻灯片
+ */
 const slidePrev = () => {
-  // TODO: 实现幻灯片切换逻辑
+  if (currentIndex.value > 0) {
+    currentIndex.value--
+  }
 }
 
+/**
+ * 切换到下一张幻灯片
+ */
 const slideNext = () => {
-  // TODO: 实现幻灯片切换逻辑
+  if (currentIndex.value < totalCards - 1) {
+    currentIndex.value++
+  }
 }
+
+/**
+ * 计算卡片的位移距离
+ */
+const translateX = computed(() => {
+  return `translateX(-${currentIndex.value * cardWidth}px)`
+})
 </script>
 
 <template>
@@ -36,8 +62,10 @@ const slideNext = () => {
         {{ unitData.pageTitle }}
       </div>
 
-      <div class="flex cardBox gap-x-[27px] mt-[45px] relative">
+      <div class="cardBoxWrapper mt-[45px] relative">
+        <!-- 左箭头 -->
         <MediaAsset
+          v-if="currentIndex > 0"
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2"
           type="image"
           :src="unitData.icons.arrowLeft"
@@ -45,7 +73,9 @@ const slideNext = () => {
           :lazy="false"
           @click="slidePrev"
         />
+        <!-- 右箭头 -->
         <MediaAsset
+          v-if="currentIndex < totalCards - 1"
           class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2"
           type="image"
           :src="unitData.icons.arrowRight"
@@ -53,22 +83,28 @@ const slideNext = () => {
           :lazy="false"
           @click="slideNext"
         />
-        <div class="card pt-[63px]" v-for="item in 4">
-          <MediaAsset
-            class="w-[185px] h-[165px] mx-auto"
-            type="image"
-            :src="unitData.images.card"
-            alt=""
-            :lazy="false"
-          />
-          <div class="cardTitle pl-[20px] mt-[46px]">
-            {{ unitData.specs.unicorn[0].title }}
-          </div>
-          <div class="cardLabel mt-[2px] pl-[20px]">
-            {{ unitData.specs.unicorn[0].label }}
-          </div>
-          <div class="btn ml-[20px] mt-[17px]">
-            {{ unitData.specs.unicorn[0].btnText }}
+        <!-- 卡片容器 -->
+        <div
+          class="cardBox flex gap-x-[27px]"
+          :style="{ transform: translateX, transition: 'transform 0.3s ease' }"
+        >
+          <div class="card pt-[63px]" v-for="item in totalCards" :key="item">
+            <MediaAsset
+              class="w-[185px] h-[165px] mx-auto"
+              type="image"
+              :src="unitData.images.card"
+              alt=""
+              :lazy="false"
+            />
+            <div class="cardTitle pl-[20px] mt-[46px]">
+              {{ unitData.specs.unicorn[0].title }}
+            </div>
+            <div class="cardLabel mt-[2px] pl-[20px]">
+              {{ unitData.specs.unicorn[0].label }}
+            </div>
+            <div class="btn ml-[20px] mt-[17px]">
+              {{ unitData.specs.unicorn[0].btnText }}
+            </div>
           </div>
         </div>
       </div>
@@ -78,6 +114,9 @@ const slideNext = () => {
 </template>
 
 <style scoped lang="scss">
+.cardBoxWrapper{
+  overflow: hidden;
+}
 .cardBox{
   .card{
     width: 305px;

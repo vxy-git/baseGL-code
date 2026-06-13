@@ -3,7 +3,10 @@
     ref="imgRef"
     :src="currentSrc"
     :alt="alt"
-    class='cdn-image'
+    class="cdn-image"
+    :class="{ 'cdn-image--loading': isLoading, 'cdn-image--loaded': isLoaded }"
+    @load="handleLoad"
+    @error="handleError"
   />
 </template>
 

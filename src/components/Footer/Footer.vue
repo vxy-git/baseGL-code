@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { footerData } from '@/data/common/footer'
 import { productsData } from '@/data/productlist/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
@@ -137,11 +137,6 @@ const handleSubscribe = () => {
     // 可以在这里添加实际的订阅 API 调用
   }
 }
-
-// ========== 生命周期 ==========
-onMounted(async () => {
-  console.log('📍 Footer 组件已挂载')
-})
 </script>
 
 <style scoped lang="scss">

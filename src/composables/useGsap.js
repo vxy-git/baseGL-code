@@ -1,20 +1,21 @@
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, getCurrentInstance } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// 注册GSAP插件
+// 注册 GSAP 插件（全局只需要注册一次）
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * GSAP动画组合式函数
+ * GSAP 动画组合式函数
+ * 必须在组件的 setup 作用域中调用
  * @param {Object} options 动画配置
- * @returns {Object} GSAP实例和方法
+ * @returns {Object} GSAP 实例和方法
  */
 export function useGsap(options = {}) {
   let ctx
 
   onMounted(() => {
-    // 创建GSAP上下文，便于统一管理和清理
+    // 创建 GSAP 上下文，便于统一管理和清理
     ctx = gsap.context(() => {
       // 在这里执行动画
       if (options.onInit) {
@@ -36,15 +37,22 @@ export function useGsap(options = {}) {
 
 /**
  * 滚动触发动画
+ * 必须在组件的 setup 作用域中调用
  * @param {String|Element} trigger 触发元素
  * @param {Object} animationProps 动画属性
- * @param {Object} scrollTriggerProps ScrollTrigger配置
+ * @param {Object} scrollTriggerProps ScrollTrigger 配置
  */
 export function useScrollAnimation(trigger, animationProps, scrollTriggerProps = {}) {
-  const { gsap } = useGsap()
+  // 确保在 Vue 组件上下文中调用
+  if (!getCurrentInstance()) {
+    console.warn('[useScrollAnimation] 必须在组件的 setup() 中调用')
+    return
+  }
+
+  let animation
 
   onMounted(() => {
-    gsap.to(trigger, {
+    animation = gsap.to(trigger, {
       ...animationProps,
       scrollTrigger: {
         trigger,
@@ -55,26 +63,47 @@ export function useScrollAnimation(trigger, animationProps, scrollTriggerProps =
       }
     })
   })
+
+  onUnmounted(() => {
+    if (animation) {
+      animation.kill()
+      animation.scrollTrigger?.kill()
+    }
+  })
 }
 
 /**
  * 视差滚动效果
+ * 必须在组件的 setup 作用域中调用
  * @param {String|Element} element 元素选择器
  * @param {Number} speed 速度（负值向上，正值向下）
  */
 export function useParallax(element, speed = 0.5) {
-  useGsap({
-    onInit: (gsap, ScrollTrigger) => {
-      gsap.to(element, {
-        y: () => window.innerHeight * speed,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      })
+  // 确保在 Vue 组件上下文中调用
+  if (!getCurrentInstance()) {
+    console.warn('[useParallax] 必须在组件的 setup() 中调用')
+    return
+  }
+
+  let animation
+
+  onMounted(() => {
+    animation = gsap.to(element, {
+      y: () => window.innerHeight * speed,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    })
+  })
+
+  onUnmounted(() => {
+    if (animation) {
+      animation.kill()
+      animation.scrollTrigger?.kill()
     }
   })
 }

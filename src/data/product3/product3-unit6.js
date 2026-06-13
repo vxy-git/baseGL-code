@@ -8,12 +8,13 @@
 export const product3Unit6Data = {
   /**
    * 屏幕背景图片
+   * TODO: 确认是否应指向 product3 路径，当前使用 product4 资源
    */
   screenBg: '/api/uploads/file/default/assets/product4/screen-bg-1.png',
 
   /**
    * 屏幕图片列表
-   * 注意：这些图片路径指向 product4，保持原样
+   * TODO: 确认这些图片是否应放在 product3 目录下
    */
   screenImages: [
     '/api/uploads/file/default/assets/product4/screen1.png',

@@ -8,15 +8,16 @@
 export const product4Unit11Data = {
   /**
    * 视频路径
+   * 注意：字段名 universe/universePro 为内部 key，实际加载的视频文件为 DUKES 产品所用
    */
   videos: {
     /**
-     * UNIVERSE 视频
+     * DUKES 主视频（复用 UNICORN 视频资源）
      */
     universe: '/api/uploads/file/default/assets/product4/UNICORN.mp4',
 
     /**
-     * UNIVERSE PRO 视频
+     * DUKES Pro 视频（复用 UNICORN Pro 视频资源）
      */
     universePro: '/api/uploads/file/default/assets/product4/UNICORN-Pro.mp4',
   },

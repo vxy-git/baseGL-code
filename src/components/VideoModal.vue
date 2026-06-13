@@ -3,9 +3,6 @@
     <Transition name="video-modal-fade">
       <div v-if="visible" class="video-modal__mask" @click="handleMaskClick">
         <div class="video-modal__container" @click.stop>
-          <!-- <button type="button" class="video-modal__close" aria-label="Close video" @click="close">
-            ×
-          </button> -->
           <div class="video-modal__body">
             <MediaAsset
               ref="videoEl"
@@ -69,8 +66,21 @@ const unlockBodyScroll = () => {
   isLocked = false
 }
 
+/**
+ * 获取组件实例中的原生 video 元素
+ * @returns {HTMLVideoElement|null}
+ */
+const getVideoElement = () => {
+  const comp = videoEl.value
+  if (!comp) return null
+  // 如果 $el 本身就是 video 元素，直接返回
+  if (comp.$el instanceof HTMLVideoElement) return comp.$el
+  // 否则在 $el 内部查找
+  return comp.$el?.querySelector?.('video') || null
+}
+
 const playFromStart = () => {
-  const el = videoEl.value
+  const el = getVideoElement()
   if (!el) return
   try {
     el.currentTime = 0
@@ -82,7 +92,7 @@ const playFromStart = () => {
 }
 
 const pauseAndReset = () => {
-  const el = videoEl.value
+  const el = getVideoElement()
   if (!el) return
   try {
     el.pause()

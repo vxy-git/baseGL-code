@@ -213,21 +213,21 @@ const handleProductClick = (linkType) => {
   router.push(productLink(linkType))
 }
 
+// 保存滚动处理函数引用，用于正确清理
+let scrollHandler = null
+
 // 生命周期
 onMounted(async () => {
-  // ========== 获取当前路由信息 ==========
-  const currentRoute = router.currentRoute.value
-  console.log('📍 当前路由:', currentRoute.path)
-
   // 滚动监听
-  addEventListener("scroll", () => {
-    if(props.headerClass === "white")return
-    if(document.documentElement.scrollTop > 20){
-      currentHeaderClass.value = "white"
-    }else{
-      currentHeaderClass.value = "opacity"
+  scrollHandler = () => {
+    if (props.headerClass === 'white') return
+    if (document.documentElement.scrollTop > 20) {
+      currentHeaderClass.value = 'white'
+    } else {
+      currentHeaderClass.value = 'opacity'
     }
-  })
+  }
+  window.addEventListener('scroll', scrollHandler)
 
   // 窗口大小变化监听
   useEventListener(window, 'resize', () => {
@@ -240,6 +240,12 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  // 移除滚动监听
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler)
+    scrollHandler = null
+  }
+  // 恢复 body 滚动
   document.body.style.overflow = ''
 })
 
@@ -1012,27 +1018,6 @@ onUnmounted(() => {
     opacity: 1;
   }
 }
-
-// // 页面切换动画
-// .page-slide-enter-active,
-// .page-slide-leave-active {
-//   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-// }
-
-// .page-slide-enter-from {
-//   transform: translateX(100%);
-// }
-
-// .page-slide-leave-to {
-//   transform: translateX(-30%);
-//   opacity: 0.5;
-// }
-
-// .page-slide-enter-to,
-// .page-slide-leave-from {
-//   transform: translateX(0);
-//   opacity: 1;
-// }
 
 // 手风琴展开动画
 .expand-enter-active,
