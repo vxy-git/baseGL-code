@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { MotionPlugin } from '@vueuse/motion'
+// Element Plus 全量导入（约 2MB）
+// 注意：form-create 插件动态渲染依赖 Element Plus 全局注册的组件，
+// 贸然切换按需导入会导致 ContactUs 表单组件渲染异常
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'

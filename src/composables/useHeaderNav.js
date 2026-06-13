@@ -11,6 +11,8 @@ import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
  * @param {import('vue').Ref|import('vue').ComputedRef} propsHeaderClass - 父组件传入的 headerClass
  * @returns {Object} 导航状态和方法
  */
+const SCROLL_HEADER_THRESHOLD = 20
+
 export function useHeaderNav(propsHeaderClass) {
   const router = useRouter()
   const { lock: lockScroll, unlock: unlockScroll } = useBodyScrollLock()
@@ -137,7 +139,7 @@ export function useHeaderNav(propsHeaderClass) {
       scrollTicking = true
       requestAnimationFrame(() => {
         if (propsHeaderClass.value !== 'white') {
-          currentHeaderClass.value = document.documentElement.scrollTop > 20 ? 'white' : 'opacity'
+          currentHeaderClass.value = document.documentElement.scrollTop > SCROLL_HEADER_THRESHOLD ? 'white' : 'opacity'
         }
         scrollTicking = false
       })

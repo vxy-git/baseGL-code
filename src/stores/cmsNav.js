@@ -215,8 +215,9 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   })
 
   // 产品分类数据（供 Nav 下拉菜单使用）
+  // 先构建 parentId → children[] 索引，避免嵌套 filter 的 O(n²) 复杂度
   const productCategories = computed(() => {
-    if (!navList.value || !navList.value.length) return []
+    if (!navList.value.length) return []
 
     const productsNav = navList.value.find(n =>
       n.navName === 'Products' && isEnabled(n)
@@ -224,35 +225,40 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
     if (!productsNav) return []
 
-    const categories = navList.value.filter(n =>
-      n.parentId === productsNav.ID && isEnabled(n) && n.headerShow === true
-    )
+    // O(n) 构建子节点索引
+    const childrenMap = new Map()
+    for (const nav of navList.value) {
+      if (!isEnabled(nav) || nav.headerShow !== true) continue
+      const pid = nav.parentId
+      if (!childrenMap.has(pid)) childrenMap.set(pid, [])
+      childrenMap.get(pid).push(nav)
+    }
+
+    const categories = childrenMap.get(productsNav.ID) || []
 
     return categories.map(cat => {
-      const products = navList.value.filter(p =>
-        p.parentId === cat.ID && isEnabled(p) && p.headerShow === true
-      )
+      const products = (childrenMap.get(cat.ID) || []).map(p => {
+        const itemData = p.moduleList?.item?.data || {}
+        return {
+          id: p.ID,
+          name: itemData.name || p.navName,
+          description: itemData.description || '',
+          capacity: itemData.capacity || '',
+          image: itemData.image || '',
+          background: itemData.background || '',
+          alt: itemData.name || p.navName,
+          isNew: itemData.isNew || false,
+          linkType: p.navUrl?.replace(/^\//, '') || '',
+          navUrl: p.navUrl,
+          moduleList: p.moduleList
+        }
+      })
 
       return {
         id: cat.ID,
         label: cat.navName,
         navUrl: cat.navUrl,
-        products: products.map(p => {
-          const itemData = p.moduleList?.item?.data || {}
-          return {
-            id: p.ID,
-            name: itemData.name || p.navName,
-            description: itemData.description || '',
-            capacity: itemData.capacity || '',
-            image: itemData.image || '',
-            background: itemData.background || '',
-            alt: itemData.name || p.navName,
-            isNew: itemData.isNew || false,
-            linkType: p.navUrl?.replace(/^\//, '') || '',
-            navUrl: p.navUrl,
-            moduleList: p.moduleList
-          }
-        })
+        products
       }
     })
   })

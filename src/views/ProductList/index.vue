@@ -53,8 +53,9 @@ const cmsNavStore = useCmsNavStore()
 // 页码容量：CMS 优先 → 静态降级，兜底 8
 const pageSize = computed(() => {
   const cms = props.pageConfig?.moduleList?.productlist?.data?.pageSize
-  if (typeof cms === 'number' && cms > 0) return cms
-  return productListData.pageSize || 8
+  const num = Number(cms)
+  if (!isNaN(num) && num > 0) return num
+  return Number(productListData.pageSize) || 8
 })
 
 const cmsCategories = computed(() => cmsNavStore.productCategories || [])
