@@ -1,4 +1,4 @@
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getFormRuleAndOption } from '@/api/formdesign'
 import { submitContactUsForm } from '@/api/infoData'
 import { ElMessage } from 'element-plus'
@@ -29,10 +29,18 @@ export function useContactForm(formUuid, contactUsData) {
   const submitMessage = ref('')
   const submitSuccess = ref(false)
   const lastSubmitTime = ref(0)
+  const resetTimer = ref(null)
 
   // ========== 初始化 ==========
   onMounted(async () => {
     await loadFormConfig()
+  })
+
+  onUnmounted(() => {
+    if (resetTimer.value) {
+      clearTimeout(resetTimer.value)
+      resetTimer.value = null
+    }
   })
 
   // ========== 加载表单配置 ==========
@@ -110,10 +118,14 @@ export function useContactForm(formUuid, contactUsData) {
 
   // ========== 表单提交处理 ==========
   async function handleSubmit(formData_) {
+    const now = Date.now()
+    if (now - lastSubmitTime.value < SUBMIT_COOLDOWN) return
+
     try {
       submitting.value = true
       submitMessage.value = ''
       submitSuccess.value = false
+      lastSubmitTime.value = now
 
       logger.log('📤 正在提交表单数据...', formData_)
 
@@ -131,9 +143,10 @@ export function useContactForm(formUuid, contactUsData) {
           showClose: true
         })
 
-        setTimeout(() => {
+        resetTimer.value = setTimeout(() => {
           if (formApi.value) formApi.value.resetFields()
           submitMessage.value = ''
+          resetTimer.value = null
         }, 3000)
       } else {
         submitSuccess.value = false

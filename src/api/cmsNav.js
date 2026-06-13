@@ -11,7 +11,8 @@ import {
   isHeaderVisible,
   isFooterVisible,
   isFooterChild,
-  formatNavItem
+  formatNavItem,
+  resolveNavLink
 } from '@/utils/navFilter'
 
 // 模块级缓存：防止同一页面生命周期内重复请求 CMS API
@@ -48,24 +49,26 @@ export async function getCmsNavPublicList(params = {}) {
   }
 
   _pendingRequest = (async () => {
-    const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...queryParams })
+    try {
+      const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...queryParams })
 
-    if (result.success) {
-      const cached = {
-        success: true,
-        data: result.data?.list || [],
-        total: result.data?.total,
-        page: result.data?.page,
-        pageSize: result.data?.pageSize
+      if (result.success) {
+        const cached = {
+          success: true,
+          data: result.data?.list || [],
+          total: result.data?.total,
+          page: result.data?.page,
+          pageSize: result.data?.pageSize
+        }
+        _cachedResult = cached
+        return cached
       }
-      _cachedResult = cached
-      _pendingRequest = null
-      return cached
-    }
 
-    _pendingRequest = null
-    logger.error('❌ getCmsNavPublicList API 业务错误:', result.message)
-    return { success: false, message: result.message, data: [] }
+      logger.error('❌ getCmsNavPublicList API 业务错误:', result.message)
+      return { success: false, message: result.message, data: [] }
+    } finally {
+      _pendingRequest = null
+    }
   })()
 
   return await _pendingRequest
@@ -91,14 +94,7 @@ function buildFooterColumns(allNavs) {
         .map(child => {
           const item = { text: child.navName || '' }
           if (child.navUrl) {
-            const isExternal = child.navUrl.startsWith('http://') || child.navUrl.startsWith('https://')
-            if (isExternal) {
-              item.href = child.navUrl
-              item.target = child.target || '_blank'
-            } else {
-              item.to = child.navUrl.startsWith('/') ? child.navUrl : `/${child.navUrl}`
-              item.target = child.target || '_self'
-            }
+            Object.assign(item, resolveNavLink(child.navUrl, child.target))
           }
           return item
         })

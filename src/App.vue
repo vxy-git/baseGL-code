@@ -9,14 +9,19 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { logger } from '@/utils/logger'
 import '@splidejs/vue-splide/css';
 import './composables/rem'
 
 const route = useRoute()
 const cmsNavStore = useCmsNavStore()
 
+// 初始化 rem 自适应计算（移动端适配核心，请勿删除）
+
 // App 启动时立即获取全局导航数据
-cmsNavStore.fetchAllNavs()
+cmsNavStore.fetchAllNavs().catch(err => {
+  logger.error('[App] 初始化导航数据失败:', err.message)
+})
 // App级别的逻辑可以在这里添加
 </script>
 

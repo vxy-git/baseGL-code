@@ -79,6 +79,6 @@ export default {
     unit12: {
       enabled: true,
       data: product4Unit12Data
-    },
+    }
   }
 }

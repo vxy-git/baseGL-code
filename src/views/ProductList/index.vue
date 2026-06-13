@@ -20,7 +20,7 @@
       </section>
 
       <nav class="pagination" aria-label="Catalog pagination">
-        <button v-for="page in pages" :key="page" class="page-button" :class="{ active: page === currentPage }">
+        <button v-for="page in pages" :key="page" class="page-button" :class="{ active: page === currentPage }" @click="handlePageChange(page)">
           {{ page }}
         </button>
       </nav>
@@ -46,11 +46,12 @@ const route = useRoute()
 const router = useRouter()
 const cmsNavStore = useCmsNavStore()
 
+const cmsCategories = computed(() => cmsNavStore.productCategories || [])
+
 // 提取 tabs 列表（优先使用 CMS 数据）
 const tabsList = computed(() => {
-  const cmsCategories = cmsNavStore.productCategories || []
-  if (cmsCategories.length > 0) {
-    return cmsCategories.map(cat => cat.label)
+  if (cmsCategories.value.length > 0) {
+    return cmsCategories.value.map(cat => cat.label)
   }
 
   // 降级到静态数据
@@ -59,16 +60,14 @@ const tabsList = computed(() => {
 
 // 根据路由判断当前分类
 const currentCategory = computed(() => {
-  const cmsCategories = cmsNavStore.productCategories || []
-
   // 1. 优先从路由 meta 获取分类 ID
   if (route.meta.ID) {
-    return cmsCategories.find(cat => cat.id === route.meta.ID)
+    return cmsCategories.value.find(cat => cat.id === route.meta.ID)
   }
 
   // 2. 根据 navUrl 匹配当前路径
   const currentPath = route.path
-  return cmsCategories.find(cat => cat.navUrl === currentPath)
+  return cmsCategories.value.find(cat => cat.navUrl === currentPath)
 })
 
 // 当前分类的索引
@@ -78,8 +77,7 @@ const tabsCurrent = computed(() => {
     return 0
   }
 
-  const cmsCategories = cmsNavStore.productCategories || []
-  const index = cmsCategories.findIndex(cat => cat.id === currentCategory.value.id)
+  const index = cmsCategories.value.findIndex(cat => cat.id === currentCategory.value.id)
 
   if (index === -1) {
     logger.warn(`⚠️ [ProductList] 分类索引未找到: ${currentCategory.value.label}`)
@@ -92,9 +90,8 @@ const tabsCurrent = computed(() => {
 // 产品列表（优先使用 CMS 数据）
 const products = computed(() => {
   // 优先使用 CMS 数据
-  const cmsCategories = cmsNavStore.productCategories || []
-  if (cmsCategories.length > 0 && cmsCategories[tabsCurrent.value]) {
-    return cmsCategories[tabsCurrent.value].products
+  if (cmsCategories.value.length > 0 && cmsCategories.value[tabsCurrent.value]) {
+    return cmsCategories.value[tabsCurrent.value].products
   }
 
   // 降级到静态数据
@@ -113,8 +110,14 @@ const handleTabChange = (index) => {
   }
 }
 
-const pages = productListData.pagination.pages
-const currentPage = productListData.pagination.currentPage
+const currentPage = ref(1)
+const totalPages = ref(productListData.pagination.pages.length || 1)
+const pages = computed(() => Array.from({ length: totalPages.value }, (_, i) => i + 1))
+
+const handlePageChange = (page) => {
+  currentPage.value = page
+  // TODO: 接入 API 分页查询后，在此触发数据重新加载
+}
 
 const catalogGridRef = ref(null)
 const columns = ref(1)

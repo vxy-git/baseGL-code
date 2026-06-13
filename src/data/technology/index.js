@@ -29,7 +29,7 @@ export default {
     description: 'Discover our innovative UNICORE technology'
   },
 
-  // 模块数据集合
+  // 模块数据集合（注：unit3 已被移除/淘汰，故跳过）
   modules: {
     unit1: {
       enabled: true,

@@ -88,6 +88,8 @@ watch(
   }
 );
 
+let isUnmounted = false
+
 onMounted(async () => {
   const container = wrapper.value;
 
@@ -108,6 +110,7 @@ onMounted(async () => {
 
   try {
     await seq.ready;
+    if (isUnmounted) return;
     if (props.useScroll) {
       updateProgress();
       scrollBox.value?.addEventListener("scroll", updateProgress, { passive: true });
@@ -123,6 +126,7 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  isUnmounted = true
   window.removeEventListener("resize", handleResize);
   if (props.useScroll) {
     scrollBox.value?.removeEventListener("scroll", updateProgress);

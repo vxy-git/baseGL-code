@@ -14,27 +14,27 @@ import { logger } from '@/utils/logger'
 import './styles/main.scss'
 
 ;(async () => {
-  const app = createApp(App)
-  const pinia = createPinia()
-
-  // 注册全局组件
-  app.component('CdnImage', CdnImage)
-  app.component('MediaAsset', MediaAsset)
-  app.component('VideoModal', VideoModal)
-
-  app.use(pinia)
-  app.use(MotionPlugin)
-  app.use(ElementPlus, {
-    locale: zhCn,
-  })
-
-  // 先使用静态降级路由立即挂载应用，避免 CMS API 响应慢时白屏
-  const router = createStaticRouter()
-  app.use(router)
-  app.mount('#app')
-
-  // 异步加载 CMS 动态路由并补充到路由器中
   try {
+    const app = createApp(App)
+    const pinia = createPinia()
+
+    // 注册全局组件
+    app.component('CdnImage', CdnImage)
+    app.component('MediaAsset', MediaAsset)
+    app.component('VideoModal', VideoModal)
+
+    app.use(pinia)
+    app.use(MotionPlugin)
+    app.use(ElementPlus, {
+      locale: zhCn,
+    })
+
+    // 先使用静态降级路由立即挂载应用，避免 CMS API 响应慢时白屏
+    const router = createStaticRouter()
+    app.use(router)
+    app.mount('#app')
+
+    // 异步加载 CMS 动态路由并补充到路由器中
     const cmsRouter = await createAppRouter()
 
     // 同步路由预加载的数据到 Store

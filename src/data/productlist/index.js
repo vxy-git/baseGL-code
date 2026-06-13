@@ -2,7 +2,6 @@
  * ProductList 页面 CMS 数据配置
  */
 
-import { productsData } from './products.js'
 import { productListData } from './productlist.js'
 
 export default {
@@ -27,10 +26,6 @@ export default {
 
   // 模块数据集合
   modules: {
-    products: {
-      enabled: true,
-      data: productsData
-    },
     productlist: {
       enabled: true,
       data: productListData

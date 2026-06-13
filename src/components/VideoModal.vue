@@ -24,6 +24,8 @@
 
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue'
+import { logger } from '@/utils/logger'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 const props = defineProps({
   visible: { type: Boolean, required: true },
@@ -38,8 +40,7 @@ const props = defineProps({
 const emit = defineEmits(['update:visible'])
 
 const videoEl = ref(null)
-const originalOverflow = ref('')
-let isLocked = false
+const { lock: lockScroll, unlock: unlockScroll } = useBodyScrollLock()
 
 const close = () => {
   emit('update:visible', false)
@@ -47,23 +48,6 @@ const close = () => {
 
 const handleMaskClick = () => {
   close()
-}
-
-const lockBodyScroll = () => {
-  if (isLocked) return
-  const body = document.body
-  if (!body) return
-  originalOverflow.value = body.style.overflow
-  body.style.overflow = 'hidden'
-  isLocked = true
-}
-
-const unlockBodyScroll = () => {
-  if (!isLocked) return
-  const body = document.body
-  if (!body) return
-  body.style.overflow = originalOverflow.value
-  isLocked = false
 }
 
 /**
@@ -86,9 +70,13 @@ const playFromStart = () => {
     el.currentTime = 0
     const p = el.play()
     if (p && typeof p.then === 'function') {
-      p.catch(() => {})
+      p.catch((e) => {
+        if (e?.name !== 'AbortError') logger.debug('视频播放中断:', e)
+      })
     }
-  } catch {}
+  } catch (e) {
+    logger.debug('视频播放失败:', e)
+  }
 }
 
 const pauseAndReset = () => {
@@ -97,18 +85,20 @@ const pauseAndReset = () => {
   try {
     el.pause()
     el.currentTime = 0
-  } catch {}
+  } catch (e) {
+    logger.debug('视频暂停/重置失败:', e)
+  }
 }
 
 watch(
   () => props.visible,
   (val) => {
     if (val) {
-      lockBodyScroll()
+      lockScroll()
       playFromStart()
     } else {
       pauseAndReset()
-      unlockBodyScroll()
+      unlockScroll()
     }
   },
   { immediate: true }
@@ -116,7 +106,7 @@ watch(
 
 onBeforeUnmount(() => {
   pauseAndReset()
-  unlockBodyScroll()
+  unlockScroll()
 })
 </script>
 

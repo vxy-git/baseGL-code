@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, isRef, isReactive } from 'vue'
 
 /**
  * 通用页面模块渲染列表 composable
@@ -18,7 +18,7 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
     // 兼容 moduleList 和 modules 两种 key 命名
     const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules
 
-    const order = typeof defaultOrder.value !== 'undefined'
+    const order = (isRef(defaultOrder) || isReactive(defaultOrder))
       ? defaultOrder.value
       : defaultOrder
 
@@ -31,7 +31,7 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
         .map(key => ({
           key,
           component: componentMap[key],
-          data: moduleList[resolveDataKey(key)].data
+          data: moduleList[resolveDataKey(key)]?.data ?? null
         }))
     }
 

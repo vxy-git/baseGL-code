@@ -68,10 +68,10 @@ export default {
       enabled: true,
       data: product3Unit7Data
     },
-    unit8: {
-      enabled: true,
-      data: product3Unit8Data
-    },
+    // unit8: {
+    //   enabled: true,
+    //   data: product3Unit8Data
+    // },
     unit9: {
       enabled: true,
       data: product3Unit9Data

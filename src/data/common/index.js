@@ -7,6 +7,15 @@ import { headerData } from './header.js'
 import { footerData } from './footer.js'
 
 export default {
-  header: headerData,
-  footer: footerData
+  // 模块数据集合
+  modules: {
+    headerData: {
+      enabled: true,
+      data: headerData
+    },
+    footerData: {
+      enabled: true,
+      data: footerData
+    }
+  }
 }

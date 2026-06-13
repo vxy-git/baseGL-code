@@ -20,7 +20,7 @@ export default {
   showInHeader: true,
   showInFooter: true,
   navLabel: 'Why Caleaf',
-  navOrder: 8,
+  navOrder: 9,
 
   // 页面模板
   template: 'WhyCaleafPage',

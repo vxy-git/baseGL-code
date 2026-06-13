@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { computed, ref, defineExpose, watch, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import CdnImage from './CdnImage.vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { logger } from '@/utils/logger'

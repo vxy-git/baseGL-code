@@ -1,5 +1,5 @@
 <template>
-  <div>没选模版</div>
+  <div class="page-placeholder">页面加载中...</div>
 </template>
 
 <script setup>

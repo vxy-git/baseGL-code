@@ -26,11 +26,12 @@
                 v-model="email" autocomplete="email" class="email-input" />
               <button type="submit" class="signup-btn">{{ footerData.subscribe.buttonText }}</button>
             </form>
+            <p v-if="subscribeError" class="subscribe-error">{{ subscribeError }}</p>
             <label class="consent-label">
               <input type="checkbox" v-model="agreeToPrivacy" />
               <span>
                 {{ footerData.subscribe.privacyText }}
-                <a href="#">{{ footerData.subscribe.privacyLinkText }}</a>
+                <button type="button" class="privacy-link-btn">{{ footerData.subscribe.privacyLinkText }}</button>
                 {{ footerData.subscribe.privacySuffix }}
               </span>
             </label>
@@ -131,11 +132,16 @@ const footerColumns = computed(() => {
 const email = ref('')
 const agreeToPrivacy = ref(false)
 
-const handleSubscribe = () => {
+const subscribeError = ref('')
+
+const handleSubscribe = async () => {
   if (email.value && agreeToPrivacy.value) {
-    // 处理订阅逻辑
+    subscribeError.value = '订阅功能暂未开放，敬请期待'
     logger.log('Subscribe:', email.value)
-    // 可以在这里添加实际的订阅 API 调用
+  } else if (!email.value) {
+    subscribeError.value = '请输入邮箱地址'
+  } else {
+    subscribeError.value = '请同意隐私政策'
   }
 }
 </script>
@@ -283,9 +289,15 @@ const handleSubscribe = () => {
     flex-shrink: 0;
   }
 
-  a {
+  a,
+  .privacy-link-btn {
     color: #000000;
     text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 
     &:hover {
       color: #1ce785;
@@ -342,6 +354,12 @@ const handleSubscribe = () => {
   color: #555555;
   line-height: 22px;
   margin: 0;
+}
+
+.subscribe-error {
+  font-size: 14px;
+  color: #dc2626;
+  margin-top: 8px;
 }
 
 .copyright {

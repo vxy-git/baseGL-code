@@ -39,7 +39,7 @@ export async function createInfoDataPublic(data) {
   }
 
   logger.log('📤 准备提交表单数据:', {
-    userName: requestData.userName,
+    userName: requestData.userName.substring(0, 1) + '***',
     formJsonKeys: Object.keys(requestData.formJson)
   })
 

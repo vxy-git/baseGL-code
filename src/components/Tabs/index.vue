@@ -1,11 +1,13 @@
 <script setup>
 import {ref} from "vue";
 const current = defineModel({
-  type:Number
+  type: Number,
+  default: 0
 })
 const props = defineProps({
-  list:{
+  list: {
     type: Array,
+    default: () => []
   },
 })
 </script>

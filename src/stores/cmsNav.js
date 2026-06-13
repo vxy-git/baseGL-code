@@ -180,7 +180,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   // Header 导航数据（筛选 headerShow === true 的顶级导航）
   const headerNavs = computed(() => {
-    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+    if (!navList.value.length) {
       return []
     }
     return navList.value
@@ -190,7 +190,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   // Footer 导航数据
   const footerNavs = computed(() => {
-    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+    if (!navList.value.length) {
       return []
     }
     return navList.value
@@ -200,7 +200,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   // Footer 列数据
   const footerColumns = computed(() => {
-    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+    if (!navList.value.length) {
       return []
     }
     return navList.value

@@ -67,6 +67,20 @@ const defaultOrder = computed(() => {
 
 // 动态渲染列表（CMS 数据优先，本地降级）
 const { renderList } = useRenderList(props, componentMap, defaultOrder);
+
+const blackBgKeys = new Set(['unit1', 'gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4', 'unit6', 'm_unit6', 'unit7', 'unit8', 'm_unit8'])
+const blackExtraBgKeys = new Set(['gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4'])
+
+const wrapperClass = computed(() => {
+  const map = {}
+  for (const key of defaultOrder.value) {
+    if (key === 'unit1') map[key] = 'bg-black'
+    else if (key === 'unit2') map[key] = 'bg-[#111111] pb-[140px]'
+    else if (blackExtraBgKeys.has(key)) map[key] = 'bg-black pb-[140px] pt-[1px]'
+    else if (blackBgKeys.has(key)) map[key] = 'bg-black'
+  }
+  return map
+})
 </script>
 
 <template>
@@ -75,31 +89,9 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder);
 
     <!-- 动态渲染 Unit -->
     <template v-for="item in renderList" :key="item.key">
-      <!-- unit1 需要 bg-black 容器 -->
-      <div v-if="item.key === 'unit1'" class="bg-black">
+      <div v-if="wrapperClass[item.key]" :class="wrapperClass[item.key]">
         <component :is="item.component" :data="item.data" />
       </div>
-
-      <!-- unit2 需要 bg-[#111111] 容器 -->
-      <div v-else-if="item.key === 'unit2'" class="bg-[#111111] pb-[140px]">
-        <component :is="item.component" :data="item.data" />
-      </div>
-
-      <!-- gsapu, unit3, videou, unit4 需要 bg-black 容器 -->
-      <div v-else-if="['gsapu', 'm_gsapu', 'unit3', 'videou', 'unit4'].includes(item.key)"
-        class="bg-black pb-[140px] pt-[1px]">
-        <component :is="item.component" :data="item.data" />
-      </div>
-
-      <!-- unit5 无背景容器 -->
-      <component v-else-if="item.key === 'unit5'" :is="item.component" :data="item.data" />
-
-      <!-- unit6, unit7, unit8 需要 bg-black 容器 -->
-      <div v-else-if="['unit6', 'm_unit6', 'unit7', 'unit8', 'm_unit8'].includes(item.key)" class="bg-black">
-        <component :is="item.component" :data="item.data" />
-      </div>
-
-      <!-- 其他组件正常渲染 -->
       <component v-else :is="item.component" :data="item.data" />
     </template>
 

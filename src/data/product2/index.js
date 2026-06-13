@@ -48,9 +48,17 @@ export default {
       enabled: true,
       data: product2Unit2Data
     },
+    gsapu: {
+      enabled: true,
+      data: product2GsapUData
+    },
     unit3: {
       enabled: true,
       data: product2Unit3Data
+    },
+    videou: {
+      enabled: true,
+      data: product2VideoUData
     },
     unit4: {
       enabled: true,
@@ -71,14 +79,6 @@ export default {
     unit8: {
       enabled: true,
       data: product2Unit8Data
-    },
-    gsapu: {
-      enabled: true,
-      data: product2GsapUData
-    },
-    videou: {
-      enabled: true,
-      data: product2VideoUData
     }
   }
 }

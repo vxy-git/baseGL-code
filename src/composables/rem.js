@@ -29,5 +29,4 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
 
     window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", onResize);
 }

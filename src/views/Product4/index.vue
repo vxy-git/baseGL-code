@@ -15,7 +15,6 @@ import Unit9 from "./components/Unit9/index.vue";
 import Unit10 from "./components/Unit10/index.vue";
 import Unit11 from "./components/Unit11/index.vue";
 import Unit12 from "./components/Unit12/index.vue";
-import Unit13 from "./components/Unit13/index.vue";
 import m_Unit12 from "./components/Unit12/m_index.vue";
 
 // 接收 pageConfig
@@ -39,16 +38,15 @@ const componentMap = {
   unit10: Unit10,
   unit11: Unit11,
   unit12: Unit12,
-  m_unit12: m_Unit12,
-  unit13: Unit13
+  m_unit12: m_Unit12
 };
 
 // 定义默认 Unit 顺序
 const defaultOrder = computed(() => {
   if (!isMobile.value) {
-    return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'unit12', 'unit13'];
+    return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'unit12'];
   }
-  return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'm_unit12', 'unit13'];
+  return ['unit1', 'unit2', 'unit4', 'unit5', 'unit6', 'unit8', 'unit9', 'unit10', 'unit11', 'm_unit12'];
 });
 
 // m_unitX → unitX 的数据键映射

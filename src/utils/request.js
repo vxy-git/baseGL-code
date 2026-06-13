@@ -35,7 +35,7 @@ export async function request(url, options = {}) {
       ...fetchOptions,
       signal: controller.signal,
       headers: {
-        'Content-Type': 'application/json',
+        ...(fetchOptions.method !== 'GET' && { 'Content-Type': 'application/json' }),
         ...fetchOptions.headers
       }
     })

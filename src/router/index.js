@@ -161,12 +161,9 @@ export async function createAppRouter() {
       if (!isValidPageType(pageType) || !hasModuleData) {
         continue
       }
-      finalRoutes.push(route)
-      cmsRoutePaths.add(route.path)
-    } else {
-      finalRoutes.push(route)
-      cmsRoutePaths.add(route.path)
     }
+    finalRoutes.push(route)
+    cmsRoutePaths.add(route.path)
   }
 
   // 添加 CMS 中没有（或被丢弃）的静态降级路由

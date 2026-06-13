@@ -2,6 +2,7 @@ import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useEventListener } from '@vueuse/core'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 /**
  * Header 导航交互逻辑 composable
@@ -12,6 +13,7 @@ import { MOBILE_BREAKPOINT } from '@/composables/fit'
  */
 export function useHeaderNav(propsHeaderClass) {
   const router = useRouter()
+  const { lock: lockScroll, unlock: unlockScroll } = useBodyScrollLock()
 
   // ========== Header 样式状态 ==========
   const currentHeaderClass = ref(propsHeaderClass.value || 'opacity')
@@ -64,8 +66,6 @@ export function useHeaderNav(propsHeaderClass) {
 
     if (propsHeaderClass.value === 'white') {
       currentHeaderClass.value = 'white'
-    } else {
-      currentHeaderClass.value = document.documentElement.scrollTop > 20 ? 'white' : 'opacity'
     }
   }
 
@@ -74,12 +74,12 @@ export function useHeaderNav(propsHeaderClass) {
     isMobileMenuOpen.value = !isMobileMenuOpen.value
     if (isMobileMenuOpen.value) {
       currentLevel.value = 1
-      document.body.style.overflow = 'hidden'
+      lockScroll()
     } else {
       currentLevel.value = 0
       currentMenuItem.value = null
       expandedCategoryId.value = null
-      document.body.style.overflow = ''
+      unlockScroll()
     }
   }
 
@@ -103,7 +103,7 @@ export function useHeaderNav(propsHeaderClass) {
     currentLevel.value = 0
     currentMenuItem.value = null
     expandedCategoryId.value = null
-    document.body.style.overflow = ''
+    unlockScroll()
   }
 
   // ========== 导航方法 ==========
@@ -129,20 +129,27 @@ export function useHeaderNav(propsHeaderClass) {
 
   // ========== 生命周期 ==========
   let scrollHandler = null
+  let scrollTicking = false
 
   onMounted(() => {
     scrollHandler = () => {
-      if (propsHeaderClass.value === 'white') return
-      currentHeaderClass.value = document.documentElement.scrollTop > 20 ? 'white' : 'opacity'
+      if (scrollTicking) return
+      scrollTicking = true
+      requestAnimationFrame(() => {
+        if (propsHeaderClass.value !== 'white') {
+          currentHeaderClass.value = document.documentElement.scrollTop > 20 ? 'white' : 'opacity'
+        }
+        scrollTicking = false
+      })
     }
-    window.addEventListener('scroll', scrollHandler)
+    window.addEventListener('scroll', scrollHandler, { passive: true })
+  })
 
-    useEventListener(window, 'resize', () => {
-      screenWidth.value = window.innerWidth
-      if (!isMobile.value && isMobileMenuOpen.value) {
-        closeMobileMenu()
-      }
-    })
+  useEventListener(window, 'resize', () => {
+    screenWidth.value = window.innerWidth
+    if (!isMobile.value && isMobileMenuOpen.value) {
+      closeMobileMenu()
+    }
   })
 
   onUnmounted(() => {
@@ -152,7 +159,7 @@ export function useHeaderNav(propsHeaderClass) {
     }
     if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
     if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
-    document.body.style.overflow = ''
+    unlockScroll()
   })
 
   return {

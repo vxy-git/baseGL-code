@@ -7,9 +7,11 @@ import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock'
 
 const iconArrow = '/api/uploads/file/default/assets/img/icon42.png'
 const cmsNavStore = useCmsNavStore()
+const { lock: lockScroll, unlock: unlockScroll } = useBodyScrollLock()
 
 // 当前激活的分类 ID（默认为第一个分类）
 const activeCategoryId = ref(null)
@@ -186,12 +188,12 @@ const animateOut = (callback) => {
     return
   }
 
-  const outTimeline = gsap.timeline({
+  timeline = gsap.timeline({
     onComplete: callback
   })
 
   // 快速淡出所有元素
-  outTimeline.to([contentRef.value, overlayRef.value], {
+  timeline.to([contentRef.value, overlayRef.value], {
     opacity: 0,
     duration: 0.25,
     ease: 'power2.in'
@@ -208,7 +210,7 @@ const closeMenu = () => {
 const goList = () => {
   closeMenu()
   // 优先使用第一个分类的 navUrl
-  const firstCategory = cmsNavStore.productCategories[0]
+  const firstCategory = cmsNavStore.productCategories?.[0]
   if (firstCategory?.navUrl) {
     router.push(firstCategory.navUrl)
   } else {
@@ -229,11 +231,9 @@ watch(() => props.visible, async (newVal) => {
   if (newVal) {
     await nextTick() // 确保 DOM 已渲染
     animateIn()
-    // 防止背景滚动
-    document.body.style.overflow = 'hidden'
+    lockScroll()
   } else {
-    // 恢复滚动
-    document.body.style.overflow = ''
+    unlockScroll()
   }
 })
 
@@ -242,7 +242,7 @@ onMounted(async () => {
   if (props.visible) {
     await nextTick()
     animateIn()
-    document.body.style.overflow = 'hidden'
+    lockScroll()
   }
 })
 
@@ -250,8 +250,7 @@ onBeforeUnmount(() => {
   if (timeline) {
     timeline.kill()
   }
-  // 恢复滚动
-  document.body.style.overflow = ''
+  unlockScroll()
 })
 
 // 暴露方法供父组件调用

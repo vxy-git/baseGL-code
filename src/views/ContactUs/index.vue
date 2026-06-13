@@ -18,6 +18,8 @@ const {
   formApi,
   formData,
   submitting,
+  submitMessage,
+  submitSuccess,
   handleExternalSubmit
 } = useContactForm(FORM_UUID, contactUsData)
 </script>
@@ -68,6 +70,10 @@ const {
                 :option="formOption"
               />
 
+              <div v-if="submitMessage" class="submit-message" :class="{ success: submitSuccess, error: !submitSuccess }">
+                {{ submitMessage }}
+              </div>
+
               <button
                 type="button"
                 class="submitBtn"
@@ -107,56 +113,6 @@ const {
   background-color: #fff;
   font-family: Roboto, sans-serif;
   color: #555;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: transparent;
-  z-index: 100;
-  padding: 30px 0;
-}
-
-.headerContent {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 310px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-}
-
-.logo {
-  width: 187.2px;
-  height: 30px;
-  object-fit: cover;
-}
-
-.nav {
-  flex: 1;
-  margin-left: 60px;
-  font-size: 16px;
-}
-
-.contactBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1ce785;
-  border-radius: 50px;
-  width: 140px;
-  height: 40px;
-  color: #222;
-  font-size: 18px;
-  margin-right: 32px;
-  cursor: pointer;
-}
-
-.headerIcon {
-  width: 22px;
-  height: 22px;
 }
 
 .heroBackground {
@@ -397,144 +353,6 @@ const {
   border: 1px solid #fecaca;
 }
 
-.formField {
-  position: relative;
-}
-
-.formField input,
-.formField textarea {
-  width: 100%;
-  padding: 15px 14px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
-  font-size: 16px;
-  font-family: Roboto, sans-serif;
-  color: #555;
-  box-sizing: border-box;
-}
-
-.formField input {
-  height: 50px;
-}
-
-.formField textarea {
-  height: 100px;
-  resize: none;
-}
-
-.formField input::placeholder,
-.formField textarea::placeholder {
-  color: #555;
-}
-
-/* 自定义下拉选择框 */
-.selectField {
-  position: relative;
-}
-
-.selectInput {
-  width: 100%;
-  height: 50px;
-  padding: 15px 14px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
-  font-size: 16px;
-  font-family: Roboto, sans-serif;
-  color: #555;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  user-select: none;
-  transition: border-color 0.2s;
-}
-
-.selectInput:hover {
-  border-color: #1ce785;
-}
-
-.selectInput.disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.placeholder {
-  color: #555;
-}
-
-.selectedValue {
-  color: #222;
-  font-weight: 500;
-}
-
-.dropdownIcon {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 15px;
-  height: 15px;
-  object-fit: contain;
-  pointer-events: none;
-  transition: transform 0.2s;
-}
-
-.dropdownIcon.rotated {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-/* 下拉列表 */
-.dropdownList {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-}
-
-.dropdownItem {
-  padding: 12px 14px;
-  font-size: 16px;
-  color: #555;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.dropdownItem:hover {
-  background-color: #f8f9fc;
-  color: #222;
-}
-
-.dropdownItem:active {
-  background-color: #e8f5e9;
-}
-
-.dropdownList::-webkit-scrollbar {
-  width: 6px;
-}
-
-.dropdownList::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
-}
-
-.dropdownList::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.dropdownList::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
 .submitBtn {
   margin-top: 5px;
   width: 100%;
@@ -575,132 +393,6 @@ const {
   width: 100%;
   height: auto;
   object-fit: cover;
-}
-
-.footer {
-  width: 100%;
-  background-color: #fff;
-  padding: 60px 0 30px 0;
-}
-
-.footerContent {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 310px;
-}
-
-.footerColumns {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 60px;
-  margin-bottom: 50px;
-}
-
-.footerColumn h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
-  margin: 0 0 32px 0;
-}
-
-.footerColumn ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footerColumn li {
-  font-size: 16px;
-  line-height: 32px;
-  color: #555;
-}
-
-.subscribeText {
-  font-size: 16px;
-  line-height: 32px;
-  color: #555;
-  margin: 0 0 17px 0;
-}
-
-.subscribeForm {
-  display: flex;
-  margin-bottom: 17px;
-}
-
-.subscribeForm input {
-  flex: 1;
-  height: 44px;
-  padding: 0 17px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
-  font-size: 16px;
-  font-family: Roboto, sans-serif;
-  color: #555;
-}
-
-.subscribeForm input::placeholder {
-  color: #999;
-}
-
-.subscribeForm button {
-  width: 90px;
-  height: 44px;
-  background-color: #1ce785;
-  border: none;
-  color: #000;
-  font-size: 16px;
-  line-height: 32px;
-  cursor: pointer;
-}
-
-.privacyCheckbox {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-
-.privacyCheckbox input[type="checkbox"] {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin-top: 3px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-}
-
-.privacyCheckbox label {
-  font-size: 14px;
-  line-height: 22px;
-  color: #555;
-}
-
-.privacyLink {
-  color: #000;
-}
-
-.socialIcons {
-  display: flex;
-  gap: 32px;
-}
-
-.socialIcons img {
-  width: 18px;
-  height: 18px;
-}
-
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.copyright,
-.designer {
-  font-size: 14px;
-  line-height: 22px;
-  color: #555;
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
