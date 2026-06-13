@@ -16,12 +16,7 @@ const unitData = useUnitData(props, unit6Data)
       <!-- Medical Grade Standard -->
       <div class="medical-row left-image">
         <div class="medical-image">
-          <MediaAsset
-            type="image"
-            :src="unitData.items[0].image"
-            :lazy="true"
-            :alt="unitData.items[0].title"
-          />
+          <MediaAsset type="image" :src="unitData.items[0].image" :lazy="true" :alt="unitData.items[0].title" />
         </div>
         <div class="medical-text">
           <h3 class="medical-title">{{ unitData.items[0].title }}</h3>
@@ -36,12 +31,7 @@ const unitData = useUnitData(props, unit6Data)
           <p class="medical-desc">{{ unitData.items[1].description }}</p>
         </div>
         <div class="medical-image">
-          <MediaAsset
-            type="image"
-            :src="unitData.items[1].image"
-            :lazy="true"
-            :alt="unitData.items[1].title"
-          />
+          <MediaAsset type="image" :src="unitData.items[1].image" :lazy="true" :alt="unitData.items[1].title" />
         </div>
       </div>
     </div>
@@ -52,6 +42,7 @@ const unitData = useUnitData(props, unit6Data)
 .why-caleaf-medical {
   width: 100%;
   background-color: #111119;
+  margin-top: -1px;
 }
 
 .medical-row {
@@ -59,7 +50,7 @@ const unitData = useUnitData(props, unit6Data)
   align-items: center;
 
   &.left-image {
-    margin-bottom: 47.5px;
+    padding-bottom: 47.5px;
 
     .medical-image {
       width: 620.5px;
@@ -68,7 +59,8 @@ const unitData = useUnitData(props, unit6Data)
   }
 
   &.right-image {
-    margin-bottom: 194px;
+    padding-bottom: 194px;
+
     .medical-image {
       width: 627px;
       height: 565px;

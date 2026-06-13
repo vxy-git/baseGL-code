@@ -27,6 +27,7 @@ const unitData = useUnitData(props, unit5Data)
   width: 100%;
   background-color: #111119;
   padding-bottom: 100px;
+  margin-top: -1px;
 }
 
 .raw-material-container {

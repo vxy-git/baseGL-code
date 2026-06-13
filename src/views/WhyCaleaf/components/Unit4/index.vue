@@ -27,9 +27,6 @@ const unitData = useUnitData(props, unit4Data)
       <div class="quality-main-image">
         <MediaAsset type="image" :src="unitData.mainImage" :lazy="true" alt="Quality Main" />
       </div>
-
-      <!-- 描述 -->
-      <p class="quality-desc">{{ unitData.description }}</p>
     </div>
   </section>
 </template>
@@ -37,8 +34,9 @@ const unitData = useUnitData(props, unit4Data)
 <style lang="scss" scoped>
 .why-caleaf-quality {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  background-color: #111119;
+  padding-bottom: 94px;
+  margin-top: -1px;
 }
 
 .quality-container {
@@ -51,7 +49,7 @@ const unitData = useUnitData(props, unit4Data)
 .quality-icons {
   display: flex;
   justify-content: center;
-  gap: 157px; // 759 - 480 - 122 ≈ 157
+  gap: 157px;
   margin-bottom: 163px;
 }
 
@@ -72,13 +70,12 @@ const unitData = useUnitData(props, unit4Data)
   font-size: 40px;
   line-height: 30px;
   color: #ffffff;
-  margin-bottom: 63px;
-  padding: 0 20px;
+  margin-bottom: 33px;
 }
 
 .quality-main-image {
   max-width: 1029px;
-  margin: 0 auto 363px;
+  margin: 0 auto;
 
   :deep(img) {
     width: 100%;
@@ -106,18 +103,13 @@ const unitData = useUnitData(props, unit4Data)
   }
 
   .quality-icons {
-    gap: 30px;
+    gap: 25px;
     flex-wrap: wrap;
     margin-bottom: 60px;
   }
 
-  .quality-icon {
-    width: 60px;
-    height: 64px;
-  }
-
   .quality-title {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
     margin-bottom: 30px;
   }
