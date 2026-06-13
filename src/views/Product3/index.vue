@@ -57,7 +57,7 @@ const defaultOrder = computed(() => {
 const renderList = computed(() => {
   const moduleList = props.pageConfig?.moduleList;
 
-  if (moduleList) {
+  if (moduleList && Object.keys(moduleList).length > 0) {
     return defaultOrder.value
       .filter(key => moduleList[key] && moduleList[key].enabled !== false)
       .map(key => ({
@@ -67,7 +67,7 @@ const renderList = computed(() => {
       }));
   }
 
-  // 降级：无 CMS 数据时使用默认渲染
+  // 降级：无 CMS 数据或 moduleList 为空时使用默认渲染
   return defaultOrder.value.map(key => ({
     key,
     component: componentMap[key],

@@ -15,6 +15,16 @@ const pageTypeComponentMap = {
   'dukes': () => import('@/views/Product4/index.vue'),
   'list': () => import('@/views/ProductList/index.vue'),
   'page': () => import('@/views/Page/index.vue'),
+  'why_caleaf': () => import('@/views/WhyCaleaf/index.vue'),
+}
+
+/**
+ * 判断 pageType 是否为有效的页面类型
+ * 无效值：null、undefined、空字符串、字符串 'null'、'page'
+ */
+const isValidPageType = (pageType) => {
+  if (!pageType || pageType === 'null' || pageType === 'page') return false
+  return pageType in pageTypeComponentMap
 }
 
 export let initialCmsNavData = null
@@ -42,7 +52,7 @@ async function generateRoutes() {
     if (isSuccess && navList.length > 0) {
       // 保存原始数据供 Store 使用
       initialCmsNavData = navList
-      
+
       // 转换 CMS 数据为路由格式
       cmsPages = navList
         .filter(nav => nav.status === '启用' || nav.status === true || nav.status === 1)
@@ -50,7 +60,7 @@ async function generateRoutes() {
         .map(nav => ({
           route: nav.navUrl.trim().startsWith('/') ? nav.navUrl.trim() : `/${nav.navUrl.trim()}`,
           routeName: `${nav.navName}_${nav.ID}`,
-          pageType: nav.pageType || 'page',
+          pageType: isValidPageType(nav.pageType) ? nav.pageType : 'page',
           navLabel: nav.navName,
           showInHeader: nav.headerShow === true,
           showInFooter: nav.footerShow === true,
@@ -68,7 +78,7 @@ async function generateRoutes() {
   return cmsPages.map(page => {
     // 组件选择优先级：pageType
     const component = pageTypeComponentMap[page.pageType] ||
-                      pageTypeComponentMap['page']
+      pageTypeComponentMap['page']
     if (!component) {
       console.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
     }
@@ -94,11 +104,78 @@ async function generateRoutes() {
   })
 }
 
+/**
+ * 静态降级路由
+ * 当 CMS 中没有对应页面数据时，这些路由仍然可访问，使用本地默认数据渲染
+ */
+const staticFallbackRoutes = [
+  {
+    path: '/why_caleaf',
+    name: 'why_caleaf_default',
+    component: () => import('@/views/WhyCaleaf/index.vue'),
+    meta: {
+      pageType: 'why_caleaf',
+      navLabel: 'Why Caleaf'
+    },
+    props: {
+      pageConfig: {
+        route: '/why-caleaf',
+        routeName: 'WhyCaleaf_0',
+        pageType: 'why_caleaf',
+        moduleList: {
+          unit1: { enabled: true, data: null },
+          unit2: { enabled: true, data: null },
+          unit3: { enabled: true, data: null },
+          unit4: { enabled: true, data: null },
+          unit5: { enabled: true, data: null },
+          unit6: { enabled: true, data: null },
+          unit7: { enabled: true, data: null },
+          unit8: { enabled: true, data: null }
+        }
+      }
+    }
+  }
+]
+
 export async function createAppRouter() {
   const routes = await generateRoutes()
+
+  // 建立静态降级路由的路径 → 路由 映射，用于比对
+  const fallbackMap = new Map(
+    staticFallbackRoutes.map(f => [f.path, f])
+  )
+
+  // 筛选 CMS 路由：pageType 无效或 moduleList 为空则丢弃，由降级路由兜底
+  const cmsRoutePaths = new Set()
+  const finalRoutes = []
+
+  for (const route of routes) {
+    const fallback = fallbackMap.get(route.path)
+    if (fallback) {
+      // CMS 有同路径路由，但数据不完整 → 丢弃，用降级路由
+      const pageType = route.meta?.pageType
+      const moduleList = route.props?.pageConfig?.moduleList
+      const hasModuleData = moduleList && typeof moduleList === 'object' && Object.keys(moduleList).length > 0
+      if (!isValidPageType(pageType) || !hasModuleData) {
+        continue
+      }
+      finalRoutes.push(route)
+      cmsRoutePaths.add(route.path)
+    } else {
+      finalRoutes.push(route)
+      cmsRoutePaths.add(route.path)
+    }
+  }
+
+  // 添加 CMS 中没有（或被丢弃）的静态降级路由
+  const effectiveFallbacks = staticFallbackRoutes.filter(
+    f => !cmsRoutePaths.has(f.path)
+  )
+
+  // CMS 有效路由在前，静态降级在后兜底
   return createRouter({
     history: createWebHistory(),
-    routes,
+    routes: [...finalRoutes, ...effectiveFallbacks],
     scrollBehavior(to, from, savedPosition) {
       return { top: 0 }
     }

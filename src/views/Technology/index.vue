@@ -54,7 +54,7 @@ const renderList = computed(() => {
     return null
   }
 
-  if (moduleList) {
+  if (moduleList && Object.keys(moduleList).length > 0) {
     return defaultOrder
       .filter(key => moduleList[key] && moduleList[key].enabled !== false)
       .map(key => ({

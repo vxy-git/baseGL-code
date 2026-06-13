@@ -48,8 +48,8 @@ const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6']
 const renderList = computed(() => {
   const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
   
-  // 如果有 CMS 配置，基于配置生成
-  if (moduleList) {
+  // 如果有 CMS 配置且 moduleList 非空，基于配置生成
+  if (moduleList && Object.keys(moduleList).length > 0) {
     return defaultOrder
       .filter(key => moduleList[key] && moduleList[key].enabled !== false)
       .map(key => ({

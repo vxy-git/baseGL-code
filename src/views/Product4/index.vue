@@ -62,7 +62,7 @@ const renderList = computed(() => {
   // 优先使用 CMS 的 moduleList，如果没有则使用本地配置的 modules
   const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules;
 
-  if (moduleList) {
+  if (moduleList && Object.keys(moduleList).length > 0) {
     return defaultOrder.value
       .filter(key => {
         // m_unitX → unitX 的数据键映射
