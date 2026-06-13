@@ -11,8 +11,8 @@ const unitData = useUnitData(props, unit7Data)
 </script>
 
 <template>
-  <section class="why-caleaf-services c_padding">
-    <div class="services-container">
+  <section class="why-caleaf-services c_1300 c_padding">
+    <div class="">
       <h2 class="services-title">{{ unitData.title }}</h2>
 
       <div class="services-grid">
@@ -33,11 +33,6 @@ const unitData = useUnitData(props, unit7Data)
   display: flex;
   justify-content: center;
   padding-top: 132px;
-}
-
-.services-container {
-  max-width: 100%;
-  width: 1300px;
 }
 
 .services-title {

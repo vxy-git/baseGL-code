@@ -51,8 +51,6 @@ const unitData = useUnitData(props, unit6Data)
 <style lang="scss" scoped>
 .why-caleaf-medical {
   width: 100%;
-  display: flex;
-  justify-content: center;
   background-color: #111119;
 }
 

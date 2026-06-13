@@ -10,28 +10,22 @@ const unitData = useUnitData(props, unit8Data)
 </script>
 
 <template>
-  <section class="why-caleaf-connect">
-    <div class="connect-container">
+  <section class="why-caleaf-connect c_1300">
       <h2 class="connect-title">{{ unitData.title }}</h2>
       <div class="connect-icon">
         <img :src="unitData.instagramIcon" alt="Instagram" />
       </div>
-    </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .why-caleaf-connect {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 154px 0 124px;
+  text-align: center;
 }
 
 .connect-container {
-  max-width: $breakpoint-design;
-  width: 100%;
-  padding: 154px 0 124px;
-  text-align: center;
 }
 
 .connect-title {
