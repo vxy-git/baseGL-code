@@ -47,7 +47,7 @@ const isMobile = ref(false)
 
 // 检测是否为移动端
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 768
 }
 
 // 初始化移动端检测

@@ -58,11 +58,11 @@ const isMobile = ref(false)
 const toEl = (val) => (val && '$el' in val ? val.$el : val)
 
 const updateIsMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 768
 }
 
 if (typeof window !== 'undefined') {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 768
 }
 
 let tl

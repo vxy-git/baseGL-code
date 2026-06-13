@@ -89,7 +89,7 @@ const productList = computed(() => {
 const checkMobile = () => {
   const width = window.innerWidth || 1920
   viewportWidth.value = width
-  isMobile.value = width <= 767
+  isMobile.value = width <= 768
 }
 
 onMounted(() => {

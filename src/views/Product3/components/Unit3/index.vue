@@ -68,7 +68,7 @@ const tb3Image = ref(null)
 const isMobile = ref(false)
 
 const updateIsMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 768
 }
 
 if (typeof window !== 'undefined') {
