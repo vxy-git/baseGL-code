@@ -88,6 +88,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title1 {
   color: #3ad3ff;
   font-family: Roboto;
@@ -143,7 +144,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .videoU {
     height: 900px;
   }

@@ -33,8 +33,8 @@ const title3 = ref(null)
 const image = ref(null)
 
 const isMobile = ref(false)
-const updateIsMobile = () => { isMobile.value = window.innerWidth <= 767 }
-if (typeof window !== 'undefined') { isMobile.value = window.innerWidth <= 767 }
+const updateIsMobile = () => { isMobile.value = window.innerWidth <= 768 }
+if (typeof window !== 'undefined') { isMobile.value = window.innerWidth <= 768 }
 
 let tl
 

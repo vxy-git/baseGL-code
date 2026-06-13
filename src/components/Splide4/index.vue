@@ -28,7 +28,7 @@ const productList = computed(() => {
 
 // 移动端检测
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 767
+  isMobile.value = window.innerWidth <= 768
 }
 
 onMounted(() => {

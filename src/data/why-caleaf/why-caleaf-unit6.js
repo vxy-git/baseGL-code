@@ -7,7 +7,7 @@ export const whyCaleafUnit6Data = {
     {
       title: 'Medical Grade Standard',
       description:
-        'While other suppliers are using cheap ternary lithium batteries to cut costs, we are sticking to top standards. Our pure cobalt battery is both long-lasting and super safe. No safety worries in storage.',
+        'We use the medical-grade stainless steel central tube and PCTG oil tank to provide great corrosion resistance and strength. This ensures cannabis oil safety during storage and device stability during use.',
       image: '/assets/why-caleaf/medical-grade-standard.png',
       imageSide: 'left'
     },

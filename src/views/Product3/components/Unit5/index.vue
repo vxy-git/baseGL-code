@@ -101,6 +101,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title_tag {
   color: #CAA4FB;
   font-family: Roboto;
@@ -252,7 +253,7 @@ const unitData = computed(() => {
   object-fit: cover;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: $breakpoint-medium) {
   .title {
     font-size: 64px;
     // line-height: 1.05;
@@ -268,7 +269,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .unit5 {
     margin-top: 160px;
     padding-bottom: 150px;
@@ -307,7 +308,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .unit5 {
     margin-top: 120px;
     padding-bottom: 120px;

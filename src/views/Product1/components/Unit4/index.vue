@@ -147,6 +147,7 @@ const handleReset2 = () => resetProgress(progress2);
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   text-align: center;
   font-family: Roboto;
@@ -214,7 +215,7 @@ const handleReset2 = () => resetProgress(progress2);
   border-bottom-left-radius: 20px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .title {
     font-size: 48px;
     line-height: 52px;

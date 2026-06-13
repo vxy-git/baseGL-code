@@ -12,11 +12,15 @@
   <div v-else ref="wrapper" class="fis-wrapper" :style="{ '--fis-object-fit': props.objectFit }"></div>
 </template>
 
+<script>
+// defineProps 中被 hoist 引用的常量，需放在普通 <script> 块中
+// eslint-disable-next-line no-undef
+const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || "";
+</script>
+
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, computed } from "vue";
 import { FastImageSequence } from "@mediamonks/fast-image-sequence";
-
-const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || "";
 
 // Props 按 tar 的 API 完全匹配
 const props = defineProps({
@@ -176,5 +180,5 @@ function updateProgress() {
   height: 100vh;
 }
 
-.sequence-content {}
+
 </style>

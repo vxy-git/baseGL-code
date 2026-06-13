@@ -195,6 +195,7 @@ const goToGroup = (groupIndex) => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   color: #000;
   font-family: Roboto;
@@ -212,7 +213,7 @@ const goToGroup = (groupIndex) => {
   background: #D9D9D9;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .title {
     white-space: normal;
   }

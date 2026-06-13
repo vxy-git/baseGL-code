@@ -377,6 +377,7 @@ const closeDropdowns = () => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .hero {
   position: relative;
   width: 100%;
@@ -1000,7 +1001,7 @@ const closeDropdowns = () => {
 
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .heroContent {
     margin-top: 30vh;
   }

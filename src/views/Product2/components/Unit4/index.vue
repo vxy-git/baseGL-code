@@ -113,6 +113,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   text-align: center;
   font-family: Roboto;
@@ -179,7 +180,7 @@ const unitData = computed(() => {
   flex-shrink: 0;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .title {
     font-size: 48px;
     line-height: 52px;

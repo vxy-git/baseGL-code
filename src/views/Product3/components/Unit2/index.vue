@@ -48,6 +48,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title1 {
   color: #CAA4FB;
   font-family: Roboto;
@@ -68,7 +69,7 @@ const unitData = computed(() => {
   line-height: normal;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .mBox {
     height: auto;
   }

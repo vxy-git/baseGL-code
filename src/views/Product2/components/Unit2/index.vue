@@ -71,6 +71,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   margin: auto;
   max-width: 1000px;
@@ -128,7 +129,7 @@ onBeforeUnmount(() => {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .logo {
     height: 800px;
   }

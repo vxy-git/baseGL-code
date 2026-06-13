@@ -102,6 +102,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   color: #111;
   text-align: center;
@@ -122,7 +123,7 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .title {
     font-size: 48px;
     gap: 16px;

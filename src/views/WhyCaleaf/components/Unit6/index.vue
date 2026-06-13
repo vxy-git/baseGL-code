@@ -15,16 +15,11 @@ const unitData = computed(() => {
 
 <template>
   <section class="why-caleaf-medical">
-    <div class="medical-container">
+    <div class="c_1300 c_padding">
       <!-- Medical Grade Standard -->
       <div class="medical-row left-image">
         <div class="medical-image">
-          <MediaAsset
-            type="image"
-            :src="unitData.items[0].image"
-            :lazy="true"
-            :alt="unitData.items[0].title"
-          />
+          <MediaAsset type="image" :src="unitData.items[0].image" :lazy="true" :alt="unitData.items[0].title" />
         </div>
         <div class="medical-text">
           <h3 class="medical-title">{{ unitData.items[0].title }}</h3>
@@ -39,12 +34,7 @@ const unitData = computed(() => {
           <p class="medical-desc">{{ unitData.items[1].description }}</p>
         </div>
         <div class="medical-image">
-          <MediaAsset
-            type="image"
-            :src="unitData.items[1].image"
-            :lazy="true"
-            :alt="unitData.items[1].title"
-          />
+          <MediaAsset type="image" :src="unitData.items[1].image" :lazy="true" :alt="unitData.items[1].title" />
         </div>
       </div>
     </div>
@@ -56,28 +46,34 @@ const unitData = computed(() => {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.medical-container {
-  max-width: $breakpoint-design;
-  width: 100%;
-  padding: 0 310px;
+  background-color: #111119;
 }
 
 .medical-row {
   display: flex;
   align-items: center;
-  gap: 20px;
 
   &.left-image {
-    margin-bottom: 192px; // 4661 -> 5378 gap
+    margin-bottom: 47.5px;
+
+    .medical-image {
+      width: 620.5px;
+      height: 620.5px;
+    }
+  }
+
+  &.right-image {
+    margin-bottom: 194px;
+    .medical-image {
+      width: 627px;
+      height: 565px;
+    }
   }
 }
 
+
 .medical-image {
   flex-shrink: 0;
-  width: 620px;
-  height: 620px;
 
   :deep(img) {
     width: 100%;
@@ -117,6 +113,7 @@ const unitData = computed(() => {
   .medical-row {
     flex-direction: column;
     text-align: center;
+    gap: 30px;
 
     &.left-image {
       margin-bottom: 60px;
@@ -128,9 +125,8 @@ const unitData = computed(() => {
   }
 
   .medical-image {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
+    width: 100% !important;
+    height: auto !important;
     margin: 0 auto;
   }
 

@@ -180,6 +180,7 @@ defineExpose({ playFromStart, pause, resetToStart, videoEl })
 </script>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .media-video {
   display: block;
   // min-height: max-content;
@@ -187,6 +188,6 @@ defineExpose({ playFromStart, pause, resetToStart, videoEl })
 }
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
 }
 </style>

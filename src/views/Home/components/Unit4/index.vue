@@ -131,6 +131,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   color: #000;
   font-family: Roboto;
@@ -183,7 +184,7 @@ onUnmounted(() => {
   }
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: $breakpoint-wide) {
   .unitBox {
     transform: scale(0.8);
   }
@@ -199,7 +200,7 @@ onUnmounted(() => {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .unitBox {
     transform: scale(0.4);
   }

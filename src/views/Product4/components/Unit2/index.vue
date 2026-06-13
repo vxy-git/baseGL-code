@@ -20,11 +20,11 @@ const unitData = computed(() => {
 
 <template>
   <div class="flex flex-col pt-[110px] c_1230 c_padding">
-    <div class="flex flex-wrap justify-center gap-[20px]">
+    <div class="grid grid-cols-2 items-center justify-center gap-[20px]">
       <div
         v-for="(feature, index) in unitData.features"
         :key="index"
-        class="w-[605px] h-[340px] relative"
+        class="relative"
       >
         <div class="text absolute top-[21px] left-[28px]" :style="{ color: `${feature.color}` }">{{ feature.label }}</div>
         <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="feature.image" alt="" />
@@ -34,6 +34,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .text {
   color: #000;
   text-align: center;
@@ -42,5 +43,11 @@ const unitData = computed(() => {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>

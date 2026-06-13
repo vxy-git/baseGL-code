@@ -147,6 +147,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title {
   color: #CAA4FB;
   font-family: Roboto;
@@ -176,19 +177,19 @@ onBeforeUnmount(() => {
 }
 
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: $breakpoint-wide) {
   .unit6 {
     transform: translateX(12vw);
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .unit6 {
     transform: scale(0.5);
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .unit6 {
     transform: scale(0.5) translateX(20vw);
   }

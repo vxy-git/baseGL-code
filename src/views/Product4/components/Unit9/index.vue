@@ -41,6 +41,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title{
   width: 100%;
   text-align: center;
@@ -61,7 +62,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .title {
     font-size: 40px;
   }

@@ -267,6 +267,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .title1 {
   max-width: 100%;
   width: 164px;
@@ -334,7 +335,7 @@ onUnmounted(() => {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: $breakpoint-medium) {
   .m_fit {
     width: 300px;
   }

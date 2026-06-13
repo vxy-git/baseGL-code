@@ -67,6 +67,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .unit1 {
   position: relative;
   overflow: hidden;
@@ -145,7 +146,7 @@ const unitData = computed(() => {
   object-fit: contain;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .video-trigger {
     bottom: 50px;
     left: 50%;

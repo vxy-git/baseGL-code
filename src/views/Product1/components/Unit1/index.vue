@@ -52,6 +52,7 @@ const unitData = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
 .unit1 {
   min-height: calc(980px / 1920px * 100vw);
 }
@@ -104,7 +105,7 @@ const unitData = computed(() => {
   letter-spacing: 0.28px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .unit1 {
     margin-top: 70px !important;
   }
@@ -132,7 +133,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .title {
     font-size: 34px;
   }

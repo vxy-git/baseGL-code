@@ -39,7 +39,7 @@ const progressTimers = ref([]);
 const playSessionId = ref(0);
 
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 767;
+  isMobile.value = window.innerWidth <= 768;
 };
 
 onMounted(() => {

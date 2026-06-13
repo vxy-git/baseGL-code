@@ -104,7 +104,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $breakpoint-tablet) {
   .why-caleaf-services {
     padding-top: 80px;
   }
@@ -135,7 +135,7 @@ const unitData = computed(() => {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .why-caleaf-services {
     padding-top: 60px;
   }
