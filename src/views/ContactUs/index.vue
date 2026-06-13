@@ -23,11 +23,12 @@ const formData = ref({})
 const submitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
+const lastSubmitTime = ref(0)    // 上次提交时间戳
+const SUBMIT_COOLDOWN = 5000     // 提交冷却时间（毫秒）
 
 // 初始化：从后端加载表单配置
-// 注意：你需要在后端 formdesign 插件中创建一个 ContactUs 表单配置
-// 并设置一个 UUID，然后在这里替换成你的 UUID
-const FORM_UUID = '4ce3147d-23ae-4467-bf7b-b225f4ce76a1' // TODO: 替换为实际的表单 UUID
+// 表单 UUID 通过环境变量 VITE_FORM_UUID 配置，不在源码中硬编码
+const FORM_UUID = import.meta.env.VITE_FORM_UUID || ''
 
 onMounted(async () => {
   await loadFormConfig()
@@ -240,6 +241,17 @@ async function handleExternalSubmit() {
     return
   }
 
+  // 客户端频率限制
+  const now = Date.now()
+  if (now - lastSubmitTime.value < SUBMIT_COOLDOWN) {
+    ElMessage({
+      message: 'Please wait a moment before submitting again.',
+      type: 'warning',
+      duration: 3000
+    })
+    return
+  }
+
   try {
     // 使用 form-create 的 submit 方法
     // 会自动验证表单，验证通过后调用 success 回调
@@ -247,6 +259,7 @@ async function handleExternalSubmit() {
       // success 回调：验证通过
       (formData) => {
         console.log('✅ 表单验证通过')
+        lastSubmitTime.value = Date.now()
         handleSubmit(formData)  // 调用原有的提交逻辑
       },
       // fail 回调：验证失败
