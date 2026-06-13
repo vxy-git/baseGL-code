@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { technologyUnit6Data } from '@/data/technology/technology-unit6.js'
+import { unit6Data } from '@/data/technology/unit6.js'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { useUnitData } from '@/composables/useUnitData'
 
@@ -22,7 +22,7 @@ const cmsData = computed(() => {
   return techNav?.moduleList?.unit6?.data || null
 })
 
-const unitData = useUnitData(props, technologyUnit6Data, { cmsData })
+const unitData = useUnitData(props, unit6Data, { cmsData })
 
 const sectionRef = ref(null)
 const mediaBoxRef = ref(null)

@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { technologyUnit2Data } from '@/data/technology/technology-unit2'
+import { unit2Data } from '@/data/technology/unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { useUnitData } from '@/composables/useUnitData'
 
@@ -18,7 +18,7 @@ const cmsData = computed(() => {
   return techNav?.moduleList?.unit2?.data || null
 })
 
-const unitData = useUnitData(props, technologyUnit2Data, { cmsData })
+const unitData = useUnitData(props, unit2Data, { cmsData })
 </script>
 
 <template>

@@ -3,7 +3,7 @@ import Tabs from '@/components/Tabs/index.vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ProductItem from '@/components/ProductItem/index.vue'
 import { productsData } from '@/data/productlist/products'
-import { homeUnit2Data } from '@/data/home/home-unit2'
+import { unit2Data } from '@/data/home/unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
@@ -26,7 +26,7 @@ const cmsData = computed(() => {
   return homeNav?.moduleList?.unit2?.data || null
 })
 
-const unitData = useUnitData(props, homeUnit2Data, { cmsData })
+const unitData = useUnitData(props, unit2Data, { cmsData })
 
 // 提取 tabs 列表（优先使用 CMS 数据，与 ProductList 保持一致）
 const tabsList = computed(() => {

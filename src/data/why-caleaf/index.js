@@ -2,14 +2,14 @@
  * Why Caleaf 页面 CMS 数据配置
  */
 
-import { whyCaleafUnit1Data } from './why-caleaf-unit1.js'
-import { whyCaleafUnit2Data } from './why-caleaf-unit2.js'
-import { whyCaleafUnit3Data } from './why-caleaf-unit3.js'
-import { whyCaleafUnit4Data } from './why-caleaf-unit4.js'
-import { whyCaleafUnit5Data } from './why-caleaf-unit5.js'
-import { whyCaleafUnit6Data } from './why-caleaf-unit6.js'
-import { whyCaleafUnit7Data } from './why-caleaf-unit7.js'
-import { whyCaleafUnit8Data } from './why-caleaf-unit8.js'
+import { unit1Data } from './unit1.js'
+import { unit2Data } from './unit2.js'
+import { unit3Data } from './unit3.js'
+import { unit4Data } from './unit4.js'
+import { unit5Data } from './unit5.js'
+import { unit6Data } from './unit6.js'
+import { unit7Data } from './unit7.js'
+import { unit8Data } from './unit8.js'
 
 export default {
   // 路由配置
@@ -36,35 +36,35 @@ export default {
   modules: {
     unit1: {
       enabled: true,
-      data: whyCaleafUnit1Data,
+      data: unit1Data,
     },
     unit2: {
       enabled: true,
-      data: whyCaleafUnit2Data,
+      data: unit2Data,
     },
     unit3: {
       enabled: true,
-      data: whyCaleafUnit3Data,
+      data: unit3Data,
     },
     unit4: {
       enabled: true,
-      data: whyCaleafUnit4Data,
+      data: unit4Data,
     },
     unit5: {
       enabled: true,
-      data: whyCaleafUnit5Data,
+      data: unit5Data,
     },
     unit6: {
       enabled: true,
-      data: whyCaleafUnit6Data,
+      data: unit6Data,
     },
     unit7: {
       enabled: true,
-      data: whyCaleafUnit7Data,
+      data: unit7Data,
     },
     unit8: {
       enabled: true,
-      data: whyCaleafUnit8Data,
+      data: unit8Data,
     },
   },
 }

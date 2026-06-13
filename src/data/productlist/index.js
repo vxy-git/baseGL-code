@@ -2,7 +2,7 @@
  * ProductList 页面 CMS 数据配置
  */
 
-import { productListData } from './productlist.js'
+import { listData } from './list.js'
 
 export default {
   // 路由配置
@@ -28,7 +28,7 @@ export default {
   modules: {
     productlist: {
       enabled: true,
-      data: productListData,
+      data: listData,
     },
   },
 }

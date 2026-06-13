@@ -2,12 +2,12 @@
  * Technology 页面 CMS 数据配置
  */
 
-import { technologyUnit1Data } from './technology-unit1.js'
-import { technologyUnit2Data } from './technology-unit2.js'
-import { technologyUnit4Data } from './technology-unit4.js'
-import { technologyUnit5Data } from './technology-unit5.js'
-import { technologyUnit6Data } from './technology-unit6.js'
-import { technologyUnit7Data } from './technology-unit7.js'
+import { unit1Data } from './unit1.js'
+import { unit2Data } from './unit2.js'
+import { unit4Data } from './unit4.js'
+import { unit5Data } from './unit5.js'
+import { unit6Data } from './unit6.js'
+import { unit7Data } from './unit7.js'
 
 export default {
   // 路由配置
@@ -33,27 +33,27 @@ export default {
   modules: {
     unit1: {
       enabled: true,
-      data: technologyUnit1Data,
+      data: unit1Data,
     },
     unit2: {
       enabled: true,
-      data: technologyUnit2Data,
+      data: unit2Data,
     },
     unit4: {
       enabled: true,
-      data: technologyUnit4Data,
+      data: unit4Data,
     },
     unit5: {
       enabled: true,
-      data: technologyUnit5Data,
+      data: unit5Data,
     },
     unit6: {
       enabled: true,
-      data: technologyUnit6Data,
+      data: unit6Data,
     },
     unit7: {
       enabled: true,
-      data: technologyUnit7Data,
+      data: unit7Data,
     },
   },
 }

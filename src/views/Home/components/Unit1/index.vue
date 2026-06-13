@@ -20,7 +20,7 @@ const splideOptions = {
 }
 
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit1Data } from '@/data/home/home-unit1'
+import { unit1Data } from '@/data/home/unit1'
 import { useCmsNavStore } from '@/stores/cmsNav'
 
 const router = useRouter()
@@ -61,7 +61,7 @@ const list = computed(() => {
     }))
   }
   // 3. 最后使用本地配置
-  return homeUnit1Data.bannerList
+  return unit1Data.bannerList
 })
 
 const changeEnd = (splide, newIndex) => {
@@ -111,7 +111,7 @@ const handleLearnMore = item => {
                 <MediaAsset
                   class="btn-icon"
                   type="image"
-                  :src="homeUnit1Data.buttonIcon"
+                  :src="unit1Data.buttonIcon"
                   alt=""
                   :lazy="false"
                 />

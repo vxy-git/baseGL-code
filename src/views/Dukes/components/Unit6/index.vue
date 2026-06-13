@@ -1,0 +1,105 @@
+<script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
+import { unit6Data } from '@/data/dukes/unit6.js'
+import { useUnitData } from '@/composables/useUnitData'
+
+const props = defineProps({
+  data: {
+    type: Object,
+    default: null,
+  },
+})
+
+const unitData = useUnitData(props, unit6Data)
+</script>
+
+<template>
+  <div class="pt-[236px] c_1230 c_padding">
+    <div class="title">
+      {{ unitData.content.title }}
+    </div>
+    <div
+      class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full"
+    >
+      <div class="pt-[7px] max-w-full">
+        <div class="gtext">
+          {{ unitData.content.greenLabel }}
+        </div>
+        <div class="title1">
+          {{ unitData.content.subtitle }}
+        </div>
+        <div class="label">
+          {{ unitData.content.description }}
+        </div>
+        <div class="w-[600px] h-[360px] mt-[55px] rounded-[20px] overflow-hidden max-w-full">
+          <MediaAsset
+            type="video"
+            :src="unitData.videos.left"
+            :controls="false"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :view-play="true"
+            class="w-full h-full object-cover rounded-[20px]"
+          />
+        </div>
+      </div>
+      <div class="w-[500px] h-[650px] rounded-[20px] overflow-hidden">
+        <MediaAsset
+          type="video"
+          :src="unitData.videos.right"
+          :controls="false"
+          :autoplay="false"
+          :muted="true"
+          :loop="true"
+          :view-play="true"
+          class="w-full h-full object-cover rounded-[20px]"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.title {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 94px;
+  background: linear-gradient(90deg, #1ce785 0%, #10814a 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gtext {
+  color: #1ce785;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.title1 {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 18px;
+}
+.label {
+  width: 594px;
+  height: 120px;
+  flex-shrink: 0;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 150% */
+  @apply mt-[18px];
+}
+</style>

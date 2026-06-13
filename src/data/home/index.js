@@ -3,12 +3,12 @@
  * 包含路由、导航、模板和模块数据
  */
 
-import { homeUnit1Data } from './home-unit1.js'
-import { homeUnit2Data } from './home-unit2.js'
-import { homeUnit3Data } from './home-unit3.js'
-import { homeUnit4Data } from './home-unit4.js'
-import { homeUnit5Data } from './home-unit5.js'
-import { homeUnit6Data } from './home-unit6.js'
+import { unit1Data } from './unit1.js'
+import { unit2Data } from './unit2.js'
+import { unit3Data } from './unit3.js'
+import { unit4Data } from './unit4.js'
+import { unit5Data } from './unit5.js'
+import { unit6Data } from './unit6.js'
 
 export default {
   // ==================== 路由配置 ====================
@@ -34,27 +34,27 @@ export default {
   modules: {
     unit1: {
       enabled: true,
-      data: homeUnit1Data,
+      data: unit1Data,
     },
     unit2: {
       enabled: true,
-      data: homeUnit2Data,
+      data: unit2Data,
     },
     unit3: {
       enabled: true,
-      data: homeUnit3Data,
+      data: unit3Data,
     },
     unit4: {
       enabled: true,
-      data: homeUnit4Data,
+      data: unit4Data,
     },
     unit5: {
       enabled: true,
-      data: homeUnit5Data,
+      data: unit5Data,
     },
     unit6: {
       enabled: true,
-      data: homeUnit6Data,
+      data: unit6Data,
     },
   },
 }

@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/Footer.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { contactUsData } from '@/data/contactus/contactus'
+import { data } from '@/data/contactus/data'
 import formCreate from '@form-create/element-ui'
 import { useContactForm } from '@/composables/useContactForm'
 
@@ -21,7 +21,7 @@ const {
   submitMessage,
   submitSuccess,
   handleExternalSubmit,
-} = useContactForm(FORM_UUID, contactUsData)
+} = useContactForm(FORM_UUID, data)
 </script>
 
 <template>
@@ -33,14 +33,14 @@ const {
       <section class="hero mt_nav">
         <div class="heroBackground">
           <MediaAsset
-            :src="contactUsData.heroBanner"
+            :src="data.heroBanner"
             type="image"
             class="heroImage m_hide"
             alt=""
             :lazy="false"
           />
           <MediaAsset
-            :src="contactUsData.heroBannerMobile"
+            :src="data.heroBannerMobile"
             type="image"
             class="heroImage pc_hide"
             alt=""
@@ -50,20 +50,20 @@ const {
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
             <h1 class="heroTitle w-full c_1300 c_padding text-right">
-              {{ contactUsData.content.heroTitle }}
+              {{ data.content.heroTitle }}
             </h1>
             <div class="divider"></div>
             <div class="w-full c_1300 c_padding m-auto flex flex-col items-end">
-              <p class="heroEmail">Email: {{ contactUsData.contact.email }}</p>
+              <p class="heroEmail">Email: {{ data.contact.email }}</p>
               <div class="socialSection mt-[34px] pr-[4px]">
-                <p class="followText">{{ contactUsData.content.followText }}</p>
+                <p class="followText">{{ data.content.followText }}</p>
                 <a
-                  :href="contactUsData.contact.instagramLink"
+                  :href="data.contact.instagramLink"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <MediaAsset
-                    :src="contactUsData.icons.instagram"
+                    :src="data.icons.instagram"
                     type="image"
                     class="socialIcon"
                     alt="Instagram"
@@ -80,7 +80,7 @@ const {
       <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
           <div class="formCard px-[40px] pt-[60px] pb-[60px]">
-            <h2 class="formTitle">{{ contactUsData.content.formTitle }}</h2>
+            <h2 class="formTitle">{{ data.content.formTitle }}</h2>
 
             <div v-if="loading" class="formLoading">Loading form...</div>
             <div v-else class="form-wrapper">
@@ -106,13 +106,13 @@ const {
                 :disabled="submitting"
                 @click="handleExternalSubmit"
               >
-                {{ submitting ? 'Submitting...' : contactUsData.content.submitButtonText }}
+                {{ submitting ? 'Submitting...' : data.content.submitButtonText }}
               </button>
             </div>
           </div>
           <div class="formImage">
             <MediaAsset
-              :src="contactUsData.icons.product"
+              :src="data.icons.product"
               type="image"
               alt="Product Image"
               :lazy="false"

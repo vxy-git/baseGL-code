@@ -5,7 +5,7 @@
 
     <main class="main-content c_1300">
       <section class="catalog-intro">
-        <h1 class="catalog-title c_padding">{{ productListData.pageTitle }}</h1>
+        <h1 class="catalog-title c_padding">{{ listData.pageTitle }}</h1>
         <Tabs
           class="mt-[30px]"
           :list="tabsList"
@@ -54,7 +54,7 @@ import Header from '@/components/Header/index.vue'
 import Tabs from '@/components/Tabs/index.vue'
 import ProductItem from '@/components/ProductItem/index.vue'
 import { productsData } from '@/data/productlist/products'
-import { productListData } from '@/data/productlist/productlist'
+import { listData } from '@/data/productlist/list'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
 
@@ -71,7 +71,7 @@ const pageSize = computed(() => {
   const cms = props.pageConfig?.moduleList?.productlist?.data?.pageSize
   const num = Number(cms)
   if (!isNaN(num) && num > 0) return num
-  return Number(productListData.pageSize) || 8
+  return Number(listData.pageSize) || 8
 })
 
 const cmsCategories = computed(() => cmsNavStore.productCategories || [])
@@ -165,7 +165,7 @@ const updateColumns = () => {
   const el = catalogGridRef.value
   const width = el ? el.clientWidth : 0
   const calc = Math.floor(
-    (width + productListData.card.gap) / (productListData.card.width + productListData.card.gap)
+    (width + listData.card.gap) / (listData.card.width + listData.card.gap)
   )
   columns.value = Math.max(1, calc)
 }

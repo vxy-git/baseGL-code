@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit6Data } from '@/data/home/home-unit6'
+import { unit6Data } from '@/data/home/unit6'
 import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
@@ -11,7 +11,7 @@ const props = defineProps({
   },
 })
 
-const unitData = useUnitData(props, homeUnit6Data)
+const unitData = useUnitData(props, unit6Data)
 
 const isPlaying = ref(false)
 </script>

@@ -10,10 +10,10 @@ const SUBMIT_COOLDOWN = 5000
  * ContactUs 表单逻辑 composable
  *
  * @param {import('vue').Ref<string>} formUuid - 表单 UUID（来自环境变量）
- * @param {Object} contactUsData - 静态表单数据（用于降级方案的 country 列表等）
+ * @param {Object} data - 静态表单数据（用于降级方案的 country 列表等）
  * @returns {Object} 表单状态和方法
  */
-export function useContactForm(formUuid, contactUsData) {
+export function useContactForm(formUuid, data) {
   // ========== 表单配置 ==========
   const formRule = ref([])
   const formOption = ref({})
@@ -110,7 +110,7 @@ export function useContactForm(formUuid, contactUsData) {
         field: 'country',
         title: 'Country',
         value: '',
-        options: contactUsData.formData.countries.map(country => ({
+        options: data.formData.countries.map(country => ({
           label: country,
           value: country,
         })),

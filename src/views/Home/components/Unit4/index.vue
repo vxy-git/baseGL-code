@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { homeUnit4Data } from '@/data/home/home-unit4'
+import { unit4Data } from '@/data/home/unit4'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 
@@ -11,7 +11,7 @@ const props = defineProps({
   },
 })
 
-const unitData = useUnitData(props, homeUnit4Data)
+const unitData = useUnitData(props, unit4Data)
 
 const unitBoxRef = ref(null)
 const playPath = ref(false)

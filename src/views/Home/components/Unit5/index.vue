@@ -3,7 +3,7 @@ import Item from './components/Item/index.vue'
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit5Data } from '@/data/home/home-unit5'
+import { unit5Data } from '@/data/home/unit5'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { useUnitData } from '@/composables/useUnitData'
 
@@ -21,7 +21,7 @@ const cmsData = computed(() => {
   return homeNav?.moduleList?.unit5?.data || null
 })
 
-const unitData = useUnitData(props, homeUnit5Data, { cmsData })
+const unitData = useUnitData(props, unit5Data, { cmsData })
 const list = computed(() => unitData.value.newsList)
 
 const bannerCurrent = ref(0)

@@ -15,16 +15,16 @@ import { computed } from 'vue'
  *
  * @example
  * // 标准用法（仅 props.data 合并）
- * const unitData = useUnitData(props, product1Unit1Data)
+ * const unitData = useUnitData(props, unit1Data)
  *
  * @example
  * // 带 CMS Store 降级
  * const cmsData = computed(() => cmsNavStore.getNavByName('Home')?.moduleList?.unit5?.data)
- * const unitData = useUnitData(props, homeUnit5Data, { cmsData })
+ * const unitData = useUnitData(props, unit5Data, { cmsData })
  *
  * @example
  * // 带深层合并
- * const unitData = useUnitData(props, product4Unit12Data, { deepMergeKeys: ['content', 'images'] })
+ * const unitData = useUnitData(props, unit12Data, { deepMergeKeys: ['content', 'images'] })
  */
 export function useUnitData(props, localData, options = {}) {
   const { cmsData, deepMergeKeys } = options

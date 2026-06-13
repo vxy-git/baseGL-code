@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { homeUnit3Data } from '@/data/home/home-unit3'
+import { unit3Data } from '@/data/home/unit3'
 import { useRouter } from 'vue-router'
 import { useUnitData } from '@/composables/useUnitData'
 
@@ -11,7 +11,7 @@ const props = defineProps({
   },
 })
 
-const unitData = useUnitData(props, homeUnit3Data)
+const unitData = useUnitData(props, unit3Data)
 
 const router = useRouter()
 

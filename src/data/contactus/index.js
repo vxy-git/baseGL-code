@@ -2,7 +2,7 @@
  * ContactUs 页面 CMS 数据配置
  */
 
-import { contactUsData } from './contactus.js'
+import { data } from './data.js'
 
 export default {
   // 路由配置
@@ -28,7 +28,7 @@ export default {
   modules: {
     contactus: {
       enabled: true,
-      data: contactUsData,
+      data: data,
     },
   },
 }

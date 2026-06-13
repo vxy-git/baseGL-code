@@ -1,13 +1,13 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
-import { whyCaleafUnit7Data } from '@/data/why-caleaf/why-caleaf-unit7'
+import { unit7Data } from '@/data/why-caleaf/unit7'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
   data: { type: Object, default: null },
 })
 
-const unitData = useUnitData(props, whyCaleafUnit7Data)
+const unitData = useUnitData(props, unit7Data)
 </script>
 
 <template>
