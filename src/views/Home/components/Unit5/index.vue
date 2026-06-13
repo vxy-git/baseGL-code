@@ -6,6 +6,7 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit5Data } from '@/data/home/home-unit5'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
@@ -21,21 +22,7 @@ const cmsData = computed(() => {
   return homeNav?.moduleList?.unit5?.data || null
 })
 
-const unitData = computed(() => {
-  // 1. Props
-  if (props.data) return { ...homeUnit5Data, ...props.data }
-
-  // 2. CMS Store
-  if (cmsData.value) {
-    return {
-      ...homeUnit5Data,
-      ...cmsData.value
-    }
-  }
-
-  // 3. Local
-  return homeUnit5Data
-})
+const unitData = useUnitData(props, homeUnit5Data, { cmsData })
 const list = computed(() => unitData.value.newsList)
 
 const bannerCurrent = ref(0)

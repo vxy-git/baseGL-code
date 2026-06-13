@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
 
@@ -10,12 +10,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2GsapUData, ...props.data };
-  }
-  return product2GsapUData;
-});
+const unitData = useUnitData(props, product2GsapUData)
 </script>
 
 <template>

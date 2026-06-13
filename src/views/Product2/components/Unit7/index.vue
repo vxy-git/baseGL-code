@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { useUnitData } from '@/composables/useUnitData'
 import Tabs from "./Tabs/index.vue";
 import { ref, watch, nextTick } from "vue";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
@@ -13,12 +13,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2Unit7Data, ...props.data };
-  }
-  return product2Unit7Data;
-});
+const unitData = useUnitData(props, product2Unit7Data)
 
 const tabsCurrent = ref(0)
 

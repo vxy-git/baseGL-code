@@ -1,5 +1,6 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaAsset from '@/components/MediaAsset.vue'
@@ -14,12 +15,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2Unit8Data, ...props.data };
-  }
-  return product2Unit8Data;
-});
+const unitData = useUnitData(props, product2Unit8Data)
 
 const moduleRef = ref(null);
 const stageRef = ref(null);

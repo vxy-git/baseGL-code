@@ -2,8 +2,7 @@
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit3Data } from '@/data/home/home-unit3'
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
-import { useCmsNavStore } from '@/stores/cmsNav'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
@@ -12,28 +11,7 @@ const props = defineProps({
   }
 })
 
-const cmsNavStore = useCmsNavStore()
-
-const cmsData = computed(() => {
-  const homeNav = cmsNavStore.getNavByName('Home')
-  return homeNav?.moduleList?.unit3?.data || null
-})
-
-const unitData = computed(() => {
-  // 1. Props
-  if (props.data) return { ...homeUnit3Data, ...props.data }
-
-  // 2. CMS Store
-  if (cmsData.value) {
-    return {
-      ...homeUnit3Data,
-      ...cmsData.value
-    }
-  }
-
-  // 3. Local
-  return homeUnit3Data
-})
+const unitData = useUnitData(props, homeUnit3Data)
 
 const router = useRouter()
 

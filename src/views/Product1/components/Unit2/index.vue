@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit2Data  } from '@/data/product1/product1-unit2'
 
@@ -12,12 +12,7 @@ const props = defineProps({
 });
 
 // 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product1Unit2Data, ...props.data };
-  }
-  return product1Unit2Data;
-});
+const unitData = useUnitData(props, product1Unit2Data)
 </script>
 
 <template>

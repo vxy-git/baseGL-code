@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
@@ -14,12 +15,7 @@ const props = defineProps({
   }
 })
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2GsapUData, ...props.data }
-  }
-  return product2GsapUData
-})
+const unitData = useUnitData(props, product2GsapUData)
 
 const seqProgress = ref(0)
 const { frames, tarURL, imageFile, imageName, imageExtension } = unitData.value.frameConfig

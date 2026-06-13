@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit8Data  } from '@/data/product3/product3-unit8'
+import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
@@ -12,12 +13,7 @@ const props = defineProps({
 });
 
 // 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product3Unit8Data, ...props.data };
-  }
-  return product3Unit8Data;
-});
+const unitData = useUnitData(props, product3Unit8Data)
 
 // 卡片总数量
 const totalCards = 4

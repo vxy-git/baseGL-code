@@ -1,5 +1,6 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product2Unit2Data  } from '@/data/product2/product2-unit2'
 
@@ -10,12 +11,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2Unit2Data, ...props.data };
-  }
-  return product2Unit2Data;
-});
+const unitData = useUnitData(props, product2Unit2Data)
 
 const marqueeItems = [...product2Unit2Data.marqueeWords]
 

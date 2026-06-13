@@ -1,15 +1,12 @@
 <script setup>
-import { computed } from 'vue'
+import { useUnitData } from '@/composables/useUnitData'
 import { whyCaleafUnit2Data } from '@/data/why-caleaf/why-caleaf-unit2'
 
 const props = defineProps({
   data: { type: Object, default: null }
 })
 
-const unitData = computed(() => {
-  if (props.data) return { ...whyCaleafUnit2Data, ...props.data }
-  return whyCaleafUnit2Data
-})
+const unitData = useUnitData(props, whyCaleafUnit2Data)
 </script>
 
 <template>

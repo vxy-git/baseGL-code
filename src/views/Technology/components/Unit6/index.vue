@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { technologyUnit6Data } from '@/data/technology/technology-unit6.js'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { useUnitData } from '@/composables/useUnitData'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -21,11 +22,7 @@ const cmsData = computed(() => {
   return techNav?.moduleList?.unit6?.data || null
 })
 
-const unitData = computed(() => {
-  if (props.data) return { ...technologyUnit6Data, ...props.data }
-  if (cmsData.value) return { ...technologyUnit6Data, ...cmsData.value }
-  return technologyUnit6Data
-})
+const unitData = useUnitData(props, technologyUnit6Data, { cmsData })
 
 const sectionRef = ref(null)
 const mediaBoxRef = ref(null)

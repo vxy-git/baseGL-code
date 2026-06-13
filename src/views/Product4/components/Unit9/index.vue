@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit9Data  } from '@/data/product4/product4-unit9.js'
-import { computed } from 'vue';
+import { useUnitData } from '@/composables/useUnitData';
 
 const props = defineProps({
   data: {
@@ -10,12 +10,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product4Unit9Data, ...props.data };
-  }
-  return product4Unit9Data;
-});
+const unitData = useUnitData(props, product4Unit9Data);
 </script>
 
 <template>

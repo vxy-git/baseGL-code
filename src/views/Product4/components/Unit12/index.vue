@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit12Data  } from '@/data/product4/product4-unit12.js'
+import { useUnitData } from '@/composables/useUnitData';
 
 const props = defineProps({
   data: {
@@ -12,20 +13,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return {
-      ...product4Unit12Data,
-      ...props.data,
-      content: {
-        ...product4Unit12Data.content,
-        ...(props.data.content || {})
-      },
-      images: props.data.images || product4Unit12Data.images
-    };
-  }
-  return product4Unit12Data;
-});
+const unitData = useUnitData(props, product4Unit12Data, { deepMergeKeys: ['content', 'images'] });
 
 gsap.registerPlugin(ScrollTrigger)
 

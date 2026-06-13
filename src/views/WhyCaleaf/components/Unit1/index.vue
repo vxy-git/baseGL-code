@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { useUnitData } from '@/composables/useUnitData'
 import { whyCaleafUnit1Data } from '@/data/why-caleaf/why-caleaf-unit1'
 import MediaAsset from '@/components/MediaAsset.vue'
 
@@ -7,10 +7,7 @@ const props = defineProps({
   data: { type: Object, default: null }
 })
 
-const unitData = computed(() => {
-  if (props.data) return { ...whyCaleafUnit1Data, ...props.data }
-  return whyCaleafUnit1Data
-})
+const unitData = useUnitData(props, whyCaleafUnit1Data)
 </script>
 
 <template>

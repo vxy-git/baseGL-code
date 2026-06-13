@@ -1,5 +1,6 @@
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { product2Unit6Data  } from '@/data/product2/product2-unit6'
@@ -11,12 +12,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product2Unit6Data, ...props.data };
-  }
-  return product2Unit6Data;
-});
+const unitData = useUnitData(props, product2Unit6Data)
 
 const unitRef = ref(null)
 const innerRef = ref(null)

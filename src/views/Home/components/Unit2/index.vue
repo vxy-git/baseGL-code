@@ -8,6 +8,7 @@ import { homeUnit2Data } from "@/data/home/home-unit2"
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import MediaAsset from '@/components/MediaAsset.vue'
+import { useUnitData } from '@/composables/useUnitData'
 
 // 降级导入（保留用于无 CMS 数据时）
 const { tabs: staticTabs, products: staticProducts } = productsData
@@ -27,21 +28,7 @@ const cmsData = computed(() => {
   return homeNav?.moduleList?.unit2?.data || null
 })
 
-const unitData = computed(() => {
-  // 1. Props
-  if (props.data) return { ...homeUnit2Data, ...props.data }
-
-  // 2. CMS Store
-  if (cmsData.value) {
-    return {
-      ...homeUnit2Data,
-      ...cmsData.value
-    }
-  }
-
-  // 3. Local
-  return homeUnit2Data
-})
+const unitData = useUnitData(props, homeUnit2Data, { cmsData })
 
 // 提取 tabs 列表（优先使用 CMS 数据，与 ProductList 保持一致）
 const tabsList = computed(() => {

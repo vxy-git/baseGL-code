@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit3Data  } from '@/data/product3/product3-unit3'
+import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
@@ -15,12 +16,7 @@ const props = defineProps({
 });
 
 // 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product3Unit3Data, ...props.data };
-  }
-  return product3Unit3Data;
-});
+const unitData = useUnitData(props, product3Unit3Data)
 
 gsap.registerPlugin(ScrollTrigger)
 

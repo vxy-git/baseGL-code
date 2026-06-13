@@ -3,6 +3,7 @@ import Tabs from "./Tabs/index.vue";
 import MediaAsset from '@/components/MediaAsset.vue';
 import { product1Unit5Data  } from '@/data/product1/product1-unit5'
 import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
+import { useUnitData } from '@/composables/useUnitData'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { useIntersectionObserver } from '@vueuse/core';
 
@@ -15,12 +16,7 @@ const props = defineProps({
 });
 
 // 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product1Unit5Data, ...props.data };
-  }
-  return product1Unit5Data;
-});
+const unitData = useUnitData(props, product1Unit5Data)
 
 const tabsCurrent = ref(0)
 const tabsList = computed(() => unitData.value.tabsList)

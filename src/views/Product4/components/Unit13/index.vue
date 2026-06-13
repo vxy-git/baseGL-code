@@ -1,7 +1,8 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit13Data  } from '@/data/product4/product4-unit13.js'
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import { useUnitData } from '@/composables/useUnitData';
 
 const props = defineProps({
   data: {
@@ -10,12 +11,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product4Unit13Data, ...props.data };
-  }
-  return product4Unit13Data;
-});
+const unitData = useUnitData(props, product4Unit13Data);
 
 const cardBoxRef = ref(null);
 

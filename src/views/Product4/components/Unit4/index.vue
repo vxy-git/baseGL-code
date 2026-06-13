@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit4Data  } from '@/data/product4/product4-unit4.js'
+import { useUnitData } from '@/composables/useUnitData';
 
 const props = defineProps({
   data: {
@@ -12,12 +13,7 @@ const props = defineProps({
   }
 });
 
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product4Unit4Data, ...props.data };
-  }
-  return product4Unit4Data;
-});
+const unitData = useUnitData(props, product4Unit4Data);
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)

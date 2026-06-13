@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import { useIntersectionObserver } from "@vueuse/core";
 import MediaAsset from "@/components/MediaAsset.vue";
 import { product1Unit8Data  } from '@/data/product1/product1-unit8'
+import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
@@ -14,12 +15,7 @@ const props = defineProps({
 });
 
 // 合并 CMS 数据和本地数据
-const unitData = computed(() => {
-  if (props.data) {
-    return { ...product1Unit8Data, ...props.data };
-  }
-  return product1Unit8Data;
-});
+const unitData = useUnitData(props, product1Unit8Data)
 
 const list = computed(() => unitData.value.designImages)
 

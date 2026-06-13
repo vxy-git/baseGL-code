@@ -1,8 +1,8 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { homeUnit4Data } from '@/data/home/home-unit4'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { useCmsNavStore } from '@/stores/cmsNav'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
@@ -11,28 +11,7 @@ const props = defineProps({
   }
 })
 
-const cmsNavStore = useCmsNavStore()
-
-const cmsData = computed(() => {
-  const homeNav = cmsNavStore.getNavByName('Home')
-  return homeNav?.moduleList?.unit4?.data || null
-})
-
-const unitData = computed(() => {
-  // 1. Props
-  if (props.data) return { ...homeUnit4Data, ...props.data }
-
-  // 2. CMS Store
-  if (cmsData.value) {
-    return {
-      ...homeUnit4Data,
-      ...cmsData.value
-    }
-  }
-
-  // 3. Local
-  return homeUnit4Data
-})
+const unitData = useUnitData(props, homeUnit4Data)
 
 const unitBoxRef = ref(null)
 const playPath = ref(false)
