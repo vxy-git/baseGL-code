@@ -32,7 +32,7 @@ export function useGsap(options = {}) {
 
   return {
     gsap,
-    ScrollTrigger
+    ScrollTrigger,
   }
 }
 
@@ -60,8 +60,8 @@ export function useScrollAnimation(trigger, animationProps, scrollTriggerProps =
         start: 'top 80%',
         end: 'bottom 20%',
         toggleActions: 'play none none reverse',
-        ...scrollTriggerProps
-      }
+        ...scrollTriggerProps,
+      },
     })
   })
 
@@ -96,8 +96,8 @@ export function useParallax(element, speed = 0.5) {
         trigger: element,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: true
-      }
+        scrub: true,
+      },
     })
   })
 

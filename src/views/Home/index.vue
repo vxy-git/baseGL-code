@@ -1,19 +1,19 @@
 <script setup>
 import { useRenderList } from '@/composables/useRenderList'
 import Header from '@/components/Header/index.vue'
-import Unit1 from "./components/Unit1/index.vue"
-import Unit2 from "./components/Unit2/index.vue"
-import Unit3 from "./components/Unit3/index.vue"
-import Unit4 from "./components/Unit4/index.vue"
-import Unit5 from "./components/Unit5/index.vue"
-import Unit6 from "./components/Unit6/index.vue"
-import Footer from "@/components/Footer/Footer.vue"
+import Unit1 from './components/Unit1/index.vue'
+import Unit2 from './components/Unit2/index.vue'
+import Unit3 from './components/Unit3/index.vue'
+import Unit4 from './components/Unit4/index.vue'
+import Unit5 from './components/Unit5/index.vue'
+import Unit6 from './components/Unit6/index.vue'
+import Footer from '@/components/Footer/Footer.vue'
 
 const props = defineProps({
   pageConfig: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 
 const componentMap = {
@@ -22,7 +22,7 @@ const componentMap = {
   unit3: Unit3,
   unit4: Unit4,
   unit5: Unit5,
-  unit6: Unit6
+  unit6: Unit6,
 }
 
 const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6']
@@ -36,9 +36,9 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
     <div>
       <Header />
       <component
+        :is="item.component"
         v-for="item in renderList"
         :key="item.key"
-        :is="item.component"
         :data="item.data"
       />
       <div class="pt-[20px]">

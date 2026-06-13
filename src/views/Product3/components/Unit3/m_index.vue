@@ -1,5 +1,5 @@
 <script setup>
-import MediaAsset from "@/components/MediaAsset.vue";
+import MediaAsset from '@/components/MediaAsset.vue'
 import { product3Unit3Data } from '@/data/product3/product3-unit3'
 const m1 = '/api/uploads/file/default/assets/product3/unit3/m1.jpg'
 const m2 = '/api/uploads/file/default/assets/product3/unit3/m2.jpg'
@@ -27,11 +27,19 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 
       <div class="relative w-full planM">
         <div class="text-block c_padding">
-          <div class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
+          <div
+            class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70"
+          >
             <div>
               <div class="flex text">
                 {{ product3Unit3Data.textBlocks.tb3Content.figure }}
-                <MediaAsset :src="product3Unit3Data.arrowIcon" type="image" class="h-[39.805px]" alt="" :lazy="false" />
+                <MediaAsset
+                  :src="product3Unit3Data.arrowIcon"
+                  type="image"
+                  class="h-[39.805px]"
+                  alt=""
+                  :lazy="false"
+                />
               </div>
               <div class="text1">
                 {{ product3Unit3Data.textBlocks.tb3Content.label }}
@@ -101,14 +109,14 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
   font-style: normal;
   font-weight: 700;
   line-height: 80px;
-  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
+  background: linear-gradient(180deg, #caa4fb 0%, #e0b8ff 50%, #caa4fb 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .title1 {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -118,7 +126,7 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -128,7 +136,7 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 }
 
 .title3 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -138,7 +146,7 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 }
 
 .text {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -147,7 +155,7 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 }
 
 .text1 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -156,7 +164,7 @@ const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
 }
 
 .text2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

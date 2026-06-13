@@ -1,18 +1,23 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>
 
 <template>
   <div class="item rounded-[20px] flex-shrink-0 overflow-hidden relative">
-    <MediaAsset class="w-full h-full object-cover" :type="data.type || 'image'" :src="data.img" :alt="data.alt || ''"
-      :lazy="false" />
+    <MediaAsset
+      class="w-full h-full object-cover"
+      :type="data.type || 'image'"
+      :src="data.img"
+      :alt="data.alt || ''"
+      :lazy="false"
+    />
     <div class="titleBox">
       <div class="title">
         {{ data.title }}
@@ -43,14 +48,14 @@ const props = defineProps({
     flex-shrink: 0;
     border-radius: 0 0 20px 20px;
     opacity: 0.3;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
   }
 
   .title {
     position: absolute;
     bottom: 30px;
     z-index: 1;
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 24px;
     font-style: normal;

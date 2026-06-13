@@ -16,7 +16,7 @@ export const product4Unit12Data = {
     '/api/uploads/file/default/assets/product4/unit9-3.jpg',
     '/api/uploads/file/default/assets/product4/unit9-4.jpg',
     '/api/uploads/file/default/assets/product4/unit9-5.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-6.jpg'
+    '/api/uploads/file/default/assets/product4/unit9-6.jpg',
   ],
 
   /**

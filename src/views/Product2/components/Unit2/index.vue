@@ -2,14 +2,14 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit2Data  } from '@/data/product2/product2-unit2'
+import { product2Unit2Data } from '@/data/product2/product2-unit2'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit2Data)
 
@@ -48,7 +48,11 @@ onBeforeUnmount(() => {
   <div class="c_1230 c_padding pt-[120px]">
     <div class="title">
       {{ unitData.mainTitle }}
-      <span ref="marqueeEl" class="text-[#3ad3ff] smoothness-marquee" aria-label="Smoothness ticker">
+      <span
+        ref="marqueeEl"
+        class="text-[#3ad3ff] smoothness-marquee"
+        aria-label="Smoothness ticker"
+      >
         <span :key="marqueeKey" class="smoothness-track">
           <span v-for="(word, index) in marqueeItems" :key="index" class="smoothness-item">
             {{ word }}
@@ -71,7 +75,7 @@ onBeforeUnmount(() => {
 .title {
   margin: auto;
   max-width: 1000px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Inter;
   font-size: 40px;
@@ -119,7 +123,7 @@ onBeforeUnmount(() => {
   80% {
     transform: translateY(-2.4em);
   }
- 
+
   100% {
     transform: translateY(-3.6em);
   }

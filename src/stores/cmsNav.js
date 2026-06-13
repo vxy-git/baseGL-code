@@ -2,7 +2,13 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
-import { isEnabled, isTopLevel, isHeaderVisible, isFooterVisible, resolveNavLink } from '@/utils/navFilter'
+import {
+  isEnabled,
+  isTopLevel,
+  isHeaderVisible,
+  isFooterVisible,
+  resolveNavLink,
+} from '@/utils/navFilter'
 
 /**
  * CMS 导航数据 Store
@@ -130,8 +136,8 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     }
 
     // 检查是否有子菜单
-    const hasChildren = allNavs.some(n =>
-      n.parentId === nav.ID && isEnabled(n) && n.headerShow === true
+    const hasChildren = allNavs.some(
+      n => n.parentId === nav.ID && isEnabled(n) && n.headerShow === true
     )
 
     if (hasChildren) {
@@ -152,8 +158,8 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   function formatFooterColumn(nav, allNavs) {
     const column = { title: nav.navName || '', links: [] }
 
-    const children = allNavs.filter(n =>
-      n.parentId === nav.ID && isEnabled(n) && n.footerShow === true
+    const children = allNavs.filter(
+      n => n.parentId === nav.ID && isEnabled(n) && n.footerShow === true
     )
 
     column.links = children.map(child => {
@@ -219,9 +225,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   const productCategories = computed(() => {
     if (!navList.value.length) return []
 
-    const productsNav = navList.value.find(n =>
-      n.navName === 'Products' && isEnabled(n)
-    )
+    const productsNav = navList.value.find(n => n.navName === 'Products' && isEnabled(n))
 
     if (!productsNav) return []
 
@@ -250,7 +254,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
           isNew: itemData.isNew || false,
           linkType: p.navUrl?.replace(/^\//, '') || '',
           navUrl: p.navUrl,
-          moduleList: p.moduleList
+          moduleList: p.moduleList,
         }
       })
 
@@ -258,7 +262,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         id: cat.ID,
         label: cat.navName,
         navUrl: cat.navUrl,
-        products
+        products,
       }
     })
   })
@@ -286,6 +290,6 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     footerColumns,
     bannerNavs,
     productCategories,
-    hasData
+    hasData,
   }
 })

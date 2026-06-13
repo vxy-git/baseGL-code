@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const unitData = useUnitData(props, product2GsapUData)
@@ -29,8 +29,12 @@ const title3 = ref(null)
 const image = ref(null)
 
 const isMobile = ref(false)
-const updateIsMobile = () => { isMobile.value = window.innerWidth <= 768 }
-if (typeof window !== 'undefined') { isMobile.value = window.innerWidth <= 768 }
+const updateIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+if (typeof window !== 'undefined') {
+  isMobile.value = window.innerWidth <= 768
+}
 
 let tl
 
@@ -45,14 +49,30 @@ onMounted(() => {
       pin: true,
       scrub: 1,
       anticipatePin: 1,
-      fastScrollEnd: false
-    }
+      fastScrollEnd: false,
+    },
   })
-  tl.add(() => { seqProgress.value = 0 })
+  tl.add(() => {
+    seqProgress.value = 0
+  })
     .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
-    .fromTo(textBlock.value, { yPercent: 0 }, { yPercent: 0, duration: 3.0, ease: 'power1.out' }, '<')
-    .fromTo([title1.value, title2.value, title3.value, image.value], { opacity: 0, yPercent: 15 }, { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')
-    .to([title1.value, title2.value, title3.value, image.value], {opacity: 1, yPercent: -10, duration: 1.2, stagger: 0.2, ease: 'power1.inOut' }, '+=1.0')
+    .fromTo(
+      textBlock.value,
+      { yPercent: 0 },
+      { yPercent: 0, duration: 3.0, ease: 'power1.out' },
+      '<'
+    )
+    .fromTo(
+      [title1.value, title2.value, title3.value, image.value],
+      { opacity: 0, yPercent: 15 },
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' },
+      '<+=0.4'
+    )
+    .to(
+      [title1.value, title2.value, title3.value, image.value],
+      { opacity: 1, yPercent: -10, duration: 1.2, stagger: 0.2, ease: 'power1.inOut' },
+      '+=1.0'
+    )
     .to(pinSection.value, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
 })
 
@@ -66,23 +86,30 @@ onUnmounted(() => {
 <template>
   <div class="pt-[133px]">
     <section ref="pinSection" class="sequence-wrap relative">
-      <div ref="frameContainer" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
-         <FrameSequence
+      <div
+        ref="frameContainer"
+        class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full"
+      >
+        <FrameSequence
           :frames="frames"
-          :tarURL="tarURL"
-          :imageFile="imageFile"
-          :imageName="imageName"
-          :imageExtension="imageExtension || '.jpg'"
+          :tar-u-r-l="tarURL"
+          :image-file="imageFile"
+          :image-name="imageName"
+          :image-extension="imageExtension || '.jpg'"
           :progress="seqProgress"
-          :objectFit="isMobile ? 'contain' : 'cover'"
+          :object-fit="isMobile ? 'contain' : 'cover'"
         />
       </div>
       <div ref="textBlock" class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div class="text-block">
             <div class="c_1230 c_padding">
-              <div ref="title1" class="title1 translate-y-[1px] text-center">{{ unitData.content.labelText }}</div>
-              <div ref="title2" class="title2 mt-[19px] whitespace-break-spaces">{{ unitData.content.mainTitle }}</div>
+              <div ref="title1" class="title1 translate-y-[1px] text-center">
+                {{ unitData.content.labelText }}
+              </div>
+              <div ref="title2" class="title2 mt-[19px] whitespace-break-spaces">
+                {{ unitData.content.mainTitle }}
+              </div>
               <div ref="title3" class="title3 mt-[19px]">{{ unitData.content.description }}</div>
             </div>
           </div>
@@ -126,7 +153,7 @@ onUnmounted(() => {
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -139,7 +166,7 @@ onUnmounted(() => {
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -149,7 +176,6 @@ onUnmounted(() => {
 }
 
 .text-block {
-
   .title1,
   .title2,
   .title3,

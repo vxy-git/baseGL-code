@@ -1,28 +1,28 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit8Data  } from '@/data/product2/product2-unit8'
+import { product2Unit8Data } from '@/data/product2/product2-unit8'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit8Data)
 
-const moduleRef = ref(null);
-const stageRef = ref(null);
-const unitRef = ref(null);
-const imgBox1Ref = ref(null);
-const imgBox2Ref = ref(null);
-let scrollTl;
+const moduleRef = ref(null)
+const stageRef = ref(null)
+const unitRef = ref(null)
+const imgBox1Ref = ref(null)
+const imgBox2Ref = ref(null)
+let scrollTl
 
 const initScroll = () => {
   scrollTl = gsap.timeline({
@@ -37,32 +37,32 @@ const initScroll = () => {
       anticipatePin: 1,
       invalidateOnRefresh: true,
     },
-  });
+  })
 
-  scrollTl.to(unitRef.value, { scale: 1, duration: 1 });
+  scrollTl.to(unitRef.value, { scale: 1, duration: 1 })
   scrollTl.fromTo(
     imgBox1Ref.value,
     { xPercent: 0 },
     { xPercent: 50, duration: 1, immediateRender: false },
     'move'
-  );
+  )
   scrollTl.fromTo(
     imgBox2Ref.value,
     { xPercent: 0 },
     { xPercent: -50, duration: 1, immediateRender: false },
     'move'
-  );
-  scrollTl.to({}, { duration: 0.5 }); // 结束后额外停留，再滚动离开
+  )
+  scrollTl.to({}, { duration: 0.5 }) // 结束后额外停留，再滚动离开
 }
 
 onMounted(() => {
-  initScroll();
-  ScrollTrigger.refresh();
-});
+  initScroll()
+  ScrollTrigger.refresh()
+})
 
 onBeforeUnmount(() => {
-  scrollTl && scrollTl.kill();
-});
+  scrollTl && scrollTl.kill()
+})
 </script>
 
 <template>
@@ -75,12 +75,23 @@ onBeforeUnmount(() => {
     </div>
     <div class="mt-[54px] overflow-hidden">
       <div ref="stageRef" class="unit-stage">
-        <div ref="unitRef" class="unitbox max-w-[1500px] mx-auto w-full flex flex-col justify-center items-center">
+        <div
+          ref="unitRef"
+          class="unitbox max-w-[1500px] mx-auto w-full flex flex-col justify-center items-center"
+        >
           <div class="w-[1500px] h-[300px]">
             <div class="size-full overflow-hidden flex justify-end">
               <div ref="imgBox1Ref" class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
-                <div v-for="(img, index) in [...unitData.designImages.top, ...unitData.designImages.top]" :key="`top-${index}`" class="h-full w-[480px]" :class="{ 'rounded-[20px]': index % 2 === 1 }">
+                <div
+                  v-for="(img, index) in [
+                    ...unitData.designImages.top,
+                    ...unitData.designImages.top,
+                  ]"
+                  :key="`top-${index}`"
+                  class="h-full w-[480px]"
+                  :class="{ 'rounded-[20px]': index % 2 === 1 }"
+                >
                   <MediaAsset
                     :src="img"
                     type="image"
@@ -97,7 +108,14 @@ onBeforeUnmount(() => {
             <div class="size-full overflow-hidden">
               <div ref="imgBox2Ref" class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <div v-for="(img, index) in [...unitData.designImages.bottom, ...unitData.designImages.bottom]" :key="`bottom-${index}`" class="h-full w-[480px] rounded-[20px]">
+                <div
+                  v-for="(img, index) in [
+                    ...unitData.designImages.bottom,
+                    ...unitData.designImages.bottom,
+                  ]"
+                  :key="`bottom-${index}`"
+                  class="h-full w-[480px] rounded-[20px]"
+                >
                   <MediaAsset
                     :src="img"
                     type="image"
@@ -128,7 +146,7 @@ onBeforeUnmount(() => {
 }
 
 .title1 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -139,7 +157,7 @@ onBeforeUnmount(() => {
 }
 
 .mask1 {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #000 46.49%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 46.49%);
   width: 185px;
   height: 120%;
   flex-shrink: 0;

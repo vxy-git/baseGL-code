@@ -55,7 +55,11 @@ export function useUnitData(props, localData, options = {}) {
       if (deepMergeKeys && deepMergeKeys.length > 0) {
         const result = { ...localData, ...props.data }
         for (const key of deepMergeKeys) {
-          if (localData[key] && typeof localData[key] === 'object' && !Array.isArray(localData[key])) {
+          if (
+            localData[key] &&
+            typeof localData[key] === 'object' &&
+            !Array.isArray(localData[key])
+          ) {
             result[key] = deepMerge(localData[key], props.data[key] || {})
           }
         }

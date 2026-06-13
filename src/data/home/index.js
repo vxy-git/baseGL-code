@@ -27,34 +27,34 @@ export default {
   // ==================== 页面元数据 ====================
   meta: {
     title: 'Caleaf - Premium Vaporizer Technology',
-    description: 'Discover Caleaf\'s innovative vaporizer series featuring UNICORE technology'
+    description: "Discover Caleaf's innovative vaporizer series featuring UNICORE technology",
   },
 
   // ==================== 模块数据集合 ====================
   modules: {
     unit1: {
       enabled: true,
-      data: homeUnit1Data
+      data: homeUnit1Data,
     },
     unit2: {
       enabled: true,
-      data: homeUnit2Data
+      data: homeUnit2Data,
     },
     unit3: {
       enabled: true,
-      data: homeUnit3Data
+      data: homeUnit3Data,
     },
     unit4: {
       enabled: true,
-      data: homeUnit4Data
+      data: homeUnit4Data,
     },
     unit5: {
       enabled: true,
-      data: homeUnit5Data
+      data: homeUnit5Data,
     },
     unit6: {
       enabled: true,
-      data: homeUnit6Data
-    }
-  }
+      data: homeUnit6Data,
+    },
+  },
 }

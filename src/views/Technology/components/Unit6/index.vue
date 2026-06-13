@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -66,7 +66,7 @@ const initAnimation = () => {
       scrub: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      onUpdate: (self) => {
+      onUpdate: self => {
         const progress = self.progress
         if (progress >= PLAY_PROGRESS_START && progress <= 1) {
           if (!hasPlayedInExpanded) {
@@ -85,46 +85,70 @@ const initAnimation = () => {
       onLeaveBack: () => {
         pauseVideo()
         hasPlayedInExpanded = false
-      }
-    }
+      },
+    },
   })
 
   scrollTl
-    .to(mediaEl, {
-      x: 0,
-      ease: 'none',
-      duration: 0.35
-    }, 0)
-    .to(titleEl, {
-      x: 0,
-      autoAlpha: 1,
-      ease: 'none',
-      duration: 0.35
-    }, 0)
-    .to(descEl, {
-      x: 0,
-      autoAlpha: 1,
-      ease: 'none',
-      duration: 0.35
-    }, 0)
-    .to(mediaEl, {
-      width: TARGET_WIDTH,
-      height: TARGET_HEIGHT,
-      ease: 'none',
-      duration: 0.3
-    }, 0.35)
-    .to(mediaEl, {
-      width: TARGET_WIDTH,
-      height: TARGET_HEIGHT,
-      ease: 'none',
-      duration: 0.1
-    }, 0.65) // small hold before exit
-    .to([mediaEl, titleEl, descEl], {
-      y: -120,
-      autoAlpha: 0,
-      ease: 'power1.in',
-      duration: 0.25
-    }, 0.75)
+    .to(
+      mediaEl,
+      {
+        x: 0,
+        ease: 'none',
+        duration: 0.35,
+      },
+      0
+    )
+    .to(
+      titleEl,
+      {
+        x: 0,
+        autoAlpha: 1,
+        ease: 'none',
+        duration: 0.35,
+      },
+      0
+    )
+    .to(
+      descEl,
+      {
+        x: 0,
+        autoAlpha: 1,
+        ease: 'none',
+        duration: 0.35,
+      },
+      0
+    )
+    .to(
+      mediaEl,
+      {
+        width: TARGET_WIDTH,
+        height: TARGET_HEIGHT,
+        ease: 'none',
+        duration: 0.3,
+      },
+      0.35
+    )
+    .to(
+      mediaEl,
+      {
+        width: TARGET_WIDTH,
+        height: TARGET_HEIGHT,
+        ease: 'none',
+        duration: 0.1,
+      },
+      0.65
+    ) // small hold before exit
+    .to(
+      [mediaEl, titleEl, descEl],
+      {
+        y: -120,
+        autoAlpha: 0,
+        ease: 'power1.in',
+        duration: 0.25,
+      },
+      0.75
+    )
 }
 
 const handleResize = () => {
@@ -151,8 +175,17 @@ onUnmounted(() => {
       </div>
 
       <div ref="mediaBoxRef" class="media-box mt-[34px]">
-        <MediaAsset ref="mediaAssetRef" :src="unitData.video" type="video" alt="" class="media-asset !min-h-0" :controls="false"
-          :autoplay="false" :muted="true" :loop="true" />
+        <MediaAsset
+          ref="mediaAssetRef"
+          :src="unitData.video"
+          type="video"
+          alt=""
+          class="media-asset !min-h-0"
+          :controls="false"
+          :autoplay="false"
+          :muted="true"
+          :loop="true"
+        />
       </div>
 
       <div ref="descRef" class="title3 mt-[34px] whitespace-break-spaces">

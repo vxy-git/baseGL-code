@@ -11,11 +11,11 @@ export const whyCaleafUnit3Data = {
     { year: '2018', active: false },
     { year: '2023', active: true },
     { year: '2024', active: false },
-    { year: '2025', active: false }
+    { year: '2025', active: false },
   ],
   content: {
     title: 'Ranked among the top three cannabis vape manufacturers.',
     description:
-      'Our unwavering dedication to innovation and specialization was validated as our products became industry benchmarks, reinforcing our resolve to advance the frontier of vaporization technology.'
-  }
+      'Our unwavering dedication to innovation and specialization was validated as our products became industry benchmarks, reinforcing our resolve to advance the frontier of vaporization technology.',
+  },
 }

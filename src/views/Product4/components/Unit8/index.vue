@@ -1,18 +1,18 @@
 <script setup>
-import { product4Unit8Data  } from '@/data/product4/product4-unit8.js'
+import { product4Unit8Data } from '@/data/product4/product4-unit8.js'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useUnitData } from '@/composables/useUnitData';
+import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit8Data);
+const unitData = useUnitData(props, product4Unit8Data)
 
 const unitRef = ref(null)
 const innerRef = ref(null)
@@ -25,32 +25,26 @@ let scrollTl2
 const initScroll = () => {
   const maskEls = innerRef.value.querySelectorAll('.mask')
 
-  scrollTl1 = gsap.timeline({
-    defaults: { ease: 'none' },
-    scrollTrigger: {
-      trigger: unitRef.value,
-      start: 'center bottom',
-      end: 'center center',
-      scrub: true,
-      invalidateOnRefresh: true
-    }
-  })
-    .fromTo(
-      innerRef.value,
-      { yPercent: 50 },
-      { yPercent: 0 }
-    )
-    .to(
-      maskEls,
-      { width: '0%', height: '0%' },
-      0
-    )
+  scrollTl1 = gsap
+    .timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: unitRef.value,
+        start: 'center bottom',
+        end: 'center center',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    })
+    .fromTo(innerRef.value, { yPercent: 50 }, { yPercent: 0 })
+    .to(maskEls, { width: '0%', height: '0%' }, 0)
 
   const endDistance = () => {
     const panelsCount = trackRef.value?.querySelectorAll('.unit8-panel').length || 1
-    return window.innerHeight * (
-      1 + // first fade-only segment
-      (Math.max(panelsCount, 1) - 1) * ((moveDuration + pauseDuration) / moveDuration)
+    return (
+      window.innerHeight *
+      (1 + // first fade-only segment
+        (Math.max(panelsCount, 1) - 1) * ((moveDuration + pauseDuration) / moveDuration))
     )
   }
 
@@ -62,34 +56,38 @@ const initScroll = () => {
       start: 'center center',
       end: () => '+=' + endDistance(),
       scrub: true,
-      invalidateOnRefresh: true
-    }
+      invalidateOnRefresh: true,
+    },
   })
 
   const firstPanel = trackRef.value.querySelector('.unit8-panel')
   scrollTl2.to(firstPanel, {
     opacity: 0.2,
-    duration: moveDuration
+    duration: moveDuration,
   })
   scrollTl2.to(trackRef.value, {
     x: () => -1 * window.innerWidth,
-    duration: moveDuration
+    duration: moveDuration,
   })
-  scrollTl2.to(firstPanel, {
-    opacity: 0,
-    duration: moveDuration
-  }, '-=' + moveDuration)
+  scrollTl2.to(
+    firstPanel,
+    {
+      opacity: 0,
+      duration: moveDuration,
+    },
+    '-=' + moveDuration
+  )
   scrollTl2.to(trackRef.value, {
     x: () => -1 * window.innerWidth,
-    duration: pauseDuration
+    duration: pauseDuration,
   })
   scrollTl2.to(trackRef.value, {
     x: () => -2 * window.innerWidth,
-    duration: moveDuration
+    duration: moveDuration,
   })
   scrollTl2.to(trackRef.value, {
     x: () => -2 * window.innerWidth,
-    duration: pauseDuration
+    duration: pauseDuration,
   })
 }
 
@@ -133,7 +131,9 @@ onBeforeUnmount(() => {
                     {{ unitData.features.tasteSwitcher.description }}
                   </div>
                 </div>
-                <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
+                <div
+                  class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black"
+                >
                   <MediaAsset type="image" :src="unitData.images.tasteSwitcher" />
                 </div>
               </div>
@@ -157,7 +157,9 @@ onBeforeUnmount(() => {
                     {{ unitData.features.hitABlinker.description }}
                   </div>
                 </div>
-                <div class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black">
+                <div
+                  class="max-w-full shrink-0 h-[360px] w-[600px] rounded-[20px] overflow-hidden bg-black"
+                >
                   <MediaAsset type="image" :src="unitData.images.hitABlinker" />
                 </div>
               </div>
@@ -208,7 +210,7 @@ onBeforeUnmount(() => {
     height: 100%;
     width: 100%;
     display: block;
-    background: linear-gradient(270deg, #7A7FD9 0%, #E5525F 50%, #FB8047 100%);
+    background: linear-gradient(270deg, #7a7fd9 0%, #e5525f 50%, #fb8047 100%);
 
     &::after {
       content: '';
@@ -259,14 +261,14 @@ onBeforeUnmount(() => {
   font-weight: 900;
   line-height: 80px;
 
-  background: linear-gradient(270deg, #7A7FD9 0%, #E5525F 50%, #FB8047 100%);
+  background: linear-gradient(270deg, #7a7fd9 0%, #e5525f 50%, #fb8047 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .title1 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -276,7 +278,7 @@ onBeforeUnmount(() => {
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -288,7 +290,7 @@ onBeforeUnmount(() => {
 }
 
 .title3 {
-  color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 0.8);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -296,7 +298,7 @@ onBeforeUnmount(() => {
   text-align: center;
 
   .num {
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
@@ -319,7 +321,7 @@ onBeforeUnmount(() => {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  background: linear-gradient(90deg, #00FFF5 0%, #839DFF 50%, #BF48FF 100%);
+  background: linear-gradient(90deg, #00fff5 0%, #839dff 50%, #bf48ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

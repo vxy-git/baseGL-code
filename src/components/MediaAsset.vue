@@ -1,5 +1,12 @@
 <template>
-  <CdnImage v-if="isImage" v-bind="$attrs" :src="resolvedSrc" :alt="alt" :cdnUrl="resolvedCdnUrl" :lazy="lazy" />
+  <CdnImage
+    v-if="isImage"
+    v-bind="$attrs"
+    :src="resolvedSrc"
+    :alt="alt"
+    :cdn-url="resolvedCdnUrl"
+    :lazy="lazy"
+  />
   <video
     v-else
     ref="videoEl"
@@ -37,7 +44,7 @@ const props = defineProps({
   muted: { type: Boolean, default: false },
   loop: { type: Boolean, default: false },
   hoverPlay: { type: Boolean, default: false },
-  viewPlay: { type: Boolean, default: false }
+  viewPlay: { type: Boolean, default: false },
 })
 
 // 根据 src 自动判断资源类型
@@ -65,7 +72,7 @@ const isImage = computed(() => computedType.value === 'image')
 const resolvedCdnUrl = computed(() => props.cdnUrl || DEFAULT_CDN_URL)
 
 const isAbsoluteSrc = (value = '') => /^(https?:)?\/\//.test(value) || /^(data|blob):/.test(value)
-const normalizePath = (value = '') => value.startsWith('/') ? value : `/${value}`
+const normalizePath = (value = '') => (value.startsWith('/') ? value : `/${value}`)
 const resolvedSrc = computed(() => {
   if (isAbsoluteSrc(props.src)) return props.src
   const base = resolvedCdnUrl.value.replace(/\/+$/, '')
@@ -77,8 +84,12 @@ const videoEl = ref(null)
 const intersectionObserver = ref(null)
 const isMobile = ref(false)
 
-const effectiveAutoplay = computed(() => props.autoplay || ((props.viewPlay || props.hoverPlay) && isMobile.value))
-const effectiveLoop = computed(() => props.loop || ((props.viewPlay || props.hoverPlay) && isMobile.value))
+const effectiveAutoplay = computed(
+  () => props.autoplay || ((props.viewPlay || props.hoverPlay) && isMobile.value)
+)
+const effectiveLoop = computed(
+  () => props.loop || ((props.viewPlay || props.hoverPlay) && isMobile.value)
+)
 
 const updateIsMobile = () => {
   if (typeof window === 'undefined') return
@@ -91,7 +102,7 @@ function playFromStart() {
       videoEl.value.currentTime = 0
       const p = videoEl.value.play()
       if (p && typeof p.then === 'function') {
-        p.catch((err) => {
+        p.catch(err => {
           if (err.name !== 'AbortError') {
             logger.debug('[MediaAsset] 视频播放失败 (可能是自动播放限制):', err.message)
           }
@@ -146,28 +157,34 @@ function cleanupObserver() {
 function setupObserver() {
   cleanupObserver()
   if (!props.viewPlay || isImage.value || !videoEl.value || isMobile.value) return
-  intersectionObserver.value = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        playFromStart()
-      } else {
-        pause()
-        resetToStart()
-      }
-    })
-  }, { threshold: 0.25 })
+  intersectionObserver.value = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playFromStart()
+        } else {
+          pause()
+          resetToStart()
+        }
+      })
+    },
+    { threshold: 0.25 }
+  )
   intersectionObserver.value.observe(videoEl.value)
 }
 
-watch(() => props.viewPlay, () => {
-  setupObserver()
-})
+watch(
+  () => props.viewPlay,
+  () => {
+    setupObserver()
+  }
+)
 
 watch(videoEl, () => {
   setupObserver()
 })
 
-watch(isMobile, (val) => {
+watch(isMobile, val => {
   if (val) {
     cleanupObserver()
     if (props.viewPlay && videoEl.value) {
@@ -199,7 +216,6 @@ defineExpose({ playFromStart, pause, resetToStart, videoEl })
   // min-height: max-content;
   // max-height: max-content;
 }
-
 
 @media screen and (max-width: $breakpoint-mobile) {
 }

@@ -7,27 +7,27 @@ export const whyCaleafUnit7Data = {
   services: [
     {
       title: 'LA Facility & Operations Center',
-      image: '/assets/why-caleaf/service-la-facility.png'
+      image: '/assets/why-caleaf/service-la-facility.png',
     },
     {
       title: 'U.S. Partner Lab',
-      image: '/assets/why-caleaf/service-us-partner-lab.png'
+      image: '/assets/why-caleaf/service-us-partner-lab.png',
     },
     {
       title: 'U.S. Partner Co-Packer',
-      image: '/assets/why-caleaf/service-us-partner-copacker.png'
+      image: '/assets/why-caleaf/service-us-partner-copacker.png',
     },
     {
       title: 'US Stock & Local Shipping',
-      image: '/assets/why-caleaf/service-us-stock.png'
+      image: '/assets/why-caleaf/service-us-stock.png',
     },
     {
       title: 'Distributor Network Across\nEU and US',
-      image: '/assets/why-caleaf/service-distributor-network.png'
+      image: '/assets/why-caleaf/service-distributor-network.png',
     },
     {
       title: '48-Hour On-Site Solution',
-      image: '/assets/why-caleaf/service-48h-solution.png'
-    }
-  ]
+      image: '/assets/why-caleaf/service-48h-solution.png',
+    },
+  ],
 }

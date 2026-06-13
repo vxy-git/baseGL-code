@@ -18,10 +18,11 @@ export const product2Unit6Data = {
     {
       btn: 'UNIVERSE',
       title: 'It looks — and stays — beautiful.',
-      description: 'With big branding potential, it matches your vibe and makes the style uniquely yours.',
+      description:
+        'With big branding potential, it matches your vibe and makes the style uniquely yours.',
       mediaSrc: '/api/uploads/file/default/assets/product2/plck1.jpg',
       mediaType: 'image',
-      number: '01'
+      number: '01',
     },
     {
       btn: 'UNIVERSE Pro',
@@ -29,7 +30,7 @@ export const product2Unit6Data = {
       description: 'With advanced interactivity, it will dominate the market like a pro.',
       mediaSrc: '/api/uploads/file/default/assets/product2/plck2.mp4',
       mediaType: 'video',
-      number: '02'
+      number: '02',
     },
     {
       btn: 'UNIVERSE Pro',
@@ -37,8 +38,8 @@ export const product2Unit6Data = {
       description: 'With advanced interactivity, it will dominate the market like a pro.',
       mediaSrc: '/api/uploads/file/default/assets/product2/plck3.png',
       mediaType: 'image',
-      number: '03'
-    }
+      number: '03',
+    },
   ],
 
   /**

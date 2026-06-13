@@ -19,37 +19,37 @@ export const homeUnit1Data = {
    */
   bannerList: [
     {
-      title: "UNIVERSE Series",
-      subTitle: "UNICORE powered, the way to infinite.",
+      title: 'UNIVERSE Series',
+      subTitle: 'UNICORE powered, the way to infinite.',
       src: '/api/uploads/file/default/assets/home/Banner-1-UNIVERSE.mp4',
       type: 'video',
-      dotText: "UNIVERSE Series",
-      path: '/universe_series'
+      dotText: 'UNIVERSE Series',
+      path: '/universe_series',
     },
     {
-      title: "UNICORN Series",
-      subTitle: "UNICORE powered, the way to infinite.",
+      title: 'UNICORN Series',
+      subTitle: 'UNICORE powered, the way to infinite.',
       src: '/api/uploads/file/default/assets/home/Banner-2-UNICORN.mp4',
       type: 'video',
-      dotText: "UNICORN Series",
-      path: '/unicorn_series'
+      dotText: 'UNICORN Series',
+      path: '/unicorn_series',
     },
     {
-      title: "UNIT Pro",
+      title: 'UNIT Pro',
       subTitle: "From lab to award, 100% for Rosin we've perfected",
       src: '/api/uploads/file/default/assets/home/Banner-3-UNIT.mp4',
       type: 'video',
-      dotText: "UNIT Pro",
-      path: '/unit_pro'
+      dotText: 'UNIT Pro',
+      path: '/unit_pro',
     },
     {
-      title: "DUKES",
-      subTitle: "The best of both worlds, every puff with more hits.",
+      title: 'DUKES',
+      subTitle: 'The best of both worlds, every puff with more hits.',
       src: '/api/uploads/file/default/assets/home/Banner-4-DUKES.mp4',
       type: 'video',
-      dotText: "DUKES",
-      path: '/dukes'
-    }
+      dotText: 'DUKES',
+      path: '/dukes',
+    },
   ],
 
   /**

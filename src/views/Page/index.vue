@@ -2,8 +2,6 @@
   <div class="page-placeholder">页面加载中...</div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -22,39 +22,39 @@ export const product1Unit9Data = {
   deviceSpecs: [
     {
       label: 'Dimension(mm)',
-      value: '71.0H*37.5W*13.0D'
+      value: '71.0H*37.5W*13.0D',
     },
     {
       label: 'Tank Volume',
-      value: '1mL / 2mL'
+      value: '1mL / 2mL',
     },
     {
       label: 'Battery Capacity',
-      value: '280mAh'
+      value: '280mAh',
     },
     {
       label: 'Resistance',
-      value: '1.8ohm'
+      value: '1.8ohm',
     },
     {
       label: 'Voltage',
-      value: '1.8V-2.0V-2.2V'
+      value: '1.8V-2.0V-2.2V',
     },
     {
       label: 'Housing Material',
-      value: 'Plastic'
+      value: 'Plastic',
     },
     {
       label: 'Ceramic Core',
-      value: 'Unicore'
+      value: 'Unicore',
     },
     {
       label: 'Charging',
-      value: 'Type-C'
+      value: 'Type-C',
     },
     {
       label: 'Options of Activation',
-      value: 'Button & Inhale Activated'
-    }
+      value: 'Button & Inhale Activated',
+    },
   ],
 }

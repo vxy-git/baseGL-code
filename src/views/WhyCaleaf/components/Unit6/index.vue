@@ -4,7 +4,7 @@ import { whyCaleafUnit6Data } from '@/data/why-caleaf/why-caleaf-unit6'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit6Data)
@@ -16,7 +16,12 @@ const unitData = useUnitData(props, whyCaleafUnit6Data)
       <!-- Medical Grade Standard -->
       <div class="medical-row left-image">
         <div class="medical-image">
-          <MediaAsset type="image" :src="unitData.items[0].image" :lazy="true" :alt="unitData.items[0].title" />
+          <MediaAsset
+            type="image"
+            :src="unitData.items[0].image"
+            :lazy="true"
+            :alt="unitData.items[0].title"
+          />
         </div>
         <div class="medical-text">
           <h3 class="medical-title">{{ unitData.items[0].title }}</h3>
@@ -31,7 +36,12 @@ const unitData = useUnitData(props, whyCaleafUnit6Data)
           <p class="medical-desc">{{ unitData.items[1].description }}</p>
         </div>
         <div class="medical-image">
-          <MediaAsset type="image" :src="unitData.items[1].image" :lazy="true" :alt="unitData.items[1].title" />
+          <MediaAsset
+            type="image"
+            :src="unitData.items[1].image"
+            :lazy="true"
+            :alt="unitData.items[1].title"
+          />
         </div>
       </div>
     </div>
@@ -68,7 +78,6 @@ const unitData = useUnitData(props, whyCaleafUnit6Data)
   }
 }
 
-
 .medical-image {
   flex-shrink: 0;
 
@@ -88,7 +97,7 @@ const unitData = useUnitData(props, whyCaleafUnit6Data)
   font-weight: 700;
   font-size: 40px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 38px; // 4729 - 4661 - 30
 }
 
@@ -97,7 +106,7 @@ const unitData = useUnitData(props, whyCaleafUnit6Data)
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   max-width: 670px;
 }
 

@@ -33,9 +33,9 @@ export const product2GsapUData = {
     /**
      * 描述文本
      */
-    description: 'UNIVERSE Series is the ultimate portable solution for rosin enthusiasts. The little cutie disappears in your hand and fits flat in your pocket, making it the perfect companion for those on the go.',
+    description:
+      'UNIVERSE Series is the ultimate portable solution for rosin enthusiasts. The little cutie disappears in your hand and fits flat in your pocket, making it the perfect companion for those on the go.',
   },
-
 
   /**
    * 帧序列动画配置
@@ -44,6 +44,6 @@ export const product2GsapUData = {
     frames: 26,
     tarURL: '/api/uploads/file/default/product2.tar',
     imageName: 'frame',
-    imageExtension: '.jpg'
+    imageExtension: '.jpg',
   },
 }

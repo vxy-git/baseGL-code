@@ -18,7 +18,8 @@
       "Bash(grep -rnE \"\\(api[_-]?key|secret|token|password|sk-[a-zA-Z0-9]{20,}\\)\" src/ --include=\"*.js\" --include=\"*.vue\" --include=\"*.ts\")",
       "Bash(git rm *)",
       "Bash(git check-ignore *)",
-      "Bash(grep -v \"^--$\")"
+      "Bash(grep -v \"^--$\")",
+      "Bash(npx eslint *)"
     ],
     "deny": [],
     "ask": []

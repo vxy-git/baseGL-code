@@ -22,7 +22,7 @@ export const product3Unit6Data = {
     '/api/uploads/file/default/assets/product3/screen3.png',
     '/api/uploads/file/default/assets/product3/screen4.png',
     '/api/uploads/file/default/assets/product3/screen5.png',
-    '/api/uploads/file/default/assets/product3/screen6.png'
+    '/api/uploads/file/default/assets/product3/screen6.png',
   ],
 
   /**
@@ -50,6 +50,6 @@ export const product3Unit6Data = {
    */
   carouselConfig: {
     intervalMs: 2600,
-    transitionMs: 700
+    transitionMs: 700,
   },
 }

@@ -1,15 +1,15 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit2Data  } from '@/data/product3/product3-unit2'
+import { product3Unit2Data } from '@/data/product3/product3-unit2'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit2Data)
@@ -18,8 +18,16 @@ const unitData = useUnitData(props, product3Unit2Data)
 <template>
   <div class="flex flex-col items-center">
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="unitData.products.product1Image" alt="" :lazy="false" />
-      <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
+      <MediaAsset
+        class="w-full"
+        type="image"
+        :src="unitData.products.product1Image"
+        alt=""
+        :lazy="false"
+      />
+      <div
+        class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center"
+      >
         <div class="title1">
           {{ unitData.products.product1Name }}
         </div>
@@ -29,8 +37,16 @@ const unitData = useUnitData(props, product3Unit2Data)
       </div>
     </div>
     <div class="relative w-full h-[56.25vw] mBox">
-      <MediaAsset class="w-full" type="image" :src="unitData.products.product2Image" alt="" :lazy="false" />
-      <div class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center">
+      <MediaAsset
+        class="w-full"
+        type="image"
+        :src="unitData.products.product2Image"
+        alt=""
+        :lazy="false"
+      />
+      <div
+        class="info absolute top-[100px] left-[50%] translate-x-[-50%] flex flex-col justify-center items-center"
+      >
         <div class="title1 !text-black">
           {{ unitData.products.product2Name }}
         </div>
@@ -45,7 +61,7 @@ const unitData = useUnitData(props, product3Unit2Data)
 <style scoped lang="scss">
 @use '@/styles/variables' as *;
 .title1 {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -54,7 +70,6 @@ const unitData = useUnitData(props, product3Unit2Data)
 }
 
 .title2 {
-
   color: #111;
   text-align: center;
   font-family: Roboto;
@@ -77,7 +92,7 @@ const unitData = useUnitData(props, product3Unit2Data)
     position: relative;
     margin-bottom: 100px;
     .title1 {
-      color: #CAA4FB !important;
+      color: #caa4fb !important;
     }
 
     .title2 {

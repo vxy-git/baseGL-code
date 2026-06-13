@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { getFormRuleAndOption } from '@/api/formdesign'
 import { submitContactUsForm } from '@/api/infoData'
 import { ElMessage } from 'element-plus'
@@ -62,7 +62,7 @@ export function useContactForm(formUuid, contactUsData) {
           message: '正在使用离线表单，部分功能可能受限',
           type: 'warning',
           duration: 3000,
-          showClose: true
+          showClose: true,
         })
       }
     } catch (error) {
@@ -72,7 +72,7 @@ export function useContactForm(formUuid, contactUsData) {
         message: '正在使用离线表单，部分功能可能受限',
         type: 'warning',
         duration: 3000,
-        showClose: true
+        showClose: true,
       })
     } finally {
       loading.value = false
@@ -84,33 +84,56 @@ export function useContactForm(formUuid, contactUsData) {
     logger.log('⚠️ 使用本地静态表单配置')
     formRule.value = [
       {
-        type: 'input', field: 'name', title: 'Your name', value: '',
+        type: 'input',
+        field: 'name',
+        title: 'Your name',
+        value: '',
         props: { placeholder: 'Your name*' },
-        validate: [{ required: true, message: 'name is required' }]
+        validate: [{ required: true, message: 'name is required' }],
       },
       {
-        type: 'input', field: 'email', title: 'Email Address', value: '',
+        type: 'input',
+        field: 'email',
+        title: 'Email Address',
+        value: '',
         props: { placeholder: 'Email Address*' },
         validate: [
           { required: true, message: 'email is required' },
-          { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, message: 'Please enter a valid email address' }
-        ]
+          {
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+            message: 'Please enter a valid email address',
+          },
+        ],
       },
       {
-        type: 'select', field: 'country', title: 'Country', value: '',
-        options: contactUsData.formData.countries.map(country => ({ label: country, value: country })),
+        type: 'select',
+        field: 'country',
+        title: 'Country',
+        value: '',
+        options: contactUsData.formData.countries.map(country => ({
+          label: country,
+          value: country,
+        })),
         props: { placeholder: 'Country*' },
-        validate: [{ required: true, message: 'country is required' }]
+        validate: [{ required: true, message: 'country is required' }],
       },
       {
-        type: 'input', field: 'phone', title: 'Phone Number', value: '',
+        type: 'input',
+        field: 'phone',
+        title: 'Phone Number',
+        value: '',
         props: { placeholder: 'Phone Number' },
-        validate: [{ pattern: /^(?=.*\d)[\d\s\-+()]+$/, message: 'Please enter a valid phone number' }]
+        validate: [
+          { pattern: /^(?=.*\d)[\d\s\-+()]+$/, message: 'Please enter a valid phone number' },
+        ],
       },
       {
-        type: 'textarea', field: 'message', title: 'Message', value: '',
-        props: { placeholder: 'Message', rows: 4 }
-      }
+        type: 'textarea',
+        field: 'message',
+        title: 'Message',
+        value: '',
+        props: { placeholder: 'Message', rows: 4 },
+      },
     ]
 
     formOption.value = { submitBtn: false, resetBtn: false, form: { labelWidth: '0px' } }
@@ -140,7 +163,7 @@ export function useContactForm(formUuid, contactUsData) {
           message: 'Thank you! Your message has been sent successfully.',
           type: 'success',
           duration: 3000,
-          showClose: true
+          showClose: true,
         })
 
         resetTimer.value = setTimeout(() => {
@@ -180,14 +203,14 @@ export function useContactForm(formUuid, contactUsData) {
       ElMessage({
         message: 'Please wait a moment before submitting again.',
         type: 'warning',
-        duration: 3000
+        duration: 3000,
       })
       return
     }
 
     try {
       await formApi.value.submit(
-        (formData_) => {
+        formData_ => {
           logger.log('✅ 表单验证通过')
           lastSubmitTime.value = Date.now()
           handleSubmit(formData_)
@@ -197,7 +220,7 @@ export function useContactForm(formUuid, contactUsData) {
           ElMessage({
             message: 'Please fill in all required fields correctly.',
             type: 'warning',
-            duration: 3000
+            duration: 3000,
           })
         }
       )
@@ -220,6 +243,6 @@ export function useContactForm(formUuid, contactUsData) {
 
     // 方法
     handleExternalSubmit,
-    loadFormConfig
+    loadFormConfig,
   }
 }

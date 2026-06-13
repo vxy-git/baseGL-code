@@ -1,14 +1,14 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit5Data  } from '@/data/product2/product2-unit5'
+import { product2Unit5Data } from '@/data/product2/product2-unit5'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit5Data)
 </script>
@@ -19,13 +19,17 @@ const unitData = useUnitData(props, product2Unit5Data)
       {{ unitData.titleText }}
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
-      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in unitData.deviceSpecs.universe" class="item flex flex-col items-center justify-center">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap">
+        <div
+          v-for="item in unitData.deviceSpecs.universe"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>
@@ -42,11 +46,15 @@ const unitData = useUnitData(props, product2Unit5Data)
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ unitData.productNames.universe }}</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">
+          {{ unitData.productNames.universe }}
+        </div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
-      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+      <div
+        class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0"
+      >
         <div class="h-[414px]">
           <MediaAsset
             type="video"
@@ -59,15 +67,23 @@ const unitData = useUnitData(props, product2Unit5Data)
             class="w-full h-full object-cover rounded-[20px] overflow-hidden"
           />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ unitData.productNames.universePro }}</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">
+          {{ unitData.productNames.universePro }}
+        </div>
       </div>
-      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in unitData.deviceSpecs.universePro" class="item flex flex-col items-center justify-center">
+      <div
+        class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]"
+      >
+        <div
+          v-for="item in unitData.deviceSpecs.universePro"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>

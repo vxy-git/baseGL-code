@@ -4,7 +4,7 @@ import { whyCaleafUnit1Data } from '@/data/why-caleaf/why-caleaf-unit1'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit1Data)
@@ -13,12 +13,7 @@ const unitData = useUnitData(props, whyCaleafUnit1Data)
 <template>
   <section class="why-caleaf-hero c_padding">
     <div class="hero-image-box">
-      <MediaAsset
-        type="image"
-        :src="unitData.backgroundImage"
-        :lazy="true"
-        alt="Beyond Limits"
-      />
+      <MediaAsset type="image" :src="unitData.backgroundImage" :lazy="true" alt="Beyond Limits" />
       <div class="hero-overlay">
         <h1 class="hero-title">{{ unitData.title }}</h1>
         <p class="hero-desc">{{ unitData.description }}</p>
@@ -69,7 +64,7 @@ const unitData = useUnitData(props, whyCaleafUnit1Data)
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 40px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 30px;
   line-height: 1.2;
 }
@@ -79,7 +74,7 @@ const unitData = useUnitData(props, whyCaleafUnit1Data)
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   max-width: 905px;
   margin: 0 auto;
@@ -106,7 +101,6 @@ const unitData = useUnitData(props, whyCaleafUnit1Data)
       object-fit: cover;
     }
   }
-
 
   .hero-title {
     font-size: 28px;

@@ -2,18 +2,15 @@
 defineProps({
   navItems: {
     type: Array,
-    required: true
+    required: true,
   },
   showDropdown: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
-const emit = defineEmits([
-  'products-mouse-enter',
-  'products-mouse-leave'
-])
+const emit = defineEmits(['products-mouse-enter', 'products-mouse-leave'])
 </script>
 
 <template>
@@ -22,7 +19,13 @@ const emit = defineEmits([
       <router-link
         v-if="item.to"
         :to="item.to"
-        :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
+        :class="[
+          'nav-link',
+          {
+            'nav-link-dropdown': item.type === 'dropdown',
+            active: item.type === 'dropdown' && showDropdown,
+          },
+        ]"
         @mouseenter="item.type === 'dropdown' && emit('products-mouse-enter')"
         @mouseleave="item.type === 'dropdown' && emit('products-mouse-leave')"
       >
@@ -31,7 +34,13 @@ const emit = defineEmits([
       <a
         v-else
         :href="item.href"
-        :class="['nav-link', { 'nav-link-dropdown': item.type === 'dropdown', active: item.type === 'dropdown' && showDropdown }]"
+        :class="[
+          'nav-link',
+          {
+            'nav-link-dropdown': item.type === 'dropdown',
+            active: item.type === 'dropdown' && showDropdown,
+          },
+        ]"
         @mouseenter="item.type === 'dropdown' && emit('products-mouse-enter')"
         @mouseleave="item.type === 'dropdown' && emit('products-mouse-leave')"
       >

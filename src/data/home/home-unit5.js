@@ -46,12 +46,12 @@ export const homeUnit5Data = {
     {
       type: 'image',
       img: '/api/uploads/file/default/assets/home/new/1.jpg',
-      title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024'
+      title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024',
     },
     {
       type: 'image',
       img: '/api/uploads/file/default/assets/home/new/2.jpg',
-      title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025'
+      title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025',
     },
     // 备用新闻项(可根据需要取消注释)
     // { type: 'image', img: '/api/uploads/file/default/assets/home/new/3.jpg', title: '' },

@@ -28,7 +28,7 @@ export const product1Unit3Data = {
     frames: 71,
     tarURL: '/api/uploads/file/default/product1.tar',
     imageName: 'frame',
-    imageExtension: '.jpg'
+    imageExtension: '.jpg',
   },
 
   /**
@@ -39,7 +39,7 @@ export const product1Unit3Data = {
      * 文本块1数据
      */
     tb1: {
-      title: 'UNICORE\nPOWERED'
+      title: 'UNICORE\nPOWERED',
     },
 
     /**
@@ -48,7 +48,7 @@ export const product1Unit3Data = {
     tb2: {
       smallTitle: 'Award-Winning',
       wTitle: 'Simply the best',
-      text: `In June 2025, UNIT PRO secured 1st place in the Live Resin vape category at the 2025 California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this market validation, we are not just confident, but eager to bring this golden standard to more brands using Resin and Rosin.`
+      text: `In June 2025, UNIT PRO secured 1st place in the Live Resin vape category at the 2025 California State Fair Cannabis Awards. This victory is a testament to our product's excellence. With this market validation, we are not just confident, but eager to bring this golden standard to more brands using Resin and Rosin.`,
     },
 
     /**
@@ -57,7 +57,7 @@ export const product1Unit3Data = {
     tb3: {
       smallTitle: 'A Significant Breakthrough',
       wTitle: 'U-shape design\nPioneering industry',
-      text: `Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the market.`
+      text: `Our patented U-shape ceramic design is the result of extensive testing and validation of various structures. It is the optimal structure for the vast majority of Resin and Rosin oils on the market.`,
     },
 
     /**
@@ -70,14 +70,14 @@ export const product1Unit3Data = {
       stats: [
         {
           value: '30%',
-          label: 'Thinner in Structure'
+          label: 'Thinner in Structure',
         },
         {
           value: '45%',
           label: 'Flavor Retention',
-          hasIcon: true
-        }
-      ]
-    }
-  }
+          hasIcon: true,
+        },
+      ],
+    },
+  },
 }

@@ -34,7 +34,7 @@ const props = defineProps({
   autoplay: { type: Boolean, default: true },
   loop: { type: Boolean, default: false },
   muted: { type: Boolean, default: false },
-  controls: { type: Boolean, default: true }
+  controls: { type: Boolean, default: true },
 })
 
 const emit = defineEmits(['update:visible'])
@@ -70,7 +70,7 @@ const playFromStart = () => {
     el.currentTime = 0
     const p = el.play()
     if (p && typeof p.then === 'function') {
-      p.catch((e) => {
+      p.catch(e => {
         if (e?.name !== 'AbortError') logger.debug('视频播放中断:', e)
       })
     }
@@ -92,7 +92,7 @@ const pauseAndReset = () => {
 
 watch(
   () => props.visible,
-  (val) => {
+  val => {
     if (val) {
       lockScroll()
       playFromStart()

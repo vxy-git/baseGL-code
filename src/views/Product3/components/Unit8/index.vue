@@ -1,16 +1,16 @@
 <script setup>
 import { ref, computed } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit8Data  } from '@/data/product3/product3-unit8'
+import { product3Unit8Data } from '@/data/product3/product3-unit8'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit8Data)
@@ -52,8 +52,7 @@ const translateX = computed(() => {
 
 <template>
   <div class="bg-black -mt-[5px] pb-[121px]">
-
-    <div class=" c_1300 mx-auto pt-[114px]">
+    <div class="c_1300 mx-auto pt-[114px]">
       <div class="title2">
         {{ unitData.pageTitle }}
       </div>
@@ -84,7 +83,7 @@ const translateX = computed(() => {
           class="cardBox flex gap-x-[27px]"
           :style="{ transform: translateX, transition: 'transform 0.3s ease' }"
         >
-          <div class="card pt-[63px]" v-for="item in totalCards" :key="item">
+          <div v-for="item in totalCards" :key="item" class="card pt-[63px]">
             <MediaAsset
               class="w-[185px] h-[165px] mx-auto"
               type="image"
@@ -106,39 +105,38 @@ const translateX = computed(() => {
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">
-.cardBoxWrapper{
+.cardBoxWrapper {
   overflow: hidden;
 }
-.cardBox{
-  .card{
+.cardBox {
+  .card {
     width: 305px;
     height: 440px;
     flex-shrink: 0;
     border-radius: 20px;
-    background: #23242A;
-    .cardTitle{
-      color: #FFF;
+    background: #23242a;
+    .cardTitle {
+      color: #fff;
       font-family: Roboto;
       font-size: 24px;
       font-style: normal;
       font-weight: 700;
       line-height: 32px; /* 133.333% */
     }
-    .cardLabel{
-      color: #F5F5F5;
+    .cardLabel {
+      color: #f5f5f5;
       font-family: Roboto;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: 32px;
     }
-    .btn{
+    .btn {
       border-radius: 50px;
-      background: #CAA4FB;
+      background: #caa4fb;
       width: 130px;
       height: 40px;
       flex-shrink: 0;
@@ -154,8 +152,8 @@ const translateX = computed(() => {
     }
   }
 }
-.title2{
-  color: #CAA4FB;
+.title2 {
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 80px;
   font-style: italic;
@@ -163,5 +161,4 @@ const translateX = computed(() => {
   line-height: 80px; /* 100% */
   letter-spacing: -5px;
 }
-
 </style>

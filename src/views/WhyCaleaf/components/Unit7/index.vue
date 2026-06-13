@@ -4,7 +4,7 @@ import { whyCaleafUnit7Data } from '@/data/why-caleaf/why-caleaf-unit7'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit7Data)
@@ -85,7 +85,7 @@ const unitData = useUnitData(props, whyCaleafUnit7Data)
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   white-space: break-spaces;
 }

@@ -37,7 +37,8 @@ export const productsData = {
         description: 'UNICORE™ tech & super mini',
         capacity: '1mL/2mL',
         image: '/api/uploads/file/default/assets/list/For_ResinRosin/UNIVERSE-Series.jpg',
-        background: '/api/uploads/file/default/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg',
+        background:
+          '/api/uploads/file/default/assets/list/For_ResinRosin/UNIVERSE-Series-hover.jpg',
         alt: 'UNIVERSE Series',
         isNew: true,
         linkType: 'universe_series',

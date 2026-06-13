@@ -34,33 +34,33 @@ export const product3Unit8Data = {
      * UNICORN 产品规格
      */
     unicorn: [
-      { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-      { label: "Tank Volume", value: "0.5mL / 1mL" },
-      { label: "Battery Capability", value: "280mAh" },
-      { label: "Resistance", value: "1.8ohm" },
-      { label: "Voltage Setting", value: "2.0V" },
-      { label: "Housing Material", value: "Plastic" },
-      { label: "Ceramic Core", value: "UNICORE" },
-      { label: "Central Post", value: "Post-free" },
-      { label: "Charging", value: "Type-C" },
-      { label: "Options of Activation", value: "Inhale Activated" }
+      { label: 'Dimension(mm)', value: '99.3H*22.3W*10.4D' },
+      { label: 'Tank Volume', value: '0.5mL / 1mL' },
+      { label: 'Battery Capability', value: '280mAh' },
+      { label: 'Resistance', value: '1.8ohm' },
+      { label: 'Voltage Setting', value: '2.0V' },
+      { label: 'Housing Material', value: 'Plastic' },
+      { label: 'Ceramic Core', value: 'UNICORE' },
+      { label: 'Central Post', value: 'Post-free' },
+      { label: 'Charging', value: 'Type-C' },
+      { label: 'Options of Activation', value: 'Inhale Activated' },
     ],
 
     /**
      * UNICORN PRO 产品规格
      */
     unicornPro: [
-      { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-      { label: "Tank Volume", value: "0.5mL / 1mL" },
-      { label: "Battery Capability", value: "280mAh" },
-      { label: "Resistance", value: "1.8ohm" },
-      { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
-      { label: "Housing Material", value: "Plastic" },
-      { label: "Ceramic Core", value: "UNICORE" },
-      { label: "Central Post", value: "Post-free" },
-      { label: "Charging", value: "Type-C" },
-      { label: "Options of Activation", value: "Button & Inhale Activated" }
-    ]
+      { label: 'Dimension(mm)', value: '93.3H*23.5W*13.5D' },
+      { label: 'Tank Volume', value: '0.5mL / 1mL' },
+      { label: 'Battery Capability', value: '280mAh' },
+      { label: 'Resistance', value: '1.8ohm' },
+      { label: 'Voltage Setting', value: '1.8V - 2.0V - 2.2V' },
+      { label: 'Housing Material', value: 'Plastic' },
+      { label: 'Ceramic Core', value: 'UNICORE' },
+      { label: 'Central Post', value: 'Post-free' },
+      { label: 'Charging', value: 'Type-C' },
+      { label: 'Options of Activation', value: 'Button & Inhale Activated' },
+    ],
   },
 
   /**
@@ -75,6 +75,6 @@ export const product3Unit8Data = {
     /**
      * UNICORN PRO 产品标签
      */
-    unicornPro: 'UNICORN Pro'
+    unicornPro: 'UNICORN Pro',
   },
 }

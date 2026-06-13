@@ -1,28 +1,31 @@
 <script setup>
-import { product4Unit2Data  } from '@/data/product4/product4-unit2.js';
+import { product4Unit2Data } from '@/data/product4/product4-unit2.js'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { useUnitData } from '@/composables/useUnitData';
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit2Data);
+const unitData = useUnitData(props, product4Unit2Data)
 </script>
 
 <template>
   <div class="flex flex-col pt-[110px] c_1230 c_padding">
     <div class="grid grid-cols-2 items-center justify-center gap-[20px]">
-      <div
-        v-for="(feature, index) in unitData.features"
-        :key="index"
-        class="relative"
-      >
-        <div class="text absolute top-[21px] left-[28px]" :style="{ color: `${feature.color}` }">{{ feature.label }}</div>
-        <MediaAsset class="size-full rounded-[20px] object-cover" type="image" :src="feature.image" alt="" />
+      <div v-for="(feature, index) in unitData.features" :key="index" class="relative">
+        <div class="text absolute top-[21px] left-[28px]" :style="{ color: `${feature.color}` }">
+          {{ feature.label }}
+        </div>
+        <MediaAsset
+          class="size-full rounded-[20px] object-cover"
+          type="image"
+          :src="feature.image"
+          alt=""
+        />
       </div>
     </div>
   </div>

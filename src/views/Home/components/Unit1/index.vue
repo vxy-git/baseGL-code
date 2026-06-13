@@ -1,7 +1,7 @@
 <script setup>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, computed } from "vue";
-import { useRouter } from 'vue-router';
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 const delay = 8000 // 每个视频固定播放 8 秒后切换
 const currentIndex = ref(0)
 const splideRef = ref()
@@ -31,8 +31,8 @@ const cmsNavStore = useCmsNavStore()
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 // 计算属性:将 CMS Banner 数据转换为组件所需格式
@@ -43,9 +43,9 @@ const list = computed(() => {
       title: banner.title || '',
       subTitle: banner.subTitle || '',
       src: banner.src || '',
-      type: (banner.src && banner.src.endsWith('.mp4')) ? 'video' : 'image',
+      type: banner.src && banner.src.endsWith('.mp4') ? 'video' : 'image',
       dotText: banner.dotText || banner.title || '',
-      path: banner.path || ''
+      path: banner.path || '',
     }))
   }
 
@@ -57,40 +57,36 @@ const list = computed(() => {
       src: banner.src,
       type: banner.src.endsWith('.mp4') ? 'video' : 'image',
       dotText: banner.dotText || banner.title,
-      path: banner.path
+      path: banner.path,
     }))
   }
   // 3. 最后使用本地配置
   return homeUnit1Data.bannerList
 })
 
-
-
 const changeEnd = (splide, newIndex) => {
   currentIndex.value = newIndex
 }
-const next = (e) => {
+const next = () => {
   splideRef.value?.splide?.go('+1')
 }
 const stop = ref(false)
 
-const handleLearnMore = (item) => {
+const handleLearnMore = item => {
   if (!item?.path) return
   router.push(item.path)
 }
 </script>
 
 <template>
-  <div class="banner-container" :style="{
-    '--delay':delay+'ms'
-  }">
-    <Splide
-      class="h-full"
-      :options="splideOptions"
-      ref="splideRef"
-      @splide:moved="changeEnd"
-    >
-      <SplideSlide class="h-full" v-for="item in list" :key="item.title">
+  <div
+    class="banner-container"
+    :style="{
+      '--delay': delay + 'ms',
+    }"
+  >
+    <Splide ref="splideRef" class="h-full" :options="splideOptions" @splide:moved="changeEnd">
+      <SplideSlide v-for="item in list" :key="item.title" class="h-full">
         <div class="relative h-full">
           <MediaAsset
             class="h-full min-w-[100vw] object-cover absolute inset-0"
@@ -102,13 +98,13 @@ const handleLearnMore = (item) => {
             :loop="false"
             playsinline
           />
-          <div class=" h-full relative">
+          <div class="h-full relative">
             <div class="c_1300 c_padding mx-auto flex flex-col justify-center h-full">
               <div class="title">
-                {{item.title}}
+                {{ item.title }}
               </div>
               <div class="subTitle">
-                {{item.subTitle}}
+                {{ item.subTitle }}
               </div>
               <div class="btn flex items-center justify-center" @click="handleLearnMore(item)">
                 <div class="btnText">Learn more</div>
@@ -127,21 +123,35 @@ const handleLearnMore = (item) => {
     </Splide>
 
     <div class="dot absolute bottom-[2px] left-0 flex justify-center z-10">
-      <div @mouseover="stop = true" @mouseout="stop = false" class="c_1300 c_padding grid grid-flow-col auto-cols-fr">
-        <div @mouseover="splideRef?.splide?.go(index)" v-for="(item, index) in list"
+      <div
+        class="c_1300 c_padding grid grid-flow-col auto-cols-fr"
+        @mouseover="stop = true"
+        @mouseout="stop = false"
+      >
+        <div
+          v-for="(item, index) in list"
           :key="index"
           class="dot-item cursor-pointer transition-all duration-300 hover:opacity-80"
-          @click="splideRef?.splide?.go(index)">
-          <div class="dotText text-center transition-colors duration-300"
-            :class="{ 'text-[#1CE785]': currentIndex === index }">
-            {{item.dotText}}
+          @mouseover="splideRef?.splide?.go(index)"
+          @click="splideRef?.splide?.go(index)"
+        >
+          <div
+            class="dotText text-center transition-colors duration-300"
+            :class="{ 'text-[#1CE785]': currentIndex === index }"
+          >
+            {{ item.dotText }}
           </div>
           <div class="progress-track">
-            <div class="progress-bar" :class="{
-                'widAnim': index===currentIndex
-              }" :style="{
-                'animation-play-state': stop ? 'paused' : 'running'
-              }" @animationend="next"></div>
+            <div
+              class="progress-bar"
+              :class="{
+                widAnim: index === currentIndex,
+              }"
+              :style="{
+                'animation-play-state': stop ? 'paused' : 'running',
+              }"
+              @animationend="next"
+            ></div>
           </div>
         </div>
       </div>
@@ -159,7 +169,7 @@ const handleLearnMore = (item) => {
 
 // 标题样式
 .title {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 50px;
   font-style: normal;
@@ -170,7 +180,7 @@ const handleLearnMore = (item) => {
 
 // 副标题样式
 .subTitle {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 30px;
   font-style: normal;
@@ -185,7 +195,7 @@ const handleLearnMore = (item) => {
   height: 50px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #1CE785;
+  background: #1ce785;
   margin-top: 32px;
   gap: 11.5px;
   cursor: pointer;
@@ -207,7 +217,7 @@ const handleLearnMore = (item) => {
 
 // 底部指示器容器
 .dot {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.60) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
   width: 100%; // 修复固定宽度问题
   height: 139px;
   flex-shrink: 0;
@@ -224,7 +234,7 @@ const handleLearnMore = (item) => {
 
   // 指示器文字
   .dotText {
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;

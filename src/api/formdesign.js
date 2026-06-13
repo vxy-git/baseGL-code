@@ -17,7 +17,7 @@ export async function getDynamicForm(uuid) {
     return {
       success: false,
       message: 'UUID 参数不能为空',
-      data: null
+      data: null,
     }
   }
 
@@ -28,7 +28,7 @@ export async function getDynamicForm(uuid) {
     return {
       success: false,
       message: result.message,
-      data: null
+      data: null,
     }
   }
 
@@ -38,7 +38,7 @@ export async function getDynamicForm(uuid) {
   return {
     success: true,
     data: result.data?.formData,
-    uuid: uuid
+    uuid: uuid,
   }
 }
 
@@ -57,7 +57,7 @@ export async function getFormRuleAndOption(uuid) {
       success: false,
       message: result.message,
       rule: [],
-      option: {}
+      option: {},
     }
   }
 
@@ -67,15 +67,12 @@ export async function getFormRuleAndOption(uuid) {
 
   try {
     if (result.data.rule) {
-      rule = typeof result.data.rule === 'string'
-        ? JSON.parse(result.data.rule)
-        : result.data.rule
+      rule = typeof result.data.rule === 'string' ? JSON.parse(result.data.rule) : result.data.rule
     }
 
     if (result.data.option) {
-      option = typeof result.data.option === 'string'
-        ? JSON.parse(result.data.option)
-        : result.data.option
+      option =
+        typeof result.data.option === 'string' ? JSON.parse(result.data.option) : result.data.option
     }
 
     logger.log('✅ 表单配置解析完成:')
@@ -87,13 +84,13 @@ export async function getFormRuleAndOption(uuid) {
       success: false,
       message: '表单配置数据格式错误',
       rule: [],
-      option: {}
+      option: {},
     }
   }
 
   return {
     success: true,
     rule: rule,
-    option: option
+    option: option,
   }
 }

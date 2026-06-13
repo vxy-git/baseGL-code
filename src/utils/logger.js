@@ -4,6 +4,7 @@
  */
 const isDev = import.meta.env.DEV || import.meta.env.MODE === 'development'
 
+/* eslint-disable no-console */
 export const logger = {
   log: (...args) => {
     if (isDev) console.log(...args)
@@ -17,5 +18,5 @@ export const logger = {
   },
   debug: (...args) => {
     if (isDev) console.debug(...args)
-  }
+  },
 }

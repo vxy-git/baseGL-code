@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -50,21 +50,21 @@ const initAnimation = () => {
       pin: true,
       scrub: true,
       anticipatePin: 1,
-      invalidateOnRefresh: true
-    }
+      invalidateOnRefresh: true,
+    },
   })
 
   scrollTl
     .to(imageEl, {
       scale: SCALE_TARGET,
       ease: 'none',
-      duration: 0.6
+      duration: 0.6,
     })
     .to(contentEl, {
       opacity: 1,
       y: 0,
       ease: 'power1.out',
-      duration: 0.4
+      duration: 0.4,
     })
 }
 
@@ -153,7 +153,7 @@ onUnmounted(() => {
 .title3 {
   max-width: 100%;
   width: 983px;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

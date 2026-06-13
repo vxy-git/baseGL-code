@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -80,13 +80,13 @@ const initScroll = () => {
       onEnter: playLeft,
       onEnterBack: playLeft,
       onLeave: pauseLeft,
-      onLeaveBack: pauseLeft
-    }
+      onLeaveBack: pauseLeft,
+    },
   })
 
   scrollTl.to(rightEl, {
     y: () => getMetrics().translateY,
-    ease: 'none'
+    ease: 'none',
   })
 }
 
@@ -103,7 +103,7 @@ const initRightVideo1 = () => {
     onEnter: () => rightVideoAssetRef1.value?.playFromStart?.(),
     onEnterBack: () => rightVideoAssetRef1.value?.playFromStart?.(),
     onLeave: () => rightVideoAssetRef1.value?.pause?.(),
-    onLeaveBack: () => rightVideoAssetRef1.value?.pause?.()
+    onLeaveBack: () => rightVideoAssetRef1.value?.pause?.(),
   })
 }
 
@@ -120,7 +120,7 @@ const initRightVideo = () => {
     onEnter: () => rightVideoAssetRef2.value?.playFromStart?.(),
     onEnterBack: () => rightVideoAssetRef2.value?.playFromStart?.(),
     onLeave: () => rightVideoAssetRef2.value?.pause?.(),
-    onLeaveBack: () => rightVideoAssetRef2.value?.pause?.()
+    onLeaveBack: () => rightVideoAssetRef2.value?.pause?.(),
   })
 }
 
@@ -149,9 +149,11 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative flex max-w-[1702px] items-start mx-auto h-screen">
-    <div ref="rightWrapRef"
-      class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max">
-      <div class="content1 flex flex-col items-center" ref="rightVideoBoxRef1">
+    <div
+      ref="rightWrapRef"
+      class="content-wrapper mt-[155px] pr-[110px] will-change-transform border-r-[1px] border-white/20 mr-[64px] pb-[65px] pl-[201px] h-max"
+    >
+      <div ref="rightVideoBoxRef1" class="content1 flex flex-col items-center">
         <div class="title1">
           {{ unitData.sections.section1.title1 }}
         </div>
@@ -164,11 +166,21 @@ onUnmounted(() => {
           {{ unitData.sections.section1.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef1" :src="unitData.media.rightVideo1" type="video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :view-play="true" playsinline alt="" />
+          <MediaAsset
+            ref="rightVideoAssetRef1"
+            :src="unitData.media.rightVideo1"
+            type="video"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :controls="false"
+            :view-play="true"
+            playsinline
+            alt=""
+          />
         </div>
       </div>
-      <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
+      <div ref="rightVideoBoxRef" class="content2 mt-[158px] flex flex-col items-center">
         <div class="title1">
           {{ unitData.sections.section2.title1 }}
         </div>
@@ -181,14 +193,34 @@ onUnmounted(() => {
           {{ unitData.sections.section2.title3 }}
         </div>
         <div class="w-[750px] mt-[66px] max-w-full">
-          <MediaAsset ref="rightVideoAssetRef2" :src="unitData.media.rightVideo2" type="video" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :view-play="true" playsinline alt="" />
+          <MediaAsset
+            ref="rightVideoAssetRef2"
+            :src="unitData.media.rightVideo2"
+            type="video"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :controls="false"
+            :view-play="true"
+            playsinline
+            alt=""
+          />
         </div>
       </div>
     </div>
-    <div class="mediaBox shrink-0 w-[577px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" :src="unitData.media.leftVideo" type="video" :autoplay="false" :muted="true" :loop="true"
-        :controls="false" :view-play="true" playsinline alt="" />
+    <div ref="videoBoxRef" class="mediaBox shrink-0 w-[577px] mt-[150px]">
+      <MediaAsset
+        ref="videoAssetRef"
+        :src="unitData.media.leftVideo"
+        type="video"
+        :autoplay="false"
+        :muted="true"
+        :loop="true"
+        :controls="false"
+        :view-play="true"
+        playsinline
+        alt=""
+      />
     </div>
   </div>
 </template>
@@ -207,7 +239,7 @@ onUnmounted(() => {
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -233,16 +265,15 @@ onUnmounted(() => {
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
     max-width: 100%;
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -252,7 +283,7 @@ onUnmounted(() => {
 
   .text2 {
     max-width: 100%;
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -269,7 +300,7 @@ onUnmounted(() => {
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -295,16 +326,15 @@ onUnmounted(() => {
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
     max-width: 100%;
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -315,7 +345,7 @@ onUnmounted(() => {
 
   .text2 {
     max-width: 100%;
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -325,9 +355,6 @@ onUnmounted(() => {
     margin-top: 5px;
   }
 }
-
-
-
 
 @media screen and (max-width: 1700px) {
   .content-wrapper {

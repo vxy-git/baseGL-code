@@ -4,7 +4,7 @@ import { whyCaleafUnit5Data } from '@/data/why-caleaf/why-caleaf-unit5'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit5Data)
@@ -14,12 +14,7 @@ const unitData = useUnitData(props, whyCaleafUnit5Data)
   <section class="why-caleaf-raw-material">
     <div class="raw-material-container">
       <div class="raw-material-image">
-        <MediaAsset
-          type="image"
-          :src="unitData.image"
-          :lazy="true"
-          :alt="unitData.title"
-        />
+        <MediaAsset type="image" :src="unitData.image" :lazy="true" :alt="unitData.title" />
       </div>
       <h3 class="raw-material-title">{{ unitData.title }}</h3>
       <p class="raw-material-desc">{{ unitData.description }}</p>
@@ -56,7 +51,7 @@ const unitData = useUnitData(props, whyCaleafUnit5Data)
   font-weight: 700;
   font-size: 40px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: -106px; // 3547 - 3653 (image bottom)
   margin-bottom: 68px;
 }
@@ -66,7 +61,7 @@ const unitData = useUnitData(props, whyCaleafUnit5Data)
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;

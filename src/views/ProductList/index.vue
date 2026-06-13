@@ -1,32 +1,48 @@
 <template>
   <div class="product-list-page">
-    <Header headerClass="white" showLine />
+    <Header header-class="white" show-line />
     <div class="header-divider" />
 
     <main class="main-content c_1300">
       <section class="catalog-intro">
         <h1 class="catalog-title c_padding">{{ productListData.pageTitle }}</h1>
-        <Tabs class="mt-[30px]" :list="tabsList" :modelValue="tabsCurrent" @update:modelValue="handleTabChange"></Tabs>
+        <Tabs
+          class="mt-[30px]"
+          :list="tabsList"
+          :model-value="tabsCurrent"
+          @update:model-value="handleTabChange"
+        ></Tabs>
       </section>
 
-      <section class="catalog-grid c_padding" aria-label="Product Gallery" ref="catalogGridRef">
+      <section ref="catalogGridRef" class="catalog-grid c_padding" aria-label="Product Gallery">
         <article v-for="product in products" :key="product.id" class="product-card">
           <ProductItem :data="product" show-desc />
         </article>
 
-        <article v-for="n in fillerCount" :key="'filler-' + n" class="product-card" aria-hidden="true">
+        <article
+          v-for="n in fillerCount"
+          :key="'filler-' + n"
+          class="product-card"
+          aria-hidden="true"
+        >
           <div class="placeholder" />
         </article>
       </section>
 
       <nav class="pagination" aria-label="Catalog pagination">
-        <button v-for="page in pages" :key="page" class="page-button" :class="{ active: page === currentPage }" @click="handlePageChange(page)">
+        <button
+          v-for="page in pages"
+          :key="page"
+          class="page-button"
+          :class="{ active: page === currentPage }"
+          @click="handlePageChange(page)"
+        >
           {{ page }}
         </button>
       </nav>
     </main>
 
-    <Footer showLine />
+    <Footer show-line />
   </div>
 </template>
 
@@ -34,8 +50,8 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer/Footer.vue'
-import Header from "@/components/Header/index.vue";
-import Tabs from "@/components/Tabs/index.vue";
+import Header from '@/components/Header/index.vue'
+import Tabs from '@/components/Tabs/index.vue'
 import ProductItem from '@/components/ProductItem/index.vue'
 import { productsData } from '@/data/productlist/products'
 import { productListData } from '@/data/productlist/productlist'
@@ -43,7 +59,7 @@ import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
 
 const props = defineProps({
-  pageConfig: { type: Object, default: () => ({}) }
+  pageConfig: { type: Object, default: () => ({}) },
 })
 
 const route = useRoute()
@@ -124,7 +140,7 @@ const totalPages = computed(() => {
 const pages = computed(() => Array.from({ length: totalPages.value }, (_, i) => i + 1))
 
 // Tab 切换事件处理：跳转到对应分类的路由
-const handleTabChange = (index) => {
+const handleTabChange = index => {
   const cmsCategories = cmsNavStore.productCategories || []
   const category = cmsCategories[index]
 
@@ -136,7 +152,7 @@ const handleTabChange = (index) => {
   }
 }
 
-const handlePageChange = (page) => {
+const handlePageChange = page => {
   currentPage.value = page
   // 滚动到产品列表顶部
   catalogGridRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -148,7 +164,9 @@ const columns = ref(1)
 const updateColumns = () => {
   const el = catalogGridRef.value
   const width = el ? el.clientWidth : 0
-  const calc = Math.floor((width + productListData.card.gap) / (productListData.card.width + productListData.card.gap))
+  const calc = Math.floor(
+    (width + productListData.card.gap) / (productListData.card.width + productListData.card.gap)
+  )
   columns.value = Math.max(1, calc)
 }
 
@@ -281,7 +299,6 @@ const fillerCount = computed(() => {
   column-gap: 26px;
   row-gap: 30px;
   width: 100%;
-
 }
 
 .product-card {

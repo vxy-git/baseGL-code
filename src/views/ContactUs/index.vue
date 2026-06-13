@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
-import Header from "@/components/Header/index.vue"
-import Footer from "@/components/Footer/Footer.vue"
+import Header from '@/components/Header/index.vue'
+import Footer from '@/components/Footer/Footer.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { contactUsData } from '@/data/contactus/contactus'
 import formCreate from '@form-create/element-ui'
@@ -20,31 +20,55 @@ const {
   submitting,
   submitMessage,
   submitSuccess,
-  handleExternalSubmit
+  handleExternalSubmit,
 } = useContactForm(FORM_UUID, contactUsData)
 </script>
 
 <template>
   <div>
     <div class="contactPage">
-      <Header headerClass="white" />
+      <Header header-class="white" />
 
       <!-- Hero Section -->
       <section class="hero mt_nav">
         <div class="heroBackground">
-          <MediaAsset :src="contactUsData.heroBanner" type="image" class="heroImage m_hide" alt="" :lazy="false" />
-          <MediaAsset :src="contactUsData.heroBannerMobile" type="image" class="heroImage pc_hide" alt="" :lazy="false" />
+          <MediaAsset
+            :src="contactUsData.heroBanner"
+            type="image"
+            class="heroImage m_hide"
+            alt=""
+            :lazy="false"
+          />
+          <MediaAsset
+            :src="contactUsData.heroBannerMobile"
+            type="image"
+            class="heroImage pc_hide"
+            alt=""
+            :lazy="false"
+          />
         </div>
         <div class="size-full absolute top-0 left-0 flex flex-col justify-center">
           <div class="heroContent">
-            <h1 class="heroTitle w-full c_1300 c_padding text-right">{{ contactUsData.content.heroTitle }}</h1>
+            <h1 class="heroTitle w-full c_1300 c_padding text-right">
+              {{ contactUsData.content.heroTitle }}
+            </h1>
             <div class="divider"></div>
             <div class="w-full c_1300 c_padding m-auto flex flex-col items-end">
               <p class="heroEmail">Email: {{ contactUsData.contact.email }}</p>
               <div class="socialSection mt-[34px] pr-[4px]">
                 <p class="followText">{{ contactUsData.content.followText }}</p>
-                <a :href="contactUsData.contact.instagramLink" target="_blank" rel="noopener noreferrer">
-                  <MediaAsset :src="contactUsData.icons.instagram" type="image" class="socialIcon" alt="Instagram" :lazy="false" />
+                <a
+                  :href="contactUsData.contact.instagramLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MediaAsset
+                    :src="contactUsData.icons.instagram"
+                    type="image"
+                    class="socialIcon"
+                    alt="Instagram"
+                    :lazy="false"
+                  />
                 </a>
               </div>
             </div>
@@ -58,9 +82,7 @@ const {
           <div class="formCard px-[40px] pt-[60px] pb-[60px]">
             <h2 class="formTitle">{{ contactUsData.content.formTitle }}</h2>
 
-            <div v-if="loading" class="formLoading">
-              Loading form...
-            </div>
+            <div v-if="loading" class="formLoading">Loading form...</div>
             <div v-else class="form-wrapper">
               <form-create
                 ref="formComponent"
@@ -70,7 +92,11 @@ const {
                 :option="formOption"
               />
 
-              <div v-if="submitMessage" class="submit-message" :class="{ success: submitSuccess, error: !submitSuccess }">
+              <div
+                v-if="submitMessage"
+                class="submit-message"
+                :class="{ success: submitSuccess, error: !submitSuccess }"
+              >
                 {{ submitMessage }}
               </div>
 
@@ -85,7 +111,12 @@ const {
             </div>
           </div>
           <div class="formImage">
-            <MediaAsset :src="contactUsData.icons.product" type="image" alt="Product Image" :lazy="false" />
+            <MediaAsset
+              :src="contactUsData.icons.product"
+              type="image"
+              alt="Product Image"
+              :lazy="false"
+            />
           </div>
         </div>
       </section>
@@ -139,7 +170,7 @@ const {
 
 .heroTitle {
   white-space: nowrap;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 100px;
   font-style: normal;
@@ -148,7 +179,7 @@ const {
 }
 
 .heroEmail {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 30px;
   font-style: normal;
@@ -173,7 +204,7 @@ const {
 }
 
 .followText {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -199,7 +230,7 @@ const {
   max-width: 1500px;
   min-height: 780px;
   border-radius: 20px;
-  background: #F8F9FC;
+  background: #f8f9fc;
   margin: 0 auto;
   display: flex;
   justify-content: center;

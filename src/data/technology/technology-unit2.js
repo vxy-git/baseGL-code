@@ -61,13 +61,13 @@ are filtered out, and the rich, natural flavors are preserved.`,
       stats: [
         {
           percentage: '30%',
-          label: 'Thinner in Structure'
+          label: 'Thinner in Structure',
         },
         {
           percentage: '45%',
-          label: 'Flavor Retention'
-        }
-      ]
+          label: 'Flavor Retention',
+        },
+      ],
     },
 
     /**
@@ -90,6 +90,6 @@ are filtered out, and the rich, natural flavors are preserved.`,
       title3: `Most customers have reported bubble issues to us with various devices from different suppliers during oil
 filling. Our U-shape ceramic design solves this problem perfectly. No more burnt taste caused by clogged
 bubbles.`,
-    }
+    },
   },
 }

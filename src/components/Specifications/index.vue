@@ -1,51 +1,50 @@
 <script setup>
-const UNIVERSE = '/api/uploads/file/default/assets/img/UNIVERSE.mp4';
-const UNIVERSE_PRO = '/api/uploads/file/default/assets/img/UNIVERSE_Pro.mp4';
-import MediaAsset from '@/components/MediaAsset.vue';
-
+const UNIVERSE = '/api/uploads/file/default/assets/img/UNIVERSE.mp4'
+const UNIVERSE_PRO = '/api/uploads/file/default/assets/img/UNIVERSE_Pro.mp4'
+import MediaAsset from '@/components/MediaAsset.vue'
 
 const deviceSpecs1 = [
-  { label: "Dimension(mm)", value: "99.3H*22.3W*10.4D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "2.0V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Inhale Activated" }
+  { label: 'Dimension(mm)', value: '99.3H*22.3W*10.4D' },
+  { label: 'Tank Volume', value: '0.5mL / 1mL' },
+  { label: 'Battery Capability', value: '280mAh' },
+  { label: 'Resistance', value: '1.8ohm' },
+  { label: 'Voltage Setting', value: '2.0V' },
+  { label: 'Housing Material', value: 'Plastic' },
+  { label: 'Ceramic Core', value: 'UNICORE' },
+  { label: 'Central Post', value: 'Post-free' },
+  { label: 'Charging', value: 'Type-C' },
+  { label: 'Options of Activation', value: 'Inhale Activated' },
 ]
 
 const deviceSpecs2 = [
-  { label: "Dimension(mm)", value: "93.3H*23.5W*13.5D" },
-  { label: "Tank Volume", value: "0.5mL / 1mL" },
-  { label: "Battery Capability", value: "280mAh" },
-  { label: "Resistance", value: "1.8ohm" },
-  { label: "Voltage Setting", value: "1.8V - 2.0V - 2.2V" },
-  { label: "Housing Material", value: "Plastic" },
-  { label: "Ceramic Core", value: "UNICORE" },
-  { label: "Central Post", value: "Post-free" },
-  { label: "Charging", value: "Type-C" },
-  { label: "Options of Activation", value: "Button & Inhale Activated" }
+  { label: 'Dimension(mm)', value: '93.3H*23.5W*13.5D' },
+  { label: 'Tank Volume', value: '0.5mL / 1mL' },
+  { label: 'Battery Capability', value: '280mAh' },
+  { label: 'Resistance', value: '1.8ohm' },
+  { label: 'Voltage Setting', value: '1.8V - 2.0V - 2.2V' },
+  { label: 'Housing Material', value: 'Plastic' },
+  { label: 'Ceramic Core', value: 'UNICORE' },
+  { label: 'Central Post', value: 'Post-free' },
+  { label: 'Charging', value: 'Type-C' },
+  { label: 'Options of Activation', value: 'Button & Inhale Activated' },
 ]
-
-
 </script>
 
 <template>
   <div class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
-    <div class="title">
-      Specifications
-    </div>
+    <div class="title">Specifications</div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
-      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap ">
-        <div v-for="item in deviceSpecs1" class="item flex flex-col items-center justify-center">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap">
+        <div
+          v-for="item in deviceSpecs1"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>
@@ -66,7 +65,9 @@ const deviceSpecs2 = [
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
-      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+      <div
+        class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0"
+      >
         <div class="h-[414px]">
           <MediaAsset
             type="video"
@@ -81,13 +82,19 @@ const deviceSpecs2 = [
         </div>
         <div class="text7 mt-[30px] -translate-x-[16px] text-center">UNIVERSE Pro</div>
       </div>
-      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]">
-        <div v-for="item in deviceSpecs2" class="item flex flex-col items-center justify-center">
+      <div
+        class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap -mt-[4px]"
+      >
+        <div
+          v-for="item in deviceSpecs2"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>

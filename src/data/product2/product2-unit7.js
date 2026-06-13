@@ -14,11 +14,7 @@ export const product2Unit7Data = {
   /**
    * 标签列表
    */
-  tabsList: [
-    'Crystal-clear Design',
-    'Unibody Enclosure',
-    'Medical-grade Chamber'
-  ],
+  tabsList: ['Crystal-clear Design', 'Unibody Enclosure', 'Medical-grade Chamber'],
 
   /**
    * 媒体资源列表
@@ -26,16 +22,16 @@ export const product2Unit7Data = {
   mediaList: [
     {
       src: '/api/uploads/file/default/assets/product2/every_Crystal-clear-Design.jpg',
-      type: 'image'
+      type: 'image',
     },
     {
       src: '/api/uploads/file/default/assets/product2/every_Unibody-Enclosure.mp4',
-      type: 'video'
+      type: 'video',
     },
     {
       src: '/api/uploads/file/default/assets/product2/every_Medical-grade-Chamber.jpg',
-      type: 'image'
-    }
+      type: 'image',
+    },
   ],
 
   /**
@@ -53,6 +49,6 @@ export const product2Unit7Data = {
     width: '100vw',
     fixedWidth: '50rem',
     focus: 'center',
-    trimSpace: false
+    trimSpace: false,
   },
 }

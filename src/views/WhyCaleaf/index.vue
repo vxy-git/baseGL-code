@@ -14,8 +14,8 @@ import Unit8 from './components/Unit8/index.vue'
 const props = defineProps({
   pageConfig: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 
 const componentMap = {
@@ -26,7 +26,7 @@ const componentMap = {
   unit5: Unit5,
   unit6: Unit6,
   unit7: Unit7,
-  unit8: Unit8
+  unit8: Unit8,
 }
 
 const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6', 'unit7', 'unit8']
@@ -39,14 +39,14 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
   <div class="why-caleaf-page">
     <!-- Header 区域 -->
     <div class="why-caleaf-header-wrapper">
-      <Header headerClass="white" showLine />
+      <Header header-class="white" show-line />
     </div>
 
     <!-- 动态渲染 Unit -->
-    <component v-for="item in renderList" :key="item.key" :is="item.component" :data="item.data" />
+    <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
 
     <!-- Footer -->
-    <Footer showLine />
+    <Footer show-line />
   </div>
 </template>
 
@@ -56,6 +56,6 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
 }
 
 .why-caleaf-header-wrapper {
-  background: #FFFFFF;
+  background: #ffffff;
 }
 </style>

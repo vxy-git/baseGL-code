@@ -1,16 +1,16 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product4Unit10Data  } from '@/data/product4/product4-unit10.js'
-import { useUnitData } from '@/composables/useUnitData';
+import { product4Unit10Data } from '@/data/product4/product4-unit10.js'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit10Data);
+const unitData = useUnitData(props, product4Unit10Data)
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const unitData = useUnitData(props, product4Unit10Data);
             :muted="true"
             :loop="true"
             :controls="false"
-            :hoverPlay="true"
+            :hover-play="true"
             class="w-full h-full object-cover"
           />
         </div>
@@ -43,7 +43,7 @@ const unitData = useUnitData(props, product4Unit10Data);
             :muted="true"
             :loop="true"
             :controls="false"
-            :hoverPlay="true"
+            :hover-play="true"
             class="w-full h-full object-cover"
           />
         </div>
@@ -60,7 +60,7 @@ const unitData = useUnitData(props, product4Unit10Data);
             :muted="true"
             :loop="true"
             :controls="false"
-            :hoverPlay="true"
+            :hover-play="true"
             class="w-full h-full object-cover"
           />
         </div>
@@ -75,18 +75,17 @@ const unitData = useUnitData(props, product4Unit10Data);
             :muted="true"
             :loop="true"
             :controls="false"
-            :hoverPlay="true"
+            :hover-play="true"
             class="w-full h-full object-cover"
           />
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">
-.tag{
+.tag {
   padding: 0 30px;
   height: 40px;
   flex-shrink: 0;

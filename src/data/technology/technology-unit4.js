@@ -75,7 +75,7 @@ Through round-the-clock firing and suction tests, we have finally succeeded in f
       /**
        * 标题
        */
-      title: 'Ideal for Rosin\'s molecular structure.',
+      title: "Ideal for Rosin's molecular structure.",
 
       /**
        * 描述
@@ -83,6 +83,6 @@ Through round-the-clock firing and suction tests, we have finally succeeded in f
       description: `UNICORE features an extremely uniform ceramic pore structure that is ideally suited to the molecular
 structure of Resin and Rosin. Not a single pore will ever suffer from dry burning, ensuring the best
 performance from beginning to end.`,
-    }
+    },
   },
 }

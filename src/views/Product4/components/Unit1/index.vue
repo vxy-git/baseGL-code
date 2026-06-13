@@ -1,17 +1,16 @@
 <script setup>
-import MediaAsset from '@/components/MediaAsset.vue';
-import { product4Unit1Data  } from '@/data/product4/product4-unit1.js';
-import { useUnitData } from '@/composables/useUnitData';
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product4Unit1Data } from '@/data/product4/product4-unit1.js'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit1Data);
-
+const unitData = useUnitData(props, product4Unit1Data)
 </script>
 
 <template>
@@ -24,7 +23,7 @@ const unitData = useUnitData(props, product4Unit1Data);
       :autoplay="false"
       :muted="true"
       :loop="false"
-      :viewPlay="true"
+      :view-play="true"
       playsinline
     />
   </div>

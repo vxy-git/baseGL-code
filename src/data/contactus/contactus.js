@@ -98,7 +98,7 @@ export const contactUsData = {
       'Brazil',
       'Mexico',
       'Netherlands',
-      'Sweden'
+      'Sweden',
     ],
 
     /**
@@ -106,24 +106,56 @@ export const contactUsData = {
      */
     statesByCountry: {
       'United States': [
-        'California', 'Texas', 'Florida', 'New York', 'Pennsylvania',
-        'Illinois', 'Ohio', 'Georgia', 'North Carolina', 'Michigan',
-        'New Jersey', 'Virginia', 'Washington', 'Arizona', 'Massachusetts'
+        'California',
+        'Texas',
+        'Florida',
+        'New York',
+        'Pennsylvania',
+        'Illinois',
+        'Ohio',
+        'Georgia',
+        'North Carolina',
+        'Michigan',
+        'New Jersey',
+        'Virginia',
+        'Washington',
+        'Arizona',
+        'Massachusetts',
       ],
-      'Canada': [
-        'Ontario', 'Quebec', 'British Columbia', 'Alberta', 'Manitoba',
-        'Saskatchewan', 'Nova Scotia', 'New Brunswick', 'Newfoundland and Labrador',
-        'Prince Edward Island'
+      Canada: [
+        'Ontario',
+        'Quebec',
+        'British Columbia',
+        'Alberta',
+        'Manitoba',
+        'Saskatchewan',
+        'Nova Scotia',
+        'New Brunswick',
+        'Newfoundland and Labrador',
+        'Prince Edward Island',
       ],
-      'China': [
-        'Beijing', 'Shanghai', 'Guangdong', 'Zhejiang', 'Jiangsu',
-        'Sichuan', 'Hubei', 'Fujian', 'Shaanxi', 'Hunan'
+      China: [
+        'Beijing',
+        'Shanghai',
+        'Guangdong',
+        'Zhejiang',
+        'Jiangsu',
+        'Sichuan',
+        'Hubei',
+        'Fujian',
+        'Shaanxi',
+        'Hunan',
       ],
-      'Australia': [
-        'New South Wales', 'Victoria', 'Queensland', 'Western Australia',
-        'South Australia', 'Tasmania', 'Australian Capital Territory',
-        'Northern Territory'
-      ]
-    }
-  }
+      Australia: [
+        'New South Wales',
+        'Victoria',
+        'Queensland',
+        'Western Australia',
+        'South Australia',
+        'Tasmania',
+        'Australian Capital Territory',
+        'Northern Territory',
+      ],
+    },
+  },
 }

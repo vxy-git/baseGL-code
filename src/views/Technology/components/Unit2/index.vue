@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -77,13 +77,13 @@ const initScroll = () => {
       onEnter: playLeft,
       onEnterBack: playLeft,
       onLeave: pauseLeft,
-      onLeaveBack: pauseLeft
-    }
+      onLeaveBack: pauseLeft,
+    },
   })
 
   scrollTl.to(rightEl, {
     y: () => getMetrics().translateY,
-    ease: 'none'
+    ease: 'none',
   })
 }
 
@@ -100,7 +100,7 @@ const initRightVideo = () => {
     onEnter: () => rightVideoAssetRef.value?.playFromStart?.(),
     onEnterBack: () => rightVideoAssetRef.value?.playFromStart?.(),
     onLeave: () => rightVideoAssetRef.value?.pause?.(),
-    onLeaveBack: () => rightVideoAssetRef.value?.pause?.()
+    onLeaveBack: () => rightVideoAssetRef.value?.pause?.(),
   })
 }
 
@@ -124,13 +124,28 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen">
-    <div class="shrink-0 w-[400px] mt-[150px]" ref="videoBoxRef">
-      <MediaAsset ref="videoAssetRef" type="video" :src="unitData.media.leftVideo" :autoplay="false" :muted="true" :loop="true"
-        :controls="false" :view-play="true" playsinline class="mediaBox" />
+  <div
+    ref="sectionRef"
+    class="unit2 relative flex w-[1560px] max-w-full items-start mx-auto h-screen"
+  >
+    <div ref="videoBoxRef" class="shrink-0 w-[400px] mt-[150px]">
+      <MediaAsset
+        ref="videoAssetRef"
+        type="video"
+        :src="unitData.media.leftVideo"
+        :autoplay="false"
+        :muted="true"
+        :loop="true"
+        :controls="false"
+        :view-play="true"
+        playsinline
+        class="mediaBox"
+      />
     </div>
-    <div ref="rightWrapRef"
-      class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]">
+    <div
+      ref="rightWrapRef"
+      class="content-wrapper mt-[155px] will-change-transform pl-[98px] border-l-[1px] border-white/20 ml-[170px] pb-[65px] h-max pr-[134px]"
+    >
       <div class="content1 flex flex-col items-center">
         <div class="title1">
           {{ unitData.sections.section1.title1 }}
@@ -145,7 +160,11 @@ onUnmounted(() => {
         </div>
 
         <div class="flex pl-[3px] justify-center gap-x-[152px] mt-[36px]">
-          <div v-for="(stat, index) in unitData.sections.section1.stats" :key="index" class="flex flex-col items-center justify-center">
+          <div
+            v-for="(stat, index) in unitData.sections.section1.stats"
+            :key="index"
+            class="flex flex-col items-center justify-center"
+          >
             <div class="text1">
               {{ stat.percentage }}
             </div>
@@ -154,9 +173,14 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <MediaAsset class="w-[763px] object-contain" type="image" :src="unitData.media.rightImage1" alt="" />
+        <MediaAsset
+          class="w-[763px] object-contain"
+          type="image"
+          :src="unitData.media.rightImage1"
+          alt=""
+        />
       </div>
-      <div class="content2 mt-[158px] flex flex-col items-center" ref="rightVideoBoxRef">
+      <div ref="rightVideoBoxRef" class="content2 mt-[158px] flex flex-col items-center">
         <div class="title1">
           {{ unitData.sections.section2.title1 }}
         </div>
@@ -168,8 +192,18 @@ onUnmounted(() => {
         <div class="title3 mt-[25px]">
           {{ unitData.sections.section2.title3 }}
         </div>
-        <MediaAsset ref="rightVideoAssetRef" :src="unitData.media.rightVideo" type="video" class="w-[595px] mt-[66px]" muted :controls="false"
-          :view-play="true" :loop="true" playsinline alt="" />
+        <MediaAsset
+          ref="rightVideoAssetRef"
+          :src="unitData.media.rightVideo"
+          type="video"
+          class="w-[595px] mt-[66px]"
+          muted
+          :controls="false"
+          :view-play="true"
+          :loop="true"
+          playsinline
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -190,7 +224,7 @@ onUnmounted(() => {
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -217,15 +251,14 @@ onUnmounted(() => {
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -235,7 +268,7 @@ onUnmounted(() => {
   }
 
   .text2 {
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -252,7 +285,7 @@ onUnmounted(() => {
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -279,15 +312,14 @@ onUnmounted(() => {
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -297,7 +329,7 @@ onUnmounted(() => {
   }
 
   .text2 {
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -307,7 +339,6 @@ onUnmounted(() => {
     margin-top: 5px;
   }
 }
-
 
 @media screen and (max-width: 1500px) {
   .content-wrapper {

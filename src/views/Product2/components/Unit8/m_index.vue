@@ -6,9 +6,9 @@ import { product2Unit8Data } from '@/data/product2/product2-unit8'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit8Data)
 </script>
@@ -23,13 +23,20 @@ const unitData = useUnitData(props, product2Unit8Data)
     </div>
     <div class="mt-[54px] overflow-hidden m_mt_0">
       <div class="unit-stage">
-        <div class="unitbox max-w-[1500px] mx-auto w-full flex flex-col justify-center items-center">
+        <div
+          class="unitbox max-w-[1500px] mx-auto w-full flex flex-col justify-center items-center"
+        >
           <div class="w-[1500px] h-[300px]">
             <div class="size-full overflow-hidden flex justify-end">
               <div class="imgbox1 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-1/2 translate-y-[-50%] rotate-180"></div>
-                <template v-for="i in 2" :key="'top-'+i">
-                  <div v-for="(img, idx) in unitData.designImages.top" :key="'top-'+i+'-'+idx" class="h-full w-[480px]" :class="{ 'rounded-[20px]': idx !== 0 }">
+                <template v-for="i in 2" :key="'top-' + i">
+                  <div
+                    v-for="(img, idx) in unitData.designImages.top"
+                    :key="'top-' + i + '-' + idx"
+                    class="h-full w-[480px]"
+                    :class="{ 'rounded-[20px]': idx !== 0 }"
+                  >
                     <MediaAsset
                       :src="img"
                       type="image"
@@ -47,8 +54,12 @@ const unitData = useUnitData(props, product2Unit8Data)
             <div class="size-full overflow-hidden">
               <div class="imgbox2 w-max flex gap-x-[30px] relative">
                 <div class="mask1 absolute left-[-1px] top-[-1px] rotate-180"></div>
-                <template v-for="i in 2" :key="'bottom-'+i">
-                  <div v-for="(img, idx) in unitData.designImages.bottom" :key="'bottom-'+i+'-'+idx" class="h-full w-[480px] rounded-[20px]">
+                <template v-for="i in 2" :key="'bottom-' + i">
+                  <div
+                    v-for="(img, idx) in unitData.designImages.bottom"
+                    :key="'bottom-' + i + '-' + idx"
+                    class="h-full w-[480px] rounded-[20px]"
+                  >
                     <MediaAsset
                       :src="img"
                       type="image"
@@ -80,7 +91,7 @@ const unitData = useUnitData(props, product2Unit8Data)
 }
 
 .title1 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -91,7 +102,7 @@ const unitData = useUnitData(props, product2Unit8Data)
 }
 
 .mask1 {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #000 46.49%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 46.49%);
   width: 185px;
   height: 120%;
   flex-shrink: 0;

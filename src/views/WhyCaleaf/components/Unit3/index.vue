@@ -4,7 +4,7 @@ import { whyCaleafUnit3Data } from '@/data/why-caleaf/why-caleaf-unit3'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit3Data)
@@ -18,7 +18,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
       <!-- 年份时间轴 -->
       <div class="timeline">
         <div
-          v-for="(yearItem, idx) in unitData.years"
+          v-for="yearItem in unitData.years"
           :key="yearItem.year"
           class="timeline-item"
           :class="{ active: yearItem.active }"
@@ -34,12 +34,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
       <!-- 里程碑内容 -->
       <div class="milestone-content">
         <div class="milestone-image">
-          <MediaAsset
-            type="image"
-            :src="unitData.image"
-            :lazy="true"
-            alt="2023 Milestone"
-          />
+          <MediaAsset type="image" :src="unitData.image" :lazy="true" alt="2023 Milestone" />
         </div>
         <div class="milestone-text">
           <h3 class="milestone-subtitle">{{ unitData.content.title }}</h3>
@@ -67,7 +62,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 40px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 68px;
 }
@@ -90,7 +85,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 0.5;
 }
 
@@ -145,7 +140,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 1.2;
   margin-bottom: 50px;
 }
@@ -155,7 +150,7 @@ const unitData = useUnitData(props, whyCaleafUnit3Data)
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 // 移动端适配

@@ -4,36 +4,36 @@ import { product3Unit9BlockData } from '@/data/product3/product3-unit9-block'
 </script>
 
 <template>
-    <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
-      <div class="title1 text-center">
-        {{ product3Unit9BlockData.labels.firstLabel }}
-      </div>
-      <div class="title2 mt-[19px]">
-        {{ product3Unit9BlockData.content.mainTitle }}
-      </div>
-      <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col h-[440px] min-h-max">
-        <MediaAsset
-          type="video"
-          :src="product3Unit9BlockData.media.leftImage"
-          :autoplay="false"
-          :muted="true"
-          :loop="true"
-          :controls="false"
-          :view-play="true"
-          class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
-        />
-        <MediaAsset
-          type="video"
-          :src="product3Unit9BlockData.media.rightImage"
-          :autoplay="false"
-          :muted="true"
-          :loop="true"
-          :controls="false"
-          :view-play="true"
-          class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
-        />
-      </div>
+  <div class="mt-[158px] c_1230 c_padding pb-[170px] m_mt_0">
+    <div class="title1 text-center">
+      {{ product3Unit9BlockData.labels.firstLabel }}
     </div>
+    <div class="title2 mt-[19px]">
+      {{ product3Unit9BlockData.content.mainTitle }}
+    </div>
+    <div class="flex gap-[20px] justify-center mt-[54px] m_flex_col h-[440px] min-h-max">
+      <MediaAsset
+        type="video"
+        :src="product3Unit9BlockData.media.leftImage"
+        :autoplay="false"
+        :muted="true"
+        :loop="true"
+        :controls="false"
+        :view-play="true"
+        class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
+      />
+      <MediaAsset
+        type="video"
+        :src="product3Unit9BlockData.media.rightImage"
+        :autoplay="false"
+        :muted="true"
+        :loop="true"
+        :controls="false"
+        :view-play="true"
+        class="w-full h-full min-h-max rounded-[20px] overflow-hidden object-cover"
+      />
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -45,7 +45,7 @@ import { product3Unit9BlockData } from '@/data/product3/product3-unit9-block'
 }
 
 .title1 {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

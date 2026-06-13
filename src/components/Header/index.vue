@@ -12,11 +12,11 @@ import { useHeaderNav } from '@/composables/useHeaderNav'
 const props = defineProps({
   headerClass: {
     type: String,
-    default: 'opacity'
+    default: 'opacity',
   },
   showLine: {
-    type: Boolean
-  }
+    type: Boolean,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -40,7 +40,7 @@ const categories = computed(() => {
       ...product,
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
-    }))
+    })),
   }))
 })
 
@@ -63,16 +63,22 @@ const {
   closeMobileMenu,
   goContact,
   goHome,
-  handleProductClick
+  handleProductClick,
 } = useHeaderNav(toRef(props, 'headerClass'))
 </script>
 
 <template>
-  <div :class="{
-      'white': currentHeaderClass === 'white',
-      'opacity': currentHeaderClass === 'opacity',
-    }" class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center">
-    <div class="w-full box transition-all" :class="{ 'border-b-solid border-black/5 border-b-[1px]': showLine }">
+  <div
+    :class="{
+      white: currentHeaderClass === 'white',
+      opacity: currentHeaderClass === 'opacity',
+    }"
+    class="w-full flex items-center fixed top-0 left-0 z-[100] justify-center"
+  >
+    <div
+      class="w-full box transition-all"
+      :class="{ 'border-b-solid border-black/5 border-b-[1px]': showLine }"
+    >
       <header class="top-nav c_1300 mx-auto c_padding">
         <div class="nav-left">
           <router-link to="/" class="logo" @click="goHome">
@@ -123,8 +129,13 @@ const {
           </button>
 
           <!-- 移动端汉堡按钮 -->
-          <button v-if="isMobile" class="hamburger-btn" :class="{ 'active': isMobileMenuOpen }"
-            @click="toggleMobileMenu" aria-label="Menu">
+          <button
+            v-if="isMobile"
+            class="hamburger-btn"
+            :class="{ active: isMobileMenuOpen }"
+            aria-label="Menu"
+            @click="toggleMobileMenu"
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -215,7 +226,7 @@ const {
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #1CE785;
+  background: #1ce785;
   color: #222;
   font-family: Roboto;
   font-size: 18px;

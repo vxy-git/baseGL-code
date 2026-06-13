@@ -61,12 +61,12 @@ export const product3Unit4Data = {
     stats: [
       {
         value: '30%',
-        label: 'Thinner in Structure'
+        label: 'Thinner in Structure',
       },
       {
         value: '45%',
-        label: 'Flavor Retention'
-      }
+        label: 'Flavor Retention',
+      },
     ],
 
     /**

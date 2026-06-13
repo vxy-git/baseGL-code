@@ -7,7 +7,7 @@
       <div class="test-box size-60">60px = 6rem</div>
       <div class="test-box size-100">100px = 10rem</div>
     </div>
-    
+
     <div class="typography-test">
       <h3>字体大小测试</h3>
       <p class="text-16">字体大小: 16px = 1.6rem</p>
@@ -75,7 +75,7 @@
     font-size: 20px; // 应该转换为 2rem
     margin-bottom: 16px; // 应该转换为 1.6rem
   }
-  
+
   p {
     margin-bottom: 12px; // 应该转换为 1.2rem
   }

@@ -1,40 +1,40 @@
 <script setup>
-import MediaAsset from '@/components/MediaAsset.vue';
-import { product1Unit4Data  } from '@/data/product1/product1-unit4'
-import { ref } from 'vue';
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product1Unit4Data } from '@/data/product1/product1-unit4'
+import { ref } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit4Data)
 
-const progress1 = ref(0);
-const progress2 = ref(0);
+const progress1 = ref(0)
+const progress2 = ref(0)
 
 const updateProgress = (e, progressRef) => {
-  const el = e?.target;
+  const el = e?.target
   if (!el || !el.duration) {
-    progressRef.value = 0;
-    return;
+    progressRef.value = 0
+    return
   }
-  progressRef.value = Math.min(100, (el.currentTime / el.duration) * 100);
-};
+  progressRef.value = Math.min(100, (el.currentTime / el.duration) * 100)
+}
 
-const resetProgress = (progressRef) => {
-  progressRef.value = 0;
-};
+const resetProgress = progressRef => {
+  progressRef.value = 0
+}
 
-const handleProgress1 = (e) => updateProgress(e, progress1);
-const handleProgress2 = (e) => updateProgress(e, progress2);
-const handleReset1 = () => resetProgress(progress1);
-const handleReset2 = () => resetProgress(progress2);
+const handleProgress1 = e => updateProgress(e, progress1)
+const handleProgress2 = e => updateProgress(e, progress2)
+const handleReset1 = () => resetProgress(progress1)
+const handleReset2 = () => resetProgress(progress2)
 </script>
 
 <template>
@@ -53,7 +53,10 @@ const handleReset2 = () => resetProgress(progress2);
         </div>
       </div>
       <div class="flex justify-between mt-[78px] m_flex_col_r gap-[20px]">
-        <div ref="smallVideo1Ref" class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px] overflow-hidden">
+        <div
+          ref="smallVideo1Ref"
+          class="img-small max-h-[500px] object-cover w-[39%] rounded-[20px] overflow-hidden"
+        >
           <MediaAsset
             type="video"
             :src="unitData.section1.videos.left"
@@ -65,7 +68,9 @@ const handleReset2 = () => resetProgress(progress2);
             class="w-full h-full object-cover"
           />
         </div>
-        <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
+        <div
+          class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative"
+        >
           <MediaAsset
             type="video"
             :src="unitData.section1.videos.right"
@@ -74,18 +79,15 @@ const handleReset2 = () => resetProgress(progress2);
             :loop="true"
             :controls="false"
             :view-play="true"
+            class="w-full h-full object-cover"
             @timeupdate="handleProgress1"
             @ended="handleReset1"
             @pause="handleReset1"
-            class="w-full h-full object-cover"
           />
 
           <!-- 进度条 -->
           <div class="progress-bar-container">
-            <div
-              class="progress-bar"
-              :style="{ width: `${progress1}%` }"
-            ></div>
+            <div class="progress-bar" :style="{ width: `${progress1}%` }"></div>
           </div>
         </div>
       </div>
@@ -102,7 +104,9 @@ const handleReset2 = () => resetProgress(progress2);
         </div>
       </div>
       <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
-        <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative">
+        <div
+          class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden relative"
+        >
           <MediaAsset
             type="video"
             :src="unitData.section2.videos.left"
@@ -111,21 +115,21 @@ const handleReset2 = () => resetProgress(progress2);
             :loop="true"
             :controls="false"
             :view-play="true"
+            class="w-full h-full object-cover"
             @timeupdate="handleProgress2"
             @ended="handleReset2"
             @pause="handleReset2"
-            class="w-full h-full object-cover"
           />
 
           <!-- 进度条 -->
           <div class="progress-bar-container">
-            <div
-              class="progress-bar"
-              :style="{ width: `${progress2}%` }"
-            ></div>
+            <div class="progress-bar" :style="{ width: `${progress2}%` }"></div>
           </div>
         </div>
-        <div ref="smallVideo2Ref" class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
+        <div
+          ref="smallVideo2Ref"
+          class="img-small h-[500px] object-cover w-auto rounded-[20px] overflow-hidden"
+        >
           <MediaAsset
             type="video"
             :src="unitData.section2.videos.right"
@@ -152,14 +156,14 @@ const handleReset2 = () => resetProgress(progress2);
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #1ce785 0%, #a8ffd5 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .greenText {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -168,7 +172,7 @@ const handleReset2 = () => resetProgress(progress2);
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -177,7 +181,7 @@ const handleReset2 = () => resetProgress(progress2);
 }
 
 .label {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

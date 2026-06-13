@@ -12,9 +12,9 @@ import { logger } from '@/utils/logger'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit3Data)
@@ -52,7 +52,7 @@ const tb4Stats = ref(null)
 const tb4Image = ref(null)
 
 const isMobile = ref(false)
-const toEl = (val) => (val && '$el' in val ? val.$el : val)
+const toEl = val => (val && '$el' in val ? val.$el : val)
 
 const updateIsMobile = () => {
   isMobile.value = window.innerWidth <= 768
@@ -84,7 +84,7 @@ const buildTimeline = () => {
     tb4WTitle: toEl(tb4WTitle.value),
     tb4Text: toEl(tb4Text.value),
     tb4Stats: toEl(tb4Stats.value),
-    tb4Image: toEl(tb4Image.value)
+    tb4Image: toEl(tb4Image.value),
   }
 
   if (Object.values(els).some(el => !el)) {
@@ -94,7 +94,9 @@ const buildTimeline = () => {
 
   const tb2Elems = [els.tb2SmallTitle, els.tb2WTitle, els.tb2Text].map(toEl).filter(Boolean)
   const tb3Elems = [els.tb3SmallTitle, els.tb3WTitle, els.tb3Text].map(toEl).filter(Boolean)
-  const tb4Elems = [els.tb4SmallTitle, els.tb4WTitle, els.tb4Text, els.tb4Stats, els.tb4Image].map(toEl).filter(Boolean)
+  const tb4Elems = [els.tb4SmallTitle, els.tb4WTitle, els.tb4Text, els.tb4Stats, els.tb4Image]
+    .map(toEl)
+    .filter(Boolean)
 
   tl = gsap.timeline({
     scrollTrigger: {
@@ -104,10 +106,12 @@ const buildTimeline = () => {
       pin: true,
       scrub: 1,
       anticipatePin: 1,
-      fastScrollEnd: false
-    }
+      fastScrollEnd: false,
+    },
   })
-  tl.add(() => { seqProgress.value = 0 })
+  tl.add(() => {
+    seqProgress.value = 0
+  })
     .to(seqProgress, { value: 0.33, duration: 3.6, ease: 'power1.inOut' })
     // tb1: 整体滑动,标题淡入
     .fromTo(els.tb1, { yPercent: 60 }, { yPercent: 0, duration: 2.2, ease: 'power1.inOut' }, '<')
@@ -117,29 +121,53 @@ const buildTimeline = () => {
     .to(els.tb1Title, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     .to(seqProgress, { value: 0.66, duration: 3.6, ease: 'power1.inOut' })
     // tb2: 整体滑动,子元素按顺序淡入
-    .fromTo(els.tb2, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
-    .fromTo(tb2Elems,
+    .fromTo(
+      els.tb2,
+      { yPercent: 60 },
+      { yPercent: 0, duration: 2.0, ease: 'power1.inOut' },
+      '<+=0.3'
+    )
+    .fromTo(
+      tb2Elems,
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' },
+      '<'
+    )
     // tb2: 整体滑出,子元素一起淡出
     .to(els.tb2, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to(tb2Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     .to(seqProgress, { value: 1, duration: 3.6, ease: 'power1.inOut' })
     // tb3: 整体滑动,子元素按顺序淡入
-    .fromTo(els.tb3, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<+=0.3')
-    .fromTo(tb3Elems,
+    .fromTo(
+      els.tb3,
+      { yPercent: 60 },
+      { yPercent: 0, duration: 2.0, ease: 'power1.inOut' },
+      '<+=0.3'
+    )
+    .fromTo(
+      tb3Elems,
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' }, '<')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.35, ease: 'power1.out' },
+      '<'
+    )
     // tb3: 整体滑出,子元素一起淡出
     .to(els.tb3, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
     .to(tb3Elems, { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
     // tb4 上移的同时，帧动画淡出
     .to(els.frameContainer, { opacity: 0, duration: 3.5, ease: 'power1.inOut' })
     // tb4: 整体滑动,子元素按顺序淡入
-    .fromTo(els.tb4, { yPercent: 120 }, { yPercent: 0, duration: 3.3, ease: 'power1.out' }, '<+=0.4')
-    .fromTo(tb4Elems,
+    .fromTo(
+      els.tb4,
+      { yPercent: 120 },
+      { yPercent: 0, duration: 3.3, ease: 'power1.out' },
+      '<+=0.4'
+    )
+    .fromTo(
+      tb4Elems,
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' }, '<+=0.4')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.3, ease: 'power1.out' },
+      '<+=0.4'
+    )
 }
 
 onMounted(() => {
@@ -158,30 +186,41 @@ onUnmounted(() => {
 <template>
   <div class="pt-[133px]">
     <section ref="pinSection" class="sequence-wrap relative">
-      <div ref="frameContainer" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
+      <div
+        ref="frameContainer"
+        class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full"
+      >
         <FrameSequence
           :frames="frames"
-          :tarURL="tarURL"
-          :imageName="imageName"
-          :imageFile="imageFile"
-          :imageExtension="imageExtension || '.jpg'"
+          :tar-u-r-l="tarURL"
+          :image-name="imageName"
+          :image-file="imageFile"
+          :image-extension="imageExtension || '.jpg'"
           :progress="seqProgress"
-          :objectFit="isMobile ? 'contain' : 'cover'"
+          :object-fit="isMobile ? 'contain' : 'cover'"
         />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb1" class="text-block c_padding">
-            <div ref="tb1Title" class="title whitespace-break-spaces">{{ unitData.textBlocks.tb1.title }}</div>
+            <div ref="tb1Title" class="title whitespace-break-spaces">
+              {{ unitData.textBlocks.tb1.title }}
+            </div>
           </div>
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="smallTitle">{{ unitData.textBlocks.tb2.smallTitle }}</div>
+            <div ref="tb2SmallTitle" class="smallTitle">
+              {{ unitData.textBlocks.tb2.smallTitle }}
+            </div>
             <div ref="tb2WTitle" class="wTitle">{{ unitData.textBlocks.tb2.wTitle }}</div>
             <div ref="tb2Text" class="text">{{ unitData.textBlocks.tb2.text }}</div>
           </div>
           <div ref="tb3" class="text-block c_padding">
-            <div ref="tb3SmallTitle" class="smallTitle">{{ unitData.textBlocks.tb3.smallTitle }}</div>
-            <div ref="tb3WTitle" class="wTitle whitespace-break-spaces">{{ unitData.textBlocks.tb3.wTitle }}</div>
+            <div ref="tb3SmallTitle" class="smallTitle">
+              {{ unitData.textBlocks.tb3.smallTitle }}
+            </div>
+            <div ref="tb3WTitle" class="wTitle whitespace-break-spaces">
+              {{ unitData.textBlocks.tb3.wTitle }}
+            </div>
             <div ref="tb3Text" class="text">{{ unitData.textBlocks.tb3.text }}</div>
           </div>
           <div ref="tb4" class="text-block c_padding">
@@ -195,8 +234,12 @@ onUnmounted(() => {
               {{ unitData.textBlocks.tb4.text }}
             </div>
             <div ref="tb4Stats" class="flex justify-center gap-x-[150px] mt-[68px]">
-              <div v-for="(stat, index) in unitData.textBlocks.tb4.stats" :key="index" class="flex flex-col items-center justify-center ">
-                <div class="text1 h-[40px]" :class="{ 'flex': stat.hasIcon }">
+              <div
+                v-for="(stat, index) in unitData.textBlocks.tb4.stats"
+                :key="index"
+                class="flex flex-col items-center justify-center"
+              >
+                <div class="text1 h-[40px]" :class="{ flex: stat.hasIcon }">
                   {{ stat.value }}
                   <MediaAsset
                     v-if="stat.hasIcon"
@@ -263,7 +306,7 @@ onUnmounted(() => {
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #1ce785 0%, #a8ffd5 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -271,7 +314,7 @@ onUnmounted(() => {
 
 .smallTitle {
   padding-right: 10px;
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -281,7 +324,7 @@ onUnmounted(() => {
 }
 
 .wTitle {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -294,7 +337,7 @@ onUnmounted(() => {
 .text {
   max-width: 1200px;
   margin: 20px auto 0;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -305,7 +348,7 @@ onUnmounted(() => {
 }
 
 .text1 {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -315,7 +358,7 @@ onUnmounted(() => {
 }
 
 .text2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -327,7 +370,6 @@ onUnmounted(() => {
 
 // 设置子元素初始透明度为0,由GSAP控制动画
 .text-block {
-
   .title,
   .smallTitle,
   .wTitle,

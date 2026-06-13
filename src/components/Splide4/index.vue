@@ -1,6 +1,6 @@
 <script setup>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import { ref, onMounted, onUnmounted, computed } from "vue";
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { productsData } from '@/data/productlist/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
@@ -62,11 +62,11 @@ const splideOptions = {
       perPage: 2,
       perMove: 2,
     },
-  }
+  },
 }
 
 // 箭头状态更新
-const updateArrowStatus = (splide) => {
+const updateArrowStatus = splide => {
   const currentIndex = splide.index
   const endIndex = splide.Components.Controller.getEnd()
 
@@ -75,7 +75,7 @@ const updateArrowStatus = (splide) => {
 }
 
 // Splide 初始化
-const onSplideInit = (splide) => {
+const onSplideInit = splide => {
   splideRef.value = splide
   updateArrowStatus(splide)
 }
@@ -88,17 +88,18 @@ const slidePrev = () => {
 const slideNext = () => {
   splideRef.value?.go('>')
 }
-
 </script>
 
 <template>
   <div class="w-full bg-[#000] pt-[114px] pb-[121px]">
     <div class="c_1300 c_padding mx-auto">
-      <div class="title">
-        More Products
-      </div>
+      <div class="title">More Products</div>
 
-      <div class="cardBox mt-[45px] relative" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+      <div
+        class="cardBox mt-[45px] relative"
+        @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false"
+      >
         <!-- 左箭头 -->
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
@@ -111,7 +112,11 @@ const slideNext = () => {
         />
 
         <!-- Splide 轮播容器 -->
-        <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="updateArrowStatus">
+        <Splide
+          :options="splideOptions"
+          @splide:mounted="onSplideInit"
+          @splide:moved="updateArrowStatus"
+        >
           <SplideSlide v-for="product in productList" :key="product.id">
             <ProductItem :data="product" />
           </SplideSlide>
@@ -134,7 +139,7 @@ const slideNext = () => {
 
 <style scoped lang="scss">
 .title {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 80px;
   font-style: italic;

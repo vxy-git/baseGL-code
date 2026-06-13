@@ -15,7 +15,6 @@ import MediaAsset from './components/MediaAsset.vue'
 import VideoModal from './components/VideoModal.vue'
 import { logger } from '@/utils/logger'
 import './styles/main.scss'
-
 ;(async () => {
   try {
     const app = createApp(App)

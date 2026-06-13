@@ -28,42 +28,43 @@ export default {
   // 页面元数据
   meta: {
     title: 'Why Caleaf - Caleaf Tech',
-    description: 'Beyond Limits - Discover why Caleaf Tech is the industry leader in cannabis vaporization technology'
+    description:
+      'Beyond Limits - Discover why Caleaf Tech is the industry leader in cannabis vaporization technology',
   },
 
   // 模块数据集合
   modules: {
     unit1: {
       enabled: true,
-      data: whyCaleafUnit1Data
+      data: whyCaleafUnit1Data,
     },
     unit2: {
       enabled: true,
-      data: whyCaleafUnit2Data
+      data: whyCaleafUnit2Data,
     },
     unit3: {
       enabled: true,
-      data: whyCaleafUnit3Data
+      data: whyCaleafUnit3Data,
     },
     unit4: {
       enabled: true,
-      data: whyCaleafUnit4Data
+      data: whyCaleafUnit4Data,
     },
     unit5: {
       enabled: true,
-      data: whyCaleafUnit5Data
+      data: whyCaleafUnit5Data,
     },
     unit6: {
       enabled: true,
-      data: whyCaleafUnit6Data
+      data: whyCaleafUnit6Data,
     },
     unit7: {
       enabled: true,
-      data: whyCaleafUnit7Data
+      data: whyCaleafUnit7Data,
     },
     unit8: {
       enabled: true,
-      data: whyCaleafUnit8Data
-    }
-  }
+      data: whyCaleafUnit8Data,
+    },
+  },
 }

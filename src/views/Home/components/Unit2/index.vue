@@ -1,26 +1,24 @@
 <script setup>
-import Tabs from "@/components/Tabs/index.vue"
-import {ref, computed, onMounted, onUnmounted} from "vue";
-import { useRouter } from 'vue-router';
-import ProductItem from "@/components/ProductItem/index.vue"
-import { productsData } from "@/data/productlist/products"
-import { homeUnit2Data } from "@/data/home/home-unit2"
+import Tabs from '@/components/Tabs/index.vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import ProductItem from '@/components/ProductItem/index.vue'
+import { productsData } from '@/data/productlist/products'
+import { homeUnit2Data } from '@/data/home/home-unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 降级导入（保留用于无 CMS 数据时）
 const { tabs: staticTabs, products: staticProducts } = productsData
 
-const router = useRouter()
 const cmsNavStore = useCmsNavStore()
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsData = computed(() => {
@@ -52,7 +50,6 @@ const products = computed(() => {
   return staticProducts[tabsCurrent.value] || []
 })
 
-
 // Splide 状态管理
 const bannerCurrent = ref(0)
 const viewportWidth = ref(1920)
@@ -61,16 +58,6 @@ const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
-
-// 展示列表（合并产品数据，用于链接或其他用途）
-const productList = computed(() => {
-  const cmsCategories = cmsNavStore.productCategories || []
-  if (cmsCategories.length > 0) {
-    return cmsCategories.flatMap(cat => cat.products || [])
-  }
-  // 降级到静态数据
-  return Object.values(staticProducts).flat()
-})
 
 // 检测是否为移动端
 const checkMobile = () => {
@@ -89,7 +76,7 @@ onUnmounted(() => {
 })
 
 // 箭头状态更新
-const updateArrowStatus = (splide) => {
+const updateArrowStatus = splide => {
   const currentIndex = splide.index
   const endIndex = splide.Components.Controller.getEnd()
 
@@ -98,7 +85,7 @@ const updateArrowStatus = (splide) => {
 }
 
 // Splide 初始化
-const onSplideInit = (splide) => {
+const onSplideInit = splide => {
   splideRef.value = splide
   updateArrowStatus(splide)
 }
@@ -106,12 +93,12 @@ const onSplideInit = (splide) => {
 // 导航方法
 const slidePrev = () => {
   splideRef.value?.go('<')
-  bannerCurrent.value -= 1;
+  bannerCurrent.value -= 1
 }
 
 const slideNext = () => {
   splideRef.value?.go('>')
-  bannerCurrent.value += 1;
+  bannerCurrent.value += 1
 }
 
 const perPageValue = computed(() => {
@@ -120,18 +107,17 @@ const perPageValue = computed(() => {
   return 4
 })
 
-
 // 计算分组数量
 const groupCount = computed(() => {
   return Math.ceil((products.value.length || 0) / perPageValue.value)
 })
 
 // 点击指示器跳转到对应分组
-const goToGroup = (groupIndex) => {
-  const targetIndex = groupIndex * perPageValue.value;
-  splideRef.value?.go(targetIndex);
+const goToGroup = groupIndex => {
+  const targetIndex = groupIndex * perPageValue.value
+  splideRef.value?.go(targetIndex)
   bannerCurrent.value = groupIndex
-};
+}
 </script>
 
 <template>
@@ -140,10 +126,13 @@ const goToGroup = (groupIndex) => {
       <div class="c_1300 c_padding title whitespace-break-spaces">
         {{ unitData.unitTitle }}
       </div>
-      <Tabs class="mt-[44px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+      <Tabs v-model="tabsCurrent" class="mt-[44px]" :list="tabsList"></Tabs>
 
-      <div class="c_1300 c_padding mt-[50px] relative" @mouseenter="isHovered = true"
-        @mouseleave="isHovered = false">
+      <div
+        class="c_1300 c_padding mt-[50px] relative"
+        @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false"
+      >
         <MediaAsset
           class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
           :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
@@ -154,9 +143,14 @@ const goToGroup = (groupIndex) => {
           @click="slidePrev"
         />
         <div class="w-full">
-          <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="unitData.splideOptions" :key="tabsCurrent" @splide:mounted="onSplideInit"
-            @splide:moved="updateArrowStatus">
-            <SplideSlide v-for="(product, index) in products" :key="product.id">
+          <Splide
+            :key="tabsCurrent"
+            class="w-full ml-[50%] translate-x-[-50%]"
+            :options="unitData.splideOptions"
+            @splide:mounted="onSplideInit"
+            @splide:moved="updateArrowStatus"
+          >
+            <SplideSlide v-for="product in products" :key="product.id">
               <ProductItem :data="product" />
             </SplideSlide>
           </Splide>
@@ -172,10 +166,15 @@ const goToGroup = (groupIndex) => {
         />
       </div>
       <div class="c_1300 c_padding flex justify-center gap-x-[10px] pt-[20px]">
-        <div v-for="(item,index) in groupCount" :key="index" :class="{
-            '!bg-black': bannerCurrent === index
-          }" class="dotItem cursor-pointer hover:bg-gray-400 transition-colors duration-200" @click="goToGroup(index)">
-        </div>
+        <div
+          v-for="(item, index) in groupCount"
+          :key="index"
+          :class="{
+            '!bg-black': bannerCurrent === index,
+          }"
+          class="dotItem cursor-pointer hover:bg-gray-400 transition-colors duration-200"
+          @click="goToGroup(index)"
+        ></div>
       </div>
     </div>
   </div>
@@ -197,7 +196,7 @@ const goToGroup = (groupIndex) => {
   height: 3px;
   flex-shrink: 0;
   border-radius: 5px;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 
 @media screen and (max-width: $breakpoint-mobile) {

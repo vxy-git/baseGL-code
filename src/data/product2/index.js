@@ -31,54 +31,54 @@ export default {
   // 页面元数据
   meta: {
     title: 'UNIVERSE Series - Caleaf',
-    description: 'UNICORE powered, the way to infinite'
+    description: 'UNICORE powered, the way to infinite',
   },
 
   // 模块数据集合
   modules: {
     item: {
       enabled: true,
-      data: product2ItemData
+      data: product2ItemData,
     },
     unit1: {
       enabled: true,
-      data: product2Unit1Data
+      data: product2Unit1Data,
     },
     unit2: {
       enabled: true,
-      data: product2Unit2Data
+      data: product2Unit2Data,
     },
     gsapu: {
       enabled: true,
-      data: product2GsapUData
+      data: product2GsapUData,
     },
     unit3: {
       enabled: true,
-      data: product2Unit3Data
+      data: product2Unit3Data,
     },
     videou: {
       enabled: true,
-      data: product2VideoUData
+      data: product2VideoUData,
     },
     unit4: {
       enabled: true,
-      data: product2Unit4Data
+      data: product2Unit4Data,
     },
     unit5: {
       enabled: true,
-      data: product2Unit5Data
+      data: product2Unit5Data,
     },
     unit6: {
       enabled: true,
-      data: product2Unit6Data
+      data: product2Unit6Data,
     },
     unit7: {
       enabled: true,
-      data: product2Unit7Data
+      data: product2Unit7Data,
     },
     unit8: {
       enabled: true,
-      data: product2Unit8Data
-    }
-  }
+      data: product2Unit8Data,
+    },
+  },
 }

@@ -1,15 +1,15 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit5Data  } from '@/data/product3/product3-unit5'
+import { product3Unit5Data } from '@/data/product3/product3-unit5'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit5Data)
@@ -98,7 +98,7 @@ const unitData = useUnitData(props, product3Unit5Data)
 <style scoped lang="scss">
 @use '@/styles/variables' as *;
 .title_tag {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -115,14 +115,14 @@ const unitData = useUnitData(props, product3Unit5Data)
   font-weight: 700;
   // line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #CAA4FB 0%, #E0B8FF 50%, #CAA4FB 100%);
+  background: linear-gradient(180deg, #caa4fb 0%, #e0b8ff 50%, #caa4fb 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .stitle {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -154,7 +154,7 @@ const unitData = useUnitData(props, product3Unit5Data)
 }
 
 .gtext {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -165,7 +165,7 @@ const unitData = useUnitData(props, product3Unit5Data)
 .label {
   max-width: 727px;
   flex-shrink: 0;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -175,7 +175,7 @@ const unitData = useUnitData(props, product3Unit5Data)
 }
 
 .itemTitle {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 24px;
@@ -186,7 +186,7 @@ const unitData = useUnitData(props, product3Unit5Data)
 }
 
 .itemLabel {
-  color: #F5F5F5;
+  color: #f5f5f5;
   text-align: center;
   font-family: Roboto;
   font-size: 18px;
@@ -194,7 +194,7 @@ const unitData = useUnitData(props, product3Unit5Data)
   font-weight: 400;
   line-height: 30px;
   /* 166.667% */
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .unit5__cards {

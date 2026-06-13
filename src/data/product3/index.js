@@ -10,7 +10,7 @@ import { product3Unit4Data } from './product3-unit4.js'
 import { product3Unit5Data } from './product3-unit5.js'
 import { product3Unit6Data } from './product3-unit6.js'
 import { product3Unit7Data } from './product3-unit7.js'
-import { product3Unit8Data } from './product3-unit8.js'
+// import { product3Unit8Data } from './product3-unit8.js'  // CMS 中已禁用
 import { product3Unit9Data } from './product3-unit9.js'
 import { product3Unit9BlockData } from './product3-unit9-block.js'
 
@@ -31,42 +31,42 @@ export default {
   // 页面元数据
   meta: {
     title: 'UNICORN Series - Caleaf',
-    description: 'UNICORE powered, the way to infinite'
+    description: 'UNICORE powered, the way to infinite',
   },
 
   // 模块数据集合
   modules: {
     item: {
       enabled: true,
-      data: product3ItemData
+      data: product3ItemData,
     },
     unit1: {
       enabled: true,
-      data: product3Unit1Data
+      data: product3Unit1Data,
     },
     unit2: {
       enabled: true,
-      data: product3Unit2Data
+      data: product3Unit2Data,
     },
     unit3: {
       enabled: true,
-      data: product3Unit3Data
+      data: product3Unit3Data,
     },
     unit4: {
       enabled: true,
-      data: product3Unit4Data
+      data: product3Unit4Data,
     },
     unit5: {
       enabled: true,
-      data: product3Unit5Data
+      data: product3Unit5Data,
     },
     unit6: {
       enabled: true,
-      data: product3Unit6Data
+      data: product3Unit6Data,
     },
     unit7: {
       enabled: true,
-      data: product3Unit7Data
+      data: product3Unit7Data,
     },
     // unit8: {
     //   enabled: true,
@@ -74,11 +74,11 @@ export default {
     // },
     unit9: {
       enabled: true,
-      data: product3Unit9Data
+      data: product3Unit9Data,
     },
     unit9Block: {
       enabled: true,
-      data: product3Unit9BlockData
-    }
-  }
+      data: product3Unit9BlockData,
+    },
+  },
 }

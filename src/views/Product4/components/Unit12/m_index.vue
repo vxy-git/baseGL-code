@@ -4,16 +4,16 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product4Unit12Data } from '@/data/product4/product4-unit12'
-import { useUnitData } from '@/composables/useUnitData';
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit12Data, { deepMergeKeys: ['content', 'images'] });
+const unitData = useUnitData(props, product4Unit12Data, { deepMergeKeys: ['content', 'images'] })
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,7 +29,7 @@ onMounted(() => {
 
   const resizeDuration = 1
   const fadeTargets = (imageLayers.value || [])
-    .map((layer) => layer?.$el ?? layer)
+    .map(layer => layer?.$el ?? layer)
     .filter(Boolean)
     .reverse()
     .slice(0, unitData.value.images?.length - 1 || 0)
@@ -41,8 +41,8 @@ onMounted(() => {
       end: '+=600',
       scrub: true,
       pin: true,
-      anticipatePin: 1
-    }
+      anticipatePin: 1,
+    },
   })
 
   tl.fromTo(
@@ -54,7 +54,7 @@ onMounted(() => {
       borderRadius: '20px',
       ease: 'none',
       immediateRender: false,
-      duration: resizeDuration
+      duration: resizeDuration,
     }
   )
 
@@ -73,14 +73,28 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="h-screen flex justify-center items-center bg-[#F8F9FD] overflow-hidden">
+  <div
+    ref="sectionRef"
+    class="h-screen flex justify-center items-center bg-[#F8F9FD] overflow-hidden"
+  >
     <div class="title flex justify-center items-center">
       <span class="w-[calc((100vw-100px)/2)] text-right">{{ unitData.content.leftTitle }}</span>
       <div class="size-[100px] relative">
-        <div ref="imgBox" class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div
+          ref="imgBox"
+          class="img-box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
           <div class="size-full relative">
-            <MediaAsset ref="imageLayers" class="absolute inset-0 size-full object-cover" type="image" :src="logo"
-              alt="" :lazy="false" v-for="(logo, index) in unitData.images" :key="index" />
+            <MediaAsset
+              v-for="(logo, index) in unitData.images"
+              ref="imageLayers"
+              :key="index"
+              class="absolute inset-0 size-full object-cover"
+              type="image"
+              :src="logo"
+              alt=""
+              :lazy="false"
+            />
           </div>
         </div>
       </div>

@@ -1,30 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
-import { isEnabled, isTopLevel } from '@/utils/navFilter'
+import { isEnabled } from '@/utils/navFilter'
 
 /**
  * pageType 到组件的映射表
  * 根据 CMS 数据中的 pageType 字段选择对应的视图组件
  */
 const pageTypeComponentMap = {
-  'home': () => import('@/views/Home/index.vue'),
-  'technology': () => import('@/views/Technology/index.vue'),
-  'contactus': () => import('@/views/ContactUs/index.vue'),
-  'universe_series': () => import('@/views/Product2/index.vue'),
-  'unicorn_series': () => import('@/views/Product3/index.vue'),
-  'unit_pro': () => import('@/views/Product1/index.vue'),
-  'dukes': () => import('@/views/Product4/index.vue'),
-  'list': () => import('@/views/ProductList/index.vue'),
-  'page': () => import('@/views/Page/index.vue'),
-  'why_caleaf': () => import('@/views/WhyCaleaf/index.vue'),
+  home: () => import('@/views/Home/index.vue'),
+  technology: () => import('@/views/Technology/index.vue'),
+  contactus: () => import('@/views/ContactUs/index.vue'),
+  universe_series: () => import('@/views/Product2/index.vue'),
+  unicorn_series: () => import('@/views/Product3/index.vue'),
+  unit_pro: () => import('@/views/Product1/index.vue'),
+  dukes: () => import('@/views/Product4/index.vue'),
+  list: () => import('@/views/ProductList/index.vue'),
+  page: () => import('@/views/Page/index.vue'),
+  why_caleaf: () => import('@/views/WhyCaleaf/index.vue'),
 }
 
 /**
  * 判断 pageType 是否为有效的页面类型
  * 无效值：null、undefined、空字符串、字符串 'null'、'page'
  */
-const isValidPageType = (pageType) => {
+const isValidPageType = pageType => {
   if (!pageType || pageType === 'null' || pageType === 'page') return false
   return pageType in pageTypeComponentMap
 }
@@ -42,12 +42,14 @@ async function generateRoutes() {
     const result = await getCmsNavPublicList({
       page: 1,
       pageSize: 100,
-      order: 'sort'
+      order: 'sort',
     })
 
     const navList = Array.isArray(result?.data)
       ? result.data
-      : (Array.isArray(result?.data?.list) ? result.data.list : [])
+      : Array.isArray(result?.data?.list)
+        ? result.data.list
+        : []
 
     const isSuccess = result?.success === true
 
@@ -69,7 +71,7 @@ async function generateRoutes() {
           navOrder: nav.sort || 0,
           // 保存原始导航数据供组件使用
           moduleList: nav.moduleList,
-          ID: nav.ID
+          ID: nav.ID,
         }))
     }
   } catch (error) {
@@ -79,10 +81,11 @@ async function generateRoutes() {
   // 2. 生成路由配置
   return cmsPages.map(page => {
     // 组件选择优先级：pageType
-    const component = pageTypeComponentMap[page.pageType] ||
-      pageTypeComponentMap['page']
+    const component = pageTypeComponentMap[page.pageType] || pageTypeComponentMap['page']
     if (!component) {
-      logger.warn(`⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`)
+      logger.warn(
+        `⚠️ [Router] 未找到 pageType "${page.pageType}" 对应的组件，使用默认 Page 组件。路由: ${page.route}`
+      )
     }
 
     return {
@@ -96,12 +99,12 @@ async function generateRoutes() {
         showInFooter: page.showInFooter,
         navLabel: page.navLabel,
         navOrder: page.navOrder,
-        ID: page.ID
+        ID: page.ID,
       },
       props: {
         // 将页面配置传递给组件
-        pageConfig: page
-      }
+        pageConfig: page,
+      },
     }
   })
 }
@@ -117,7 +120,7 @@ const staticFallbackRoutes = [
     component: () => import('@/views/WhyCaleaf/index.vue'),
     meta: {
       pageType: 'why_caleaf',
-      navLabel: 'Why Caleaf'
+      navLabel: 'Why Caleaf',
     },
     props: {
       pageConfig: {
@@ -132,20 +135,18 @@ const staticFallbackRoutes = [
           unit5: { enabled: true, data: null },
           unit6: { enabled: true, data: null },
           unit7: { enabled: true, data: null },
-          unit8: { enabled: true, data: null }
-        }
-      }
-    }
-  }
+          unit8: { enabled: true, data: null },
+        },
+      },
+    },
+  },
 ]
 
 export async function createAppRouter() {
   const routes = await generateRoutes()
 
   // 建立静态降级路由的路径 → 路由 映射，用于比对
-  const fallbackMap = new Map(
-    staticFallbackRoutes.map(f => [f.path, f])
-  )
+  const fallbackMap = new Map(staticFallbackRoutes.map(f => [f.path, f]))
 
   // 筛选 CMS 路由：pageType 无效或 moduleList 为空则丢弃，由降级路由兜底
   const cmsRoutePaths = new Set()
@@ -157,7 +158,8 @@ export async function createAppRouter() {
       // CMS 有同路径路由，但数据不完整 → 丢弃，用降级路由
       const pageType = route.meta?.pageType
       const moduleList = route.props?.pageConfig?.moduleList
-      const hasModuleData = moduleList && typeof moduleList === 'object' && Object.keys(moduleList).length > 0
+      const hasModuleData =
+        moduleList && typeof moduleList === 'object' && Object.keys(moduleList).length > 0
       if (!isValidPageType(pageType) || !hasModuleData) {
         continue
       }
@@ -167,17 +169,15 @@ export async function createAppRouter() {
   }
 
   // 添加 CMS 中没有（或被丢弃）的静态降级路由
-  const effectiveFallbacks = staticFallbackRoutes.filter(
-    f => !cmsRoutePaths.has(f.path)
-  )
+  const effectiveFallbacks = staticFallbackRoutes.filter(f => !cmsRoutePaths.has(f.path))
 
   // CMS 有效路由在前，静态降级在后兜底
   return createRouter({
     history: createWebHistory(),
     routes: [...finalRoutes, ...effectiveFallbacks],
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior() {
       return { top: 0 }
-    }
+    },
   })
 }
 
@@ -189,8 +189,8 @@ export function createStaticRouter() {
   return createRouter({
     history: createWebHistory(),
     routes: [...staticFallbackRoutes],
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior() {
       return { top: 0 }
-    }
+    },
   })
 }

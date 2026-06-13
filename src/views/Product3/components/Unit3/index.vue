@@ -4,16 +4,16 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit3Data  } from '@/data/product3/product3-unit3'
+import { product3Unit3Data } from '@/data/product3/product3-unit3'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit3Data)
@@ -43,7 +43,6 @@ const setTb1MaskCharRef = (el, index) => {
 }
 const typingStagger = 0.03
 const typingTotal = computed(() => tb1Chars.value.length * typingStagger)
-const tb1Image = ref(null)
 
 // tb2
 const tb2SmallTitle = ref(null)
@@ -93,14 +92,15 @@ onMounted(async () => {
       scrub: 1,
       anticipatePin: 1,
       fastScrollEnd: false,
-      pinSpacing: true
-    }
+      pinSpacing: true,
+    },
   })
 
-  tl1.add(() => {
-    seqProgress1.value = 0
-    gsap.set(maskChars, { opacity: 0 })
-  })
+  tl1
+    .add(() => {
+      seqProgress1.value = 0
+      gsap.set(maskChars, { opacity: 0 })
+    })
     .addLabel('printStart')
     .to(seqProgress1, { value: 1, duration: typingTotal.value, ease: 'none' }, 'printStart')
     .fromTo(
@@ -111,7 +111,7 @@ onMounted(async () => {
         duration: typingStagger,
         ease: 'none',
         stagger: typingStagger,
-        immediateRender: false
+        immediateRender: false,
       },
       'printStart'
     )
@@ -125,24 +125,50 @@ onMounted(async () => {
       scrub: 1,
       anticipatePin: 1,
       fastScrollEnd: false,
-      pinSpacing: true
-    }
+      pinSpacing: true,
+    },
   })
 
   tl2
-    .add(() => { seqProgress2.value = 0 })
+    .add(() => {
+      seqProgress2.value = 0
+    })
     .to(seqProgress2, { value: 0.5, duration: 3.0, ease: 'power1.inOut' })
     .fromTo(tb2.value, { yPercent: 60 }, { yPercent: 0, duration: 2.0, ease: 'power1.inOut' }, '<')
-    .fromTo([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value],
+    .fromTo(
+      [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value],
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.25, ease: 'power1.out' }, '<')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.25, ease: 'power1.out' },
+      '<'
+    )
     .to(tb2.value, { yPercent: -60, duration: 1.2, ease: 'power1.inOut' }, '+=1.6')
-    .to([tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value], { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '<')
+    .to(
+      [tb2SmallTitle.value, tb2WTitle.value, tb2Text.value, tb2Image.value],
+      { opacity: 0, duration: 1.2, ease: 'power1.inOut' },
+      '<'
+    )
     .to(seqProgress2, { value: 1, duration: 3.0, ease: 'power1.inOut' })
-    .fromTo(tb3.value, { yPercent: 80 }, { yPercent: 0, duration: 2.6, ease: 'power1.inOut' }, '<+=0.3')
-    .fromTo([tb3Card.value, tb3Image.value, tb3Figure.value, tb3Label.value, tb3Bar1.value, tb3Bar1Text.value, tb3Bar2.value, tb3Bar2Text.value],
+    .fromTo(
+      tb3.value,
+      { yPercent: 80 },
+      { yPercent: 0, duration: 2.6, ease: 'power1.inOut' },
+      '<+=0.3'
+    )
+    .fromTo(
+      [
+        tb3Card.value,
+        tb3Image.value,
+        tb3Figure.value,
+        tb3Label.value,
+        tb3Bar1.value,
+        tb3Bar1Text.value,
+        tb3Bar2.value,
+        tb3Bar2Text.value,
+      ],
       { opacity: 0, yPercent: 15 },
-      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.2, ease: 'power1.out' }, '<+=0.2')
+      { opacity: 1, yPercent: 0, duration: 1.0, stagger: 0.2, ease: 'power1.out' },
+      '<+=0.2'
+    )
     .to(tb3.value, { yPercent: -200, opacity: 0, duration: 1.6, ease: 'power1.inOut' }, '+=2.0')
     .to(pinSection2.value, { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, '>+=0.2')
 })
@@ -159,15 +185,18 @@ onUnmounted(() => {
   <div class="pt-[133px] bg-[#000]">
     <!-- 模块 1：帧动画 + tb1 -->
     <section ref="pinSection1" class="sequence-wrap relative">
-      <div ref="frameContainer1" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
+      <div
+        ref="frameContainer1"
+        class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full"
+      >
         <FrameSequence
           :frames="unitData.frameSequences.sequence1.frames"
-          :tarURL="unitData.frameSequences.sequence1.tarURL"
-          :imageFile="unitData.frameSequences.sequence1.imageFile"
-          :imageName="unitData.frameSequences.sequence1.imageName"
-          :imageExtension="unitData.frameSequences.sequence1.imageExtension || '.jpg'"
+          :tar-u-r-l="unitData.frameSequences.sequence1.tarURL"
+          :image-file="unitData.frameSequences.sequence1.imageFile"
+          :image-name="unitData.frameSequences.sequence1.imageName"
+          :image-extension="unitData.frameSequences.sequence1.imageExtension || '.jpg'"
           :progress="seqProgress1"
-          :objectFit="isMobile ? 'contain' : 'cover'"
+          :object-fit="isMobile ? 'contain' : 'cover'"
         />
       </div>
       <div class="size-full flex items-start justify-center c_padding">
@@ -179,8 +208,8 @@ onUnmounted(() => {
                 <span
                   v-for="(ch, index) in tb1Chars"
                   :key="index"
-                  class="mask-char"
                   :ref="el => setTb1MaskCharRef(el, index)"
+                  class="mask-char"
                 >
                   {{ ch === ' ' ? '\u00A0' : ch }}
                 </span>
@@ -193,29 +222,39 @@ onUnmounted(() => {
 
     <!-- 模块 2：tb2 + tb3 -->
     <section ref="pinSection2" class="sequence-wrap relative">
-      <div ref="frameContainer2" class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full">
+      <div
+        ref="frameContainer2"
+        class="absolute left-1/2 -translate-x-1/2 bottom-0 c_1300 max-h-[74vh] w-full h-full"
+      >
         <FrameSequence
           :frames="unitData.frameSequences.sequence2.frames"
-          :tarURL="unitData.frameSequences.sequence2.tarURL"
-          :imageFile="unitData.frameSequences.sequence2.imageFile"
-          :imageName="unitData.frameSequences.sequence2.imageName"
-          :imageExtension="unitData.frameSequences.sequence2.imageExtension || '.jpg'"
+          :tar-u-r-l="unitData.frameSequences.sequence2.tarURL"
+          :image-file="unitData.frameSequences.sequence2.imageFile"
+          :image-name="unitData.frameSequences.sequence2.imageName"
+          :image-extension="unitData.frameSequences.sequence2.imageExtension || '.jpg'"
           :progress="seqProgress2"
-          :objectFit="isMobile ? 'contain' : 'cover'"
+          :object-fit="isMobile ? 'contain' : 'cover'"
         />
       </div>
       <div class="size-full flex items-start justify-center">
         <div class="text-layer">
           <div ref="tb2" class="text-block c_padding">
-            <div ref="tb2SmallTitle" class="title1">{{ unitData.textBlocks.tb2Content.smallTitle }}</div>
-            <div ref="tb2WTitle" class="title2 mt-[19.55px]">{{ unitData.textBlocks.tb2Content.title }}</div>
+            <div ref="tb2SmallTitle" class="title1">
+              {{ unitData.textBlocks.tb2Content.smallTitle }}
+            </div>
+            <div ref="tb2WTitle" class="title2 mt-[19.55px]">
+              {{ unitData.textBlocks.tb2Content.title }}
+            </div>
             <div ref="tb2Text" class="title3 max-w-[1200px] mt-[19.45px]">
               {{ unitData.textBlocks.tb2Content.description }}
             </div>
           </div>
 
           <div ref="tb3" class="text-block c_padding">
-            <div ref="tb3Card" class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70">
+            <div
+              ref="tb3Card"
+              class="bg-[#23242A]/70 rounded-[40px] w-[800px] h-[440px] flex pl-[65px] pt-[146px] m_scale_70"
+            >
               <div>
                 <div ref="tb3Figure" class="flex text">
                   {{ unitData.textBlocks.tb3Content.figure }}
@@ -310,11 +349,11 @@ onUnmounted(() => {
 .title-mask {
   position: absolute;
   inset: 0;
-  color: #CAA4FB;
+  color: #caa4fb;
   background: none;
   -webkit-background-clip: border-box;
   background-clip: border-box;
-  -webkit-text-fill-color: #CAA4FB;
+  -webkit-text-fill-color: #caa4fb;
   white-space: pre;
   pointer-events: none;
   z-index: 2;
@@ -326,7 +365,7 @@ onUnmounted(() => {
 }
 
 .title1 {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -336,7 +375,7 @@ onUnmounted(() => {
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -346,7 +385,7 @@ onUnmounted(() => {
 }
 
 .title3 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -356,7 +395,7 @@ onUnmounted(() => {
 }
 
 .text {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -365,7 +404,7 @@ onUnmounted(() => {
 }
 
 .text1 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -374,7 +413,7 @@ onUnmounted(() => {
 }
 
 .text2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

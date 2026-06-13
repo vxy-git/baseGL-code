@@ -19,27 +19,28 @@ const props = defineProps({
   // 图片路径（支持本地或CDN路径）
   src: {
     type: String,
-    required: true
+    required: true,
   },
   // CDN域名（可选，默认取环境变量 VITE_BASE_URL）
   cdnUrl: {
     type: String,
-    default: import.meta.env.VITE_BASE_URL || ''
+    default: import.meta.env.VITE_BASE_URL || '',
   },
   // 占位图
   placeholder: {
     type: String,
-    default: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23eee" width="400" height="300"/%3E%3C/svg%3E'
+    default:
+      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23eee" width="400" height="300"/%3E%3C/svg%3E',
   },
   alt: {
     type: String,
-    default: ''
+    default: '',
   },
   // 是否启用懒加载
   lazy: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 
 const imgRef = ref(null)
@@ -75,7 +76,7 @@ if (props.lazy) {
         }
       },
       {
-        rootMargin: '50px' // 提前50px开始加载
+        rootMargin: '50px', // 提前50px开始加载
       }
     )
   })

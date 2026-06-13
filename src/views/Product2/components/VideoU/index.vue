@@ -6,9 +6,9 @@ import { product2VideoUData } from '@/data/product2/product2-videou.js'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2VideoUData)
 </script>
@@ -94,7 +94,7 @@ const unitData = useUnitData(props, product2VideoUData)
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -107,7 +107,7 @@ const unitData = useUnitData(props, product2VideoUData)
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -129,7 +129,7 @@ const unitData = useUnitData(props, product2VideoUData)
   }
 
   .value {
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;

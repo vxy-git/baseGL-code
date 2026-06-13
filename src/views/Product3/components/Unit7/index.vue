@@ -7,9 +7,9 @@ import { useUnitData } from '@/composables/useUnitData'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit7Data)
@@ -22,38 +22,72 @@ const unitData = useUnitData(props, product3Unit7Data)
     </div>
     <div class="relative mt-[58px] flex justify-start gap-[40px] m_flex_col_r">
       <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px]">
-        <div v-for="item in unitData.specs.unicorn" class="item flex flex-col items-center justify-center">
+        <div
+          v-for="item in unitData.specs.unicorn"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>
       <div class="w-full h-[414px] flex flex-col items-center justify-center">
         <div class="h-[414px]">
-          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="unitData.media.unicornVideo"
-            :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
+          <MediaAsset
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            type="video"
+            :src="unitData.media.unicornVideo"
+            :autoplay="false"
+            :muted="true"
+            :loop="false"
+            :controls="false"
+            :view-play="true"
+            playsinline
+          />
         </div>
-        <div class="text7 mt-[26px] -translate-x-[4px] text-center">{{ unitData.labels.unicorn }}</div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">
+          {{ unitData.labels.unicorn }}
+        </div>
       </div>
     </div>
     <div class="relative mt-[127px] flex justify-end gap-[40px] m_flex_col">
-      <div class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0">
+      <div
+        class="w-full flex flex-col items-center justify-center -translate-y-[20px] pr-[80px] m_pr_0"
+      >
         <div class="h-[414px]">
-          <MediaAsset class="w-full h-full object-cover rounded-[20px] overflow-hidden" type="video" :src="unitData.media.unicornProVideo"
-            :autoplay="false" :muted="true" :loop="false" :controls="false" :view-play="true" playsinline />
+          <MediaAsset
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            type="video"
+            :src="unitData.media.unicornProVideo"
+            :autoplay="false"
+            :muted="true"
+            :loop="false"
+            :controls="false"
+            :view-play="true"
+            playsinline
+          />
         </div>
-        <div class="text7 mt-[30px] -translate-x-[16px] text-center">{{ unitData.labels.unicornPro }}</div>
+        <div class="text7 mt-[30px] -translate-x-[16px] text-center">
+          {{ unitData.labels.unicornPro }}
+        </div>
       </div>
-      <div class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] -mt-[4px]">
-        <div v-for="item in unitData.specs.unicornPro" class="item flex flex-col items-center justify-center">
+      <div
+        class="shrink-0 grid grid-cols-2 min-w-max gap-y-[15px] gap-x-[20px] w-[460px] -mt-[4px]"
+      >
+        <div
+          v-for="item in unitData.specs.unicornPro"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
           <div class="label">
-            {{item.label}}
+            {{ item.label }}
           </div>
           <div class="value mt-[9px]">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ import {
   isFooterVisible,
   isFooterChild,
   formatNavItem,
-  resolveNavLink
+  resolveNavLink,
 } from '@/utils/navFilter'
 
 // 模块级缓存：防止同一页面生命周期内重复请求 CMS API
@@ -45,12 +45,15 @@ export async function getCmsNavPublicList(params = {}) {
   const defaultParams = {
     page: 1,
     pageSize: 100,
-    order: 'sort'
+    order: 'sort',
   }
 
   _pendingRequest = (async () => {
     try {
-      const result = await request.get('/cmsnav/getCmsNavPublicList', { ...defaultParams, ...queryParams })
+      const result = await request.get('/cmsnav/getCmsNavPublicList', {
+        ...defaultParams,
+        ...queryParams,
+      })
 
       if (result.success) {
         const cached = {
@@ -58,7 +61,7 @@ export async function getCmsNavPublicList(params = {}) {
           data: result.data?.list || [],
           total: result.data?.total,
           page: result.data?.page,
-          pageSize: result.data?.pageSize
+          pageSize: result.data?.pageSize,
         }
         _cachedResult = cached
         return cached
@@ -97,7 +100,7 @@ function buildFooterColumns(allNavs) {
             Object.assign(item, resolveNavLink(child.navUrl, child.target))
           }
           return item
-        })
+        }),
     }))
 }
 
@@ -119,7 +122,7 @@ function buildBanners(allNavs) {
       image: nav.navUrl || '',
       link: nav.link || null,
       description: nav.description || '',
-      alt: nav.alt || nav.navName || ''
+      alt: nav.alt || nav.navName || '',
     }))
 }
 
@@ -161,8 +164,13 @@ export async function getAllCategorizedNavigation() {
 
   if (!allNavs.length) {
     return {
-      all: [], header: [], footer: [],
-      product: [], technology: [], company: [], banner: []
+      all: [],
+      header: [],
+      footer: [],
+      product: [],
+      technology: [],
+      company: [],
+      banner: [],
     }
   }
 
@@ -186,7 +194,7 @@ export async function getAllCategorizedNavigation() {
     product: productNavs,
     technology: technologyNavs,
     company: companyNavs,
-    banner: banners
+    banner: banners,
   }
 }
 
@@ -244,8 +252,8 @@ export async function getBannerNavigation() {
 
   logger.log('📊 获取导航数据，准备提取 Banner...')
 
-  const homeNav = result.data.find(nav =>
-    isEnabled(nav) && nav.pageType === 'home' && nav.moduleList?.unit1?.data?.bannerList
+  const homeNav = result.data.find(
+    nav => isEnabled(nav) && nav.pageType === 'home' && nav.moduleList?.unit1?.data?.bannerList
   )
 
   const banners = homeNav ? homeNav.moduleList.unit1.data.bannerList : []
@@ -284,12 +292,12 @@ export async function getAllPageRoutes() {
         title: nav.navName || '',
         description: nav.description || '',
         icon: nav.icon || '',
-        ...nav.meta
+        ...nav.meta,
       },
       id: nav.ID,
       enabled: isEnabled(nav),
       modules: nav.modules || {},
-      extra: nav.extra || {}
+      extra: nav.extra || {},
     }))
     .sort((a, b) => a.navOrder - b.navOrder)
 
@@ -335,7 +343,7 @@ export async function getPageByRoute(routePath) {
 export async function getNavigationAndRoutes() {
   const [navigation, pageRoutes] = await Promise.all([
     getAllCategorizedNavigation(),
-    getAllPageRoutes()
+    getAllPageRoutes(),
   ])
 
   return {
@@ -346,6 +354,6 @@ export async function getNavigationAndRoutes() {
     productNav: navigation.product,
     technologyNav: navigation.technology,
     companyNav: navigation.company,
-    bannerData: navigation.banner
+    bannerData: navigation.banner,
   }
 }

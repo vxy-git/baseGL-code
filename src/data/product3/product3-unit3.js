@@ -22,7 +22,7 @@ export const product3Unit3Data = {
       frames: 32,
       tarURL: '/api/uploads/file/default/product3_1.tar',
       imageName: 'frame',
-      imageExtension: '.jpg'
+      imageExtension: '.jpg',
     },
 
     /**
@@ -32,8 +32,8 @@ export const product3Unit3Data = {
       frames: 27,
       tarURL: '/api/uploads/file/default/product3_2.tar',
       imageName: 'frame',
-      imageExtension: '.jpg'
-    }
+      imageExtension: '.jpg',
+    },
   },
 
   /**
@@ -51,7 +51,8 @@ export const product3Unit3Data = {
     tb2Content: {
       smallTitle: 'UNICORE powered',
       title: '33% in pore uniformity',
-      description: 'We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F to create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating any risk of dry burn for consistently optimal performance.'
+      description:
+        'We pioneered the use of aerospace-grade, high-thermal-conductivity ceramics, firing temperature at 1832 °F to create a 20% denser, uniformly porous structure that perfectly matches resin and rosin molecules, eliminating any risk of dry burn for consistently optimal performance.',
     },
 
     /**
@@ -61,7 +62,7 @@ export const product3Unit3Data = {
       figure: '20%',
       label: 'Firing temp',
       bar1Text: 'CALEAF TECH 1832 ℉ (1000℃)',
-      bar2Text: 'Others 1472 ℉ (800℃)'
-    }
+      bar2Text: 'Others 1472 ℉ (800℃)',
+    },
   },
 }

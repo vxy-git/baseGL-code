@@ -1,19 +1,18 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
-import MediaAsset from '@/components/MediaAsset.vue';
+import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit1Data } from '@/data/product1/product1-unit1'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit1Data)
-
 </script>
 
 <template>
@@ -26,12 +25,14 @@ const unitData = useUnitData(props, product1Unit1Data)
       :autoplay="false"
       :muted="true"
       :loop="false"
-      :viewPlay="true"
+      :view-play="true"
       playsinline
     />
     <div class="absolute h-full w-full left-0 top-0 flex flex-col justify-center">
       <div class="c_1230 c_padding w-full m_flex_col">
-        <div class="scroll text-center absolute w-full bottom-[67px] left-0">{{ unitData.content.scrollText }}</div>
+        <div class="scroll text-center absolute w-full bottom-[67px] left-0">
+          {{ unitData.content.scrollText }}
+        </div>
         <div class="title">
           {{ unitData.content.title }}
         </div>
@@ -53,7 +54,7 @@ const unitData = useUnitData(props, product1Unit1Data)
 }
 
 .title {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 60px;
   font-style: normal;
@@ -62,7 +63,7 @@ const unitData = useUnitData(props, product1Unit1Data)
 }
 
 .subTitle {
-  color: #D9D9D9;
+  color: #d9d9d9;
   font-family: Roboto;
   font-size: 30px;
   font-style: normal;
@@ -78,7 +79,7 @@ const unitData = useUnitData(props, product1Unit1Data)
   height: 40px;
   flex-shrink: 0;
   border-radius: 50px;
-  background: #1CE785;
+  background: #1ce785;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +92,7 @@ const unitData = useUnitData(props, product1Unit1Data)
 }
 
 .scroll {
-  color: #FFF;
+  color: #fff;
   font-family: Arial;
   font-size: 14px;
   font-style: normal;

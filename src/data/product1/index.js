@@ -30,50 +30,50 @@ export default {
   // 页面元数据
   meta: {
     title: 'UNIT Pro - Caleaf',
-    description: 'Professional vaporizer designed for rosin, from lab to award'
+    description: 'Professional vaporizer designed for rosin, from lab to award',
   },
 
   // 模块数据集合
   modules: {
     item: {
       enabled: true,
-      data: product1ItemData
+      data: product1ItemData,
     },
     unit1: {
       enabled: true,
-      data: product1Unit1Data
+      data: product1Unit1Data,
     },
     unit2: {
       enabled: true,
-      data: product1Unit2Data
+      data: product1Unit2Data,
     },
     unit3: {
       enabled: true,
-      data: product1Unit3Data
+      data: product1Unit3Data,
     },
     unit4: {
       enabled: true,
-      data: product1Unit4Data
+      data: product1Unit4Data,
     },
     unit5: {
       enabled: true,
-      data: product1Unit5Data
+      data: product1Unit5Data,
     },
     unit6: {
       enabled: true,
-      data: product1Unit6Data
+      data: product1Unit6Data,
     },
     unit7: {
       enabled: true,
-      data: product1Unit7Data
+      data: product1Unit7Data,
     },
     unit8: {
       enabled: true,
-      data: product1Unit8Data
+      data: product1Unit8Data,
     },
     unit9: {
       enabled: true,
-      data: product1Unit9Data
-    }
-  }
+      data: product1Unit9Data,
+    },
+  },
 }

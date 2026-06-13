@@ -20,7 +20,7 @@ export function useHeaderNav(propsHeaderClass) {
   // ========== Header 样式状态 ==========
   const currentHeaderClass = ref(propsHeaderClass.value || 'opacity')
 
-  watch(propsHeaderClass, (val) => {
+  watch(propsHeaderClass, val => {
     currentHeaderClass.value = val
   })
 
@@ -41,29 +41,56 @@ export function useHeaderNav(propsHeaderClass) {
 
   // ========== 桌面端下拉交互 ==========
   function handleProductsMouseEnter() {
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
-    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+      hoverTimer = null
+    }
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      closeTimer = null
+    }
     currentHeaderClass.value = 'white'
-    hoverTimer = setTimeout(() => { showDropdown.value = true }, 100)
+    hoverTimer = setTimeout(() => {
+      showDropdown.value = true
+    }, 100)
   }
 
   function handleProductsMouseLeave() {
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
-    closeTimer = setTimeout(() => { showDropdown.value = false }, 300)
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+      hoverTimer = null
+    }
+    closeTimer = setTimeout(() => {
+      showDropdown.value = false
+    }, 300)
   }
 
   function handleDropdownMouseEnter() {
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
-    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+      hoverTimer = null
+    }
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      closeTimer = null
+    }
   }
 
   function handleDropdownMouseLeave() {
-    closeTimer = setTimeout(() => { showDropdown.value = false }, 100)
+    closeTimer = setTimeout(() => {
+      showDropdown.value = false
+    }, 100)
   }
 
   function closeDropdown() {
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
-    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+      hoverTimer = null
+    }
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      closeTimer = null
+    }
     showDropdown.value = false
 
     if (propsHeaderClass.value === 'white') {
@@ -139,7 +166,8 @@ export function useHeaderNav(propsHeaderClass) {
       scrollTicking = true
       requestAnimationFrame(() => {
         if (propsHeaderClass.value !== 'white') {
-          currentHeaderClass.value = document.documentElement.scrollTop > SCROLL_HEADER_THRESHOLD ? 'white' : 'opacity'
+          currentHeaderClass.value =
+            document.documentElement.scrollTop > SCROLL_HEADER_THRESHOLD ? 'white' : 'opacity'
         }
         scrollTicking = false
       })
@@ -159,8 +187,14 @@ export function useHeaderNav(propsHeaderClass) {
       window.removeEventListener('scroll', scrollHandler)
       scrollHandler = null
     }
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null }
-    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+      hoverTimer = null
+    }
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      closeTimer = null
+    }
     unlockScroll()
   })
 
@@ -190,6 +224,6 @@ export function useHeaderNav(propsHeaderClass) {
     // 导航方法
     goContact,
     goHome,
-    handleProductClick
+    handleProductClick,
   }
 }

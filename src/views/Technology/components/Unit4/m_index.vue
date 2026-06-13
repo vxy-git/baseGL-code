@@ -8,8 +8,8 @@ import { useUnitData } from '@/composables/useUnitData'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -23,8 +23,19 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
 
 <template>
   <div class="relative mt-[100px] w-full bg-[#111111] overflow-hidden c_padding">
-    <MediaAsset type="video" :src="unitData.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
-      :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full object-cover" />
+    <MediaAsset
+      type="video"
+      :src="unitData.media.bgVideo"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :controls="false"
+      :view-play="true"
+      preload="auto"
+      playsinline
+      alt=""
+      class="w-full object-cover"
+    />
 
     <div class="size-full overflow-hidden">
       <div class="relative z-[2] h-full w-full pt-[45px]">
@@ -32,8 +43,12 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                  :src="unitData.icons.icon" alt="" />
+                <MediaAsset
+                  class="size-[28px] mr-[11px]"
+                  type="image"
+                  :src="unitData.icons.icon"
+                  alt=""
+                />
                 <span>{{ unitData.sections.left.textLabel }}</span>
               </div>
             </div>
@@ -46,18 +61,27 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
               {{ unitData.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="unitData.media.image1" alt="" class="w-full object-contain mt-[20px]" />
+          <MediaAsset
+            type="image"
+            :src="unitData.media.image1"
+            alt=""
+            class="w-full object-contain mt-[20px]"
+          />
         </div>
         <div class="w-full shrink-0 mt-[60px]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[28px] mr-[11px]" type="image"
-                :src="unitData.icons.icon" alt="" />
+              <MediaAsset
+                class="size-[28px] mr-[11px]"
+                type="image"
+                :src="unitData.icons.icon"
+                alt=""
+              />
               {{ unitData.sections.right.textLabel }}
             </div>
           </div>
 
-          <div class="title2 mt-[8px] ">
+          <div class="title2 mt-[8px]">
             {{ unitData.sections.right.title }}
           </div>
 
@@ -66,8 +90,19 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
           </div>
         </div>
         <div class="w-full mt-[60px]">
-          <MediaAsset type="video" :src="unitData.media.video2" :autoplay="false" :muted="true" :loop="true"
-            :controls="false" :view-play="true" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
+          <MediaAsset
+            type="video"
+            :src="unitData.media.video2"
+            :autoplay="false"
+            :muted="true"
+            :loop="true"
+            :controls="false"
+            :view-play="true"
+            preload="auto"
+            playsinline
+            alt=""
+            class="w-full h-full object-cover"
+          />
         </div>
       </div>
     </div>
@@ -80,15 +115,14 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
   max-width: 100%;
   width: 164px;
   height: 23px;
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
 
-
 .text1 {
   max-width: 100%;
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -102,7 +136,7 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
   line-height: 1.14; // 缩短行间距
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   font-weight: 700;
 }
 
@@ -114,14 +148,14 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
 }
 
 .percentage {
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
 }
 
 .text2 {
   max-width: 100%;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -154,7 +188,6 @@ const unitData = useUnitData(props, technologyUnit4Data, { cmsData })
     width: 400px;
   }
 }
-
 
 @media screen and (max-width: 800px) {
   .m_fit {

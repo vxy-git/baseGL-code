@@ -3,17 +3,17 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product4Unit4Data  } from '@/data/product4/product4-unit4.js'
-import { useUnitData } from '@/composables/useUnitData';
+import { product4Unit4Data } from '@/data/product4/product4-unit4.js'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit4Data);
+const unitData = useUnitData(props, product4Unit4Data)
 
 const sectionRef = ref(null)
 const spacerRef = ref(null)
@@ -52,7 +52,7 @@ const getVideoTargetMetrics = () => {
     height: boxRect.height,
     x: boxCenterX - videoCenterX,
     y: boxCenterY - videoCenterY,
-    borderRadius: '20px'
+    borderRadius: '20px',
   }
 }
 
@@ -77,7 +77,7 @@ const buildTimeline = () => {
       pinSpacing: false,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      onUpdate: (self) => {
+      onUpdate: self => {
         const shouldPlay = self.progress >= playStartProgress
         const shouldStop = self.progress <= stopProgress
         if (shouldPlay && !isVideoPlaying) {
@@ -88,8 +88,8 @@ const buildTimeline = () => {
           videoMediaRef.value?.pause?.()
           videoMediaRef.value?.resetToStart?.()
         }
-      }
-    }
+      },
+    },
   })
 
   if (spacerRef.value) {
@@ -97,11 +97,7 @@ const buildTimeline = () => {
   }
 
   if (maskRef.value) {
-    scrollTl.fromTo(
-      maskRef.value,
-      { scale: 1, opacity: 1 },
-      { scale: 3, opacity: 0 }
-    )
+    scrollTl.fromTo(maskRef.value, { scale: 1, opacity: 1 }, { scale: 3, opacity: 0 })
   }
 
   if (videoRef.value) {
@@ -140,8 +136,8 @@ const buildSectionFade = () => {
         trigger: sectionRef.value,
         start: 'bottom 60%',
         end: 'bottom 20%',
-        scrub: true
-      }
+        scrub: true,
+      },
     })
   }
 }
@@ -175,7 +171,10 @@ onBeforeUnmount(() => {
 <template>
   <div class="unit4-wrapper">
     <div ref="sectionRef" class="w-screen h-screen relative overflow-hidden unit4-section">
-      <div ref="contentRef" class="relative c_1230 h-full c_padding flex flex-col justify-center items-center">
+      <div
+        ref="contentRef"
+        class="relative c_1230 h-full c_padding flex flex-col justify-center items-center"
+      >
         <div ref="titleRef" class="">
           <div class="title whitespace-break-spaces">
             {{ unitData.content.title }}
@@ -185,14 +184,26 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div ref="videoBoxRef" class="w-[94.5vh] max-w-full h-[53.7vh]"></div>
-        <div ref="videoRef"
-          class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)] overflow-hidden">
-          <MediaAsset ref="videoMediaRef" class="size-full object-cover" type="video" :src="unitData.videos.dual"
-            :autoplay="false" :muted="true" :loop="false" :controls="false" />
+        <div
+          ref="videoRef"
+          class="video-layer absolute mt-[47px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[calc(100vh-96px)] overflow-hidden"
+        >
+          <MediaAsset
+            ref="videoMediaRef"
+            class="size-full object-cover"
+            type="video"
+            :src="unitData.videos.dual"
+            :autoplay="false"
+            :muted="true"
+            :loop="false"
+            :controls="false"
+          />
         </div>
 
-        <div ref="maskRef"
-          class="mask-layer w-screen h-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div
+          ref="maskRef"
+          class="mask-layer w-screen h-screen absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
           <MediaAsset class="size-full object-cover" type="image" :src="unitData.dualMaskImg" />
         </div>
       </div>

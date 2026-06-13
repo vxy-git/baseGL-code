@@ -21,14 +21,14 @@ export default {
   // 页面元数据
   meta: {
     title: 'Products - Caleaf',
-    description: 'Explore our full range of premium vaporizers'
+    description: 'Explore our full range of premium vaporizers',
   },
 
   // 模块数据集合
   modules: {
     productlist: {
       enabled: true,
-      data: productListData
-    }
-  }
+      data: productListData,
+    },
+  },
 }

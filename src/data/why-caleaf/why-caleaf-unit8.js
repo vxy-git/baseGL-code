@@ -4,5 +4,5 @@
  */
 export const whyCaleafUnit8Data = {
   title: 'Connect with us',
-  instagramIcon: '/assets/why-caleaf/icon-instagram-large.svg'
+  instagramIcon: '/assets/why-caleaf/icon-instagram-large.svg',
 }

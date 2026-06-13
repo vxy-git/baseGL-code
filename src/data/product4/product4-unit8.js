@@ -41,7 +41,8 @@ export const product4Unit8Data = {
     tasteSwitcher: {
       label: 'Taste Switcher',
       title: "Let's live it up!",
-      description: 'Tap once—screen and flavor sync in a flash. Sit back and soak up the visual-and-taste ride.',
+      description:
+        'Tap once—screen and flavor sync in a flash. Sit back and soak up the visual-and-taste ride.',
     },
 
     /**
@@ -50,7 +51,8 @@ export const product4Unit8Data = {
     hitABlinker: {
       label: 'Hit a Blinker',
       title: 'Toggle the mode, bye-bye boring!',
-      description: "Turn the brand icon into a shape-shifting star, craft a vibe that's signature-only.",
+      description:
+        "Turn the brand icon into a shape-shifting star, craft a vibe that's signature-only.",
     },
   },
 }

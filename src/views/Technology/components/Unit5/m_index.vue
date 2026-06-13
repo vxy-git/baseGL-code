@@ -8,8 +8,8 @@ import { useUnitData } from '@/composables/useUnitData'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -106,7 +106,7 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -133,16 +133,15 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
     max-width: 100%;
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -152,7 +151,7 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
 
   .text2 {
     max-width: 100%;
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
@@ -169,7 +168,7 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
   .title1 {
     max-width: 100%;
     width: 164px;
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
@@ -196,16 +195,15 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
   }
 
   .percentage {
-    color: #1CE785;
+    color: #1ce785;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     text-align: center;
   }
 
-
   .text1 {
     max-width: 100%;
-    color: #1CE785;
+    color: #1ce785;
     font-family: Roboto;
     font-size: 40px;
     font-style: normal;
@@ -216,7 +214,7 @@ const unitData = useUnitData(props, technologyUnit5Data, { cmsData })
 
   .text2 {
     max-width: 100%;
-    color: #FFF;
+    color: #fff;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;

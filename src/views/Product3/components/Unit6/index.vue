@@ -1,16 +1,16 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product3Unit6Data  } from '@/data/product3/product3-unit6'
+import { product3Unit6Data } from '@/data/product3/product3-unit6'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit6Data)
@@ -27,10 +27,24 @@ const resetTimer = ref(null)
 const intervalMs = 2600
 const transitionMs = 700
 
-const displayList = computed(() => [...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value,...list.value])
+const displayList = computed(() => [
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+  ...list.value,
+])
 
 const trackStyle = computed(() => ({
-  transform: `translateX(-${currentIndex.value * stepWidth.value}px)`
+  transform: `translateX(-${currentIndex.value * stepWidth.value}px)`,
 }))
 
 const measureStep = () => {
@@ -94,7 +108,6 @@ onBeforeUnmount(() => {
   }
   window.removeEventListener('resize', measureStep)
 })
-
 </script>
 
 <template>
@@ -124,10 +137,17 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="relative">
-        <div ref="listBox" class="list-track flex gap-x-[150px] pl-[100px] justify-center"
-          :class="{ 'no-transition': noTransition }" :style="trackStyle">
-          <div class="unit6-card w-[200px] h-[400px] rounded-[30px] flex-shrink-0 relative"
-            v-for="(item,index) in displayList" :key="index">
+        <div
+          ref="listBox"
+          class="list-track flex gap-x-[150px] pl-[100px] justify-center"
+          :class="{ 'no-transition': noTransition }"
+          :style="trackStyle"
+        >
+          <div
+            v-for="(item, index) in displayList"
+            :key="index"
+            class="unit6-card w-[200px] h-[400px] rounded-[30px] flex-shrink-0 relative"
+          >
             <MediaAsset
               class="size-full rounded-[20px]"
               type="image"
@@ -145,7 +165,7 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 @use '@/styles/variables' as *;
 .title {
-  color: #CAA4FB;
+  color: #caa4fb;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -171,7 +191,6 @@ onBeforeUnmount(() => {
   font-weight: 400;
   line-height: 30px;
 }
-
 
 @media screen and (max-width: $breakpoint-wide) {
   .unit6 {

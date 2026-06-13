@@ -1,8 +1,7 @@
 <script setup>
-
-import Item from "./components/Item/index.vue";
-import {ref, onMounted, onUnmounted, computed} from "vue";
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import Item from './components/Item/index.vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { homeUnit5Data } from '@/data/home/home-unit5'
 import { useCmsNavStore } from '@/stores/cmsNav'
@@ -11,8 +10,8 @@ import { useUnitData } from '@/composables/useUnitData'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -49,43 +48,43 @@ onUnmounted(() => {
 })
 
 // 统一的箭头状态更新函数
-const updateArrowStatus = (splide) => {
+const updateArrowStatus = splide => {
   // loop 模式下箭头始终可用
   canSlidePrev.value = true
   canSlideNext.value = true
   bannerCurrent.value = splide.index
-};
+}
 
 // 处理幻灯片切换结束事件
-const changeEnd = (splide) => {
+const changeEnd = splide => {
   updateArrowStatus(splide)
-};
+}
 
 // 处理幻灯片切换事件，更新按钮状态
-const onSlideChange = (splide) => {
+const onSlideChange = splide => {
   updateArrowStatus(splide)
-};
+}
 
 // Splide 初始化事件，设置初始按钮状态
-const onSplideInit = (splide) => {
+const onSplideInit = splide => {
   splideRef.value = splide
   updateArrowStatus(splide)
-};
+}
 
 // 切换到上一张
 const slidePrev = () => {
-  splideRef.value?.go('<');
-};
+  splideRef.value?.go('<')
+}
 
 // 切换到下一张
 const slideNext = () => {
-  splideRef.value?.go('>');
-};
+  splideRef.value?.go('>')
+}
 
 // 点击指示器跳转
-const goToSlide = (index) => {
-  splideRef.value?.go(index);
-};
+const goToSlide = index => {
+  splideRef.value?.go(index)
+}
 </script>
 
 <template>
@@ -94,14 +93,25 @@ const goToSlide = (index) => {
       <div class="title text-center">
         {{ unitData.unitTitle }}
       </div>
-      <div class="c_1300 mt-[46px] relative c_padding" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-        <Splide class="w-full ml-[50%] translate-x-[-50%]" :options="unitData.splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange"
-          @splide:move="changeEnd">
-          <SplideSlide class="flex-shrink-[1]" v-for="(item, index) in list" :key="index">
+      <div
+        class="c_1300 mt-[46px] relative c_padding"
+        @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false"
+      >
+        <Splide
+          class="w-full ml-[50%] translate-x-[-50%]"
+          :options="unitData.splideOptions"
+          @splide:mounted="onSplideInit"
+          @splide:moved="onSlideChange"
+          @splide:move="changeEnd"
+        >
+          <SplideSlide v-for="(item, index) in list" :key="index" class="flex-shrink-[1]">
             <Item :data="item" />
           </SplideSlide>
         </Splide>
-        <div class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto">
+        <div
+          class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto"
+        >
           <MediaAsset
             class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
             :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
@@ -123,9 +133,15 @@ const goToSlide = (index) => {
         </div>
       </div>
       <div class="flex justify-center gap-x-[10px] pt-[26px]">
-        <div v-for="(item,index) in list" :class="{
-          '!bg-black !w-[30px]':bannerCurrent === index
-        }" :key="index" class="dotItem cursor-pointer" @click="goToSlide(index)"></div>
+        <div
+          v-for="(item, index) in list"
+          :key="index"
+          :class="{
+            '!bg-black !w-[30px]': bannerCurrent === index,
+          }"
+          class="dotItem cursor-pointer"
+          @click="goToSlide(index)"
+        ></div>
       </div>
     </div>
   </div>
@@ -146,6 +162,6 @@ const goToSlide = (index) => {
   height: 3px;
   flex-shrink: 0;
   border-radius: 5px;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 </style>

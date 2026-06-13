@@ -1,21 +1,20 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { product1Unit3Data } from '@/data/product1/product1-unit3'
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit3Data)
 
-const iconFlavor = computed(() => unitData.value.icons.flavor)
 const iconDevice = computed(() => unitData.value.icons.device)
 const m1 = '/api/uploads/file/default/assets/product1/unit3/m1.jpg'
 const m2 = '/api/uploads/file/default/assets/product1/unit3/m2.jpg'
@@ -33,15 +32,13 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
         <div class="text-block c_padding">
           <div class="smallTitle">{{ unitData.textBlocks.tb2.smallTitle }}</div>
           <div class="wTitle">{{ unitData.textBlocks.tb2.wTitle }}</div>
-          <div class="text">{{ unitData.textBlocks.tb2.text }}
-          </div>
+          <div class="text">{{ unitData.textBlocks.tb2.text }}</div>
           <MediaAsset :src="m2" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
         <div class="text-block c_padding">
           <div class="smallTitle">{{ unitData.textBlocks.tb3.smallTitle }}</div>
           <div class="wTitle whitespace-break-spaces">{{ unitData.textBlocks.tb3.wTitle }}</div>
-          <div class="text">{{ unitData.textBlocks.tb3.text }}
-          </div>
+          <div class="text">{{ unitData.textBlocks.tb3.text }}</div>
           <MediaAsset :src="m3" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
         </div>
         <div class="text-block c_padding">
@@ -55,7 +52,11 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
             {{ unitData.textBlocks.tb4.text }}
           </div>
           <div class="flex justify-center gap-x-[150px] mt-[68px]">
-            <div class="flex flex-col items-center justify-center " v-for="stat in unitData.textBlocks.tb4.stats" :key="stat.label">
+            <div
+              v-for="stat in unitData.textBlocks.tb4.stats"
+              :key="stat.label"
+              class="flex flex-col items-center justify-center"
+            >
               <div class="text1 h-[40px]">
                 {{ stat.value }}
               </div>
@@ -64,7 +65,13 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
               </div>
             </div>
           </div>
-          <MediaAsset :src="iconDevice.value" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+          <MediaAsset
+            :src="iconDevice.value"
+            type="image"
+            class="mx-auto max-h-[600px]"
+            alt=""
+            :lazy="false"
+          />
         </div>
       </div>
     </div>
@@ -107,7 +114,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #1ce785 0%, #a8ffd5 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,7 +122,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 
 .smallTitle {
   padding-right: 10px;
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -125,7 +132,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 }
 
 .wTitle {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -138,7 +145,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 .text {
   max-width: 1200px;
   margin: 20px auto 0;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -149,7 +156,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 }
 
 .text1 {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -159,7 +166,7 @@ const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
 }
 
 .text2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

@@ -31,54 +31,54 @@ export default {
   // 页面元数据
   meta: {
     title: 'DUKES - Caleaf',
-    description: 'The best of both worlds, every puff with more hits'
+    description: 'The best of both worlds, every puff with more hits',
   },
 
   // 模块数据集合
   modules: {
     item: {
       enabled: true,
-      data: product4ItemData
+      data: product4ItemData,
     },
     unit1: {
       enabled: true,
-      data: product4Unit1Data
+      data: product4Unit1Data,
     },
     unit2: {
       enabled: true,
-      data: product4Unit2Data
+      data: product4Unit2Data,
     },
     unit4: {
       enabled: true,
-      data: product4Unit4Data
+      data: product4Unit4Data,
     },
     unit5: {
       enabled: true,
-      data: product4Unit5Data
+      data: product4Unit5Data,
     },
     unit6: {
       enabled: true,
-      data: product4Unit6Data
+      data: product4Unit6Data,
     },
     unit8: {
       enabled: true,
-      data: product4Unit8Data
+      data: product4Unit8Data,
     },
     unit9: {
       enabled: true,
-      data: product4Unit9Data
+      data: product4Unit9Data,
     },
     unit10: {
       enabled: true,
-      data: product4Unit10Data
+      data: product4Unit10Data,
     },
     unit11: {
       enabled: true,
-      data: product4Unit11Data
+      data: product4Unit11Data,
     },
     unit12: {
       enabled: true,
-      data: product4Unit12Data
-    }
-  }
+      data: product4Unit12Data,
+    },
+  },
 }

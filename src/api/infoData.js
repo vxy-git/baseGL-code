@@ -21,7 +21,7 @@ export async function createInfoDataPublic(data) {
     return {
       success: false,
       message: 'userName 字段不能为空',
-      data: null
+      data: null,
     }
   }
 
@@ -29,18 +29,18 @@ export async function createInfoDataPublic(data) {
     return {
       success: false,
       message: 'formJson 字段必须是一个有效的对象',
-      data: null
+      data: null,
     }
   }
 
   const requestData = {
     userName: data.userName,
-    formJson: data.formJson
+    formJson: data.formJson,
   }
 
   logger.log('📤 准备提交表单数据:', {
     userName: requestData.userName.substring(0, 1) + '***',
-    formJsonKeys: Object.keys(requestData.formJson)
+    formJsonKeys: Object.keys(requestData.formJson),
   })
 
   const result = await request.post('/infoData/createInfoPublicData', requestData)
@@ -50,7 +50,7 @@ export async function createInfoDataPublic(data) {
     return {
       success: false,
       message: result.message || '提交失败',
-      data: null
+      data: null,
     }
   }
 
@@ -60,7 +60,7 @@ export async function createInfoDataPublic(data) {
   return {
     success: true,
     message: result.message || '提交成功',
-    data: result.data
+    data: result.data,
   }
 }
 
@@ -107,9 +107,10 @@ export async function extractUserNameByUuid(formData, uuid) {
         logger.log('🔍 根据 UUID 查询表单配置，字段数:', rules.length)
 
         // 查找 name 字段（通过 placeholder 或 info 识别）
-        const nameField = rules.find(r =>
-          r.props?.placeholder?.toLowerCase().includes('name') ||
-          r.info?.toLowerCase().includes('name')
+        const nameField = rules.find(
+          r =>
+            r.props?.placeholder?.toLowerCase().includes('name') ||
+            r.info?.toLowerCase().includes('name')
         )
 
         if (nameField && formData[nameField.field]) {
@@ -118,9 +119,10 @@ export async function extractUserNameByUuid(formData, uuid) {
         }
 
         // 查找 email 字段
-        const emailField = rules.find(r =>
-          r.props?.placeholder?.toLowerCase().includes('email') ||
-          r.props?.placeholder?.toLowerCase().includes('e-mail')
+        const emailField = rules.find(
+          r =>
+            r.props?.placeholder?.toLowerCase().includes('email') ||
+            r.props?.placeholder?.toLowerCase().includes('e-mail')
         )
 
         if (emailField && formData[emailField.field]) {
@@ -134,7 +136,7 @@ export async function extractUserNameByUuid(formData, uuid) {
   }
 
   // 2. 降级：智能识别（查找包含 @ 的字段，可能是 email）
-  for (const [key, value] of Object.entries(formData)) {
+  for (const [, value] of Object.entries(formData)) {
     if (typeof value === 'string' && value.includes('@') && value.trim()) {
       logger.log('✅ 通过邮箱格式提取用户名:', value)
       return value
@@ -142,7 +144,7 @@ export async function extractUserNameByUuid(formData, uuid) {
   }
 
   // 3. 降级：返回第一个非空字符串字段
-  for (const [key, value] of Object.entries(formData)) {
+  for (const [, value] of Object.entries(formData)) {
     if (typeof value === 'string' && value.trim() && value.length < 100) {
       logger.log('✅ 通过第一个非空字段提取用户名:', value)
       return value
@@ -164,7 +166,7 @@ export async function extractUserNameByUuid(formData, uuid) {
 export async function submitContactUsForm(formData, formUuid) {
   logger.log('📤 submitContactUsForm 调用:', {
     formDataKeys: Object.keys(formData),
-    formUuid: formUuid
+    formUuid: formUuid,
   })
 
   // 提取 userName（支持 UUID 查询和智能识别）
@@ -175,6 +177,6 @@ export async function submitContactUsForm(formData, formUuid) {
   // 提交数据（直接提交原始表单数据，不做字段映射）
   return await createInfoDataPublic({
     userName: userName,
-    formJson: formData
+    formJson: formData,
   })
 }

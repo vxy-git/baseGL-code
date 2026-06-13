@@ -11,11 +11,11 @@ export default {
   modules: {
     headerData: {
       enabled: true,
-      data: headerData
+      data: headerData,
     },
     footerData: {
       enabled: true,
-      data: footerData
-    }
-  }
+      data: footerData,
+    },
+  },
 }

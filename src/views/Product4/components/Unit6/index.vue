@@ -1,16 +1,16 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product4Unit6Data  } from '@/data/product4/product4-unit6.js'
-import { useUnitData } from '@/composables/useUnitData';
+import { product4Unit6Data } from '@/data/product4/product4-unit6.js'
+import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-const unitData = useUnitData(props, product4Unit6Data);
+const unitData = useUnitData(props, product4Unit6Data)
 </script>
 
 <template>
@@ -18,7 +18,9 @@ const unitData = useUnitData(props, product4Unit6Data);
     <div class="title">
       {{ unitData.content.title }}
     </div>
-    <div class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full">
+    <div
+      class="w-[1227px] mx-auto mt-[142px] gap-y-[50px] flex justify-between m_flex_warp max-w-full"
+    >
       <div class="pt-[7px] max-w-full">
         <div class="gtext">
           {{ unitData.content.greenLabel }}
@@ -37,7 +39,7 @@ const unitData = useUnitData(props, product4Unit6Data);
             :autoplay="false"
             :muted="true"
             :loop="true"
-            :viewPlay="true"
+            :view-play="true"
             class="w-full h-full object-cover rounded-[20px]"
           />
         </div>
@@ -50,7 +52,7 @@ const unitData = useUnitData(props, product4Unit6Data);
           :autoplay="false"
           :muted="true"
           :loop="true"
-          :viewPlay="true"
+          :view-play="true"
           class="w-full h-full object-cover rounded-[20px]"
         />
       </div>
@@ -59,28 +61,28 @@ const unitData = useUnitData(props, product4Unit6Data);
 </template>
 
 <style scoped lang="scss">
-.title{
+.title {
   text-align: center;
   font-family: Roboto;
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
   line-height: 94px;
-  background: linear-gradient(90deg, #1CE785 0%, #10814A 100%);
+  background: linear-gradient(90deg, #1ce785 0%, #10814a 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.gtext{
-  color: #1CE785;
+.gtext {
+  color: #1ce785;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.title1{
-  color: #FFF;
+.title1 {
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -88,11 +90,11 @@ const unitData = useUnitData(props, product4Unit6Data);
   line-height: normal;
   margin-top: 18px;
 }
-.label{
+.label {
   width: 594px;
   height: 120px;
   flex-shrink: 0;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

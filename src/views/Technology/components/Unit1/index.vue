@@ -10,8 +10,8 @@ const showVideo = ref(false)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -26,17 +26,24 @@ const unitData = useUnitData(props, technologyUnit1Data, { cmsData })
 <template>
   <div class="unit1 mt_nav">
     <div class="bg-video">
-      <MediaAsset class="!max-h-full" type="video" :src="unitData.videos.bannerBg" :autoplay="true" :muted="true" :loop="false" :controls="false" playsinline :view-play="true" :lazy="false" />
+      <MediaAsset
+        class="!max-h-full"
+        type="video"
+        :src="unitData.videos.bannerBg"
+        :autoplay="true"
+        :muted="true"
+        :loop="false"
+        :controls="false"
+        playsinline
+        :view-play="true"
+        :lazy="false"
+      />
     </div>
 
     <div class="content relative flex c_1300 mx-auto justify-end items-end">
       <!-- 自动播放视频按钮 -->
       <div class="video-trigger" @click="showVideo = true">
-        <MediaAsset
-          :src="unitData.icons.icon"
-          type="image"
-          class="trigger-bg"
-        />
+        <MediaAsset :src="unitData.icons.icon" type="image" class="trigger-bg" />
         <MediaAsset
           class="preview-video"
           type="video"
@@ -59,7 +66,13 @@ const unitData = useUnitData(props, technologyUnit1Data, { cmsData })
       </div>
     </div>
 
-    <VideoModal v-model:visible="showVideo" :src="unitData.videos.src" :muted="false" :loop="false" :controls="true" />
+    <VideoModal
+      v-model:visible="showVideo"
+      :src="unitData.videos.src"
+      :muted="false"
+      :loop="false"
+      :controls="true"
+    />
   </div>
 </template>
 

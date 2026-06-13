@@ -17,23 +17,21 @@ export const footerData = {
       title: 'Products',
       links: [
         { text: 'For Resin/Rosin', to: { path: '/list', query: { tab: 0 } } },
-        { text: 'D9 Distillate', to: { path: '/list', query: { tab: 1 } } }
-      ]
+        { text: 'D9 Distillate', to: { path: '/list', query: { tab: 1 } } },
+      ],
     },
     {
       title: 'Technology',
-      links: [
-        { text: 'UNICORE', to: '/technology' }
-      ]
+      links: [{ text: 'UNICORE', to: '/technology' }],
     },
     {
       title: 'Customize',
-      links: []
+      links: [],
     },
     {
       title: 'Why Caleaf',
-      links: []
-    }
+      links: [],
+    },
   ],
 
   /**
@@ -46,7 +44,7 @@ export const footerData = {
     buttonText: 'Sign Up',
     privacyText: 'I agree with the',
     privacyLinkText: 'Privacy Policy',
-    privacySuffix: "and I'd like to receive the latest CALEAF TECH news and deals by email."
+    privacySuffix: "and I'd like to receive the latest CALEAF TECH news and deals by email.",
   },
 
   /**
@@ -58,9 +56,9 @@ export const footerData = {
       {
         name: 'Instagram',
         href: 'https://www.instagram.com/caleaftechofficial/',
-        ariaLabel: 'Instagram'
-      }
-    ]
+        ariaLabel: 'Instagram',
+      },
+    ],
   },
 
   /**
@@ -68,6 +66,6 @@ export const footerData = {
    */
   bottom: {
     copyright: 'Copyright © 2025 CALEAF TECH All rights reserved.',
-    designer: 'Designed by HOLY'
-  }
+    designer: 'Designed by HOLY',
+  },
 }

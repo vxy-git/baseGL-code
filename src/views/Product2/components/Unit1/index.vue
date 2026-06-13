@@ -1,14 +1,14 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
-import MediaAsset from '@/components/MediaAsset.vue';
-import { product2Unit1Data  } from '@/data/product2/product2-unit1'
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product2Unit1Data } from '@/data/product2/product2-unit1'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit1Data)
 </script>
@@ -23,7 +23,7 @@ const unitData = useUnitData(props, product2Unit1Data)
       :autoplay="false"
       :muted="true"
       :loop="false"
-      :viewPlay="true"
+      :view-play="true"
       playsinline
     />
   </div>

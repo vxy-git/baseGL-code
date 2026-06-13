@@ -3,7 +3,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import { whyCaleafUnit2Data } from '@/data/why-caleaf/why-caleaf-unit2'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit2Data)
@@ -171,7 +171,6 @@ const unitData = useUnitData(props, whyCaleafUnit2Data)
   .facts-title {
     font-size: 28px;
   }
-
 
   .fact-number-single {
     font-size: 36px;

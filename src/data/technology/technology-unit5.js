@@ -69,6 +69,6 @@ export const technologyUnit5Data = {
        */
       title3: `Unicore combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and
 guarantees an exceptional session every time.`,
-    }
+    },
   },
 }

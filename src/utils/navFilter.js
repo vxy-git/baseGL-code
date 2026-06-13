@@ -4,22 +4,22 @@
  */
 
 /** 导航项是否已启用 */
-export const isEnabled = (nav) => nav.status === '启用'
+export const isEnabled = nav => nav.status === '启用'
 
 /** 是否为顶级导航（无父级） */
-export const isTopLevel = (nav) => !nav.parentId || nav.parentId === 0
+export const isTopLevel = nav => !nav.parentId || nav.parentId === 0
 
 /** 是否需要在 Header 显示 */
-export const isHeaderVisible = (nav) => isEnabled(nav) && nav.headerShow === true
+export const isHeaderVisible = nav => isEnabled(nav) && nav.headerShow === true
 
 /** 是否需要在 Footer 显示 */
-export const isFooterVisible = (nav) => isEnabled(nav) && nav.footerShow === true
+export const isFooterVisible = nav => isEnabled(nav) && nav.footerShow === true
 
 /** Header 顶级导航项 */
-export const isTopLevelHeader = (nav) => isTopLevel(nav) && isHeaderVisible(nav)
+export const isTopLevelHeader = nav => isTopLevel(nav) && isHeaderVisible(nav)
 
 /** Footer 顶级导航项 */
-export const isTopLevelFooter = (nav) => isTopLevel(nav) && isFooterVisible(nav)
+export const isTopLevelFooter = nav => isTopLevel(nav) && isFooterVisible(nav)
 
 /** 子导航项（headerShow=true） */
 export const isHeaderChild = (nav, parentId) =>
@@ -54,7 +54,7 @@ export function formatNavItem(nav, opts = {}) {
 
   const item = {
     text: nav.navName || '',
-    id: nav.ID
+    id: nav.ID,
   }
 
   // 处理导航链接

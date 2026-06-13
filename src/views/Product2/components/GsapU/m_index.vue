@@ -6,9 +6,9 @@ import { product2GsapUData } from '@/data/product2/product2-gsapu.js'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2GsapUData)
 </script>
@@ -20,12 +20,22 @@ const unitData = useUnitData(props, product2GsapUData)
         <div class="text-layer">
           <div class="text-block">
             <div class="c_1230 c_padding">
-              <div class="title1 translate-y-[1px] text-center">{{ unitData.content.labelText }}</div>
-              <div class="title2 mt-[19px] whitespace-break-spaces">{{ unitData.content.mainTitle }}</div>
+              <div class="title1 translate-y-[1px] text-center">
+                {{ unitData.content.labelText }}
+              </div>
+              <div class="title2 mt-[19px] whitespace-break-spaces">
+                {{ unitData.content.mainTitle }}
+              </div>
               <div class="title3 mt-[19px]">{{ unitData.content.description }}</div>
             </div>
           </div>
-          <MediaAsset :src="unitData.media.image" type="image" class="mx-auto max-h-[600px]" alt="" :lazy="false" />
+          <MediaAsset
+            :src="unitData.media.image"
+            type="image"
+            class="mx-auto max-h-[600px]"
+            alt=""
+            :lazy="false"
+          />
         </div>
       </div>
     </section>
@@ -33,7 +43,6 @@ const unitData = useUnitData(props, product2GsapUData)
 </template>
 
 <style scoped lang="scss">
-
 .text-layer {
   width: 100%;
   max-width: 1200px;
@@ -58,7 +67,7 @@ const unitData = useUnitData(props, product2GsapUData)
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;
@@ -71,7 +80,7 @@ const unitData = useUnitData(props, product2GsapUData)
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;

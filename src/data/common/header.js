@@ -20,7 +20,7 @@ export const headerData = {
    */
   search: {
     default: '/api/uploads/file/default/assets/img/icon12.png',
-    active: '/api/uploads/file/default/assets/img/icon12_active.png'
+    active: '/api/uploads/file/default/assets/img/icon12_active.png',
   },
 
   /**
@@ -34,7 +34,7 @@ export const headerData = {
     { text: 'Technology', to: '/technology' },
     { text: 'Customize', href: '#' },
     { text: 'US Local Service', href: '#' },
-    { text: 'Why Caleaf', href: '#' }
+    { text: 'Why Caleaf', href: '#' },
   ],
 
   /**
@@ -42,6 +42,6 @@ export const headerData = {
    */
   buttonText: {
     contact: 'Contact',
-    contactUs: 'Contact Us'
-  }
+    contactUs: 'Contact Us',
+  },
 }

@@ -6,52 +6,52 @@ import MediaAsset from '@/components/MediaAsset.vue'
 const props = defineProps({
   data: {
     type: Object,
-    required: true
+    required: true,
   },
   showDesc: {
     type: Boolean,
-    default: false
+    default: false,
   },
   clickable: {
     type: Boolean,
-    default: true
+    default: true,
   },
   width: {
     type: [String, Number],
-    default: '100%'
+    default: '100%',
   },
   minWidth: {
     type: [String, Number],
-    default: '295px'
+    default: '295px',
   },
   height: {
     type: [String, Number],
-    default: '440px'
+    default: '440px',
   },
   padding: {
     type: [String, Number],
-    default: '28px'
+    default: '28px',
   },
   showCapacity: {
     type: Boolean,
-    default: true
+    default: true,
   },
   showBadge: {
     type: Boolean,
-    default: true
+    default: true,
   },
   ctaText: {
     type: String,
-    default: 'Learn more'
-  }
+    default: 'Learn more',
+  },
 })
 
 const emit = defineEmits(['click'])
 
 const router = useRouter()
-const productLink = (linkType) => `/${linkType}`
+const productLink = linkType => `/${linkType}`
 
-const normalizeSize = (value) => (typeof value === 'number' ? `${value}px` : value)
+const normalizeSize = value => (typeof value === 'number' ? `${value}px` : value)
 
 const cardStyle = computed(() => ({
   '--card-width': normalizeSize(props.width),
@@ -97,7 +97,9 @@ const handleClick = () => {
         </div>
         <div class="card-footer">
           <span class="more">{{ ctaText }}</span>
-          <span v-if="showCapacity && data.capacity" class="capacity-chip">{{ data.capacity }}</span>
+          <span v-if="showCapacity && data.capacity" class="capacity-chip">{{
+            data.capacity
+          }}</span>
         </div>
       </div>
     </div>
@@ -145,7 +147,11 @@ const handleClick = () => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
   cursor: pointer;
 
   &::after {
@@ -186,11 +192,11 @@ const handleClick = () => {
   height: 145px;
   border-radius: 20px 20px 0 0;
   opacity: 0.3;
-  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%);
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .badge {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
@@ -224,7 +230,9 @@ const handleClick = () => {
   object-fit: cover;
   opacity: 0;
   transform: scale(1);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
   z-index: 0;
 }
 

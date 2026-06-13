@@ -1,10 +1,10 @@
 <script setup>
-import Tabs from "./Tabs/index.vue";
-import MediaAsset from '@/components/MediaAsset.vue';
-import { product1Unit5Data  } from '@/data/product1/product1-unit5'
-import {ref, watch, onMounted, onUnmounted, nextTick, computed} from "vue";
+import Tabs from './Tabs/index.vue'
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product1Unit5Data } from '@/data/product1/product1-unit5'
+import { ref, watch, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import { useIntersectionObserver } from '@vueuse/core'
 import { logger } from '@/utils/logger'
 
@@ -12,9 +12,9 @@ import { logger } from '@/utils/logger'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit5Data)
@@ -25,17 +25,17 @@ const tabsList = computed(() => unitData.value.tabsList)
 // 根据 Tab 显示的文案
 const labelContents = computed(() => unitData.value.descriptions)
 
-const currentLabel = computed(() => labelContents.value[tabsCurrent.value] || "")
+const currentLabel = computed(() => labelContents.value[tabsCurrent.value] || '')
 
 // 媒体资源列表，支持图片和视频混合
 const mediaList = computed(() => unitData.value.mediaList)
-const containerRef = ref(null)  // 容器引用，用于可见性检测
-const isVisible = ref(false)    // 是否在视口中可见
+const containerRef = ref(null) // 容器引用，用于可见性检测
+const isVisible = ref(false) // 是否在视口中可见
 const splideRef = ref(null)
 const mediaRefs = ref([])
 const progressValues = ref([])
 const progressTimers = ref([])
-const playSessionId = ref(0)  // 播放会话ID，用于防止旧定时器继续运行
+const playSessionId = ref(0) // 播放会话ID，用于防止旧定时器继续运行
 
 const splideOptions = {
   perPage: 1,
@@ -49,30 +49,30 @@ const splideOptions = {
   width: '100vw',
   fixedWidth: '50rem',
   padding: {
-    left: 'calc((100vw - 50rem) / 2)',   // 动态计算左侧填充实现居中
-    right: 'calc((100vw - 50rem) / 2)',  // 动态计算右侧填充实现居中
+    left: 'calc((100vw - 50rem) / 2)', // 动态计算左侧填充实现居中
+    right: 'calc((100vw - 50rem) / 2)', // 动态计算右侧填充实现居中
   },
-  focus: 0,        // 聚焦第一个元素
-  omitEnd: true,   // 防止末尾空白
+  focus: 0, // 聚焦第一个元素
+  omitEnd: true, // 防止末尾空白
   breakpoints: {
     1024: {
       fixedWidth: '40rem',
       padding: {
         left: 'calc((100vw - 40rem) / 2)',
-        right: 'calc((100vw - 40rem) / 2)'
-      }
+        right: 'calc((100vw - 40rem) / 2)',
+      },
     },
     768: {
       fixedWidth: null,
       padding: { left: 0, right: 0 },
-      width: '100%'
+      width: '100%',
     },
     640: {
       fixedWidth: null,
       padding: { left: 0, right: 0 },
-      width: '100%'
-    }
-  }
+      width: '100%',
+    },
+  },
 }
 
 // 初始化进度值
@@ -119,7 +119,7 @@ const pauseAllVideos = () => {
 }
 
 // 开始播放当前 Slide
-const playCurrentSlide = (index) => {
+const playCurrentSlide = index => {
   // 增加清理ID，取消之前的延迟定时器
   playSessionId.value++
   const currentSessionId = playSessionId.value
@@ -226,7 +226,7 @@ const goToNext = () => {
   }
 }
 
-const onSplideInit = (splide) => {
+const onSplideInit = splide => {
   splideRef.value = splide
   tabsCurrent.value = splide.index
 
@@ -238,7 +238,7 @@ const onSplideInit = (splide) => {
   })
 }
 
-const onSlideChange = (splide) => {
+const onSlideChange = splide => {
   const newIndex = splide.index
   tabsCurrent.value = newIndex
 
@@ -248,7 +248,7 @@ const onSlideChange = (splide) => {
   }
 }
 
-watch(tabsCurrent, (index) => {
+watch(tabsCurrent, index => {
   // 防止循环触发：只有当 Splide 的当前索引与 tabsCurrent 不同时才执行跳转
   if (splideRef.value?.index !== index) {
     splideRef.value?.go(index)
@@ -277,7 +277,7 @@ useIntersectionObserver(
       progressValues.value = progressValues.value.map(() => 0)
     }
   },
-  { threshold: 0.3 }  // 当组件 30% 可见时触发
+  { threshold: 0.3 } // 当组件 30% 可见时触发
 )
 
 onUnmounted(() => {
@@ -295,7 +295,9 @@ onUnmounted(() => {
 
 <template>
   <div ref="containerRef" class="relative mt-[173px]">
-    <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-[#111] w-screen h-[960px]"></span>
+    <span
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#111] w-screen h-[960px]"
+    ></span>
     <div class="relative">
       <div class="c_1230 c_padding">
         <div class="title">
@@ -303,22 +305,43 @@ onUnmounted(() => {
         </div>
         <div class="mt-[58px] relative">
           <div class="w-full flex justify-center">
-            <Splide :options="splideOptions" @splide:mounted="onSplideInit" @splide:moved="onSlideChange">
-              <SplideSlide class="md:w-[800px] w-full max-w-[100vw] md:h-[500px] h-[300px]"
-                v-for="(media, index) in mediaList" :key="index">
-                <div :ref="el => setMediaRef(el, index)" class="media-wrapper"
-                  :class="{ 'is-active': index === tabsCurrent }">
+            <Splide
+              :options="splideOptions"
+              @splide:mounted="onSplideInit"
+              @splide:moved="onSlideChange"
+            >
+              <SplideSlide
+                v-for="(media, index) in mediaList"
+                :key="index"
+                class="md:w-[800px] w-full max-w-[100vw] md:h-[500px] h-[300px]"
+              >
+                <div
+                  :ref="el => setMediaRef(el, index)"
+                  class="media-wrapper"
+                  :class="{ 'is-active': index === tabsCurrent }"
+                >
                   <!-- 黑色透明遮罩层 -->
                   <div class="overlay"></div>
 
                   <!-- MediaAsset 组件 -->
-                  <MediaAsset :src="media.src" :alt="media.alt" :poster="media.poster"
-                    :autoplay="false" :muted="true" :loop="false" :controls="false" class="media-content"
-                    :class="{'!border-[#D9D9D9]': index === tabsCurrent}" />
+                  <MediaAsset
+                    :src="media.src"
+                    :alt="media.alt"
+                    :poster="media.poster"
+                    :autoplay="false"
+                    :muted="true"
+                    :loop="false"
+                    :controls="false"
+                    class="media-content"
+                    :class="{ '!border-[#D9D9D9]': index === tabsCurrent }"
+                  />
 
                   <!-- 蓝色进度条 -->
                   <div class="progress-bar-container">
-                    <div class="progress-bar" :style="{ width: `${progressValues[index] || 0}%` }"></div>
+                    <div
+                      class="progress-bar"
+                      :style="{ width: `${progressValues[index] || 0}%` }"
+                    ></div>
                   </div>
                 </div>
               </SplideSlide>
@@ -326,7 +349,7 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <Tabs class="!h-[50px] mt-[40px]" :list="tabsList" v-model="tabsCurrent"></Tabs>
+      <Tabs v-model="tabsCurrent" class="!h-[50px] mt-[40px]" :list="tabsList"></Tabs>
       <div class="c_1230 c_padding">
         <transition name="fade-up" mode="out-in">
           <div :key="tabsCurrent" class="label max-w-[1000px] w-full mx-auto mt-[28px]">
@@ -346,7 +369,7 @@ onUnmounted(() => {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  background: linear-gradient(90deg, #1CE785 0%, #80FFC1 50%, #1CE785 100%);
+  background: linear-gradient(90deg, #1ce785 0%, #80ffc1 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -354,7 +377,7 @@ onUnmounted(() => {
 }
 
 .label {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -367,7 +390,9 @@ onUnmounted(() => {
 // 文案淡入上移动效
 .fade-up-enter-active,
 .fade-up-leave-active {
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
 }
 .fade-up-enter-from,
 .fade-up-leave-to {
@@ -444,7 +469,7 @@ onUnmounted(() => {
 // 蓝色进度条
 .progress-bar {
   height: 100%;
-  background: #1CE785; // 蓝色
+  background: #1ce785; // 蓝色
   transition: width 0.1s linear;
   border-bottom-left-radius: 20px;
 }

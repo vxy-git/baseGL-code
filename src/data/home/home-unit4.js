@@ -21,27 +21,27 @@ export const homeUnit4Data = {
   designItems: [
     {
       video: '/api/uploads/file/default/assets/home/svg/1-Mouthpiece.mp4',
-      text: 'Mouthpiece'
+      text: 'Mouthpiece',
     },
     {
       video: '/api/uploads/file/default/assets/home/svg/2-Oil Windos.mp4',
-      text: 'Oil Window'
+      text: 'Oil Window',
     },
     {
       video: '/api/uploads/file/default/assets/home/svg/3-Function and Interface.mp4',
-      text: 'Function and Interface'
+      text: 'Function and Interface',
     },
     {
       video: '/api/uploads/file/default/assets/home/svg/4-Button.mp4',
-      text: 'Button'
+      text: 'Button',
     },
     {
       video: '/api/uploads/file/default/assets/home/svg/5-Sticker.mp4',
-      text: 'Sticker'
+      text: 'Sticker',
     },
     {
       video: '/api/uploads/file/default/assets/home/svg/6-Housing.mp4',
-      text: 'Housing'
-    }
+      text: 'Housing',
+    },
   ],
 }

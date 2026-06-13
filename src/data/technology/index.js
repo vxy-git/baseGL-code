@@ -26,34 +26,34 @@ export default {
   // 页面元数据
   meta: {
     title: 'Technology - Caleaf',
-    description: 'Discover our innovative UNICORE technology'
+    description: 'Discover our innovative UNICORE technology',
   },
 
   // 模块数据集合（注：unit3 已被移除/淘汰，故跳过）
   modules: {
     unit1: {
       enabled: true,
-      data: technologyUnit1Data
+      data: technologyUnit1Data,
     },
     unit2: {
       enabled: true,
-      data: technologyUnit2Data
+      data: technologyUnit2Data,
     },
     unit4: {
       enabled: true,
-      data: technologyUnit4Data
+      data: technologyUnit4Data,
     },
     unit5: {
       enabled: true,
-      data: technologyUnit5Data
+      data: technologyUnit5Data,
     },
     unit6: {
       enabled: true,
-      data: technologyUnit6Data
+      data: technologyUnit6Data,
     },
     unit7: {
       enabled: true,
-      data: technologyUnit7Data
-    }
-  }
+      data: technologyUnit7Data,
+    },
+  },
 }

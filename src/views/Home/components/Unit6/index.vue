@@ -7,19 +7,13 @@ import { useUnitData } from '@/composables/useUnitData'
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const unitData = useUnitData(props, homeUnit6Data)
 
 const isPlaying = ref(false)
-
-const playVideo = () => {
-  isPlaying.value = true
-}
-
-
 </script>
 
 <template>
@@ -27,10 +21,13 @@ const playVideo = () => {
     <div class="c_1300 mt-[85px] mx-auto rounded-[20px] overflow-hidden">
       <div>
         <div class="relative">
-          <div v-if="!isPlaying" class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center">
+          <div
+            v-if="!isPlaying"
+            class="size-full absolute z-10 top-0 left-0 flex flex-col justify-center"
+          >
             <div class="titleText">{{ unitData.title }}</div>
             <div class="label">
-               {{ unitData.description }}
+              {{ unitData.description }}
             </div>
           </div>
           <MediaAsset
@@ -58,7 +55,7 @@ const playVideo = () => {
 
 <style scoped lang="scss">
 .titleText {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 50px;
@@ -66,12 +63,12 @@ const playVideo = () => {
   font-weight: 700;
   line-height: 59px;
 }
-.label{
+.label {
   text-align: justify;
   max-width: 90%;
   margin: 27.25px auto 0;
   width: 1000px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 22px;

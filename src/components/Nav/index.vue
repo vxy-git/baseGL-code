@@ -34,19 +34,23 @@ const categories = computed(() => {
       badge: product.isNew ? 'New' : '',
       variant: product.capacity,
       linkType: product.linkType,
-    }))
+    })),
   }))
 })
 
 // 监听 categories 变化，自动设置默认选中第一个分类
-watch(categories, (newCategories) => {
-  if (newCategories.length > 0) {
-    // 如果当前没有选中的分类，或者选中的分类不在新列表中，默认选中第一个
-    if (!activeCategoryId.value || !newCategories.find(c => c.id === activeCategoryId.value)) {
-      activeCategoryId.value = newCategories[0].id
+watch(
+  categories,
+  newCategories => {
+    if (newCategories.length > 0) {
+      // 如果当前没有选中的分类，或者选中的分类不在新列表中，默认选中第一个
+      if (!activeCategoryId.value || !newCategories.find(c => c.id === activeCategoryId.value)) {
+        activeCategoryId.value = newCategories[0].id
+      }
     }
-  }
-}, { immediate: true })
+  },
+  { immediate: true }
+)
 
 // 计算属性：当前激活的分类
 const activeCategory = computed(() =>
@@ -54,24 +58,22 @@ const activeCategory = computed(() =>
 )
 
 // 计算属性：当前显示的产品列表
-const displayedProducts = computed(() =>
-  activeCategory.value?.products || []
-)
+const displayedProducts = computed(() => activeCategory.value?.products || [])
 
 // 接收父组件传递的显示状态
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false
+    default: false,
   },
   onContentMouseEnter: {
     type: Function,
-    default: null
+    default: null,
   },
   onContentMouseLeave: {
     type: Function,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const emit = defineEmits(['close'])
@@ -86,7 +88,7 @@ const productCardsRef = ref([])
 const ctaButtonRef = ref(null)
 
 // 处理分类 hover 切换
-const handleCategoryHover = (categoryId) => {
+const handleCategoryHover = categoryId => {
   if (activeCategoryId.value === categoryId) return // 避免重复触发
 
   activeCategoryId.value = categoryId
@@ -94,14 +96,15 @@ const handleCategoryHover = (categoryId) => {
   // 产品列表切换动画
   nextTick(() => {
     if (productCardsRef.value?.length) {
-      gsap.fromTo(productCardsRef.value,
+      gsap.fromTo(
+        productCardsRef.value,
         { opacity: 0, y: 10 },
         {
           opacity: 1,
           y: 0,
           duration: 0.3,
           stagger: 0.03,
-          ease: 'power2.out'
+          ease: 'power2.out',
         }
       )
     }
@@ -118,62 +121,68 @@ const animateIn = () => {
   timeline = gsap.timeline()
 
   // 1. 遮罩层淡入
-  timeline.fromTo(overlayRef.value,
+  timeline.fromTo(
+    overlayRef.value,
     { opacity: 0 },
     { opacity: 1, duration: 0.3, ease: 'power2.out' }
   )
 
   // 2. 内容容器从上滑下 + 淡入
-  timeline.fromTo(contentRef.value,
+  timeline.fromTo(
+    contentRef.value,
     {
       y: -100,
-      opacity: 0
+      opacity: 0,
     },
     {
       y: 0,
       opacity: 1,
       duration: 0.5,
-      ease: 'power3.out'
+      ease: 'power3.out',
     },
     0.1 // 稍微延迟，与遮罩层重叠
   )
 
   // 3. 侧边栏淡入
-  timeline.fromTo(sidebarRef.value,
+  timeline.fromTo(
+    sidebarRef.value,
     { opacity: 0, x: -20 },
     { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' },
     0.2
   )
 
   // 4. 分类项依次淡入
-  timeline.fromTo(categoryItemsRef.value,
+  timeline.fromTo(
+    categoryItemsRef.value,
     { opacity: 0, y: 10 },
     {
       opacity: 1,
       y: 0,
       duration: 0.3,
       stagger: 0.03, // 每项间隔 30ms
-      ease: 'power2.out'
+      ease: 'power2.out',
     },
     0.3
   )
 
   // 5. 产品卡片依次淡入
-  timeline.fromTo(productCardsRef.value,
+  timeline.fromTo(
+    productCardsRef.value,
     { opacity: 0, y: 20 },
     {
       opacity: 1,
       y: 0,
       duration: 0.4,
       stagger: 0.05, // 每张卡片间隔 50ms
-      ease: 'power2.out'
+      ease: 'power2.out',
     },
     0.35
   )
 
   // 6. CTA 按钮淡入
   if (ctaButtonRef.value) {
-    timeline.fromTo(ctaButtonRef.value,
+    timeline.fromTo(
+      ctaButtonRef.value,
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
       0.5
@@ -182,21 +191,21 @@ const animateIn = () => {
 }
 
 // 离场动画
-const animateOut = (callback) => {
+const animateOut = callback => {
   if (!dropdownRef.value || !timeline) {
     callback?.()
     return
   }
 
   timeline = gsap.timeline({
-    onComplete: callback
+    onComplete: callback,
   })
 
   // 快速淡出所有元素
   timeline.to([contentRef.value, overlayRef.value], {
     opacity: 0,
     duration: 0.25,
-    ease: 'power2.in'
+    ease: 'power2.in',
   })
 }
 
@@ -218,24 +227,27 @@ const goList = () => {
   }
 }
 
-const productLink = (linkType) => `/${linkType}`
+const productLink = linkType => `/${linkType}`
 
-const goProduct = (linkType) => {
+const goProduct = linkType => {
   closeMenu()
   if (!linkType) return
   router.push(productLink(linkType))
 }
 
 // 监听 visible 变化
-watch(() => props.visible, async (newVal) => {
-  if (newVal) {
-    await nextTick() // 确保 DOM 已渲染
-    animateIn()
-    lockScroll()
-  } else {
-    unlockScroll()
+watch(
+  () => props.visible,
+  async newVal => {
+    if (newVal) {
+      await nextTick() // 确保 DOM 已渲染
+      animateIn()
+      lockScroll()
+    } else {
+      unlockScroll()
+    }
   }
-})
+)
 
 // 生命周期
 onMounted(async () => {
@@ -256,7 +268,7 @@ onBeforeUnmount(() => {
 // 暴露方法供父组件调用
 defineExpose({
   animateIn,
-  animateOut
+  animateOut,
 })
 </script>
 
@@ -264,20 +276,36 @@ defineExpose({
   <!-- 下拉菜单容器 -->
   <div v-if="visible" ref="dropdownRef" class="nav-dropdown-wrapper">
     <!-- 遮罩层 -->
-    <div ref="overlayRef" class="nav-overlay" @click="closeMenu" @mouseenter="props.onContentMouseLeave"></div>
+    <div
+      ref="overlayRef"
+      class="nav-overlay"
+      @click="closeMenu"
+      @mouseenter="props.onContentMouseLeave"
+    ></div>
 
     <!-- 内容区域 -->
-    <div ref="contentRef" class="nav-dropdown-content" @mouseenter="props.onContentMouseEnter"
-      @mouseleave="props.onContentMouseLeave">
+    <div
+      ref="contentRef"
+      class="nav-dropdown-content"
+      @mouseenter="props.onContentMouseEnter"
+      @mouseleave="props.onContentMouseLeave"
+    >
       <div class="mt-[2px] w-full border-t-[1px] border-t-solid border-[rgba(0,0,0,0.05)]"></div>
       <main class="content c_1300">
         <aside ref="sidebarRef" class="sidebar h-full pt-[38px]">
           <h2 class="sidebar-title pl-[2px]">Innovative products</h2>
           <ul class="category-list">
-            <li v-for="(category, index) in categories" :key="category.id"
-              :ref="el => { if (el) categoryItemsRef[index] = el }"
+            <li
+              v-for="(category, index) in categories"
+              :key="category.id"
+              :ref="
+                el => {
+                  if (el) categoryItemsRef[index] = el
+                }
+              "
               :class="['category-item', { active: category.id === activeCategoryId }]"
-              @mouseenter="handleCategoryHover(category.id)">
+              @mouseenter="handleCategoryHover(category.id)"
+            >
               {{ category.label }}
             </li>
           </ul>
@@ -285,9 +313,16 @@ defineExpose({
         <div class="w-[1px] h-full bg-[rgba(0,0,0,0.05)]"></div>
         <section class="grid-section">
           <div class="product-grid">
-            <article v-for="(product, index) in displayedProducts" :key="product.id"
-              :ref="el => { if (el) productCardsRef[index] = el }"
-              class="product-card">
+            <article
+              v-for="(product, index) in displayedProducts"
+              :key="product.id"
+              :ref="
+                el => {
+                  if (el) productCardsRef[index] = el
+                }
+              "
+              class="product-card"
+            >
               <ProductItem
                 :data="product"
                 :clickable="false"
@@ -299,12 +334,7 @@ defineExpose({
           <div ref="ctaButtonRef" class="cta-row">
             <button class="cta-button" @click="goList">
               <span class="text-center w-full block">View all</span>
-              <MediaAsset
-                type="image"
-                :src="iconArrow"
-                alt=""
-                :lazy="false"
-              />
+              <MediaAsset type="image" :src="iconArrow" alt="" :lazy="false" />
             </button>
           </div>
         </section>

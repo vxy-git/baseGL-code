@@ -3,11 +3,11 @@ import MediaAsset from '@/components/MediaAsset.vue'
 import ProductItem from '@/components/ProductItem/index.vue'
 import { headerData } from '@/data/common/header'
 
-const props = defineProps({
+defineProps({
   navItems: { type: Array, required: true },
   categories: { type: Array, required: true },
   currentLevel: { type: Number, required: true },
-  expandedCategoryId: { type: [String, Number], default: null }
+  expandedCategoryId: { type: [String, Number], default: null },
 })
 
 const emit = defineEmits([
@@ -17,26 +17,21 @@ const emit = defineEmits([
   'product-click',
   'go-contact',
   'go-home',
-  'open-products'
+  'open-products',
 ])
 </script>
 
 <template>
-  <Transition name="slide-down">
-    <div class="mobile-drawer">
+  <Transition name="slide-down" appear>
+    <div v-if="true" class="mobile-drawer">
       <!-- 动态Header -->
       <div class="mobile-drawer-header">
         <!-- 一级菜单Header -->
         <template v-if="currentLevel === 1">
           <router-link to="/" class="logo" @click="emit('go-home')">
-            <MediaAsset
-              type="image"
-              :src="headerData.logo.active"
-              alt="logo"
-              class="logo-image"
-            />
+            <MediaAsset type="image" :src="headerData.logo.active" alt="logo" class="logo-image" />
           </router-link>
-          <button class="close-btn active" @click="emit('close')" aria-label="Close">
+          <button class="close-btn active" aria-label="Close" @click="emit('close')">
             <span></span>
             <span></span>
             <span></span>
@@ -45,14 +40,21 @@ const emit = defineEmits([
 
         <!-- 二级页面Header -->
         <template v-if="currentLevel === 2">
-          <button class="back-btn" @click="emit('go-back')" aria-label="Back">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button class="back-btn" aria-label="Back" @click="emit('go-back')">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </button>
           <span class="page-title">{{ navItems[0]?.text || 'Products' }}</span>
-          <button class="close-btn active" @click="emit('close')" aria-label="Close">
+          <button class="close-btn active" aria-label="Close" @click="emit('close')">
             <span></span>
             <span></span>
             <span></span>
@@ -66,26 +68,52 @@ const emit = defineEmits([
         <Transition name="page-slide">
           <div v-if="currentLevel === 1" class="level-1-page">
             <div class="mobile-nav-list">
-              <div
-                v-for="(item, index) in navItems"
-                :key="index"
-                class="mobile-nav-item"
-              >
-                <div v-if="item.type === 'dropdown'" class="nav-item-header" @click="emit('open-products')">
+              <div v-for="(item, index) in navItems" :key="index" class="mobile-nav-item">
+                <div
+                  v-if="item.type === 'dropdown'"
+                  class="nav-item-header"
+                  @click="emit('open-products')"
+                >
                   <span>{{ item.text }}</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </div>
-                <router-link v-else-if="item.to" :to="item.to" class="nav-item-link" @click="emit('close')">
+                <router-link
+                  v-else-if="item.to"
+                  :to="item.to"
+                  class="nav-item-link"
+                  @click="emit('close')"
+                >
                   <span>{{ item.text }}</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </router-link>
                 <a v-else :href="item.href" class="nav-item-link" @click="emit('close')">
                   <span>{{ item.text }}</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </a>
@@ -101,8 +129,16 @@ const emit = defineEmits([
               <div v-for="category in categories" :key="category.id" class="category-item">
                 <div class="category-header" @click="emit('toggle-category', category.id)">
                   <span>{{ category.label }}</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                    class="arrow" :class="{ 'expanded': expandedCategoryId === category.id }">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="arrow"
+                    :class="{ expanded: expandedCategoryId === category.id }"
+                  >
                     <polyline points="4 6 8 10 12 6"></polyline>
                   </svg>
                 </div>
@@ -131,9 +167,18 @@ const emit = defineEmits([
 
       <!-- 底部CTA区域 -->
       <div class="mobile-drawer-footer">
-        <button class="cta-btn" @click="emit('go-contact')">{{ headerData.buttonText.contactUs }}</button>
+        <button class="cta-btn" @click="emit('go-contact')">
+          {{ headerData.buttonText.contactUs }}
+        </button>
         <button class="search-btn" aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <circle cx="9" cy="9" r="6"></circle>
             <line x1="14" y1="14" x2="18" y2="18"></line>
           </svg>
@@ -339,14 +384,16 @@ const emit = defineEmits([
   .cta-btn {
     flex: 1;
     height: 68px;
-    background: #1CE785;
+    background: #1ce785;
     color: #222;
     border: none;
     border-radius: 24px;
     font-size: 22px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
 
     &:active {
       transform: scale(0.98);

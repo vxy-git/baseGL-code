@@ -10,7 +10,7 @@
 import { useRoute } from 'vue-router'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
-import '@splidejs/vue-splide/css';
+import '@splidejs/vue-splide/css'
 import './composables/rem'
 
 const route = useRoute()
@@ -35,7 +35,7 @@ cmsNavStore.fetchAllNavs().catch(err => {
   overflow-x: hidden;
   width: 100%;
   min-height: 100vh;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

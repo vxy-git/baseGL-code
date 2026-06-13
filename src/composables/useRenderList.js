@@ -18,9 +18,8 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
     // 兼容 moduleList 和 modules 两种 key 命名
     const moduleList = props.pageConfig?.moduleList || props.pageConfig?.modules
 
-    const order = (isRef(defaultOrder) || isReactive(defaultOrder))
-      ? defaultOrder.value
-      : defaultOrder
+    const order =
+      isRef(defaultOrder) || isReactive(defaultOrder) ? defaultOrder.value : defaultOrder
 
     if (moduleList && Object.keys(moduleList).length > 0) {
       return order
@@ -31,7 +30,7 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
         .map(key => ({
           key,
           component: componentMap[key],
-          data: moduleList[resolveDataKey(key)]?.data ?? null
+          data: moduleList[resolveDataKey(key)]?.data ?? null,
         }))
     }
 
@@ -39,7 +38,7 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
     return order.map(key => ({
       key,
       component: componentMap[key],
-      data: null
+      data: null,
     }))
   })
 

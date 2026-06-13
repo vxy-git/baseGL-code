@@ -36,8 +36,8 @@ export async function request(url, options = {}) {
       signal: controller.signal,
       headers: {
         ...(fetchOptions.method !== 'GET' && { 'Content-Type': 'application/json' }),
-        ...fetchOptions.headers
-      }
+        ...fetchOptions.headers,
+      },
     })
 
     // HTTP 状态码检查
@@ -45,7 +45,7 @@ export async function request(url, options = {}) {
       return {
         success: false,
         data: null,
-        message: `HTTP ${response.status}: ${response.statusText}`
+        message: `HTTP ${response.status}: ${response.statusText}`,
       }
     }
 
@@ -56,27 +56,27 @@ export async function request(url, options = {}) {
       return {
         success: true,
         data: result.data,
-        message: result.msg || ''
+        message: result.msg || '',
       }
     }
 
     return {
       success: false,
       data: null,
-      message: result.msg || '请求失败'
+      message: result.msg || '请求失败',
     }
   } catch (error) {
     if (error.name === 'AbortError') {
       return {
         success: false,
         data: null,
-        message: '请求超时'
+        message: '请求超时',
       }
     }
     return {
       success: false,
       data: null,
-      message: error.message || '网络请求失败'
+      message: error.message || '网络请求失败',
     }
   } finally {
     clearTimeout(timer)
@@ -114,7 +114,7 @@ export function post(url, data, options = {}) {
   return request(url, {
     ...options,
     method: 'POST',
-    body: data ? JSON.stringify(data) : undefined
+    body: data ? JSON.stringify(data) : undefined,
   })
 }
 

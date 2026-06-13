@@ -1,14 +1,14 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit4Data  } from '@/data/product2/product2-unit4'
+import { product2Unit4Data } from '@/data/product2/product2-unit4'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit4Data)
 </script>
@@ -20,7 +20,7 @@ const unitData = useUnitData(props, product2Unit4Data)
         <div class="title1 text-left">
           {{ unitData.rtdSection.labelText }}
         </div>
-        <div class="title2 mt-[19px]  !text-left whitespace-break-spaces">
+        <div class="title2 mt-[19px] !text-left whitespace-break-spaces">
           {{ unitData.rtdSection.title }}
         </div>
         <div class="title3 mt-[56px] !text-left whitespace-break-spaces">
@@ -74,10 +74,11 @@ const unitData = useUnitData(props, product2Unit4Data)
         <div class="title2">
           {{ unitData.wiresSection.title }}
         </div>
-        <div class="label mt-[2px] whitespace-pre-line">{{ unitData.wiresSection.description }}
+        <div class="label mt-[2px] whitespace-pre-line">
+          {{ unitData.wiresSection.description }}
         </div>
       </div>
-      <div class="flex justify-between mt-[75px] m_flex_col gap-[20px]" ref="wiresRef">
+      <div ref="wiresRef" class="flex justify-between mt-[75px] m_flex_col gap-[20px]">
         <div class="img-large h-[500px] object-cover w-auto rounded-[20px] overflow-hidden">
           <MediaAsset
             type="video"
@@ -117,7 +118,7 @@ const unitData = useUnitData(props, product2Unit4Data)
   font-weight: 700;
   line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #1ce785 0%, #a8ffd5 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -141,7 +142,7 @@ const unitData = useUnitData(props, product2Unit4Data)
   line-height: normal;
 }
 .title2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -153,7 +154,7 @@ const unitData = useUnitData(props, product2Unit4Data)
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 20px;
@@ -164,7 +165,7 @@ const unitData = useUnitData(props, product2Unit4Data)
 }
 
 .label {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;

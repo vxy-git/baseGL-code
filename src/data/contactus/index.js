@@ -21,14 +21,14 @@ export default {
   // 页面元数据
   meta: {
     title: 'Contact Us - Caleaf',
-    description: 'Get in touch with the Caleaf team'
+    description: 'Get in touch with the Caleaf team',
   },
 
   // 模块数据集合
   modules: {
     contactus: {
       enabled: true,
-      data: contactUsData
-    }
-  }
+      data: contactUsData,
+    },
+  },
 }

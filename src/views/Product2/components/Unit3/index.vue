@@ -1,14 +1,14 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product2Unit3Data  } from '@/data/product2/product2-unit3'
+import { product2Unit3Data } from '@/data/product2/product2-unit3'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit3Data)
 </script>
@@ -68,7 +68,7 @@ const unitData = useUnitData(props, product2Unit3Data)
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 40px;

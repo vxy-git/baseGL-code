@@ -28,22 +28,22 @@ export const product1Unit8Data = {
     {
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/realize1.jpg',
-      alt: 'Design 1'
+      alt: 'Design 1',
     },
     {
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/realize2.jpg',
-      alt: 'Design 2'
+      alt: 'Design 2',
     },
     {
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/realize3.jpg',
-      alt: 'Design 3'
+      alt: 'Design 3',
     },
     {
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/realize4.jpg',
-      alt: 'Design 4'
-    }
+      alt: 'Design 4',
+    },
   ],
 }

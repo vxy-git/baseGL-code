@@ -3,14 +3,14 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { product2Unit6Data  } from '@/data/product2/product2-unit6'
+import { product2Unit6Data } from '@/data/product2/product2-unit6'
 
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 const unitData = useUnitData(props, product2Unit6Data)
 
@@ -26,33 +26,24 @@ let scrollTl2
 const initScroll = () => {
   const maskEls = innerRef.value.querySelectorAll('.mask')
 
-  scrollTl1 = gsap.timeline({
-    defaults: { ease: 'none' },
-    scrollTrigger: {
-      trigger: unitRef.value,
-      start: 'center bottom',
-      end: 'center center',
-      scrub: true,
-      invalidateOnRefresh: true
-    }
-  })
-    .fromTo(
-      innerRef.value,
-      { yPercent: 50 },
-      { yPercent: 0 }
-    )
-    .to(
-      maskEls,
-      { width: '0%', height: '0%' },
-      0
-    )
+  scrollTl1 = gsap
+    .timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: unitRef.value,
+        start: 'center bottom',
+        end: 'center center',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    })
+    .fromTo(innerRef.value, { yPercent: 50 }, { yPercent: 0 })
+    .to(maskEls, { width: '0%', height: '0%' }, 0)
 
   const endDistance = () =>
     window.innerHeight *
-    (
-      1 + // first fade-only segment
-      (panels - 1) * ((moveDuration + pauseDuration) / moveDuration)
-    )
+    (1 + // first fade-only segment
+      (panels - 1) * ((moveDuration + pauseDuration) / moveDuration))
 
   scrollTl2 = gsap.timeline({
     defaults: { ease: 'none' },
@@ -62,36 +53,40 @@ const initScroll = () => {
       start: 'center center',
       end: () => '+=' + endDistance(),
       scrub: true,
-      invalidateOnRefresh: true
-    }
+      invalidateOnRefresh: true,
+    },
   })
 
   const firstPanel = trackRef.value.querySelector('.unit6-panel')
   scrollTl2.to(firstPanel, {
     opacity: 0.2,
-    duration: moveDuration
+    duration: moveDuration,
   })
   scrollTl2.to(trackRef.value, {
     x: () => -1 * window.innerWidth,
-    duration: moveDuration
+    duration: moveDuration,
   })
-  scrollTl2.to(firstPanel, {
-    opacity: 0,
-    duration: moveDuration
-  }, '-=' + moveDuration)
+  scrollTl2.to(
+    firstPanel,
+    {
+      opacity: 0,
+      duration: moveDuration,
+    },
+    '-=' + moveDuration
+  )
   scrollTl2.to(trackRef.value, {
     x: () => -1 * window.innerWidth,
-    duration: pauseDuration
+    duration: pauseDuration,
   })
 
   for (let i = 2; i < panels; i++) {
     scrollTl2.to(trackRef.value, {
       x: () => -i * window.innerWidth,
-      duration: moveDuration
+      duration: moveDuration,
     })
     scrollTl2.to(trackRef.value, {
       x: () => -i * window.innerWidth,
-      duration: pauseDuration
+      duration: pauseDuration,
     })
   }
 }
@@ -125,7 +120,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="unit6-panel" v-for="(panel, index) in unitData.panelsList" :key="index">
+        <div v-for="(panel, index) in unitData.panelsList" :key="index" class="unit6-panel">
           <div class="c_1230 c_padding">
             <div>
               <div class="w-full flex justify-between mx-auto gap-[43px] m_flex_col">
@@ -226,14 +221,14 @@ onBeforeUnmount(() => {
   font-style: normal;
   font-weight: 700;
   line-height: 145px;
-  background: linear-gradient(180deg, #3ad3ff 0%, #C9FFE5 50%, #3ad3ff 100%);
+  background: linear-gradient(180deg, #3ad3ff 0%, #c9ffe5 50%, #3ad3ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .title1 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -243,7 +238,7 @@ onBeforeUnmount(() => {
 }
 
 .title2 {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -255,7 +250,7 @@ onBeforeUnmount(() => {
 }
 
 .title3 {
-  color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 0.8);
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;

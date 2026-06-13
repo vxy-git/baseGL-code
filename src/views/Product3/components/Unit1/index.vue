@@ -1,15 +1,15 @@
 <script setup>
-import MediaAsset from '@/components/MediaAsset.vue';
-import { product3Unit1Data  } from '@/data/product3/product3-unit1'
+import MediaAsset from '@/components/MediaAsset.vue'
+import { product3Unit1Data } from '@/data/product3/product3-unit1'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product3Unit1Data)
@@ -25,7 +25,7 @@ const unitData = useUnitData(props, product3Unit1Data)
       :autoplay="false"
       :muted="true"
       :loop="false"
-      :viewPlay="true"
+      :view-play="true"
       playsinline
     />
   </div>

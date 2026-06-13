@@ -1,22 +1,22 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { product1Unit7Data  } from '@/data/product1/product1-unit7'
+import { product1Unit7Data } from '@/data/product1/product1-unit7'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, product1Unit7Data)
 </script>
 
 <template>
-  <div class=" unit7 mt-[202px] pb-[202px]">
+  <div class="unit7 mt-[202px] pb-[202px]">
     <div class="c_1230 c_padding">
       <div class="title">
         {{ unitData.mainTitle }}
@@ -99,7 +99,9 @@ const unitData = useUnitData(props, product1Unit7Data)
         </div>
       </div>
     </div>
-    <div class="unit7__content c_padding c_1230 flex justify-between mt-[267px] gap-[20px] m_flex_col_r">
+    <div
+      class="unit7__content c_padding c_1230 flex justify-between mt-[267px] gap-[20px] m_flex_col_r"
+    >
       <div class="unit7__text">
         <div class="gtext">
           {{ unitData.oneButtonControl.greenText }}
@@ -111,14 +113,12 @@ const unitData = useUnitData(props, product1Unit7Data)
           {{ unitData.oneButtonControl.description }}
         </div>
         <div class="unit7__steps flex mt-[66px] justify-between max-w-[602px]">
-          <div v-for="(step, index) in unitData.oneButtonControl.steps" :key="index" class="unit7__step flex flex-col items-center">
-            <MediaAsset
-              class="size-[80px]"
-              type="image"
-              :src="step.icon"
-              alt=""
-              :lazy="false"
-            />
+          <div
+            v-for="(step, index) in unitData.oneButtonControl.steps"
+            :key="index"
+            class="unit7__step flex flex-col items-center"
+          >
+            <MediaAsset class="size-[80px]" type="image" :src="step.icon" alt="" :lazy="false" />
             <div class="itemTitle mt-[19px]">{{ step.title }}</div>
             <div class="itemLabel mt-[4px]">{{ step.label }}</div>
           </div>
@@ -151,14 +151,14 @@ const unitData = useUnitData(props, product1Unit7Data)
   font-weight: 700;
   // line-height: 80px;
   /* 100% */
-  background: linear-gradient(180deg, #1CE785 0%, #A8FFD5 50%, #1CE785 100%);
+  background: linear-gradient(180deg, #1ce785 0%, #a8ffd5 50%, #1ce785 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .stitle {
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -188,7 +188,7 @@ const unitData = useUnitData(props, product1Unit7Data)
 }
 
 .gtext {
-  color: #1CE785;
+  color: #1ce785;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -199,7 +199,7 @@ const unitData = useUnitData(props, product1Unit7Data)
 .label {
   max-width: 727px;
   flex-shrink: 0;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -209,7 +209,7 @@ const unitData = useUnitData(props, product1Unit7Data)
 }
 
 .itemTitle {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Roboto;
   font-size: 24px;
@@ -220,7 +220,7 @@ const unitData = useUnitData(props, product1Unit7Data)
 }
 
 .itemLabel {
-  color: #F5F5F5;
+  color: #f5f5f5;
   text-align: center;
   font-family: Roboto;
   font-size: 18px;
@@ -228,7 +228,7 @@ const unitData = useUnitData(props, product1Unit7Data)
   font-weight: 400;
   line-height: 30px;
   /* 166.667% */
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .unit7__cards {

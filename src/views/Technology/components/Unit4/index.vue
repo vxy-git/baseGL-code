@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 const props = defineProps({
   data: {
     type: Object,
-    default: null
-  }
+    default: null,
+  },
 })
 
 const cmsNavStore = useCmsNavStore()
@@ -46,7 +46,11 @@ const playVideo = () => {
   }
   const p = inst.playFromStart?.()
   if (p && typeof p.then === 'function') {
-    p.then(() => { videoPlaying = true }).catch(() => { videoPlaying = false })
+    p.then(() => {
+      videoPlaying = true
+    }).catch(() => {
+      videoPlaying = false
+    })
   } else {
     videoPlaying = true
   }
@@ -67,15 +71,18 @@ const setupBgVideoObserver = () => {
   const sectionEl = sectionRef.value
   const bgInst = bgVideoRef.value
   if (!sectionEl || !bgInst) return
-  bgVideoObserver = new IntersectionObserver((entries) => {
-    const entry = entries?.[0]
-    if (!entry) return
-    if (entry.isIntersecting) {
-      bgInst.playFromStart?.()
-    } else {
-      bgInst.pause?.()
-    }
-  }, { threshold: 0.2 })
+  bgVideoObserver = new IntersectionObserver(
+    entries => {
+      const entry = entries?.[0]
+      if (!entry) return
+      if (entry.isIntersecting) {
+        bgInst.playFromStart?.()
+      } else {
+        bgInst.pause?.()
+      }
+    },
+    { threshold: 0.2 }
+  )
   bgVideoObserver.observe(sectionEl)
 }
 
@@ -143,29 +150,37 @@ const initScroll = () => {
         setInitialStates()
       },
       onLeave: () => pauseVideo(),
-      onLeaveBack: () => pauseVideo()
+      onLeaveBack: () => pauseVideo(),
     },
-    defaults: { ease: 'none' }
+    defaults: { ease: 'none' },
   })
 
   scrollTl.to(movingEl, {
     x: () => endX,
-    duration: 1
+    duration: 1,
   })
 
   if (textEl) {
-    scrollTl.to(textEl, {
-      x: () => 0,
-      duration: 0.8
-    }, 'textMedia')
+    scrollTl.to(
+      textEl,
+      {
+        x: () => 0,
+        duration: 0.8,
+      },
+      'textMedia'
+    )
   }
 
   if (mediaEl) {
-    mediaSizeTween = scrollTl.to(mediaEl, {
-      width: mediaEndSize.width,
-      height: mediaEndSize.height,
-      duration: 0.8
-    }, 'textMedia')
+    mediaSizeTween = scrollTl.to(
+      mediaEl,
+      {
+        width: mediaEndSize.width,
+        height: mediaEndSize.height,
+        duration: 0.8,
+      },
+      'textMedia'
+    )
 
     mediaSizeTween.eventCallback('onComplete', () => {
       playVideo()
@@ -209,18 +224,37 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative mt-[6px] w-full h-screen bg-[#111111] overflow-hidden">
-    <MediaAsset ref="bgVideoRef" type="video" :src="unitData.media.bgVideo" :autoplay="false" :muted="true" :loop="false"
-      :controls="false" preload="auto" playsinline alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <MediaAsset
+      ref="bgVideoRef"
+      type="video"
+      :src="unitData.media.bgVideo"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :controls="false"
+      preload="auto"
+      playsinline
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+    />
     <div ref="maskRef" class="absolute inset-0 bg-black opacity-0 pointer-events-none z-[1]"></div>
 
     <div class="size-full overflow-hidden">
-      <div ref="contentRef" class="relative z-[2] h-full w-max flex items-center justify-start pt-[45px]">
+      <div
+        ref="contentRef"
+        class="relative z-[2] h-full w-max flex items-center justify-start pt-[45px]"
+      >
         <div class="w-screen"></div>
         <div class="shrink-0 w-[1300px] flex justify-center items-start gap-[60px]">
           <div class="w-[600px] max-w-[90vw]">
             <div class="flex flex-col">
               <div class="text1 flex items-center">
-                <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="unitData.icons.icon" alt="" />
+                <MediaAsset
+                  class="size-[28px] mr-[11px]"
+                  type="image"
+                  :src="unitData.icons.icon"
+                  alt=""
+                />
                 <span>{{ unitData.sections.left.textLabel }}</span>
               </div>
             </div>
@@ -233,17 +267,27 @@ onUnmounted(() => {
               {{ unitData.sections.left.description }}
             </div>
           </div>
-          <MediaAsset type="image" :src="unitData.media.image1" alt="" class="w-[640px] h-[341px] object-contain" />
+          <MediaAsset
+            type="image"
+            :src="unitData.media.image1"
+            alt=""
+            class="w-[640px] h-[341px] object-contain"
+          />
         </div>
         <div ref="textRef2" class="w-[600px] max-w-[90vw] shrink-0 translate-x-[100%]">
           <div class="flex flex-col">
             <div class="text1 flex items-center">
-              <MediaAsset class="size-[28px] mr-[11px]" type="image" :src="unitData.icons.icon" alt="" />
+              <MediaAsset
+                class="size-[28px] mr-[11px]"
+                type="image"
+                :src="unitData.icons.icon"
+                alt=""
+              />
               {{ unitData.sections.right.textLabel }}
             </div>
           </div>
 
-          <div class="title2 mt-[8px] ">
+          <div class="title2 mt-[8px]">
             {{ unitData.sections.right.title }}
           </div>
 
@@ -254,8 +298,19 @@ onUnmounted(() => {
         <div class="m_fit"></div>
         <div class="w-screen flex flex-col justify-center items-center">
           <div ref="mediaRef" class="w-[341px] h-[341px]">
-            <MediaAsset ref="videoAssetRef" type="video" :src="unitData.media.video2" :autoplay="false" :muted="true" :loop="true"
-              :controls="false" preload="auto" playsinline alt="" class="w-full h-full object-cover" />
+            <MediaAsset
+              ref="videoAssetRef"
+              type="video"
+              :src="unitData.media.video2"
+              :autoplay="false"
+              :muted="true"
+              :loop="true"
+              :controls="false"
+              preload="auto"
+              playsinline
+              alt=""
+              class="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>
@@ -269,15 +324,14 @@ onUnmounted(() => {
   max-width: 100%;
   width: 164px;
   height: 23px;
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
 
-
 .text1 {
   max-width: 100%;
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -291,7 +345,7 @@ onUnmounted(() => {
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
   line-height: 1.14; // 缩短行间距
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   font-weight: 700;
 }
 
@@ -303,14 +357,14 @@ onUnmounted(() => {
 }
 
 .percentage {
-  color: #1CE785;
+  color: #1ce785;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
 }
 
 .text2 {
   max-width: 100%;
-  color: #FFF;
+  color: #fff;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
@@ -343,7 +397,6 @@ onUnmounted(() => {
     width: 400px;
   }
 }
-
 
 @media screen and (max-width: 800px) {
   .m_fit {

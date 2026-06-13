@@ -4,7 +4,7 @@ import { whyCaleafUnit4Data } from '@/data/why-caleaf/why-caleaf-unit4'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({
-  data: { type: Object, default: null }
+  data: { type: Object, default: null },
 })
 
 const unitData = useUnitData(props, whyCaleafUnit4Data)
@@ -15,17 +15,8 @@ const unitData = useUnitData(props, whyCaleafUnit4Data)
     <div class="quality-container">
       <!-- 4 个小图标 -->
       <div class="quality-icons">
-        <div
-          v-for="(icon, idx) in unitData.icons"
-          :key="idx"
-          class="quality-icon"
-        >
-          <MediaAsset
-            type="image"
-            :src="icon"
-            :lazy="true"
-            :alt="`Quality Icon ${idx + 1}`"
-          />
+        <div v-for="(icon, idx) in unitData.icons" :key="idx" class="quality-icon">
+          <MediaAsset type="image" :src="icon" :lazy="true" :alt="`Quality Icon ${idx + 1}`" />
         </div>
       </div>
 
@@ -34,12 +25,7 @@ const unitData = useUnitData(props, whyCaleafUnit4Data)
 
       <!-- 主图片 -->
       <div class="quality-main-image">
-        <MediaAsset
-          type="image"
-          :src="unitData.mainImage"
-          :lazy="true"
-          alt="Quality Main"
-        />
+        <MediaAsset type="image" :src="unitData.mainImage" :lazy="true" alt="Quality Main" />
       </div>
 
       <!-- 描述 -->
@@ -85,7 +71,7 @@ const unitData = useUnitData(props, whyCaleafUnit4Data)
   font-weight: 700;
   font-size: 40px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 63px;
   padding: 0 20px;
 }
@@ -106,7 +92,7 @@ const unitData = useUnitData(props, whyCaleafUnit4Data)
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;

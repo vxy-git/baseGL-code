@@ -20,19 +20,15 @@ export const product1Unit5Data = {
   /**
    * 标签列表
    */
-  tabsList: [
-    'Smooth yet Rugged Design',
-    'Dual-Color Mouthpiece',
-    'Large Side Display'
-  ],
+  tabsList: ['Smooth yet Rugged Design', 'Dual-Color Mouthpiece', 'Large Side Display'],
 
   /**
    * 对应的描述文本列表
    */
   descriptions: [
-    "The edge is clean and bold, making the shape stand out from everything else.",
-    "Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.",
-    "Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check."
+    'The edge is clean and bold, making the shape stand out from everything else.',
+    'Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.',
+    'Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check.',
   ],
 
   /**
@@ -42,24 +38,26 @@ export const product1Unit5Data = {
   mediaList: [
     {
       label: 'Smooth yet Rugged Design',
-      description: "The edge is clean and bold, making the shape stand out from everything else.",
+      description: 'The edge is clean and bold, making the shape stand out from everything else.',
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/Smooth_yet_Rugged_Design.jpg',
-      alt: 'Smooth yet Rugged Design'
+      alt: 'Smooth yet Rugged Design',
     },
     {
       label: 'Dual-Color Mouthpiece',
-      description: "Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.",
+      description:
+        'Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.',
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/Dual_Color_Mouthpiece.jpg',
-      alt: 'Dual-Color Mouthpiece'
+      alt: 'Dual-Color Mouthpiece',
     },
     {
       label: 'Large Side Display',
-      description: "Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check.",
+      description:
+        'Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check.',
       type: 'image',
       src: '/api/uploads/file/default/assets/product1/Large_Side_Display.jpg',
-      alt: 'Large Side Display'
-    }
+      alt: 'Large Side Display',
+    },
   ],
 }
