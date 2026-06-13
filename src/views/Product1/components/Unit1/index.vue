@@ -106,10 +106,6 @@ const unitData = computed(() => {
 }
 
 @media screen and (max-width: $breakpoint-tablet) {
-  .unit1 {
-    margin-top: 70px !important;
-  }
-
   .title {
     font-size: 40px;
     text-align: center;

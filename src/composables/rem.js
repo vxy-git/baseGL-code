@@ -15,6 +15,19 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
 
     setRemUnit();
-    window.addEventListener("resize", setRemUnit);
-    window.addEventListener("orientationchange", setRemUnit);
+
+    // 使用 requestAnimationFrame 节流，避免高频 resize 时逐帧执行
+    let ticking = false;
+    function onResize() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                setRemUnit();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
 }
