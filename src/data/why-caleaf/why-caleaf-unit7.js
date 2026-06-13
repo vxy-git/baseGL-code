@@ -22,7 +22,7 @@ export const whyCaleafUnit7Data = {
       image: '/assets/why-caleaf/service-us-stock.png'
     },
     {
-      title: 'Distributor Network Across EU and US',
+      title: 'Distributor Network Across\nEU and US',
       image: '/assets/why-caleaf/service-distributor-network.png'
     },
     {

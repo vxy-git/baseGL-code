@@ -14,7 +14,7 @@ const unitData = computed(() => {
 </script>
 
 <template>
-  <section class="why-caleaf-hero">
+  <section class="why-caleaf-hero c_padding">
     <div class="hero-image-box">
       <MediaAsset
         type="image"
@@ -91,7 +91,8 @@ const unitData = computed(() => {
 // 平板
 @media (max-width: $breakpoint-tablet) {
   .why-caleaf-hero {
-    padding: 80px 20px 60px;
+    padding-top: 80px;
+    padding-bottom: 60px;
   }
 
   .hero-image-box {

@@ -14,23 +14,14 @@ const unitData = computed(() => {
 </script>
 
 <template>
-  <section class="why-caleaf-services">
+  <section class="why-caleaf-services c_padding">
     <div class="services-container">
       <h2 class="services-title">{{ unitData.title }}</h2>
 
       <div class="services-grid">
-        <div
-          v-for="(service, idx) in unitData.services"
-          :key="idx"
-          class="service-card"
-        >
+        <div v-for="(service, idx) in unitData.services" :key="idx" class="service-card">
           <div class="service-image">
-            <MediaAsset
-              type="image"
-              :src="service.image"
-              :lazy="true"
-              :alt="service.title"
-            />
+            <MediaAsset type="image" :src="service.image" :lazy="true" :alt="service.title" />
           </div>
           <h4 class="service-name">{{ service.title }}</h4>
         </div>
@@ -44,12 +35,12 @@ const unitData = computed(() => {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 132px;
 }
 
 .services-container {
-  max-width: $breakpoint-design;
-  width: 100%;
-  padding: 0 310px;
+  max-width: 100%;
+  width: 1300px;
 }
 
 .services-title {
@@ -64,20 +55,20 @@ const unitData = computed(() => {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   gap: 34px 35px;
 }
 
 .service-card {
+  position: relative;
   text-align: left;
 }
 
 .service-image {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 410 / 300;
   border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 25px; // 6246 - 6111 - 300
 
   :deep(img) {
     width: 100%;
@@ -87,36 +78,90 @@ const unitData = computed(() => {
 }
 
 .service-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;
   color: #FFFFFF;
+  text-align: center;
+  white-space: break-spaces;
 }
 
-// 移动端适配
-@media (max-width: $breakpoint-tablet) {
+// 响应式适配 - 多级断点递减
+@media screen and (max-width: 1300px) {
+  .why-caleaf-services {
+    padding-top: 110px;
+  }
+
+  .services-grid {
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .why-caleaf-services {
+    padding-top: 80px;
+  }
+
   .services-container {
-    padding: 0 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .services-title {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 40px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-image {
+    border-radius: 14px;
+  }
+
+  .service-name {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .why-caleaf-services {
+    padding-top: 60px;
+  }
+
+  .services-container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .services-title {
     font-size: 24px;
-    margin-bottom: 30px;
+    line-height: 30px;
+    margin-bottom: 32px;
   }
 
   .services-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 12px;
   }
 
   .service-image {
-    height: 200px;
-    margin-bottom: 15px;
+    border-radius: 12px;
   }
 
   .service-name {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 22px;
   }
 }
 </style>
