@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
+import { isEnabled, isTopLevel } from '@/utils/navFilter'
 
 /**
  * pageType 到组件的映射表
@@ -56,7 +57,7 @@ async function generateRoutes() {
 
       // 转换 CMS 数据为路由格式
       cmsPages = navList
-        .filter(nav => nav.status === '启用' || nav.status === true || nav.status === 1)
+        .filter(nav => isEnabled(nav) || nav.status === true || nav.status === 1)
         .filter(nav => typeof nav.navUrl === 'string' && nav.navUrl.trim() !== '')
         .map(nav => ({
           route: nav.navUrl.trim().startsWith('/') ? nav.navUrl.trim() : `/${nav.navUrl.trim()}`,

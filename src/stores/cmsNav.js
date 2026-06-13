@@ -2,22 +2,17 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
+import { isEnabled, isTopLevel, isHeaderVisible, isFooterVisible, resolveNavLink } from '@/utils/navFilter'
 
 /**
  * CMS 导航数据 Store
  * 基于"路由驱动"架构，根据 navName 获取对应页面数据
  */
 export const useCmsNavStore = defineStore('cmsNav', () => {
-  // 状态：存储所有导航项的原始数据列表
+  // 状态
   const navList = ref([])
-
-  // 状态：加载状态
   const isLoading = ref(false)
-
-  // 状态：错误信息
   const error = ref(null)
-
-  // 状态：是否已加载过数据（用于永久缓存判断）
   const isLoaded = ref(false)
 
   // 缓存正在进行的请求 Promise（防止并发重复请求）
@@ -26,16 +21,13 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   /**
    * 获取所有导航数据（原始列表）
    * 只在第一次调用时执行 API 请求，之后永久使用缓存
-   * 使用 Promise 缓存机制防止并发调用时的重复请求
    */
   async function fetchAllNavs() {
-    // 如果已经加载过，直接返回缓存数据
     if (isLoaded.value && navList.value.length > 0) {
       logger.log('📦 使用缓存的 CMS 导航数据')
       return navList.value
     }
 
-    // 如果有请求正在进行，等待该请求完成（防止并发重复请求）
     if (requestPromise) {
       logger.log('⏳ 请求正在进行中，等待现有请求完成...')
       return await requestPromise
@@ -47,24 +39,17 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     try {
       logger.log('🔄 开始获取 CMS 导航数据...')
 
-      // 创建请求 Promise 并缓存
-      requestPromise = getCmsNavPublicList({
-        page: 1,
-        pageSize: 100,
-        order: 'sort'
-      })
+      requestPromise = getCmsNavPublicList({ page: 1, pageSize: 100, order: 'sort' })
       const result = await requestPromise
 
       if (!result.success) {
         throw new Error(result.msg || '获取导航数据失败')
       }
 
-      // 存储原始导航列表（确保是数组）
       navList.value = Array.isArray(result.data) ? result.data : []
       isLoaded.value = true
 
       logger.log('✅ CMS 导航数据加载完成，共', navList.value.length, '条')
-
       return navList.value
     } catch (err) {
       logger.error('❌ 获取 CMS 导航数据失败:', err)
@@ -72,14 +57,12 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       throw err
     } finally {
       isLoading.value = false
-      // 清除缓存的 Promise，允许后续重新请求
       requestPromise = null
     }
   }
 
   /**
    * 手动设置导航数据（用于从路由预加载的数据同步）
-   * @param {Array} data - 导航列表数据
    */
   function setNavData(data) {
     if (data && Array.isArray(data) && data.length > 0) {
@@ -91,8 +74,6 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   /**
    * 根据 navName 获取导航项
-   * @param {string} navName - 导航名称，如 'Home', 'Technology'
-   * @returns {Object|null} 导航项对象
    */
   function getNavByName(navName) {
     if (!navList.value.length) {
@@ -112,8 +93,6 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   /**
    * 根据 navName 获取页面数据（moduleList）
-   * @param {string} navName - 导航名称
-   * @returns {Object|null} 页面 moduleList 数据
    */
   function getPageData(navName) {
     const nav = getNavByName(navName)
@@ -122,8 +101,6 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   /**
    * 根据路由路径获取导航项
-   * @param {string} route - 路由路径，如 '/', '/technology'
-   * @returns {Object|null} 导航项对象
    */
   function getNavByRoute(route) {
     if (!navList.value.length) {
@@ -131,9 +108,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       return null
     }
 
-    // 标准化路径
     const normalizedPath = route.startsWith('/') ? route : `/${route}`
-
     const nav = navList.value.find(n => n.navUrl === normalizedPath)
 
     if (!nav) {
@@ -144,41 +119,24 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     return nav
   }
 
-  /**
-   * 格式化导航项为 Header 组件期望的格式
-   * @param {Object} nav - 原始导航对象
-   * @param {Array} allNavs - 所有导航列表（用于查找子菜单）
-   * @returns {Object} 格式化后的导航项
-   */
-  function formatNavItemForHeader(nav, allNavs) {
-    const item = {
-      text: nav.navName || '',
-      id: nav.ID
-    }
+  // ========== 内部工具函数 ==========
 
-    // 处理导航链接
+  /** 格式化导航项为 Header/Footer 组件期望的格式 */
+  function formatNavItemForDisplay(nav, allNavs) {
+    const item = { text: nav.navName || '', id: nav.ID }
+
     if (nav.navUrl) {
-      // 判断是外部链接还是内部路由
-      if (nav.navUrl.startsWith('http://') || nav.navUrl.startsWith('https://')) {
-        item.href = nav.navUrl
-        item.target = nav.target || '_blank'
-      } else {
-        item.to = nav.navUrl.startsWith('/') ? nav.navUrl : `/${nav.navUrl}`
-        item.target = nav.target || '_self'
-      }
+      Object.assign(item, resolveNavLink(nav.navUrl, nav.target))
     }
 
     // 检查是否有子菜单
     const hasChildren = allNavs.some(n =>
-      n.parentId === nav.ID &&
-      n.status === '启用' &&
-      n.headerShow === true
+      n.parentId === nav.ID && isEnabled(n) && n.headerShow === true
     )
 
-    // 特殊处理 Products：如果有子菜单，还需要确保 productCategories 不为空
     if (hasChildren) {
       if (nav.navName === 'Products') {
-        // 对于 Products，只有当 productCategories 有数据时才显示下拉
+        // Products 只在 productCategories 有数据时才显示下拉
         if (productCategories.value && productCategories.value.length > 0) {
           item.type = 'dropdown'
         }
@@ -190,110 +148,64 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     return item
   }
 
-  /**
-   * Getters: 提供便捷访问各类导航数据
-   */
-
-  // 所有导航数据
-  const allNavs = computed(() => navList.value)
-
-  // Header 导航数据（筛选 headerShow === true 的顶级导航，并格式化）
-  const headerNavs = computed(() => {
-    // 防御性检查：确保 navList 存在且是数组
-    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
-      return []
-    }
-
-    return navList.value
-      .filter(nav =>
-        nav.status === '启用' &&
-        nav.headerShow === true &&
-        (!nav.parentId || nav.parentId === 0)
-      )
-      .map(nav => formatNavItemForHeader(nav, navList.value))
-  })
-
-  // Footer 导航数据（筛选 footerShow === true 的顶级导航，并格式化）
-  const footerNavs = computed(() => {
-    // 防御性检查：确保 navList 存在且是数组
-    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
-      return []
-    }
-
-    return navList.value
-      .filter(nav =>
-        nav.status === '启用' &&
-        nav.footerShow === true &&
-        (!nav.parentId || nav.parentId === 0)
-      )
-      .map(nav => formatNavItemForHeader(nav, navList.value))
-  })
-
-  /**
-   * 将顶级 Footer 导航项格式化为列结构
-   * @param {Object} nav - 顶级导航
-   * @param {Array} allNavs - 所有导航列表
-   * @returns {{title: string, links: Array<{text: string, to?: any, href?: string, target?: string}>}}
-   */
+  /** 构建 Footer 列结构 */
   function formatFooterColumn(nav, allNavs) {
-    const column = {
-      title: nav.navName || '',
-      links: []
-    }
+    const column = { title: nav.navName || '', links: [] }
 
-    // 查找子项（仅一层）
     const children = allNavs.filter(n =>
-      n.parentId === nav.ID &&
-      n.status === '启用' &&
-      n.footerShow === true
+      n.parentId === nav.ID && isEnabled(n) && n.footerShow === true
     )
 
-    // 子项转链接
     column.links = children.map(child => {
-      const link = {
-        text: child.navName || ''
-      }
+      const link = { text: child.navName || '' }
       if (child.navUrl) {
-        if (child.navUrl.startsWith('http://') || child.navUrl.startsWith('https://')) {
-          link.href = child.navUrl
-          link.target = child.target || '_blank'
-        } else {
-          link.to = child.navUrl.startsWith('/') ? child.navUrl : `/${child.navUrl}`
-          link.target = child.target || '_self'
-        }
+        Object.assign(link, resolveNavLink(child.navUrl, child.target))
       }
       return link
     })
 
     // 如果没有子项且顶级本身有链接，则作为单链接展示
     if (column.links.length === 0 && nav.navUrl) {
-      const topLink = {
-        text: nav.navName || ''
-      }
-      if (nav.navUrl.startsWith('http://') || nav.navUrl.startsWith('https://')) {
-        topLink.href = nav.navUrl
-        topLink.target = nav.target || '_blank'
-      } else {
-        topLink.to = nav.navUrl.startsWith('/') ? nav.navUrl : `/${nav.navUrl}`
-        topLink.target = nav.target || '_self'
-      }
+      const topLink = { text: nav.navName || '' }
+      Object.assign(topLink, resolveNavLink(nav.navUrl, nav.target))
       column.links.push(topLink)
     }
 
     return column
   }
 
-  // Footer 列数据（按顶级导航分列，并包含其子链接）
+  // ========== Getters ==========
+
+  const allNavs = computed(() => navList.value)
+
+  // Header 导航数据（筛选 headerShow === true 的顶级导航）
+  const headerNavs = computed(() => {
+    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+      return []
+    }
+    return navList.value
+      .filter(nav => isTopLevel(nav) && isHeaderVisible(nav))
+      .map(nav => formatNavItemForDisplay(nav, navList.value))
+  })
+
+  // Footer 导航数据
+  const footerNavs = computed(() => {
+    if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
+      return []
+    }
+    return navList.value
+      .filter(nav => isTopLevel(nav) && isFooterVisible(nav))
+      .map(nav => formatNavItemForDisplay(nav, navList.value))
+  })
+
+  // Footer 列数据
   const footerColumns = computed(() => {
     if (!navList.value || !Array.isArray(navList.value) || !navList.value.length) {
       return []
     }
-    const topLevel = navList.value.filter(nav =>
-      nav.status === '启用' &&
-      nav.footerShow === true &&
-      (!nav.parentId || nav.parentId === 0)
-    )
-    return topLevel.map(nav => formatFooterColumn(nav, navList.value))
+    return navList.value
+      .filter(nav => isTopLevel(nav) && isFooterVisible(nav))
+      .map(nav => formatFooterColumn(nav, navList.value))
   })
 
   // Banner 数据（从 Home 页面的 moduleList 中提取）
@@ -306,27 +218,19 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   const productCategories = computed(() => {
     if (!navList.value || !navList.value.length) return []
 
-    // 1. 找到 Products 导航（通过 navName='Products'）
     const productsNav = navList.value.find(n =>
-      n.navName === 'Products' &&
-      n.status === '启用'
+      n.navName === 'Products' && isEnabled(n)
     )
 
     if (!productsNav) return []
 
-    // 2. 提取 Products 的下级作为 tabs（分类）
     const categories = navList.value.filter(n =>
-      n.parentId === productsNav.ID &&
-      n.status === '启用' &&
-      n.headerShow === true
+      n.parentId === productsNav.ID && isEnabled(n) && n.headerShow === true
     )
 
-    // 3. 提取每个 tab 的下级作为产品列表
     return categories.map(cat => {
       const products = navList.value.filter(p =>
-        p.parentId === cat.ID &&
-        p.status === '启用' &&
-        p.headerShow === true
+        p.parentId === cat.ID && isEnabled(p) && p.headerShow === true
       )
 
       return {
@@ -334,9 +238,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         label: cat.navName,
         navUrl: cat.navUrl,
         products: products.map(p => {
-          // 从 moduleList.item.data 中提取产品详细信息
           const itemData = p.moduleList?.item?.data || {}
-
           return {
             id: p.ID,
             name: itemData.name || p.navName,
@@ -355,7 +257,6 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     })
   })
 
-  // 判断数据是否已加载
   const hasData = computed(() => isLoaded.value && navList.value.length > 0)
 
   return {

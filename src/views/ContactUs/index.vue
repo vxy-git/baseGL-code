@@ -1,322 +1,29 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import Header from "@/components/Header/index.vue";
-import Footer from "@/components/Footer/Footer.vue";
+import { computed } from 'vue'
+import Header from "@/components/Header/index.vue"
+import Footer from "@/components/Footer/Footer.vue"
 import MediaAsset from '@/components/MediaAsset.vue'
 import { contactUsData } from '@/data/contactus/contactus'
-import { getFormRuleAndOption } from '@/api/formdesign'
-import { submitContactUsForm } from '@/api/infoData'
 import formCreate from '@form-create/element-ui'
-import { ElMessage } from 'element-plus'
-import { logger } from '@/utils/logger'
+import { useContactForm } from '@/composables/useContactForm'
 
-// 表单配置
-const formRule = ref([])
-const formOption = ref({})
-const loading = ref(true)
-const formComponent = ref(null)
-const formApi = ref(null) // form-create API 对象
+// 表单 UUID 通过环境变量配置，不在源码中硬编码
+const FORM_UUID = computed(() => import.meta.env.VITE_FORM_UUID || '')
 
-// 表单数据
-const formData = ref({})
-
-// 提交状态
-const submitting = ref(false)
-const submitMessage = ref('')
-const submitSuccess = ref(false)
-const lastSubmitTime = ref(0)    // 上次提交时间戳
-const SUBMIT_COOLDOWN = 5000     // 提交冷却时间（毫秒）
-
-// 初始化：从后端加载表单配置
-// 表单 UUID 通过环境变量 VITE_FORM_UUID 配置，不在源码中硬编码
-const FORM_UUID = import.meta.env.VITE_FORM_UUID || ''
-
-onMounted(async () => {
-  await loadFormConfig()
-})
-
-// 加载表单配置
-async function loadFormConfig() {
-  try {
-    loading.value = true
-    logger.log('📋 正在加载表单配置... UUID:', FORM_UUID)
-
-    const result = await getFormRuleAndOption(FORM_UUID)
-
-    if (result.success) {
-      // 详细调试日志
-      logger.log('✅ 原始 rule:', result.rule)
-      logger.log('✅ 原始 option:', result.option)
-      logger.log('✅ rule 类型:', typeof result.rule)
-      logger.log('✅ rule 是否为数组:', Array.isArray(result.rule))
-      logger.log('✅ rule 长度:', result.rule?.length)
-
-      formRule.value = result.rule
-      formOption.value = result.option
-
-      // 验证赋值后的值
-      logger.log('📋 formRule.value:', formRule.value)
-      logger.log('📋 formOption.value:', formOption.value)
-      logger.log('✅ 表单配置加载成功')
-    } else {
-      logger.error('❌ 表单配置加载失败:', result.message)
-      // 如果加载失败，使用本地静态表单
-      useLocalForm()
-      // 显示降级提示
-      ElMessage({
-        message: '正在使用离线表单，部分功能可能受限',
-        type: 'warning',
-        duration: 3000,
-        showClose: true
-      })
-    }
-  } catch (error) {
-    logger.error('❌ 表单配置加载异常:', error)
-    // 如果加载失败，使用本地静态表单
-    useLocalForm()
-    // 显示降级提示
-    ElMessage({
-      message: '正在使用离线表单，部分功能可能受限',
-      type: 'warning',
-      duration: 3000,
-      showClose: true
-    })
-  } finally {
-    loading.value = false
-  }
-}
-
-// 降级方案：使用本地静态表单配置（与文档对齐：5个字段）
-function useLocalForm() {
-  logger.log('⚠️ 使用本地静态表单配置')
-  formRule.value = [
-    {
-      type: 'input',
-      field: 'name',
-      title: 'Your name',
-      value: '',
-      props: {
-        placeholder: 'Your name*'
-      },
-      validate: [
-        { required: true, message: 'name is required' }
-      ]
-    },
-    {
-      type: 'input',
-      field: 'email',
-      title: 'Email Address',
-      value: '',
-      props: {
-        placeholder: 'Email Address*'
-      },
-      validate: [
-        { required: true, message: 'email is required' },
-        {
-          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
-          message: 'Please enter a valid email address'
-        }
-      ]
-    },
-    {
-      type: 'select',
-      field: 'country',
-      title: 'Country',
-      value: '',
-      options: contactUsData.formData.countries.map(country => ({
-        label: country,
-        value: country
-      })),
-      props: {
-        placeholder: 'Country*'
-      },
-      validate: [
-        { required: true, message: 'country is required' }
-      ]
-    },
-    {
-      type: 'input',
-      field: 'phone',
-      title: 'Phone Number',
-      value: '',
-      props: {
-        placeholder: 'Phone Number'
-      },
-      validate: [
-        {
-          pattern: /^(?=.*\d)[\d\s\-+()]+$/,
-          message: 'Please enter a valid phone number'
-        }
-      ]
-    },
-    {
-      type: 'textarea',
-      field: 'message',
-      title: 'Message',
-      value: '',
-      props: {
-        placeholder: 'Message',
-        rows: 4
-      }
-    }
-  ]
-
-  formOption.value = {
-    submitBtn: false,
-    resetBtn: false,
-    form: {
-      labelWidth: '0px'
-    }
-  }
-}
-
-// 表单提交处理
-async function handleSubmit(formData) {
-  try {
-    submitting.value = true
-    submitMessage.value = ''
-    submitSuccess.value = false
-
-    logger.log('📤 正在提交表单数据...', formData)
-    logger.log('📋 表单 UUID:', FORM_UUID)
-
-    // 调用 API 提交表单（传递 UUID 和原始表单数据）
-    const result = await submitContactUsForm(formData, FORM_UUID)
-
-    if (result.success) {
-      submitSuccess.value = true
-      submitMessage.value = 'Thank you! Your message has been sent successfully.'
-      logger.log('✅ 表单提交成功')
-
-      // 显示成功提示
-      ElMessage({
-        message: 'Thank you! Your message has been sent successfully.',
-        type: 'success',
-        duration: 3000,
-        showClose: true
-      })
-
-      // 提交成功后重置表单
-      setTimeout(() => {
-        if (formApi.value) {
-          formApi.value.resetFields()
-        }
-        submitMessage.value = ''
-      }, 3000)
-    } else {
-      submitSuccess.value = false
-      const errorMsg = result.message || 'Submission failed. Please try again.'
-      submitMessage.value = errorMsg
-      logger.error('❌ 表单提交失败:', result.message)
-
-      // 显示错误提示
-      ElMessage({
-        message: errorMsg,
-        type: 'error',
-        duration: 5000,
-        showClose: true
-      })
-    }
-  } catch (error) {
-    submitSuccess.value = false
-    const errorMsg = 'An error occurred. Please try again later.'
-    submitMessage.value = errorMsg
-    logger.error('❌ 表单提交异常:', error)
-
-    // 显示错误提示
-    ElMessage({
-      message: errorMsg,
-      type: 'error',
-      duration: 5000,
-      showClose: true
-    })
-  } finally {
-    submitting.value = false
-  }
-}
-
-// 外部按钮提交处理
-async function handleExternalSubmit() {
-  if (!formApi.value) {
-    logger.error('❌ Form API not ready')
-    return
-  }
-
-  // 客户端频率限制
-  const now = Date.now()
-  if (now - lastSubmitTime.value < SUBMIT_COOLDOWN) {
-    ElMessage({
-      message: 'Please wait a moment before submitting again.',
-      type: 'warning',
-      duration: 3000
-    })
-    return
-  }
-
-  try {
-    // 使用 form-create 的 submit 方法
-    // 会自动验证表单，验证通过后调用 success 回调
-    await formApi.value.submit(
-      // success 回调：验证通过
-      (formData) => {
-        logger.log('✅ 表单验证通过')
-        lastSubmitTime.value = Date.now()
-        handleSubmit(formData)  // 调用原有的提交逻辑
-      },
-      // fail 回调：验证失败
-      () => {
-        logger.log('❌ 表单验证失败')
-        ElMessage({
-          message: 'Please fill in all required fields correctly.',
-          type: 'warning',
-          duration: 3000
-        })
-      }
-    )
-  } catch (error) {
-    logger.error('❌ 提交异常:', error)
-  }
-}
-
-// 本地静态表单的旧逻辑（降级使用）
-const showCountryDropdown = ref(false)
-const showStateDropdown = ref(false)
-
-const availableStates = computed(() => {
-  return contactUsData.formData.statesByCountry[formData.value.country] || []
-})
-
-const selectCountry = (country) => {
-  formData.value.country = country
-  formData.value.state = ''
-  showCountryDropdown.value = false
-}
-
-const selectState = (state) => {
-  formData.value.state = state
-  showStateDropdown.value = false
-}
-
-const toggleCountryDropdown = () => {
-  showCountryDropdown.value = !showCountryDropdown.value
-  showStateDropdown.value = false
-}
-
-const toggleStateDropdown = () => {
-  if (availableStates.value.length > 0) {
-    showStateDropdown.value = !showStateDropdown.value
-    showCountryDropdown.value = false
-  }
-}
-
-const closeDropdowns = () => {
-  showCountryDropdown.value = false
-  showStateDropdown.value = false
-}
+const {
+  formRule,
+  formOption,
+  loading,
+  formComponent,
+  formApi,
+  formData,
+  submitting,
+  handleExternalSubmit
+} = useContactForm(FORM_UUID, contactUsData)
 </script>
 
 <template>
-  <div @click="closeDropdowns">
+  <div>
     <div class="contactPage">
       <Header headerClass="white" />
 
@@ -346,14 +53,13 @@ const closeDropdowns = () => {
       <!-- Form Section -->
       <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
-          <div class="formCard px-[40px] pt-[60px]">
+          <div class="formCard px-[40px] pt-[60px] pb-[60px]">
             <h2 class="formTitle">{{ contactUsData.content.formTitle }}</h2>
 
-            <!-- 动态表单 -->
             <div v-if="loading" class="formLoading">
               Loading form...
             </div>
-            <div v-else class="form-wrapper" @click.stop>
+            <div v-else class="form-wrapper">
               <form-create
                 ref="formComponent"
                 v-model="formData"
@@ -362,12 +68,6 @@ const closeDropdowns = () => {
                 :option="formOption"
               />
 
-              <!-- 提交消息 -->
-              <!-- <div v-if="submitMessage" :class="['submit-message', submitSuccess ? 'success' : 'error']">
-                {{ submitMessage }}
-              </div> -->
-
-              <!-- 自定义提交按钮 -->
               <button
                 type="button"
                 class="submitBtn"
@@ -401,7 +101,6 @@ const closeDropdowns = () => {
   overflow: hidden;
 }
 
-/* Main Container */
 .contactPage {
   width: 100%;
   min-height: 100vh;
@@ -410,7 +109,6 @@ const closeDropdowns = () => {
   color: #555;
 }
 
-/* Header */
 .header {
   position: sticky;
   top: 0;
@@ -462,9 +160,6 @@ const closeDropdowns = () => {
 }
 
 .heroBackground {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
   width: 100%;
   height: 100%;
 }
@@ -503,7 +198,6 @@ const closeDropdowns = () => {
   font-style: normal;
   font-weight: 700;
   margin-top: 18px;
-
   line-height: 35px;
 }
 
@@ -547,7 +241,7 @@ const closeDropdowns = () => {
 
 .formContainer {
   max-width: 1500px;
-  height: 780px;
+  min-height: 780px;
   border-radius: 20px;
   background: #F8F9FC;
   margin: 0 auto;
@@ -560,7 +254,7 @@ const closeDropdowns = () => {
 .formCard {
   flex-shrink: 0;
   width: 440px;
-  height: 630px;
+  min-height: 630px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
@@ -683,7 +377,6 @@ const closeDropdowns = () => {
   font-weight: 500;
 }
 
-/* 提交消息样式 */
 .submit-message {
   margin-top: 15px;
   padding: 12px 14px;
@@ -824,7 +517,6 @@ const closeDropdowns = () => {
   background-color: #e8f5e9;
 }
 
-/* 下拉列表滚动条样式 */
 .dropdownList::-webkit-scrollbar {
   width: 6px;
 }
@@ -885,7 +577,6 @@ const closeDropdowns = () => {
   object-fit: cover;
 }
 
-/* Footer */
 .footer {
   width: 100%;
   background-color: #fff;
@@ -1011,9 +702,6 @@ const closeDropdowns = () => {
   line-height: 22px;
   color: #555;
 }
-
-
-
 
 @media screen and (max-width: $breakpoint-mobile) {
   .heroContent {
