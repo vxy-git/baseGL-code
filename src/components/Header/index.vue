@@ -64,6 +64,8 @@ const {
   goContact,
   goHome,
   handleProductClick,
+  handleSubmenuOpen,
+  handleSubmenuClose,
 } = useHeaderNav(toRef(props, 'headerClass'))
 </script>
 
@@ -105,6 +107,8 @@ const {
             :show-dropdown="showDropdown"
             @products-mouse-enter="handleProductsMouseEnter"
             @products-mouse-leave="handleProductsMouseLeave"
+            @submenu-open="handleSubmenuOpen"
+            @submenu-close="handleSubmenuClose"
           />
         </div>
 

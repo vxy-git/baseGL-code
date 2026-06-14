@@ -205,6 +205,16 @@ export function useHeaderNav(propsHeaderClass) {
     unlockScroll()
   })
 
+  function handleSubmenuOpen() {
+    currentHeaderClass.value = 'white'
+  }
+
+  function handleSubmenuClose() {
+    if (propsHeaderClass.value === 'white') return
+    if (document.documentElement.scrollTop > SCROLL_HEADER_THRESHOLD) return
+    currentHeaderClass.value = propsHeaderClass.value
+  }
+
   return {
     // 状态
     currentHeaderClass,
@@ -232,5 +242,7 @@ export function useHeaderNav(propsHeaderClass) {
     goContact,
     goHome,
     handleProductClick,
+    handleSubmenuOpen,
+    handleSubmenuClose,
   }
 }

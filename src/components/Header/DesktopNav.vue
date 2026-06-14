@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, nextTick } from 'vue'
+import gsap from 'gsap'
 
 defineProps({
   navItems: {
@@ -12,17 +13,47 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['products-mouse-enter', 'products-mouse-leave'])
+const emit = defineEmits(['products-mouse-enter', 'products-mouse-leave', 'submenu-open', 'submenu-close'])
 
-// 轻量 submenu 状态
 const activeSubmenu = ref(null)
+const submenuLeft = ref(0)
+const panelRef = ref(null)
+const overlayRef = ref(null)
+let closeTimer = null
 
-const openSubmenu = key => {
-  activeSubmenu.value = key
+const openSubmenu = (index, event) => {
+  if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+  const rect = event.currentTarget.getBoundingClientRect()
+  submenuLeft.value = rect.left + rect.width / 2
+  activeSubmenu.value = index
+  emit('submenu-open')
 }
-const closeSubmenu = () => {
-  activeSubmenu.value = null
+
+const scheduleClose = () => {
+  closeTimer = setTimeout(() => {
+    activeSubmenu.value = null
+    emit('submenu-close')
+  }, 150)
 }
+
+const cancelClose = (index) => {
+  if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+  activeSubmenu.value = index
+  emit('submenu-open')
+}
+
+// 监听面板出现后触发入场动画（和 Products 一致）
+watch(activeSubmenu, async (val) => {
+  if (val !== null) {
+    await nextTick()
+    if (overlayRef.value) {
+      gsap.fromTo(overlayRef.value, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' })
+    }
+    if (panelRef.value) {
+      gsap.fromTo(panelRef.value, { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', delay: 0.1 })
+    }
+  }
+})
 </script>
 
 <template>
@@ -34,24 +65,30 @@ const closeSubmenu = () => {
         {{ item.text }}
       </a>
 
-      <!-- 轻量 submenu -->
-      <div v-else-if="item.type === 'submenu'" class="nav-item-submenu" @mouseenter="openSubmenu(index)"
-        @mouseleave="closeSubmenu">
+      <!-- 轻量 submenu，全宽面板 -->
+      <div v-else-if="item.type === 'submenu'" class="nav-item-submenu" @mouseenter="openSubmenu(index, $event)"
+        @mouseleave="scheduleClose">
         <span :class="['nav-link', { active: activeSubmenu === index }]">
           {{ item.text }}
         </span>
 
-        <div v-show="activeSubmenu === index" class="submenu-panel">
-          <div class="submenu-indicator"></div>
-          <ul class="submenu-list">
-            <li v-for="(sub, si) in item.submenu" :key="si">
-              <router-link v-if="sub.to" :to="sub.to" class="submenu-link">
-                {{ sub.text }}
-              </router-link>
-              <a v-else :href="sub.href" class="submenu-link">{{ sub.text }}</a>
-            </li>
-          </ul>
-        </div>
+        <Teleport to="body">
+          <template v-if="activeSubmenu === index">
+            <!-- 遮罩层（和 Products 一致） -->
+            <div ref="overlayRef" class="submenu-overlay" @click="scheduleClose"></div>
+            <!-- 全宽面板 -->
+            <div ref="panelRef" class="submenu-fullwidth" @mouseenter="cancelClose(index)" @mouseleave="scheduleClose">
+              <ul class="submenu-list" :style="{ left: submenuLeft + 'px' }">
+                <li v-for="(sub, si) in item.submenu" :key="si">
+                  <router-link v-if="sub.to" :to="sub.to" class="submenu-link">
+                    {{ sub.text }}
+                  </router-link>
+                  <a v-else :href="sub.href" class="submenu-link">{{ sub.text }}</a>
+                </li>
+              </ul>
+            </div>
+          </template>
+        </Teleport>
       </div>
 
       <!-- 普通链接 -->
@@ -88,7 +125,6 @@ const closeSubmenu = () => {
   color: #1ce785 !important;
 }
 
-/* Products 下拉指示线 */
 .nav-link-dropdown::after {
   content: '';
   position: absolute;
@@ -106,56 +142,12 @@ const closeSubmenu = () => {
   opacity: 1;
 }
 
-/* submenu 容器 */
 .nav-item-submenu {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* 轻量下拉面板 */
-.submenu-panel {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 140px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
-  z-index: 200;
-
-  /* 进入动画 */
-  animation: submenuIn 0.18s ease;
-}
-
-@keyframes submenuIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-/* 上方小三角 */
-.submenu-indicator {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  background: #fff;
-  border-radius: 2px;
-  clip-path: polygon(0 100%, 50% 0, 100% 100%);
-}
-
-/* 绿色指示线（和 nav-link-dropdown 一致） */
 .nav-item-submenu .nav-link::after {
   content: '';
   position: absolute;
@@ -168,30 +160,62 @@ const closeSubmenu = () => {
   transition: opacity 0.3s ease;
 }
 
-.nav-item-submenu:hover .nav-link::after {
+.nav-item-submenu:hover .nav-link::after,
+.nav-item-submenu .nav-link.active::after {
   opacity: 1;
 }
+</style>
 
-.submenu-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+<style lang="scss">
+.submenu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 98;
+  backdrop-filter: blur(2px);
 }
 
-.submenu-link {
+.submenu-fullwidth .submenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 29px 0 46px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: absolute;
+  transform: translateX(-50%);
+  min-width: 120px;
+}
+
+.submenu-fullwidth {
+  position: fixed;
+  top: 97px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 99;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  min-height: 131px; /* 保证白色背景可见 */
+}
+
+.submenu-fullwidth .submenu-link {
+  width: 100%;
+  text-align: center;
   display: block;
-  padding: 10px 20px;
-  color: #333;
+  color: #555;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  transition: color 0.15s ease, background 0.15s ease;
+  line-height: 19px;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease;
 
   &:hover {
     color: #1ce785;
-    background: #f8fdf9;
   }
 }
 </style>
