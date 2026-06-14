@@ -15,7 +15,7 @@ const props = defineProps({
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, unit3Data)
 
-const iconDevice = computed(() => unitData.value.icons.device)
+const iconDevice = computed(() => unitData.value?.icons?.device ?? unit3Data.icons.device)
 const m1 = '/api/uploads/file/default/assets/unit_pro/unit3/m1.jpg'
 const m2 = '/api/uploads/file/default/assets/unit_pro/unit3/m2.jpg'
 const m3 = '/api/uploads/file/default/assets/unit_pro/unit3/m3.jpg'
@@ -66,7 +66,7 @@ const m3 = '/api/uploads/file/default/assets/unit_pro/unit3/m3.jpg'
             </div>
           </div>
           <MediaAsset
-            :src="iconDevice.value"
+            :src="iconDevice"
             type="image"
             class="mx-auto max-h-[600px]"
             alt=""

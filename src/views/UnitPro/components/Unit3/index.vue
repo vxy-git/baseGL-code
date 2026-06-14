@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
@@ -18,6 +18,9 @@ const props = defineProps({
 
 // 合并 CMS 数据和本地数据
 const unitData = useUnitData(props, unit3Data)
+
+const iconDevice = computed(() => unitData.value?.icons?.device ?? unit3Data.icons.device)
+const iconFlavor = computed(() => unitData.value?.icons?.flavor ?? unit3Data.icons.flavor)
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -245,7 +248,7 @@ onUnmounted(() => {
                     v-if="stat.hasIcon"
                     class="size-[40px]"
                     type="image"
-                    :src="unitData.icons.flavor"
+                    :src="iconFlavor"
                     alt=""
                     :lazy="false"
                   />
@@ -257,7 +260,7 @@ onUnmounted(() => {
             </div>
             <MediaAsset
               ref="tb4Image"
-              :src="unitData.icons.device"
+              :src="iconDevice"
               type="image"
               class="mx-auto mt-[82px] max-h-[600px]"
               alt=""

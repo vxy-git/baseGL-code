@@ -19,7 +19,13 @@
       "Bash(git rm *)",
       "Bash(git check-ignore *)",
       "Bash(grep -v \"^--$\")",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "Bash(curl -I \"https://img.cloudcode.ink/api/uploads/file/default/unit_pro.tar\")",
+      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unit_pro.tar\")",
+      "Bash(tar -tv)",
+      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unicorn_series_2.tar\")",
+      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/universe_series.tar\")",
+      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unicorn_series_1.tar\")"
     ],
     "deny": [],
     "ask": []

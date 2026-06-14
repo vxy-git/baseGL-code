@@ -44,26 +44,19 @@ const props = defineProps({
   cdnUrl: { type: String, default: DEFAULT_CDN_URL },
 })
 
-const resolvedCdnUrl = computed(() => props.cdnUrl || DEFAULT_CDN_URL)
-const isAbsolute = (val = '') => /^(https?:)?\/\//.test(val) || /^(data|blob):/.test(val)
-const normalizePath = (val = '') => (val.startsWith('/') ? val : `/${val}`).replace(/^\/+/, '/')
-const withCdn = (val = '') => {
-  if (isAbsolute(val)) return val
-  const base = resolvedCdnUrl.value.replace(/\/+$/, '')
-  const path = normalizePath(val)
-  return `${base}${path}`
+const resolveTarURL = tarURL => {
+  if (/^(https?:)?\/\//.test(tarURL)) return tarURL
+  return `${DEFAULT_CDN_URL.replace(/\/+$/, '')}${tarURL}`
 }
 
 // 根据 tarURL 和 imageName 生成 imageURL 函数
 const generateImageURL = (tarURL, imageFile, imageName, extension = '.jpg') => {
-  // 从 tarURL 提取纯文件名（不含路径和扩展名）
-  // "/api/uploads/file/default/unit_pro.tar" → "unit_pro"
-  // "/path/to/unicorn_series_1.tar" → "unicorn_series_1"
-  // const fileName = tarURL.split('/').pop().replace(/\.tar$/, "");
   // 确保扩展名以点号开头（兼容 "jpg" 和 ".jpg" 两种格式）
   const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`
-  // 返回函数：(i) => `unit_pro/frame${i + 1}.jpg` (tar 文件内部的相对路径)
-  return i => `${imageFile}/${imageName}${i + 1}${normalizedExtension}`
+  // imageFile 优先，否则从 tarURL 提取文件名作为 tar 内部目录名
+  // 如 /path/to/product1.tar → product1
+  const dir = imageFile || tarURL.split('/').pop().replace(/\.tar$/, '')
+  return i => `${dir}/${imageName}${i + 1}${normalizedExtension}`
 }
 
 // 计算最终的 imageURL 函数（支持向后兼容）
@@ -103,7 +96,7 @@ onMounted(async () => {
     frames: props.frames,
     src: [
       {
-        tarURL: withCdn(props.tarURL),
+        tarURL: resolveTarURL(props.tarURL),
         // imageURL 需与 tar 内路径一致，这里不追加 CDN 前缀
         imageURL: getImagePath,
       },

@@ -42,7 +42,8 @@ export const gsapUData = {
    */
   frameConfig: {
     frames: 26,
-    tarURL: '/api/uploads/file/default/universe_series.tar',
+    tarURL: '/api/uploads/file/default/product2.tar',
+    imageFile: 'product2',
     imageName: 'frame',
     imageExtension: '.jpg',
   },

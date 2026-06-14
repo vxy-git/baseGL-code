@@ -121,7 +121,7 @@ export function useHeaderNav(propsHeaderClass) {
 
   function openProductsPage() {
     currentLevel.value = 2
-    currentMenuItem.value = 'products'
+    currentMenuItem.value = null
   }
 
   function openSubmenuPage(item) {
