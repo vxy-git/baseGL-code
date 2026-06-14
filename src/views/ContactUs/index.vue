@@ -57,11 +57,7 @@ const {
               <p class="heroEmail">Email: {{ data.contact.email }}</p>
               <div class="socialSection mt-[34px] pr-[4px]">
                 <p class="followText">{{ data.content.followText }}</p>
-                <a
-                  :href="data.contact.instagramLink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a :href="data.contact.instagramLink" target="_blank" rel="noopener noreferrer">
                   <MediaAsset
                     :src="data.icons.instagram"
                     type="image"
@@ -111,12 +107,7 @@ const {
             </div>
           </div>
           <div class="formImage">
-            <MediaAsset
-              :src="data.icons.product"
-              type="image"
-              alt="Product Image"
-              :lazy="false"
-            />
+            <MediaAsset :src="data.icons.product" type="image" alt="Product Image" :lazy="false" />
           </div>
         </div>
       </section>

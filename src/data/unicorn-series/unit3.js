@@ -19,7 +19,7 @@ export const unit3Data = {
      * 帧序列1配置
      */
     sequence1: {
-      frames: 32,
+      frames: 20,
       tarURL: '/api/uploads/file/default/product3_1.tar',
       imageFile: 'product3_1',
       imageName: 'frame',
@@ -30,7 +30,7 @@ export const unit3Data = {
      * 帧序列2配置
      */
     sequence2: {
-      frames: 27,
+      frames: 9,
       tarURL: '/api/uploads/file/default/product3_2.tar',
       imageFile: 'product3_2',
       imageName: 'frame',

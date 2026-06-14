@@ -16,7 +16,12 @@ const unitData = useUnitData(props, unit6Data)
       <!-- Medical Grade Standard -->
       <div class="medical-row left-image">
         <div class="medical-image">
-          <MediaAsset type="image" :src="unitData.items[0].image" :lazy="true" :alt="unitData.items[0].title" />
+          <MediaAsset
+            type="image"
+            :src="unitData.items[0].image"
+            :lazy="true"
+            :alt="unitData.items[0].title"
+          />
         </div>
         <div class="medical-text">
           <h3 class="medical-title">{{ unitData.items[0].title }}</h3>
@@ -31,7 +36,12 @@ const unitData = useUnitData(props, unit6Data)
           <p class="medical-desc">{{ unitData.items[1].description }}</p>
         </div>
         <div class="medical-image">
-          <MediaAsset type="image" :src="unitData.items[1].image" :lazy="true" :alt="unitData.items[1].title" />
+          <MediaAsset
+            type="image"
+            :src="unitData.items[1].image"
+            :lazy="true"
+            :alt="unitData.items[1].title"
+          />
         </div>
       </div>
     </div>

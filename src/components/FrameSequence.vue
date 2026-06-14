@@ -45,8 +45,24 @@ const props = defineProps({
 })
 
 const resolveTarURL = tarURL => {
-  if (/^(https?:)?\/\//.test(tarURL)) return tarURL
-  return `${DEFAULT_CDN_URL.replace(/\/+$/, '')}${tarURL}`
+  if (!tarURL) {
+    logger.error('FrameSequence: tarURL 为空')
+    return ''
+  }
+
+  if (/^(https?:)?\/\//.test(tarURL)) {
+    logger.debug('FrameSequence: tarURL 是绝对路径', tarURL)
+    return tarURL
+  }
+
+  const cdnUrl = props.cdnUrl || DEFAULT_CDN_URL
+  if (!cdnUrl) {
+    logger.error('FrameSequence: CDN URL 为空，请检查 VITE_BASE_URL 环境变量')
+  }
+
+  const resolved = `${cdnUrl.replace(/\/+$/, '')}${tarURL}`
+  logger.debug('FrameSequence: 解析 tarURL', { tarURL, cdnUrl, resolved })
+  return resolved
 }
 
 // 根据 tarURL 和 imageName 生成 imageURL 函数
@@ -55,7 +71,12 @@ const generateImageURL = (tarURL, imageFile, imageName, extension = '.jpg') => {
   const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`
   // imageFile 优先，否则从 tarURL 提取文件名作为 tar 内部目录名
   // 如 /path/to/product1.tar → product1
-  const dir = imageFile || tarURL.split('/').pop().replace(/\.tar$/, '')
+  const dir =
+    imageFile ||
+    tarURL
+      .split('/')
+      .pop()
+      .replace(/\.tar$/, '')
   return i => `${dir}/${imageName}${i + 1}${normalizedExtension}`
 }
 
@@ -87,16 +108,44 @@ watch(
 )
 
 let isUnmounted = false
+let blobUrl = null
 
 onMounted(async () => {
   const container = wrapper.value
+
+  // ====== 预下载 TAR，自动检测并解压 gzip ======
+  let tarURL = resolveTarURL(props.tarURL)
+
+  try {
+    const resp = await fetch(tarURL)
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+    let buffer = await resp.arrayBuffer()
+
+    // 检测 gzip 魔数 1f 8b 08
+    const header = new Uint8Array(buffer.slice(0, 3))
+    if (header[0] === 0x1f && header[1] === 0x8b && header[2] === 0x08) {
+      logger.debug('FrameSequence: 检测到 gzip 压缩，正在解压...')
+      const ds = new DecompressionStream('gzip')
+      const writer = ds.writable.getWriter()
+      writer.write(buffer)
+      writer.close()
+      buffer = await new Response(ds.readable).arrayBuffer()
+      logger.debug('FrameSequence: gzip 解压完成')
+    }
+
+    const blob = new Blob([buffer])
+    blobUrl = URL.createObjectURL(blob)
+    tarURL = blobUrl
+  } catch (err) {
+    logger.error('FrameSequence: TAR 下载/解压失败，使用原始 URL', err)
+  }
 
   // ====== 按 tar 的方式创建 FastImageSequence ======
   seq = new FastImageSequence(container, {
     frames: props.frames,
     src: [
       {
-        tarURL: resolveTarURL(props.tarURL),
+        tarURL,
         // imageURL 需与 tar 内路径一致，这里不追加 CDN 前缀
         imageURL: getImagePath,
       },
@@ -131,6 +180,10 @@ onBeforeUnmount(() => {
     window.removeEventListener('resize', updateProgress)
   }
   seq?.destroy?.()
+  if (blobUrl) {
+    URL.revokeObjectURL(blobUrl)
+    blobUrl = null
+  }
 })
 
 function handleResize() {

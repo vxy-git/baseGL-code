@@ -11,10 +11,10 @@ const unitData = useUnitData(props, unit8Data)
 
 <template>
   <section class="why-caleaf-connect c_1300">
-      <h2 class="connect-title">{{ unitData.title }}</h2>
-      <div class="connect-icon">
-        <img :src="unitData.instagramIcon" alt="Instagram" />
-      </div>
+    <h2 class="connect-title">{{ unitData.title }}</h2>
+    <div class="connect-icon">
+      <img :src="unitData.instagramIcon" alt="Instagram" />
+    </div>
   </section>
 </template>
 

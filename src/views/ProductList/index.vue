@@ -164,9 +164,7 @@ const columns = ref(1)
 const updateColumns = () => {
   const el = catalogGridRef.value
   const width = el ? el.clientWidth : 0
-  const calc = Math.floor(
-    (width + listData.card.gap) / (listData.card.width + listData.card.gap)
-  )
+  const calc = Math.floor((width + listData.card.gap) / (listData.card.width + listData.card.gap))
   columns.value = Math.max(1, calc)
 }
 

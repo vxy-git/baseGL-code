@@ -13,7 +13,12 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['products-mouse-enter', 'products-mouse-leave', 'submenu-open', 'submenu-close'])
+const emit = defineEmits([
+  'products-mouse-enter',
+  'products-mouse-leave',
+  'submenu-open',
+  'submenu-close',
+])
 
 const activeSubmenu = ref(null)
 const submenuLeft = ref(0)
@@ -22,7 +27,10 @@ const overlayRef = ref(null)
 let closeTimer = null
 
 const openSubmenu = (index, event) => {
-  if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
   const rect = event.currentTarget.getBoundingClientRect()
   submenuLeft.value = rect.left + rect.width / 2
   activeSubmenu.value = index
@@ -36,21 +44,32 @@ const scheduleClose = () => {
   }, 150)
 }
 
-const cancelClose = (index) => {
-  if (closeTimer) { clearTimeout(closeTimer); closeTimer = null }
+const cancelClose = index => {
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
   activeSubmenu.value = index
   emit('submenu-open')
 }
 
 // 监听面板出现后触发入场动画（和 Products 一致）
-watch(activeSubmenu, async (val) => {
+watch(activeSubmenu, async val => {
   if (val !== null) {
     await nextTick()
     if (overlayRef.value) {
-      gsap.fromTo(overlayRef.value, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' })
+      gsap.fromTo(
+        overlayRef.value,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3, ease: 'power2.out' }
+      )
     }
     if (panelRef.value) {
-      gsap.fromTo(panelRef.value, { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', delay: 0.1 })
+      gsap.fromTo(
+        panelRef.value,
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', delay: 0.1 }
+      )
     }
   }
 })
@@ -60,14 +79,22 @@ watch(activeSubmenu, async (val) => {
   <nav class="nav-links">
     <template v-for="(item, index) in navItems" :key="index">
       <!-- Products 大型下拉 -->
-      <a v-if="item.type === 'dropdown'" :class="['nav-link', 'nav-link-dropdown', { active: showDropdown }]"
-        @mouseenter="emit('products-mouse-enter')" @mouseleave="emit('products-mouse-leave')">
+      <a
+        v-if="item.type === 'dropdown'"
+        :class="['nav-link', 'nav-link-dropdown', { active: showDropdown }]"
+        @mouseenter="emit('products-mouse-enter')"
+        @mouseleave="emit('products-mouse-leave')"
+      >
         {{ item.text }}
       </a>
 
       <!-- 轻量 submenu，全宽面板 -->
-      <div v-else-if="item.type === 'submenu'" class="nav-item-submenu" @mouseenter="openSubmenu(index, $event)"
-        @mouseleave="scheduleClose">
+      <div
+        v-else-if="item.type === 'submenu'"
+        class="nav-item-submenu"
+        @mouseenter="openSubmenu(index, $event)"
+        @mouseleave="scheduleClose"
+      >
         <span :class="['nav-link', { active: activeSubmenu === index }]">
           {{ item.text }}
         </span>
@@ -77,7 +104,12 @@ watch(activeSubmenu, async (val) => {
             <!-- 遮罩层（和 Products 一致） -->
             <div ref="overlayRef" class="submenu-overlay" @click="scheduleClose"></div>
             <!-- 全宽面板 -->
-            <div ref="panelRef" class="submenu-fullwidth" @mouseenter="cancelClose(index)" @mouseleave="scheduleClose">
+            <div
+              ref="panelRef"
+              class="submenu-fullwidth"
+              @mouseenter="cancelClose(index)"
+              @mouseleave="scheduleClose"
+            >
               <ul class="submenu-list" :style="{ left: submenuLeft + 'px' }">
                 <li v-for="(sub, si) in item.submenu" :key="si">
                   <router-link v-if="sub.to" :to="sub.to" class="submenu-link">

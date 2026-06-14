@@ -25,7 +25,18 @@
       "Bash(tar -tv)",
       "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unicorn_series_2.tar\")",
       "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/universe_series.tar\")",
-      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unicorn_series_1.tar\")"
+      "Bash(curl -sL \"https://img.cloudcode.ink/api/uploads/file/default/unicorn_series_1.tar\")",
+      "Bash(curl -sI --max-time 10 \"https://img.cloudcode.ink/api/uploads/file/default/product3_2.tar\")",
+      "Bash(curl -sL --max-time 30 \"https://img.cloudcode.ink/api/uploads/file/default/product3_2.tar\" -o /tmp/product3_2_check.tar)",
+      "Bash(tar tf *)",
+      "Bash(curl -sL --max-time 30 \"https://img.cloudcode.ink/api/uploads/file/default/product3_1.tar\" -o /tmp/product3_1_check.tar)",
+      "Bash(echo \"Total files: $\\(tar tf /Users/wming/Documents/workBox/boss_cw/gl-item/baseGL-code/public/unit_pro.tar 2>&1)",
+      "Bash(echo \"Total files: $\\(tar tf /Users/wming/Documents/workBox/boss_cw/gl-item/baseGL-code/public/universe_series.tar 2>&1)",
+      "Bash(echo \"Total: $\\(tar tf /Users/wming/Documents/workBox/boss_cw/gl-item/baseGL-code/public/product3_1.tar 2>&1)",
+      "Bash(echo \"Total: $\\(tar tf /Users/wming/Documents/workBox/boss_cw/gl-item/baseGL-code/public/product3_2.tar 2>&1)",
+      "Bash(curl -sI \"https://img.cloudcode.ink/api/uploads/file/default/product1.tar\")",
+      "Bash(curl -s \"https://img.cloudcode.ink/api/uploads/file/default/product1.tar\")",
+      "Bash(xxd)"
     ],
     "deny": [],
     "ask": []
