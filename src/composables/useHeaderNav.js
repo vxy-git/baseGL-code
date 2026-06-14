@@ -124,6 +124,11 @@ export function useHeaderNav(propsHeaderClass) {
     currentMenuItem.value = 'products'
   }
 
+  function openSubmenuPage(item) {
+    currentLevel.value = 3
+    currentMenuItem.value = item
+  }
+
   function goBackToLevel1() {
     currentLevel.value = 1
     currentMenuItem.value = null
@@ -221,6 +226,7 @@ export function useHeaderNav(propsHeaderClass) {
     isMobile,
     isMobileMenuOpen,
     currentLevel,
+    currentMenuItem,
     expandedCategoryId,
     showDropdown,
 
@@ -234,6 +240,7 @@ export function useHeaderNav(propsHeaderClass) {
     // 移动端方法
     toggleMobileMenu,
     openProductsPage,
+    openSubmenuPage,
     goBackToLevel1,
     toggleCategory,
     closeMobileMenu,

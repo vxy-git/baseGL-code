@@ -7,6 +7,7 @@ defineProps({
   navItems: { type: Array, required: true },
   categories: { type: Array, required: true },
   currentLevel: { type: Number, required: true },
+  currentMenuItem: { type: Object, default: null },
   expandedCategoryId: { type: [String, Number], default: null },
 })
 
@@ -18,6 +19,7 @@ const emit = defineEmits([
   'go-contact',
   'go-home',
   'open-products',
+  'open-submenu',
 ])
 </script>
 
@@ -39,21 +41,14 @@ const emit = defineEmits([
         </template>
 
         <!-- 二级页面Header -->
-        <template v-if="currentLevel === 2">
+        <template v-if="currentLevel === 2 || currentLevel === 3">
           <button class="back-btn" aria-label="Back" @click="emit('go-back')">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </button>
-          <span class="page-title">{{ navItems[0]?.text || 'Products' }}</span>
+          <span class="page-title">{{ currentLevel === 3 ? currentMenuItem?.text : (navItems[0]?.text || 'Products') }}</span>
           <button class="close-btn active" aria-label="Close" @click="emit('close')">
             <span></span>
             <span></span>
@@ -75,14 +70,17 @@ const emit = defineEmits([
                   @click="emit('open-products')"
                 >
                   <span>{{ item.text }}</span>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="7 13 12 8 7 3"></polyline>
+                  </svg>
+                </div>
+                <div
+                  v-else-if="item.type === 'submenu'"
+                  class="nav-item-header"
+                  @click="emit('open-submenu', item)"
+                >
+                  <span>{{ item.text }}</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="7 13 12 8 7 3"></polyline>
                   </svg>
                 </div>
@@ -122,7 +120,27 @@ const emit = defineEmits([
           </div>
         </Transition>
 
-        <!-- 二级Products页面 -->
+        <!-- 三级submenu页面 -->
+        <Transition name="page-slide">
+          <div v-if="currentLevel === 3" class="level-1-page">
+            <div class="mobile-nav-list">
+              <div v-for="(sub, si) in currentMenuItem?.submenu" :key="si" class="mobile-nav-item">
+                <router-link v-if="sub.to" :to="sub.to" class="nav-item-link" @click="emit('close')">
+                  <span>{{ sub.text }}</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="7 13 12 8 7 3"></polyline>
+                  </svg>
+                </router-link>
+                <a v-else :href="sub.href" class="nav-item-link" @click="emit('close')">
+                  <span>{{ sub.text }}</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="7 13 12 8 7 3"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </Transition>
         <Transition name="page-slide">
           <div v-if="currentLevel === 2" class="level-2-page">
             <div class="category-list">

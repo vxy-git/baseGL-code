@@ -49,6 +49,7 @@ const {
   isMobile,
   isMobileMenuOpen,
   currentLevel,
+  currentMenuItem,
   expandedCategoryId,
   showDropdown,
   handleProductsMouseEnter,
@@ -58,6 +59,7 @@ const {
   closeDropdown,
   toggleMobileMenu,
   openProductsPage,
+  openSubmenuPage,
   goBackToLevel1,
   toggleCategory,
   closeMobileMenu,
@@ -164,6 +166,7 @@ const {
     :nav-items="navItems"
     :categories="categories"
     :current-level="currentLevel"
+    :current-menu-item="currentMenuItem"
     :expanded-category-id="expandedCategoryId"
     @close="closeMobileMenu"
     @go-back="goBackToLevel1"
@@ -172,6 +175,7 @@ const {
     @go-contact="goContact"
     @go-home="goHome"
     @open-products="openProductsPage"
+    @open-submenu="openSubmenuPage"
   />
 </template>
 
