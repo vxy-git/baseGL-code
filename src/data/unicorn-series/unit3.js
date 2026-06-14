@@ -20,8 +20,8 @@ export const unit3Data = {
      */
     sequence1: {
       frames: 20,
-      tarURL: '/api/uploads/file/default/product3_1.tar',
-      imageFile: 'product3_1',
+      tarURL: '/api/uploads/file/default/frame/unicorn_series_1.tar',
+      imageFile: 'unicorn_series_1',
       imageName: 'frame',
       imageExtension: '.jpg',
     },
@@ -31,8 +31,8 @@ export const unit3Data = {
      */
     sequence2: {
       frames: 9,
-      tarURL: '/api/uploads/file/default/product3_2.tar',
-      imageFile: 'product3_2',
+      tarURL: '/api/uploads/file/default/frame/unicorn_series_2.tar',
+      imageFile: 'unicorn_series_2',
       imageName: 'frame',
       imageExtension: '.jpg',
     },

@@ -26,8 +26,8 @@ export const unit3Data = {
    */
   frameConfig: {
     frames: 71,
-    tarURL: '/api/uploads/file/default/product1.tar',
-    imageFile: 'product1',
+    tarURL: '/api/uploads/file/default/frame/unit_pro.tar',
+    imageFile: 'unit_pro',
     imageName: 'frame',
     imageExtension: '.jpg',
   },

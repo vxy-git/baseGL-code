@@ -70,7 +70,7 @@ const generateImageURL = (tarURL, imageFile, imageName, extension = '.jpg') => {
   // 确保扩展名以点号开头（兼容 "jpg" 和 ".jpg" 两种格式）
   const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`
   // imageFile 优先，否则从 tarURL 提取文件名作为 tar 内部目录名
-  // 如 /path/to/product1.tar → product1
+  // 如 /path/to/unit_pro.tar → unit_pro
   const dir =
     imageFile ||
     tarURL
