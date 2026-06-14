@@ -32,9 +32,16 @@ export const headerData = {
   navItems: [
     { text: 'Products', type: 'dropdown' },
     { text: 'Technology', to: '/technology' },
-    { text: 'Customize', href: '#' },
-    { text: 'US Local Service', href: '#' },
-    { text: 'Why Caleaf', href: '/why-caleaf' },
+    { text: 'Customize', to: '#' },
+    { text: 'US Local Service', to: '#' },
+    {
+      text: 'Why Caleaf',
+      type: 'submenu',
+      submenu: [
+        { text: 'ABOUT US', to: '/about_us' },
+        { text: 'NEWSROOM', to: '/newsroom' },
+      ],
+    },
   ],
 
   /**

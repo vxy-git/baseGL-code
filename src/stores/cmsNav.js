@@ -154,7 +154,17 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
           item.type = 'dropdown'
         }
       } else {
-        item.type = 'dropdown'
+        item.type = 'submenu'
+        const children = allNavs.filter(
+          n => n.parentId === nav.ID && isEnabled(n) && n.headerShow === true
+        )
+        item.submenu = children.map(child => {
+          const sub = { text: child.navName || '' }
+          if (child.navUrl) {
+            Object.assign(sub, resolveNavLink(child.navUrl, child.target))
+          }
+          return sub
+        })
       }
     }
 

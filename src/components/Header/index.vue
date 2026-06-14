@@ -182,6 +182,10 @@ const {
   }
 }
 
+.box {
+  transition: background-color 0.5s ease;
+}
+
 .top-nav {
   display: flex;
   align-items: center;
@@ -194,6 +198,7 @@ const {
   display: flex;
   align-items: center;
   gap: 60px;
+  height: 100%;
 }
 
 .logo {

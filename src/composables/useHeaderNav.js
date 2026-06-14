@@ -62,6 +62,7 @@ export function useHeaderNav(propsHeaderClass) {
     }
     closeTimer = setTimeout(() => {
       showDropdown.value = false
+      restoreHeaderClass()
     }, 300)
   }
 
@@ -82,6 +83,15 @@ export function useHeaderNav(propsHeaderClass) {
     }, 100)
   }
 
+  function restoreHeaderClass() {
+    if (propsHeaderClass.value === 'white') {
+      currentHeaderClass.value = 'white'
+    } else {
+      currentHeaderClass.value =
+        document.documentElement.scrollTop > SCROLL_HEADER_THRESHOLD ? 'white' : 'opacity'
+    }
+  }
+
   function closeDropdown() {
     if (hoverTimer) {
       clearTimeout(hoverTimer)
@@ -92,10 +102,7 @@ export function useHeaderNav(propsHeaderClass) {
       closeTimer = null
     }
     showDropdown.value = false
-
-    if (propsHeaderClass.value === 'white') {
-      currentHeaderClass.value = 'white'
-    }
+    restoreHeaderClass()
   }
 
   // ========== 移动端交互方法 ==========

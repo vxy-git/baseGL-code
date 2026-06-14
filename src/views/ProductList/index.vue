@@ -210,12 +210,6 @@ const fillerCount = computed(() => {
   display: block;
 }
 
-.nav-links {
-  display: flex;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  flex: 1;
-}
-
 .nav-link {
   color: #555555;
   font-size: 16px;
