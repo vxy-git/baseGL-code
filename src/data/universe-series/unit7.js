@@ -1,9 +1,9 @@
 /**
- * Product2 Unit7 数据配置
+ * Universe Series Unit7 数据配置
  */
 
 /**
- * Product2 Unit7 数据对象
+ * Universe Series Unit7 数据对象
  */
 export const unit7Data = {
   /**
@@ -21,15 +21,15 @@ export const unit7Data = {
    */
   mediaList: [
     {
-      src: '/api/uploads/file/default/assets/product2/every_Crystal-clear-Design.jpg',
+      src: '/api/uploads/file/default/assets/universe_series/every_Crystal-clear-Design.jpg',
       type: 'image',
     },
     {
-      src: '/api/uploads/file/default/assets/product2/every_Unibody-Enclosure.mp4',
+      src: '/api/uploads/file/default/assets/universe_series/every_Unibody-Enclosure.mp4',
       type: 'video',
     },
     {
-      src: '/api/uploads/file/default/assets/product2/every_Medical-grade-Chamber.jpg',
+      src: '/api/uploads/file/default/assets/universe_series/every_Medical-grade-Chamber.jpg',
       type: 'image',
     },
   ],

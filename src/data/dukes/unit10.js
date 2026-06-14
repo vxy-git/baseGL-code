@@ -1,9 +1,9 @@
 /**
- * Product4 Unit10 Features Grid 数据配置
+ * Dukes Unit10 Features Grid 数据配置
  */
 
 /**
- * Product4 Unit10 数据对象
+ * Dukes Unit10 数据对象
  */
 export const unit10Data = {
   /**
@@ -13,22 +13,22 @@ export const unit10Data = {
     /**
      * Dosing Timer 视频
      */
-    dosingTimer: '/api/uploads/file/default/assets/product4/Puff-Counter.mp4',
+    dosingTimer: '/api/uploads/file/default/assets/dukes/Puff-Counter.mp4',
 
     /**
      * Preheat Status 视频
      */
-    preheatStatus: '/api/uploads/file/default/assets/product4/Preheat-Status-Indication.mp4',
+    preheatStatus: '/api/uploads/file/default/assets/dukes/Preheat-Status-Indication.mp4',
 
     /**
      * Temperature Control 视频
      */
-    temperatureControl: '/api/uploads/file/default/assets/product4/3-Temperature-Control.mp4',
+    temperatureControl: '/api/uploads/file/default/assets/dukes/3-Temperature-Control.mp4',
 
     /**
      * Battery Monitor 视频
      */
-    batteryMonitor: '/api/uploads/file/default/assets/product4/Battery-Life-Monitor.mp4',
+    batteryMonitor: '/api/uploads/file/default/assets/dukes/Battery-Life-Monitor.mp4',
   },
 
   /**

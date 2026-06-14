@@ -1,9 +1,9 @@
 /**
- * Product4 (DUKES) 产品映射数据配置
+ * Dukes (DUKES) 产品映射数据配置
  */
 
 /**
- * Product4 Item 数据对象
+ * Dukes Item 数据对象
  * 用于产品列表页面的产品卡片展示和链接映射
  */
 export const itemData = {

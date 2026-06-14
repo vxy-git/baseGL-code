@@ -1,9 +1,9 @@
 /**
- * Product2 GsapU 数据配置
+ * Universe Series GsapU 数据配置
  */
 
 /**
- * Product2 GsapU 数据对象
+ * Universe Series GsapU 数据对象
  */
 export const gsapUData = {
   /**
@@ -13,7 +13,7 @@ export const gsapUData = {
     /**
      * 主图片
      */
-    image: '/api/uploads/file/default/assets/product2/gsap/m1.jpg',
+    image: '/api/uploads/file/default/assets/universe_series/gsap/m1.jpg',
   },
 
   /**
@@ -42,7 +42,7 @@ export const gsapUData = {
    */
   frameConfig: {
     frames: 26,
-    tarURL: '/api/uploads/file/default/product2.tar',
+    tarURL: '/api/uploads/file/default/universe_series.tar',
     imageName: 'frame',
     imageExtension: '.jpg',
   },

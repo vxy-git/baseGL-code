@@ -1,5 +1,5 @@
 /**
- * Product1 (UNIT Pro) 页面 CMS 数据配置
+ * Unit Pro (UNIT Pro) 页面 CMS 数据配置
  */
 
 import { itemData } from './item.js'
@@ -16,7 +16,7 @@ import { unit9Data } from './unit9.js'
 export default {
   // 路由配置
   route: '/unit_pro',
-  routeName: 'product1',
+  routeName: 'unit_pro',
 
   // 导航配置
   showInHeader: true,

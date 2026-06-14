@@ -1,5 +1,5 @@
 /**
- * Product3 (UNICORN Series) 页面 CMS 数据配置
+ * Unicorn Series (UNICORN Series) 页面 CMS 数据配置
  */
 
 import { itemData } from './item.js'
@@ -17,7 +17,7 @@ import { unit9BlockData } from './unit9-block.js'
 export default {
   // 路由配置
   route: '/unicorn_series',
-  routeName: 'product3',
+  routeName: 'unicorn_series',
 
   // 导航配置
   showInHeader: true,

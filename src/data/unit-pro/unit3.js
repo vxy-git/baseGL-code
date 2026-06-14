@@ -1,9 +1,9 @@
 /**
- * Product1 Unit3 滚动动画展示数据配置
+ * Unit Pro Unit3 滚动动画展示数据配置
  */
 
 /**
- * Product1 Unit3 数据对象
+ * Unit Pro Unit3 数据对象
  */
 export const unit3Data = {
   /**
@@ -26,7 +26,7 @@ export const unit3Data = {
    */
   frameConfig: {
     frames: 71,
-    tarURL: '/api/uploads/file/default/product1.tar',
+    tarURL: '/api/uploads/file/default/unit_pro.tar',
     imageName: 'frame',
     imageExtension: '.jpg',
   },

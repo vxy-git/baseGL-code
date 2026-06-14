@@ -1,9 +1,9 @@
 /**
- * Product4 Unit8 Advanced Interactivity 数据配置
+ * Dukes Unit8 Advanced Interactivity 数据配置
  */
 
 /**
- * Product4 Unit8 数据对象
+ * Dukes Unit8 数据对象
  */
 export const unit8Data = {
   /**
@@ -13,12 +13,12 @@ export const unit8Data = {
     /**
      * Taste Switcher 图片
      */
-    tasteSwitcher: '/api/uploads/file/default/assets/product4/unit6-1.jpg',
+    tasteSwitcher: '/api/uploads/file/default/assets/dukes/unit6-1.jpg',
 
     /**
      * Hit a Blinker 图片
      */
-    hitABlinker: '/api/uploads/file/default/assets/product4/unit6-2.jpg',
+    hitABlinker: '/api/uploads/file/default/assets/dukes/unit6-2.jpg',
   },
 
   /**

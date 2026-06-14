@@ -1,15 +1,15 @@
 /**
- * Product1 Unit1 Banner 数据配置
+ * Unit Pro Unit1 Banner 数据配置
  */
 
 /**
- * Product1 Unit1 数据对象
+ * Unit Pro Unit1 数据对象
  */
 export const unit1Data = {
   /**
    * 视频/媒体路径
    */
-  videoSrc: '/api/uploads/file/default/assets/product1/banner.mp4',
+  videoSrc: '/api/uploads/file/default/assets/unit_pro/banner.mp4',
 
   /**
    * 文本内容

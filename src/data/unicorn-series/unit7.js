@@ -1,9 +1,9 @@
 /**
- * Product3 Unit7 数据配置
+ * Unicorn Series Unit7 数据配置
  */
 
 /**
- * Product3 Unit7 数据对象
+ * Unicorn Series Unit7 数据对象
  */
 export const unit7Data = {
   /**
@@ -18,12 +18,12 @@ export const unit7Data = {
     /**
      * Unicorn 视频
      */
-    unicornVideo: '/api/uploads/file/default/assets/product3/UNICORN.mp4',
+    unicornVideo: '/api/uploads/file/default/assets/unicorn_series/UNICORN.mp4',
 
     /**
      * Unicorn Pro 视频
      */
-    unicornProVideo: '/api/uploads/file/default/assets/product3/UNICORN-PRO.mp4',
+    unicornProVideo: '/api/uploads/file/default/assets/unicorn_series/UNICORN-PRO.mp4',
   },
 
   /**

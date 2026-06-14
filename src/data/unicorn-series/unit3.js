@@ -1,15 +1,15 @@
 /**
- * Product3 Unit3 数据配置
+ * Unicorn Series Unit3 数据配置
  */
 
 /**
- * Product3 Unit3 数据对象
+ * Unicorn Series Unit3 数据对象
  */
 export const unit3Data = {
   /**
    * 箭头图标
    */
-  arrowIcon: '/api/uploads/file/default/assets/product3/arrow.svg',
+  arrowIcon: '/api/uploads/file/default/assets/unicorn_series/arrow.svg',
 
   /**
    * 帧序列配置
@@ -20,7 +20,7 @@ export const unit3Data = {
      */
     sequence1: {
       frames: 32,
-      tarURL: '/api/uploads/file/default/product3_1.tar',
+      tarURL: '/api/uploads/file/default/unicorn_series_1.tar',
       imageName: 'frame',
       imageExtension: '.jpg',
     },
@@ -30,7 +30,7 @@ export const unit3Data = {
      */
     sequence2: {
       frames: 27,
-      tarURL: '/api/uploads/file/default/product3_2.tar',
+      tarURL: '/api/uploads/file/default/unicorn_series_2.tar',
       imageName: 'frame',
       imageExtension: '.jpg',
     },

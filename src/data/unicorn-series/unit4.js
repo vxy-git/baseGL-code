@@ -1,9 +1,9 @@
 /**
- * Product3 Unit4 数据配置
+ * Unicorn Series Unit4 数据配置
  */
 
 /**
- * Product3 Unit4 数据对象
+ * Unicorn Series Unit4 数据对象
  */
 export const unit4Data = {
   /**
@@ -13,27 +13,27 @@ export const unit4Data = {
     /**
      * 背景图片
      */
-    background: '/api/uploads/file/default/assets/product3/unit4.jpg',
+    background: '/api/uploads/file/default/assets/unicorn_series/unit4.jpg',
 
     /**
      * 左侧视频
      */
-    leftVideo: '/api/uploads/file/default/assets/product3/unit5-l.mp4',
+    leftVideo: '/api/uploads/file/default/assets/unicorn_series/unit5-l.mp4',
 
     /**
      * 右侧视频
      */
-    rightVideo: '/api/uploads/file/default/assets/product3/unit5-r.mp4',
+    rightVideo: '/api/uploads/file/default/assets/unicorn_series/unit5-r.mp4',
 
     /**
      * 箭头图标
      */
-    arrowIcon: '/api/uploads/file/default/assets/product3/arrow.svg',
+    arrowIcon: '/api/uploads/file/default/assets/unicorn_series/arrow.svg',
 
     /**
      * 产品图片
      */
-    productImage: '/api/uploads/file/default/assets/product3/unit4-2.jpg',
+    productImage: '/api/uploads/file/default/assets/unicorn_series/unit4-2.jpg',
   },
 
   /**

@@ -1,13 +1,13 @@
 /**
- * Product2 - VideoU 模块数据
+ * Universe Series - VideoU 模块数据
  * UNICORE Powered 视频展示模块
  */
 
 export const videoUData = {
   // 媒体资源
   media: {
-    videoSrc: '/api/uploads/file/default/assets/product2/the.mp4',
-    arrowIcon: '/api/uploads/file/default/assets/product2/arrow.svg',
+    videoSrc: '/api/uploads/file/default/assets/universe_series/the.mp4',
+    arrowIcon: '/api/uploads/file/default/assets/universe_series/arrow.svg',
   },
 
   // 内容文本

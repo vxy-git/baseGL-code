@@ -1,9 +1,9 @@
 /**
- * Product1 Unit9 规格参数数据配置
+ * Unit Pro Unit9 规格参数数据配置
  */
 
 /**
- * Product1 Unit9 数据对象
+ * Unit Pro Unit9 数据对象
  */
 export const unit9Data = {
   /**
@@ -14,7 +14,7 @@ export const unit9Data = {
   /**
    * 规格视频路径
    */
-  specsVideo: '/api/uploads/file/default/assets/product1/specs.mp4',
+  specsVideo: '/api/uploads/file/default/assets/unit_pro/specs.mp4',
 
   /**
    * 设备规格列表

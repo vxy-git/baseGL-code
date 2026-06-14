@@ -1,5 +1,5 @@
 /**
- * Product2 (UNIVERSE Series) 页面 CMS 数据配置
+ * Universe Series (UNIVERSE Series) 页面 CMS 数据配置
  */
 
 import { itemData } from './item.js'
@@ -17,7 +17,7 @@ import { videoUData } from './videou.js'
 export default {
   // 路由配置
   route: '/universe_series',
-  routeName: 'product2',
+  routeName: 'universe_series',
 
   // 导航配置
   showInHeader: true,

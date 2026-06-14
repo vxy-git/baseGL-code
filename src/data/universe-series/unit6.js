@@ -1,9 +1,9 @@
 /**
- * Product2 Unit6 数据配置
+ * Universe Series Unit6 数据配置
  */
 
 /**
- * Product2 Unit6 数据对象
+ * Universe Series Unit6 数据对象
  */
 export const unit6Data = {
   /**
@@ -20,7 +20,7 @@ export const unit6Data = {
       title: 'It looks — and stays — beautiful.',
       description:
         'With big branding potential, it matches your vibe and makes the style uniquely yours.',
-      mediaSrc: '/api/uploads/file/default/assets/product2/plck1.jpg',
+      mediaSrc: '/api/uploads/file/default/assets/universe_series/plck1.jpg',
       mediaType: 'image',
       number: '01',
     },
@@ -28,7 +28,7 @@ export const unit6Data = {
       btn: 'UNIVERSE Pro',
       title: 'Upgrade your adventure.',
       description: 'With advanced interactivity, it will dominate the market like a pro.',
-      mediaSrc: '/api/uploads/file/default/assets/product2/plck2.mp4',
+      mediaSrc: '/api/uploads/file/default/assets/universe_series/plck2.mp4',
       mediaType: 'video',
       number: '02',
     },
@@ -36,7 +36,7 @@ export const unit6Data = {
       btn: 'UNIVERSE Pro',
       title: 'Upgrade your adventure.',
       description: 'With advanced interactivity, it will dominate the market like a pro.',
-      mediaSrc: '/api/uploads/file/default/assets/product2/plck3.png',
+      mediaSrc: '/api/uploads/file/default/assets/universe_series/plck3.png',
       mediaType: 'image',
       number: '03',
     },

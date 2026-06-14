@@ -1,5 +1,5 @@
 /**
- * Product4 (DUKES) 页面 CMS 数据配置
+ * Dukes (DUKES) 页面 CMS 数据配置
  */
 
 import { itemData } from './item.js'
@@ -17,7 +17,7 @@ import { unit12Data } from './unit12.js'
 export default {
   // 路由配置
   route: '/dukes',
-  routeName: 'product4',
+  routeName: 'dukes',
 
   // 导航配置
   showInHeader: true,

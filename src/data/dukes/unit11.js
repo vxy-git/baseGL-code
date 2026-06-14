@@ -1,9 +1,9 @@
 /**
- * Product4 Unit11 Specifications 数据配置
+ * Dukes Unit11 Specifications 数据配置
  */
 
 /**
- * Product4 Unit11 数据对象
+ * Dukes Unit11 数据对象
  */
 export const unit11Data = {
   /**
@@ -14,12 +14,12 @@ export const unit11Data = {
     /**
      * DUKES 主视频（复用 UNICORN 视频资源）
      */
-    universe: '/api/uploads/file/default/assets/product4/UNICORN.mp4',
+    universe: '/api/uploads/file/default/assets/dukes/UNICORN.mp4',
 
     /**
      * DUKES Pro 视频（复用 UNICORN Pro 视频资源）
      */
-    universePro: '/api/uploads/file/default/assets/product4/UNICORN-Pro.mp4',
+    universePro: '/api/uploads/file/default/assets/dukes/UNICORN-Pro.mp4',
   },
 
   /**

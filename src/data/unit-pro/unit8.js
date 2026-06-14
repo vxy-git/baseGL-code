@@ -1,9 +1,9 @@
 /**
- * Product1 Unit8 设计轮播数据配置
+ * Unit Pro Unit8 设计轮播数据配置
  */
 
 /**
- * Product1 Unit8 数据对象
+ * Unit Pro Unit8 数据对象
  */
 export const unit8Data = {
   /**
@@ -27,22 +27,22 @@ export const unit8Data = {
   designImages: [
     {
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/realize1.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/realize1.jpg',
       alt: 'Design 1',
     },
     {
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/realize2.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/realize2.jpg',
       alt: 'Design 2',
     },
     {
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/realize3.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/realize3.jpg',
       alt: 'Design 3',
     },
     {
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/realize4.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/realize4.jpg',
       alt: 'Design 4',
     },
   ],

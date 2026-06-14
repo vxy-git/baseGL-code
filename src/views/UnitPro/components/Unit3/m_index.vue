@@ -16,9 +16,9 @@ const props = defineProps({
 const unitData = useUnitData(props, unit3Data)
 
 const iconDevice = computed(() => unitData.value.icons.device)
-const m1 = '/api/uploads/file/default/assets/product1/unit3/m1.jpg'
-const m2 = '/api/uploads/file/default/assets/product1/unit3/m2.jpg'
-const m3 = '/api/uploads/file/default/assets/product1/unit3/m3.jpg'
+const m1 = '/api/uploads/file/default/assets/unit_pro/unit3/m1.jpg'
+const m2 = '/api/uploads/file/default/assets/unit_pro/unit3/m2.jpg'
+const m3 = '/api/uploads/file/default/assets/unit_pro/unit3/m3.jpg'
 </script>
 
 <template>

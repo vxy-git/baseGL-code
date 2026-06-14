@@ -1,5 +1,5 @@
 /**
- * Product1 Unit4 功能展示数据配置
+ * Unit Pro Unit4 功能展示数据配置
  * @typedef {Object} SectionData
  * @property {string} greenText - 绿色标签文本
  * @property {string} title - 标题文本
@@ -10,7 +10,7 @@
  */
 
 /**
- * Product1 Unit4 数据对象
+ * Unit Pro Unit4 数据对象
  */
 export const unit4Data = {
   /**
@@ -26,8 +26,8 @@ export const unit4Data = {
     title: 'Best flavor preservation',
     description: `Powered by Unicore tech, UNIT PRO combines smoothness with purity, ensuring efficient THC and terpene extraction without burning, and guarantees an exceptional session every time.`,
     videos: {
-      left: '/api/uploads/file/default/assets/product1/best-L.mp4',
-      right: '/api/uploads/file/default/assets/product1/best-R.mp4',
+      left: '/api/uploads/file/default/assets/unit_pro/best-L.mp4',
+      right: '/api/uploads/file/default/assets/unit_pro/best-R.mp4',
     },
   },
 
@@ -39,8 +39,8 @@ export const unit4Data = {
     title: 'No more dry burning',
     description: `The heating coil is embedded within the ceramic core, this way, the oil is heated by the ceramic core and not by exposed hot wires, maximizing prevention of burnt flavors and preservation.`,
     videos: {
-      left: '/api/uploads/file/default/assets/product1/no-L.mp4',
-      right: '/api/uploads/file/default/assets/product1/no-R.mp4',
+      left: '/api/uploads/file/default/assets/unit_pro/no-L.mp4',
+      right: '/api/uploads/file/default/assets/unit_pro/no-R.mp4',
     },
   },
 }

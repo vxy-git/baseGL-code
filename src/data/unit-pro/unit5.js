@@ -1,5 +1,5 @@
 /**
- * Product1 Unit5 产品细节展示数据配置
+ * Unit Pro Unit5 产品细节展示数据配置
  * @typedef {Object} TabData
  * @property {string} label - 标签文本
  * @property {string} description - 描述文本
@@ -9,7 +9,7 @@
  */
 
 /**
- * Product1 Unit5 数据对象
+ * Unit Pro Unit5 数据对象
  */
 export const unit5Data = {
   /**
@@ -40,7 +40,7 @@ export const unit5Data = {
       label: 'Smooth yet Rugged Design',
       description: 'The edge is clean and bold, making the shape stand out from everything else.',
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/Smooth_yet_Rugged_Design.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/Smooth_yet_Rugged_Design.jpg',
       alt: 'Smooth yet Rugged Design',
     },
     {
@@ -48,7 +48,7 @@ export const unit5Data = {
       description:
         'Smart design can feel as good as it looks—cooling every puff while turning the tip into a tiny work of art.',
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/Dual_Color_Mouthpiece.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/Dual_Color_Mouthpiece.jpg',
       alt: 'Dual-Color Mouthpiece',
     },
     {
@@ -56,7 +56,7 @@ export const unit5Data = {
       description:
         'Creative yet smart, the screen paints your vivid brand story while keeping every puff in perfect check.',
       type: 'image',
-      src: '/api/uploads/file/default/assets/product1/Large_Side_Display.jpg',
+      src: '/api/uploads/file/default/assets/unit_pro/Large_Side_Display.jpg',
       alt: 'Large Side Display',
     },
   ],

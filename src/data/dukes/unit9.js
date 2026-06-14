@@ -1,9 +1,9 @@
 /**
- * Product4 Unit9 Interaction 数据配置
+ * Dukes Unit9 Interaction 数据配置
  */
 
 /**
- * Product4 Unit9 数据对象
+ * Dukes Unit9 数据对象
  */
 export const unit9Data = {
   /**

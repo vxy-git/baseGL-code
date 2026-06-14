@@ -36,8 +36,8 @@ CMS API (getCmsNavPublicList)
 
 **pageTypeComponentMap** 在 `src/router/index.js` 中将 CMS 的 `pageType` 映射到 Vue 组件（懒加载）：
 - `home` → Home, `technology` → Technology, `contactus` → ContactUs
-- `universe_series` → Product2, `unicorn_series` → Product3
-- `unit_pro` → Product1, `dukes` → Product4
+- `universe_series` → Universe Series, `unicorn_series` → Unicorn Series
+- `unit_pro` → Unit Pro, `dukes` → Dukes
 - `list` → ProductList, `page` → 通用 Page, `why_caleaf` → WhyCaleaf
 
 ### 三级数据降级（`src/composables/useUnitData.js`）
@@ -99,5 +99,5 @@ CMS API (getCmsNavPublicList)
 - **静态资源**：`public/` 目录约 749MB，含大量 tar 压缩包和媒体资源，构建产物 `dist/` 约 751MB。
 - **Element Plus**：全量导入 + 中文语言包，约 2MB。
 - **@form-create/element-ui**：仅 ContactUs 页面使用，用于动态表单渲染。
-- **useMobileDetect.js**：移动端检测 composable，封装了 `MOBILE_BREAKPOINT` + resize 监听 + 生命周期管理。用于 Product1~4 和 Technology 页面组件。
+- **useMobileDetect.js**：移动端检测 composable，封装了 `MOBILE_BREAKPOINT` + resize 监听 + 生命周期管理。用于 Unit Pro~4 和 Technology 页面组件。
 - **项目无单元测试、无 ESLint/Prettier 配置**，代码审查依赖人工。

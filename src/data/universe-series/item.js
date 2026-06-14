@@ -1,9 +1,9 @@
 /**
- * Product2 (UNIVERSE Series) 产品映射数据配置
+ * Universe Series (UNIVERSE Series) 产品映射数据配置
  */
 
 /**
- * Product2 Item 数据对象
+ * Universe Series Item 数据对象
  * 用于产品列表页面的产品卡片展示和链接映射
  */
 export const itemData = {

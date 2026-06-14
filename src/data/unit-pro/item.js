@@ -1,9 +1,9 @@
 /**
- * Product1 (UNIT Pro) 产品映射数据配置
+ * Unit Pro (UNIT Pro) 产品映射数据配置
  */
 
 /**
- * Product1 Item 数据对象
+ * Unit Pro Item 数据对象
  * 用于产品列表页面的产品卡片展示和链接映射
  */
 export const itemData = {

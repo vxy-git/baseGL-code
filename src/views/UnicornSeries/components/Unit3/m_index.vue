@@ -1,9 +1,9 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { unit3Data } from '@/data/unicorn-series/unit3'
-const m1 = '/api/uploads/file/default/assets/product3/unit3/m1.jpg'
-const m2 = '/api/uploads/file/default/assets/product3/unit3/m2.jpg'
-const m3 = '/api/uploads/file/default/assets/product3/unit3/m3.jpg'
+const m1 = '/api/uploads/file/default/assets/unicorn_series/unit3/m1.jpg'
+const m2 = '/api/uploads/file/default/assets/unicorn_series/unit3/m2.jpg'
+const m3 = '/api/uploads/file/default/assets/unicorn_series/unit3/m3.jpg'
 </script>
 
 <template>

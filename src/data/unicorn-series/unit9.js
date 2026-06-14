@@ -1,9 +1,9 @@
 /**
- * Product3 Unit9 数据配置
+ * Unicorn Series Unit9 数据配置
  */
 
 /**
- * Product3 Unit9 数据对象
+ * Unicorn Series Unit9 数据对象
  */
 export const unit9Data = {
   /**
@@ -33,11 +33,11 @@ export const unit9Data = {
     /**
      * 左侧视频/图片
      */
-    leftImage: '/api/uploads/file/default/assets/product3/unit7-l.jpg',
+    leftImage: '/api/uploads/file/default/assets/unicorn_series/unit7-l.jpg',
 
     /**
      * 右侧视频/图片
      */
-    rightImage: '/api/uploads/file/default/assets/product3/unit7-r.jpg',
+    rightImage: '/api/uploads/file/default/assets/unicorn_series/unit7-r.jpg',
   },
 }

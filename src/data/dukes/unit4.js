@@ -1,9 +1,9 @@
 /**
- * Product4 Unit4 Dual Chamber 数据配置
+ * Dukes Unit4 Dual Chamber 数据配置
  */
 
 /**
- * Product4 Unit4 数据对象
+ * Dukes Unit4 数据对象
  */
 export const unit4Data = {
   /**
@@ -23,13 +23,13 @@ export const unit4Data = {
     /**
      * DUAL 视频
      */
-    dual: '/api/uploads/file/default/assets/product4/DUAL.mp4',
+    dual: '/api/uploads/file/default/assets/dukes/DUAL.mp4',
   },
 
   /**
    * 遮罩图片路径
    */
-  dualMaskImg: '/api/uploads/file/default/assets/product4/unit3/logo1.svg',
+  dualMaskImg: '/api/uploads/file/default/assets/dukes/unit3/logo1.svg',
 
   /**
    * 文本内容

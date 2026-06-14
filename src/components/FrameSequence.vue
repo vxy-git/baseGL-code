@@ -33,7 +33,7 @@ const props = defineProps({
   frames: { type: Number, required: true },
   tarURL: { type: String, required: true }, // tar 文件路径
   imageURL: { type: Function, required: false }, // index => 路径（可选，用于向后兼容）
-  imageFile: { type: String, required: false }, // 图片文件路径（如 "product1"）
+  imageFile: { type: String, required: false }, // 图片文件路径（如 "unit_pro"）
   imageName: { type: String, required: false }, // 图片名称（如 "frame"）
   imageExtension: { type: String, default: '.jpg' }, // 图片扩展名（默认 .jpg）
   progress: { type: Number, default: 0 }, // 0~1，由 GSAP 或 v-model 驱动
@@ -57,12 +57,12 @@ const withCdn = (val = '') => {
 // 根据 tarURL 和 imageName 生成 imageURL 函数
 const generateImageURL = (tarURL, imageFile, imageName, extension = '.jpg') => {
   // 从 tarURL 提取纯文件名（不含路径和扩展名）
-  // "/api/uploads/file/default/product1.tar" → "product1"
-  // "/path/to/product3_1.tar" → "product3_1"
+  // "/api/uploads/file/default/unit_pro.tar" → "unit_pro"
+  // "/path/to/unicorn_series_1.tar" → "unicorn_series_1"
   // const fileName = tarURL.split('/').pop().replace(/\.tar$/, "");
   // 确保扩展名以点号开头（兼容 "jpg" 和 ".jpg" 两种格式）
   const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`
-  // 返回函数：(i) => `product1/frame${i + 1}.jpg` (tar 文件内部的相对路径)
+  // 返回函数：(i) => `unit_pro/frame${i + 1}.jpg` (tar 文件内部的相对路径)
   return i => `${imageFile}/${imageName}${i + 1}${normalizedExtension}`
 }
 

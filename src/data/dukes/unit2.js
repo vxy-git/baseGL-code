@@ -1,9 +1,9 @@
 /**
- * Product4 Unit2 Features 数据配置
+ * Dukes Unit2 Features 数据配置
  */
 
 /**
- * Product4 Unit2 数据对象
+ * Dukes Unit2 数据对象
  */
 export const unit2Data = {
   /**
@@ -11,19 +11,19 @@ export const unit2Data = {
    */
   features: [
     {
-      image: '/api/uploads/file/default/assets/product4/Advanced-Interactivity.jpg',
+      image: '/api/uploads/file/default/assets/dukes/Advanced-Interactivity.jpg',
       label: 'Advanced Interactivity',
     },
     {
-      image: '/api/uploads/file/default/assets/product4/Dual-Chamber.jpg',
+      image: '/api/uploads/file/default/assets/dukes/Dual-Chamber.jpg',
       label: 'Dual Chamber',
     },
     {
-      image: '/api/uploads/file/default/assets/product4/Multiple-Options.jpg',
+      image: '/api/uploads/file/default/assets/dukes/Multiple-Options.jpg',
       label: 'Multiple Options',
     },
     {
-      image: '/api/uploads/file/default/assets/product4/Post-Free.jpg',
+      image: '/api/uploads/file/default/assets/dukes/Post-Free.jpg',
       label: 'Post-Free',
     },
   ],

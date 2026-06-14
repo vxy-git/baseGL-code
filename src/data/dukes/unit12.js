@@ -1,9 +1,9 @@
 /**
- * Product4 Unit12 Go Creative 数据配置
+ * Dukes Unit12 Go Creative 数据配置
  */
 
 /**
- * Product4 Unit12 数据对象
+ * Dukes Unit12 数据对象
  */
 export const unit12Data = {
   /**
@@ -11,12 +11,12 @@ export const unit12Data = {
    */
   images: [
     '/api/uploads/file/default/assets/img/icon41.png',
-    '/api/uploads/file/default/assets/product4/unit9-1.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-2.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-3.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-4.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-5.jpg',
-    '/api/uploads/file/default/assets/product4/unit9-6.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-1.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-2.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-3.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-4.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-5.jpg',
+    '/api/uploads/file/default/assets/dukes/unit9-6.jpg',
   ],
 
   /**

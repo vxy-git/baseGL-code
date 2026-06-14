@@ -1,9 +1,9 @@
 /**
- * Product4 Unit6 Post-Free Design 数据配置
+ * Dukes Unit6 Post-Free Design 数据配置
  */
 
 /**
- * Product4 Unit6 数据对象
+ * Dukes Unit6 数据对象
  */
 export const unit6Data = {
   /**
@@ -13,12 +13,12 @@ export const unit6Data = {
     /**
      * 左侧视频
      */
-    left: '/api/uploads/file/default/assets/product4/unit5-l.mp4',
+    left: '/api/uploads/file/default/assets/dukes/unit5-l.mp4',
 
     /**
      * 右侧视频
      */
-    right: '/api/uploads/file/default/assets/product4/unit5-r.mp4',
+    right: '/api/uploads/file/default/assets/dukes/unit5-r.mp4',
   },
 
   /**

@@ -1,9 +1,9 @@
 /**
- * Product2 Unit2 数据配置
+ * Universe Series Unit2 数据配置
  */
 
 /**
- * Product2 Unit2 数据对象
+ * Universe Series Unit2 数据对象
  */
 export const unit2Data = {
   /**
@@ -19,5 +19,5 @@ export const unit2Data = {
   /**
    * 单元图片路径
    */
-  unitImage: '/api/uploads/file/default/assets/product2/unit2.png',
+  unitImage: '/api/uploads/file/default/assets/universe_series/unit2.png',
 }

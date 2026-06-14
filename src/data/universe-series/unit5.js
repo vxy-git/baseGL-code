@@ -1,9 +1,9 @@
 /**
- * Product2 Unit5 规格参数数据配置
+ * Universe Series Unit5 规格参数数据配置
  */
 
 /**
- * Product2 Unit5 数据对象
+ * Universe Series Unit5 数据对象
  */
 export const unit5Data = {
   /**
@@ -18,12 +18,12 @@ export const unit5Data = {
     /**
      * UNIVERSE 视频路径
      */
-    universe: '/api/uploads/file/default/assets/product2/UNIVERSE.mp4',
+    universe: '/api/uploads/file/default/assets/universe_series/UNIVERSE.mp4',
 
     /**
      * UNIVERSE Pro 视频路径
      */
-    universePro: '/api/uploads/file/default/assets/product2/UNIVERSE_Pro.mp4',
+    universePro: '/api/uploads/file/default/assets/universe_series/UNIVERSE_Pro.mp4',
   },
 
   /**
