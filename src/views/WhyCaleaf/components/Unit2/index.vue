@@ -74,6 +74,7 @@ const unitData = useUnitData(props, unit2Data)
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 118px;
 }
 
 .facts-container {
