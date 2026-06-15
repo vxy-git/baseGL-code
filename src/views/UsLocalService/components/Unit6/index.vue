@@ -1,7 +1,9 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
+import ContactForm from '@/components/ContactForm/index.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit6Data } from '@/data/us-local-service/unit6'
+import { data as contactData } from '@/data/contactus/data'
 
 const props = defineProps({
   data: {
@@ -16,20 +18,13 @@ const unitData = useUnitData(props, unit6Data)
 <template>
   <section id="contact" class="unit6">
     <MediaAsset :src="unitData.bg" type="image" class="contactBg" alt="" />
-    <form class="contactForm">
-      <h3>{{ unitData.title }}</h3>
-      <input type="text" :placeholder="unitData.fields.name" />
-      <input type="email" :placeholder="unitData.fields.email" />
-      <select aria-label="Country">
-        <option>{{ unitData.fields.country }}</option>
-      </select>
-      <select aria-label="State">
-        <option>{{ unitData.fields.state }}</option>
-      </select>
-      <input type="tel" :placeholder="unitData.fields.phone" />
-      <textarea :placeholder="unitData.fields.message"></textarea>
-      <button type="button">{{ unitData.submitText }}</button>
-    </form>
+    <div class="formCard">
+      <ContactForm
+        :title="unitData.title"
+        :submit-text="unitData.submitText"
+        :form-data="contactData"
+      />
+    </div>
   </section>
 </template>
 
@@ -38,8 +33,8 @@ const unitData = useUnitData(props, unit6Data)
 
 .unit6 {
   position: relative;
-  min-height: 1080px;
-  padding-top: 170px;
+  min-height: 780px;
+  padding-top: 75px;
   overflow: hidden;
   background: #f6f6f6;
 }
@@ -52,63 +47,16 @@ const unitData = useUnitData(props, unit6Data)
   object-fit: cover;
 }
 
-.contactForm {
+.formCard {
   position: relative;
   z-index: 2;
   width: 440px;
   min-height: 630px;
   margin: 0 auto;
-  padding: 48px 40px 44px;
-  background: rgba(255, 255, 255, 0.96);
-
-  h3 {
-    margin-bottom: 26px;
-    color: #000;
-    font-family: Roboto;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 35px;
-  }
-
-  input,
-  select,
-  textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 0 14px;
-    color: #555;
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    border: none;
-    border-radius: 0;
-    background: #f3f3f3;
-    outline: none;
-  }
-
-  input,
-  select {
-    height: 50px;
-  }
-
-  textarea {
-    height: 100px;
-    padding-top: 14px;
-    resize: none;
-  }
-
-  button {
-    margin-top: 10px;
-    width: 100%;
-    height: 50px;
-    background: #1ce785;
-    border: none;
-    color: #111;
-    font-family: Roboto;
-    font-size: 18px;
-    cursor: pointer;
-  }
+  padding: 60px 40px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
@@ -117,7 +65,7 @@ const unitData = useUnitData(props, unit6Data)
     padding: 88px 16px;
   }
 
-  .contactForm {
+  .formCard {
     width: min(100%, 440px);
     padding: 34px 24px;
   }
