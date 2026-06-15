@@ -55,6 +55,7 @@ const unitData = useUnitData(props, unit2Data)
   height: 400px;
   overflow: hidden;
   background: #f3f3f3;
+  border-radius: 10px;
 }
 
 .serviceImage {
@@ -78,7 +79,7 @@ const unitData = useUnitData(props, unit2Data)
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  background: rgba(0, 0, 0, 0.58);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.4) 100%);
 }
 
 @media screen and (max-width: $breakpoint-tablet) {

@@ -26,14 +26,18 @@ const unitData = useUnitData(props, unit4Data)
       </div>
     </div>
     <div class="galleryList">
-      <MediaAsset
-        v-for="image in unitData.images"
-        :key="image"
-        :src="image"
-        type="image"
-        class="galleryImage"
-        alt=""
-      />
+      <div class="galleryTrack">
+        <template v-for="loopIndex in 2" :key="loopIndex">
+          <MediaAsset
+            v-for="image in unitData.images"
+            :key="`${loopIndex}-${image}`"
+            :src="image"
+            type="image"
+            class="galleryImage"
+            alt=""
+          />
+        </template>
+      </div>
     </div>
   </section>
 </template>
@@ -118,25 +122,42 @@ const unitData = useUnitData(props, unit4Data)
 
 .galleryList {
   padding: 14px 0 0;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(240px, 1fr));
-  gap: 14px;
-  overflow-x: auto;
+  overflow: hidden;
   background: #fff;
 }
 
+.galleryTrack {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: galleryScrollRight 28s linear infinite;
+}
+
 .galleryImage {
-  width: 100%;
-  min-width: 240px;
-  aspect-ratio: 400 / 260;
+  flex: 0 0 400px;
+  width: 400px;
+  height: 260px;
   object-fit: cover;
   border-radius: 10px;
 }
 
+@keyframes galleryScrollRight {
+  from {
+    transform: translateX(calc(-50% - 7px));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media screen and (max-width: $breakpoint-tablet) {
   .galleryList {
-    grid-template-columns: repeat(5, 260px);
     padding: 14px 16px 0;
+  }
+
+  .galleryImage {
+    flex-basis: 260px;
   }
 }
 

@@ -17,13 +17,6 @@ const unitData = useUnitData(props, unit1Data)
   <section class="unit1 mt_nav">
     <div class="heroBg">
       <MediaAsset :src="unitData.bg" type="image" class="heroImage" alt="" :lazy="false" />
-      <MediaAsset
-        :src="unitData.product"
-        type="image"
-        class="heroProduct"
-        alt=""
-        :lazy="false"
-      />
     </div>
     <div class="heroContent c_1300 c_padding">
       <h1 class="heroTitle">{{ unitData.title }}</h1>
