@@ -15,6 +15,7 @@ const pageTypeComponentMap = {
   universe_series: () => import('@/views/UniverseSeries/index.vue'),
   unicorn_series: () => import('@/views/UnicornSeries/index.vue'),
   unit_pro: () => import('@/views/UnitPro/index.vue'),
+  customize: () => import('@/views/Customize/index.vue'),
   dukes: () => import('@/views/Dukes/index.vue'),
   list: () => import('@/views/ProductList/index.vue'),
   page: () => import('@/views/Page/index.vue'),
@@ -155,6 +156,13 @@ const staticFallbackRoutes = [
     component: () => import('@/views/UnitPro/index.vue'),
     meta: { pageType: 'unit_pro', navLabel: 'UNIT Pro' },
     props: { pageConfig: makePageConfig('/unit_pro', 'unit_pro') },
+  },
+  {
+    path: '/customize',
+    name: 'customize_default',
+    component: () => import('@/views/Customize/index.vue'),
+    meta: { pageType: 'customize', navLabel: 'Customize' },
+    props: { pageConfig: makePageConfig('/customize', 'customize') },
   },
   {
     path: '/universe_series',

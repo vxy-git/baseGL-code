@@ -1,7 +1,7 @@
 <script setup>
 import Tabs from './Tabs/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit5Data } from '@/data/unit-pro/unit5'
+import { unit5Data } from '@/data/unit_pro/unit5'
 import { ref, watch, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'

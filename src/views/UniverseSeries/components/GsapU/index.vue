@@ -4,7 +4,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
-import { gsapUData } from '@/data/universe-series/gsapu.js'
+import { gsapUData } from '@/data/universe_series/gsapu.js'
 
 gsap.registerPlugin(ScrollTrigger)
 

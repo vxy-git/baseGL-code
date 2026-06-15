@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FrameSequence from '@/components/FrameSequence.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit3Data } from '@/data/unicorn-series/unit3'
+import { unit3Data } from '@/data/unicorn_series/unit3'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop

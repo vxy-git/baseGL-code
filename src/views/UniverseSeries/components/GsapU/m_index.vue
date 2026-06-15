@@ -1,7 +1,7 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { gsapUData } from '@/data/universe-series/gsapu.js'
+import { gsapUData } from '@/data/universe_series/gsapu.js'
 
 const props = defineProps({
   data: {

@@ -2,7 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit2Data } from '@/data/universe-series/unit2'
+import { unit2Data } from '@/data/universe_series/unit2'
 
 const props = defineProps({
   data: {

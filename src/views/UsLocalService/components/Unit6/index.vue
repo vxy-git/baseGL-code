@@ -1,8 +1,8 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import ContactForm from '@/components/ContactForm/index.vue'
+import ContactFormCard from '@/components/ContactFormCard/index.vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit6Data } from '@/data/us-local-service/unit6'
+import { unit6Data } from '@/data/us_local_service/unit6'
 import { data as contactData } from '@/data/contactus/data'
 
 const props = defineProps({
@@ -18,13 +18,12 @@ const unitData = useUnitData(props, unit6Data)
 <template>
   <section id="contact" class="unit6">
     <MediaAsset :src="unitData.bg" type="image" class="contactBg" alt="" />
-    <div class="formCard">
-      <ContactForm
-        :title="unitData.title"
-        :submit-text="unitData.submitText"
-        :form-data="contactData"
-      />
-    </div>
+    <ContactFormCard
+      class="centerFormCard"
+      :title="unitData.title"
+      :submit-text="unitData.submitText"
+      :form-data="contactData"
+    />
   </section>
 </template>
 
@@ -47,16 +46,10 @@ const unitData = useUnitData(props, unit6Data)
   object-fit: cover;
 }
 
-.formCard {
+.centerFormCard {
   position: relative;
   z-index: 2;
-  width: 440px;
-  min-height: 630px;
   margin: 0 auto;
-  padding: 60px 40px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
@@ -65,8 +58,7 @@ const unitData = useUnitData(props, unit6Data)
     padding: 88px 16px;
   }
 
-  .formCard {
-    width: min(100%, 440px);
+  .centerFormCard {
     padding: 34px 24px;
   }
 }

@@ -4,7 +4,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit8Data } from '@/data/universe-series/unit8'
+import { unit8Data } from '@/data/universe_series/unit8'
 
 gsap.registerPlugin(ScrollTrigger)
 

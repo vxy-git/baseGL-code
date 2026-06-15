@@ -2,7 +2,7 @@
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/Footer.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import ContactForm from '@/components/ContactForm/index.vue'
+import ContactFormCard from '@/components/ContactFormCard/index.vue'
 import { data } from '@/data/contactus/data'
 </script>
 
@@ -57,13 +57,11 @@ import { data } from '@/data/contactus/data'
       <!-- Form Section -->
       <section class="formSection overflow-hidden c_padding">
         <div class="formContainer">
-          <div class="formCard px-[40px] pt-[60px] pb-[60px]">
-            <ContactForm
-              :title="data.content.formTitle"
-              :submit-text="data.content.submitButtonText"
-              :form-data="data"
-            />
-          </div>
+          <ContactFormCard
+            :title="data.content.formTitle"
+            :submit-text="data.content.submitButtonText"
+            :form-data="data"
+          />
           <div class="formImage">
             <MediaAsset :src="data.icons.product" type="image" alt="Product Image" :lazy="false" />
           </div>
@@ -185,15 +183,6 @@ import { data } from '@/data/contactus/data'
   justify-content: center;
   gap: 3.125vw;
   padding: 75px 30px;
-}
-
-.formCard {
-  flex-shrink: 0;
-  width: 440px;
-  min-height: 630px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 .form {

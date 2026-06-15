@@ -6,7 +6,7 @@ export const unit3Data = {
   title: 'Milestones',
   autoplay: true,
   autoplayInterval: 4000,
-  image: '/assets/why-caleaf/milestone-2023.png',
+  image: '/assets/why_caleaf/milestone-2023.png',
   years: [
     { year: '2014', active: false },
     { year: '2016', active: false },

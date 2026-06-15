@@ -1,7 +1,7 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit6Data } from '@/data/unicorn-series/unit6'
+import { unit6Data } from '@/data/unicorn_series/unit6'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop

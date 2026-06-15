@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit3Data } from '@/data/why-caleaf/unit3'
+import { unit3Data } from '@/data/why_caleaf/unit3'
 import MediaAsset from '@/components/MediaAsset.vue'
 
 const props = defineProps({

@@ -1,6 +1,6 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
-import { unit2Data } from '@/data/why-caleaf/unit2'
+import { unit2Data } from '@/data/why_caleaf/unit2'
 
 const props = defineProps({
   data: { type: Object, default: null },

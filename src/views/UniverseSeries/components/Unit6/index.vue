@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useUnitData } from '@/composables/useUnitData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { unit6Data } from '@/data/universe-series/unit6'
+import { unit6Data } from '@/data/universe_series/unit6'
 
 const props = defineProps({
   data: {

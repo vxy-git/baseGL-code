@@ -1,6 +1,6 @@
 <script setup>
 import { useUnitData } from '@/composables/useUnitData'
-import { unit7Data } from '@/data/us-local-service/unit7'
+import { unit7Data } from '@/data/us_local_service/unit7'
 
 const props = defineProps({
   data: { type: Object, default: null },
@@ -23,9 +23,6 @@ const unitData = useUnitData(props, unit7Data)
   width: 100%;
   padding: 154px 0 124px;
   text-align: center;
-}
-
-.connect-container {
 }
 
 .connect-title {

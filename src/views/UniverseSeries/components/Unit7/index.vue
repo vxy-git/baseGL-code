@@ -4,7 +4,7 @@ import Tabs from './Tabs/index.vue'
 import { ref, watch, nextTick } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit7Data } from '@/data/universe-series/unit7'
+import { unit7Data } from '@/data/universe_series/unit7'
 
 const props = defineProps({
   data: {

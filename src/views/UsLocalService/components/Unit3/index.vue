@@ -2,7 +2,7 @@
 import { nextTick, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit3Data } from '@/data/us-local-service/unit3'
+import { unit3Data } from '@/data/us_local_service/unit3'
 
 const props = defineProps({
   data: {

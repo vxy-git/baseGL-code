@@ -1,6 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit9Data } from '@/data/unit-pro/unit9'
+import { unit9Data } from '@/data/unit_pro/unit9'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop

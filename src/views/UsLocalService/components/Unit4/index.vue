@@ -1,7 +1,7 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit4Data } from '@/data/us-local-service/unit4'
+import { unit4Data } from '@/data/us_local_service/unit4'
 
 const props = defineProps({
   data: {

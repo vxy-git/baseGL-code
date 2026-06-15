@@ -1,38 +1,22 @@
-/**
- * Why Caleaf 页面 CMS 数据配置
- */
-
 import { unit1Data } from './unit1.js'
 import { unit2Data } from './unit2.js'
 import { unit3Data } from './unit3.js'
 import { unit4Data } from './unit4.js'
 import { unit5Data } from './unit5.js'
 import { unit6Data } from './unit6.js'
-import { unit7Data } from './unit7.js'
-import { unit8Data } from './unit8.js'
 
 export default {
-  // 路由配置
-  route: '/why-caleaf',
-  routeName: 'whyCaleaf',
-
-  // 导航配置
+  route: '/customize',
+  routeName: 'customize',
   showInHeader: true,
   showInFooter: true,
-  navLabel: 'Why Caleaf',
-  navOrder: 9,
-
-  // 页面模板
-  template: 'WhyCaleafPage',
-
-  // 页面元数据
+  navLabel: 'Customize',
+  navOrder: 4,
+  template: 'CustomizePage',
   meta: {
-    title: 'Why Caleaf - Caleaf Tech',
-    description:
-      'Beyond Limits - Discover why Caleaf Tech is the industry leader in cannabis vaporization technology',
+    title: 'Customize - Caleaf',
+    description: 'Custom vaporizer design, extract matching, and end-to-end production support.',
   },
-
-  // 模块数据集合
   modules: {
     unit1: {
       enabled: true,
@@ -57,14 +41,6 @@ export default {
     unit6: {
       enabled: true,
       data: unit6Data,
-    },
-    unit7: {
-      enabled: true,
-      data: unit7Data,
-    },
-    unit8: {
-      enabled: true,
-      data: unit8Data,
     },
   },
 }

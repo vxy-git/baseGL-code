@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import { useIntersectionObserver } from '@vueuse/core'
 import MediaAsset from '@/components/MediaAsset.vue'
-import { unit8Data } from '@/data/unit-pro/unit8'
+import { unit8Data } from '@/data/unit_pro/unit8'
 import { useUnitData } from '@/composables/useUnitData'
 
 // 接收 data prop
