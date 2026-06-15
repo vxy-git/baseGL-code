@@ -40,6 +40,7 @@ const unitData = useUnitData(props, unit4Data)
   padding-top: 120px;
   background: #111;
   color: #fff;
+  margin-bottom: 120px;
 }
 
 .networkContent {

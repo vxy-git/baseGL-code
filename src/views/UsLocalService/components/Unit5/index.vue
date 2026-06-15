@@ -17,8 +17,10 @@ const unitData = useUnitData(props, unit5Data)
   <section class="unit5">
     <MediaAsset :src="unitData.bg" type="image" class="visionBg" alt="" />
     <div class="visionContent c_1300 c_padding">
-      <p class="sectionLabel">{{ unitData.label }}</p>
-      <h2 class="darkTitle">{{ unitData.title }}</h2>
+      <div class="visionText">
+        <p class="sectionLabel">{{ unitData.label }}</p>
+        <h2 class="darkTitle">{{ unitData.title }}</h2>
+      </div>
       <a class="greenBtn" href="#contact">{{ unitData.buttonText }} <span>→</span></a>
     </div>
   </section>
@@ -33,6 +35,7 @@ const unitData = useUnitData(props, unit5Data)
   overflow: hidden;
   background: #111;
   color: #fff;
+  margin-bottom: 120px;
 }
 
 .visionBg {
@@ -47,6 +50,10 @@ const unitData = useUnitData(props, unit5Data)
   position: relative;
   z-index: 2;
   padding-top: 520px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 .sectionLabel {
@@ -70,14 +77,15 @@ const unitData = useUnitData(props, unit5Data)
 }
 
 .greenBtn {
-  margin-top: 34px;
-  min-width: 150px;
+  flex: 0 0 auto;
+  width: 170px;
   height: 50px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  background: #1ce785;
+  gap: 20px;
+  background: #fff;
+  border-radius: 50px;
   color: #222;
   font-family: Roboto;
   font-size: 18px;
@@ -85,15 +93,21 @@ const unitData = useUnitData(props, unit5Data)
   font-weight: 400;
   line-height: 21px;
   text-decoration: none;
+
+  span {
+    font-size: 22px;
+    line-height: 1;
+  }
 }
 
-@media screen and (max-width: $breakpoint-mobile) {
+@media screen and (max-width: $breakpoint-medium) {
   .unit5 {
     min-height: 560px;
   }
 
   .visionContent {
     padding-top: 300px;
+    display: block;
   }
 
   .sectionLabel {
@@ -104,6 +118,13 @@ const unitData = useUnitData(props, unit5Data)
   .darkTitle {
     font-size: 38px;
     line-height: 46px;
+  }
+
+  .greenBtn {
+    width: 150px;
+    height: 44px;
+    margin-top: 28px;
+    font-size: 16px;
   }
 }
 </style>
