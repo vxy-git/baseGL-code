@@ -3,7 +3,22 @@
  */
 export const unit3Data = {
   title: 'How it works',
-  officeImage: '/assets/us_local_service/how-office.png',
-  machineImage: '/assets/us_local_service/how-machine.png',
   steps: ['Local Office and Engineer', 'Pro Testing Expert', 'Automatic Filling Machine'],
+  mediaList: [
+    {
+      type: 'video',
+      src: '/assets/technology/t1/l1.mp4',
+      poster: '/assets/us_local_service/how-office.png',
+    },
+    {
+      type: 'video',
+      src: '/assets/technology/t2/bg.mp4',
+      poster: '/assets/us_local_service/how-machine.png',
+    },
+    {
+      type: 'video',
+      src: '/assets/technology/t3/r1.mp4',
+      poster: '/assets/us_local_service/how-machine.png',
+    },
+  ],
 }
