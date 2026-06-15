@@ -20,6 +20,7 @@ const pageTypeComponentMap = {
   page: () => import('@/views/Page/index.vue'),
   why_caleaf: () => import('@/views/WhyCaleaf/index.vue'),
   us_local_service: () => import('@/views/UsLocalService/index.vue'),
+  blog: () => import('@/views/Blog/index.vue'),
 }
 
 /**
@@ -196,6 +197,13 @@ const staticFallbackRoutes = [
     component: () => import('@/views/UsLocalService/index.vue'),
     meta: { pageType: 'us_local_service', navLabel: 'US Local Service' },
     props: { pageConfig: makePageConfig('/us_local_service', 'us_local_service') },
+  },
+  {
+    path: '/blog',
+    name: 'blog_default',
+    component: () => import('@/views/Blog/index.vue'),
+    meta: { pageType: 'blog', navLabel: 'Blog' },
+    props: { pageConfig: makePageConfig('/blog', 'blog') },
   },
   // 通配兜底路由：在 CMS 动态路由加载完成前，静默吸收所有未匹配路径，
   // 避免 Vue Router 发出 "No match found" 警告
