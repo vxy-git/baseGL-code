@@ -30,7 +30,12 @@ const handlePageChange = page => {
     </div>
 
     <div class="postGrid">
-      <article v-for="post in unitData.posts" :key="post.id" class="postCard">
+      <router-link
+        v-for="post in unitData.posts"
+        :key="post.id"
+        class="postCard"
+        :to="`/blog/${post.id}`"
+      >
         <img class="postImage" :src="post.image" alt="" />
         <div class="postBody">
           <p class="postCategory">{{ post.category }}</p>
@@ -38,7 +43,7 @@ const handlePageChange = page => {
           <p class="postDescription">{{ post.description }}</p>
           <time>{{ post.date }}</time>
         </div>
-      </article>
+      </router-link>
     </div>
 
     <nav class="pagination" aria-label="Blog pagination">
@@ -105,6 +110,8 @@ const handlePageChange = page => {
 
 .postCard {
   min-width: 0;
+  color: inherit;
+  text-decoration: none;
 }
 
 .postImage {
