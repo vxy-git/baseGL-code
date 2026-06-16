@@ -15,5 +15,14 @@ export const unit4Data = {
       image: '/assets/extro/oil-window.png',
     },
   ],
-  statement: 'Once a killer design drops, it’s remembered by the market.',
+  screenDisplay: {
+    eyebrow: 'Custom Screen Displays',
+    title: 'We only do designs that pop.',
+    description:
+      "Every tiny icon design is a key component in creating a trendsetting screen display. We've got the pro expertise to turn good ideas into really cool products that look awesome and work great.",
+    image: '/assets/extro/screen-display.png',
+  },
+  statement: "Once a killer design drops,\nit's ",
+  greenText: 'remembered',
+  statementSuffix: ' by the market.',
 }

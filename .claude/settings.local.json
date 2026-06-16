@@ -38,7 +38,8 @@
       "Bash(curl -s \"https://img.cloudcode.ink/api/uploads/file/default/frame/unit_pro.tar\")",
       "Bash(xxd)",
       "Bash(curl -s -o /tmp/figma-extro-design.png \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dafda9c3-7b77-4835-ac4d-2b8cd4471805\")",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "mcp__ocr__perform_ocr"
     ],
     "deny": [],
     "ask": []

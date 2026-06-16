@@ -11,7 +11,7 @@ const unitData = useUnitData(props, unit5Data)
 </script>
 
 <template>
-  <section class="unit5 mt-[202px]">
+  <section class="unit5">
     <div class="c_1230 c_padding">
       <h2 class="title">{{ unitData.mainTitle }}</h2>
 

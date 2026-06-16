@@ -11,15 +11,15 @@ const unitData = useUnitData(props, unit3Data)
 </script>
 
 <template>
-  <section class="unit3 c_padding">
-    <h2 class="sectionTitle c_1230">{{ unitData.sectionTitle }}<span class="greenText">{{ unitData.greenText }}</span></h2>
-    <div class="intro c_1230">
+  <section class="unit3 c_1230 c_padding">
+    <h2 class="sectionTitle">{{ unitData.sectionTitle }}<span class="greenText">{{ unitData.greenText }}</span></h2>
+    <div class="intro">
       <p>{{ unitData.eyebrow }}</p>
       <h2>{{ unitData.title }}</h2>
       <div>{{ unitData.description }}</div>
     </div>
     <MediaAsset :src="unitData.mainImage" type="image" class="mainImage" alt="" />
-    <div class="featureGrid c_1230">
+    <div class="featureGrid">
       <article v-for="(item, index) in unitData.features" :key="index" class="featureCard" :class="{ reverse: index % 2 === 0 }">
         <MediaAsset :src="item.image" type="image" class="featureImage" alt="" />
         <div class="featureText">
