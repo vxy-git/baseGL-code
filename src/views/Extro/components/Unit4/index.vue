@@ -51,9 +51,9 @@ const unitData = useUnitData(props, unit4Data)
   z-index: 1;
   max-width: 820px;
   margin-top: 118px;
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 700;
-  line-height: 1.34;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -96,14 +96,14 @@ const unitData = useUnitData(props, unit4Data)
 
 .featureText h3 {
   margin-bottom: 26px;
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.12;
 }
 
 .featureText p {
-  color: #555;
-  font-size: 18px;
+  color: #000;
+  font-size: 20px;
   line-height: 1.45;
 }
 
@@ -111,9 +111,9 @@ const unitData = useUnitData(props, unit4Data)
   max-width: 1160px;
   margin: 132px auto 0;
   padding-bottom: 160px;
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 700;
-  line-height: 1.34;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -124,7 +124,7 @@ const unitData = useUnitData(props, unit4Data)
 
   .titleWrap h2,
   .statement {
-    font-size: 38px;
+    font-size: 42px;
     line-height: 1.22;
   }
 
@@ -153,7 +153,7 @@ const unitData = useUnitData(props, unit4Data)
   }
 
   .featureText h3 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .statement {

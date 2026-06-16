@@ -11,68 +11,80 @@ const unitData = useUnitData(props, unit5Data)
 </script>
 
 <template>
-  <section class="unit5 c_padding">
-    <div class="intro c_1300">
-      <p>{{ unitData.eyebrow }}</p>
-      <h2>{{ unitData.title }}</h2>
-      <div>{{ unitData.description }}</div>
+  <section class="unit5">
+    <div class="designIntro c_padding">
+      <div class="c_1300">
+        <p class="eyebrow">{{ unitData.eyebrow }}</p>
+        <h2>{{ unitData.title }}</h2>
+        <p class="desc">{{ unitData.description }}</p>
+        <MediaAsset :src="unitData.mainImage" type="image" class="mainImage" alt="" />
+      </div>
     </div>
-    <MediaAsset :src="unitData.mainImage" type="image" class="mainImage" alt="" />
-    <h2 class="headline">{{ unitData.headline }}</h2>
-    <div class="cardGrid c_1300">
-      <article v-for="item in unitData.cards" :key="item.label" class="screenCard">
-        <MediaAsset :src="item.image" type="image" class="screenImage" alt="" />
-        <span>{{ item.label }}</span>
-      </article>
+
+    <div class="interactionSection c_padding">
+      <h2 class="headline">{{ unitData.headline }}</h2>
+      <div class="cardGrid c_1300">
+        <article v-for="item in unitData.cards" :key="item.label" class="screenCard">
+          <MediaAsset :src="item.image" type="image" class="screenImage" alt="" />
+          <span>{{ item.label }}</span>
+        </article>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
 .unit5 {
-  padding-top: 112px;
-  padding-bottom: 142px;
-  background: #f5f5f5;
+  background: #fff;
 }
 
-.intro {
+.designIntro {
+  padding-top: 112px;
   text-align: center;
 }
 
-.intro p {
+.eyebrow {
   margin-bottom: 18px;
-  color: #111;
-  font-size: 18px;
+  color: #1ce785;
+  font-size: 20px;
   line-height: 24px;
 }
 
-.intro h2 {
-  font-size: 42px;
+.designIntro h2 {
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.12;
+  color: #111;
 }
 
-.intro div {
+.desc {
   max-width: 1200px;
   margin: 28px auto 0;
-  color: #555;
-  font-size: 18px;
+  color: #444;
+  font-size: 20px;
   line-height: 1.45;
 }
 
 .mainImage {
   display: block;
   width: min(1020px, calc(100vw - 40px));
-  margin: 78px auto 130px;
+  margin: 78px auto 0;
+}
+
+.interactionSection {
+  margin-top: 130px;
+  padding-top: 120px;
+  padding-bottom: 142px;
+  background: #000;
 }
 
 .headline {
   max-width: 1160px;
   margin: 0 auto 78px;
-  color: #111;
-  font-size: 70px;
+  color: #fff;
+  font-size: 80px;
   font-weight: 700;
-  line-height: 1.34;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -85,7 +97,6 @@ const unitData = useUnitData(props, unit5Data)
 .screenCard {
   position: relative;
   overflow: hidden;
-  background: #fff;
 }
 
 .screenImage {
@@ -106,22 +117,27 @@ const unitData = useUnitData(props, unit5Data)
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .unit5 {
+  .designIntro {
     padding-top: 78px;
-    padding-bottom: 92px;
   }
 
-  .intro h2 {
+  .designIntro h2 {
     font-size: 32px;
   }
 
   .mainImage {
-    margin: 54px auto 78px;
+    margin: 54px auto 0;
+  }
+
+  .interactionSection {
+    margin-top: 78px;
+    padding-top: 72px;
+    padding-bottom: 92px;
   }
 
   .headline {
     margin-bottom: 50px;
-    font-size: 38px;
+    font-size: 42px;
     line-height: 1.22;
   }
 

@@ -33,7 +33,7 @@ const unitData = useUnitData(props, unit1Data)
   width: 100%;
   min-height: calc(880px / 1920px * 100vw);
   overflow: hidden;
-  background: #e8eef0;
+  background: #000;
 }
 
 .heroImage {
@@ -52,7 +52,7 @@ const unitData = useUnitData(props, unit1Data)
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #111;
+  color: #fff;
 }
 
 .capacity {
@@ -61,15 +61,15 @@ const unitData = useUnitData(props, unit1Data)
   padding: 9px 20px;
   margin-bottom: 28px;
   border-radius: 20px;
-  background: #fff;
-  color: #111;
+  background: #1ce785;
+  color: #222;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
 }
 
 h1 {
-  font-size: 96px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 1;
 }
@@ -83,7 +83,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  color: #111;
+  color: #fff;
   font-size: 14px;
   line-height: 18px;
   transform: translateX(-50%);
@@ -92,7 +92,7 @@ h1 {
 .scrollHint i {
   width: 1px;
   height: 56px;
-  background: #111;
+  background: #fff;
 }
 
 @media (max-width: $breakpoint-tablet) {
@@ -106,7 +106,7 @@ h1 {
   }
 
   h1 {
-    font-size: 64px;
+    font-size: 48px;
   }
 
   .capacity {

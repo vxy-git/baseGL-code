@@ -12,9 +12,11 @@ const unitData = useUnitData(props, unit6Data)
 
 <template>
   <section class="unit6">
-    <div class="design c_padding">
-      <p>{{ unitData.eyebrow }}</p>
-      <h2>{{ unitData.title }}</h2>
+    <div class="designIntro c_padding">
+      <div class="c_1300">
+        <p class="eyebrow">{{ unitData.eyebrow }}</p>
+        <h2>{{ unitData.title }}</h2>
+      </div>
       <div class="designStrip">
         <MediaAsset
           v-for="(image, index) in unitData.images"
@@ -52,21 +54,22 @@ const unitData = useUnitData(props, unit6Data)
   color: #111;
 }
 
-.design {
+.designIntro {
   padding-top: 118px;
   text-align: center;
   overflow: hidden;
 }
 
-.design p {
+.eyebrow {
   margin-bottom: 18px;
-  font-size: 18px;
+  color: #1ce785;
+  font-size: 20px;
   line-height: 24px;
 }
 
-.design h2 {
+.designIntro h2 {
   margin-bottom: 80px;
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.12;
 }
@@ -100,7 +103,7 @@ const unitData = useUnitData(props, unit6Data)
 
 .specInfo h2 {
   margin-bottom: 46px;
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.12;
 }
@@ -114,15 +117,15 @@ const unitData = useUnitData(props, unit6Data)
 .specItem {
   height: 80px;
   padding: 15px 14px 12px;
-  background: #f5f5f5;
+  background: #d9d9d9;
   text-align: center;
 }
 
 .specItem span {
   display: block;
   margin-bottom: 10px;
-  color: #555;
-  font-size: 14px;
+  color: #666;
+  font-size: 16px;
   line-height: 19px;
 }
 
@@ -130,7 +133,7 @@ const unitData = useUnitData(props, unit6Data)
   display: block;
   color: #111;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 22px;
 }
 
@@ -153,13 +156,13 @@ const unitData = useUnitData(props, unit6Data)
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .design {
+  .designIntro {
     padding-top: 78px;
   }
 
-  .design h2,
+  .designIntro h2,
   .specInfo h2 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .designStrip {

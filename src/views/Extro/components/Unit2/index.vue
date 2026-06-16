@@ -36,9 +36,9 @@ h2 {
   max-width: 920px;
   margin: 112px auto 0;
   color: #111;
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 700;
-  line-height: 1.34;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -49,7 +49,7 @@ h2 {
 
   h2 {
     margin-top: 64px;
-    font-size: 38px;
+    font-size: 42px;
     line-height: 1.22;
   }
 }
