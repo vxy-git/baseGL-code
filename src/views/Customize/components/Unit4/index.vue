@@ -49,6 +49,7 @@ const unitData = useUnitData(props, unit4Data)
 .eyebrow {
   font-size: 20px;
   line-height: 23px;
+  color: #1CE785;
 }
 
 h2 {
@@ -58,6 +59,7 @@ h2 {
   font-size: 40px;
   font-weight: 700;
   line-height: 47px;
+  white-space: break-spaces;
 }
 
 .introText {
