@@ -10,7 +10,7 @@ defineProps({
   },
   instagramLink: {
     type: String,
-    default: 'https://www.instagram.com/caleaftechofficial/',
+    default: '#',
   },
 })
 </script>

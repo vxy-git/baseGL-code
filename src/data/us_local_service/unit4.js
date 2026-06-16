@@ -6,6 +6,7 @@ export const unit4Data = {
   label: 'CALEAF TECH in the US and EU',
   title: 'We’re taking our\ndistributor network everywhere.',
   buttonText: 'Join us',
+  buttonHref: '#contact',
   images: [
     '/assets/us_local_service/gallery-1.png',
     '/assets/us_local_service/gallery-2.png',

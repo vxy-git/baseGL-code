@@ -11,6 +11,17 @@ const props = defineProps({
 })
 
 const unitData = useUnitData(props, unit4Data)
+
+const handleButtonClick = event => {
+  const target = unitData.value.buttonHref
+  if (!target?.startsWith('#')) return
+
+  const targetElement = document.querySelector(target)
+  if (!targetElement) return
+
+  event.preventDefault()
+  targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <template>
@@ -22,7 +33,9 @@ const unitData = useUnitData(props, unit4Data)
           <p class="sectionLabel">{{ unitData.label }}</p>
           <h2 class="darkTitle">{{ unitData.title }}</h2>
         </div>
-        <a class="greenBtn" href="#contact">{{ unitData.buttonText }} <span>→</span></a>
+        <a class="greenBtn" :href="unitData.buttonHref" @click="handleButtonClick">
+          {{ unitData.buttonText }} <span>→</span>
+        </a>
       </div>
     </div>
     <div class="galleryList">

@@ -34,6 +34,7 @@ const unitData = useUnitData(props, unit6Data)
   position: relative;
   min-height: 780px;
   padding-top: 75px;
+  scroll-margin-top: 97px;
   overflow: hidden;
   background: #f6f6f6;
 }

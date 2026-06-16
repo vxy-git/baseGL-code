@@ -6,4 +6,5 @@ export const unit5Data = {
   label: 'Our Vision',
   title: 'To be a positive,\ndriving force in the community.',
   buttonText: 'Partner up',
+  buttonHref: '#contact',
 }
