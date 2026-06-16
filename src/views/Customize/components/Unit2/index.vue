@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit2Data } from '@/data/customize/unit2'
@@ -12,20 +13,46 @@ const props = defineProps({
 })
 
 const unitData = useUnitData(props, unit2Data)
-const activeIndex = ref(0)
+const slides = computed(() => unitData.value.slides || [])
+const splideRef = ref(null)
+const canSlidePrev = ref(false)
+const canSlideNext = ref(true)
+const isHovered = ref(false)
+const isMobile = ref(false)
 
-const setActive = index => {
-  activeIndex.value = index
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
 }
 
-const goPrev = () => {
-  const total = unitData.value.slides.length
-  activeIndex.value = (activeIndex.value - 1 + total) % total
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
+
+const updateArrowStatus = () => {
+  canSlidePrev.value = true
+  canSlideNext.value = true
 }
 
-const goNext = () => {
-  const total = unitData.value.slides.length
-  activeIndex.value = (activeIndex.value + 1) % total
+const onSplideInit = splide => {
+  splideRef.value = splide
+  updateArrowStatus()
+}
+
+const onSlideChange = () => {
+  updateArrowStatus()
+}
+
+const slidePrev = () => {
+  splideRef.value?.go('<')
+}
+
+const slideNext = () => {
+  splideRef.value?.go('>')
 }
 </script>
 
@@ -33,31 +60,42 @@ const goNext = () => {
   <section class="unit2">
     <div class="c_1300 c_padding">
       <h2>{{ unitData.title }}</h2>
-      <div class="demoStage">
-        <button type="button" class="navButton navButtonPrev" aria-label="Previous demo" @click="goPrev">
-          <span></span>
-        </button>
-        <div class="viewport">
-          <div class="track" :style="{ transform: `translateX(-${activeIndex * 100}%)` }">
-            <div v-for="slide in unitData.slides" :key="slide.image" class="slide">
-              <MediaAsset :src="slide.image" type="image" :alt="slide.alt" class="slideImage" />
-            </div>
-          </div>
-        </div>
-        <button type="button" class="navButton navButtonNext" aria-label="Next demo" @click="goNext">
-          <span></span>
-        </button>
-      </div>
-      <div class="optionRow">
-        <button
-          v-for="(option, index) in unitData.options"
-          :key="option"
-          type="button"
-          :class="{ active: activeIndex === index }"
-          @click="setActive(index)"
+      <div
+        class="demoStage"
+        @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false"
+      >
+        <Splide
+          class="demoSplide"
+          :options="unitData.splideOptions"
+          @splide:mounted="onSplideInit"
+          @splide:moved="onSlideChange"
+          @splide:move="onSlideChange"
         >
-          {{ option }}
-        </button>
+          <SplideSlide v-for="slide in slides" :key="slide.image" class="demoSlide">
+            <MediaAsset :src="slide.image" type="image" :alt="slide.alt" class="slideImage" />
+          </SplideSlide>
+        </Splide>
+        <div class="arrowLayer">
+          <MediaAsset
+            class="arrowIcon arrowIconPrev"
+            :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
+            type="image"
+            :src="unitData.arrowIcon"
+            alt=""
+            :lazy="false"
+            @click="slidePrev"
+          />
+          <MediaAsset
+            class="arrowIcon arrowIconNext"
+            :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
+            type="image"
+            :src="unitData.arrowIcon"
+            alt=""
+            :lazy="false"
+            @click="slideNext"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -65,7 +103,7 @@ const goNext = () => {
 
 <style scoped lang="scss">
 .unit2 {
-  padding: 119px 0 88px;
+  padding: 120px 0 117px;
   background: #fff;
 }
 
@@ -80,24 +118,25 @@ h2 {
 .demoStage {
   position: relative;
   margin-top: 45px;
+  overflow: visible;
 }
 
-.viewport {
-  overflow: hidden;
-  width: 100%;
+.demoSplide {
   height: 600px;
 }
 
-.track {
-  display: flex;
+.demoSplide :deep(.splide__track) {
   height: 100%;
-  transition: transform 0.45s ease;
+  overflow: visible;
 }
 
-.slide {
-  width: 100%;
+.demoSplide :deep(.splide__list) {
   height: 100%;
-  flex: 0 0 100%;
+}
+
+.demoSlide {
+  height: 100%;
+  max-width: 100%;
 }
 
 .slideImage {
@@ -106,66 +145,31 @@ h2 {
   object-fit: cover;
 }
 
-.navButton {
+.arrowLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.arrowIcon {
   position: absolute;
   top: 50%;
-  z-index: 2;
+  z-index: 10;
   width: 50px;
   height: 50px;
-  border: 0;
-  border-radius: 50%;
-  background: #fff;
   cursor: pointer;
   transform: translateY(-50%);
-  box-shadow: 0 12px 30px rgb(0 0 0 / 10%);
+  transition: opacity 0.1s;
+  pointer-events: auto;
 }
 
-.navButton span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 13px;
-  height: 13px;
-  border-top: 2px solid #111;
-  border-right: 2px solid #111;
-}
-
-.navButtonPrev {
+.arrowIconPrev {
   left: 20px;
+  transform: translateY(-50%) rotate(180deg);
 }
 
-.navButtonPrev span {
-  transform: translate(-35%, -50%) rotate(-135deg);
-}
-
-.navButtonNext {
+.arrowIconNext {
   right: 20px;
-}
-
-.navButtonNext span {
-  transform: translate(-65%, -50%) rotate(45deg);
-}
-
-.optionRow {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 29px;
-}
-
-.optionRow button {
-  width: 130px;
-  height: 40px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #111;
-  font-size: 18px;
-  line-height: 21px;
-  cursor: pointer;
-}
-
-.optionRow button.active {
-  border-color: #111;
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
@@ -178,18 +182,19 @@ h2 {
     line-height: 40px;
   }
 
-  .viewport {
+  .demoSplide {
     height: auto;
     aspect-ratio: 13 / 6;
   }
 
-  .navButton {
+  .demoSlide {
+    width: 100% !important;
+  }
+
+  .arrowIcon {
     width: 42px;
     height: 42px;
   }
 
-  .optionRow {
-    justify-content: center;
-  }
 }
 </style>

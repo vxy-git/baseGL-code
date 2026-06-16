@@ -27,23 +27,20 @@ const unitData = useUnitData(props, unit3Data)
 .unit3 {
   position: relative;
   width: 100%;
-  height: 980px;
   overflow: hidden;
   background: #111;
 }
 
 .bgImage {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  max-width: 842px;
+  max-width: 762px;
   margin: 0 auto;
   padding-top: 147px;
   color: #fff;
@@ -62,22 +59,14 @@ p {
   line-height: 30px;
 }
 
-@media screen and (max-width: $breakpoint-mobile) {
-  .unit3 {
-    height: 720px;
-  }
-
-  .bgImage {
-    object-position: center bottom;
-  }
-
+@media screen and (max-width: $breakpoint-tablet) {
   .content {
-    padding-top: 90px;
+    padding-top: 65px;
   }
 
   h2 {
-    font-size: 34px;
-    line-height: 40px;
+    font-size: 24px;
+    line-height: 30px;
   }
 
   p {

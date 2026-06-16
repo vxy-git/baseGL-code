@@ -21,13 +21,24 @@ const unitData = useUnitData(props, unit4Data)
       <p class="introText">{{ unitData.intro }}</p>
     </div>
 
-    <div class="storyList">
-      <article v-for="item in unitData.sections" :key="item.title" class="story c_1300 c_padding">
+    <div class="storyStage c_1300 c_padding">
+      <article
+        v-for="(item, index) in unitData.sections"
+        :key="item.title"
+        class="story"
+        :class="`story${index + 1}`"
+      >
         <div class="storyCopy">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
         </div>
-        <MediaAsset :src="item.image" type="image" :alt="item.alt" class="storyImage" />
+        <MediaAsset
+          :src="item.image"
+          type="image"
+          :alt="item.alt"
+          class="storyImage"
+          :class="`storyImage${index + 1}`"
+        />
       </article>
     </div>
   </section>
@@ -35,11 +46,13 @@ const unitData = useUnitData(props, unit4Data)
 
 <style scoped lang="scss">
 .unit4 {
-  padding: 105px 0 70px;
+  padding: 124px 0 60px;
   background: #fff;
 }
 
 .intro {
+  position: relative;
+  z-index: 3;
   text-align: center;
 }
 
@@ -64,20 +77,25 @@ h2 {
   line-height: 30px;
 }
 
-.storyList {
-  margin-top: 93px;
+.storyStage {
+  position: relative;
+  z-index: 1;
+  height: 3104px;
+  margin-top: -388px;
 }
 
 .story {
-  display: grid;
-  grid-template-columns: minmax(0, 555px) minmax(0, 1fr);
-  align-items: center;
-  gap: 103px;
-  min-height: 820px;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.story + .story {
-  margin-top: 55px;
+.storyCopy {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 555px;
+  color: #111;
 }
 
 .storyCopy h3 {
@@ -95,27 +113,43 @@ h2 {
 }
 
 .storyImage {
-  width: 100%;
-  height: 620px;
+  position: absolute;
+  z-index: 0;
   object-fit: cover;
 }
 
-.story:nth-child(1) .storyImage {
+.story1 .storyCopy {
+  top: 609px;
+}
+
+.story2 .storyCopy {
+  top: 1471px;
+}
+
+.story3 .storyCopy {
+  top: 2349px;
+}
+
+.storyImage1 {
+  top: 201px;
+  left: 658px;
+  width: 949px;
+  height: 928px;
   object-fit: contain;
 }
 
-@media screen and (max-width: $breakpoint-tablet) {
-  .story {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    min-height: auto;
-  }
+.storyImage2 {
+  top: 1129px;
+  left: -49px;
+  width: 1659px;
+  height: 933px;
+}
 
-  .storyImage {
-    height: auto;
-    max-height: 520px;
-    object-fit: contain;
-  }
+.storyImage3 {
+  top: 2062px;
+  left: -60px;
+  width: 1651px;
+  height: 929px;
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
@@ -135,8 +169,39 @@ h2 {
     line-height: 24px;
   }
 
-  .storyList {
+  .storyStage {
+    height: auto;
     margin-top: 56px;
+  }
+
+  .story {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .story + .story {
+    margin-top: 54px;
+  }
+
+  .storyCopy,
+  .story1 .storyCopy,
+  .story2 .storyCopy,
+  .story3 .storyCopy {
+    position: static;
+    width: 100%;
+  }
+
+  .storyImage,
+  .storyImage1,
+  .storyImage2,
+  .storyImage3 {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 }
 </style>

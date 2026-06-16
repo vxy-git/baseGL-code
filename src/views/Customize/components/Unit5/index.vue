@@ -37,18 +37,17 @@ const unitData = useUnitData(props, unit5Data)
 
 <style scoped lang="scss">
 .unit5 {
-  padding: 78px 0 124px;
+  padding: 15px 0 156px;
   background: #fff;
 }
 
 .inner {
-  display: grid;
-  grid-template-columns: minmax(0, 554px) minmax(0, 1fr);
-  align-items: center;
-  gap: 78px;
+  position: relative;
+  height: 918px;
 }
 
 h2 {
+  max-width: 494px;
   color: #111;
   font-size: 40px;
   font-weight: 700;
@@ -57,14 +56,23 @@ h2 {
 
 p {
   margin-top: 44px;
+  max-width: 554px;
   color: #111;
   font-size: 20px;
   line-height: 30px;
 }
 
+.copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
 .imageWall {
-  position: relative;
-  height: 745px;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .creativeImage {
@@ -76,29 +84,36 @@ p {
 }
 
 .creativeImage1 {
-  left: 0;
-  bottom: 0;
+  left: 125px;
+  top: 316px;
   z-index: 1;
 }
 
 .creativeImage2 {
-  right: 0;
+  left: 710px;
   top: 0;
 }
 
-@media screen and (max-width: $breakpoint-tablet) {
+@media screen and (max-width: $breakpoint-wide) {
   .inner {
-    grid-template-columns: 1fr;
-    gap: 44px;
+    height: auto;
+  }
+
+  .copy,
+  .imageWall {
+    position: static;
   }
 
   .imageWall {
+    margin-top: 44px;
     height: auto;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
 
+  .creativeImage1,
+  .creativeImage2,
   .creativeImage {
     position: static;
     width: 100%;

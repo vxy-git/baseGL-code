@@ -118,6 +118,19 @@ export function useContactForm(formUuid, data) {
         validate: [{ required: true, message: 'country is required' }],
       },
       {
+        type: 'select',
+        field: 'state',
+        title: 'State',
+        value: '',
+        options: Object.values(data.formData.statesByCountry || {})
+          .flat()
+          .map(state => ({
+            label: state,
+            value: state,
+          })),
+        props: { placeholder: 'State' },
+      },
+      {
         type: 'input',
         field: 'phone',
         title: 'Phone Number',

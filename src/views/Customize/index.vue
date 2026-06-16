@@ -34,7 +34,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
   <div class="customizePage">
     <Header header-class="white" show-line />
     <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
-    <Footer />
+    <Footer show-line />
   </div>
 </template>
 

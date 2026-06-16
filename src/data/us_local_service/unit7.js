@@ -4,4 +4,5 @@
 export const unit7Data = {
   title: 'Connect with us',
   instagramIcon: '/assets/img/icon-instagram-large.svg',
+  instagramLink: 'https://www.instagram.com/caleaftechofficial/',
 }

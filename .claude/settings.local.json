@@ -39,7 +39,9 @@
       "Bash(xxd)",
       "Bash(curl -s -o /tmp/figma-extro-design.png \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dafda9c3-7b77-4835-ac4d-2b8cd4471805\")",
       "Read(//tmp/**)",
-      "mcp__ocr__perform_ocr"
+      "mcp__ocr__perform_ocr",
+      "Read(//Users/wming/.claude/**)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\), indent=2\\)\\)\")"
     ],
     "deny": [],
     "ask": []
