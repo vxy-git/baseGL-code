@@ -1,26 +1,22 @@
 export const unit5Data = {
-  eyebrow: 'Custom Screen Displays',
-  title: 'We only do designs that pop.',
-  description:
-    'Every tiny icon design is a key component in creating a trendsetting screen display. We’ve got the pro expertise to turn good ideas into really cool products that look awesome and work great.',
-  mainImage: '/assets/extro/screen-display.png',
-  headline: 'Tap into a whole new level of interaction',
-  cards: [
+  mainTitle: 'Tap into a whole new level of interaction',
+
+  upgradeCards: [
     {
-      label: 'Dosing Timer',
-      image: '/assets/extro/dosing-timer.png',
+      tag: 'Dosing Timer',
+      video: '/api/uploads/file/default/assets/unit_pro/unit7/3_Temperature_Control.mp4',
     },
     {
-      label: 'Preheat Status Indication',
-      image: '/assets/extro/preheat-status.png',
+      tag: 'Preheat Status Indication',
+      video: '/api/uploads/file/default/assets/unit_pro/unit7/Preheat_Status_Indication.mp4',
     },
     {
-      label: '3-Temperature Control',
-      image: '/assets/extro/temperature-control.png',
+      tag: '3-Temperature Control',
+      video: '/api/uploads/file/default/assets/unit_pro/unit7/Activation_Indication.mp4',
     },
     {
-      label: 'Battery Life Monitor',
-      image: '/assets/extro/battery-monitor.png',
+      tag: 'Battery Life Monitor',
+      video: '/api/uploads/file/default/assets/unit_pro/unit7/Battery_Life_Monitor.mp4',
     },
   ],
 }
