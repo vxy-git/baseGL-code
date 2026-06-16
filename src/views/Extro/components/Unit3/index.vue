@@ -12,18 +12,26 @@ const unitData = useUnitData(props, unit3Data)
 
 <template>
   <section class="unit3 c_padding">
-    <h2 class="sectionTitle c_1300">{{ unitData.sectionTitle }}</h2>
-    <div class="intro c_1300">
+    <h2 class="sectionTitle c_1230">{{ unitData.sectionTitle }}<span class="greenText">{{ unitData.greenText }}</span></h2>
+    <div class="intro c_1230">
       <p>{{ unitData.eyebrow }}</p>
       <h2>{{ unitData.title }}</h2>
       <div>{{ unitData.description }}</div>
     </div>
     <MediaAsset :src="unitData.mainImage" type="image" class="mainImage" alt="" />
-    <div class="featureGrid c_1300">
-      <article v-for="(item, index) in unitData.features" :key="item.title" class="featureCard">
+    <div class="featureGrid c_1230">
+      <article v-for="(item, index) in unitData.features" :key="index" class="featureCard" :class="{ reverse: index % 2 === 0 }">
         <MediaAsset :src="item.image" type="image" class="featureImage" alt="" />
-        <div class="featureText" :class="{ right: index % 2 === 1 }">
-          <h3>{{ item.title }}</h3>
+        <div class="featureText">
+          <h3>
+            <template v-if="item.titleSuffix">
+              {{ item.title }}<span class="greenText">{{ item.greenLabel }}</span>{{ item.titleSuffix }}
+            </template>
+            <template v-else-if="item.greenLabel">
+              <span class="greenText">{{ item.greenLabel }}</span>{{ item.title }}
+            </template>
+            <template v-else>{{ item.title }}</template>
+              </h3>
           <p>{{ item.description }}</p>
         </div>
       </article>
@@ -33,14 +41,14 @@ const unitData = useUnitData(props, unit3Data)
 
 <style scoped lang="scss">
 .unit3 {
-  padding-top: 42px;
-  padding-bottom: 150px;
+  padding-top: 218px;
+  padding-bottom: 161px;
   background: #fff;
 }
 
 .sectionTitle {
   max-width: 920px;
-  margin: 0 auto 72px;
+  margin: 0 auto 249px;
   color: #111;
   font-size: 80px;
   font-weight: 700;
@@ -48,12 +56,16 @@ const unitData = useUnitData(props, unit3Data)
   text-align: center;
 }
 
+.sectionTitle .greenText {
+  color: #1ce785;
+}
+
 .intro {
   text-align: center;
 }
 
 .intro p {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   color: #1ce785;
   font-size: 20px;
   line-height: 24px;
@@ -68,45 +80,43 @@ const unitData = useUnitData(props, unit3Data)
 
 .intro div {
   max-width: 1200px;
-  margin: 28px auto 0;
+  margin: 30px auto 0;
   color: #444;
   font-size: 20px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .mainImage {
   display: block;
   width: min(1020px, calc(100vw - 40px));
-  margin: 78px auto 118px;
+  margin: 49px auto 161px;
 }
 
 .featureGrid {
-  display: grid;
-  gap: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 137px;
 }
 
 .featureCard {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  display: flex;
+  gap: 54px;
   align-items: center;
 }
 
-.featureCard:nth-child(even) .featureImage {
-  order: 2;
+.featureCard.reverse {
+  flex-direction: row-reverse;
 }
 
 .featureImage {
-  width: 100%;
+  width: 60%;
+  max-width: 700px;
+  aspect-ratio: 700 / 460;
   border-radius: 0;
 }
 
 .featureText {
-  max-width: 476px;
-}
-
-.featureText.right {
-  margin-left: auto;
+  flex: 1;
 }
 
 .featureText h3 {
@@ -115,6 +125,10 @@ const unitData = useUnitData(props, unit3Data)
   font-size: 40px;
   font-weight: 700;
   line-height: 1.12;
+}
+
+.featureText h3 .greenText {
+  color: #1ce785;
 }
 
 .featureText p {
@@ -144,19 +158,16 @@ const unitData = useUnitData(props, unit3Data)
     margin: 54px auto 72px;
   }
 
-  .featureCard {
-    grid-template-columns: 1fr;
+  .featureCard,
+  .featureCard.reverse {
+    flex-direction: column;
     gap: 28px;
   }
 
-  .featureCard:nth-child(even) .featureImage {
-    order: 0;
-  }
-
-  .featureText,
-  .featureText.right {
-    max-width: none;
-    margin: 0;
+  .featureImage {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
   }
 }
 </style>

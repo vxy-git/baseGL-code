@@ -1,5 +1,6 @@
 export const unit3Data = {
-  sectionTitle: 'We Never Cut Corners, Proven Quality & Stability',
+  sectionTitle: 'We Never Cut Corners, Proven ',
+  greenText: 'Quality & Stability',
   eyebrow: 'No worries',
   title: 'Stable and highly compatible.',
   description:
@@ -7,13 +8,16 @@ export const unit3Data = {
   mainImage: '/assets/extro/verve-engine.png',
   features: [
     {
-      title: 'Medical grade standard',
+      greenLabel: 'Medical',
+      title: ' grade standard',
       description:
         'We use the medical-grade stainless steel central tube and PCTG oil tank to provide great corrosion resistance and strength. This ensures cannabis oil safety during storage and device stability during use.',
       image: '/assets/extro/medical-grade.png',
     },
     {
-      title: 'High safety battery',
+      greenLabel: 'safety',
+      title: 'High ',
+      titleSuffix: ' battery',
       description:
         'While other suppliers are using cheap ternary lithium batteries to cut costs, we are sticking to top standards. Our pure cobalt battery is both long-lasting and super safe. No safety worries in storage.',
       image: '/assets/extro/battery.png',

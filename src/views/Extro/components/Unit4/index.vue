@@ -17,7 +17,7 @@ const unitData = useUnitData(props, unit4Data)
       <MediaAsset :src="unitData.device" type="image" class="device" alt="" />
     </div>
 
-    <div class="featureGrid c_1300 c_padding">
+    <div class="featureGrid c_1230 c_padding">
       <article v-for="(item, index) in unitData.features" :key="item.title" class="featureCard">
         <MediaAsset :src="item.image" type="image" class="featureImage" alt="" />
         <div class="featureText" :class="{ right: index % 2 === 0 }">
