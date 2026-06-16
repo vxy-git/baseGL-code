@@ -37,7 +37,7 @@ const unitData = useUnitData(props, unit5Data)
 
 <style scoped lang="scss">
 .unit5 {
-  padding: 15px 0 156px;
+  padding: 173px 0 156px;
   background: #fff;
 }
 

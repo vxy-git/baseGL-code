@@ -21,24 +21,14 @@ const unitData = useUnitData(props, unit4Data)
       <p class="introText">{{ unitData.intro }}</p>
     </div>
 
-    <div class="storyStage c_1300 c_padding">
-      <article
-        v-for="(item, index) in unitData.sections"
-        :key="item.title"
-        class="story"
-        :class="`story${index + 1}`"
-      >
-        <div class="storyCopy">
+    <div class="storyStage">
+      <article v-for="(item, index) in unitData.sections" :key="item.title" class="story" :class="`story${index + 1}`">
+        <div class="storyCopy  c_1300 c_padding">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
         </div>
-        <MediaAsset
-          :src="item.image"
-          type="image"
-          :alt="item.alt"
-          class="storyImage"
-          :class="`storyImage${index + 1}`"
-        />
+        <MediaAsset :src="item.image" type="image" :alt="item.alt" class="storyImage"
+          :class="`storyImage${index + 1}`" />
       </article>
     </div>
   </section>
@@ -46,7 +36,7 @@ const unitData = useUnitData(props, unit4Data)
 
 <style scoped lang="scss">
 .unit4 {
-  padding: 124px 0 60px;
+  padding: 124px 0 0;
   background: #fff;
 }
 
@@ -80,22 +70,32 @@ h2 {
 .storyStage {
   position: relative;
   z-index: 1;
-  height: 3104px;
-  margin-top: -388px;
+  margin-top: -165px;
 }
 
 .story {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story1 {
+  height: 928px;
+}
+
+.story2 {
+  height: 933px;
+}
+
+.story3 {
+  height: 929px;
 }
 
 .storyCopy {
-  position: absolute;
-  left: 0;
   z-index: 2;
-  width: 555px;
   color: #111;
+  width: 100%;
 }
 
 .storyCopy h3 {
@@ -103,6 +103,7 @@ h2 {
   font-size: 40px;
   font-weight: 700;
   line-height: 47px;
+  width: 555px;
 }
 
 .storyCopy p {
@@ -110,98 +111,84 @@ h2 {
   color: #111;
   font-size: 20px;
   line-height: 30px;
+  width: 555px;
 }
 
 .storyImage {
   position: absolute;
   z-index: 0;
   object-fit: cover;
+  object-position: right;
 }
 
-.story1 .storyCopy {
-  top: 609px;
-}
-
-.story2 .storyCopy {
-  top: 1471px;
-}
-
-.story3 .storyCopy {
-  top: 2349px;
-}
-
-.storyImage1 {
-  top: 201px;
-  left: 658px;
-  width: 949px;
-  height: 928px;
-  object-fit: contain;
-}
-
-.storyImage2 {
-  top: 1129px;
-  left: -49px;
-  width: 1659px;
-  height: 933px;
+.storyImage {
+  top: 0;
+  right: 0;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .storyImage3 {
-  top: 2062px;
-  left: -60px;
-  width: 1651px;
-  height: 929px;
+  right: 19px;
 }
 
-@media screen and (max-width: $breakpoint-mobile) {
-  .unit4 {
-    padding: 70px 0 50px;
-  }
+.story1 h3 {
+  background: linear-gradient(180deg, #1CE785 0%, #7EE5C0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  h2,
-  .storyCopy h3 {
-    font-size: 34px;
-    line-height: 40px;
-  }
+.story2 h3 {
+  background: linear-gradient(180deg, #1CE785 0%, #D66C62 78.72%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .introText,
-  .storyCopy p {
-    font-size: 16px;
-    line-height: 24px;
-  }
+.story3 h3 {
+  background: linear-gradient(180deg, #CFE48C 0%, #CFE48B 78.72%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: $breakpoint-desktop) {
 
   .storyStage {
-    height: auto;
-    margin-top: 56px;
+    margin-top: -120px;
   }
 
-  .story {
-    position: relative;
-    inset: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
+  .story1 {
+    height: 728px;
   }
 
-  .story + .story {
-    margin-top: 54px;
+  .story2 {
+    height: 733px;
   }
 
-  .storyCopy,
-  .story1 .storyCopy,
-  .story2 .storyCopy,
-  .story3 .storyCopy {
-    position: static;
-    width: 100%;
+  .story3 {
+    height: 729px;
+  }
+}
+
+@media screen and (max-width: $breakpoint-medium) {
+
+  .storyStage {
+    margin-top: 0px;
   }
 
-  .storyImage,
-  .storyImage1,
-  .storyImage2,
-  .storyImage3 {
-    position: static;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+  .story1 {
+    height: 528px;
+  }
+
+  .story2 {
+    height: 533px;
+  }
+
+  .story3 {
+    height: 529px;
   }
 }
 </style>
