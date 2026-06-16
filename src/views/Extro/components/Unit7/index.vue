@@ -11,107 +11,90 @@ const unitData = useUnitData(props, unit7Data)
 </script>
 
 <template>
-  <section class="unit7 c_1300 c_padding">
-    <div class="specInfo">
-      <h2>{{ unitData.specsTitle }}</h2>
-      <div class="specGrid">
-        <div v-for="item in unitData.specs" :key="item.label" class="specItem">
-          <span>{{ item.label }}</span>
-          <strong>{{ item.value }}</strong>
+  <section class="c_1230 c_padding mx-auto pt-[136px] pb-[162px]">
+    <h2 class="title">{{ unitData.titleText }}</h2>
+    <div class="specsRow relative mt-[58px] flex justify-start gap-[40px]">
+      <div class="shrink-0 flex gap-y-[15px] gap-x-[20px] w-[460px] flex-wrap">
+        <div
+          v-for="item in unitData.specs"
+          :key="item.label"
+          class="item flex flex-col items-center justify-center"
+        >
+          <div class="label">{{ item.label }}</div>
+          <div class="value mt-[9px]">{{ item.value }}</div>
         </div>
       </div>
-    </div>
-    <div class="specVisual">
-      <MediaAsset :src="unitData.specsImage" type="image" class="specImage" alt="" />
-      <span>{{ unitData.specsMark }}</span>
+      <div class="w-full flex flex-col items-center justify-center">
+        <div class="h-[414px]">
+          <MediaAsset
+            type="image"
+            :src="unitData.specsImage"
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+          />
+        </div>
+        <div class="text7 mt-[26px] -translate-x-[4px] text-center">
+          {{ unitData.productName }}
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-.unit7 {
-  display: grid;
-  grid-template-columns: 460px minmax(0, 1fr);
-  gap: 110px;
-  align-items: center;
-  padding-top: 156.5px;
-  padding-bottom: 130px;
-  background: #fff;
-  color: #111;
-}
-
-.specInfo h2 {
-  margin-bottom: 46px;
+.title {
+  color: #000;
+  font-family: Roboto;
   font-size: 40px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 1.12;
+  line-height: normal;
 }
 
-.specGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 220px);
-  gap: 15px 20px;
-}
-
-.specItem {
+.item {
+  min-width: 220px;
+  padding: 0 10px;
   height: 80px;
-  padding: 15px 14px 12px;
-  background: #d9d9d9;
-  text-align: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.2);
+
+  .label {
+    color: #666;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .value {
+    color: #111;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+  }
 }
 
-.specItem span {
-  display: block;
-  margin-bottom: 10px;
-  color: #666;
-  font-size: 16px;
-  line-height: 19px;
-}
-
-.specItem strong {
-  display: block;
-  color: #111;
-  font-size: 18px;
+.text7 {
+  color: #000;
+  font-family: Roboto;
+  font-size: 22px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 22px;
-}
-
-.specVisual {
-  position: relative;
-}
-
-.specImage {
-  width: 100%;
-}
-
-.specVisual span {
-  position: absolute;
-  left: 26%;
-  bottom: 6%;
-  color: #fff;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0;
+  line-height: normal;
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .unit7 {
-    grid-template-columns: 1fr;
-    gap: 54px;
-    padding-top: 82px;
-    padding-bottom: 88px;
-  }
-
-  .specGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .specItem {
-    width: 100%;
-  }
-
-  .specInfo h2 {
+  .title {
     font-size: 30px;
+  }
+
+  .specsRow {
+    flex-direction: column;
   }
 }
 </style>

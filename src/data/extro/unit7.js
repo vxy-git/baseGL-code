@@ -1,7 +1,7 @@
 export const unit7Data = {
-  specsTitle: 'Specifications',
+  titleText: 'Specifications',
   specsImage: '/assets/extro/spec-device.png',
-  specsMark: 'UNICORN',
+  productName: 'UNICORN',
   specs: [
     { label: 'Dimension(mm)', value: '69.8H*38.4W*15.3D' },
     { label: 'Tank Volume', value: '2mL/ 3mL/ 4mL' },
