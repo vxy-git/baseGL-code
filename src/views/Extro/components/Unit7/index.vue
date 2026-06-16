@@ -34,7 +34,7 @@ const unitData = useUnitData(props, unit7Data)
   grid-template-columns: 460px minmax(0, 1fr);
   gap: 110px;
   align-items: center;
-  padding-top: 122px;
+  padding-top: 156.5px;
   padding-bottom: 130px;
   background: #fff;
   color: #111;

@@ -1,4 +1,5 @@
 export const unit3Data = {
+  sectionTitle: 'We Never Cut Corners, Proven Quality & Stability',
   eyebrow: 'No worries',
   title: 'Stable and highly compatible.',
   description:

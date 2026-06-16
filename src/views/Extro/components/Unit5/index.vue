@@ -11,11 +11,11 @@ const unitData = useUnitData(props, unit5Data)
 </script>
 
 <template>
-  <section class="unit5 mt-[202px] pb-[202px]">
+  <section class="unit5 mt-[202px]">
     <div class="c_1230 c_padding">
       <h2 class="title">{{ unitData.mainTitle }}</h2>
 
-      <div class="cards mx-auto mt-[60px] scrollbar-hide">
+      <div class="cards mx-auto scrollbar-hide">
         <div class="row">
           <div class="card">
             <div class="tag">{{ unitData.upgradeCards[0].tag }}</div>
@@ -95,6 +95,7 @@ const unitData = useUnitData(props, unit5Data)
   font-style: normal;
   font-weight: 700;
   color: #1ce785;
+  margin-bottom: 270px;
 }
 
 .tag {
@@ -120,6 +121,8 @@ const unitData = useUnitData(props, unit5Data)
 
 .unit5 {
   background: #000;
+  padding-top: 317px;
+  padding-bottom: 195px;
 }
 
 .cards {

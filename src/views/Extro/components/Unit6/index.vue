@@ -37,10 +37,10 @@ const designSlides = computed(() =>
 }
 
 .designShowcase {
-  padding-top: 118px;
+  padding-top: 134px;
 
   :deep(.carouselWrap) {
-    margin-top: 58px;
+    margin-top: 44.5px;
   }
 }
 

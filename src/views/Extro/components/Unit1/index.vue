@@ -16,9 +16,9 @@ const unitData = useUnitData(props, unit1Data)
 <template>
   <section class="unit1 mt_nav">
     <MediaAsset :src="unitData.bg" type="image" class="heroImage" alt="" :lazy="false" />
-    <div class="heroContent c_1300 c_padding">
-      <div class="capacity">{{ unitData.capacity }}</div>
+    <div class="heroContent c_1230 c_padding">
       <h1>{{ unitData.title }}</h1>
+      <div class="capacity">{{ unitData.capacity }}</div>
     </div>
     <div class="scrollHint">
       <span>{{ unitData.scrollLabel }}</span>
@@ -47,11 +47,12 @@ const unitData = useUnitData(props, unit1Data)
 .heroContent {
   position: relative;
   z-index: 1;
-  height: calc(880px / 1920px * 100vw);
+  height: 100%;
   min-height: 620px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 32px;
   color: #fff;
 }
 
@@ -77,15 +78,16 @@ h1 {
 .scrollHint {
   position: absolute;
   left: 50%;
-  bottom: 42px;
+  bottom: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   color: #fff;
   font-size: 14px;
-  line-height: 18px;
+  line-height: normal;
+  letter-spacing: 0.28px;
   transform: translateX(-50%);
 }
 
@@ -93,6 +95,7 @@ h1 {
   width: 1px;
   height: 56px;
   background: #fff;
+  opacity: 0.3;
 }
 
 @media (max-width: $breakpoint-tablet) {

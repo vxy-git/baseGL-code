@@ -12,6 +12,7 @@ const unitData = useUnitData(props, unit3Data)
 
 <template>
   <section class="unit3 c_padding">
+    <h2 class="sectionTitle c_1300">{{ unitData.sectionTitle }}</h2>
     <div class="intro c_1300">
       <p>{{ unitData.eyebrow }}</p>
       <h2>{{ unitData.title }}</h2>
@@ -32,9 +33,19 @@ const unitData = useUnitData(props, unit3Data)
 
 <style scoped lang="scss">
 .unit3 {
-  padding-top: 86px;
+  padding-top: 42px;
   padding-bottom: 150px;
   background: #fff;
+}
+
+.sectionTitle {
+  max-width: 920px;
+  margin: 0 auto 72px;
+  color: #111;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.18;
+  text-align: center;
 }
 
 .intro {
@@ -114,8 +125,14 @@ const unitData = useUnitData(props, unit3Data)
 
 @media (max-width: $breakpoint-tablet) {
   .unit3 {
-    padding-top: 70px;
+    padding-top: 48px;
     padding-bottom: 92px;
+  }
+
+  .sectionTitle {
+    font-size: 42px;
+    line-height: 1.22;
+    margin-bottom: 48px;
   }
 
   .intro h2,
