@@ -22,6 +22,7 @@ const pageTypeComponentMap = {
   why_caleaf: () => import('@/views/WhyCaleaf/index.vue'),
   us_local_service: () => import('@/views/UsLocalService/index.vue'),
   blog: () => import('@/views/Blog/index.vue'),
+  extro: () => import('@/views/Extro/index.vue'),
 }
 
 /**
@@ -212,6 +213,13 @@ const staticFallbackRoutes = [
     component: () => import('@/views/Blog/index.vue'),
     meta: { pageType: 'blog', navLabel: 'Blog' },
     props: { pageConfig: makePageConfig('/blog', 'blog') },
+  },
+  {
+    path: '/extro',
+    name: 'extro_default',
+    component: () => import('@/views/Extro/index.vue'),
+    meta: { pageType: 'extro', navLabel: 'EXTRO' },
+    props: { pageConfig: makePageConfig('/extro', 'extro') },
   },
   // 通配兜底路由：在 CMS 动态路由加载完成前，静默吸收所有未匹配路径，
   // 避免 Vue Router 发出 "No match found" 警告
