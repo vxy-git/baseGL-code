@@ -22,20 +22,20 @@ export const unit2Data = {
   },
   slides: [
     {
-      image: '/assets/customize/demo-left.png',
-      alt: 'Custom product demo for 0.5mL and 1mL devices',
+      video: '/assets/customize/unit2-1.mp4',
+      alt: 'Custom product demo video 1',
     },
     {
-      image: '/assets/customize/demo-right.png',
-      alt: 'Custom product demo for 1mL and 2mL devices',
+      video: '/assets/customize/unit2-2.mp4',
+      alt: 'Custom product demo video 2',
     },
     {
-      image: '/assets/customize/demo-left.png',
-      alt: 'Custom product demo for 0.5mL and 1mL devices',
+      video: '/assets/customize/unit2-3.mp4',
+      alt: 'Custom product demo video 3',
     },
     {
-      image: '/assets/customize/demo-right.png',
-      alt: 'Custom product demo for 1mL and 2mL devices',
+      video: '/assets/customize/unit2-4.mp4',
+      alt: 'Custom product demo video 4',
     },
   ],
 }

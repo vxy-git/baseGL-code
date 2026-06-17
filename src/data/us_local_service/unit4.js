@@ -2,7 +2,7 @@
  * US Local Service Unit4 分销网络数据配置
  */
 export const unit4Data = {
-  bg: '/assets/us_local_service/vision-bg.mov',
+  bg: '/assets/us_local_service/gallery-bg.mov',
   label: 'CALEAF TECH in the US and EU',
   title: 'We’re taking our\ndistributor network everywhere.',
   buttonText: 'Join us',

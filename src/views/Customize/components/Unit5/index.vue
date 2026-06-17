@@ -25,8 +25,11 @@ const unitData = useUnitData(props, unit5Data)
           v-for="(image, index) in unitData.images"
           :key="image.src"
           :src="image.src"
-          type="image"
           :alt="image.alt"
+          autoplay
+          muted
+          loop
+          :controls="false"
           class="creativeImage"
           :class="`creativeImage${index + 1}`"
         />

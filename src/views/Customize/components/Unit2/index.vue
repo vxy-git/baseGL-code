@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
@@ -19,14 +19,50 @@ const canSlidePrev = ref(false)
 const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
+const activeSlideIndex = ref(0)
+const videoRefs = ref([])
 
 const checkMobile = () => {
   isMobile.value = window.innerWidth <= 768
 }
 
+const setVideoRef = (el, index) => {
+  if (el) {
+    videoRefs.value[index] = el
+  }
+}
+
+const resetVideo = video => {
+  if (!video) return
+  video.pause()
+  video.currentTime = 0
+}
+
+const playActiveVideo = async () => {
+  await nextTick()
+  videoRefs.value.forEach((video, index) => {
+    if (index !== activeSlideIndex.value) {
+      resetVideo(video)
+    }
+  })
+
+  const activeVideo = videoRefs.value[activeSlideIndex.value]
+  if (!activeVideo) return
+  activeVideo.currentTime = 0
+  const playPromise = activeVideo.play()
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => {})
+  }
+}
+
 onMounted(() => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
+  playActiveVideo()
+})
+
+onBeforeUpdate(() => {
+  videoRefs.value = []
 })
 
 onUnmounted(() => {
@@ -40,11 +76,15 @@ const updateArrowStatus = () => {
 
 const onSplideInit = splide => {
   splideRef.value = splide
+  activeSlideIndex.value = splide?.index || 0
   updateArrowStatus()
+  playActiveVideo()
 }
 
-const onSlideChange = () => {
+const onSlideChange = (splide, newIndex) => {
+  activeSlideIndex.value = typeof newIndex === 'number' ? newIndex : splide?.index || 0
   updateArrowStatus()
+  playActiveVideo()
 }
 
 const slidePrev = () => {
@@ -52,6 +92,10 @@ const slidePrev = () => {
 }
 
 const slideNext = () => {
+  splideRef.value?.go('>')
+}
+
+const playNextSlide = () => {
   splideRef.value?.go('>')
 }
 </script>
@@ -70,10 +114,18 @@ const slideNext = () => {
           :options="unitData.splideOptions"
           @splide:mounted="onSplideInit"
           @splide:moved="onSlideChange"
-          @splide:move="onSlideChange"
         >
-          <SplideSlide v-for="slide in slides" :key="slide.image" class="demoSlide">
-            <MediaAsset :src="slide.image" type="image" :alt="slide.alt" class="slideImage" />
+          <SplideSlide v-for="(slide, index) in slides" :key="slide.video" class="demoSlide">
+            <video
+              :ref="el => setVideoRef(el, index)"
+              class="slideVideo"
+              :src="slide.video"
+              :aria-label="slide.alt"
+              muted
+              playsinline
+              preload="metadata"
+              @ended="playNextSlide"
+            />
           </SplideSlide>
         </Splide>
         <div class="arrowLayer">
@@ -137,9 +189,12 @@ h2 {
 .demoSlide {
   height: 100%;
   max-width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.slideImage {
+.slideVideo {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;

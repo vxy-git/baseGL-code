@@ -16,7 +16,8 @@ const unitData = useUnitData(props, unit3Data)
 <template>
   <section class="unit3">
     <MediaAsset :src="unitData.background" type="image" alt="" class="bgImage" />
-    <div class="content c_padding">
+    <div class="content c_padding c_1230">
+      <span>{{ unitData.subTitle }}</span>
       <h2>{{ unitData.title }}</h2>
       <p>{{ unitData.description }}</p>
     </div>
@@ -40,23 +41,35 @@ const unitData = useUnitData(props, unit3Data)
   position: absolute;
   inset: 0;
   z-index: 1;
-  max-width: 762px;
   margin: 0 auto;
   padding-top: 147px;
   color: #fff;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content span {
+  font-size: 20px;
+  line-height: 23px;
+  color: #1CE785;
+  margin-bottom: 10px;
 }
 
 h2 {
   font-size: 40px;
   font-weight: 700;
   line-height: 47px;
+  white-space: break-spaces;
+  max-width: 800px;
 }
 
 p {
   margin-top: 24px;
   font-size: 20px;
   line-height: 30px;
+  max-width: 762px;
 }
 
 @media screen and (max-width: $breakpoint-tablet) {
