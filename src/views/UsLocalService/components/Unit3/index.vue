@@ -3,6 +3,7 @@ import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit3Data } from '@/data/us_local_service/unit3'
+import { isVideoSrc } from '@/utils/mediaType'
 
 const props = defineProps({
   data: {
@@ -25,8 +26,6 @@ const setMediaRef = (el, index) => {
   }
 }
 
-const isVideo = item => item?.type === 'video' || /\.mp4(\?.*)?$/i.test(item?.src || '')
-
 const pauseMedia = index => {
   const media = mediaRefs.value[index]
   if (!media) return
@@ -37,7 +36,7 @@ const pauseMedia = index => {
 const playMedia = async index => {
   await nextTick()
   const media = mediaRefs.value[index]
-  if (!media || !isVideo(unitData.value.mediaList?.[index])) return
+  if (!media || !isVideoSrc(unitData.value.mediaList?.[index]?.src)) return
   media.playFromStart?.()
 }
 

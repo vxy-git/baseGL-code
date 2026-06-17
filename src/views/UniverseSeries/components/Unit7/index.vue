@@ -5,6 +5,7 @@ import { ref, watch, nextTick } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { unit7Data } from '@/data/universe_series/unit7'
+import { isVideoSrc } from '@/utils/mediaType'
 
 const props = defineProps({
   data: {
@@ -16,8 +17,6 @@ const props = defineProps({
 const unitData = useUnitData(props, unit7Data)
 
 const tabsCurrent = ref(0)
-
-const isVideo = src => /\.mp4(\?.*)?$/i.test(src)
 
 const videoRefs = ref([])
 const setVideoRef = (el, index) => {
@@ -98,7 +97,7 @@ watch(tabsCurrent, index => {
               class="w-[800px] max-w-[94vw] h-[500px]"
             >
               <MediaAsset
-                :ref="isVideo(unitData.mediaList[index].src) ? el => setVideoRef(el, index) : null"
+                :ref="isVideoSrc(unitData.mediaList[index].src) ? el => setVideoRef(el, index) : null"
                 class="w-full h-full object-cover rounded-[10px] overflow-hidden bg-black"
                 :class="{ '!bg-black': index === tabsCurrent }"
                 :type="unitData.mediaList[index].type"

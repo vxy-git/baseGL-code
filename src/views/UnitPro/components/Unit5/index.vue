@@ -107,13 +107,12 @@ const clearAllTimers = () => {
 
 // 暂停所有视频
 const pauseAllVideos = () => {
-  mediaRefs.value.forEach((el, index) => {
-    if (mediaList.value[index].type === 'video' && el) {
+  mediaRefs.value.forEach(el => {
+    if (el) {
       const video = el.querySelector('video')
-      if (video) {
-        video.pause()
-        video.currentTime = 0
-      }
+      if (!video) return
+      video.pause()
+      video.currentTime = 0
     }
   })
 }
@@ -146,38 +145,34 @@ const playCurrentSlide = index => {
   // 立即重置所有进度条为 0，确保从 0 开始
   progressValues.value = mediaList.value.map(() => 0)
 
-  const media = mediaList.value[index]
-
   // 延迟 500ms 等待遮罩过渡完成后再开始播放进度
   const delayTimerId = setTimeout(() => {
     // 检查是否已经被新的调用取消
     if (stopIfStale()) return
-    if (media.type === 'video') {
+    const videoEl = mediaRefs.value[index]?.querySelector('video')
+    if (videoEl) {
       // 视频：绑定播放事件
-      const videoEl = mediaRefs.value[index]?.querySelector('video')
-      if (videoEl) {
-        videoEl.currentTime = 0
-        videoEl.play().catch(err => logger.error('视频播放失败:', err))
+      videoEl.currentTime = 0
+      videoEl.play().catch(err => logger.error('视频播放失败:', err))
 
-        const updateProgress = () => {
-          if (stopIfStale()) return
-          if (videoEl.duration) {
-            progressValues.value[index] = (videoEl.currentTime / videoEl.duration) * 100
-          }
+      const updateProgress = () => {
+        if (stopIfStale()) return
+        if (videoEl.duration) {
+          progressValues.value[index] = (videoEl.currentTime / videoEl.duration) * 100
         }
-
-        const endedHandler = () => {
-          if (stopIfStale()) return
-          progressValues.value[index] = 100
-          goToNext()
-        }
-
-        videoEl.addEventListener('timeupdate', updateProgress)
-        videoEl.addEventListener('ended', endedHandler)
-
-        // 保存所有引用用于清理
-        progressTimers.value[index] = { type: 'video', videoEl, updateProgress, endedHandler }
       }
+
+      const endedHandler = () => {
+        if (stopIfStale()) return
+        progressValues.value[index] = 100
+        goToNext()
+      }
+
+      videoEl.addEventListener('timeupdate', updateProgress)
+      videoEl.addEventListener('ended', endedHandler)
+
+      // 保存所有引用用于清理
+      progressTimers.value[index] = { type: 'video', videoEl, updateProgress, endedHandler }
     } else {
       // 图片：10秒动画帧
       const duration = 10000 // 10秒

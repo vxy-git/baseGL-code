@@ -43,6 +43,8 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['error'])
+
 const imgRef = ref(null)
 const isLoading = ref(true)
 const isLoaded = ref(false)
@@ -90,6 +92,7 @@ const handleLoad = () => {
 const handleError = () => {
   isLoading.value = false
   logger.error(`图片加载失败: ${props.src}`)
+  emit('error')
 }
 </script>
 

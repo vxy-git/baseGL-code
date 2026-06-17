@@ -107,7 +107,6 @@ const playCurrentSlide = index => {
   pauseAllVideos()
   initProgress()
 
-  const media = itemsList.value[index]
   const mediaRef = mediaRefs.value[index]
 
   if (!mediaRef || !mediaRef.$el) return
@@ -115,24 +114,22 @@ const playCurrentSlide = index => {
   setTimeout(() => {
     if (stopIfStale()) return
 
-    if (media?.type === 'video') {
-      const videoEl = mediaRef.$el.querySelector('video')
-      if (videoEl) {
-        const updateProgress = () => {
-          if (stopIfStale()) return
-          const { currentTime, duration } = videoEl
-          if (duration > 0) {
-            progressValues.value[index] = (currentTime / duration) * 100
-          }
+    const videoEl = mediaRef.$el.querySelector('video')
+    if (videoEl) {
+      const updateProgress = () => {
+        if (stopIfStale()) return
+        const { currentTime, duration } = videoEl
+        if (duration > 0) {
+          progressValues.value[index] = (currentTime / duration) * 100
         }
-        const onEnded = () => {
-          if (stopIfStale()) return
-          goToNext()
-        }
-        videoEl.addEventListener('timeupdate', updateProgress)
-        videoEl.addEventListener('ended', onEnded)
-        videoEl.play()
       }
+      const onEnded = () => {
+        if (stopIfStale()) return
+        goToNext()
+      }
+      videoEl.addEventListener('timeupdate', updateProgress)
+      videoEl.addEventListener('ended', onEnded)
+      videoEl.play()
     } else {
       const startTime = Date.now()
       const duration = 10000

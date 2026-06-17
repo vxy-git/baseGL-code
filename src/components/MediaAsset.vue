@@ -6,6 +6,7 @@
     :alt="alt"
     :cdn-url="resolvedCdnUrl"
     :lazy="lazy"
+    @error="handleImageError"
   />
   <video
     v-else
@@ -21,6 +22,7 @@
     class="media-video"
     @mouseenter="handleHoverEnter"
     @mouseleave="handleHoverLeave"
+    @error="handleVideoError"
   />
 </template>
 
@@ -29,6 +31,7 @@ import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import CdnImage from './CdnImage.vue'
 import { MOBILE_BREAKPOINT } from '@/composables/fit'
 import { logger } from '@/utils/logger'
+import { detectMediaType } from '@/utils/mediaType'
 
 const DEFAULT_CDN_URL = import.meta.env.VITE_BASE_URL || ''
 
@@ -39,33 +42,20 @@ const props = defineProps({
   cdnUrl: { type: String, default: import.meta.env.VITE_BASE_URL || '' },
   lazy: { type: Boolean, default: false },
   poster: { type: String, default: '' },
-  controls: { type: Boolean, default: true },
-  autoplay: { type: Boolean, default: false },
-  muted: { type: Boolean, default: false },
+  controls: { type: Boolean, default: false },
+  autoplay: { type: Boolean, default: true },
+  muted: { type: Boolean, default: true },
   loop: { type: Boolean, default: false },
   hoverPlay: { type: Boolean, default: false },
   viewPlay: { type: Boolean, default: false },
 })
 
-// 根据 src 自动判断资源类型
+const fallbackType = ref('')
+const sourceType = computed(() => detectMediaType(props.src))
+
+// 根据 src 自动判断资源类型；type 只作为无法从 src 判断时的兜底
 const computedType = computed(() => {
-  // 如果显式传入了 type，则使用传入的值
-  if (props.type) {
-    return props.type
-  }
-
-  // 否则根据文件扩展名判断
-  const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.ogg', '.video']
-  const lowerSrc = props.src.toLowerCase()
-
-  for (const ext of videoExtensions) {
-    if (lowerSrc.includes(ext)) {
-      return 'video'
-    }
-  }
-
-  // 默认为图片
-  return 'image'
+  return fallbackType.value || sourceType.value || props.type || 'image'
 })
 
 const isImage = computed(() => computedType.value === 'image')
@@ -84,6 +74,13 @@ const videoEl = ref(null)
 const intersectionObserver = ref(null)
 const isMobile = ref(false)
 
+watch(
+  () => props.src,
+  () => {
+    fallbackType.value = ''
+  }
+)
+
 const effectiveAutoplay = computed(
   () => props.autoplay || ((props.viewPlay || props.hoverPlay) && isMobile.value)
 )
@@ -94,6 +91,18 @@ const effectiveLoop = computed(
 const updateIsMobile = () => {
   if (typeof window === 'undefined') return
   isMobile.value = window.innerWidth < MOBILE_BREAKPOINT
+}
+
+function handleVideoError() {
+  if (!sourceType.value && props.type === 'video') {
+    fallbackType.value = 'image'
+  }
+}
+
+function handleImageError() {
+  if (!sourceType.value && props.type === 'image') {
+    fallbackType.value = 'video'
+  }
 }
 
 function playFromStart() {

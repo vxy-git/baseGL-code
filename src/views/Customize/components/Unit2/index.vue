@@ -20,7 +20,8 @@ const canSlideNext = ref(true)
 const isHovered = ref(false)
 const isMobile = ref(false)
 const activeSlideIndex = ref(0)
-const videoRefs = ref([])
+const mediaRefs = ref([])
+const imageTimer = ref(null)
 
 const checkMobile = () => {
   isMobile.value = window.innerWidth <= 768
@@ -28,30 +29,48 @@ const checkMobile = () => {
 
 const setVideoRef = (el, index) => {
   if (el) {
-    videoRefs.value[index] = el
+    mediaRefs.value[index] = el
   }
 }
 
-const resetVideo = video => {
-  if (!video) return
-  video.pause()
-  video.currentTime = 0
+const clearImageTimer = () => {
+  if (!imageTimer.value) return
+  clearTimeout(imageTimer.value)
+  imageTimer.value = null
+}
+
+const resetVideo = media => {
+  if (!media) return
+  media.pause?.()
+  media.resetToStart?.()
+}
+
+const getVideoElement = media => {
+  if (!media) return null
+  if (media.videoEl instanceof HTMLVideoElement) return media.videoEl
+  if (media.videoEl?.value instanceof HTMLVideoElement) return media.videoEl.value
+  if (media.$el instanceof HTMLVideoElement) return media.$el
+  return media.$el?.querySelector?.('video') || null
 }
 
 const playActiveVideo = async () => {
   await nextTick()
-  videoRefs.value.forEach((video, index) => {
+  clearImageTimer()
+  mediaRefs.value.forEach((video, index) => {
     if (index !== activeSlideIndex.value) {
       resetVideo(video)
     }
   })
 
-  const activeVideo = videoRefs.value[activeSlideIndex.value]
-  if (!activeVideo) return
-  activeVideo.currentTime = 0
-  const playPromise = activeVideo.play()
-  if (playPromise && typeof playPromise.catch === 'function') {
-    playPromise.catch(() => {})
+  const activeMedia = mediaRefs.value[activeSlideIndex.value]
+  if (!activeMedia) return
+
+  if (getVideoElement(activeMedia)) {
+    activeMedia.playFromStart?.()
+  } else {
+    imageTimer.value = setTimeout(() => {
+      playNextSlide()
+    }, 10000)
   }
 }
 
@@ -62,11 +81,12 @@ onMounted(() => {
 })
 
 onBeforeUpdate(() => {
-  videoRefs.value = []
+  mediaRefs.value = []
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
+  clearImageTimer()
 })
 
 const updateArrowStatus = () => {
@@ -116,12 +136,14 @@ const playNextSlide = () => {
           @splide:moved="onSlideChange"
         >
           <SplideSlide v-for="(slide, index) in slides" :key="slide.video" class="demoSlide">
-            <video
+            <MediaAsset
               :ref="el => setVideoRef(el, index)"
               class="slideVideo"
+              type="video"
               :src="slide.video"
-              :aria-label="slide.alt"
+              :alt="slide.alt"
               muted
+              :controls="false"
               playsinline
               preload="metadata"
               @ended="playNextSlide"
