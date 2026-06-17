@@ -19,10 +19,10 @@ export const unit4Data = {
     eyebrow: 'Custom Screen Displays',
     title: 'We only do designs that pop.',
     description:
-      "Every tiny icon design is a key component in creating a trendsetting screen display. We've got the pro expertise to turn good ideas into really cool products that look awesome and work great.",
+      "Every tiny icon design is a key component in creating a trendsetting screen display. We’ve got the pro expertise to turn good ideas into really cool products that look awesome and work great.",
     video: '/assets/extro/screen-display.mp4',
   },
-  statement: "Once a killer design drops,\nit's ",
+  statement: "Once a killer design drops,\nit‘s ",
   greenText: 'remembered',
   statementSuffix: ' by the market.',
 }

@@ -11,6 +11,6 @@ export const unit2Data = {
     { number: '1500+', label: 'Employees' },
     { locations: 'Los Angeles、New York\nIndonesia、Shenzhen', label: 'Offices in' },
     { prefix: '$80', suffix: 'Million', label: 'Annual Sales' },
-    { prefix: '5', suffix: 'Million', label: 'Monthly Capacity' },
+    { prefix: '5', suffix: 'Million pcs', label: 'Monthly Capacity' },
   ],
 }

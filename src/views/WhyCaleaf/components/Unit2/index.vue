@@ -129,6 +129,7 @@ const unitData = useUnitData(props, unit2Data)
 
   .fact-prefix {
     font-size: 50px;
+    margin-right: 5px;
   }
 
   .fact-suffix {
