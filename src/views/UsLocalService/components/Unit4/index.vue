@@ -27,7 +27,15 @@ const handleButtonClick = event => {
 <template>
   <section class="unit4">
     <div class="networkHero">
-      <MediaAsset :src="unitData.bg" type="image" class="networkBg" alt="" />
+      <MediaAsset
+        :src="unitData.bg"
+        class="networkBg"
+        alt=""
+        autoplay
+        muted
+        loop
+        :controls="false"
+      />
       <div class="networkContent c_1300 c_padding">
         <div class="networkText">
           <p class="sectionLabel">{{ unitData.label }}</p>
@@ -45,9 +53,12 @@ const handleButtonClick = event => {
             v-for="image in unitData.images"
             :key="`${loopIndex}-${image}`"
             :src="image"
-            type="image"
             class="galleryImage"
             alt=""
+            autoplay
+            muted
+            loop
+            :controls="false"
           />
         </template>
       </div>
@@ -147,9 +158,8 @@ const handleButtonClick = event => {
 }
 
 .galleryImage {
-  flex: 0 0 400px;
   width: 400px;
-  height: 260px;
+  // height: 260px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -170,7 +180,8 @@ const handleButtonClick = event => {
   }
 
   .galleryImage {
-    flex-basis: 260px;
+    width: 300px;
+    // flex-basis: 260px;
   }
 }
 

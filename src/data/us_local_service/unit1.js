@@ -4,5 +4,5 @@
 export const unit1Data = {
   bg: '/assets/us_local_service/hero-bg-a.png',
   title: 'US Local Service and Supprt',
-  subtitle: 'US Local Service and Supprt',
+  subtitle: 'Team up with pros, save big time.',
 }

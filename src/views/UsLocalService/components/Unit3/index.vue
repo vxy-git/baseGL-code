@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, ref } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit3Data } from '@/data/us_local_service/unit3'
@@ -14,7 +14,10 @@ const props = defineProps({
 const unitData = useUnitData(props, unit3Data)
 
 const activeIndex = ref(0)
+const imageBoxRef = ref(null)
 const mediaRefs = ref([])
+const isInView = ref(false)
+const intersectionObserver = ref(null)
 
 const setMediaRef = (el, index) => {
   if (el) {
@@ -40,20 +43,55 @@ const playMedia = async index => {
 
 const handleStepEnter = index => {
   if (activeIndex.value === index) {
-    playMedia(index)
+    if (isInView.value) playMedia(index)
     return
   }
 
   pauseMedia(activeIndex.value)
   activeIndex.value = index
-  playMedia(index)
+  if (isInView.value) playMedia(index)
 }
+
+const setupObserver = () => {
+  if (!imageBoxRef.value) return
+
+  if (typeof IntersectionObserver === 'undefined') {
+    isInView.value = true
+    playMedia(activeIndex.value)
+    return
+  }
+
+  intersectionObserver.value = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        isInView.value = entry.isIntersecting
+        if (entry.isIntersecting) {
+          playMedia(activeIndex.value)
+        } else {
+          pauseMedia(activeIndex.value)
+        }
+      })
+    },
+    { threshold: 0 }
+  )
+
+  intersectionObserver.value.observe(imageBoxRef.value)
+}
+
+onMounted(() => {
+  setupObserver()
+})
+
+onBeforeUnmount(() => {
+  intersectionObserver.value?.disconnect()
+  pauseMedia(activeIndex.value)
+})
 </script>
 
 <template>
   <section class="unit3">
     <h2 class="sectionTitle">{{ unitData.title }}</h2>
-    <div class="howImageBox">
+    <div ref="imageBoxRef" class="howImageBox">
       <MediaAsset
         v-for="(item, index) in unitData.mediaList"
         :key="`${item.src}-${index}`"

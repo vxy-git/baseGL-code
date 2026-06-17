@@ -26,7 +26,15 @@ const handleButtonClick = event => {
 
 <template>
   <section class="unit5">
-    <MediaAsset :src="unitData.bg" type="image" class="visionBg" alt="" />
+    <MediaAsset
+      :src="unitData.bg"
+      class="visionBg"
+      alt=""
+      autoplay
+      muted
+      loop
+      :controls="false"
+    />
     <div class="visionContent c_1300 c_padding">
       <div class="visionText">
         <p class="sectionLabel">{{ unitData.label }}</p>

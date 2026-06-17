@@ -7,17 +7,17 @@ export const unit3Data = {
   mediaList: [
     {
       type: 'video',
-      src: '/assets/technology/t1/l1.mp4',
+      src: '/assets/us_local_service/Local_Office_and_Engineer.mp4',
       poster: '/assets/us_local_service/how-office.png',
     },
     {
       type: 'video',
-      src: '/assets/technology/t2/bg.mp4',
+      src: '/assets/us_local_service/Pro_Testing_Expert.mp4',
       poster: '/assets/us_local_service/how-machine.png',
     },
     {
       type: 'video',
-      src: '/assets/technology/t3/r1.mp4',
+      src: '/assets/us_local_service/Automatic_Filling_Support.mp4',
       poster: '/assets/us_local_service/how-machine.png',
     },
   ],
