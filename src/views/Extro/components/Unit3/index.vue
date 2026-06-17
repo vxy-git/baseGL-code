@@ -18,7 +18,17 @@ const unitData = useUnitData(props, unit3Data)
       <h2>{{ unitData.title }}</h2>
       <div>{{ unitData.description }}</div>
     </div>
-    <MediaAsset :src="unitData.mainImage" type="image" class="mainImage" alt="" />
+    <MediaAsset
+      :src="unitData.mainVideo"
+      type="video"
+      class="mainImage"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :view-play="true"
+      playsinline
+    />
     <div class="featureGrid">
       <article v-for="(item, index) in unitData.features" :key="index" class="featureCard" :class="{ reverse: index % 2 === 0 }">
         <MediaAsset :src="item.image" type="image" class="featureImage" alt="" />

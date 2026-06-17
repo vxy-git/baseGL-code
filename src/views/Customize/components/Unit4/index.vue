@@ -22,13 +22,23 @@ const unitData = useUnitData(props, unit4Data)
     </div>
 
     <div class="storyStage">
-      <article v-for="(item, index) in unitData.sections" :key="item.title" class="story" :class="`story${index + 1}`">
+      <article
+        v-for="(item, index) in unitData.sections"
+        :key="item.title"
+        class="story"
+        :class="`story${index + 1}`"
+      >
         <div class="storyCopy  c_1300 c_padding">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
         </div>
-        <MediaAsset :src="item.image" type="image" :alt="item.alt" class="storyImage"
-          :class="`storyImage${index + 1}`" />
+        <MediaAsset
+          :src="item.image"
+          type="image"
+          :alt="item.alt"
+          class="storyImage"
+          :class="`storyImage${index + 1}`"
+        />
       </article>
     </div>
   </section>

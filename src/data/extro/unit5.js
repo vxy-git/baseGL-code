@@ -4,19 +4,19 @@ export const unit5Data = {
   upgradeCards: [
     {
       tag: 'Dosing Timer',
-      video: '/api/uploads/file/default/assets/unit_pro/unit7/3_Temperature_Control.mp4',
+      video: '/assets/extro/Dosing_Timer.mp4',
     },
     {
       tag: 'Preheat Status Indication',
-      video: '/api/uploads/file/default/assets/unit_pro/unit7/Preheat_Status_Indication.mp4',
+      video: '/assets/extro/Preheat_Status_Indication.mp4',
     },
     {
       tag: '3-Temperature Control',
-      video: '/api/uploads/file/default/assets/unit_pro/unit7/Activation_Indication.mp4',
+      video: '/assets/extro/3_Temperature_Control.mp4',
     },
     {
       tag: 'Battery Life Monitor',
-      video: '/api/uploads/file/default/assets/unit_pro/unit7/Battery_Life_Monitor.mp4',
+      video: '/assets/extro/Battery_Life_Monitor.mp4',
     },
   ],
 }

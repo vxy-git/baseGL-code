@@ -22,8 +22,17 @@ const unitData = useUnitData(props, unit7Data)
       </div>
       <div class="w-full flex flex-col items-center justify-center">
         <div class="h-[414px]">
-          <MediaAsset type="image" :src="unitData.specsImage"
-            class="w-full h-full object-cover rounded-[20px] overflow-hidden" />
+          <MediaAsset
+            type="video"
+            :src="unitData.specsVideo"
+            class="w-full h-full object-cover rounded-[20px] overflow-hidden"
+            :controls="false"
+            :autoplay="false"
+            :muted="true"
+            :loop="false"
+            :view-play="true"
+            playsinline
+          />
         </div>
         <div class="text7 mt-[26px] -translate-x-[4px] text-center">
           {{ unitData.productName }}

@@ -14,12 +14,32 @@ const unitData = useUnitData(props, unit4Data)
   <section class="unit4 c_1230 c_padding">
     <div class="titleWrap">
       <h2>{{ unitData.title }}</h2>
-      <MediaAsset :src="unitData.device" type="image" class="device" alt="" />
+      <MediaAsset
+        :src="unitData.deviceVideo"
+        type="video"
+        class="device"
+        :controls="false"
+        :autoplay="false"
+        :muted="true"
+        :loop="false"
+        :view-play="true"
+        playsinline
+      />
     </div>
 
     <div class="featureGrid">
       <article v-for="(item, index) in unitData.features" :key="item.title" class="featureCard">
-        <MediaAsset :src="item.image" type="image" class="featureImage" alt="" />
+        <MediaAsset
+          :src="item.video"
+          type="video"
+          class="featureImage"
+          :controls="false"
+          :autoplay="false"
+          :muted="true"
+          :loop="false"
+          :view-play="true"
+          playsinline
+        />
         <div class="featureText" :class="{ right: index % 2 === 0 }">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
@@ -34,7 +54,17 @@ const unitData = useUnitData(props, unit4Data)
       <p class="eyebrow">{{ unitData.screenDisplay.eyebrow }}</p>
       <h2 class="displayTitle">{{ unitData.screenDisplay.title }}</h2>
       <p class="displayDesc">{{ unitData.screenDisplay.description }}</p>
-      <MediaAsset :src="unitData.screenDisplay.image" type="image" class="displayImage" alt="" />
+      <MediaAsset
+        :src="unitData.screenDisplay.video"
+        type="video"
+        class="displayImage"
+        :controls="false"
+        :autoplay="false"
+        :muted="true"
+        :loop="false"
+        :view-play="true"
+        playsinline
+      />
     </div>
   </section>
 </template>

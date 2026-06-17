@@ -15,7 +15,17 @@ const unitData = useUnitData(props, unit1Data)
 
 <template>
   <section class="unit1 mt_nav">
-    <MediaAsset :src="unitData.bg" type="image" class="heroImage" alt="" :lazy="false" />
+    <MediaAsset
+      :src="unitData.banner"
+      type="video"
+      class="heroImage"
+      :controls="false"
+      :autoplay="false"
+      :muted="true"
+      :loop="false"
+      :view-play="true"
+      playsinline
+    />
     <div class="heroContent c_1230 c_padding">
       <h1>{{ unitData.title }}</h1>
       <div class="capacity">{{ unitData.capacity }}</div>
