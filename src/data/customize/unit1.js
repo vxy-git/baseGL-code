@@ -1,5 +1,5 @@
 export const unit1Data = {
-  background: '/assets/customize/unit2-2.mp4',
+  background: '/assets/customize/hero-bg.png',
   eyebrow: 'Stand out by',
   title: 'CALEAF DESIGN',
 }

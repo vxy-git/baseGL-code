@@ -35,6 +35,8 @@ const unitData = useUnitData(props, unit3Data)
 .bgImage {
   position: relative;
   width: 100%;
+  aspect-ratio: 3840 / 1960;
+  object-fit: cover;
 }
 
 .content {

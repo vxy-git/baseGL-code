@@ -19,7 +19,7 @@ const unitData = useUnitData(props, unit1Data)
       <p>{{ unitData.eyebrow }}</p>
       <h1>{{ unitData.title }}</h1>
     </div>
-    <MediaAsset :src="unitData.background" type="image" alt="" class="heroImage" :lazy="false" />
+    <MediaAsset :src="unitData.background" type="video" alt="" class="heroImage" :lazy="false" muted playsinline />
   </section>
 </template>
 
@@ -33,8 +33,11 @@ const unitData = useUnitData(props, unit1Data)
 }
 
 .heroImage {
+  display: block;
   width: 100%;
+  aspect-ratio: 1400 / 920;
   margin-top: 120px;
+  object-fit: cover;
 }
 
 .heroCopy {
