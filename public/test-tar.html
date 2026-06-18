@@ -33,7 +33,7 @@
   <pre id="tar-files"></pre>
   <p>总条目数: <span id="tar-total"></span></p>
   <p>JPG 文件数: <span id="tar-jpg-count"></span></p>
-  <p>匹配 'unicorn_series_1/frame1.jpg' 的条目: <span id="tar-match"></span></p>
+  <p>匹配 'customize/frame1.jpg' 的条目: <span id="tar-match"></span></p>
   <p>匹配 'frame1.jpg' (无目录前缀) 的条目: <span id="tar-match-bare"></span></p>
 </div>
 
@@ -48,7 +48,7 @@
 
 <script>
 // ==================== 全局状态 ====================
-const TAR_URL = 'https://img.cloudcode.ink/api/uploads/file/default/frame/unicorn_series_1.tar';
+const TAR_URL = 'https://img.cloudcode.ink/api/uploads/file/default/frame/customize.tar';
 let tarBuffer = null;
 
 // ==================== 日志工具 ====================
@@ -138,7 +138,7 @@ async function downloadAndParse() {
     // 解析 TAR
     const entries = listTarFiles(tarBuffer);
     const jpgs = entries.filter(e => e.name.endsWith('.jpg'));
-    const match1 = entries.filter(e => e.name.includes('unicorn_series_1/frame1.jpg'));
+    const match1 = entries.filter(e => e.name.includes('customize/frame1.jpg'));
     const matchBare = entries.filter(e => e.name === 'frame1.jpg');
 
     document.getElementById('tar-total').textContent = entries.length;
@@ -157,7 +157,7 @@ async function downloadAndParse() {
     log(`前 5 个 JPG: ${jpgs.slice(0, 5).map(j => j.name).join(', ')}`);
     log(`后 5 个 JPG: ${jpgs.slice(-5).map(j => j.name).join(', ')}`);
     log(`frame1.jpg 精确匹配: ${matchBare.map(j => j.name).join(', ') || 'NONE'}`, matchBare.length > 0 ? 'ok' : 'warn');
-    log(`unicorn_series_1/frame1.jpg 包含匹配: ${match1.map(j => j.name).join(', ') || 'NONE'}`, match1.length > 0 ? 'ok' : 'error');
+    log(`customize/frame1.jpg 包含匹配: ${match1.map(j => j.name).join(', ') || 'NONE'}`, match1.length > 0 ? 'ok' : 'error');
 
     // 检查 frame 编号范围
     const frameNums = jpgs.map(j => {
@@ -218,7 +218,7 @@ async function testFIS() {
       frames: 71,
       src: {
         tarURL: TAR_URL,
-        imageURL: (i) => `unicorn_series_1/frame${i + 1}.jpg`,
+        imageURL: (i) => `customize/frame${i + 1}.jpg`,
       },
       loop: true,
       objectFit: 'contain',
@@ -286,7 +286,7 @@ async function testManual() {
   const tarball = createTarballFromBuffer(tarBuffer);
   tarball.init();
 
-  const testPaths = ['unicorn_series_1/frame1.jpg', 'frame1.jpg', 'unicorn_series_1/frame44.jpg', 'frame44.jpg'];
+  const testPaths = ['customize/frame1.jpg', 'frame1.jpg', 'customize/frame44.jpg', 'frame44.jpg'];
   for (const path of testPaths) {
     const info = tarball.getInfo(path);
     if (info) {
@@ -296,12 +296,12 @@ async function testManual() {
     }
   }
 
-  // 尝试提取 unicorn_series_1/frame1.jpg
-  const info = tarball.getInfo('unicorn_series_1/frame1.jpg');
+  // 尝试提取 customize/frame1.jpg
+  const info = tarball.getInfo('customize/frame1.jpg');
   if (info) {
     log(`尝试提取: "${info.name}"...`);
     try {
-      const blob = tarball.getBlob('unicorn_series_1/frame1.jpg');
+      const blob = tarball.getBlob('customize/frame1.jpg');
       const bitmap = await createImageBitmap(blob);
       log(`提取成功! ${bitmap.width}x${bitmap.height}`, 'ok');
 
@@ -322,7 +322,7 @@ async function testManual() {
       log(`提取失败: ${err.message}`, 'error');
     }
   } else {
-    log('无法提取 unicorn_series_1/frame1.jpg - 文件中不存在', 'error');
+    log('无法提取 customize/frame1.jpg - 文件中不存在', 'error');
   }
 }
 

@@ -9,7 +9,7 @@ export const unit3Data = {
   slides: [
     {
       year: '2014',
-      image: '/assets/why_caleaf/milestones2014.jpg',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2014.jpg',
       content: {
         title: '"Bestgrinder" was founded.',
         description:
@@ -18,7 +18,7 @@ export const unit3Data = {
     },
     {
       year: '2016',
-      image: '/assets/why_caleaf/milestones2016.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2016.png',
       content: {
         title: "Developed the world's first electric grinder.",
         description:
@@ -27,7 +27,7 @@ export const unit3Data = {
     },
     {
       year: '2018',
-      image: '/assets/why_caleaf/milestones2018.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2018.png',
       content: {
         title: 'Solely focused on CBD and THC vaping device.',
         description:
@@ -37,7 +37,7 @@ export const unit3Data = {
     {
       year: '2023',
       active: true,
-      image: '/assets/why_caleaf/milestones2023.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2023.png',
       content: {
         title: 'Ranked among the top three cannabis vape manufacturers.',
         description:
@@ -46,7 +46,7 @@ export const unit3Data = {
     },
     {
       year: '2024',
-      image: '/assets/why_caleaf/milestones2024.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2024.png',
       content: {
         title: 'Opened U.S. headquarters in Los Angeles, California.',
         description:
@@ -55,7 +55,7 @@ export const unit3Data = {
     },
     {
       year: '2025',
-      image: '/assets/why_caleaf/milestones2025.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/milestones2025.png',
       content: {
         title: 'The Indonesia facility has officially commenced production.',
         description:

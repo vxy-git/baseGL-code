@@ -7,27 +7,27 @@ export const unit7Data = {
   services: [
     {
       title: 'LA Facility & Operations Center',
-      image: '/assets/why_caleaf/service-la-facility.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-la-facility.png',
     },
     {
       title: 'U.S. Partner Lab',
-      image: '/assets/why_caleaf/service-us-partner-lab.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-us-partner-lab.png',
     },
     {
       title: 'U.S. Partner Co-Packer',
-      image: '/assets/why_caleaf/service-us-partner-copacker.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-us-partner-copacker.png',
     },
     {
       title: 'US Stock & Local Shipping',
-      image: '/assets/why_caleaf/service-us-stock.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-us-stock.png',
     },
     {
       title: 'Distributor Network Across\nEU and US',
-      image: '/assets/why_caleaf/service-distributor-network.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-distributor-network.png',
     },
     {
       title: '48-Hour On-Site Solution',
-      image: '/assets/why_caleaf/service-48h-solution.png',
+      image: '/api/uploads/file/default/assets/why_caleaf/service-48h-solution.png',
     },
   ],
 }

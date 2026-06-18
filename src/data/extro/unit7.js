@@ -1,6 +1,6 @@
 export const unit7Data = {
   titleText: 'Specifications',
-  specsVideo: '/assets/extro/spec-device.mp4',
+  specsVideo: '/api/uploads/file/default/assets/extro/spec-device.mp4',
   productName: 'UNICORN',
   specs: [
     { label: 'Dimension(mm)', value: '69.8H*38.4W*15.3D' },

@@ -7,17 +7,17 @@ export const unit1Data = {
   date: 'Mar 4, 2026',
   intro: 'This article was originally published by mg Magazine.',
   hero: {
-    src: '/assets/blog-detail/hero.png',
+    src: '/api/uploads/file/default/assets/blog-detail/hero.png',
     alt: 'Top Exhibit Designs from MJBizCon 2024',
   },
   share: {
     label: 'Share this article',
     links: [
-      { name: 'YouTube', icon: '/assets/img/icon-youtube.svg' },
-      { name: 'LinkedIn', icon: '/assets/img/icon-linkedin.svg' },
-      { name: 'Facebook', icon: '/assets/img/icon-facebook.svg' },
-      { name: 'Instagram', icon: '/assets/img/icon-instagram.svg' },
-      { name: 'TikTok', icon: '/assets/img/icon-tiktok.svg' },
+      { name: 'YouTube', icon: '/api/uploads/file/default/assets/img/icon-youtube.svg' },
+      { name: 'LinkedIn', icon: '/api/uploads/file/default/assets/img/icon-linkedin.svg' },
+      { name: 'Facebook', icon: '/api/uploads/file/default/assets/img/icon-facebook.svg' },
+      { name: 'Instagram', icon: '/api/uploads/file/default/assets/img/icon-instagram.svg' },
+      { name: 'TikTok', icon: '/api/uploads/file/default/assets/img/icon-tiktok.svg' },
     ],
   },
   toc: {
@@ -52,7 +52,7 @@ export const unit1Data = {
     },
     {
       type: 'image',
-      src: '/assets/blog-detail/booth-list.png',
+      src: '/api/uploads/file/default/assets/blog-detail/booth-list.png',
       alt: 'Most noteworthy booth designs at MJBizCon 2024',
     },
     {
@@ -70,7 +70,7 @@ export const unit1Data = {
     },
     {
       type: 'image',
-      src: '/assets/blog-detail/athena.png',
+      src: '/api/uploads/file/default/assets/blog-detail/athena.png',
       alt: 'Athena Ag exhibit design',
     },
     {
@@ -88,7 +88,7 @@ export const unit1Data = {
     },
     {
       type: 'image',
-      src: '/assets/blog-detail/blazy-susan.png',
+      src: '/api/uploads/file/default/assets/blog-detail/blazy-susan.png',
       alt: 'Blazy Susan exhibit design',
     },
     {

@@ -18,7 +18,7 @@ export const unit2Data = {
     description:
       'After MJBizCon 2024, one thing was clear: Companies raised the bar with exhibit designs that were both impressive and inspirational. From innovative use of ...',
     date: 'Mar 4, 2026',
-    image: '/assets/blog/card-thumb.png',
+    image: '/api/uploads/file/default/assets/blog/card-thumb.png',
   })),
   pages: [1, 2, 3, 4, 5, 6, 7],
   currentPage: 1,

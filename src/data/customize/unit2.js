@@ -22,19 +22,19 @@ export const unit2Data = {
   },
   slides: [
     {
-      video: '/assets/customize/unit2-1.mp4',
+      video: '/api/uploads/file/default/assets/customize/unit2-1.mp4',
       alt: 'Custom product demo video 1',
     },
     {
-      video: '/assets/customize/unit2-2.mp4',
+      video: '/api/uploads/file/default/assets/customize/unit2-2.mp4',
       alt: 'Custom product demo video 2',
     },
     {
-      video: '/assets/customize/unit2-3.mp4',
+      video: '/api/uploads/file/default/assets/customize/unit2-3.mp4',
       alt: 'Custom product demo video 3',
     },
     {
-      video: '/assets/customize/unit2-4.mp4',
+      video: '/api/uploads/file/default/assets/customize/unit2-4.mp4',
       alt: 'Custom product demo video 4',
     },
   ],

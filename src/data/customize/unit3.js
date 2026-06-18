@@ -1,5 +1,5 @@
 export const unit3Data = {
-  background: '/assets/customize/technology-bg.png',
+  background: '/api/uploads/file/default/assets/customize/technology-bg.png',
   // subTitle: 'CALEAF DESIGN',
   title: 'Winners inside and out.',
   // title: 'Winners inside and out.\nCaleaf Design represents a fully customizable platform from the inside out.',

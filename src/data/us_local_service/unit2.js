@@ -6,19 +6,19 @@ export const unit2Data = {
   list: [
     {
       title: 'Full Pre & After-Sale Support',
-      image: '/assets/us_local_service/service-support.png',
+      image: '/api/uploads/file/default/assets/us_local_service/service-support.png',
     },
     {
       title: 'Formulation and Testing Expert',
-      image: '/assets/us_local_service/service-testing.png',
+      image: '/api/uploads/file/default/assets/us_local_service/service-testing.png',
     },
     {
       title: 'Filling & Packaging',
-      image: '/assets/us_local_service/service-packing.png',
+      image: '/api/uploads/file/default/assets/us_local_service/service-packing.png',
     },
     {
       title: 'US Stock & Local Shipping',
-      image: '/assets/us_local_service/service-shipping.png',
+      image: '/api/uploads/file/default/assets/us_local_service/service-shipping.png',
     },
   ],
 }
