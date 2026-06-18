@@ -17,7 +17,7 @@ const pageTypeComponentMap = {
   unit_pro: () => import('@/views/UnitPro/index.vue'),
   customize: () => import('@/views/Customize/index.vue'),
   dukes: () => import('@/views/Dukes/index.vue'),
-  list: () => import('@/views/ProductList/index.vue'),
+  product_list: () => import('@/views/ProductList/index.vue'),
   page: () => import('@/views/Page/index.vue'),
   why_caleaf: () => import('@/views/WhyCaleaf/index.vue'),
   us_local_service: () => import('@/views/UsLocalService/index.vue'),
@@ -189,10 +189,10 @@ const staticFallbackRoutes = [
   },
   {
     path: '/list',
-    name: 'productlist_default',
+    name: 'product_list_default',
     component: () => import('@/views/ProductList/index.vue'),
-    meta: { pageType: 'list', navLabel: 'Product List' },
-    props: { pageConfig: makePageConfig('/list', 'list') },
+    meta: { pageType: 'product_list', navLabel: 'Product List' },
+    props: { pageConfig: makePageConfig('/list', 'product_list') },
   },
   {
     path: '/why_caleaf',

@@ -6,6 +6,7 @@ import { headerData } from '@/data/common/header'
 defineProps({
   navItems: { type: Array, required: true },
   categories: { type: Array, required: true },
+  headerConfig: { type: Object, default: () => headerData },
   currentLevel: { type: Number, required: true },
   currentMenuItem: { type: Object, default: null },
   expandedCategoryId: { type: [String, Number], default: null },
@@ -31,7 +32,12 @@ const emit = defineEmits([
         <!-- 一级菜单Header -->
         <template v-if="currentLevel === 1">
           <router-link to="/" class="logo" @click="emit('go-home')">
-            <MediaAsset type="image" :src="headerData.logo.active" alt="logo" class="logo-image" />
+            <MediaAsset
+              type="image"
+              :src="headerConfig.logo.active"
+              alt="logo"
+              class="logo-image"
+            />
           </router-link>
           <button class="close-btn active" aria-label="Close" @click="emit('close')">
             <span></span>
@@ -228,7 +234,7 @@ const emit = defineEmits([
       <!-- 底部CTA区域 -->
       <div class="mobile-drawer-footer">
         <button class="cta-btn" @click="emit('go-contact')">
-          {{ headerData.buttonText.contactUs }}
+          {{ headerConfig.buttonText.contact }}
         </button>
         <button class="search-btn" aria-label="Search">
           <svg

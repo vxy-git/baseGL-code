@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import gsap from 'gsap'
-import { productsData } from '@/data/productlist/products'
+import { productsData } from '@/data/product_list/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useCmsNavStore } from '@/stores/cmsNav'

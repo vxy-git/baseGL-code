@@ -1,24 +1,108 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit2Data } from '@/data/blog/unit2'
+import { listData } from '@/data/blog/list'
+import { postsData } from '@/data/blog/posts'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
   data: {
-    type: Object,
+    type: [Object, Array],
     default: null,
   },
 })
 
-const unitData = useUnitData(props, unit2Data)
+const mergedData = useUnitData(props, listData)
+const cmsNavStore = useCmsNavStore()
+const route = useRoute()
+const router = useRouter()
+const unitData = computed(() => {
+  if (Array.isArray(props.data)) {
+    return { ...listData, posts: props.data }
+  }
+  return mergedData.value
+})
 const currentPage = ref(1)
+const cmsCategories = computed(() => cmsNavStore.blogCategories || [])
 
-const pages = computed(() => unitData.value.pages)
+const tabsList = computed(() => {
+  if (cmsCategories.value.length > 0) {
+    return cmsCategories.value.map(cat => cat.label)
+  }
+  if (cmsNavStore.hasData) {
+    return []
+  }
+  return postsData.tabs
+})
+
+const currentCategory = computed(() => {
+  if (route.meta.ID) {
+    return cmsCategories.value.find(cat => cat.id === route.meta.ID)
+  }
+  return cmsCategories.value.find(cat => cat.navUrl === route.path)
+})
+
+const tabsCurrent = computed(() => {
+  if (!cmsCategories.value.length) return -1
+  const index = currentCategory.value
+    ? cmsCategories.value.findIndex(cat => cat.id === currentCategory.value.id)
+    : -1
+  return index === -1 ? 0 : index
+})
+
+const currentUnitData = computed(() => {
+  const category = cmsCategories.value[tabsCurrent.value]
+  const categoryData = category?.moduleList?.unit?.data
+  if (Array.isArray(categoryData)) {
+    return { ...unitData.value, posts: categoryData }
+  }
+  if (Array.isArray(category?.posts)) {
+    return {
+      ...unitData.value,
+      ...(categoryData && typeof categoryData === 'object' ? categoryData : {}),
+      posts: category.posts,
+    }
+  }
+  return categoryData && typeof categoryData === 'object'
+    ? { ...unitData.value, ...categoryData }
+    : unitData.value
+})
+
+const resolvePosts = data => {
+  if (Array.isArray(data.posts)) return data.posts
+  if (Array.isArray(data.blogs)) return data.blogs
+  if (Array.isArray(data.list)) return data.list
+  if (Array.isArray(data.items)) return data.items
+  if (cmsNavStore.hasData) return []
+  return postsData.posts
+}
+
+const posts = computed(() => resolvePosts(currentUnitData.value))
+const pageSize = computed(() => Number(currentUnitData.value.pageSize) || 9)
+const totalPages = computed(() => Math.max(1, Math.ceil(posts.value.length / pageSize.value)))
+const pages = computed(() => Array.from({ length: totalPages.value }, (_, index) => index + 1))
+const currentPosts = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  return posts.value.slice(start, start + pageSize.value)
+})
+
+const handleTabChange = index => {
+  const category = cmsCategories.value[index]
+  if (category?.navUrl) {
+    currentPage.value = 1
+    router.push(category.navUrl)
+  }
+}
 
 const handlePageChange = page => {
   currentPage.value = page
 }
+
+watch(tabsCurrent, () => {
+  currentPage.value = 1
+})
 </script>
 
 <template>
@@ -26,18 +110,32 @@ const handlePageChange = page => {
     <div class="blogHeader">
       <h2>{{ unitData.title }}</h2>
       <nav class="tabList" aria-label="Blog categories">
-        <a v-for="tab in unitData.tabs" :key="tab" href="#" class="tabItem">{{ tab }}</a>
+        <a
+          v-for="(tab, index) in tabsList"
+          :key="tab"
+          href="#"
+          class="tabItem"
+          :class="{ active: index === tabsCurrent }"
+          @click.prevent="handleTabChange(index)"
+        >
+          {{ tab }}
+        </a>
       </nav>
     </div>
 
     <div class="postGrid">
       <router-link
-        v-for="post in unitData.posts"
+        v-for="post in currentPosts"
         :key="post.id"
         class="postCard"
         :to="`/blog/${post.id}`"
       >
-        <MediaAsset class="postImage" type="image" :src="post.image" alt="" />
+        <MediaAsset
+          class="postImage"
+          type="image"
+          :src="post.image || post.cover || post.thumbnail || post.featuredImage"
+          alt=""
+        />
         <div class="postBody">
           <p class="postCategory">{{ post.category }}</p>
           <h3>{{ post.title }}</h3>
@@ -102,6 +200,11 @@ const handlePageChange = page => {
   text-decoration: none;
 }
 
+.tabItem.active {
+  color: #111;
+  font-weight: 600;
+}
+
 .postGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -128,7 +231,7 @@ const handlePageChange = page => {
 
 .postCategory {
   margin: 0 0 15px;
-  color: #1CE785;
+  color: #1ce785;
   font-size: 18px;
   font-weight: 500;
   line-height: 30px;

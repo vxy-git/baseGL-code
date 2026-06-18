@@ -2,7 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
-import { unit1Data } from '@/data/blogDetail/unit1'
+import { unit1Data } from '@/data/blog_detail/unit1'
 
 const props = defineProps({
   data: {

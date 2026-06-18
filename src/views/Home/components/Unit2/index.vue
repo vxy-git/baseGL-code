@@ -2,7 +2,7 @@
 import Tabs from '@/components/Tabs/index.vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ProductItem from '@/components/ProductItem/index.vue'
-import { productsData } from '@/data/productlist/products'
+import { productsData } from '@/data/product_list/products'
 import { unit2Data } from '@/data/home/unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'

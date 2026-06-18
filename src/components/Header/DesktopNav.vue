@@ -217,9 +217,10 @@ watch(activeSubmenu, async val => {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  position: absolute;
+  position: relative;
   transform: translateX(-50%);
   min-width: 120px;
+  width: max-content;
 }
 
 .submenu-fullwidth {
@@ -231,7 +232,6 @@ watch(activeSubmenu, async val => {
   z-index: 99;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  min-height: 131px; /* 保证白色背景可见 */
 }
 
 .submenu-fullwidth .submenu-link {

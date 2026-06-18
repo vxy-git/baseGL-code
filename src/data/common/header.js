@@ -49,6 +49,5 @@ export const headerData = {
    */
   buttonText: {
     contact: 'Contact',
-    contactUs: 'Contact Us',
   },
 }

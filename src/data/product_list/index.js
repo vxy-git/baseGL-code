@@ -7,7 +7,7 @@ import { listData } from './list.js'
 export default {
   // 路由配置
   route: '/list',
-  routeName: 'productlist',
+  routeName: 'product_list',
 
   // 导航配置
   showInHeader: true,
@@ -26,7 +26,7 @@ export default {
 
   // 模块数据集合
   modules: {
-    productlist: {
+    unit: {
       enabled: true,
       data: listData,
     },

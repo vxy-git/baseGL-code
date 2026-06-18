@@ -5,7 +5,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
 import DesktopNav from '@/components/Header/DesktopNav.vue'
 import MobileDrawer from '@/components/Header/MobileDrawer.vue'
 import { headerData } from '@/data/common/header'
-import { productsData } from '@/data/productlist/products'
+import { productsData } from '@/data/product_list/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { useHeaderNav } from '@/composables/useHeaderNav'
 
@@ -21,8 +21,30 @@ const props = defineProps({
 
 const cmsNavStore = useCmsNavStore()
 
+const deepMerge = (target, source) => {
+  if (!source || typeof source !== 'object') return target
+  const result = { ...target }
+  for (const key of Object.keys(source)) {
+    if (
+      source[key] &&
+      typeof source[key] === 'object' &&
+      !Array.isArray(source[key]) &&
+      target[key] &&
+      typeof target[key] === 'object' &&
+      !Array.isArray(target[key])
+    ) {
+      result[key] = deepMerge(target[key], source[key])
+    } else {
+      result[key] = source[key]
+    }
+  }
+  return result
+}
+
+const commonHeaderData = computed(() => deepMerge(headerData, cmsNavStore.commonHeaderData))
+
 const navItems = computed(() =>
-  cmsNavStore.headerNavs.length > 0 ? cmsNavStore.headerNavs : headerData.navItems
+  cmsNavStore.headerNavs.length > 0 ? cmsNavStore.headerNavs : commonHeaderData.value.navItems
 )
 
 const categories = computed(() => {
@@ -89,14 +111,14 @@ const {
             <MediaAsset
               v-show="currentHeaderClass === 'opacity'"
               type="image"
-              :src="headerData.logo.default"
+              :src="commonHeaderData.logo.default"
               alt="logo"
               class="logo-image"
             />
             <MediaAsset
               v-show="currentHeaderClass === 'white'"
               type="image"
-              :src="headerData.logo.active"
+              :src="commonHeaderData.logo.active"
               alt="logo"
               class="logo-image"
             />
@@ -117,19 +139,19 @@ const {
         <div class="nav-right">
           <!-- 桌面端右侧按钮 -->
           <button v-if="!isMobile" class="contact-button" @click="goContact">
-            {{ headerData.buttonText.contact }}
+            {{ commonHeaderData.buttonText.contact }}
           </button>
           <button v-if="!isMobile" class="icon-button" aria-label="Search">
             <MediaAsset
               v-show="currentHeaderClass === 'opacity'"
               type="image"
-              :src="headerData.search.default"
+              :src="commonHeaderData.search.default"
               alt=""
             />
             <MediaAsset
               v-show="currentHeaderClass === 'white'"
               type="image"
-              :src="headerData.search.active"
+              :src="commonHeaderData.search.active"
               alt=""
             />
           </button>
@@ -165,6 +187,7 @@ const {
     v-if="isMobile && isMobileMenuOpen"
     :nav-items="navItems"
     :categories="categories"
+    :header-config="commonHeaderData"
     :current-level="currentLevel"
     :current-menu-item="currentMenuItem"
     :expanded-category-id="expandedCategoryId"

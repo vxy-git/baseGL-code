@@ -23,43 +23,43 @@
           </div>
           <!-- Subscribe Column -->
           <div class="footer-column subscribe-column">
-            <h4 class="footer-heading">{{ footerData.subscribe.title }}</h4>
-            <p class="subscribe-text">{{ footerData.subscribe.description }}</p>
+            <h4 class="footer-heading">{{ commonFooterData.subscribe.title }}</h4>
+            <p class="subscribe-text">{{ commonFooterData.subscribe.description }}</p>
             <form class="subscribe-form" @submit.prevent="handleSubscribe">
               <input
                 id="subscribe-email"
                 v-model="email"
                 type="email"
                 name="email"
-                :placeholder="footerData.subscribe.inputPlaceholder"
+                :placeholder="commonFooterData.subscribe.inputPlaceholder"
                 autocomplete="email"
                 class="email-input"
               />
               <button type="submit" class="signup-btn">
-                {{ footerData.subscribe.buttonText }}
+                {{ commonFooterData.subscribe.buttonText }}
               </button>
             </form>
             <p v-if="subscribeError" class="subscribe-error">{{ subscribeError }}</p>
             <label class="consent-label">
               <input v-model="agreeToPrivacy" type="checkbox" />
               <span>
-                {{ footerData.subscribe.privacyText }}
+                {{ commonFooterData.subscribe.privacyText }}
                 <button type="button" class="privacy-link-btn">
-                  {{ footerData.subscribe.privacyLinkText }}
+                  {{ commonFooterData.subscribe.privacyLinkText }}
                 </button>
-                {{ footerData.subscribe.privacySuffix }}
+                {{ commonFooterData.subscribe.privacySuffix }}
               </span>
             </label>
 
             <div class="social-links mt-[20px]">
-              <h4 class="footer-heading">{{ footerData.social.title }}</h4>
+              <h4 class="footer-heading">{{ commonFooterData.social.title }}</h4>
               <a
-                v-for="(social, index) in footerData.social.links"
+                v-for="(social, index) in commonFooterData.social.links"
                 :key="index"
                 :href="social.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                :aria-label="social.ariaLabel"
+                :aria-label="social.title"
                 class="social-link"
               >
                 <svg
@@ -92,8 +92,8 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-          <p class="copyright">{{ footerData.bottom.copyright }}</p>
-          <p class="designer">{{ footerData.bottom.designer }}</p>
+          <p class="copyright">{{ commonFooterData.bottom.copyright }}</p>
+          <p class="designer">{{ commonFooterData.bottom.designer }}</p>
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { footerData } from '@/data/common/footer'
-import { productsData } from '@/data/productlist/products'
+import { productsData } from '@/data/product_list/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
 
@@ -115,6 +115,28 @@ defineProps({
 
 // ========== 使用 Pinia Store 获取导航数据 ==========
 const cmsNavStore = useCmsNavStore()
+
+const deepMerge = (target, source) => {
+  if (!source || typeof source !== 'object') return target
+  const result = { ...target }
+  for (const key of Object.keys(source)) {
+    if (
+      source[key] &&
+      typeof source[key] === 'object' &&
+      !Array.isArray(source[key]) &&
+      target[key] &&
+      typeof target[key] === 'object' &&
+      !Array.isArray(target[key])
+    ) {
+      result[key] = deepMerge(target[key], source[key])
+    } else {
+      result[key] = source[key]
+    }
+  }
+  return result
+}
+
+const commonFooterData = computed(() => deepMerge(footerData, cmsNavStore.commonFooterData))
 
 /**
  * 获取产品分类链接数据
@@ -143,7 +165,7 @@ const footerColumns = computed(() => {
   const columns =
     cmsNavStore.footerColumns && cmsNavStore.footerColumns.length > 0
       ? cmsNavStore.footerColumns
-      : footerData.columns
+      : commonFooterData.value.columns
 
   // 为 Products 列添加产品分类数据
   return columns.map(column => {

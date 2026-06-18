@@ -56,7 +56,6 @@ export const footerData = {
       {
         name: 'Instagram',
         href: 'https://www.instagram.com/caleaftechofficial/',
-        ariaLabel: 'Instagram',
       },
     ],
   },

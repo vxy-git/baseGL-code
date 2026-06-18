@@ -2,8 +2,7 @@
  * Blog 页面 CMS 数据配置
  */
 
-import { unit1Data } from './unit1.js'
-import { unit2Data } from './unit2.js'
+import { listData } from './list.js'
 
 export default {
   route: '/blog',
@@ -22,13 +21,9 @@ export default {
   },
 
   modules: {
-    unit1: {
+    unit: {
       enabled: true,
-      data: unit1Data,
-    },
-    unit2: {
-      enabled: true,
-      data: unit2Data,
+      data: listData,
     },
   },
 }

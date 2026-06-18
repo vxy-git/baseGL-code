@@ -53,8 +53,8 @@ import Footer from '@/components/Footer/Footer.vue'
 import Header from '@/components/Header/index.vue'
 import Tabs from '@/components/Tabs/index.vue'
 import ProductItem from '@/components/ProductItem/index.vue'
-import { productsData } from '@/data/productlist/products'
-import { listData } from '@/data/productlist/list'
+import { productsData } from '@/data/product_list/products'
+import { listData } from '@/data/product_list/list'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
 
@@ -68,7 +68,7 @@ const cmsNavStore = useCmsNavStore()
 
 // 页码容量：CMS 优先 → 静态降级，兜底 8
 const pageSize = computed(() => {
-  const cms = props.pageConfig?.moduleList?.productlist?.data?.pageSize
+  const cms = props.pageConfig?.moduleList?.unit?.data?.pageSize
   const num = Number(cms)
   if (!isNaN(num) && num > 0) return num
   return Number(listData.pageSize) || 8

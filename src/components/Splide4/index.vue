@@ -1,7 +1,7 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { productsData } from '@/data/productlist/products'
+import { productsData } from '@/data/product_list/products'
 import ProductItem from '@/components/ProductItem/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useCmsNavStore } from '@/stores/cmsNav'

@@ -19,14 +19,19 @@ const componentMap = {
 
 const defaultOrder = ['unit1', 'unit2']
 
-const { renderList } = useRenderList(props, componentMap, defaultOrder)
+const { renderList } = useRenderList(props, componentMap, defaultOrder, () => 'unit')
 </script>
 
 <template>
   <div class="blogPage">
     <Header header-class="white" show-line />
     <main class="blogMain">
-      <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
+      <component
+        :is="item.component"
+        v-for="item in renderList"
+        :key="item.key"
+        :data="item.data"
+      />
     </main>
     <Footer />
   </div>
@@ -44,5 +49,6 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
 
 .blogMain {
   width: 100%;
+  padding-top: 150px;
 }
 </style>

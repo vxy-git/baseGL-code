@@ -284,6 +284,67 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     })
   })
 
+  // Blog 分类数据（供 Blog 页面 tabs 使用）
+  const blogCategories = computed(() => {
+    if (!navList.value.length) return []
+
+    const blogNav = navList.value.find(n => n.navName === 'Blog' && isEnabled(n))
+
+    if (!blogNav) return []
+
+    const childrenMap = new Map()
+    for (const nav of navList.value) {
+      if (!isEnabled(nav)) continue
+      const pid = nav.parentId
+      if (!childrenMap.has(pid)) childrenMap.set(pid, [])
+      childrenMap.get(pid).push(nav)
+    }
+
+    const categories = childrenMap.get(blogNav.ID) || []
+
+    return categories.map(nav => {
+      const posts = (childrenMap.get(nav.ID) || []).map(post => {
+        const itemData = post.moduleList?.item?.data || post.moduleList?.unit?.data || {}
+        return {
+          id: post.ID,
+          category: nav.navName,
+          title: itemData.title || post.navName,
+          description: itemData.description || itemData.desc || '',
+          date: itemData.date || itemData.publishDate || '',
+          image: itemData.image || itemData.cover || itemData.thumbnail || '',
+          featuredImage: itemData.featuredImage || itemData.image || itemData.cover || '',
+          alt: itemData.alt || itemData.title || post.navName,
+          isTop: itemData.isTop || itemData.isPinned || itemData.pinned || itemData.top || false,
+          navUrl: post.navUrl,
+          moduleList: post.moduleList,
+        }
+      })
+
+      return {
+        id: nav.ID,
+        label: nav.navName,
+        navUrl: nav.navUrl,
+        moduleList: nav.moduleList,
+        posts,
+      }
+    })
+  })
+
+  const commonModules = computed(() => {
+    const commonNav = navList.value.find(n => n.pageType === 'common' && isEnabled(n))
+    return commonNav?.moduleList || {}
+  })
+
+  const commonHeaderData = computed(() => {
+    const module = commonModules.value.headerData
+    return module && module.enabled !== false ? module.data || null : null
+  })
+
+  const commonFooterData = computed(() => {
+    const module = commonModules.value.footerData
+    return module && module.enabled !== false ? module.data || null : null
+  })
+
   const hasData = computed(() => isLoaded.value && navList.value.length > 0)
 
   return {
@@ -309,6 +370,9 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     footerColumns,
     bannerNavs,
     productCategories,
+    blogCategories,
+    commonHeaderData,
+    commonFooterData,
     hasData,
   }
 })

@@ -1,23 +1,92 @@
 <script setup>
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import FeaturedCarousel from '@/components/FeaturedCarousel/index.vue'
-import { unit1Data } from '@/data/blog/unit1'
+import { listData } from '@/data/blog/list'
+import { postsData } from '@/data/blog/posts'
 import { useUnitData } from '@/composables/useUnitData'
+import { useCmsNavStore } from '@/stores/cmsNav'
 
 const props = defineProps({
-  data: { type: Object, default: null },
+  data: { type: [Object, Array], default: null },
 })
 
-const unitData = useUnitData(props, unit1Data)
-const list = computed(() => unitData.value.slides)
+const defaultArrowIcon = '/api/uploads/file/default/assets/img/icon4_active.png'
+const route = useRoute()
+const cmsNavStore = useCmsNavStore()
+const mergedData = useUnitData(props, listData)
+const unitData = computed(() => {
+  if (Array.isArray(props.data)) {
+    return { ...listData, posts: props.data }
+  }
+  return mergedData.value
+})
+const cmsCategories = computed(() => cmsNavStore.blogCategories || [])
+
+const currentCategory = computed(() => {
+  if (route.meta.ID) {
+    return cmsCategories.value.find(cat => cat.id === route.meta.ID)
+  }
+  return cmsCategories.value.find(cat => cat.navUrl === route.path)
+})
+
+const tabsCurrent = computed(() => {
+  if (!cmsCategories.value.length) return -1
+  const index = currentCategory.value
+    ? cmsCategories.value.findIndex(cat => cat.id === currentCategory.value.id)
+    : -1
+  return index === -1 ? 0 : index
+})
+
+const currentUnitData = computed(() => {
+  const category = cmsCategories.value[tabsCurrent.value]
+  const categoryData = category?.moduleList?.unit?.data
+  if (Array.isArray(categoryData)) {
+    return { ...unitData.value, posts: categoryData }
+  }
+  if (Array.isArray(category?.posts)) {
+    return {
+      ...unitData.value,
+      ...(categoryData && typeof categoryData === 'object' ? categoryData : {}),
+      posts: category.posts,
+    }
+  }
+  return categoryData && typeof categoryData === 'object'
+    ? { ...unitData.value, ...categoryData }
+    : unitData.value
+})
+
+const isPinnedPost = post => post?.isTop || post?.isPinned || post?.pinned || post?.top
+const resolvePosts = data => {
+  if (Array.isArray(data.posts)) return data.posts
+  if (Array.isArray(data.blogs)) return data.blogs
+  if (Array.isArray(data.list)) return data.list
+  if (Array.isArray(data.items)) return data.items
+  if (cmsNavStore.hasData) return []
+  return postsData.posts
+}
+
+const list = computed(() =>
+  resolvePosts(currentUnitData.value)
+    .filter(isPinnedPost)
+    .map(post => ({
+      ...post,
+      type: post.type || 'image',
+      src: post.featuredImage || post.src || post.image || post.cover || post.thumbnail,
+      alt: post.alt || post.title,
+    }))
+)
+
+const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
 </script>
 
 <template>
   <FeaturedCarousel
+    v-if="list.length"
     :items="list"
-    :arrow-icon="unitData.arrowIcon"
-    :start-index="1"
-    container-class="pt-[110px] bg-white"
+    :arrow-icon="defaultArrowIcon"
+    :start-index="startIndex"
+    container-class="bg-white"
   >
     <template #slide-content="{ item }">
       <div class="textOverlay">
