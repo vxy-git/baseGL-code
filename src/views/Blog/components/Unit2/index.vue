@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit2Data } from '@/data/blog/unit2'
 
@@ -36,7 +37,7 @@ const handlePageChange = page => {
         class="postCard"
         :to="`/blog/${post.id}`"
       >
-        <img class="postImage" :src="post.image" alt="" />
+        <MediaAsset class="postImage" type="image" :src="post.image" alt="" />
         <div class="postBody">
           <p class="postCategory">{{ post.category }}</p>
           <h3>{{ post.title }}</h3>

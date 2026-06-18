@@ -4,6 +4,7 @@ import { unit3Data } from './unit3.js'
 import { unit4Data } from './unit4.js'
 import { unit5Data } from './unit5.js'
 import { unit6Data } from './unit6.js'
+import { unit7Data } from './unit7.js'
 
 export default {
   route: '/customize',
@@ -41,6 +42,10 @@ export default {
     unit6: {
       enabled: true,
       data: unit6Data,
+    },
+    unit7: {
+      enabled: true,
+      data: unit7Data,
     },
   },
 }

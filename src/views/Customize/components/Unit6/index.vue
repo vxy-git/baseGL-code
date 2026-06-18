@@ -1,7 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import ContactFormCard from '@/components/ContactFormCard/index.vue'
-import ConnectSocial from '@/components/ConnectSocial/index.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit6Data } from '@/data/customize/unit6'
 import { data as contactData } from '@/data/contactus/data'
@@ -27,11 +26,6 @@ const unitData = useUnitData(props, unit6Data)
         :form-data="contactData"
       />
     </div>
-    <ConnectSocial
-      :title="unitData.socialTitle"
-      :instagram-icon="unitData.instagramIcon"
-      :instagram-link="unitData.instagramLink"
-    />
   </section>
 </template>
 

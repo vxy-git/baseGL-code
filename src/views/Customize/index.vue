@@ -8,6 +8,7 @@ import Unit3 from './components/Unit3/index.vue'
 import Unit4 from './components/Unit4/index.vue'
 import Unit5 from './components/Unit5/index.vue'
 import Unit6 from './components/Unit6/index.vue'
+import Unit7 from './components/Unit7/index.vue'
 
 const props = defineProps({
   pageConfig: {
@@ -23,9 +24,10 @@ const componentMap = {
   unit4: Unit4,
   unit5: Unit5,
   unit6: Unit6,
+  unit7: Unit7,
 }
 
-const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6']
+const defaultOrder = ['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6', 'unit7']
 
 const { renderList } = useRenderList(props, componentMap, defaultOrder)
 </script>

@@ -108,12 +108,12 @@ onBeforeUnmount(() => {
       />
       <div class="howSteps c_1300 c_padding">
         <span
-          v-for="(item, index) in unitData.steps"
-          :key="item"
+          v-for="(item, index) in unitData.mediaList"
+          :key="item.label || item.src"
           :class="{ active: activeIndex === index }"
           @mouseenter="handleStepEnter(index)"
         >
-          {{ item }}
+          {{ item.label }}
         </span>
       </div>
     </div>
