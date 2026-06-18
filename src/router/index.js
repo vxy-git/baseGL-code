@@ -22,7 +22,7 @@ const pageTypeComponentMap = {
   why_caleaf: () => import('@/views/WhyCaleaf/index.vue'),
   us_local_service: () => import('@/views/UsLocalService/index.vue'),
   blog: () => import('@/views/Blog/index.vue'),
-  blogDetail: () => import('@/views/BlogDetail/index.vue'),
+  blog_detail: () => import('@/views/BlogDetail/index.vue'),
   extro: () => import('@/views/Extro/index.vue'),
 }
 
@@ -219,8 +219,8 @@ const staticFallbackRoutes = [
     path: '/blog/:id',
     name: 'blog_detail',
     component: () => import('@/views/BlogDetail/index.vue'),
-    meta: { pageType: 'blogDetail', navLabel: 'Blog Detail' },
-    props: { pageConfig: makePageConfig('/blog/:id', 'blogDetail') },
+    meta: { pageType: 'blog_detail', navLabel: 'Blog Detail' },
+    props: { pageConfig: makePageConfig('/blog/:id', 'blog_detail') },
   },
   {
     path: '/extro',
