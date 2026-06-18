@@ -1,4 +1,6 @@
 <script setup>
+import MediaAsset from '@/components/MediaAsset.vue'
+
 defineProps({
   title: {
     type: String,
@@ -25,7 +27,7 @@ defineProps({
       rel="noreferrer"
       aria-label="Instagram"
     >
-      <img :src="instagramIcon" alt="Instagram" />
+      <MediaAsset class="connectIconImage" type="image" :src="instagramIcon" alt="Instagram" />
     </a>
   </section>
 </template>
@@ -59,9 +61,10 @@ defineProps({
   opacity: 0.7;
 }
 
-.connectIcon img {
+.connectIconImage {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: $breakpoint-tablet) {
