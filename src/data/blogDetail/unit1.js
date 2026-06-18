@@ -20,6 +20,11 @@ export const unit1Data = {
       { name: 'TikTok', icon: '/api/uploads/file/default/assets/img/icon-tiktok.svg' },
     ],
   },
+  pager: {
+    labels: ['Previous', 'Next'],
+    title: 'Top Exhibit Designs from MJBizCon 2024',
+    description: 'This article was originally published by mg Magazine',
+  },
   toc: {
     title: 'In this article',
     items: [

@@ -15,16 +15,6 @@ const unitData = useUnitData(props, unit2Data)
 
 <template>
   <section class="unit2 c_1300 c_padding">
-    <div class="pagerRow">
-      <div class="pagerLabels">
-        <span v-for="label in unitData.pager.labels" :key="label">{{ label }}</span>
-      </div>
-      <div class="pagerCopy">
-        <h2>{{ unitData.pager.title }}</h2>
-        <p>{{ unitData.pager.description }}</p>
-      </div>
-    </div>
-
     <div class="relatedHeader">
       <h2>{{ unitData.title }}</h2>
       <router-link :to="unitData.viewAllPath">{{ unitData.viewAllText }}</router-link>
@@ -55,40 +45,10 @@ const unitData = useUnitData(props, unit2Data)
   padding-bottom: 120px;
 }
 
-.pagerRow {
-  display: grid;
-  grid-template-columns: 62px minmax(0, 375px);
-  gap: 47px;
-  align-items: start;
-}
-
-.pagerLabels {
-  display: flex;
-  flex-direction: column;
-
-  span {
-    color: #111;
-    font-size: 16px;
-    line-height: 36px;
-  }
-}
-
-.pagerCopy {
-  h2,
-  p {
-    margin: 0;
-    color: #111;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 36px;
-  }
-}
-
 .relatedHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 94px;
 
   h2 {
     margin: 0;
@@ -168,19 +128,7 @@ const unitData = useUnitData(props, unit2Data)
     padding-bottom: 72px;
   }
 
-  .pagerRow {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .pagerLabels {
-    flex-direction: row;
-    gap: 24px;
-  }
-
   .relatedHeader {
-    margin-top: 58px;
-
     h2 {
       font-size: 32px;
       line-height: 40px;

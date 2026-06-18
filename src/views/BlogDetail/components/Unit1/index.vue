@@ -170,6 +170,16 @@ onBeforeUnmount(() => {
             <p>{{ unitData.author.description }}</p>
           </div>
         </section>
+
+        <section v-if="unitData.pager" class="pagerRow">
+          <div class="pagerLabels">
+            <span v-for="label in unitData.pager.labels" :key="label">{{ label }}</span>
+          </div>
+          <div class="pagerCopy">
+            <h2>{{ unitData.pager.title }}</h2>
+            <p>{{ unitData.pager.description }}</p>
+          </div>
+        </section>
       </main>
 
       <div class="articleNavControl">
@@ -412,6 +422,36 @@ onBeforeUnmount(() => {
   font-weight: 700;
 }
 
+.pagerRow {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 375px);
+  gap: 47px;
+  align-items: start;
+  margin-top: 86px;
+}
+
+.pagerLabels {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    color: #111;
+    font-size: 16px;
+    line-height: 36px;
+  }
+}
+
+.pagerCopy {
+  h2,
+  p {
+    margin: 0;
+    color: #111;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 36px;
+  }
+}
+
 .articleAside {
   grid-column: 2;
   z-index: 20;
@@ -600,6 +640,17 @@ onBeforeUnmount(() => {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 28px 24px;
+  }
+
+  .pagerRow {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 58px;
+  }
+
+  .pagerLabels {
+    flex-direction: row;
+    gap: 24px;
   }
 
   .articleAside {
