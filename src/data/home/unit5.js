@@ -1,3 +1,5 @@
+import { buildBlogDetailPath } from '@/utils/blogRoute'
+
 /**
  * Home Unit5 新闻轮播数据配置
  * @typedef {Object} NewsItem
@@ -47,11 +49,13 @@ export const unit5Data = {
       type: 'image',
       img: '/api/uploads/file/default/assets/home/new/1.jpg',
       title: 'titlemg Magazine Names CALEAF TECH Among Top Exhibit Designs at MJBizCon 2024',
+      link: buildBlogDetailPath('tips', 32),
     },
     {
       type: 'image',
       img: '/api/uploads/file/default/assets/home/new/2.jpg',
       title: 'CALEAF TECH Unveils UNICORE: The Gold Standard for Resin/Rosin Oils at MJBIZCON 2025',
+      link: buildBlogDetailPath('tips', 33),
     },
     // 备用新闻项(可根据需要取消注释)
     // { type: 'image', img: '/api/uploads/file/default/assets/home/new/3.jpg', title: '' },

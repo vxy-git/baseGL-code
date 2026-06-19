@@ -56,8 +56,8 @@ const currentUnitData = computed(() => {
     : unitData.value
 })
 
-const isPinnedPost = post => post?.isTop || post?.isPinned || post?.pinned || post?.top
 const resolvePosts = data => {
+  if (Array.isArray(data.newsList)) return data.newsList
   if (Array.isArray(data.posts)) return data.posts
   if (Array.isArray(data.blogs)) return data.blogs
   if (Array.isArray(data.list)) return data.list
@@ -67,12 +67,10 @@ const resolvePosts = data => {
 }
 
 const list = computed(() =>
-  resolvePosts(currentUnitData.value)
-    .filter(isPinnedPost)
-    .map(post => ({
+  resolvePosts(currentUnitData.value).map(post => ({
       ...post,
       type: post.type || 'image',
-      src: post.featuredImage || post.src || post.image || post.cover || post.thumbnail,
+      src: post.logo || post.featuredImage || post.src || post.image || post.cover || post.thumbnail,
       alt: post.alt || post.title,
     }))
 )
@@ -89,7 +87,11 @@ const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
     container-class="bg-white"
   >
     <template #slide-content="{ item }">
-      <div class="textOverlay">
+      <router-link v-if="item.link" class="textOverlay" :to="item.link">
+        <p class="featuredDate">{{ item.date }}</p>
+        <h1 class="featuredTitle">{{ item.title }}</h1>
+      </router-link>
+      <div v-else class="textOverlay">
         <p class="featuredDate">{{ item.date }}</p>
         <h1 class="featuredTitle">{{ item.title }}</h1>
       </div>
@@ -99,6 +101,7 @@ const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
 
 <style scoped lang="scss">
 .textOverlay {
+  display: block;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -109,6 +112,7 @@ const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
   border-radius: 0 0 20px 20px;
   background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 72%) 100%);
   color: #fff;
+  text-decoration: none;
 }
 
 .featuredDate {

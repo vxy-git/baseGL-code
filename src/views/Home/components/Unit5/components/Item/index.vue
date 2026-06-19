@@ -10,7 +10,21 @@ defineProps({
 </script>
 
 <template>
-  <div class="item rounded-[20px] flex-shrink-0 overflow-hidden relative">
+  <router-link v-if="data.link" :to="data.link" class="item rounded-[20px] flex-shrink-0 overflow-hidden relative">
+    <MediaAsset
+      class="w-full h-full object-cover"
+      :type="data.type || 'image'"
+      :src="data.img"
+      :alt="data.alt || ''"
+      :lazy="false"
+    />
+    <div class="titleBox">
+      <div class="title">
+        {{ data.title }}
+      </div>
+    </div>
+  </router-link>
+  <div v-else class="item rounded-[20px] flex-shrink-0 overflow-hidden relative">
     <MediaAsset
       class="w-full h-full object-cover"
       :type="data.type || 'image'"
@@ -28,9 +42,12 @@ defineProps({
 
 <style scoped lang="scss">
 .item {
+  display: block;
   height: 480px;
   width: 860px;
   max-width: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 .titleBox {

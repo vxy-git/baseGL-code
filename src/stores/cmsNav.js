@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
+import { getBlogTagFromCategory, matchRoutePattern } from '@/utils/blogRoute'
 import {
   isEnabled,
   isTopLevel,
@@ -122,7 +123,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     }
 
     const normalizedPath = route.startsWith('/') ? route : `/${route}`
-    const nav = navList.value.find(n => n.navUrl === normalizedPath)
+    const nav = navList.value.find(n => matchRoutePattern(n.navUrl, normalizedPath))
 
     if (!nav) {
       logger.warn(`⚠️ 未找到路由='${normalizedPath}' 的导航项`)
@@ -303,19 +304,27 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     const categories = childrenMap.get(blogNav.ID) || []
 
     return categories.map(nav => {
+      const categorySlug = getBlogTagFromCategory({
+        navUrl: nav.navUrl,
+        label: nav.navName,
+        navName: nav.navName,
+      })
       const posts = (childrenMap.get(nav.ID) || []).map(post => {
         const itemData = post.moduleList?.item?.data || post.moduleList?.unit?.data || {}
         return {
           id: post.ID,
           category: nav.navName,
-          title: itemData.title || post.navName,
+          categorySlug,
+          sort: Number(post.sort) || 0,
+          title: itemData.coverTitle || itemData.title || post.navName,
           description: itemData.description || itemData.desc || '',
-          date: itemData.date || itemData.publishDate || '',
-          image: itemData.image || itemData.cover || itemData.thumbnail || '',
-          featuredImage: itemData.featuredImage || itemData.image || itemData.cover || '',
-          alt: itemData.alt || itemData.title || post.navName,
+          date: itemData.coverDate || itemData.date || itemData.publishDate || '',
+          image: itemData.coverImage || itemData.image || itemData.cover || itemData.thumbnail || '',
+          featuredImage: itemData.featuredImage || itemData.coverImage || itemData.image || itemData.cover || '',
+          alt: itemData.alt || itemData.coverTitle || itemData.title || post.navName,
           isTop: itemData.isTop || itemData.isPinned || itemData.pinned || itemData.top || false,
           navUrl: post.navUrl,
+          createdAt: post.CreatedAt,
           moduleList: post.moduleList,
         }
       })
@@ -342,6 +351,11 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   const commonFooterData = computed(() => {
     const module = commonModules.value.footerData
+    return module && module.enabled !== false ? module.data || null : null
+  })
+
+  const commonShareData = computed(() => {
+    const module = commonModules.value.shareData
     return module && module.enabled !== false ? module.data || null : null
   })
 
@@ -373,6 +387,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     blogCategories,
     commonHeaderData,
     commonFooterData,
+    commonShareData,
     hasData,
   }
 })

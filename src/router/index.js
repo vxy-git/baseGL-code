@@ -216,11 +216,11 @@ const staticFallbackRoutes = [
     props: { pageConfig: makePageConfig('/blog', 'blog') },
   },
   {
-    path: '/blog/:id',
+    path: '/blog/:tag/:id',
     name: 'blog_detail',
     component: () => import('@/views/BlogDetail/index.vue'),
     meta: { pageType: 'blog_detail', navLabel: 'Blog Detail' },
-    props: { pageConfig: makePageConfig('/blog/:id', 'blog_detail') },
+    props: { pageConfig: makePageConfig('/blog/:tag/:id', 'blog_detail') },
   },
   {
     path: '/extro',

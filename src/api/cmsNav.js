@@ -14,6 +14,7 @@ import {
   formatNavItem,
   resolveNavLink,
 } from '@/utils/navFilter'
+import { matchRoutePattern } from '@/utils/blogRoute'
 
 // 模块级缓存：防止同一页面生命周期内重复请求 CMS API
 let _cachedResult = null
@@ -327,7 +328,7 @@ export async function getPageByLinkType(linkType) {
 export async function getPageByRoute(routePath) {
   const pageRoutes = await getAllPageRoutes()
   const normalizedPath = routePath.startsWith('/') ? routePath : `/${routePath}`
-  const page = pageRoutes.find(p => p.route === normalizedPath)
+  const page = pageRoutes.find(p => matchRoutePattern(p.route, normalizedPath))
 
   if (page) {
     logger.log('✅ 找到页面配置:', normalizedPath, '→', page.routeName)

@@ -1,3 +1,4 @@
+import { itemData } from './item.js'
 import { unit1Data } from './unit1.js'
 import { unit2Data } from './unit2.js'
 import { unit3Data } from './unit3.js'
@@ -19,6 +20,7 @@ export default {
     description: 'EXTRO 2mL, 3mL and 4mL device with proven stability and custom design options.',
   },
   modules: {
+    item: { enabled: true, data: itemData },
     unit1: { enabled: true, data: unit1Data },
     unit2: { enabled: true, data: unit2Data },
     unit3: { enabled: true, data: unit3Data },

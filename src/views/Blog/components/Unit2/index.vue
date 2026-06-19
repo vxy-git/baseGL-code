@@ -6,6 +6,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import { listData } from '@/data/blog/list'
 import { postsData } from '@/data/blog/posts'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { buildBlogDetailPathFromCategory } from '@/utils/blogRoute'
 
 const props = defineProps({
   data: {
@@ -88,6 +89,13 @@ const currentPosts = computed(() => {
   return posts.value.slice(start, start + pageSize.value)
 })
 
+const resolvePostPath = post => {
+  if (post.link) return post.link
+  if (post.navUrl) return post.navUrl
+  const category = currentCategory.value || { slug: post.categorySlug }
+  return buildBlogDetailPathFromCategory(category, post.id)
+}
+
 const handleTabChange = index => {
   const category = cmsCategories.value[index]
   if (category?.navUrl) {
@@ -128,7 +136,7 @@ watch(tabsCurrent, () => {
         v-for="post in currentPosts"
         :key="post.id"
         class="postCard"
-        :to="`/blog/${post.id}`"
+        :to="resolvePostPath(post)"
       >
         <MediaAsset
           class="postImage"

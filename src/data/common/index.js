@@ -5,6 +5,7 @@
 
 import { headerData } from './header.js'
 import { footerData } from './footer.js'
+import { shareData } from './share.js'
 
 export default {
   // 模块数据集合
@@ -16,6 +17,10 @@ export default {
     footerData: {
       enabled: true,
       data: footerData,
+    },
+    shareData: {
+      enabled: true,
+      data: shareData,
     },
   },
 }

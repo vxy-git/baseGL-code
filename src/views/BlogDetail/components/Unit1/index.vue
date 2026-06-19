@@ -1,8 +1,14 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit1Data } from '@/data/blog_detail/unit1'
+import { shareData } from '@/data/common/share'
+import { useCmsNavStore } from '@/stores/cmsNav'
+import { buildBlogDetailPathFromCategory } from '@/utils/blogRoute'
+import { normalizePath } from '@/utils/blogRoute'
+import { logger } from '@/utils/logger'
 
 const props = defineProps({
   data: {
@@ -11,11 +17,15 @@ const props = defineProps({
   },
 })
 
-const unitData = useUnitData(props, unit1Data)
+const route = useRoute()
+const cmsNavStore = useCmsNavStore()
+const cmsUnitData = computed(() => currentPost.value?.moduleList?.unit1?.data || null)
+const resolvedUnitData = useUnitData(props, unit1Data, { cmsData: cmsUnitData })
 const articleGridRef = ref(null)
 const articleAsideRef = ref(null)
 const isCompactAside = ref(false)
 const isAsideOpen = ref(false)
+const activeTocTarget = ref('')
 
 const COMPACT_ASIDE_WIDTH = 1360
 
@@ -52,6 +62,199 @@ const navStyle = computed(() => {
     right: `${asideState.navRight}px`,
   }
 })
+
+const currentPostId = computed(() => {
+  const routeId = Number(route.params.id)
+  if (!Number.isNaN(routeId) && routeId > 0) return routeId
+  const metaId = Number(route.meta.ID)
+  return !Number.isNaN(metaId) && metaId > 0 ? metaId : null
+})
+
+const currentTag = computed(() => String(route.params.tag || '').trim())
+
+const currentCategory = computed(() =>
+  (cmsNavStore.blogCategories || []).find(category =>
+    category.slug === currentTag.value || category.posts?.some(post => post.id === currentPostId.value)
+  )
+)
+
+const currentPost = computed(() =>
+  currentCategory.value?.posts?.find(post => post.id === currentPostId.value) || null
+)
+
+const shareConfig = computed(() => cmsNavStore.commonShareData || shareData)
+const articleTitle = computed(() => resolvedUnitData.value.title || '')
+const articleSections = computed(() => resolvedUnitData.value.sections || [])
+const visibleArticleSections = computed(() =>
+  articleSections.value.filter(section => section && (section.title || section.content || section.logo))
+)
+const articleAuthor = computed(() => resolvedUnitData.value.author || {})
+const shareLinks = computed(() => shareConfig.value.links || [])
+const articleDate = computed(() => resolvedUnitData.value.date || formatPagerDate(currentPost.value?.createdAt))
+const hasAuthorCard = computed(
+  () => Boolean(articleAuthor.value.title || articleAuthor.value.description)
+)
+const hasArticleHeader = computed(() => Boolean(articleTitle.value || articleDate.value || shareLinks.value.length))
+const hasArticleBody = computed(() =>
+  visibleArticleSections.value.length || hasAuthorCard.value || prevNextPager.value.previous || prevNextPager.value.next
+)
+
+const slugify = value =>
+  String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+
+const getSectionId = (section, index) => {
+  if (!section?.anchor) return ''
+  return section.id || slugify(section.title) || `section-${index + 1}`
+}
+
+const tocItems = computed(() =>
+  visibleArticleSections.value
+    .filter(section => section.anchor && section.title)
+    .map((section, index) => ({
+      label: section.title,
+      target: getSectionId(section, index),
+    }))
+)
+
+const activeTocIndex = computed(() => {
+  const index = tocItems.value.findIndex(item => item.target === activeTocTarget.value)
+  return index === -1 ? 0 : index
+})
+
+const tocHeight = computed(() => {
+  const rowHeight = 46
+  const count = Math.max(tocItems.value.length, 1)
+  return `${count * rowHeight}px`
+})
+
+const tocActiveStyle = computed(() => ({
+  top: `${activeTocIndex.value * 46}px`,
+  height: '46px',
+}))
+
+const tocBodyStyle = computed(() => ({
+  height: tocHeight.value,
+}))
+
+const tocLineStyle = computed(() => ({
+  height: tocHeight.value,
+}))
+
+const breadcrumbItems = computed(() => {
+  const categoryLabel = currentCategory.value?.label || 'Blog'
+  const categoryPath = normalizePath(currentCategory.value?.navUrl || '/blog') || '/blog'
+  const articleLabel = articleTitle.value
+
+  return [
+    { label: 'Home', to: '/' },
+    { label: 'Blog', to: '/blog' },
+    categoryLabel ? { label: categoryLabel, to: categoryPath } : null,
+    articleLabel ? { label: articleLabel, to: '' } : null,
+  ].filter(Boolean)
+})
+
+const prevNextPager = computed(() => {
+  const posts = (currentCategory.value?.posts || [])
+    .filter(post => post && post.id)
+    .slice()
+    .sort((a, b) => {
+      const sortDiff = (Number(a.sort) || 0) - (Number(b.sort) || 0)
+      if (sortDiff !== 0) return sortDiff
+      return Number(a.id) - Number(b.id)
+    })
+
+  const currentIndex = posts.findIndex(post => post.id === currentPostId.value)
+  if (currentIndex === -1) return { previous: null, next: null }
+
+  const previous = currentIndex > 0 ? posts[currentIndex - 1] : null
+  const next = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null
+  return { previous, next }
+})
+
+const resolvePostPath = post => {
+  if (post?.navUrl) return post.navUrl
+  const category = currentCategory.value || { slug: currentTag.value }
+  return buildBlogDetailPathFromCategory(category, post.id)
+}
+
+const scrollToSection = target => {
+  if (typeof window === 'undefined' || !target) return
+
+  const element = document.getElementById(target)
+  if (!element) return
+
+  const headerOffset = 120
+  const top = element.getBoundingClientRect().top + window.scrollY - headerOffset
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: 'smooth',
+  })
+}
+
+const handleTocClick = target => {
+  isAsideOpen.value = false
+  activeTocTarget.value = target
+  scrollToSection(target)
+}
+
+const updateActiveToc = () => {
+  if (typeof window === 'undefined' || !tocItems.value.length) {
+    activeTocTarget.value = ''
+    return
+  }
+
+  const offset = 180
+  const candidates = tocItems.value
+    .map((item, index) => {
+      const element = document.getElementById(item.target)
+      if (!element) return null
+      const rect = element.getBoundingClientRect()
+      return {
+        ...item,
+        index,
+        top: rect.top,
+      }
+    })
+    .filter(Boolean)
+
+  if (!candidates.length) return
+
+  const current = [...candidates]
+    .filter(item => item.top - offset <= 0)
+    .sort((a, b) => b.top - a.top)[0] || candidates[0]
+
+  activeTocTarget.value = current.target
+}
+
+const dataSource = computed(() => {
+  if (props.data && typeof props.data === 'object') return '后台数据'
+  if (cmsUnitData.value) return 'CMS 数据'
+  return '兜底数据'
+})
+
+watch(
+  () => [cmsNavStore.navResolved, dataSource.value],
+  ([resolved, source]) => {
+    if (!resolved && source === '兜底数据' && !props.data) return
+    logger.log(`📦 BlogDetail Unit1 使用${source}渲染`)
+  },
+  { immediate: true }
+)
+
+const formatPagerDate = value => {
+  if (!value) return ''
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
 
 const updateViewportMode = () => {
   if (typeof window === 'undefined') return
@@ -95,94 +298,135 @@ const updateAsidePosition = () => {
 onMounted(() => {
   updateViewportMode()
   updateAsidePosition()
+  updateActiveToc()
   window.addEventListener('scroll', updateAsidePosition, { passive: true })
+  window.addEventListener('scroll', updateActiveToc, { passive: true })
   window.addEventListener('resize', updateAsidePosition)
+  window.addEventListener('resize', updateActiveToc)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', updateAsidePosition)
+  window.removeEventListener('scroll', updateActiveToc)
   window.removeEventListener('resize', updateAsidePosition)
+  window.removeEventListener('resize', updateActiveToc)
 })
+
+watch(
+  tocItems,
+  () => {
+    updateActiveToc()
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
   <article class="unit1 c_1300 c_padding">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <template v-for="(item, index) in unitData.breadcrumb" :key="item">
-        <span>{{ item }}</span>
-        <span v-if="index < unitData.breadcrumb.length - 1">/</span>
+      <template v-for="(item, index) in breadcrumbItems" :key="item">
+        <router-link
+          v-if="item.to && index < breadcrumbItems.length - 1"
+          :to="item.to"
+          class="breadcrumbLink"
+        >
+          {{ item.label }}
+        </router-link>
+        <span v-else :aria-current="index === breadcrumbItems.length - 1 ? 'page' : null">
+          {{ item.label }}
+        </span>
+        <span v-if="index < breadcrumbItems.length - 1">/</span>
       </template>
     </nav>
 
-    <header class="articleHeader">
-      <h1>{{ unitData.title }}</h1>
-      <div class="articleMeta">
-        <time>{{ unitData.date }}</time>
-        <div class="shareBlock">
-          <span>{{ unitData.share.label }}</span>
+    <header v-if="hasArticleHeader" class="articleHeader">
+      <h1 v-if="articleTitle">{{ articleTitle }}</h1>
+      <div v-if="articleDate || shareLinks.length" class="articleMeta">
+        <time v-if="articleDate">{{ articleDate }}</time>
+        <div v-if="shareLinks.length" class="shareBlock">
+          <span>{{ shareConfig.label }}</span>
           <div class="shareList">
-            <a v-for="link in unitData.share.links" :key="link.name" href="#" :aria-label="link.name">
+            <a v-for="link in shareLinks" :key="link.name" href="#" :aria-label="link.name">
               <MediaAsset class="shareIcon" type="image" :src="link.icon" :alt="link.name" />
             </a>
           </div>
         </div>
       </div>
-      </header>
+    </header>
 
-    <div class="divider"></div>
+    <div v-if="hasArticleHeader && hasArticleBody" class="divider"></div>
 
-    <div ref="articleGridRef" class="articleGrid">
+    <div v-if="hasArticleBody" ref="articleGridRef" class="articleGrid" :class="{ 'no-toc': !tocItems.length }">
       <main class="articleMain">
-        <h2 class="introTitle">{{ unitData.intro }}</h2>
-        <MediaAsset
-          class="articleImage"
-          type="image"
-          :src="unitData.hero.src"
-          :alt="unitData.hero.alt"
-          :lazy="false"
-        />
-
-        <template v-for="(section, index) in unitData.sections" :key="index">
-          <h2
-            v-if="section.type === 'heading'"
-            :id="section.id"
-            class="sectionTitle"
+        <template v-for="(section, index) in visibleArticleSections" :key="index">
+          <section
+            class="articleSection"
+            :class="{ heroSection: index === 0 }"
           >
-            {{ section.title }}
-          </h2>
-          <MediaAsset
-            v-else-if="section.type === 'image'"
-            class="articleImage"
-            type="image"
-            :src="section.src"
-            :alt="section.alt"
-            :lazy="false"
-          />
-          <div v-else-if="section.type === 'paragraphs'" class="paragraphGroup">
-            <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
-          </div>
+            <div class="sectionBody">
+              <h2
+                v-if="section.title"
+                :id="section.anchor ? getSectionId(section, index) : undefined"
+                class="sectionTitle"
+              >
+                {{ section.title }}
+              </h2>
+              <div v-if="section.content" class="paragraphGroup">
+                <p v-for="paragraph in section.content.split(/\n\s*\n/).filter(Boolean)" :key="paragraph">
+                  {{ paragraph.trim() }}
+                </p>
+              </div>
+            </div>
+            <MediaAsset
+              v-if="section.logo"
+              class="sectionImage"
+              type="image"
+              :src="section.logo"
+              :alt="section.title || articleTitle"
+              :lazy="false"
+            />
+          </section>
         </template>
 
-        <section id="author-caleaf" class="authorCard">
-          <div class="authorLogo">CA</div>
+        <section v-if="hasAuthorCard" id="author-caleaf" class="authorCard">
+          <MediaAsset
+            v-if="articleAuthor.logo"
+            class="authorLogoImage"
+            type="image"
+            :src="articleAuthor.logo"
+            :alt="articleAuthor.title || 'Author'"
+            :lazy="false"
+          />
+          <div v-else class="authorLogo">
+            {{ (articleAuthor.title || 'CA').slice(0, 2).toUpperCase() }}
+          </div>
           <div>
-            <h2>{{ unitData.author.title }}</h2>
-            <p>{{ unitData.author.description }}</p>
+            <h2>{{ articleAuthor.title }}</h2>
+            <p>{{ articleAuthor.description }}</p>
           </div>
         </section>
 
-        <section v-if="unitData.pager" class="pagerRow">
-          <div class="pagerLabels">
-            <span v-for="label in unitData.pager.labels" :key="label">{{ label }}</span>
-          </div>
-          <div class="pagerCopy">
-            <h2>{{ unitData.pager.title }}</h2>
-            <p>{{ unitData.pager.description }}</p>
-          </div>
+        <section v-if="prevNextPager.previous || prevNextPager.next" class="pagerRow">
+          <router-link
+            v-if="prevNextPager.previous"
+            class="pagerLink"
+            :to="resolvePostPath(prevNextPager.previous)"
+          >
+            <span class="pagerLabel">Previous</span>
+            <h2>{{ prevNextPager.previous.title }}</h2>
+          </router-link>
+          <router-link
+            v-if="prevNextPager.next"
+            class="pagerLink"
+            :to="resolvePostPath(prevNextPager.next)"
+          >
+            <span class="pagerLabel">Next</span>
+            <h2>{{ prevNextPager.next.title }}</h2>
+          </router-link>
         </section>
       </main>
 
-      <div class="articleNavControl">
+      <div v-if="tocItems.length" class="articleNavControl">
         <button
           type="button"
           class="articleNavButton"
@@ -198,6 +442,7 @@ onBeforeUnmount(() => {
       </div>
 
       <aside
+        v-if="tocItems.length"
         id="blog-detail-toc"
         ref="articleAsideRef"
         class="articleAside"
@@ -205,16 +450,17 @@ onBeforeUnmount(() => {
         :style="asideStyle"
       >
         <div class="tocCard">
-          <h2>{{ unitData.toc.title }}</h2>
-          <div class="tocBody">
-            <span class="tocLine"></span>
-            <span class="tocActive"></span>
+          <h2>In this article</h2>
+          <div class="tocBody" :style="tocBodyStyle">
+            <span class="tocLine" :style="tocLineStyle"></span>
+            <span class="tocActive" :style="tocActiveStyle"></span>
             <nav>
               <a
-                v-for="item in unitData.toc.items"
+                v-for="item in tocItems"
                 :key="item.label"
                 :href="`#${item.target}`"
-                @click="isAsideOpen = false"
+                :class="{ active: activeTocTarget === item.target }"
+                @click.prevent="handleTocClick(item.target)"
               >
                 {{ item.label }}
               </a>
@@ -240,6 +486,15 @@ onBeforeUnmount(() => {
   color: #111;
   font-size: 16px;
   line-height: 19px;
+}
+
+.breadcrumbLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
 }
 
 .articleHeader {
@@ -283,6 +538,10 @@ onBeforeUnmount(() => {
   gap: 80px;
   align-items: start;
   margin-top: 59px;
+}
+
+.articleGrid.no-toc {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .articleNavControl {
@@ -333,7 +592,6 @@ onBeforeUnmount(() => {
   min-width: 0;
 }
 
-.introTitle,
 .sectionTitle {
   max-width: 825px;
   margin: 0;
@@ -341,14 +599,6 @@ onBeforeUnmount(() => {
   font-size: 30px;
   font-weight: 600;
   line-height: 1.2;
-}
-
-.articleImage {
-  display: block;
-  width: 100%;
-  aspect-ratio: 900 / 593;
-  margin-top: 24px;
-  object-fit: cover;
 }
 
 .sectionTitle {
@@ -373,12 +623,33 @@ onBeforeUnmount(() => {
   }
 }
 
-.articleImage + .paragraphGroup {
+.articleSection {
+  margin-top: 56px;
+}
+
+.articleSection.heroSection {
   margin-top: 0;
 }
 
-.paragraphGroup + .articleImage {
-  margin-top: 46px;
+.articleSection.heroSection .sectionBody {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.articleSection.heroSection .sectionTitle {
+  margin-top: 0;
+}
+
+.sectionImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 900 / 593;
+  margin-top: 24px;
+  object-fit: cover;
+}
+
+.sectionBody {
+  margin-top: 24px;
 }
 
 .authorCard {
@@ -422,34 +693,48 @@ onBeforeUnmount(() => {
   font-weight: 700;
 }
 
+.authorLogoImage {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  border: 12px solid #fff;
+}
+
 .pagerRow {
-  display: grid;
-  grid-template-columns: 62px minmax(0, 375px);
-  gap: 47px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   margin-top: 86px;
 }
 
-.pagerLabels {
+.pagerLink {
   display: flex;
-  flex-direction: column;
-
-  span {
-    color: #111;
-    font-size: 16px;
-    line-height: 36px;
-  }
+  align-items: baseline;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
 }
 
-.pagerCopy {
-  h2,
-  p {
-    margin: 0;
-    color: #111;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 36px;
-  }
+.pagerLink:hover h2 {
+  text-decoration: underline;
+}
+
+.pagerLabel {
+  flex: 0 0 auto;
+  color: #111;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.pagerLink h2 {
+  flex: 1;
+  margin: 0;
+  color: #111;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 36px;
 }
 
 .articleAside {
@@ -500,7 +785,7 @@ onBeforeUnmount(() => {
 }
 
 .tocCard {
-  min-height: 572px;
+  min-height: 0;
   padding: 30px 31px;
   background: linear-gradient(180deg, #f8f9fd 0%, rgb(248 249 253 / 0%) 100%);
 
@@ -529,12 +814,10 @@ onBeforeUnmount(() => {
 }
 
 .tocLine {
-  height: 470px;
   background: #d9d9d9;
 }
 
 .tocActive {
-  height: 46px;
   background: #111;
 }
 
@@ -542,12 +825,23 @@ onBeforeUnmount(() => {
   grid-column: 2;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 
   a {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: #111;
     font-size: 18px;
     line-height: 46px;
     text-decoration: none;
+  }
+
+  a.active {
+    font-weight: 700;
   }
 }
 
@@ -625,7 +919,6 @@ onBeforeUnmount(() => {
     margin-top: 40px;
   }
 
-  .introTitle,
   .sectionTitle {
     font-size: 26px;
     line-height: 34px;
@@ -636,6 +929,14 @@ onBeforeUnmount(() => {
     line-height: 28px;
   }
 
+  .articleSection {
+    margin-top: 44px;
+  }
+
+  .sectionBody {
+    margin-top: 18px;
+  }
+
   .authorCard {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -643,14 +944,8 @@ onBeforeUnmount(() => {
   }
 
   .pagerRow {
-    grid-template-columns: 1fr;
     gap: 18px;
     margin-top: 58px;
-  }
-
-  .pagerLabels {
-    flex-direction: row;
-    gap: 24px;
   }
 
   .articleAside {
