@@ -364,11 +364,7 @@ watch(
               >
                 {{ section.title }}
               </h2>
-              <div v-if="section.content" class="paragraphGroup">
-                <p v-for="paragraph in section.content.split(/\n\s*\n/).filter(Boolean)" :key="paragraph">
-                  {{ paragraph.trim() }}
-                </p>
-              </div>
+              <div v-if="section.content" class="richText" v-html="section.content"></div>
             </div>
             <MediaAsset
               v-if="section.logo"
@@ -600,19 +596,52 @@ watch(
   margin-bottom: 24px;
 }
 
-.paragraphGroup {
+.richText {
   margin-top: 0;
+  color: #111;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
 
-  p {
+  :deep(p) {
     margin: 0;
-    color: #111;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 30px;
   }
 
-  p + p {
+  :deep(p + p),
+  :deep(p + ul),
+  :deep(p + ol),
+  :deep(ul + p),
+  :deep(ol + p) {
     margin-top: 30px;
+  }
+
+  :deep(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 24px;
+    object-fit: cover;
+  }
+
+  :deep(a) {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  :deep(ul),
+  :deep(ol) {
+    margin: 24px 0 0;
+    padding-left: 24px;
+  }
+
+  :deep(li + li) {
+    margin-top: 10px;
+  }
+
+  :deep(strong),
+  :deep(b) {
+    font-weight: 700;
   }
 }
 
@@ -917,7 +946,7 @@ watch(
     line-height: 34px;
   }
 
-  .paragraphGroup p {
+  .richText {
     font-size: 17px;
     line-height: 28px;
   }
