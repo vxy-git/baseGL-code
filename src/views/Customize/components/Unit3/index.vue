@@ -45,7 +45,7 @@ const unitData = useUnitData(props, unit3Data)
   z-index: 1;
   margin: 0 auto;
   padding-top: 147px;
-  color: #fff;
+  color: #000;
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -341,7 +341,7 @@ watch(
 
     <header v-if="hasArticleHeader" class="articleHeader">
       <h1 v-if="articleTitle">{{ articleTitle }}</h1>
-      <div v-if="articleDate || shareLinks.length" class="articleMeta">
+      <!-- <div v-if="articleDate || shareLinks.length" class="articleMeta">
         <time v-if="articleDate">{{ articleDate }}</time>
         <div v-if="shareLinks.length" class="shareBlock">
           <span>{{ shareConfig.label }}</span>
@@ -351,7 +351,7 @@ watch(
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
     </header>
 
     <div v-if="hasArticleHeader && hasArticleBody" class="divider"></div>
