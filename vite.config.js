@@ -39,6 +39,13 @@ export default defineConfig({
     server: {
         port: 3002,
         open: false,
+        proxy: {
+            '/api': {
+                target: 'https://admin.cloudcode.ink',
+                changeOrigin: true,
+                secure: true
+            }
+        }
     },
     css: {
         preprocessorOptions: {

@@ -75,7 +75,7 @@ const list = computed(() =>
     }))
 )
 
-const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
+const startIndex = computed(() => (list.value.length > 2 ? 1 : 0))
 </script>
 
 <template>
@@ -87,9 +87,11 @@ const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
     container-class="bg-white"
   >
     <template #slide-content="{ item }">
-      <router-link v-if="item.link" class="textOverlay" :to="item.link">
-        <p class="featuredDate">{{ item.date }}</p>
-        <h1 class="featuredTitle">{{ item.title }}</h1>
+      <router-link v-if="item.link" class="slideLink" :to="item.link" :aria-label="item.title">
+        <div class="textOverlay">
+          <p class="featuredDate">{{ item.date }}</p>
+          <h1 class="featuredTitle">{{ item.title }}</h1>
+        </div>
       </router-link>
       <div v-else class="textOverlay">
         <p class="featuredDate">{{ item.date }}</p>
@@ -100,6 +102,15 @@ const startIndex = computed(() => (list.value.length > 1 ? 1 : 0))
 </template>
 
 <style scoped lang="scss">
+.slideLink {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .textOverlay {
   display: block;
   position: absolute;

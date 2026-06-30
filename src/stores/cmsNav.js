@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { getCmsNavPublicList } from '@/api/cmsNav'
 import { logger } from '@/utils/logger'
-import { getBlogTagFromCategory, matchRoutePattern } from '@/utils/blogRoute'
+import { getBlogTagFromCategory, matchRoutePattern, normalizePath } from '@/utils/blogRoute'
 import {
   isEnabled,
   isTopLevel,
@@ -289,7 +289,10 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   const blogCategories = computed(() => {
     if (!navList.value.length) return []
 
-    const blogNav = navList.value.find(n => n.navName === 'Blog' && isEnabled(n))
+    const blogNav = navList.value.find(nav => {
+      if (!isEnabled(nav)) return false
+      return nav.navName === 'Blog' || normalizePath(nav.navUrl) === '/blog'
+    })
 
     if (!blogNav) return []
 
@@ -301,7 +304,9 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       childrenMap.get(pid).push(nav)
     }
 
-    const categories = childrenMap.get(blogNav.ID) || []
+    const categories = (childrenMap.get(blogNav.ID) || [])
+      .slice()
+      .sort((a, b) => (Number(a.sort) || 0) - (Number(b.sort) || 0) || (a.ID - b.ID))
 
     return categories.map(nav => {
       const categorySlug = getBlogTagFromCategory({
@@ -309,25 +314,28 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         label: nav.navName,
         navName: nav.navName,
       })
-      const posts = (childrenMap.get(nav.ID) || []).map(post => {
-        const itemData = post.moduleList?.item?.data || post.moduleList?.unit?.data || {}
-        return {
-          id: post.ID,
-          category: nav.navName,
-          categorySlug,
-          sort: Number(post.sort) || 0,
-          title: itemData.coverTitle || itemData.title || post.navName,
-          description: itemData.description || itemData.desc || '',
-          date: itemData.coverDate || itemData.date || itemData.publishDate || '',
-          image: itemData.coverImage || itemData.image || itemData.cover || itemData.thumbnail || '',
-          featuredImage: itemData.featuredImage || itemData.coverImage || itemData.image || itemData.cover || '',
-          alt: itemData.alt || itemData.coverTitle || itemData.title || post.navName,
-          isTop: itemData.isTop || itemData.isPinned || itemData.pinned || itemData.top || false,
-          navUrl: post.navUrl,
-          createdAt: post.CreatedAt,
-          moduleList: post.moduleList,
-        }
-      })
+      const posts = (childrenMap.get(nav.ID) || [])
+        .slice()
+        .sort((a, b) => (Number(a.sort) || 0) - (Number(b.sort) || 0) || (a.ID - b.ID))
+        .map(post => {
+          const itemData = post.moduleList?.item?.data || post.moduleList?.unit?.data || {}
+          return {
+            id: post.ID,
+            category: nav.navName,
+            categorySlug,
+            sort: Number(post.sort) || 0,
+            title: itemData.coverTitle || itemData.title || post.navName,
+            description: itemData.description || itemData.desc || '',
+            date: itemData.coverDate || itemData.date || itemData.publishDate || '',
+            image: itemData.coverImage || itemData.image || itemData.cover || itemData.thumbnail || '',
+            featuredImage: itemData.featuredImage || itemData.coverImage || itemData.image || itemData.cover || '',
+            alt: itemData.alt || itemData.coverTitle || itemData.title || post.navName,
+            isTop: itemData.isTop || itemData.isPinned || itemData.pinned || itemData.top || false,
+            navUrl: post.navUrl,
+            createdAt: post.CreatedAt,
+            moduleList: post.moduleList,
+          }
+        })
 
       return {
         id: nav.ID,

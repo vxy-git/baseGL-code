@@ -32,27 +32,75 @@ const progressValues = ref([])
 const progressTimers = ref([])
 const playSessionId = ref(0)
 
+const slideWidth = '50rem'
+const slideGap = '1.25rem'
 const defaultOptions = {
   type: 'loop',
   perPage: 1,
   perMove: 1,
-  gap: '1.25rem',
+  gap: slideGap,
   speed: 800,
   arrows: false,
   pagination: false,
   drag: false,
   keyboard: false,
   width: '100vw',
-  fixedWidth: '50rem',
+  fixedWidth: slideWidth,
   focus: 'center',
+  trimSpace: false,
   autoplay: false,
 }
 
-const mergedOptions = computed(() => ({
-  ...defaultOptions,
-  ...props.splideOptions,
-  ...(props.startIndex !== undefined ? { start: props.startIndex } : {}),
-}))
+const mergedOptions = computed(() => {
+  const totalSlides = itemsList.value.length || 1
+  const desktopPaddingCenter = `max(0px, calc((100vw - ${slideWidth}) / 2))`
+  const mobileBreakpoints = {
+    768: {
+      fixedWidth: null,
+      width: '100%',
+      padding: { left: 0, right: 0 },
+      focus: 0,
+    },
+  }
+
+  const baseOptions = {
+    ...defaultOptions,
+    ...props.splideOptions,
+    perPage: 1,
+    perMove: 1,
+    gap: props.splideOptions?.gap || slideGap,
+    speed: props.splideOptions?.speed || defaultOptions.speed,
+    pagination: props.splideOptions?.pagination ?? false,
+    keyboard: props.splideOptions?.keyboard ?? false,
+    autoplay: props.splideOptions?.autoplay ?? false,
+    breakpoints: {
+      ...(props.splideOptions?.breakpoints || {}),
+      ...mobileBreakpoints,
+    },
+    ...(props.startIndex !== undefined ? { start: props.startIndex } : {}),
+  }
+
+  if (totalSlides >= 3) {
+    return {
+      ...baseOptions,
+      type: props.splideOptions?.type || 'loop',
+      fixedWidth: props.splideOptions?.fixedWidth || slideWidth,
+      focus: props.splideOptions?.focus ?? 'center',
+      trimSpace: props.splideOptions?.trimSpace ?? false,
+      width: props.splideOptions?.width || '100vw',
+    }
+  }
+
+  return {
+    ...baseOptions,
+    type: 'slide',
+    fixedWidth: props.splideOptions?.fixedWidth || slideWidth,
+    focus: 0,
+    trimSpace: false,
+    width: props.splideOptions?.width || '100vw',
+    padding: { left: desktopPaddingCenter, right: desktopPaddingCenter },
+  }
+})
 
 const itemsList = toRef(props, 'items')
 
@@ -90,11 +138,19 @@ const pauseAllVideos = () => {
 
 const goToNext = () => {
   if (!splideRef.value) return
-  const currentIndex = splideRef.value.index
   const totalSlides = itemsList.value.length
-  if (currentIndex === totalSlides - 1) {
-    splideRef.value.go(0)
-  } else {
+  const currentIndex = splideRef.value.index
+
+  if (totalSlides >= 3) {
+    if (currentIndex === totalSlides - 1) {
+      splideRef.value.go(0)
+    } else {
+      splideRef.value.go('+1')
+    }
+    return
+  }
+
+  if (currentIndex < totalSlides - 1) {
     splideRef.value.go('+1')
   }
 }
@@ -150,8 +206,16 @@ const playCurrentSlide = index => {
 }
 
 const updateArrowStatus = splide => {
-  canSlidePrev.value = true
-  canSlideNext.value = true
+  const totalSlides = itemsList.value.length
+
+  if (totalSlides >= 3) {
+    canSlidePrev.value = true
+    canSlideNext.value = true
+  } else {
+    canSlidePrev.value = splide.index > 0
+    canSlideNext.value = splide.index < totalSlides - 1
+  }
+
   bannerCurrent.value = splide.index
 }
 
