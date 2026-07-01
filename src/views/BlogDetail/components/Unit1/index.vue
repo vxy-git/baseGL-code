@@ -325,7 +325,14 @@ watch(
   <article class="unit1 c_1300 c_padding">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <template v-for="(item, index) in breadcrumbItems" :key="item.label">
-        <span :aria-current="index === breadcrumbItems.length - 1 ? 'page' : null">
+        <RouterLink
+          v-if="item.to && index < breadcrumbItems.length - 1"
+          class="breadcrumbLink"
+          :to="item.to"
+        >
+          {{ item.label }}
+        </RouterLink>
+        <span v-else :aria-current="index === breadcrumbItems.length - 1 ? 'page' : null">
           {{ item.label }}
         </span>
         <span v-if="index < breadcrumbItems.length - 1">/</span>
