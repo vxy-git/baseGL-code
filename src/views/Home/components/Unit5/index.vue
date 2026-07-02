@@ -110,10 +110,10 @@ const goToSlide = index => {
           </SplideSlide>
         </Splide>
         <div
-          class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto"
+          class="size-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 max-w-[1280px] mx-auto pointer-events-none"
         >
           <MediaAsset
-            class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180"
+            class="absolute cursor-pointer size-[50px] z-10 left-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 rotate-180 pointer-events-auto"
             :class="{ 'opacity-0 pointer-events-none': !canSlidePrev || (!isHovered && !isMobile) }"
             type="image"
             :src="unitData.arrowIcon"
@@ -122,7 +122,7 @@ const goToSlide = index => {
             @click="slidePrev"
           />
           <MediaAsset
-            class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100"
+            class="absolute cursor-pointer size-[50px] z-10 right-[10px] top-1/2 -translate-y-1/2 transition-opacity duration-100 pointer-events-auto"
             :class="{ 'opacity-0 pointer-events-none': !canSlideNext || (!isHovered && !isMobile) }"
             type="image"
             :src="unitData.arrowIcon"
