@@ -9,6 +9,7 @@ import {
   isHeaderVisible,
   isFooterVisible,
   resolveNavLink,
+  sortNavsBySort,
 } from '@/utils/navFilter'
 
 /**
@@ -54,7 +55,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         throw new Error(result.msg || '获取导航数据失败')
       }
 
-      navList.value = Array.isArray(result.data) ? result.data : []
+      navList.value = sortNavsBySort(result.data)
       isLoaded.value = true
       navResolved.value = true
 
@@ -75,7 +76,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
    */
   function setNavData(data) {
     if (data && Array.isArray(data) && data.length > 0) {
-      navList.value = data
+      navList.value = sortNavsBySort(data)
       isLoaded.value = true
       logger.log('📦 从外部同步 CMS 导航数据，共', data.length, '条')
     }
@@ -156,8 +157,8 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         }
       } else {
         item.type = 'submenu'
-        const children = allNavs.filter(
-          n => n.parentId === nav.ID && isEnabled(n) && n.headerShow === true
+        const children = sortNavsBySort(
+          allNavs.filter(n => n.parentId === nav.ID && isEnabled(n) && n.headerShow === true)
         )
         item.submenu = children.map(child => {
           const sub = { text: child.navName || '' }
@@ -176,8 +177,8 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   function formatFooterColumn(nav, allNavs) {
     const column = { title: nav.navName || '', links: [] }
 
-    const children = allNavs.filter(
-      n => n.parentId === nav.ID && isEnabled(n) && n.footerShow === true
+    const children = sortNavsBySort(
+      allNavs.filter(n => n.parentId === nav.ID && isEnabled(n) && n.footerShow === true)
     )
 
     column.links = children.map(child => {
@@ -256,10 +257,10 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
       childrenMap.get(pid).push(nav)
     }
 
-    const categories = childrenMap.get(productsNav.ID) || []
+    const categories = sortNavsBySort(childrenMap.get(productsNav.ID) || [])
 
     return categories.map(cat => {
-      const products = (childrenMap.get(cat.ID) || []).map(p => {
+      const products = sortNavsBySort(childrenMap.get(cat.ID) || []).map(p => {
         const itemData = p.moduleList?.item?.data || {}
         return {
           id: p.ID,

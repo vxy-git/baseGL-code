@@ -13,6 +13,7 @@ import {
   isFooterChild,
   formatNavItem,
   resolveNavLink,
+  sortNavsBySort,
 } from '@/utils/navFilter'
 import { matchRoutePattern } from '@/utils/blogRoute'
 
@@ -57,9 +58,10 @@ export async function getCmsNavPublicList(params = {}) {
       })
 
       if (result.success) {
+        const navList = sortNavsBySort(result.data?.list || [])
         const cached = {
           success: true,
-          data: result.data?.list || [],
+          data: navList,
           total: result.data?.total,
           page: result.data?.page,
           pageSize: result.data?.pageSize,
@@ -82,19 +84,18 @@ export async function getCmsNavPublicList(params = {}) {
 
 /** 从全部导航列表中筛选 Header 导航（顶级 + 格式化 + 子项） */
 function buildHeaderNavs(allNavs) {
-  return allNavs
+  return sortNavsBySort(allNavs)
     .filter(nav => isTopLevel(nav) && isHeaderVisible(nav))
     .map(nav => formatNavItem(nav, { allNavs, includeIcon: true }))
 }
 
 /** 从全部导航列表中筛选 Footer 导航列结构 */
 function buildFooterColumns(allNavs) {
-  return allNavs
+  return sortNavsBySort(allNavs)
     .filter(nav => isTopLevel(nav) && isFooterVisible(nav))
     .map(parentNav => ({
       title: parentNav.navName || '',
-      links: allNavs
-        .filter(child => isFooterChild(child, parentNav.ID))
+      links: sortNavsBySort(allNavs.filter(child => isFooterChild(child, parentNav.ID)))
         .map(child => {
           const item = { text: child.navName || '' }
           if (child.navUrl) {
@@ -107,16 +108,14 @@ function buildFooterColumns(allNavs) {
 
 /** 按 category 筛选顶级导航 */
 function buildCategoryNavs(allNavs, category) {
-  return allNavs
+  return sortNavsBySort(allNavs)
     .filter(nav => isEnabled(nav) && nav.category === category && isTopLevel(nav))
     .map(nav => formatNavItem(nav, { allNavs, includeIcon: true }))
 }
 
 /** 构建 Banner 数据 */
 function buildBanners(allNavs) {
-  return allNavs
-    .filter(nav => isEnabled(nav) && nav.category === 'banner')
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+  return sortNavsBySort(allNavs.filter(nav => isEnabled(nav) && nav.category === 'banner'))
     .map(nav => ({
       id: nav.ID,
       title: nav.navName || '',

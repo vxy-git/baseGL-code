@@ -21,6 +21,22 @@ export const isTopLevelHeader = nav => isTopLevel(nav) && isHeaderVisible(nav)
 /** Footer 顶级导航项 */
 export const isTopLevelFooter = nav => isTopLevel(nav) && isFooterVisible(nav)
 
+/** 导航排序值 */
+export const getNavSortValue = nav => {
+  const sort = Number(nav?.sort)
+  return Number.isFinite(sort) ? sort : 0
+}
+
+/** 按 CMS 排序值升序排序，排序值相同时按 ID 稳定排序 */
+export const compareNavSort = (a, b) => {
+  const sortDiff = getNavSortValue(a) - getNavSortValue(b)
+  if (sortDiff !== 0) return sortDiff
+  return (Number(a?.ID) || 0) - (Number(b?.ID) || 0)
+}
+
+/** 返回按 CMS 排序值排序后的新数组 */
+export const sortNavsBySort = navs => (Array.isArray(navs) ? navs.slice().sort(compareNavSort) : [])
+
 /** 子导航项（headerShow=true） */
 export const isHeaderChild = (nav, parentId) =>
   isEnabled(nav) && nav.headerShow === true && nav.parentId === parentId
@@ -64,7 +80,7 @@ export function formatNavItem(nav, opts = {}) {
 
   // 处理子导航（仅当传入了 allNavs 时）
   if (allNavs && isTopLevel(nav)) {
-    const children = allNavs.filter(child => isHeaderChild(child, nav.ID))
+    const children = sortNavsBySort(allNavs.filter(child => isHeaderChild(child, nav.ID)))
     if (children.length > 0) {
       item.type = 'dropdown'
       item.children = children.map(child => formatNavItem(child, { allNavs, includeIcon }))
