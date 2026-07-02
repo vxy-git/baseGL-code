@@ -380,7 +380,9 @@ defineExpose({
   background-color: #ffffff;
   z-index: 2;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  // overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   will-change: transform, opacity;
 }
 
@@ -388,7 +390,8 @@ defineExpose({
   display: flex;
   align-items: stretch;
   margin: 0 auto;
-  height: 100%;
+  height: auto;
+  min-height: calc(100vh - 98px);
 }
 
 .sidebar {
