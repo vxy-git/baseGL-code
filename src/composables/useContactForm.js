@@ -223,10 +223,9 @@ export function useContactForm(formUuid, data) {
 
     try {
       await formApi.value.submit(
-        formData_ => {
+        async formData_ => {
           logger.log('✅ 表单验证通过')
-          lastSubmitTime.value = Date.now()
-          handleSubmit(formData_)
+          await handleSubmit(formData_)
         },
         () => {
           logger.log('❌ 表单验证失败')
