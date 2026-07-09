@@ -5,7 +5,7 @@ import MediaAsset from '@/components/MediaAsset.vue'
 import { useUnitData } from '@/composables/useUnitData'
 import { unit2Data } from '@/data/blog_detail/unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
-import { buildBlogDetailPathFromCategory } from '@/utils/blogRoute'
+import { buildBlogDetailPathFromCategory, normalizePath } from '@/utils/blogRoute'
 
 const props = defineProps({
   data: {
@@ -50,9 +50,13 @@ const relatedPosts = computed(() => {
   return shufflePosts(posts).slice(0, 3)
 })
 
-const viewAllPath = computed(() => currentCategory.value?.navUrl || unitData.value.viewAllPath)
+const viewAllPath = computed(() =>
+  normalizePath(currentCategory.value?.navUrl || unitData.value.viewAllPath || '/blog')
+)
 const resolvePostPath = post =>
-  post.navUrl || buildBlogDetailPathFromCategory(currentCategory.value || { slug: currentTag.value }, post.id)
+  post.navUrl
+    ? normalizePath(post.navUrl)
+    : buildBlogDetailPathFromCategory(currentCategory.value || { slug: currentTag.value }, post.id)
 </script>
 
 <template>

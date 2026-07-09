@@ -6,7 +6,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import { listData } from '@/data/blog/list'
 import { postsData } from '@/data/blog/posts'
 import { useCmsNavStore } from '@/stores/cmsNav'
-import { buildBlogDetailPathFromCategory } from '@/utils/blogRoute'
+import { buildBlogDetailPathFromCategory, normalizePath } from '@/utils/blogRoute'
 
 const props = defineProps({
   data: {
@@ -42,7 +42,7 @@ const currentCategory = computed(() => {
   if (route.meta.ID) {
     return cmsCategories.value.find(cat => cat.id === route.meta.ID)
   }
-  return cmsCategories.value.find(cat => cat.navUrl === route.path)
+  return cmsCategories.value.find(cat => normalizePath(cat.navUrl) === route.path)
 })
 
 const tabsCurrent = computed(() => {
@@ -100,7 +100,7 @@ const handleTabChange = index => {
   const category = cmsCategories.value[index]
   if (category?.navUrl) {
     currentPage.value = 1
-    router.push(category.navUrl)
+    router.push(normalizePath(category.navUrl))
   }
 }
 

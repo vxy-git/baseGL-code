@@ -6,6 +6,7 @@ import { listData } from '@/data/blog/list'
 import { postsData } from '@/data/blog/posts'
 import { useUnitData } from '@/composables/useUnitData'
 import { useCmsNavStore } from '@/stores/cmsNav'
+import { normalizePath } from '@/utils/blogRoute'
 
 const props = defineProps({
   data: { type: [Object, Array], default: null },
@@ -27,7 +28,7 @@ const currentCategory = computed(() => {
   if (route.meta.ID) {
     return cmsCategories.value.find(cat => cat.id === route.meta.ID)
   }
-  return cmsCategories.value.find(cat => cat.navUrl === route.path)
+  return cmsCategories.value.find(cat => normalizePath(cat.navUrl) === route.path)
 })
 
 const tabsCurrent = computed(() => {

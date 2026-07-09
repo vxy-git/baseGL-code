@@ -6,8 +6,7 @@ import { useUnitData } from '@/composables/useUnitData'
 import { unit1Data } from '@/data/blog_detail/unit1'
 import { shareData } from '@/data/common/share'
 import { useCmsNavStore } from '@/stores/cmsNav'
-import { buildBlogDetailPathFromCategory } from '@/utils/blogRoute'
-import { normalizePath } from '@/utils/blogRoute'
+import { buildBlogDetailPathFromCategory, normalizePath } from '@/utils/blogRoute'
 import { logger } from '@/utils/logger'
 
 const props = defineProps({
@@ -176,7 +175,7 @@ const prevNextPager = computed(() => {
 })
 
 const resolvePostPath = post => {
-  if (post?.navUrl) return post.navUrl
+  if (post?.navUrl) return normalizePath(post.navUrl)
   const category = currentCategory.value || { slug: currentTag.value }
   return buildBlogDetailPathFromCategory(category, post.id)
 }

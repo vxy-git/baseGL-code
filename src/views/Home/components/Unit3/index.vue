@@ -26,9 +26,9 @@ const unitData = useUnitData(props, unit3Data)
             <div class="subTitle mt-[15px] whitespace-break-spaces">
               {{ unitData.subtitle }}
             </div>
-            <RouterLink :to="unitData.routeName" class="btn mx-auto mt-[38px] cursor-pointer">
+            <router-link :to="unitData.routeName" class="btn mx-auto mt-[38px] cursor-pointer">
               {{ unitData.buttonText }}
-            </RouterLink>
+            </router-link>
           </div>
         </div>
         <MediaAsset
