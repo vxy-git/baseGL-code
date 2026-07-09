@@ -3,8 +3,11 @@
     "allowJs": true,
     "checkJs": false,
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "jsx": "preserve"
   },

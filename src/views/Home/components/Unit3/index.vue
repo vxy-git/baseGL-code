@@ -1,7 +1,6 @@
 <script setup>
 import MediaAsset from '@/components/MediaAsset.vue'
 import { unit3Data } from '@/data/home/unit3'
-import { useRouter } from 'vue-router'
 import { useUnitData } from '@/composables/useUnitData'
 
 const props = defineProps({
@@ -12,12 +11,6 @@ const props = defineProps({
 })
 
 const unitData = useUnitData(props, unit3Data)
-
-const router = useRouter()
-
-const goTech = () => {
-  router.push({ name: unitData.value.routeName })
-}
 </script>
 
 <template>
@@ -33,18 +26,14 @@ const goTech = () => {
             <div class="subTitle mt-[15px] whitespace-break-spaces">
               {{ unitData.subtitle }}
             </div>
-            <div class="btn mx-auto mt-[38px] cursor-pointer" @click="goTech">
+            <RouterLink :to="unitData.routeName" class="btn mx-auto mt-[38px] cursor-pointer">
               {{ unitData.buttonText }}
-            </div>
+            </RouterLink>
           </div>
         </div>
         <MediaAsset
           class="size-full object-contain object-right px-[10%] rounded-[20px] overflow-hidden logo bg-[#f1f1f1]"
-          type="image"
-          :src="unitData.bannerImage"
-          alt=""
-          :lazy="false"
-        />
+          type="image" :src="unitData.bannerImage" alt="" :lazy="false" />
       </div>
     </div>
   </div>
@@ -59,6 +48,7 @@ const goTech = () => {
   font-weight: 400;
   line-height: normal;
 }
+
 .title {
   color: #000;
   text-align: center;
@@ -68,6 +58,7 @@ const goTech = () => {
   font-weight: 700;
   line-height: 35px;
 }
+
 .subTitle {
   color: #555;
   text-align: center;
@@ -77,6 +68,7 @@ const goTech = () => {
   font-weight: 400;
   line-height: 23px;
 }
+
 .btn {
   width: 160px;
   height: 40px;
