@@ -1,4 +1,5 @@
 <template>
+  <AgeGate />
   <router-view v-if="cmsNavStore.navResolved" v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component" :key="route.fullPath" />
@@ -10,6 +11,7 @@
 import { useRoute } from 'vue-router'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { logger } from '@/utils/logger'
+import AgeGate from '@/components/AgeGate.vue'
 import '@splidejs/vue-splide/css'
 import './composables/rem'
 
