@@ -1,13 +1,7 @@
 <template>
   <Teleport to="body">
     <transition name="age-gate-fade">
-      <section
-        v-if="visible"
-        class="age-gate"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="age-gate-title"
-      >
+      <section v-if="visible" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
         <div class="age-gate__content">
           <h1 id="age-gate-title" class="age-gate__title">Are you 21 or older?</h1>
 
@@ -58,7 +52,10 @@ onBeforeUnmount(() => {
 }
 
 .age-gate__content {
-  width: min(100%, 760px);
+  width: max-content;
+  padding: 80px 120px;
+  border: 2px solid #1ce785;
+  border-radius: 26px;
   text-align: center;
 }
 
@@ -114,7 +111,11 @@ onBeforeUnmount(() => {
   opacity: 0;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: $breakpoint-mobile) {
+  .age-gate__content {
+    padding: 60px 80px;
+  }
+
   .age-gate__title {
     font-size: 38px;
   }
