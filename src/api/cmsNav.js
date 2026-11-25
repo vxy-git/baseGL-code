@@ -5,6 +5,7 @@
 
 import request from '@/utils/request'
 import { logger } from '@/utils/logger'
+import { localizeCmsPages } from './cmsLanguage'
 import {
   isEnabled,
   isTopLevel,
@@ -58,7 +59,7 @@ export async function getCmsNavPublicList(params = {}) {
       })
 
       if (result.success) {
-        const navList = sortNavsBySort(result.data?.list || [])
+        const navList = sortNavsBySort(await localizeCmsPages(result.data?.list || []))
         const cached = {
           success: true,
           data: navList,

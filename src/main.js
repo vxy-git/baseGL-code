@@ -37,6 +37,23 @@ import './styles/main.scss'
 
     // 先使用静态降级路由立即挂载应用，避免 CMS API 响应慢时白屏
     const router = createStaticRouter()
+    const defaultTitle = document.title
+    const seoDefaults = new Map(['description', 'keywords'].map(name => [
+      name, document.head.querySelector(`meta[name="${name}"]`)?.content || '',
+    ]))
+    router.afterEach(to => {
+      document.title = to.meta.seoTitle || defaultTitle
+      for (const [name, fallback] of seoDefaults) {
+        const value = name === 'description' ? to.meta.seoDescription : to.meta.seoKeywords?.join?.(', ')
+        let tag = document.head.querySelector(`meta[name="${name}"]`)
+        if (!tag && value) {
+          tag = document.createElement('meta')
+          tag.name = name
+          document.head.append(tag)
+        }
+        if (tag) tag.content = value || fallback
+      }
+    })
     app.use(router)
     app.mount('#app')
 

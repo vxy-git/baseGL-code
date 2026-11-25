@@ -150,7 +150,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   /** 格式化导航项为 Header/Footer 组件期望的格式 */
   function formatNavItemForDisplay(nav, allNavs) {
-    const item = { text: nav.navName || '', id: nav.ID }
+    const item = { text: nav.headerLabel || nav.localizedNavName || nav.navName || '', id: nav.ID }
 
     Object.assign(item, getNavClickLink(nav))
     item.followParentLink = Boolean(item.to || item.href)
@@ -172,7 +172,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
           allNavs.filter(n => n.parentId === nav.ID && isEnabled(n) && n.headerShow === true)
         )
         item.submenu = children.map(child => {
-          const sub = { text: child.navName || '' }
+          const sub = { text: child.headerLabel || child.localizedNavName || child.navName || '' }
           Object.assign(sub, getNavClickLink(child))
           return sub
         })
@@ -184,14 +184,14 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
   /** 构建 Footer 列结构 */
   function formatFooterColumn(nav, allNavs) {
-    const column = { title: nav.navName || '', links: [] }
+    const column = { navName: nav.navName, title: nav.footerLabel || nav.localizedNavName || nav.navName || '', links: [] }
 
     const children = sortNavsBySort(
       allNavs.filter(n => n.parentId === nav.ID && isEnabled(n) && n.footerShow === true)
     )
 
     column.links = children.map(child => {
-      const link = { text: child.navName || '' }
+      const link = { text: child.footerLabel || child.localizedNavName || child.navName || '' }
       Object.assign(link, getNavClickLink(child))
       return link
     })
@@ -199,7 +199,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
     // 如果没有子项且顶级本身有链接，则作为单链接展示
     const topDestination = getNavClickLink(nav)
     if (column.links.length === 0 && (topDestination.to || topDestination.href)) {
-      const topLink = { text: nav.navName || '' }
+      const topLink = { text: column.title }
       Object.assign(topLink, topDestination)
       column.links.push(topLink)
     }
@@ -275,7 +275,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         const itemData = item?.enabled === false ? {} : item?.data || {}
         return {
           id: p.ID,
-          name: itemData.name || p.navName,
+          name: itemData.name || p.localizedNavName || p.navName,
           description: itemData.description || '',
           capacity: itemData.capacity || '',
           image: itemData.image || '',
@@ -291,7 +291,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
       return {
         id: cat.ID,
-        label: cat.navName,
+        label: cat.localizedNavName || cat.navName,
         navUrl: cat.navUrl,
         products,
       }
@@ -337,7 +337,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
             category: nav.navName,
             categorySlug,
             sort: Number(post.sort) || 0,
-            title: itemData.coverTitle || itemData.title || post.navName,
+            title: itemData.coverTitle || itemData.title || post.localizedNavName || post.navName,
             description: itemData.description || itemData.desc || '',
             date: itemData.coverDate || itemData.date || itemData.publishDate || '',
             image: itemData.coverImage || itemData.image || itemData.cover || itemData.thumbnail || '',

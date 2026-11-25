@@ -170,7 +170,7 @@ const footerColumns = computed(() => {
   // 为 Products 列添加产品分类数据
   return columns.map(column => {
     // 如果是 Products 列，使用产品分类数据
-    if (column.title === 'Products') {
+    if ((column.navName || column.title) === 'Products') {
       return {
         title: column.title,
         links: getProductLinks.value,

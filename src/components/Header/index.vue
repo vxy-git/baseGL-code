@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRef } from 'vue'
+import { computed, onMounted, ref, toRef } from 'vue'
 import NavDropdown from '@/components/Nav/index.vue'
 import MediaAsset from '@/components/MediaAsset.vue'
 import DesktopNav from '@/components/Header/DesktopNav.vue'
@@ -8,6 +8,15 @@ import { headerData } from '@/data/common/header'
 import { productsData } from '@/data/product_list/products'
 import { useCmsNavStore } from '@/stores/cmsNav'
 import { useHeaderNav } from '@/composables/useHeaderNav'
+import { changeWebsiteLanguage, getWebsiteLanguages } from '@/api/cmsLanguage'
+
+const languageOptions = ref([])
+const activeLanguage = ref('en')
+onMounted(async () => {
+  const config = await getWebsiteLanguages()
+  languageOptions.value = config.languages
+  activeLanguage.value = config.active
+})
 
 const props = defineProps({
   headerClass: {
@@ -137,6 +146,10 @@ const {
         </div>
 
         <div class="nav-right">
+          <select v-if="languageOptions.length > 1" :value="activeLanguage" aria-label="Language"
+            class="website-language" @change="changeWebsiteLanguage($event.target.value)">
+            <option v-for="language in languageOptions" :key="language.code" :value="language.code">{{ language.name }}</option>
+          </select>
           <!-- 桌面端右侧按钮 -->
           <button v-if="!isMobile" class="contact-button" @click="goContact">
             {{ commonHeaderData.buttonText.contact }}
@@ -203,6 +216,14 @@ const {
 </template>
 
 <style scoped lang="scss">
+.website-language {
+  max-width: 9rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  background: #fff;
+  color: #222;
+}
 .white {
   .box {
     background-color: white !important;

@@ -74,7 +74,7 @@ export function formatNavItem(nav, opts = {}) {
   const { allNavs, includeIcon } = opts
 
   const item = {
-    text: nav.navName || '',
+    text: nav.headerLabel || nav.localizedNavName || nav.navName || '',
     id: nav.ID,
   }
 
