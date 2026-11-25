@@ -79,14 +79,18 @@ watch(activeSubmenu, async val => {
   <nav class="nav-links">
     <template v-for="(item, index) in navItems" :key="index">
       <!-- Products 大型下拉 -->
-      <a
+      <component
         v-if="item.type === 'dropdown'"
+        :is="item.followParentLink && item.to ? 'router-link' : 'a'"
+        :to="item.followParentLink ? item.to : undefined"
+        :href="item.followParentLink ? item.href : undefined"
+        :target="item.followParentLink ? item.target : undefined"
         :class="['nav-link', 'nav-link-dropdown', { active: showDropdown }]"
         @mouseenter="emit('products-mouse-enter')"
         @mouseleave="emit('products-mouse-leave')"
       >
         {{ item.text }}
-      </a>
+      </component>
 
       <!-- 轻量 submenu，全宽面板 -->
       <div
@@ -95,9 +99,15 @@ watch(activeSubmenu, async val => {
         @mouseenter="openSubmenu(index, $event)"
         @mouseleave="scheduleClose"
       >
-        <span :class="['nav-link', { active: activeSubmenu === index }]">
+        <component
+          :is="item.followParentLink && item.to ? 'router-link' : item.followParentLink && item.href ? 'a' : 'span'"
+          :to="item.followParentLink ? item.to : undefined"
+          :href="item.followParentLink ? item.href : undefined"
+          :target="item.followParentLink ? item.target : undefined"
+          :class="['nav-link', { active: activeSubmenu === index }]"
+        >
           {{ item.text }}
-        </span>
+        </component>
 
         <Teleport to="body">
           <template v-if="activeSubmenu === index">

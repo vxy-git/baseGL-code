@@ -12,7 +12,7 @@ import {
   isFooterVisible,
   isFooterChild,
   formatNavItem,
-  resolveNavLink,
+  getNavClickLink,
   sortNavsBySort,
 } from '@/utils/navFilter'
 import { matchRoutePattern } from '@/utils/blogRoute'
@@ -98,9 +98,7 @@ function buildFooterColumns(allNavs) {
       links: sortNavsBySort(allNavs.filter(child => isFooterChild(child, parentNav.ID)))
         .map(child => {
           const item = { text: child.navName || '' }
-          if (child.navUrl) {
-            Object.assign(item, resolveNavLink(child.navUrl, child.target))
-          }
+          Object.assign(item, getNavClickLink(child))
           return item
         }),
     }))

@@ -58,7 +58,7 @@ const blackBgKeys = new Set(['unit4', 'unit5', 'unit9'])
     <Header />
 
     <!-- 动态渲染 Unit -->
-    <template v-for="item in renderList" :key="item.key">
+    <template v-for="item in renderList" :key="item.instanceKey ?? item.key">
       <!-- unit4,5,9 需要黑色背景容器 -->
       <div v-if="blackBgKeys.has(item.key)" class="bg-[#000]">
         <component :is="item.component" :data="item.data" />

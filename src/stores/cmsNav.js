@@ -8,9 +8,21 @@ import {
   isTopLevel,
   isHeaderVisible,
   isFooterVisible,
-  resolveNavLink,
+  getNavClickLink,
   sortNavsBySort,
 } from '@/utils/navFilter'
+
+function getPageCovers(page) {
+  const assetUrl = url => import.meta.env.DEV && url?.startsWith('/api/uploads/')
+    ? new URL(url, window.location.origin).href
+    : url || ''
+  return {
+    coverImage: assetUrl(page.coverImage),
+    coverType: page.coverType || 'image',
+    hoverCoverUrl: assetUrl(page.hoverCoverUrl),
+    hoverCoverType: page.hoverCoverType || 'image',
+  }
+}
 
 /**
  * CMS 导航数据 Store
@@ -140,9 +152,8 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
   function formatNavItemForDisplay(nav, allNavs) {
     const item = { text: nav.navName || '', id: nav.ID }
 
-    if (nav.navUrl) {
-      Object.assign(item, resolveNavLink(nav.navUrl, nav.target))
-    }
+    Object.assign(item, getNavClickLink(nav))
+    item.followParentLink = Boolean(item.to || item.href)
 
     // 检查是否有子菜单
     const hasChildren = allNavs.some(
@@ -162,9 +173,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
         )
         item.submenu = children.map(child => {
           const sub = { text: child.navName || '' }
-          if (child.navUrl) {
-            Object.assign(sub, resolveNavLink(child.navUrl, child.target))
-          }
+          Object.assign(sub, getNavClickLink(child))
           return sub
         })
       }
@@ -183,16 +192,15 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
     column.links = children.map(child => {
       const link = { text: child.navName || '' }
-      if (child.navUrl) {
-        Object.assign(link, resolveNavLink(child.navUrl, child.target))
-      }
+      Object.assign(link, getNavClickLink(child))
       return link
     })
 
     // 如果没有子项且顶级本身有链接，则作为单链接展示
-    if (column.links.length === 0 && nav.navUrl) {
+    const topDestination = getNavClickLink(nav)
+    if (column.links.length === 0 && (topDestination.to || topDestination.href)) {
       const topLink = { text: nav.navName || '' }
-      Object.assign(topLink, resolveNavLink(nav.navUrl, nav.target))
+      Object.assign(topLink, topDestination)
       column.links.push(topLink)
     }
 
@@ -261,13 +269,17 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
 
     return categories.map(cat => {
       const products = sortNavsBySort(childrenMap.get(cat.ID) || []).map(p => {
-        const itemData = p.moduleList?.item?.data || {}
+        const item = Array.isArray(p.moduleList)
+          ? p.moduleList.find(module => module?.moduleKey === 'item' && module.enabled !== false)
+          : p.moduleList?.item
+        const itemData = item?.enabled === false ? {} : item?.data || {}
         return {
           id: p.ID,
           name: itemData.name || p.navName,
           description: itemData.description || '',
           capacity: itemData.capacity || '',
           image: itemData.image || '',
+          ...getPageCovers(p),
           background: itemData.background || '',
           alt: itemData.name || p.navName,
           isNew: itemData.isNew || false,
@@ -329,6 +341,7 @@ export const useCmsNavStore = defineStore('cmsNav', () => {
             description: itemData.description || itemData.desc || '',
             date: itemData.coverDate || itemData.date || itemData.publishDate || '',
             image: itemData.coverImage || itemData.image || itemData.cover || itemData.thumbnail || '',
+            ...getPageCovers(post),
             featuredImage: itemData.featuredImage || itemData.coverImage || itemData.image || itemData.cover || '',
             alt: itemData.alt || itemData.coverTitle || itemData.title || post.navName,
             isTop: itemData.isTop || itemData.isPinned || itemData.pinned || itemData.top || false,

@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import MediaAsset from '@/components/MediaAsset.vue'
 
@@ -47,6 +47,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['click'])
+const hovered = ref(false)
+const hasPageCover = computed(() => Boolean(props.data.coverImage || props.data.hoverCoverUrl))
+const showHoverCover = computed(() => hovered.value && Boolean(props.data.hoverCoverUrl))
 
 const router = useRouter()
 const productLink = linkType => `/${linkType}`
@@ -70,9 +73,10 @@ const handleClick = () => {
 
 <template>
   <div class="product-item" :style="cardStyle">
-    <div class="card-surface" @click="handleClick">
+    <div class="card-surface" :class="{ 'has-page-cover': hasPageCover }" @click="handleClick"
+      @pointerenter="hovered = $event.pointerType !== 'touch'" @pointerleave="hovered = false">
       <MediaAsset
-        v-if="data.background"
+        v-if="!hasPageCover && data.background"
         class="product-featured-image"
         type="image"
         :src="data.background"
@@ -82,8 +86,9 @@ const handleClick = () => {
       <div class="media">
         <MediaAsset
           class="product-image"
-          type="image"
-          :src="data.image"
+          :type="showHoverCover ? data.hoverCoverType : data.coverType || 'image'"
+          :src="(showHoverCover ? data.hoverCoverUrl : data.coverImage) || data.image || ''"
+          loop
           :alt="data.alt || data.name"
           :lazy="false"
         />
@@ -173,7 +178,7 @@ const handleClick = () => {
       transform: scale(1.1);
     }
 
-    .product-image {
+    &:not(.has-page-cover) .product-image {
       opacity: 0;
     }
 

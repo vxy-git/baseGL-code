@@ -1,7 +1,9 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import MediaAsset from '@/components/MediaAsset.vue'
+
+const hoveredPostId = ref(null)
 import { useUnitData } from '@/composables/useUnitData'
 import { unit2Data } from '@/data/blog_detail/unit2'
 import { useCmsNavStore } from '@/stores/cmsNav'
@@ -72,11 +74,14 @@ const resolvePostPath = post =>
         :key="post.id"
         class="postCard"
         :to="resolvePostPath(post)"
+        @pointerenter="hoveredPostId = $event.pointerType === 'touch' ? null : post.id"
+        @pointerleave="hoveredPostId = null"
       >
         <MediaAsset
           class="postImage"
-          type="image"
-          :src="post.image || post.cover || post.thumbnail || post.featuredImage"
+          :type="hoveredPostId === post.id && post.hoverCoverUrl ? post.hoverCoverType : post.coverType || 'image'"
+          :src="(hoveredPostId === post.id && post.hoverCoverUrl) || post.coverImage || post.image || post.cover || post.thumbnail || post.featuredImage || ''"
+          loop
           alt=""
         />
         <div class="postBody">

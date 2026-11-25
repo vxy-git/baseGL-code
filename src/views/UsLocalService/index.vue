@@ -35,7 +35,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
 <template>
   <div class="usLocalService">
     <Header header-class="white" show-line />
-    <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
+    <component :is="item.component" v-for="item in renderList" :key="item.instanceKey ?? item.key" :data="item.data" />
     <Footer show-line />
   </div>
 </template>

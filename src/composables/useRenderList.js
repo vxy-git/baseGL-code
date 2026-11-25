@@ -21,6 +21,31 @@ export function useRenderList(props, componentMap, defaultOrder, dataKeyFor) {
     const order =
       isRef(defaultOrder) || isReactive(defaultOrder) ? defaultOrder.value : defaultOrder
 
+    if (Array.isArray(moduleList)) {
+      const keysByModule = new Map()
+      for (const key of order) {
+        const moduleKey = dataKeyFor ? dataKeyFor(key) : key.replace(/^m_/, '')
+        const keys = keysByModule.get(moduleKey) || []
+        keys.push(key)
+        keysByModule.set(moduleKey, keys)
+      }
+
+      return moduleList
+        .map((module, index) => ({ module, index }))
+        .filter(({ module }) => module && module.enabled !== false)
+        .sort((a, b) => (a.module.sort ?? a.index + 1) - (b.module.sort ?? b.index + 1))
+        .flatMap(({ module, index }) => {
+          const keys = keysByModule.get(module.moduleKey) ||
+            (order.includes(module.moduleKey) ? [module.moduleKey] : [])
+          return keys.map(key => ({
+            key,
+            instanceKey: `${module.instanceId || index}:${key}`,
+            component: componentMap[key],
+            data: module.data ?? null,
+          }))
+        })
+    }
+
     if (moduleList && Object.keys(moduleList).length > 0) {
       return order
         .filter(key => {

@@ -2,6 +2,8 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MediaAsset from '@/components/MediaAsset.vue'
+
+const hoveredPostId = ref(null)
 import { useUnitData } from '@/composables/useUnitData'
 import { listData } from '@/data/blog/list'
 import { postsData } from '@/data/blog/posts'
@@ -137,11 +139,14 @@ watch(tabsCurrent, () => {
         :key="post.id"
         class="postCard"
         :to="resolvePostPath(post)"
+        @pointerenter="hoveredPostId = $event.pointerType === 'touch' ? null : post.id"
+        @pointerleave="hoveredPostId = null"
       >
         <MediaAsset
           class="postImage"
-          type="image"
-          :src="post.image || post.cover || post.thumbnail || post.featuredImage"
+          :type="hoveredPostId === post.id && post.hoverCoverUrl ? post.hoverCoverType : post.coverType || 'image'"
+          :src="(hoveredPostId === post.id && post.hoverCoverUrl) || post.coverImage || post.image || post.cover || post.thumbnail || post.featuredImage || ''"
+          loop
           alt=""
         />
         <div class="postBody">

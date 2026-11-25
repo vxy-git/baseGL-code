@@ -41,9 +41,9 @@ export default defineConfig({
         open: false,
         proxy: {
             '/api': {
-                target: 'https://admin.cloudcode.ink',
+                target: 'http://127.0.0.1:7890',
                 changeOrigin: true,
-                secure: true
+                rewrite: path => path.replace(/^\/api(?=\/|$)/, '')
             }
         }
     },

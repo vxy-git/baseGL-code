@@ -110,7 +110,7 @@ const wrapperClass = computed(() => {
     <Header />
 
     <!-- 动态渲染 Unit -->
-    <template v-for="item in renderList" :key="item.key">
+    <template v-for="item in renderList" :key="item.instanceKey ?? item.key">
       <div v-if="wrapperClass[item.key]" :class="wrapperClass[item.key]">
         <component :is="item.component" :data="item.data" />
       </div>

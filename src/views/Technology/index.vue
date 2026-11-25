@@ -54,7 +54,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder, dataKeyF
 <template>
   <div class="relative bg-black">
     <Header />
-    <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
+    <component :is="item.component" v-for="item in renderList" :key="item.instanceKey ?? item.key" :data="item.data" />
     <Splide4 />
     <Footer />
   </div>

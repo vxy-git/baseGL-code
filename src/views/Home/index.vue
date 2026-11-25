@@ -38,7 +38,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
       <component
         :is="item.component"
         v-for="item in renderList"
-        :key="item.key"
+        :key="item.instanceKey ?? item.key"
         :data="item.data"
       />
       <div class="pt-[20px]">

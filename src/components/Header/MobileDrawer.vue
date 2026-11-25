@@ -22,6 +22,12 @@ const emit = defineEmits([
   'open-products',
   'open-submenu',
 ])
+
+function closeForParentLink(event, item) {
+  if (!item.followParentLink || !(item.to || item.href)) return
+  event.stopPropagation()
+  emit('close')
+}
 </script>
 
 <template>
@@ -84,7 +90,13 @@ const emit = defineEmits([
                   class="nav-item-header"
                   @click="emit('open-products')"
                 >
-                  <span>{{ item.text }}</span>
+                  <component
+                    :is="item.followParentLink && item.to ? 'router-link' : item.followParentLink && item.href ? 'a' : 'span'"
+                    :to="item.followParentLink ? item.to : undefined"
+                    :href="item.followParentLink ? item.href : undefined"
+                    :target="item.followParentLink ? item.target : undefined"
+                    @click="closeForParentLink($event, item)"
+                  >{{ item.text }}</component>
                   <svg
                     width="20"
                     height="20"
@@ -101,7 +113,13 @@ const emit = defineEmits([
                   class="nav-item-header"
                   @click="emit('open-submenu', item)"
                 >
-                  <span>{{ item.text }}</span>
+                  <component
+                    :is="item.followParentLink && item.to ? 'router-link' : item.followParentLink && item.href ? 'a' : 'span'"
+                    :to="item.followParentLink ? item.to : undefined"
+                    :href="item.followParentLink ? item.href : undefined"
+                    :target="item.followParentLink ? item.target : undefined"
+                    @click="closeForParentLink($event, item)"
+                  >{{ item.text }}</component>
                   <svg
                     width="20"
                     height="20"

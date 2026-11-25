@@ -43,7 +43,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
     </div>
 
     <!-- 动态渲染 Unit -->
-    <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
+    <component :is="item.component" v-for="item in renderList" :key="item.instanceKey ?? item.key" :data="item.data" />
 
     <!-- Footer -->
     <Footer show-line />

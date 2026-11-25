@@ -26,7 +26,7 @@ const { renderList } = useRenderList(props, componentMap, defaultOrder)
   <div class="blogDetailPage">
     <Header header-class="white" show-line />
     <main class="blogDetailMain">
-      <component :is="item.component" v-for="item in renderList" :key="item.key" :data="item.data" />
+      <component :is="item.component" v-for="item in renderList" :key="item.instanceKey ?? item.key" :data="item.data" />
     </main>
     <Footer />
   </div>

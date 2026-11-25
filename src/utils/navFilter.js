@@ -57,6 +57,11 @@ export function resolveNavLink(navUrl, target) {
   return { to: navUrl.startsWith('/') ? navUrl : `/${navUrl}`, target: target || '_self' }
 }
 
+export function getNavClickLink(nav) {
+  const destination = nav.navRedirectUrl?.trim() || nav.navUrl?.trim()
+  return destination ? resolveNavLink(destination, nav.target) : {}
+}
+
 /**
  * 格式化单个导航项（Header 或 Footer 通用）
  * @param {Object} nav - 原始导航数据
@@ -74,9 +79,7 @@ export function formatNavItem(nav, opts = {}) {
   }
 
   // 处理导航链接
-  if (nav.navUrl) {
-    Object.assign(item, resolveNavLink(nav.navUrl, nav.target))
-  }
+  Object.assign(item, getNavClickLink(nav))
 
   // 处理子导航（仅当传入了 allNavs 时）
   if (allNavs && isTopLevel(nav)) {

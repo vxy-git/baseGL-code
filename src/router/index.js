@@ -255,7 +255,8 @@ export async function createAppRouter() {
       const pageType = route.meta?.pageType
       const moduleList = route.props?.pageConfig?.moduleList
       const hasModuleData =
-        moduleList && typeof moduleList === 'object' && Object.keys(moduleList).length > 0
+        Array.isArray(moduleList) ||
+        (moduleList && typeof moduleList === 'object' && Object.keys(moduleList).length > 0)
       if (!isValidPageType(pageType) || !hasModuleData) {
         continue
       }

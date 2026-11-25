@@ -21,6 +21,7 @@ const moveDuration = 1
 const pauseDuration = 1
 let scrollTl1
 let scrollTl2
+let refreshFrame
 
 const initScroll = () => {
   const maskEls = innerRef.value.querySelectorAll('.mask')
@@ -30,8 +31,8 @@ const initScroll = () => {
       defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: unitRef.value,
-        start: 'center bottom',
-        end: 'center center',
+        start: 'top bottom',
+        end: 'top top',
         scrub: true,
         invalidateOnRefresh: true,
       },
@@ -53,7 +54,7 @@ const initScroll = () => {
     scrollTrigger: {
       trigger: unitRef.value,
       pin: true,
-      start: 'center center',
+      start: 'top top',
       end: () => '+=' + endDistance(),
       scrub: true,
       invalidateOnRefresh: true,
@@ -94,12 +95,18 @@ const initScroll = () => {
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
   initScroll()
-  ScrollTrigger.refresh()
+  refreshFrame = requestAnimationFrame(() => {
+    ScrollTrigger.sort()
+    ScrollTrigger.refresh()
+  })
 })
 
 onBeforeUnmount(() => {
-  scrollTl1 && scrollTl1.kill()
-  scrollTl2 && scrollTl2.kill()
+  cancelAnimationFrame(refreshFrame)
+  scrollTl1?.scrollTrigger?.kill()
+  scrollTl2?.scrollTrigger?.kill()
+  scrollTl1?.kill()
+  scrollTl2?.kill()
 })
 </script>
 
@@ -179,13 +186,16 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 .unit8-scroll {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  overflow: clip;
+  background: #000;
 }
 
 .unit8-inner {
   display: flex;
   will-change: transform;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .unit8-track {
